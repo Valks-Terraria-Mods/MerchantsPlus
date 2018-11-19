@@ -9,11 +9,24 @@ namespace MerchantsPlus.NPCS
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
             if (type == NPCID.Cyborg) {
-                shop.item[nextSlot++].SetDefaults(ItemID.Flamethrower);
-                shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
-                shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
-                shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
-                shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                if (NPC.downedGolemBoss)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
+                }
+
+                if (NPC.downedFishron)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
+                }
+
+                if (NPC.downedAncientCultist) {
+                    shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
+                }
+
+                if (NPC.downedTowerVortex) {
+                    shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                }
+                
             }
             
         }

@@ -2,10 +2,10 @@ All town NPC merchants are stocked with more items to sell now.
 
 This is a very big mod, it is very incomplete and will take a long time to make.
 
-This mod conflicts with my Clothier Dev Vanity mod so I will unpublish that.
-
-Another note: The mods Craftable Crafting Stations, Craftable Pets, and Craftable Mounts will eventually all be unpublished and combined into one big mod called Craftable Uncraftables
-
 Since this Merchants+ mod is so big, you can see what it does in the source code which can be found here: https://github.com/valkyrienyanko/MerchantsPlus
 
 If you have any suggestions or ideas for this mod, go to the mods homepage.
+
+v0.2
+Added conditions for various merchants.
+Added more items.
