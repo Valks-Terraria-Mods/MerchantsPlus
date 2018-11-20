@@ -6,24 +6,50 @@ namespace MerchantsPlus.NPCS
 {
     class GoblinTinkerer : GlobalNPC
     {
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == NPCID.GoblinTinkerer)
+            {
+                npc.lifeMax = 500;
+            }
+        }
+
+        public override void GetChat(NPC npc, ref string chat)
+        {
+            if (npc.type == NPCID.GoblinTinkerer)
+            {
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        chat = "Were going to mod your gear right up baby. :)";
+                        break;
+                    case 1:
+                        chat = "I got all the modifications you will ever need. >:)";
+                        break;
+                    default:
+                        chat = "Did someone call for a modder? >:D";
+                        break;
+                }
+            }
+        }
         public override void SetupShop(int type, Chest shop, ref int nextSlot) {
             if (type == NPCID.GoblinTinkerer) {
                 if (NPC.downedSlimeKing) {
-                    shop.item[nextSlot++].SetDefaults(ItemID.Aglet);
-                    shop.item[nextSlot++].SetDefaults(ItemID.AnkletoftheWind);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Shackle);
+                    if (Utils.kills(NPCID.BlueSlime) > 100) shop.item[nextSlot++].SetDefaults(ItemID.Aglet);
+                    if (Utils.kills(NPCID.RedSlime) > 100) shop.item[nextSlot++].SetDefaults(ItemID.AnkletoftheWind);
+                    if (Utils.kills(NPCID.PurpleSlime) > 100) shop.item[nextSlot++].SetDefaults(ItemID.Shackle);
                 }
                 if (NPC.downedBoss1) {
-                    shop.item[nextSlot++].SetDefaults(ItemID.CloudinaBottle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SandstorminaBottle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BlizzardinaBottle);
+                    if (Utils.kills(NPCID.DemonEye) > 100) shop.item[nextSlot++].SetDefaults(ItemID.CloudinaBottle);
+                    if (Utils.kills(NPCID.DemonEye2) > 100) shop.item[nextSlot++].SetDefaults(ItemID.SandstorminaBottle);
+                    if (Utils.kills(NPCID.Zombie) > 100) shop.item[nextSlot++].SetDefaults(ItemID.BlizzardinaBottle);
                 }
 
                 if (NPC.downedBoss2) {
-                    shop.item[nextSlot++].SetDefaults(ItemID.ClimbingClaws);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Flipper);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlyingCarpet);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FrogLeg);
+                    if (Utils.kills(NPCID.Zombie) > 150) shop.item[nextSlot++].SetDefaults(ItemID.ClimbingClaws);
+                    if (Utils.kills(NPCID.PinkJellyfish) > 50) shop.item[nextSlot++].SetDefaults(ItemID.Flipper);
+                    if (Utils.kills(NPCID.Antlion) > 50) shop.item[nextSlot++].SetDefaults(ItemID.FlyingCarpet);
+                    if (Utils.kills(NPCID.BlueJellyfish) > 50) shop.item[nextSlot++].SetDefaults(ItemID.FrogLeg);
                 }
 
                 if (NPC.downedBoss3) {

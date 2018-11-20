@@ -6,6 +6,33 @@ namespace MerchantsPlus.NPCS
 {
     class Clothier : GlobalNPC
     {
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == NPCID.Clothier)
+            {
+                npc.lifeMax = 500;
+            }
+        }
+
+        public override void GetChat(NPC npc, ref string chat)
+        {
+            if (npc.type == NPCID.Clothier)
+            {
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        chat = "Hi :(";
+                        break;
+                    case 1:
+                        chat = "T-shirts man, no one ever buys them. ;(";
+                        break;
+                    default:
+                        chat = "Would you care to buy a pair of pants? :(";
+                        break;
+                }
+            }
+        }
+
         public override void SetupShop(int type, Chest shop, ref int nextSlot) {
             if (type == NPCID.Clothier) {
                 if (NPC.downedSlimeKing)

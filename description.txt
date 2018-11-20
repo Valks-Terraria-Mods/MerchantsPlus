@@ -1,10 +1,21 @@
 All town NPC merchants are stocked with more items to sell now.
 
-This is a very big mod, it is very incomplete and will take a long time to make.
+If you have any suggestions or ideas for this mod, go to the mods homepage.
+
+Update v0.4 will focus on merchants giving you items when unique dialog is played and a lot of the merchants items conditions will be heavily revised again to be more balanced and less cheaty.
+
+This is a very big mod, it is very incomplete and will take a long time to complete.
 
 Since this Merchants+ mod is so big, you can see what it does in the source code which can be found here: https://github.com/valkyrienyanko/MerchantsPlus
 
-If you have any suggestions or ideas for this mod, go to the mods homepage.
+Here is an example of what the mod does. When you kill the slime king, the demolitionist will sell the new items Sticky Grenade, Sticky Bomb, Sticky Dynamite, Bouncy Grenade, Bouncy Bomb and Bouncy Dynamite.
+
+v0.3
+All NPCs have unique dialog and personalities.
+Arms dealer heavily revised.
+Revised items for most merchants. Items are no longer that cheaty to get.
+Added more boss and npc kill conditions for all merchants to make the mod less op.
+As a test, the Wizard now gives the player a magic dagger when unique dialog is played and unique conditions are met.
 
 v0.2
 Added conditions for various merchants.

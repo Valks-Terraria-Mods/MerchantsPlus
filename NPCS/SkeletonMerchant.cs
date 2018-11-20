@@ -6,6 +6,32 @@ namespace MerchantsPlus.NPCS
 {
     class SkeletonMerchant : GlobalNPC
     {
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == NPCID.SkeletonMerchant)
+            {
+                npc.lifeMax = 500;
+            }
+        }
+
+        public override void GetChat(NPC npc, ref string chat)
+        {
+            if (npc.type == NPCID.SkeletonMerchant)
+            {
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        chat = "I really like music!";
+                        break;
+                    case 1:
+                        chat = "I got some good beats you might like.";
+                        break;
+                    default:
+                        chat = "I got a load of genres you can listen to! :)";
+                        break;
+                }
+            }
+        }
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
             if (type == NPCID.SkeletonMerchant)
