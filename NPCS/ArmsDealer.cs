@@ -103,30 +103,30 @@ namespace MerchantsPlus.NPCS
 
                     if (NPC.downedQueenBee) // If the queen bee was killed
                     {
-                        shop.item[0].SetDefaults(ItemID.GoldenBullet);
-                        shop.item[1].SetDefaults(ItemID.PhoenixBlaster);
+                        shop.item[0].SetDefaults(ItemID.GoldenBullet); // Replace crystal bullets with golden bullets
+                        shop.item[1].SetDefaults(ItemID.PhoenixBlaster); // Replace handgun with phoenix blaster
                     }
 
-                    if (NPC.downedBoss3)
-                    { // Skeletron
-                        shop.item[0].SetDefaults(ItemID.ExplodingBullet);
-                        shop.item[nextSlot++].SetDefaults(ItemID.ClockworkAssaultRifle);
-                        shop.item[nextSlot++].SetDefaults(ItemID.OnyxBlaster);
+                    if (NPC.downedBoss3) // If skeletron was killed
+                    {
+                        shop.item[0].SetDefaults(ItemID.ExplodingBullet); // Replace golden bullets with exploding bullets
+                        shop.item[nextSlot++].SetDefaults(ItemID.ClockworkAssaultRifle); // Add a rifle
+                        shop.item[nextSlot++].SetDefaults(ItemID.OnyxBlaster); // Add a rifle
                     }
                 }
 
-                if (Main.hardMode) {
-                    shop.item[0].SetDefaults(ItemID.NanoBullet);
-                    shop.item[1].SetDefaults(ItemID.OnyxBlaster);
-                    shop.item[2].SetDefaults(ItemID.HellfireArrow);
-                    shop.item[3].SetDefaults(ItemID.Uzi);
-                    shop.item[4].SetDefaults(ItemID.ClockworkAssaultRifle);
+                if (Main.hardMode) { // If in hardmode
+                    shop.item[0].SetDefaults(ItemID.NanoBullet); // Bullets slot
+                    shop.item[1].SetDefaults(ItemID.OnyxBlaster); // Replace silver bullets with this
+                    shop.item[2].SetDefaults(ItemID.HellfireArrow); // Replace unholy arrows with this
+                    shop.item[3].SetDefaults(ItemID.Uzi); // Pistol slot
+                    shop.item[4].SetDefaults(ItemID.ClockworkAssaultRifle); // Replace with rifle
 
-                    if (NPC.downedMechBossAny)
+                    if (NPC.downedMechBossAny) // If any mech boss was killed
                     {
-                        shop.item[nextSlot++].SetDefaults(ItemID.Gatligator);
                         shop.item[0].SetDefaults(ItemID.HighVelocityBullet);
                         shop.item[2].SetDefaults(ItemID.HolyArrow);
+                        shop.item[nextSlot++].SetDefaults(ItemID.Gatligator);
                     }
 
                     if (NPC.downedMechBoss1)
@@ -174,6 +174,7 @@ namespace MerchantsPlus.NPCS
                     }
                 }
 
+                // If the dryad is in the town and is wearing a party hat than the arms dealer will sell party bullets.
                 if (Main.npc[NPCID.Dryad].UsesPartyHat()) {
                     shop.item[0].SetDefaults(ItemID.PartyBullet);
                 }
