@@ -21,13 +21,13 @@ namespace MerchantsPlus.NPCS
                 switch (Main.rand.Next(3))
                 {
                     case 0:
-                        chat = ":)";
+                        chat = "Be careful, this imbuing station needs tending to..";
                         break;
                     case 1:
-                        chat = ":)";
+                        chat = "A flask a day keeps the Witch Doctor away.";
                         break;
                     default:
-                        chat = ":)";
+                        chat = Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000);
                         break;
                 }
             }

@@ -1,17 +1,37 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace MerchantsPlus
 {
     class Utils
     {
-        public static int kills(short theNPC) {
+        public static int kills(short theNPC)
+        {
             return NPC.killCount[Item.NPCtoBanner(theNPC)];
         }
 
-        public static string dialogGift(NPC npc, string moneyDialog, string noMoneyDialog, bool condition, int chance, short item, int price) {
-            if (condition) {
+        public static bool isNPCHere(short npc) {
+            int theNPC = NPC.FindFirstNPC(npc);
+            if (theNPC >= 0) {
+                return true;
+            }
+            return false;
+        }
+
+        public static string getNPCName(short npc) {
+            int theNPC = NPC.FindFirstNPC(npc);
+            if (isNPCHere(npc))
+            {
+                return Main.npc[theNPC].GivenName;
+            }
+            else {
+                return "someone";
+            }
+        }
+
+        public static string dialogGift(NPC npc, string moneyDialog, string noMoneyDialog, bool condition, int chance, short item, int price)
+        {
+            if (condition)
+            {
                 if (Main.rand.Next(0, 100) < chance)
                 {
                     if (Main.LocalPlayer.BuyItem(price))
@@ -19,7 +39,9 @@ namespace MerchantsPlus
                         if (!Main.LocalPlayer.HasItem(item))
                         {
                             Item.NewItem(npc.position, item);
-                            if (price < 100)
+                            if (price <= 0) {
+                                return moneyDialog;
+                            } else if (price < 100)
                             {
                                 return moneyDialog + " " + price + " copper was removed from your inventory";
                             }
