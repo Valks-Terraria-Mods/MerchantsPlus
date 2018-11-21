@@ -96,14 +96,14 @@ namespace MerchantsPlus.NPCS
 
                     if (NPC.downedBoss2) // If the eater of worlds or the brain of cthulu was killed
                     {
-                        shop.item[0].SetDefaults(ItemID.CrystalBullet); // Replace meteor bullets with crystal bullets
+                        shop.item[0].SetDefaults(ItemID.GoldenBullet);
                         shop.item[1].SetDefaults(ItemID.Handgun); // Replace revolver with handgun
                         shop.item[nextSlot++].SetDefaults(ItemID.Musket); // Add musket as an additional item to the shop
                     }
 
                     if (NPC.downedQueenBee) // If the queen bee was killed
                     {
-                        shop.item[0].SetDefaults(ItemID.GoldenBullet); // Replace crystal bullets with golden bullets
+                        shop.item[0].SetDefaults(ItemID.NanoBullet);
                         shop.item[1].SetDefaults(ItemID.PhoenixBlaster); // Replace handgun with phoenix blaster
                     }
 
@@ -116,7 +116,7 @@ namespace MerchantsPlus.NPCS
                 }
 
                 if (Main.hardMode) { // If in hardmode
-                    shop.item[0].SetDefaults(ItemID.NanoBullet); // Bullets slot
+                    shop.item[0].SetDefaults(ItemID.CrystalBullet);
                     shop.item[1].SetDefaults(ItemID.OnyxBlaster); // Replace silver bullets with this
                     shop.item[2].SetDefaults(ItemID.HellfireArrow); // Replace unholy arrows with this
                     shop.item[3].SetDefaults(ItemID.Uzi); // Pistol slot
