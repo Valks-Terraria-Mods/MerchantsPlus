@@ -4,6 +4,18 @@ namespace MerchantsPlus
 {
     class Utils
     {
+        public static string dialog(string[] lines) {
+            return lines[Main.rand.Next(lines.Length)];
+        }
+
+        public static int downedMechBosses() {
+            int count = 0;
+            if (NPC.downedMechBoss1) count++;
+            if (NPC.downedMechBoss2) count++;
+            if (NPC.downedMechBoss3) count++;
+            return count;
+        }
+
         public static int kills(short theNPC)
         {
             return NPC.killCount[Item.NPCtoBanner(theNPC)];
@@ -25,6 +37,18 @@ namespace MerchantsPlus
             }
             else {
                 return "someone";
+            }
+        }
+
+        public static void dropItem(NPC npc, short npcID, short[] item, int chance) {
+            if (Main.rand.Next(1, 100) < chance)
+            {
+                if (npc.type == npcID)
+                {
+                    for (int i = 0; i < item.Length; i++) {
+                        Item.NewItem(npc.position, item[i]);
+                    }
+                }
             }
         }
 

@@ -1,17 +1,42 @@
 You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
 
+[c/ffb2fd:Stats]
+Merchants now mostly have 500 health.
+Merchants have unique sizes.
+Merchants hit cooldowns are reduced.
+Merchants shoot different projectiles based on the bosses you've defeated.
+Angler jumps like a slime. He wants to become a bunny when he grows up. Deal with it. (may be removed in future updates)
+
 [c/ffb2fd:Items]
 Merchants sell more items based on the bosses you defeat / how many enemies you take down.
+Merchants have a chance to drop unique items on death.
 
 [c/ffb2fd:Dialog]
-Merchants each have their own unique personality when you chat with them.
+Merchants each have their own unique humerous personality when you chat with them.
 Merchants give you items when unique dialogs are played and certain conditions are met.
 Merchants interact with other NPCs in their dialog if they exist in your town.
+
+[c/991095:v0.5]
+Added config
+Cleaned up code
+
+[c/991095:v0.5]
+This update will focus on adding more content (dialog, conditions, items, stats, etc..) If you have any suggestions for the mod than visit the mods homepage.
+
+[c/991095:v0.4]
+All NPCs now have unique sizes.
+Arms dealer heavily balanced.
+Added support for nurse, guide and angler NPCs.
+Lots of more humerous dialog to look forward to. ;)
+NPCs now have a chance to drop unique loot on death.
+Some NPCs projectiles have been modified based on how many bosses you've defeated.
+Index out of size bug fix for arms dealer and skeleton merchant.
+The angler now has the ai of a slime and he wants to become a bunny hopper when he grows up. :)
 
 [c/991095:v0.3]
 All NPCs have unique dialog and personalities.
 Arms dealer heavily revised.
-Revised items for most merchants. Items are no longer that cheaty to get.
+Revised items for most merchants.
 Added more boss and npc kill conditions for all merchants to make the mod less op.
 As a test, the Wizard now gives the player a magic dagger when unique dialog is played and unique conditions are met.
 

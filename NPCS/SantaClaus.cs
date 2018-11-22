@@ -8,32 +8,18 @@ namespace MerchantsPlus.NPCS
     {
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.SantaClaus)
-            {
-                npc.lifeMax = 500;
-            }
+            if (npc.type != NPCID.SantaClaus) return;
+            if (Config.merchantExtraLife) npc.lifeMax = 500;
+            if (Config.merchantScaling) npc.scale = 1.2f;
         }
 
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (npc.type == NPCID.SantaClaus)
-            {
-                switch (Main.rand.Next(4))
-                {
-                    case 0:
-                        chat = "HOHOHOOOOOHOOOOOO";
-                        break;
-                    case 1:
-                        chat = "HOOOOOOOO HOOOOOO HOOOOOOOO";
-                        break;
-                    case 2:
-                        chat = "You were a good lil' kid wern't ya buddy? HOOOOOOOOO HOOOOOOO HOOOOOOOOOO";
-                        break;
-                    default:
-                        chat = "HOOOOOOOOOOOOOOOO HOOOOOOOOOOOO HOOOOOOOOOOOOO";
-                        break;
-                }
-            }
+            if (npc.type != NPCID.SantaClaus) return;
+            chat = Utils.dialog(new string[] { "HOHOHOOOOOHOOOOOO",
+                "HOOOOOOOO HOOOOOO HOOOOOOOO",
+                "You were a good lil' kid wern't ya buddy? HOOOOOOOOO HOOOOOOO HOOOOOOOOOO",
+                "HOOOOOOOOOOOOOOOO HOOOOOOOOOOOO HOOOOOOOOOOOOO"});
         }
     }
 }

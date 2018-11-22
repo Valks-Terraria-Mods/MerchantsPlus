@@ -8,37 +8,24 @@ namespace MerchantsPlus.NPCS
     {
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.WitchDoctor)
-            {
-                npc.lifeMax = 500;
-            }
+            if (npc.type != NPCID.WitchDoctor) return;
+            if (Config.merchantExtraLife) npc.lifeMax = 500;
+            if (Config.merchantScaling) npc.scale = 0.9f;
         }
 
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (npc.type == NPCID.WitchDoctor)
-            {
-                switch (Main.rand.Next(3))
-                {
-                    case 0:
-                        chat = "Be careful, this imbuing station needs tending to..";
-                        break;
-                    case 1:
-                        chat = "A flask a day keeps the Witch Doctor away.";
-                        break;
-                    default:
-                        chat = Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000);
-                        break;
-                }
-            }
+            if (npc.type != NPCID.WitchDoctor) return;
+            chat = Utils.dialog(new string[] { "Be careful, this imbuing station needs tending to..",
+                "A flask a day keeps the Witch Doctor away.",
+                Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000)});
         }
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (type == NPCID.WitchDoctor) {
-                shop.item[nextSlot++].SetDefaults(ItemID.HerculesBeetle);
-                shop.item[nextSlot++].SetDefaults(ItemID.NecromanticScroll);
-                shop.item[nextSlot++].SetDefaults(ItemID.PygmyNecklace);
-            }
+            if (type != NPCID.WitchDoctor) return;
+            shop.item[nextSlot++].SetDefaults(ItemID.HerculesBeetle);
+            shop.item[nextSlot++].SetDefaults(ItemID.NecromanticScroll);
+            shop.item[nextSlot++].SetDefaults(ItemID.PygmyNecklace);
         }
     }
 }

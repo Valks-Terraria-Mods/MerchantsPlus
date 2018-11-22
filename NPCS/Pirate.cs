@@ -8,44 +8,24 @@ namespace MerchantsPlus.NPCS
     {
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.Pirate)
-            {
-                npc.lifeMax = 500;
-            }
+            if (npc.type != NPCID.Pirate) return;
+            if (Config.merchantExtraLife) npc.lifeMax = 500;
+            if (Config.merchantScaling) npc.scale = 0.9f;
         }
 
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (npc.type == NPCID.Pirate)
-            {
-                switch (Main.rand.Next(3))
-                {
-                    case 0:
-                        chat = Utils.dialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000);
-                        break;
-                    case 1:
-                        if (npc.closeDoor)
-                        {
-                            chat = "Were in a closed room together.. ;)";
-                        }
-                        else {
-                            chat = "ARRRR!";
-                        }
-                        break;
-                    default:
-                        chat = "Arr?";
-                        break;
-                }
-            }
+            if (npc.type != NPCID.Pirate) return;
+            chat = Utils.dialog(new string[] { Utils.dialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000),
+                "Arr?"});
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot) {
-            if (type == NPCID.Pirate) {
-                shop.item[nextSlot++].SetDefaults(ItemID.RangerEmblem);
-                shop.item[nextSlot++].SetDefaults(ItemID.SorcererEmblem);
-                shop.item[nextSlot++].SetDefaults(ItemID.SummonerEmblem);
-                shop.item[nextSlot++].SetDefaults(ItemID.WarriorEmblem);
-            }
+            if (type != NPCID.Pirate) return;
+            shop.item[nextSlot++].SetDefaults(ItemID.RangerEmblem);
+            shop.item[nextSlot++].SetDefaults(ItemID.SorcererEmblem);
+            shop.item[nextSlot++].SetDefaults(ItemID.SummonerEmblem);
+            shop.item[nextSlot++].SetDefaults(ItemID.WarriorEmblem);
         }
     }
 }

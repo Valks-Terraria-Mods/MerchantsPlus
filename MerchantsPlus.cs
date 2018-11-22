@@ -7,5 +7,10 @@ namespace MerchantsPlus
 		public MerchantsPlus()
 		{
 		}
-	}
+
+        public override void Load()
+        {
+            Config.Load();
+        }
+    }
 }
