@@ -49,7 +49,19 @@ namespace MerchantsPlus.NPCS
                 shop.item[9].SetDefaults(ItemID.UnholyArrow);
             }
             if (Utils.downedMechBosses() == 1) {
-                shop.item[9].SetDefaults(ItemID.HellfireArrow);
+                shop.item[9].SetDefaults(ItemID.HolyArrow);
+            }
+            if (Utils.downedMechBosses() == 2) {
+                shop.item[9].SetDefaults(ItemID.IchorArrow);
+            }
+            if (Utils.downedMechBosses() == 3) {
+                shop.item[9].SetDefaults(ItemID.CursedArrow);
+            }
+            if (NPC.downedPlantBoss) {
+                shop.item[9].SetDefaults(ItemID.ChlorophyteArrow);
+            }
+            if (NPC.downedMoonlord) {
+                shop.item[9].SetDefaults(ItemID.MoonlordArrow);
             }
         }
     }
