@@ -9,7 +9,7 @@ namespace MerchantsPlus.NPCS
         public override void SetDefaults(NPC npc)
         {
             if (npc.type != NPCID.SkeletonMerchant) return;
-                if (Config.merchantExtraLife) npc.lifeMax = 500;
+            if (Config.merchantExtraLife) npc.lifeMax = 500;
             if (Config.merchantScaling) npc.scale = 1.5f;
         }
 

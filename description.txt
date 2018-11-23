@@ -1,14 +1,8 @@
 You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
 
-[c/ffb2fd:Stats]
-Merchants now mostly have 500 health.
-Merchants have unique sizes.
-Merchants hit cooldowns are reduced.
-Merchants shoot different projectiles based on the bosses you've defeated.
-Angler jumps like a slime. He wants to become a bunny when he grows up. Deal with it. (may be removed in future updates)
-
 [c/ffb2fd:Items]
 Merchants sell more items based on the bosses you defeat / how many enemies you take down.
+Merchants try to determine what class you are and sell items based on that class.
 Merchants have a chance to drop unique items on death.
 
 [c/ffb2fd:Dialog]
@@ -16,9 +10,17 @@ Merchants each have their own unique humerous personality when you chat with the
 Merchants give you items when unique dialogs are played and certain conditions are met.
 Merchants interact with other NPCs in their dialog if they exist in your town.
 
+[c/ffb2fd:Stats]
+Merchants now mostly have 500 health.
+Merchants have unique sizes.
+Merchants hit cooldowns are reduced.
+Merchants shoot different projectiles based on the bosses you've defeated.
+Angler jumps like a slime. He wants to become a bunny when he grows up. Deal with it. (may be removed in future updates)
+
 [c/991095:v0.5]
-Added config
-Cleaned up code
+Added config in case you want to disable dialog, health, or scaling.
+Made merchants have intelligence :D
+Cleaned up code.
 
 [c/991095:v0.5]
 This update will focus on adding more content (dialog, conditions, items, stats, etc..) If you have any suggestions for the mod than visit the mods homepage.

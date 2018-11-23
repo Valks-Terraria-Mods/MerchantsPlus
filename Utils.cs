@@ -1,14 +1,57 @@
-﻿using Terraria;
+﻿using System.Linq;
+using Terraria;
 
 namespace MerchantsPlus
 {
     class Utils
     {
-        public static string dialog(string[] lines) {
+        public static string getPlayerClass()
+        {
+            Player p = Main.LocalPlayer;
+            
+            if (p.HeldItem != null && p.HeldItem.damage > 0)
+            {
+                Item heldItem = p.HeldItem;
+                if (heldItem.melee) return "melee";
+                if (heldItem.ranged) return "ranged";
+                if (heldItem.magic) return "mage";
+                if (heldItem.summon) return "summoner";
+                return "melee";
+            }
+            else 
+            {
+                float[] damages = { p.meleeDamage, p.arrowDamage, p.bulletDamage, p.rocketDamage, p.thrownDamage, p.magicDamage, p.minionDamage };
+
+                float maxValue = damages.Max();
+                int maxIndex = damages.ToList().IndexOf(maxValue);
+
+                switch (maxIndex)
+                {
+                    case 0:
+                        return "melee";
+                    case 1:
+                    case 2:
+                    case 3:
+                        return "ranged";
+                    case 4:
+                        return "thrower";
+                    case 5:
+                        return "mage";
+                    case 6:
+                        return "summoner";
+                    default:
+                        return "melee";
+                }
+            }
+        }
+
+        public static string dialog(string[] lines)
+        {
             return lines[Main.rand.Next(lines.Length)];
         }
 
-        public static int downedMechBosses() {
+        public static int downedMechBosses()
+        {
             int count = 0;
             if (NPC.downedMechBoss1) count++;
             if (NPC.downedMechBoss2) count++;
@@ -21,31 +64,37 @@ namespace MerchantsPlus
             return NPC.killCount[Item.NPCtoBanner(theNPC)];
         }
 
-        public static bool isNPCHere(short npc) {
+        public static bool isNPCHere(short npc)
+        {
             int theNPC = NPC.FindFirstNPC(npc);
-            if (theNPC >= 0) {
+            if (theNPC >= 0)
+            {
                 return true;
             }
             return false;
         }
 
-        public static string getNPCName(short npc) {
+        public static string getNPCName(short npc)
+        {
             int theNPC = NPC.FindFirstNPC(npc);
             if (isNPCHere(npc))
             {
                 return Main.npc[theNPC].GivenName;
             }
-            else {
+            else
+            {
                 return "someone";
             }
         }
 
-        public static void dropItem(NPC npc, short npcID, short[] item, int chance) {
+        public static void dropItem(NPC npc, short npcID, short[] item, int chance)
+        {
             if (Main.rand.Next(1, 100) < chance)
             {
                 if (npc.type == npcID)
                 {
-                    for (int i = 0; i < item.Length; i++) {
+                    for (int i = 0; i < item.Length; i++)
+                    {
                         Item.NewItem(npc.position, item[i]);
                     }
                 }
@@ -63,9 +112,11 @@ namespace MerchantsPlus
                         if (!Main.LocalPlayer.HasItem(item))
                         {
                             Item.NewItem(npc.position, item);
-                            if (price <= 0) {
+                            if (price <= 0)
+                            {
                                 return moneyDialog;
-                            } else if (price < 100)
+                            }
+                            else if (price < 100)
                             {
                                 return moneyDialog + " " + price + " copper was removed from your inventory";
                             }

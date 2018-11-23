@@ -8,8 +8,8 @@ namespace MerchantsPlus.NPCS
     {
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type != NPCID.Clothier)
-                if (Config.merchantExtraLife) npc.lifeMax = 500;
+            if (npc.type != NPCID.Clothier) return;
+            if (Config.merchantExtraLife) npc.lifeMax = 500;
             if (Config.merchantScaling) npc.scale = 0.7f;
         }
 
