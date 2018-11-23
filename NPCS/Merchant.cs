@@ -124,9 +124,29 @@ namespace MerchantsPlus.NPCS
                 shop.item[1].SetDefaults(ItemID.MoltenPickaxe);
                 shop.item[2].SetDefaults(ItemID.MoltenHamaxe);
                 shop.item[3].SetDefaults(ItemID.Rockfish);
-                shop.item[4].SetDefaults(ItemID.MoltenHelmet);
-                shop.item[5].SetDefaults(ItemID.MoltenBreastplate);
-                shop.item[6].SetDefaults(ItemID.MoltenGreaves);
+                switch (Utils.getPlayerClass())
+                {
+                    case "melee":
+                        shop.item[4].SetDefaults(ItemID.MoltenHelmet);
+                        shop.item[5].SetDefaults(ItemID.MoltenBreastplate);
+                        shop.item[6].SetDefaults(ItemID.MoltenGreaves);
+                        break;
+                    case "ranged":
+                        shop.item[4].SetDefaults(ItemID.NecroHelmet);
+                        shop.item[5].SetDefaults(ItemID.NecroBreastplate);
+                        shop.item[6].SetDefaults(ItemID.NecroGreaves);
+                        break;
+                    case "mage":
+                        shop.item[4].SetDefaults(ItemID.JungleHat);
+                        shop.item[5].SetDefaults(ItemID.JungleShirt);
+                        shop.item[6].SetDefaults(ItemID.JunglePants);
+                        break;
+                    case "summoner":
+                        shop.item[4].SetDefaults(ItemID.BeeHeadgear);
+                        shop.item[5].SetDefaults(ItemID.BeeBreastplate);
+                        shop.item[6].SetDefaults(ItemID.BeeGreaves);
+                        break;
+                }
                 shop.item[7].SetDefaults(ItemID.GreaterHealingPotion);
                 shop.item[8].SetDefaults(ItemID.GreaterManaPotion);
                 shop.item[9].SetDefaults(ItemID.UltrabrightTorch);
@@ -137,18 +157,57 @@ namespace MerchantsPlus.NPCS
             if (Utils.downedMechBosses() == 1) {
                 shop.item[1].SetDefaults(ItemID.CobaltPickaxe);
                 shop.item[2].SetDefaults(ItemID.CobaltWaraxe);
-                shop.item[4].SetDefaults(ItemID.CobaltHelmet);
-                shop.item[5].SetDefaults(ItemID.CobaltBreastplate);
-                shop.item[6].SetDefaults(ItemID.CobaltLeggings);
+                switch (Utils.getPlayerClass()) {
+                    case "melee":
+                        shop.item[4].SetDefaults(ItemID.CobaltHelmet);
+                        shop.item[5].SetDefaults(ItemID.CobaltBreastplate);
+                        shop.item[6].SetDefaults(ItemID.CobaltLeggings);
+                        break;
+                    case "ranged":
+                        shop.item[4].SetDefaults(ItemID.CobaltMask);
+                        shop.item[5].SetDefaults(ItemID.CobaltBreastplate);
+                        shop.item[6].SetDefaults(ItemID.CobaltLeggings);
+                        break;
+                    case "mage":
+                        shop.item[4].SetDefaults(ItemID.CobaltHat);
+                        shop.item[5].SetDefaults(ItemID.CobaltBreastplate);
+                        shop.item[6].SetDefaults(ItemID.CobaltLeggings);
+                        break;
+                    case "summoner":
+                        shop.item[4].SetDefaults(ItemID.SpiderMask);
+                        shop.item[5].SetDefaults(ItemID.SpiderBreastplate);
+                        shop.item[6].SetDefaults(ItemID.SpiderGreaves);
+                        break;
+                }
                 shop.item[10].SetDefaults(ItemID.HolyArrow);
                 shop.item[11].SetDefaults(ItemID.BoneJavelin);
             }
             if (Utils.downedMechBosses() == 2) {
                 shop.item[1].SetDefaults(ItemID.MythrilPickaxe);
                 shop.item[2].SetDefaults(ItemID.MythrilWaraxe);
-                shop.item[4].SetDefaults(ItemID.MythrilHelmet);
-                shop.item[5].SetDefaults(ItemID.MythrilChainmail);
-                shop.item[6].SetDefaults(ItemID.MythrilGreaves);
+                switch (Utils.getPlayerClass())
+                {
+                    case "melee":
+                        shop.item[4].SetDefaults(ItemID.MythrilHelmet);
+                        shop.item[5].SetDefaults(ItemID.MythrilChainmail);
+                        shop.item[6].SetDefaults(ItemID.MythrilGreaves);
+                        break;
+                    case "ranged":
+                        shop.item[4].SetDefaults(ItemID.MythrilHat);
+                        shop.item[5].SetDefaults(ItemID.MythrilChainmail);
+                        shop.item[6].SetDefaults(ItemID.MythrilGreaves);
+                        break;
+                    case "mage":
+                        shop.item[4].SetDefaults(ItemID.MythrilHood);
+                        shop.item[5].SetDefaults(ItemID.MythrilChainmail);
+                        shop.item[6].SetDefaults(ItemID.MythrilGreaves);
+                        break;
+                    case "summoner":
+                        shop.item[4].SetDefaults(ItemID.SpookyHelmet);
+                        shop.item[5].SetDefaults(ItemID.SpookyBreastplate);
+                        shop.item[6].SetDefaults(ItemID.SpookyLeggings);
+                        break;
+                }
                 shop.item[10].SetDefaults(ItemID.IchorArrow);
                 shop.item[14].SetDefaults(ItemID.MythrilAnvil);
             }
@@ -156,18 +215,58 @@ namespace MerchantsPlus.NPCS
                 shop.item[1].SetDefaults(ItemID.TitaniumPickaxe);
                 shop.item[2].SetDefaults(ItemID.TitaniumWaraxe);
                 shop.item[3].SetDefaults(ItemID.Hammush);
-                shop.item[4].SetDefaults(ItemID.TitaniumHelmet);
-                shop.item[5].SetDefaults(ItemID.TitaniumBreastplate);
-                shop.item[6].SetDefaults(ItemID.TitaniumLeggings);
+                switch (Utils.getPlayerClass())
+                {
+                    case "melee":
+                        shop.item[4].SetDefaults(ItemID.TitaniumMask);
+                        shop.item[5].SetDefaults(ItemID.TitaniumBreastplate);
+                        shop.item[6].SetDefaults(ItemID.TitaniumLeggings);
+                        break;
+                    case "ranged":
+                        shop.item[4].SetDefaults(ItemID.TitaniumHelmet);
+                        shop.item[5].SetDefaults(ItemID.TitaniumBreastplate);
+                        shop.item[6].SetDefaults(ItemID.TitaniumLeggings);
+                        break;
+                    case "mage":
+                        shop.item[4].SetDefaults(ItemID.TitaniumHeadgear);
+                        shop.item[5].SetDefaults(ItemID.TitaniumBreastplate);
+                        shop.item[6].SetDefaults(ItemID.TitaniumLeggings);
+                        break;
+                    case "summoner":
+                        shop.item[4].SetDefaults(ItemID.TikiMask);
+                        shop.item[5].SetDefaults(ItemID.TikiShirt);
+                        shop.item[6].SetDefaults(ItemID.TikiPants);
+                        break;
+                }
                 shop.item[10].SetDefaults(ItemID.CursedArrow);
             }
             if (NPC.downedPlantBoss) {
                 shop.item[1].SetDefaults(ItemID.ChlorophytePickaxe);
                 shop.item[2].SetDefaults(ItemID.ChlorophyteGreataxe);
                 shop.item[3].SetDefaults(ItemID.ChlorophyteJackhammer);
-                shop.item[4].SetDefaults(ItemID.ChlorophyteHelmet);
-                shop.item[5].SetDefaults(ItemID.ChlorophytePlateMail);
-                shop.item[6].SetDefaults(ItemID.ChlorophyteGreaves);
+                switch (Utils.getPlayerClass())
+                {
+                    case "melee":
+                        shop.item[4].SetDefaults(ItemID.ChlorophyteMask);
+                        shop.item[5].SetDefaults(ItemID.ChlorophytePlateMail);
+                        shop.item[6].SetDefaults(ItemID.ChlorophyteGreaves);
+                        break;
+                    case "ranged":
+                        shop.item[4].SetDefaults(ItemID.ChlorophyteHelmet);
+                        shop.item[5].SetDefaults(ItemID.ChlorophytePlateMail);
+                        shop.item[6].SetDefaults(ItemID.ChlorophyteGreaves);
+                        break;
+                    case "mage":
+                        shop.item[4].SetDefaults(ItemID.ChlorophyteHeadgear);
+                        shop.item[5].SetDefaults(ItemID.ChlorophytePlateMail);
+                        shop.item[6].SetDefaults(ItemID.ChlorophyteGreaves);
+                        break;
+                    case "summoner":
+                        shop.item[4].SetDefaults(ItemID.TikiMask);
+                        shop.item[5].SetDefaults(ItemID.TikiShirt);
+                        shop.item[6].SetDefaults(ItemID.TikiPants);
+                        break;
+                }
                 shop.item[10].SetDefaults(ItemID.ChlorophyteArrow);
             }
             if (NPC.downedGolemBoss) {
@@ -175,12 +274,41 @@ namespace MerchantsPlus.NPCS
                 shop.item[2].SetDefaults(ItemID.ShroomiteDiggingClaw);
             }
             if (NPC.downedMoonlord) {
-                shop.item[1].SetDefaults(ItemID.NebulaPickaxe);
-                shop.item[2].SetDefaults(ItemID.NebulaAxe);
-                shop.item[3].SetDefaults(ItemID.NebulaHammer);
-                shop.item[4].SetDefaults(ItemID.NebulaHelmet);
-                shop.item[5].SetDefaults(ItemID.NebulaBreastplate);
-                shop.item[6].SetDefaults(ItemID.NebulaLeggings);
+                switch (Utils.getPlayerClass())
+                {
+                    case "melee":
+                        shop.item[1].SetDefaults(ItemID.SolarFlarePickaxe);
+                        shop.item[2].SetDefaults(ItemID.SolarFlareAxe);
+                        shop.item[3].SetDefaults(ItemID.SolarFlareHammer);
+                        shop.item[4].SetDefaults(ItemID.SolarFlareHelmet);
+                        shop.item[5].SetDefaults(ItemID.SolarFlareBreastplate);
+                        shop.item[6].SetDefaults(ItemID.SolarFlareLeggings);
+                        break;
+                    case "ranged":
+                        shop.item[1].SetDefaults(ItemID.VortexPickaxe);
+                        shop.item[2].SetDefaults(ItemID.VortexAxe);
+                        shop.item[3].SetDefaults(ItemID.VortexHammer);
+                        shop.item[4].SetDefaults(ItemID.VortexHelmet);
+                        shop.item[5].SetDefaults(ItemID.VortexBreastplate);
+                        shop.item[6].SetDefaults(ItemID.VortexLeggings);
+                        break;
+                    case "mage":
+                        shop.item[1].SetDefaults(ItemID.NebulaPickaxe);
+                        shop.item[2].SetDefaults(ItemID.NebulaAxe);
+                        shop.item[3].SetDefaults(ItemID.NebulaHammer);
+                        shop.item[4].SetDefaults(ItemID.NebulaHelmet);
+                        shop.item[5].SetDefaults(ItemID.NebulaBreastplate);
+                        shop.item[6].SetDefaults(ItemID.NebulaLeggings);
+                        break;
+                    case "summoner":
+                        shop.item[1].SetDefaults(ItemID.StardustPickaxe);
+                        shop.item[2].SetDefaults(ItemID.StardustAxe);
+                        shop.item[3].SetDefaults(ItemID.StardustHammer);
+                        shop.item[4].SetDefaults(ItemID.StardustHelmet);
+                        shop.item[5].SetDefaults(ItemID.StardustBreastplate);
+                        shop.item[6].SetDefaults(ItemID.StardustLeggings);
+                        break;
+                }
                 shop.item[7].SetDefaults(ItemID.SuperHealingPotion);
                 shop.item[8].SetDefaults(ItemID.SuperManaPotion);
                 shop.item[10].SetDefaults(ItemID.MoonlordArrow);

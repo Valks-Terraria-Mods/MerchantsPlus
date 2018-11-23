@@ -20,6 +20,7 @@ Angler jumps like a slime. He wants to become a bunny when he grows up. Deal wit
 [c/991095:v0.5]
 Added config in case you want to disable dialog, health, or scaling.
 Made merchants have intelligence :D
+Heavily changed merchant items.
 Cleaned up code.
 
 [c/991095:v0.5]
