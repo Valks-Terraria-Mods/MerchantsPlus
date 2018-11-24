@@ -32,9 +32,8 @@ namespace MerchantsPlus
                     case 1:
                     case 2:
                     case 3:
-                        return "ranged";
                     case 4:
-                        return "thrower";
+                        return "ranged";
                     case 5:
                         return "mage";
                     case 6:

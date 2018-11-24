@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class ArmsDealer : GlobalNPC
     {
@@ -40,15 +40,15 @@ namespace MerchantsPlus.NPCS
             {
                 projType = ProjectileID.MeteorShot;
             }
-            if (NPC.downedMechBoss1)
+            if (Utils.downedMechBosses() == 1)
             {
                 projType = ProjectileID.CursedBullet;
             }
-            if (NPC.downedMechBoss2)
+            if (Utils.downedMechBosses() == 2)
             {
                 projType = ProjectileID.IchorBullet;
             }
-            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+            if (Utils.downedMechBosses() == 3)
             {
                 projType = ProjectileID.CrystalBullet;
             }
@@ -68,6 +68,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.ArmsDealer) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "GET UR EEPIC GUNS NOW",
                 "EPIC GUNS FER SALE BRUH",
                 "IM 5 YEARS OLD DEAL WITH IT BRAH",
@@ -119,8 +120,7 @@ namespace MerchantsPlus.NPCS
 
                 if (NPC.downedBoss3) // If skeletron was killed
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.ClockworkAssaultRifle); // Add a rifle
-                    shop.item[nextSlot++].SetDefaults(ItemID.OnyxBlaster); // Add a rifle
+                    
                 }
             }
 

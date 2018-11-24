@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class SantaClaus : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.SantaClaus) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "HOHOHOOOOOHOOOOOO",
                 "HOOOOOOOO HOOOOOO HOOOOOOOO",
                 "You were a good lil' kid wern't ya buddy? HOOOOOOOOO HOOOOOOO HOOOOOOOOOO",

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Stylist : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Stylist) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] {
                 "Hey, you look pretty, sike! JUST KIDDING! YOU DON'T LOOK PRETTY BECAUSE YOU NEVER BOUGHT ANY OF MY HAIR DYES!",
                 "I own your hair, it's mine, MINE!",

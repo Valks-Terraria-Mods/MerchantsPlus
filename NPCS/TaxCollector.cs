@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class TaxCollector : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.TaxCollector) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "Heh heh heh (all your gold was removed from your inventory) (jk)" });
         }
 

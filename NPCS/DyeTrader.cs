@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class DyeTrader : GlobalNPC
     {
@@ -16,7 +16,8 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.DyeTrader) return;
-            chat = Utils.dialog(new string[] { "Hi", "Hey" });
+            if (!Config.merchantDialog) return;
+            chat = Utils.dialog(new string[] { "Modder still working on my dialog." });
         }
 
         // custom loot bags with all the dyes in them (e.g. blue, red bags)

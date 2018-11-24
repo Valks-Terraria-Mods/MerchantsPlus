@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Guide : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Guide) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "I'm a very helpful guide. :)" });
         }
 
@@ -32,6 +33,42 @@ namespace MerchantsPlus.NPCS
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
+            if (npc.type != NPCID.Guide) return;
+            projType = ProjectileID.WoodenArrowFriendly;
+            if (NPC.downedSlimeKing)
+            {
+                projType = ProjectileID.FlamingArrow;
+            }
+            if (NPC.downedBoss1) {
+                projType = ProjectileID.FrostburnArrow;
+            }
+            if (NPC.downedBoss2)
+            {
+                projType = ProjectileID.JestersArrow;
+            }
+            if (Main.hardMode) {
+                projType = ProjectileID.UnholyArrow;
+            }
+            if (Utils.downedMechBosses() == 1)
+            {
+                projType = ProjectileID.HolyArrow;
+            }
+            if (Utils.downedMechBosses() == 2)
+            {
+                projType = ProjectileID.CursedArrow;
+            }
+            if (Utils.downedMechBosses() == 3)
+            {
+                projType = ProjectileID.VenomArrow;
+            }
+            if (NPC.downedPlantBoss)
+            {
+                projType = ProjectileID.ChlorophyteArrow;
+            }
+            if (NPC.downedMoonlord)
+            {
+                projType = ProjectileID.MoonlordArrow;
+            }
         }
     }
 }

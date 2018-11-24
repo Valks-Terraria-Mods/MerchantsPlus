@@ -1,30 +1,52 @@
 You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
 
+[c/ffb2fd:Custom Merchants]
++ Banner merchant sells ALL the banner types held in 25 different shops (only sells a specific banner if you killed 50 of that enemy type)
+
 [c/ffb2fd:Items]
-Merchants sell more items based on the bosses you defeat / how many enemies you take down.
-Merchants try to determine what class you are and sell items based on that class.
-Merchants have a chance to drop unique items on death.
++ Sell more items based on the bosses / enemies defeated.
++ Sell items based on your characters build.
++ Have a chance to drop items on death.
 
 [c/ffb2fd:Dialog]
-Merchants each have their own unique humerous personality when you chat with them.
-Merchants give you items when unique dialogs are played and certain conditions are met.
-Merchants interact with other NPCs in their dialog if they exist in your town.
++ World conditions effect how the dialog is played out.
++ Mostly humerous personalities.
++ Some dialog may reward you with items.
++ Interactions with other merchants.
 
 [c/ffb2fd:Stats]
-Merchants now mostly have 500 health.
-Merchants have unique sizes.
-Merchants hit cooldowns are reduced.
-Merchants shoot different projectiles based on the bosses you've defeated.
-Angler jumps like a slime. He wants to become a bunny when he grows up. Deal with it. (may be removed in future updates)
++ 500 health for all merchants.
++ Unique sizes based on their personality.
++ Shoot different projectiles based on bosses defeated.
+
+[c/ffb2fd:Msc]
++ Bound NPCs (including skeleton merchant) now glow in the dark making them easier to find.
++ Custom merchants have the cycle shop mechanic.
+
+===========================================
+
+[c/991095:v0.6.6]
+Banner merchant only sells the banners if you killed 50 of that enemy type.
+
+[c/991095:v0.6.5]
+Banner merchant now sells banners for ALL npc types. (The merchant has 25 shops to hold them all in..)
+
+[c/991095:v0.6.4]
+Added the mods first custom NPC (Banner NPC that sells Banners) You can cycle the shop of the merchant. (In order for the NPC to arrive to your town you need to have a slime / green slime / purple slime banner in your inventory.)
+
+[c/991095:v0.6.3]
+Added / changed alot more dialog.
+New mod mechanic, bound npcs glow in the dark and the skeleton merchant glows in the dark as well.
+Added alot more projectiles for NPC merchants.
+
+[c/991095:v0.6]
+Touched up alot of town NPC projectiles
+Revised merchant items
 
 [c/991095:v0.5]
 Added config in case you want to disable dialog, health, or scaling.
 Made merchants have intelligence :D
 Heavily changed merchant items.
-Cleaned up code.
-
-[c/991095:v0.5]
-This update will focus on adding more content (dialog, conditions, items, stats, etc..) If you have any suggestions for the mod than visit the mods homepage.
 
 [c/991095:v0.4]
 All NPCs now have unique sizes.

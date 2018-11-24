@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class WitchDoctor : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.WitchDoctor) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "Be careful, this imbuing station needs tending to..",
                 "A flask a day keeps the Witch Doctor away.",
                 Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000)});

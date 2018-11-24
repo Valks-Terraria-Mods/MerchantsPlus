@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Painter : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Painter) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "I gotta' fresh load of white paint. Want some? :)" ,
                 "All my paint is real good, I promise. ;)",
                 Utils.dialogGift(npc, "Here, take this, it was given to me by my old grand father. Hope you make good use of it.", "Painting these walls day and night..", !Main.hardMode, 10, ItemID.PainterPaintballGun, 50000),

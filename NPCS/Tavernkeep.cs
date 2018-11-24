@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Tavernkeep : GlobalNPC
     {
@@ -16,7 +16,8 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.DD2Bartender) return;
-                chat = Utils.dialog(new string[] {"...", "...", "...", "...", "...",
+            if (!Config.merchantDialog) return;
+            chat = Utils.dialog(new string[] {"...", "...", "...", "...", "...",
                 "I AIN'T TELLIN' YOU NOTHIN'"});
         }
         public override void SetupShop(int type, Chest shop, ref int nextSlot) {

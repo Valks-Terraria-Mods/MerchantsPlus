@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Steampunker : GlobalNPC
     {
@@ -16,6 +16,7 @@ namespace MerchantsPlus.NPCS
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Steampunker) return;
+            if (!Config.merchantDialog) return;
             chat = Utils.dialog(new string[] { "The author of the mod forgot about me. ;(" ,
                 "I don't really have much to say, like I said I'm a forgotten little someone. :(",
                 "Hey, maybe the author of the mod will give me better dialog in the next update! :/",

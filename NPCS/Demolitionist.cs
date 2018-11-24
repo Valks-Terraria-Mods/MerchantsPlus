@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MerchantsPlus.NPCS
+namespace MerchantsPlus.NPCs
 {
     class Demolitionist : GlobalNPC
     {
@@ -13,10 +13,35 @@ namespace MerchantsPlus.NPCS
             if (Config.merchantScaling) npc.scale = 0.9f;
         }
 
+        public override void TownNPCAttackCooldown(NPC npc, ref int cooldown, ref int randExtraCooldown)
+        {
+            if (npc.type != NPCID.Demolitionist) return;
+            cooldown = 0;
+        }
+
+        public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
+        {
+            if (npc.type != NPCID.Demolitionist) return;
+            projType = ProjectileID.Grenade;
+            if (NPC.downedSlimeKing)
+            {
+                projType = ProjectileID.StickyGrenade;
+            }
+            if (NPC.downedBoss1)
+            {
+                projType = ProjectileID.BouncyGrenade;
+            }
+            if (NPC.downedBoss2)
+            {
+                projType = ProjectileID.HappyBomb;
+            }
+        }
+
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Demolitionist) return;
-            chat = Utils.dialog(new string[] { "I like bombs" });
+            if (!Config.merchantDialog) return;
+            chat = Utils.dialog(new string[] { "Modder still working on my dialog." });
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
