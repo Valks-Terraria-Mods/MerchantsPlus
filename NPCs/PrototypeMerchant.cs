@@ -4,57 +4,94 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    /*shop.item[nextSlot++].SetDefaults(ItemID.DepthMeter);
-    shop.item[nextSlot++].SetDefaults(ItemID.Compass);
-    shop.item[nextSlot++].SetDefaults(ItemID.MetalDetector);
-    shop.item[nextSlot++].SetDefaults(ItemID.DPSMeter);
-    shop.item[nextSlot++].SetDefaults(ItemID.Stopwatch);
-    shop.item[nextSlot++].SetDefaults(ItemID.TallyCounter);
-    shop.item[nextSlot++].SetDefaults(ItemID.LifeformAnalyzer);
-    shop.item[nextSlot++].SetDefaults(ItemID.Radar);
-    shop.item[nextSlot++].SetDefaults(ItemID.MagicQuiver);*/
-    class Merchant : GlobalNPC
+    class PrototypeMerchant : ModNPC
     {
-        public override void SetDefaults(NPC npc)
-        {
-            if (npc.type != NPCID.Merchant) return;
-            if (Config.merchantExtraLife) npc.lifeMax = 500;
-            if (Config.merchantScaling) npc.scale = 0.8f;
-        }
+        static string[] shopNames = { "Basic" };
+        static int shopCounter = 0;
+        static string currentShop = shopNames[shopCounter];
 
-        public override void TownNPCAttackCooldown(NPC npc, ref int cooldown, ref int randExtraCooldown)
+        public override string Texture
         {
-            if (npc.type != NPCID.Merchant) return;
-            cooldown = 0;
-        }
-
-        public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
-        {
-            if (npc.type != NPCID.Merchant) return;
-            projType = ProjectileID.ThrowingKnife;
-            if (NPC.downedBoss2)
+            get
             {
-                projType = ProjectileID.PoisonedKnife;
-            }
-            if (Utils.downedMechBosses() == 1)
-            {
-                projType = ProjectileID.BoneJavelin;
+                return "Terraria/NPC_" + NPCID.Merchant;
             }
         }
 
-        public override void GetChat(NPC npc, ref string chat)
+        public override bool Autoload(ref string name)
         {
-            if (npc.type != NPCID.Merchant) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "Hey. Buddy. I have to tell you a secret.. wait nvm. I'll catch you later." ,
+            name = "Supplier";
+            return mod.Properties.Autoload;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Merchant];
+        }
+
+        public override void SetDefaults()
+        {
+            npc.townNPC = true;
+            npc.friendly = true;
+            npc.width = 18;
+            npc.height = 40;
+            npc.aiStyle = 7;
+            npc.damage = 10;    
+            npc.defense = 15;
+            npc.lifeMax = 300;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.5f;
+            animationType = NPCID.Merchant;
+        }
+
+        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        {
+            return true;
+        }
+
+
+        public override string TownNPCName()
+        {
+            return "Alfred";
+        }
+
+        public override string GetChat()
+        {
+            return Utils.dialog(new string[] { "Hey. Buddy. I have to tell you a secret.. wait nvm. I'll catch you later." ,
                 "Hey, did you hear? Were in a two dimensional world, why can't I sell three dimensional stuff! >:(",
                 "Hey, need a general purpose item? I'm your guy."});
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (type != NPCID.Merchant) return;
+            button = currentShop;
+            button2 = "Cycle Shop";
+        }
 
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                shop = true;
+
+            }
+            else
+            {
+                if (shopCounter >= shopNames.Length - 1)
+                {
+                    currentShop = shopNames[0];
+                    shopCounter = 0;
+                }
+                else
+                {
+                    currentShop = shopNames[++shopCounter];
+                }
+            }
+        }
+
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
             const int SLOT_BUG_NET = 0;
             const int SLOT_PICK = 1;
             const int SLOT_AXE = 2;
@@ -112,7 +149,8 @@ namespace MerchantsPlus.NPCs
             shop.item[SLOT_WOOD_1].shopCustomPrice = 100;
             shop.item[SLOT_MOUNT_2].SetDefaults(ItemID.FuzzyCarrot);
 
-            switch (Utils.getPlayerClass()) {
+            switch (Utils.getPlayerClass())
+            {
                 case "melee":
                     shop.item[SLOT_WEAPON].SetDefaults(ItemID.TinBroadsword);
                     break;
@@ -127,7 +165,8 @@ namespace MerchantsPlus.NPCs
                     break;
             }
 
-            if (NPC.downedSlimeKing) {
+            if (NPC.downedSlimeKing)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.IronPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.IronAxe);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.IronHammer);
@@ -155,7 +194,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedBoss1) {
+            if (NPC.downedBoss1)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.SilverPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.SilverAxe);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.SilverHammer);
@@ -167,6 +207,7 @@ namespace MerchantsPlus.NPCs
                 shop.item[SLOT_ARROW].SetDefaults(ItemID.FlamingArrow);
                 shop.item[SLOT_THROWING].SetDefaults(ItemID.ThrowingKnife);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.Ebonwood);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
                 switch (Utils.getPlayerClass())
                 {
                     case "melee":
@@ -183,7 +224,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedBoss2) {
+            if (NPC.downedBoss2)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.GoldPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.GoldAxe);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.GoldHammer);
@@ -193,6 +235,7 @@ namespace MerchantsPlus.NPCs
                 shop.item[SLOT_ARROW].SetDefaults(ItemID.FrostburnArrow);
                 shop.item[SLOT_THROWING].SetDefaults(ItemID.BoneDagger);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.Shadewood);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
                 switch (Utils.getPlayerClass())
                 {
                     case "melee":
@@ -209,9 +252,11 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedQueenBee) {
+            if (NPC.downedQueenBee)
+            {
                 if (Utils.kills(NPCID.QueenBee) >= 3) shop.item[SLOT_MOUNT_1].SetDefaults(ItemID.HoneyedGoggles);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.Pearlwood);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
                 switch (Utils.getPlayerClass())
                 {
                     case "melee":
@@ -228,11 +273,13 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedBoss3) {
+            if (NPC.downedBoss3)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.NightmarePickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.WarAxeoftheNight);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.TheBreaker);
-                switch (Utils.getPlayerClass()) {
+                switch (Utils.getPlayerClass())
+                {
                     case "melee":
                         shop.item[SLOT_HELMET].SetDefaults(ItemID.ShadowHelmet);
                         shop.item[SLOT_CHESTPLATE].SetDefaults(ItemID.ShadowScalemail);
@@ -254,12 +301,13 @@ namespace MerchantsPlus.NPCs
                         shop.item[SLOT_GREAVES].SetDefaults(ItemID.BeeGreaves);
                         break;
                 }
-                
+
                 shop.item[SLOT_TORCH].SetDefaults(ItemID.BoneTorch);
                 shop.item[SLOT_ARROW].SetDefaults(ItemID.JestersArrow);
                 shop.item[SLOT_THROWING].SetDefaults(ItemID.PoisonedKnife);
                 shop.item[SLOT_ROPE].SetDefaults(ItemID.Chain);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.RichMahogany);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
                 switch (Utils.getPlayerClass())
                 {
                     case "melee":
@@ -276,7 +324,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (Main.hardMode) {
+            if (Main.hardMode)
+            {
                 shop.item[SLOT_BUG_NET].SetDefaults(ItemID.GoldenBugNet);
                 shop.item[SLOT_PICK].SetDefaults(ItemID.MoltenPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.MoltenHamaxe);
@@ -312,6 +361,7 @@ namespace MerchantsPlus.NPCs
                 shop.item[SLOT_LIGHT_PET].SetDefaults(ItemID.WispinaBottle);
                 shop.item[SLOT_MOUNT_1].SetDefaults(ItemID.AncientHorn);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.DynastyWood);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
 
                 switch (Utils.getPlayerClass())
                 {
@@ -329,10 +379,12 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (Utils.downedMechBosses() == 1) {
+            if (Utils.downedMechBosses() == 1)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.CobaltPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.CobaltWaraxe);
-                switch (Utils.getPlayerClass()) {
+                switch (Utils.getPlayerClass())
+                {
                     case "melee":
                         shop.item[SLOT_HELMET].SetDefaults(ItemID.CobaltHelmet);
                         shop.item[SLOT_CHESTPLATE].SetDefaults(ItemID.CobaltBreastplate);
@@ -374,7 +426,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (Utils.downedMechBosses() == 2) {
+            if (Utils.downedMechBosses() == 2)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.MythrilPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.MythrilWaraxe);
                 switch (Utils.getPlayerClass())
@@ -420,7 +473,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (Utils.downedMechBosses() == 3) {
+            if (Utils.downedMechBosses() == 3)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.TitaniumPickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.TitaniumWaraxe);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.Hammush);
@@ -466,7 +520,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedPlantBoss) {
+            if (NPC.downedPlantBoss)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.ChlorophytePickaxe);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.ChlorophyteGreataxe);
                 shop.item[SLOT_HAMMER].SetDefaults(ItemID.ChlorophyteJackhammer);
@@ -512,7 +567,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedGolemBoss) {
+            if (NPC.downedGolemBoss)
+            {
                 shop.item[SLOT_PICK].SetDefaults(ItemID.Picksaw);
                 shop.item[SLOT_AXE].SetDefaults(ItemID.ShroomiteDiggingClaw);
                 if (Utils.kills(NPCID.Golem) >= 3) shop.item[SLOT_MOUNT_7].SetDefaults(ItemID.ShrimpyTruffle);
@@ -533,7 +589,8 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
-            if (NPC.downedMoonlord) {
+            if (NPC.downedMoonlord)
+            {
                 switch (Utils.getPlayerClass())
                 {
                     case "melee":
@@ -573,6 +630,7 @@ namespace MerchantsPlus.NPCs
                 shop.item[SLOT_POTION_MANA].SetDefaults(ItemID.SuperManaPotion);
                 shop.item[SLOT_ARROW].SetDefaults(ItemID.MoonlordArrow);
                 shop.item[SLOT_WOOD_2].SetDefaults(ItemID.SpookyWood);
+                shop.item[SLOT_WOOD_2].shopCustomPrice = 300;
 
                 switch (Utils.getPlayerClass())
                 {
@@ -590,6 +648,42 @@ namespace MerchantsPlus.NPCs
                         break;
                 }
             }
+        }
+
+        public override void NPCLoot()
+        {
+            Item.NewItem(npc.getRect(), ItemID.SlimeBanner);
+        }
+
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        {
+            damage = 20;
+            knockback = 4f;
+        }
+
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+        {
+            cooldown = 0;
+        }
+
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
+        {
+            attackDelay = 1;
+            projType = ProjectileID.ThrowingKnife;
+            if (NPC.downedBoss2)
+            {
+                projType = ProjectileID.PoisonedKnife;
+            }
+            if (Utils.downedMechBosses() == 1)
+            {
+                projType = ProjectileID.BoneJavelin;
+            }
+        }
+
+        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
+        {
+            multiplier = 12f;
+            randomOffset = 2f;
         }
     }
 }

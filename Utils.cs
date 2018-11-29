@@ -5,6 +5,26 @@ namespace MerchantsPlus
 {
     class Utils
     {
+        public static bool playersHaveItem(short[] items) {
+            for (int k = 0; k < 255; k++)
+            {
+                Player player = Main.player[k];
+                if (player.active)
+                {
+                    for (int j = 0; j < player.inventory.Length; j++)
+                    {
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            if (player.inventory[j].type == items[i])
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         public static string getPlayerClass()
         {
             Player p = Main.LocalPlayer;

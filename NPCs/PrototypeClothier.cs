@@ -4,20 +4,61 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class Clothier : GlobalNPC
+    public class PrototypeClothier : ModNPC
     {
-        public override void SetDefaults(NPC npc)
+        static string[] shopNames = { "Basic" };
+        static int shopCounter = 0;
+        static string currentShop = shopNames[shopCounter];
+
+        public override string Texture
         {
-            if (npc.type != NPCID.Clothier) return;
-            if (Config.merchantExtraLife) npc.lifeMax = 500;
-            if (Config.merchantScaling) npc.scale = 0.7f;
+            get
+            {
+                return "Terraria/NPC_" + NPCID.Clothier;
+            }
         }
 
-        public override void GetChat(NPC npc, ref string chat)
+        public override bool Autoload(ref string name)
         {
-            if (npc.type != NPCID.Clothier) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
+            name = "Outfitter";
+            return mod.Properties.Autoload;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Clothier];
+        }
+
+        public override void SetDefaults()
+        {
+            npc.townNPC = true;
+            npc.friendly = true;
+            npc.homeless = true;
+            npc.width = 18;
+            npc.height = 40;
+            npc.aiStyle = 7;
+            npc.damage = 10;
+            npc.defense = 15;
+            npc.lifeMax = 300;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.5f;
+            animationType = NPCID.Clothier;
+        }
+
+        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        {
+            return true;
+        }
+
+        public override string TownNPCName()
+        {
+            return "Bob";
+        }
+
+        public override string GetChat()
+        {
+            return Utils.dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
             "Ah peace and quiet.",
             "One day I'll make the most beautiful piece of clothing ever laid eyes on.",
             "Oh you're back for more? I've got a big selection for you.",
@@ -35,9 +76,35 @@ namespace MerchantsPlus.NPCs
             "I could teach you how to make your own clothes! All you need is a few materials I have in my shop!"});
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (type != NPCID.Clothier) return;
+            button = currentShop;
+            button2 = "Cycle Shop";
+        }
+
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                shop = true;
+
+            }
+            else
+            {
+                if (shopCounter >= shopNames.Length - 1)
+                {
+                    currentShop = shopNames[0];
+                    shopCounter = 0;
+                }
+                else
+                {
+                    currentShop = shopNames[++shopCounter];
+                }
+            }
+        }
+
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
             if (NPC.downedSlimeKing)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.EyePatch);
@@ -151,6 +218,42 @@ namespace MerchantsPlus.NPCs
                 shop.item[nextSlot].SetDefaults(ItemID.LeinforsAccessory);
                 shop.item[nextSlot++].shopCustomPrice = 100000;
             }
+        }
+
+        public override void NPCLoot()
+        {
+            // Item.NewItem(npc.getRect(), ItemID.SlimeBanner);
+        }
+
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
+        {
+            attackDelay = 1;
+            projType = ProjectileID.ThrowingKnife;
+            if (NPC.downedBoss2)
+            {
+                projType = ProjectileID.PoisonedKnife;
+            }
+            if (Utils.downedMechBosses() == 1)
+            {
+                projType = ProjectileID.BoneJavelin;
+            }
+        }
+
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        {
+            damage = 20;
+            knockback = 4f;
+        }
+
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+        {
+            cooldown = 0;
+        }
+
+        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
+        {
+            multiplier = 12f;
+            randomOffset = 2f;
         }
     }
 }

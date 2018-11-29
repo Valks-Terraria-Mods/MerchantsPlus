@@ -1,7 +1,11 @@
-You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
+You can think of this as a merchant overhaul mod. The following mechanics listed below heavily effect all vanilla and custom merchants.
 
 [c/ffb2fd:Custom Merchants]
-+ Banner merchant sells ALL the banner types held in 25 different shops (only sells a specific banner if you killed 50 of that enemy type)
++ Banner merchant
++ Furniture merchant
++ Fishing merchant
++ Accessory merchant
++ Vanity merchant
 
 [c/ffb2fd:Items]
 + Sell more items based on the bosses / enemies defeated.
@@ -24,6 +28,9 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 + Custom merchants have the cycle shop mechanic.
 
 ===========================================
+
+[c/991095:v0.6.7]
+Furniture merchant added.
 
 [c/991095:v0.6.6]
 Banner merchant only sells the banners if you killed 50 of that enemy type.
