@@ -43,9 +43,9 @@ namespace MerchantsPlus
         static void CreateConfig()
         {
             Configuration.Clear();
-            Configuration.Put("MerchantScaling", merchantScaling);
-            Configuration.Put("MerchantExtraLife", merchantExtraLife);
-            Configuration.Put("MerchantDialog", merchantDialog);
+            //Configuration.Put("MerchantScaling", merchantScaling);
+            //Configuration.Put("MerchantExtraLife", merchantExtraLife);
+            //Configuration.Put("MerchantDialog", merchantDialog);
             Configuration.Save();
         }
     }

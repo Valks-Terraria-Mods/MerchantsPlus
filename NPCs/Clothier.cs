@@ -4,11 +4,12 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    public class PrototypeClothier : ModNPC
+    public class Clothier : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Clothing" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
+        static int npcid = NPCID.Clothier;
 
         public override string Texture
         {
@@ -26,7 +27,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Clothier];
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -105,6 +114,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot++].SetDefaults(ItemID.BlackThread);
+            shop.item[nextSlot++].SetDefaults(ItemID.PinkThread);
+            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarWig);
+            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarShirt);
+            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarPants);
+            if (MerchantsPlus.overhaulLoaded) {
+                Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
+                shop.item[nextSlot++].SetDefaults(overhaul.ItemType("HaxxCostume"));
+            }
             if (NPC.downedSlimeKing)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.EyePatch);

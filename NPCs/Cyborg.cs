@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeCyborg : ModNPC
+    class Cyborg : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Robotics", "Buffs" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
         static short npcid = NPCID.Cyborg;
@@ -27,7 +27,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -97,24 +105,47 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            if (NPC.downedGolemBoss)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
-            }
+            switch (currentShop) {
+                case "Buffs":
+                    shop.item[nextSlot].SetDefaults(ItemID.GravitationPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.ThornsPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.TitanPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.WarmthPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.WrathPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    break;
+                default:
+                    shop.item[nextSlot++].SetDefaults(ItemID.ProximityMineLauncher);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Nanites);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PortalGunStation);
 
-            if (NPC.downedFishron)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
-            }
+                    if (NPC.downedGolemBoss)
+                    {
+                        shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
+                    }
 
-            if (NPC.downedAncientCultist)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
-            }
+                    if (NPC.downedFishron)
+                    {
+                        shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
+                    }
 
-            if (NPC.downedTowerVortex)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                    if (NPC.downedAncientCultist)
+                    {
+                        shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
+                    }
+
+                    if (NPC.downedTowerVortex)
+                    {
+                        shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                    }
+                    break;
             }
         }
 
@@ -126,19 +157,7 @@ namespace MerchantsPlus.NPCs
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
             attackDelay = 1;
-            projType = ProjectileID.RocketI;
-            if (NPC.downedSlimeKing)
-            {
-                projType = ProjectileID.RocketII;
-            }
-            if (NPC.downedBoss1)
-            {
-                projType = ProjectileID.RocketIII;
-            }
-            if (NPC.downedBoss2)
-            {
-                projType = ProjectileID.RocketIV;
-            }
+            projType = ProjectileID.BouncyGrenade;
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)

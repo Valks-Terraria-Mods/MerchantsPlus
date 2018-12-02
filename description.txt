@@ -1,11 +1,6 @@
-You can think of this as a merchant overhaul mod. The following mechanics listed below heavily effect all vanilla and custom merchants.
+You can think of this as a merchant overhaul mod. The mod is 100% compatible with multiplayer / singleplayer. The following mechanics listed below heavily effect all vanilla and custom merchants.
 
-[c/ffb2fd:Custom Merchants]
-+ Banner merchant
-+ Furniture merchant
-+ Fishing merchant
-+ Accessory merchant
-+ Vanity merchant
+If you enable this mod to a world that has 'vanilla' merchant npcs than this mod will instantly kill them all and slowly replace them with the 'merchant+' merchant npcs during the daytime.
 
 [c/ffb2fd:Items]
 + Sell more items based on the bosses / enemies defeated.
@@ -19,15 +14,41 @@ You can think of this as a merchant overhaul mod. The following mechanics listed
 + Interactions with other merchants.
 
 [c/ffb2fd:Stats]
-+ 500 health for all merchants.
-+ Unique sizes based on their personality.
++ 300 health for all merchants.
++ Slightly reduced sizes.
 + Shoot different projectiles based on bosses defeated.
 
 [c/ffb2fd:Msc]
-+ Bound NPCs (including skeleton merchant) now glow in the dark making them easier to find.
-+ Custom merchants have the cycle shop mechanic.
++ All merchants have the cycle shop mechanic.
++ The Angler, Guide, Nurse, Tax Collector and Old Man are now merchants.
++ All vanilla merchant items have been moved around.
++ The way merchants arrive to your town is changed. They try to arrive every 10 seconds.
++ Merchants do not require houses to join your town.
++ Truffle no longer needs to be in mushroom biome.
++ Santa Claus comes even if it isn't christmas.
++ You no longer have to find the mechanic, wizard, tinkerer, tax collector, or stylist.. they automatically come to your town.
++ The skeleton and travelling merchant move into your town in hardmode.
+
+[c/ffb2fd:Mods Supported!]
++ Terraria Overhaul
 
 ===========================================
+
+[c/991095:v0.8.3]
+Vanilla merchants should no longer arrive to your world ever.
+Fixed merchants not being able to shoot anything.
+Reforges now cost whatever value the item is instead of 1 gold.
+Made items harder to get by drastically increasing the price.
+Added demon wings to merchant for 2 plat.
+Added / changed a bunch of other items.
+
+[c/991095:v0.8.2]
+Nurse now heals past vanilla max hp limit.
+Dye Trader strange plants button was added.
+Tinkerer reforge button was added.
+
+[c/991095:v0.8]
+Replaced all vanilla merchants with custom merchants.
 
 [c/991095:v0.6.7]
 Furniture merchant added.

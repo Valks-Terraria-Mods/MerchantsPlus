@@ -4,11 +4,12 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypePartyGirl : ModNPC
+    class PartyGirl : ModNPC
     {
         static string[] shopNames = { "Party Stuff", "Vanity Sets 1", "Vanity Sets 2", "Vanity Sets 3", "Vanity Sets 4", "Boss Masks" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
+        static int npcid = NPCID.PartyGirl;
 
         public override string Texture
         {
@@ -26,7 +27,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.PartyGirl];
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -53,7 +62,7 @@ namespace MerchantsPlus.NPCs
 
         public override string TownNPCName()
         {
-            return "Valk";
+            return "Sabrina";
         }
 
         public override string GetChat()
@@ -132,12 +141,15 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].shopCustomPrice = 1000000;
                     break;
                 case "Vanity Sets 4":
-                    shop.item[nextSlot++].SetDefaults(ItemID.MummyPants);
+                    shop.item[nextSlot].SetDefaults(ItemID.MummyPants);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinPants);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PharaohsMask);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PharaohsRobe);
+                    shop.item[nextSlot].SetDefaults(ItemID.PharaohsMask);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.PharaohsRobe);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     shop.item[nextSlot++].SetDefaults(ItemID.PirateHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PirateShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PiratePants);
@@ -151,9 +163,12 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].SetDefaults(ItemID.RainCoat);
                     shop.item[nextSlot++].SetDefaults(ItemID.RuneHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.RuneRobe);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SailorHat);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SailorShirt);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SailorPants);
+                    shop.item[nextSlot].SetDefaults(ItemID.SailorHat);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.SailorShirt);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.SailorPants);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowPants);
@@ -211,8 +226,10 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].SetDefaults(ItemID.MartianUniformPants);
                     shop.item[nextSlot++].SetDefaults(ItemID.MermaidAdornment);
                     shop.item[nextSlot++].SetDefaults(ItemID.MermaidTail);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MummyMask);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MummyShirt);
+                    shop.item[nextSlot].SetDefaults(ItemID.MummyMask);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.MummyShirt);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     break;
                 case "Vanity Sets 2":
                     shop.item[nextSlot++].SetDefaults(ItemID.ReaperHood);
@@ -252,9 +269,12 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsJacket);
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsPants);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BeeHat);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BeeShirt);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BeePants);
+                    shop.item[nextSlot].SetDefaults(ItemID.BeeHat);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.BeeShirt);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot].SetDefaults(ItemID.BeePants);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     break;
                 case "Vanity Sets 1":
                     shop.item[nextSlot++].SetDefaults(ItemID.BrideofFrankensteinDress);
@@ -294,47 +314,42 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].SetDefaults(ItemID.PixiePants);
                     shop.item[nextSlot++].SetDefaults(ItemID.PrincessHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PrincessDress);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PumpkinHelmet);
+                    shop.item[nextSlot].SetDefaults(ItemID.PumpkinHelmet);
+                    shop.item[nextSlot++].shopCustomPrice = 30000;
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinPants);
                     break;
                 default:
+                    shop.item[nextSlot++].SetDefaults(ItemID.ConfettiGun);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Confetti);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SmokeBomb);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BubbleMachine);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BubbleWand);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BeachBall);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LavaLamp);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FireworksBox);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FireworkFountain);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RedRocket);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GreenRocket);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BlueRocket);
+                    shop.item[nextSlot++].SetDefaults(ItemID.YellowRocket);
+                    shop.item[nextSlot++].SetDefaults(ItemID.ConfettiCannon);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Bubble);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SmokeBlock);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PartyMonolith);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyBalloonMachine);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PartyPresent);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Pigronata);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyStreamerBlue);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyStreamerGreen);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyStreamerPink);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyBalloonTiedPurple);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyBalloonTiedGreen);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SillyBalloonTiedPink);
                     shop.item[nextSlot++].SetDefaults(ItemID.MysteriousCape);
                     shop.item[nextSlot++].SetDefaults(ItemID.DiamondRing);
                     shop.item[nextSlot++].SetDefaults(ItemID.AngelHalo);
                     shop.item[nextSlot++].SetDefaults(ItemID.GingerBeard);
-
-                    shop.item[nextSlot].SetDefaults(ItemID.Carrot);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                    shop.item[nextSlot++].SetDefaults(ItemID.AmberMosquito);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Fish);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BoneRattle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BoneKey);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ParrotCracker);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Seaweed);
-                    shop.item[nextSlot++].SetDefaults(ItemID.StrangeGlowingMushroom);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ToySled);
-
-                    shop.item[nextSlot].SetDefaults(ItemID.EatersBone);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                    shop.item[nextSlot++].SetDefaults(ItemID.Nectar);
-                    shop.item[nextSlot++].SetDefaults(ItemID.LizardEgg);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Seedling);
-                    shop.item[nextSlot++].SetDefaults(ItemID.TikiTotem);
-                    shop.item[nextSlot++].SetDefaults(ItemID.EyeSpring);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MagicalPumpkinSeed);
-                    shop.item[nextSlot++].SetDefaults(ItemID.CursedSapling);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SpiderEgg);
-
-                    shop.item[nextSlot].SetDefaults(ItemID.BabyGrinchMischiefWhistle);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                    shop.item[nextSlot++].SetDefaults(ItemID.TartarSauce);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ZephyrFish);
-                    shop.item[nextSlot++].SetDefaults(ItemID.CompanionCube);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGato);
                     break;
             }
             

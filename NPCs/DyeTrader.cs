@@ -1,12 +1,13 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeDyeTrader : ModNPC
+    class DyeTrader : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Strange Plants", "Color" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
         static short npcid = NPCID.DyeTrader;
@@ -27,7 +28,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -72,8 +81,35 @@ namespace MerchantsPlus.NPCs
         {
             if (firstButton)
             {
-                shop = true;
-
+                if (currentShop == "Strange Plants")
+                {
+                    int[] plants = { ItemID.StrangePlant1, ItemID.StrangePlant2, ItemID.StrangePlant3, ItemID.StrangePlant4 };
+                    Item[] inventory = Main.LocalPlayer.inventory;
+                    for (int p = 0; p < plants.Length; p++) {
+                        for (int i = 0; i < inventory.Length; i++)
+                        {
+                            if (inventory[i].type == plants[p]) {
+                                inventory[i].stack--;
+                                if (!Main.hardMode)
+                                {
+                                    int[] dyes = { ItemID.AcidDye, ItemID.RedAcidDye, ItemID.BlueAcidDye, ItemID.GlowingMushroom, ItemID.PurpleOozeDye, ItemID.ReflectiveDye, ItemID.ReflectiveSilverDye, ItemID.ReflectiveGoldDye, ItemID.ReflectiveObsidianDye, ItemID.ReflectiveCopperDye, ItemID.ReflectiveMetalDye, ItemID.NegativeDye, ItemID.ShadowDye, ItemID.MirageDye };
+                                    Main.LocalPlayer.QuickSpawnItem(dyes[new Random().Next(0, dyes.Length)], 3);
+                                }
+                                else {
+                                    int[] dyes = {ItemID.TwilightDye, ItemID.HadesDye, ItemID.BurningHadesDye, ItemID.ShadowflameHadesDye, ItemID.GrimDye, ItemID.PhaseDye, ItemID.ShiftingSandsDye, ItemID.GelDye, ItemID.ChlorophyteDye, ItemID.LivingFlameDye, ItemID.LivingRainbowDye, ItemID.LivingOceanDye, ItemID.WispDye, ItemID.PixieDye, ItemID.UnicornWispDye, ItemID.InfernalWispDye, ItemID.MartianArmorDye, ItemID.MidnightRainbowDye, ItemID.DevDye};
+                                    Main.LocalPlayer.QuickSpawnItem(dyes[new Random().Next(0, dyes.Length)], 3);
+                                }
+                                
+                                return;
+                            }
+                        }
+                    }
+                        
+                    
+                }
+                else {
+                    shop = true;
+                }
             }
             else
             {
@@ -91,6 +127,10 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot++].SetDefaults(ItemID.DyeVat);
+            shop.item[nextSlot++].SetDefaults(ItemID.SilverDye);
+            shop.item[nextSlot++].SetDefaults(ItemID.TeamDye);
+            shop.item[nextSlot++].SetDefaults(ItemID.BrownDye);
             if (NPC.downedSlimeKing)
             {
                 if (Utils.kills(NPCID.BlueSlime) > 20) shop.item[nextSlot++].SetDefaults(ItemID.BrightBlueDye);

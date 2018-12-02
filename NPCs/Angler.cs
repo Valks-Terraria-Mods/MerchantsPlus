@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeAngler : ModNPC
+    class Angler : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Fishing Stuff", "Bait", "Buffs", "Crates" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
         static short npcid = NPCID.Angler;
@@ -27,7 +27,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -113,6 +121,26 @@ namespace MerchantsPlus.NPCs
         {
             switch (currentShop)
             {
+                case "Buffs":
+                    shop.item[nextSlot].SetDefaults(ItemID.FishingPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.CratePotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.SonarPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.CookedFish);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.CookedShrimp);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.Sashimi);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.FlipperPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.GillsPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.WaterWalkingPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    break;
                 case "Crates":
                     shop.item[nextSlot].SetDefaults(ItemID.WoodenCrate);
                     shop.item[nextSlot++].shopCustomPrice = 30000;
@@ -199,55 +227,71 @@ namespace MerchantsPlus.NPCs
                     }
                     break;
                 default:
-                    shop.item[0].SetDefaults(ItemID.WoodFishingPole);
-                    nextSlot++;
-                    if (NPC.downedSlimeKing)
-                    {
-                        shop.item[0].SetDefaults(ItemID.ReinforcedFishingPole);
-                    }
-                    if (NPC.downedBoss1)
-                    {
-                        shop.item[0].SetDefaults(ItemID.FisherofSouls);
-                    }
-                    if (NPC.downedBoss2)
-                    {
-                        shop.item[0].SetDefaults(ItemID.FiberglassFishingPole);
-                    }
-                    if (NPC.downedBoss3)
-                    {
-                        shop.item[0].SetDefaults(ItemID.MechanicsRod);
-                    }
-                    if (Main.hardMode)
-                    {
-                        shop.item[0].SetDefaults(ItemID.SittingDucksFishingRod);
-                    }
-                    if (Utils.downedMechBosses() == 1)
-                    {
-                        shop.item[0].SetDefaults(ItemID.HotlineFishingHook);
-                    }
-                    if (Utils.downedMechBosses() == 2)
-                    {
-                        shop.item[0].SetDefaults(ItemID.GoldenFishingRod);
-                    }
-
-                    shop.item[nextSlot++].SetDefaults(ItemID.HighTestFishingLine);
-                    shop.item[nextSlot++].SetDefaults(ItemID.AnglerEarring);
-                    shop.item[nextSlot++].SetDefaults(ItemID.TackleBox);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FishingPotion);
-                    shop.item[nextSlot++].SetDefaults(ItemID.CratePotion);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SonarPotion);
+                    shopFishingPole(shop, ref nextSlot);
                     shop.item[nextSlot++].SetDefaults(ItemID.AnglerHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.AnglerVest);
                     shop.item[nextSlot++].SetDefaults(ItemID.AnglerPants);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FishermansGuide);
-                    shop.item[nextSlot++].SetDefaults(ItemID.WeatherRadio);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Sextant);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FishFinder);
-                    shop.item[nextSlot++].SetDefaults(ItemID.CookedFish);
-                    shop.item[nextSlot++].SetDefaults(ItemID.CookedShrimp);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Sashimi);
+                    shop.item[nextSlot].SetDefaults(ItemID.HighTestFishingLine);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerEarring);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.TackleBox);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.FishermansGuide);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.WeatherRadio);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.Sextant);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.FishFinder);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    if (MerchantsPlus.calamityLoaded) {
+                        shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("AlluringBait"));
+                        shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("EnchantedPearl"));
+                    }
                     break;
             }
+        }
+
+        private void shopFishingPole(Chest shop, ref int nextSlot) {
+            shop.item[nextSlot].SetDefaults(ItemID.WoodFishingPole);
+            shop.item[nextSlot].shopCustomPrice = 1000;
+            if (NPC.downedSlimeKing)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.ReinforcedFishingPole);
+                shop.item[nextSlot].shopCustomPrice = 2500;
+            }
+            if (NPC.downedBoss1)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.FisherofSouls);
+                shop.item[nextSlot].shopCustomPrice = 10000;
+            }
+            if (NPC.downedBoss2)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.FiberglassFishingPole);
+                shop.item[nextSlot].shopCustomPrice = 100000;
+            }
+            if (NPC.downedBoss3)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.MechanicsRod);
+                shop.item[nextSlot].shopCustomPrice = 250000;
+            }
+            if (Main.hardMode)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
+                shop.item[nextSlot].shopCustomPrice = 500000;
+            }
+            if (Utils.downedMechBosses() == 1)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.HotlineFishingHook);
+                shop.item[nextSlot].shopCustomPrice = 1000000;
+            }
+            if (Utils.downedMechBosses() == 2)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.GoldenFishingRod);
+                shop.item[nextSlot].shopCustomPrice = 2000000;
+            }
+            nextSlot++;
         }
 
         public override void NPCLoot()

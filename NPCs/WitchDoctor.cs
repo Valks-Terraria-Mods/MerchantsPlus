@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeGuide : ModNPC
+    class WitchDoctor : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Gear", "Flasks" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
-        static short npcid = NPCID.Guide;
+        static short npcid = NPCID.WitchDoctor;
 
         public override string Texture
         {
@@ -21,13 +21,21 @@ namespace MerchantsPlus.NPCs
 
         public override bool Autoload(ref string name)
         {
-            name = "Squire";
+            name = "Doctor";
             return mod.Properties.Autoload;
         }
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -54,12 +62,14 @@ namespace MerchantsPlus.NPCs
 
         public override string TownNPCName()
         {
-            return "Phil";
+            return "Zyan";
         }
 
         public override string GetChat()
         {
-            return Utils.dialog(new string[] {"Merchants+ Version 0.8" });
+            return Utils.dialog(new string[] { "Be careful, this imbuing station needs tending to..",
+                "A flask a day keeps the Witch Doctor away.",
+                Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000)});
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -91,7 +101,23 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-
+            switch (currentShop) {
+                case "Flasks":
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofCursedFlames);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofFire);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofGold);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofIchor);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofNanites);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofParty);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofPoison);
+                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofVenom);
+                    break;
+                default:
+                    shop.item[nextSlot++].SetDefaults(ItemID.HerculesBeetle);
+                    shop.item[nextSlot++].SetDefaults(ItemID.NecromanticScroll);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PygmyNecklace);
+                    break;
+            }
         }
 
         public override void NPCLoot()
@@ -102,42 +128,14 @@ namespace MerchantsPlus.NPCs
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
             attackDelay = 1;
-            projType = ProjectileID.WoodenArrowFriendly;
-            if (NPC.downedSlimeKing)
-            {
-                projType = ProjectileID.FlamingArrow;
-            }
-            if (NPC.downedBoss1)
-            {
-                projType = ProjectileID.FrostburnArrow;
-            }
+            projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {
-                projType = ProjectileID.JestersArrow;
-            }
-            if (Main.hardMode)
-            {
-                projType = ProjectileID.UnholyArrow;
+                projType = ProjectileID.PoisonedKnife;
             }
             if (Utils.downedMechBosses() == 1)
             {
-                projType = ProjectileID.HolyArrow;
-            }
-            if (Utils.downedMechBosses() == 2)
-            {
-                projType = ProjectileID.CursedArrow;
-            }
-            if (Utils.downedMechBosses() == 3)
-            {
-                projType = ProjectileID.VenomArrow;
-            }
-            if (NPC.downedPlantBoss)
-            {
-                projType = ProjectileID.ChlorophyteArrow;
-            }
-            if (NPC.downedMoonlord)
-            {
-                projType = ProjectileID.MoonlordArrow;
+                projType = ProjectileID.BoneJavelin;
             }
         }
 

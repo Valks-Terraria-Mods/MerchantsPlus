@@ -10,17 +10,45 @@ namespace MerchantsPlus
     {
         class BlockVanilla : ModWorld
         {
-            static string[] npcs = { "Squire", "Supplier", "Outfitter", "Manufacturer", "Explosives Expert",
-        "Magician", "Bartender", "Hair Specialist", "Artist", "Fisherman", "Reforger", "Doctor", "Decorator",
-        "Healer", "Guns Dealer", "Outcast", "Apprentice", "Business Man", "Mushroom", "Bandit", "Steampunk",
-        "Robot", "Santa", "World Merchant", "Skeleton Dealer"};
-            static bool[] conditions = new bool[npcs.Length];
+            static string[] npcs = { "Squire", 
+            "Supplier", 
+            "Fisherman", 
+            "Hair Specialist", 
+            "Decorator", 
+            "Artist", 
+            "Bartender", 
+            "Guns Dealer", 
+            "Outfitter", 
+            "Manufacturer", 
+            "Explosives Expert",
+            "Magician", 
+            "Reforger", 
+            "Doctor",
+            "Healer", 
+            "Outcast", 
+            "Apprentice", 
+            "Business Man", 
+            "Mushroom", 
+            "Bandit", 
+            "Steampunk",
+            "Robot", 
+            "Santa", 
+            "World Merchant", 
+            "Skeleton Dealer"};
             public override void PostUpdate()
             {
-                conditions[0] = true;
+                if (Main.worldRate > 0) {
+                    for (int i = 0; i < 580; i++)
+                    {
+                        Main.townNPCCanSpawn[i] = false;
+                    }
+                }
+            }
+            public override void PreUpdate()
+            {
                 if (Main.worldRate > 0)
                 {
-                    for (int i = 0; i < Main.townNPCCanSpawn.Length; i++)
+                    for (int i = 0; i < 580; i++)
                     {
                         Main.townNPCCanSpawn[i] = false;
                     }
@@ -35,164 +63,230 @@ namespace MerchantsPlus
                             switch (npcs[i])
                             {
                                 case "Squire":
-                                    break;
-                                case "Explosives Expert":
-                                    if (!ConditionDemolitionist()) return;
-                                    break;
-                                case "Magician":
-                                    if (!ConditionDyeTrader()) return;
-                                    break;
-                                case "Bartender":
-                                    break;
-                                case "Hair Specialist":
-                                    break;
-                                case "Artist":
-                                    break;
-                                case "Fisherman":
-                                    break;
-                                case "Reforger":
-                                    if (!ConditionGoblinTinkerer()) return;
-                                    break;
-                                case "Doctor":
-                                    if (!ConditionWitchDoctor()) return;
-                                    break;
-                                case "Decorator":
-                                    break;
                                 case "Supplier":
-                                    if (!ConditionMerchant()) return;
-                                    break;
-                                case "Healer":
-                                    if (!ConditionNurse()) return;
+                                case "Fisherman":
+                                case "Hair Specialist":
+                                case "Artist":
+                                case "Bartender":
+                                case "Decorator":
+                                    if (spawnCustomMerchant(npcs[i])) {
+                                        return;
+                                    }
                                     break;
                                 case "Guns Dealer":
-                                    if (!ConditionArmsDealer()) return;
+                                    if (ConditionArmsDealer()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Manufacturer":
+                                    if (ConditionMechanic()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Explosives Expert":
+                                    if (ConditionDemolitionist()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Magician":
+                                    if (ConditionDyeTrader()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Outfitter":
+                                    if (ConditionClothier()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Reforger":
+                                    if (ConditionGoblinTinkerer()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Doctor":
+                                    if (ConditionWitchDoctor()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
+                                case "Healer":
+                                    if (ConditionNurse()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Outcast":
-                                    if (!ConditionDryad()) return;
+                                    if (ConditionDryad()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Apprentice":
-                                    if (!Main.hardMode) return;
-                                    break;
                                 case "Business Man":
-                                    if (!Main.hardMode) return;
-                                    break;
                                 case "Mushroom":
-                                    if (!Main.hardMode) return;
+                                    if (Main.hardMode) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Bandit":
-                                    if (!ConditionPirate()) return;
+                                    if (ConditionPirate()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Steampunk":
-                                    if (!ConditionSteampunker()) return;
+                                    if (ConditionSteampunker()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Robot":
-                                    if (!ConditionCyborg()) return;
+                                    if (ConditionCyborg()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "Santa":
-                                    if (!ConditionSantaClaus()) return;
+                                    if (ConditionSantaClaus()) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
                                     break;
                                 case "World Merchant":
-                                    if (!Main.hardMode) return;
-                                    break;
-                                case "Sekelton Dealer":
-                                    if (!Main.hardMode) return;
-                                    break;
-                            }
-                            if (Main.netMode == NetmodeID.SinglePlayer)
-                            {
-                                if (!IsNPCInWorld(mod.NPCType(npcs[i])))
-                                {
-                                    Main.NewText("The " + npcs[i] + " has arrived!", Color.Orange);
-                                    NPC.NewNPC((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, mod.NPCType(npcs[i]));
-                                    return;
-                                }
-                            }
-                            else
-                            {
-                                if (!IsNPCInWorld(mod.NPCType(npcs[i])))
-                                {
-                                    string name = "Guide";
-                                    switch (npcs[i])
-                                    {
-                                        case "Squire":
-                                            name = "Guide";
-                                            break;
-                                        case "Explosives Expert":
-                                            name = "Demolitionist";
-                                            break;
-                                        case "Magician":
-                                            name = "DyeTrader";
-                                            break;
-                                        case "Bartender":
-                                            name = "Tavernkeep";
-                                            break;
-                                        case "Hair Specialist":
-                                            name = "HairStylist";
-                                            break;
-                                        case "Artist":
-                                            name = "Painter";
-                                            break;
-                                        case "Fisherman":
-                                            name = "Angler";
-                                            break;
-                                        case "Reforger":
-                                            name = "GoblinTinkerer";
-                                            break;
-                                        case "Doctor":
-                                            name = "WitchDoctor";
-                                            break;
-                                        case "Decorator":
-                                            name = "PartyGirl";
-                                            break;
-                                        case "Supplier":
-                                            name = "Merchant";
-                                            break;
-                                        case "Healer":
-                                            name = "Nurse";
-                                            break;
-                                        case "Guns Dealer":
-                                            name = "ArmsDealer";
-                                            break;
-                                        case "Outcast":
-                                            name = "Dryad";
-                                            break;
-                                        case "Apprentice":
-                                            name = "Wizard";
-                                            break;
-                                        case "Business Man":
-                                            name = "TaxCollector";
-                                            break;
-                                        case "Mushroom":
-                                            name = "Truffle";
-                                            break;
-                                        case "Bandit":
-                                            name = "Pirate";
-                                            break;
-                                        case "Steampunk":
-                                            name = "Steampunker";
-                                            break;
-                                        case "Robot":
-                                            name = "Cryborg";
-                                            break;
-                                        case "Santa":
-                                            name = "SantaClaus";
-                                            break;
-                                        case "World Merchant":
-                                            name = "TravellingMerchant";
-                                            break;
-                                        case "Sekelton Dealer":
-                                            name = "SkeletonMerchant";
-                                            break;
+                                    if (Main.hardMode) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
                                     }
-                                    string key = "Mods.MerchantsPlus." + name;
-                                    NetMessage.BroadcastChatMessage(NetworkText.FromKey(key), Color.Orange);
-                                    NPC.NewNPC((int)Main.player[0].position.X, (int)Main.player[0].position.Y, mod.NPCType(npcs[i]));
-                                    return;
-                                }
+                                    break;
+                                case "Skeleton Dealer":
+                                    if (Main.hardMode) {
+                                        if (spawnCustomMerchant(npcs[i])) {
+                                            return;
+                                        }
+                                    }
+                                    break;
                             }
                         }
                     }
                 }
+            }
+
+            private bool spawnCustomMerchant(string npc) {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    if (!IsNPCInWorld(mod.NPCType(npc)))
+                    {
+                        Main.NewText("The " + npc + " has arrived!", Color.Orange);
+                        NPC.NewNPC((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, mod.NPCType(npc));
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (!IsNPCInWorld(mod.NPCType(npc)))
+                    {
+                        string name = "Guide";
+                        switch (npc)
+                        {
+                            case "Squire":
+                                name = "Guide";
+                                break;
+                            case "Explosives Expert":
+                                name = "Demolitionist";
+                                break;
+                            case "Magician":
+                                name = "DyeTrader";
+                                break;
+                            case "Bartender":
+                                name = "Tavernkeep";
+                                break;
+                            case "Hair Specialist":
+                                name = "HairStylist";
+                                break;
+                            case "Artist":
+                                name = "Painter";
+                                break;
+                            case "Fisherman":
+                                name = "Angler";
+                                break;
+                            case "Reforger":
+                                name = "GoblinTinkerer";
+                                break;
+                            case "Doctor":
+                                name = "WitchDoctor";
+                                break;
+                            case "Decorator":
+                                name = "PartyGirl";
+                                break;
+                            case "Supplier":
+                                name = "Merchant";
+                                break;
+                            case "Healer":
+                                name = "Nurse";
+                                break;
+                            case "Guns Dealer":
+                                name = "ArmsDealer";
+                                break;
+                            case "Outcast":
+                                name = "Dryad";
+                                break;
+                            case "Apprentice":
+                                name = "Wizard";
+                                break;
+                            case "Business Man":
+                                name = "TaxCollector";
+                                break;
+                            case "Mushroom":
+                                name = "Truffle";
+                                break;
+                            case "Bandit":
+                                name = "Pirate";
+                                break;
+                            case "Steampunk":
+                                name = "Steampunker";
+                                break;
+                            case "Robot":
+                                name = "Cryborg";
+                                break;
+                            case "Santa":
+                                name = "SantaClaus";
+                                break;
+                            case "World Merchant":
+                                name = "TravellingMerchant";
+                                break;
+                            case "Sekelton Dealer":
+                                name = "SkeletonMerchant";
+                                break;
+                        }
+                        string key = "Mods.MerchantsPlus." + name;
+                        NetMessage.BroadcastChatMessage(NetworkText.FromKey(key), Color.Orange);
+                        NPC.NewNPC((int)Main.player[0].position.X, (int)Main.player[0].position.Y, mod.NPCType(npc));
+                        return true;
+                    }
+                }
+                return false;
             }
 
             private bool ConditionSantaClaus()
@@ -262,30 +356,7 @@ namespace MerchantsPlus
 
             private bool ConditionArmsDealer()
             {
-                for (int k = 0; k < 255; k++)
-                {
-                    Player player = Main.player[k];
-                    if (player.active)
-                    {
-                        for (int j = 0; j < player.inventory.Length; j++)
-                        {
-                            if (player.inventory[j].ranged)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-
-            private bool ConditionMerchant()
-            {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    //TODO: Check if players have total of 50 silver coins combined.
-                }
-                return true;
+                return Utils.playersHaveItem(new short[] { ItemID.Musket, ItemID.MusketBall, ItemID.TheUndertaker, ItemID.Revolver, ItemID.RedRyder, ItemID.Boomstick, ItemID.SilverBullet});
             }
 
             private bool ConditionNurse()

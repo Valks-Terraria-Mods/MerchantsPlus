@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeSteampunker : ModNPC
+    class TravellingMerchant : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Gear" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
-        static short npcid = NPCID.Steampunker;
+        static short npcid = NPCID.TravellingMerchant;
 
         public override string Texture
         {
@@ -21,13 +21,21 @@ namespace MerchantsPlus.NPCs
 
         public override bool Autoload(ref string name)
         {
-            name = "Steampunk";
+            name = "World Merchant";
             return mod.Properties.Autoload;
         }
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -54,15 +62,12 @@ namespace MerchantsPlus.NPCs
 
         public override string TownNPCName()
         {
-            return "Jessica";
+            return "Ryan";
         }
 
         public override string GetChat()
         {
-            return Utils.dialog(new string[] { "The author of the mod forgot about me. ;(" ,
-                "I don't really have much to say, like I said I'm a forgotten little someone. :(",
-                "Hey, maybe the author of the mod will give me better dialog in the next update! :/",
-                "Oh someone cares about me? <3"});
+            return Utils.dialog(new string[] { "I'm only here because someone told me real players will buy my stuff." });
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -94,7 +99,10 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-
+            shop.item[nextSlot++].SetDefaults(ItemID.ShadowOrb);
+            shop.item[nextSlot++].SetDefaults(ItemID.MagicLantern);
+            shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGhost);
+            if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.SuspiciousLookingTentacle);
         }
 
         public override void NPCLoot()

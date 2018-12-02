@@ -36,6 +36,7 @@ namespace MerchantsPlus
                 if (heldItem.ranged) return "ranged";
                 if (heldItem.magic) return "mage";
                 if (heldItem.summon) return "summoner";
+                if (heldItem.thrown) return "thrower";
                 return "melee";
             }
             else 

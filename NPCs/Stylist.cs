@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeStylist : ModNPC
+    class Stylist : ModNPC
     {
-        static string[] shopNames = { "Basic",
+        static string[] shopNames = { "Hair Dyes",
         "Overworld",
         "Underworld",
         "Desert",
@@ -52,7 +52,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -1616,7 +1624,21 @@ namespace MerchantsPlus.NPCs
                     }
                     break;
                 default:
+                    shop.item[nextSlot++].SetDefaults(ItemID.HairDyeRemover);
+                    shop.item[nextSlot++].SetDefaults(ItemID.DepthHairDye);
                     shop.item[nextSlot++].SetDefaults(ItemID.LifeHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.ManaHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.MoneyHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.TimeHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.TeamHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PartyHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BiomeHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SpeedHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RainbowHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.MartianHairDye);
+                    shop.item[nextSlot++].SetDefaults(ItemID.TwilightHairDye);
+                    shop.item[nextSlot].SetDefaults(ItemID.LovePotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
             }
             currentShop = shopNames[0];

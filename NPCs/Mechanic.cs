@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeMechanic : ModNPC
+    class Mechanic : ModNPC
     {
-        static string[] shopNames = { "Basic",
+        static string[] shopNames = { "Mechanics",
         "Wood",
         "Rich Mahogany",
         "Boreal",
@@ -40,6 +40,7 @@ namespace MerchantsPlus.NPCs
 
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
+        static int npcid = NPCID.Mechanic;
 
         public override string Texture
         {
@@ -57,7 +58,15 @@ namespace MerchantsPlus.NPCs
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Mechanic];
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -125,6 +134,27 @@ namespace MerchantsPlus.NPCs
         {
             switch (currentShop)
             {
+                case "Golden":
+                    shop.item[nextSlot].SetDefaults(ItemID.GoldBrick);
+                    shop.item[nextSlot++].shopCustomPrice = 100;
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenBathtub);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenBed);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenBookcase);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenChair);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenTable);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenChest);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenClock);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenDresser);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenCandelabra);
+                    shop.item[nextSlot].SetDefaults(ItemID.GoldenCandle);
+                    shop.item[nextSlot++].shopCustomPrice = 500;
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenPiano);
+                    shop.item[nextSlot].SetDefaults(ItemID.GoldenPlatform);
+                    shop.item[nextSlot++].shopCustomPrice = 50;
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenSink);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenSofa);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GoldenWorkbench);
+                    break;
                 case "Martian":
                     shop.item[nextSlot].SetDefaults(ItemID.MartianConduitPlating);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -698,13 +728,28 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot++].SetDefaults(ItemID.WorkBench);
                     break;
                 default:
-                    if (NPC.downedMechBoss1) shop.item[nextSlot++].SetDefaults(ItemID.CelestialMagnet);
-                    if (NPC.downedMechBoss2) shop.item[nextSlot++].SetDefaults(ItemID.Toolbox);
-                    if (NPC.downedMechBoss3) shop.item[nextSlot++].SetDefaults(ItemID.PaintSprayer);
-                    if (NPC.downedMartians) shop.item[nextSlot++].SetDefaults(ItemID.ExtendoGrip);
-                    if (NPC.downedTowerStardust) shop.item[nextSlot++].SetDefaults(ItemID.PortableCementMixer);
-                    if (NPC.downedTowerSolar) shop.item[nextSlot++].SetDefaults(ItemID.BrickLayer);
-                    if (Utils.kills(NPCID.MoonLordCore) >= 3) shop.item[nextSlot++].SetDefaults(ItemID.DrillContainmentUnit);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Wrench);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BlueWrench);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GreenWrench);
+                    shop.item[nextSlot++].SetDefaults(ItemID.YellowWrench);
+                    shop.item[nextSlot++].SetDefaults(ItemID.WireCutter);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Wire);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Lever);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Switch);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RedPressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BluePressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BrownPressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GrayPressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.GreenPressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.YellowPressurePlate);
+                    shop.item[nextSlot++].SetDefaults(ItemID.ProjectilePressurePad);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BoosterTrack);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Actuator);
+                    shop.item[nextSlot++].SetDefaults(ItemID.WirePipe);
+                    shop.item[nextSlot++].SetDefaults(ItemID.WireBulb);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Timer1Second);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Timer3Second);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Timer5Second);
                     break;
             }
         }

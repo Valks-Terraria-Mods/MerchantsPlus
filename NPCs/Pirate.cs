@@ -4,30 +4,38 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class PrototypeWizard : ModNPC
+    class Pirate : ModNPC
     {
-        static string[] shopNames = { "Basic" };
+        static string[] shopNames = { "Arrr", "Potions" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
-        static short npcid = NPCID.Wizard;
+        static int npcid = NPCID.Pirate;
 
         public override string Texture
         {
             get
             {
-                return "Terraria/NPC_" + npcid;
+                return "Terraria/NPC_" + NPCID.Pirate;
             }
         }
 
         public override bool Autoload(ref string name)
         {
-            name = "Apprentice";
+            name = "Bandit";
             return mod.Properties.Autoload;
         }
 
         public override void SetStaticDefaults()
         {
+            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
+            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
+            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
+            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
+            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
+            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
+            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
+            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
         }
 
         public override void SetDefaults()
@@ -43,7 +51,7 @@ namespace MerchantsPlus.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0.5f;
-            animationType = npcid;
+            animationType = NPCID.Pirate;
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
@@ -54,18 +62,13 @@ namespace MerchantsPlus.NPCs
 
         public override string TownNPCName()
         {
-            return "Ynn";
+            return "Gord";
         }
 
         public override string GetChat()
         {
-            return Utils.dialog(new string[] { "Gandolf? Is that you?",
-                "My magic is more then you think young one.",
-                "It is dangerous to go alone little one. Bring friends on your journey.",
-                "The dungeon is a dark place litte one, be careful.",
-                "Some say a lord possesses this world.",
-                Utils.dialogGift(npc, "Here take this little one, you may need this on your journey.", "Be safe on your journey.", true, 10, ItemID.MagicDagger, 50000),
-                "The world is a big place little one."});
+            return Utils.dialog(new string[] { Utils.dialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000),
+                "Arr?"});
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -97,7 +100,25 @@ namespace MerchantsPlus.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-
+            switch (currentShop) {
+                case "Potions":
+                    shop.item[nextSlot].SetDefaults(ItemID.TrapsightPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.HunterPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    shop.item[nextSlot].SetDefaults(ItemID.InfernoPotion);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    break;
+                default:
+                    shop.item[nextSlot++].SetDefaults(ItemID.Sail);
+                    shop.item[nextSlot++].SetDefaults(ItemID.ParrotCracker);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BunnyCannon);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RangerEmblem);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SorcererEmblem);
+                    shop.item[nextSlot++].SetDefaults(ItemID.SummonerEmblem);
+                    shop.item[nextSlot++].SetDefaults(ItemID.WarriorEmblem);
+                    break;
+            }
         }
 
         public override void NPCLoot()
@@ -108,40 +129,27 @@ namespace MerchantsPlus.NPCs
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
             attackDelay = 1;
-            projType = ProjectileID.RainbowCrystalExplosion;
+            projType = ProjectileID.Bullet;
             if (Utils.downedMechBosses() == 1)
             {
-                projType = ProjectileID.BallofFire;
+                projType = ProjectileID.CursedBullet;
             }
             if (Utils.downedMechBosses() == 2)
             {
-                projType = ProjectileID.BallofFrost;
+                projType = ProjectileID.IchorBullet;
             }
             if (Utils.downedMechBosses() == 3)
             {
-                projType = ProjectileID.MagnetSphereBall;
+                projType = ProjectileID.CrystalBullet;
             }
             if (NPC.downedPlantBoss)
             {
-                projType = ProjectileID.RainbowRodBullet;
-            }
-            if (NPC.downedGolemBoss)
-            {
-                projType = ProjectileID.RainbowBack;
-            }
-            if (NPC.downedFishron)
-            {
-                projType = ProjectileID.RainbowFront;
+                projType = ProjectileID.ChlorophyteBullet;
             }
             if (NPC.downedMoonlord)
             {
-                projType = ProjectileID.RainbowCrystal;
+                projType = ProjectileID.MoonlordBullet;
             }
-        }
-
-        public override void TownNPCAttackMagic(ref float auraLightMultiplier)
-        {
-            auraLightMultiplier *= 2;
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
