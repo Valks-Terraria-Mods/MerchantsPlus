@@ -74,7 +74,11 @@ namespace MerchantsPlus.NPCs
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            ExampleUI.Visible = true;
+            if (!MerchantsPlus.instance.examplePersonUserInterface.IsVisible) {
+                MerchantsPlus.instance.examplePersonUserInterface.IsVisible = true;
+            }
+            
+            //ExampleUI.Visible = true;
             ExampleUI.talkingTo = NPCID.WitchDoctor;
             MerchantsPlus.instance.examplePersonUserInterface.SetState(new UI.ExampleUI());
             button = currentShop;
@@ -87,8 +91,9 @@ namespace MerchantsPlus.NPCs
             if (firstButton)
             {
                 shop = true;
-                ExampleUI.Visible = false;
-                
+                //ExampleUI.Visible = false;
+                MerchantsPlus.instance.examplePersonUserInterface.IsVisible = false;
+
             }
             else
             {

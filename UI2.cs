@@ -22,6 +22,7 @@ namespace MerchantsPlus
         }
         private void OnVisibilityChange(bool new_value)
         {
+            
             Main.NewText("test");
             switch (ExampleUI.talkingTo)
             {
