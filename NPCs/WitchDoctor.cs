@@ -76,6 +76,7 @@ namespace MerchantsPlus.NPCs
         {
             ExampleUI.Visible = true;
             ExampleUI.talkingTo = NPCID.WitchDoctor;
+            MerchantsPlus.instance.examplePersonUserInterface.SetState(new UI.ExampleUI());
             button = currentShop;
             button2 = "Cycle Shop";
             
@@ -87,6 +88,7 @@ namespace MerchantsPlus.NPCs
             {
                 shop = true;
                 ExampleUI.Visible = false;
+                
             }
             else
             {
