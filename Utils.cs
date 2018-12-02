@@ -84,6 +84,14 @@ namespace MerchantsPlus
             return NPC.killCount[Item.NPCtoBanner(theNPC)];
         }
 
+        public static int multiKills(short[] npcs) {
+            int kills = 0;
+            for (int i = 0; i < npcs.Length; i++) {
+                kills += NPC.killCount[Item.NPCtoBanner(npcs[i])];
+            }
+            return kills;
+        }
+
         public static bool isNPCHere(short npc)
         {
             int theNPC = NPC.FindFirstNPC(npc);

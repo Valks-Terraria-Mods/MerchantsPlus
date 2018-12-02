@@ -141,7 +141,7 @@ namespace MerchantsPlus.NPCs
                     shop.item[nextSlot].SetDefaults(ItemID.EmptyBucket);
                     shop.item[nextSlot++].shopCustomPrice = 10000;
                     shop.item[nextSlot].SetDefaults(ItemID.DemonWings);
-                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(2);
+                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(10);
                     break;
             }
         }

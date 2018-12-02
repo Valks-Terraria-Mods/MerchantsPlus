@@ -1,3 +1,4 @@
+using MerchantsPlus.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -9,7 +10,10 @@ namespace MerchantsPlus
 	class MerchantsPlus : Mod
 	{
         internal static MerchantsPlus instance;
-        internal UserInterface examplePersonUserInterface;
+        internal UI2 examplePersonUserInterface = new UI2();
+        internal ExampleUI ExampleUI;
+
+        private UserInterface _exampleUserInterface;
 
         public static int universalPotionCost = 20000;
         public static int universalAccessoryCost = 300000;
@@ -29,17 +33,38 @@ namespace MerchantsPlus
 
         public override void UpdateUI(GameTime gameTime)
         {
+            if (ExampleUI.Visible)
+            {
+                _exampleUserInterface.Update(gameTime);
+            }
             if (examplePersonUserInterface != null)
                 examplePersonUserInterface.Update(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
+            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+            if (mouseTextIndex != -1)
+            {
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    "MerchantsPlus: Coins Per Minute",
+                    delegate {
+                        if (ExampleUI.Visible)
+                        {
+                            _exampleUserInterface.Draw(Main.spriteBatch, new GameTime());
+                        }
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+
+
             int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (InventoryIndex != -1)
             {
                 layers.Insert(InventoryIndex + 1, new LegacyGameInterfaceLayer(
-                    "ExampleMod: Example Person UI",
+                    "MerchantsPlus: Example Person UI",
                     delegate
                     {
                         // If the current UIState of the UserInterface is null, nothing will draw. We don't need to track a separate .visible value.
@@ -56,7 +81,13 @@ namespace MerchantsPlus
             instance = this;
 
             if (!Main.dedServ) {
-                examplePersonUserInterface = new UserInterface();
+                examplePersonUserInterface = new UI2();
+
+                // Custom UI
+                ExampleUI = new ExampleUI();
+                ExampleUI.Activate();
+                _exampleUserInterface = new UserInterface();
+                _exampleUserInterface.SetState(ExampleUI);
             }
 
             overhaulLoaded = ModLoader.GetMod("TerrariaOverhaul") != null;

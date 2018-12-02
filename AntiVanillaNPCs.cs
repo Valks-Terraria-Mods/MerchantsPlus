@@ -14,15 +14,6 @@ namespace MerchantsPlus
                 npc.scale = 0.8f;
             }
 
-            if (npc.type == NPCID.Guide || npc.type == NPCID.TravellingMerchant) {
-                npc.lifeMax = 1;
-                npc.AddBuff(BuffID.Poisoned, 100000, true);
-                npc.friendly = false;
-                npc.townNPC = false;
-                npc.dontCountMe = true;
-                npc.aiStyle = 7;
-            }
-
             /*switch (npc.type)
             {
                 case NPCID.Angler:

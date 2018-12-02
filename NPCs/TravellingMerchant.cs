@@ -9,6 +9,7 @@ namespace MerchantsPlus.NPCs
         static string[] shopNames = { "Gear" };
         static int shopCounter = 0;
         static string currentShop = shopNames[shopCounter];
+
         static short npcid = NPCID.TravellingMerchant;
 
         public override string Texture

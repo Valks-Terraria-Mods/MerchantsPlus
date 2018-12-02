@@ -133,7 +133,6 @@ namespace MerchantsPlus.NPCs
                     if (NPC.downedBoss1)
                     { // eye of chulutu
                         shop.item[nextSlot++].SetDefaults(ItemID.Dynamite);
-                        shop.item[nextSlot++].SetDefaults(ItemID.Explosives);
                         if (MerchantsPlus.overhaulLoaded)
                         {
                             Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
@@ -160,6 +159,7 @@ namespace MerchantsPlus.NPCs
 
                     if (Main.hardMode)
                     {
+                        shop.item[nextSlot++].SetDefaults(ItemID.Explosives);
                         shop.item[nextSlot++].SetDefaults(ItemID.StickyGrenade);
                         shop.item[nextSlot++].SetDefaults(ItemID.StickyBomb);
                         shop.item[nextSlot++].SetDefaults(ItemID.StickyDynamite);

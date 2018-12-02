@@ -1,7 +1,5 @@
 You can think of this as a merchant overhaul mod. The mod is 100% compatible with multiplayer / singleplayer. The following mechanics listed below heavily effect all vanilla and custom merchants.
 
-If you enable this mod to a world that has 'vanilla' merchant npcs than this mod will instantly kill them all and slowly replace them with the 'merchant+' merchant npcs during the daytime.
-
 [c/ffb2fd:Items]
 + Sell more items based on the bosses / enemies defeated.
 + Sell items based on your characters build.
@@ -32,9 +30,13 @@ If you enable this mod to a world that has 'vanilla' merchant npcs than this mod
 [c/ffb2fd:Mods Supported!]
 + Terraria Overhaul
 
+Special thanks to Saerus for helping me out whenever I need it, go check out his awesome mod, ExperienceAndClasses. Go support him and his epic mod! <3
+
 ===========================================
 
-[c/991095:v0.8.3]
+[c/991095:v0.8.4]
+Mod NPCs should no longer be instantly killed.
+Balanced tinkerer and nurse a bit.
 Vanilla merchants should no longer arrive to your world ever.
 Fixed merchants not being able to shoot anything.
 Reforges now cost whatever value the item is instead of 1 gold.

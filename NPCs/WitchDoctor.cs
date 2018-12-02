@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using MerchantsPlus.UI;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -68,14 +69,16 @@ namespace MerchantsPlus.NPCs
         public override string GetChat()
         {
             return Utils.dialog(new string[] { "Be careful, this imbuing station needs tending to..",
-                "A flask a day keeps the Witch Doctor away.",
-                Utils.dialogGift(npc, "Here, take these wings.", "Heh heh..", true, 25, ItemID.BoneWings, 50000)});
+                "A flask a day keeps the Witch Doctor away."});
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
+            ExampleUI.Visible = true;
+            ExampleUI.talkingTo = NPCID.WitchDoctor;
             button = currentShop;
             button2 = "Cycle Shop";
+            
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -83,7 +86,7 @@ namespace MerchantsPlus.NPCs
             if (firstButton)
             {
                 shop = true;
-
+                ExampleUI.Visible = false;
             }
             else
             {
