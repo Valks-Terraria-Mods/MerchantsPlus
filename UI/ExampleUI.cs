@@ -143,6 +143,7 @@ namespace MerchantsPlus.UI
             //Main.PlaySound(SoundID.MenuOpen);
             //Main.NewText(Main.npc[Main.player[Main.myPlayer].talkNPC].type);
             Visible = false;
+            //MerchantsPlus.instance.examplePersonUserInterface.IsVisible = false;
             Main.PlaySound(12, -1, -1, 1, 1f, 0f);
             Main.playerInventory = true;
             Main.npcChatText = "";

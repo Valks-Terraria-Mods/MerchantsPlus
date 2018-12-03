@@ -8,7 +8,8 @@ namespace MerchantsPlus
     class ThePlayer : ModPlayer
     {
         public override void ProcessTriggers(TriggersSet triggersSet) {
-            ExampleUI.Visible = false;
+            //MerchantsPlus.instance.examplePersonUserInterface.IsVisible = false;
+            //ExampleUI.Visible = false;
         }
     }
 }

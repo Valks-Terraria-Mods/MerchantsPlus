@@ -10,7 +10,7 @@ namespace MerchantsPlus
 	class MerchantsPlus : Mod
 	{
         internal static MerchantsPlus instance;
-        internal UI2 examplePersonUserInterface = new UI2();
+        internal UserInterface examplePersonUserInterface;
         internal ExampleUI ExampleUI;
 
         private UserInterface _exampleUserInterface;
@@ -81,7 +81,7 @@ namespace MerchantsPlus
             instance = this;
 
             if (!Main.dedServ) {
-                examplePersonUserInterface = new UI2();
+                examplePersonUserInterface = new UserInterface();
 
                 // Custom UI
                 ExampleUI = new ExampleUI();
