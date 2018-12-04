@@ -1,20 +1,15 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace MerchantsPlus
 {
-    class AntiVanillaNPCs : GlobalNPC
+    class NPCDefaults : GlobalNPC
     {
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.OldMan)
-            {
-                npc.lifeMax = 500;
-                npc.scale = 0.8f;
-            }
-
-            /*switch (npc.type)
+            switch (npc.type)
             {
                 case NPCID.Angler:
                 case NPCID.ArmsDealer:
@@ -40,30 +35,25 @@ namespace MerchantsPlus
                 case NPCID.Truffle:
                 case NPCID.WitchDoctor:
                 case NPCID.Wizard:
+                case NPCID.OldMan:
                 case NPCID.BoundGoblin:
                 case NPCID.BoundMechanic:
                 case NPCID.BoundWizard:
                 case NPCID.SleepingAngler:
-                    npc.lifeMax = 1;
-                    npc.AddBuff(BuffID.Poisoned, 100000, true);
-                    npc.friendly = false;
-                    npc.townNPC = false;
-                    npc.dontCountMe = true;
-                    npc.aiStyle = 7;
+                    if (Config.merchantScaling) npc.scale = 0.9f;
+                    if (Config.merchantExtraLife) npc.lifeMax = 500;
                     break;
-            }*/
+            }
         }
 
-        public override void GetChat(NPC npc, ref string chat)
-        {
-            if (npc.type != NPCID.OldMan) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "You want to fight big pa? Come back at night!" });
-        }
-
-        public override void NPCLoot(NPC npc)
-        {
-            Utils.dropItem(npc, NPCID.OldMan, new short[] { ItemID.Bacon }, 100);
+        public override void DrawEffects(NPC npc, ref Color drawColor) {
+            switch (npc.type) {
+                case NPCID.BoundGoblin:
+                case NPCID.BoundMechanic:
+                case NPCID.BoundWizard:
+                    Lighting.AddLight(npc.position, new Vector3(1, 1, 1));
+                    break;
+            }
         }
     }
 }

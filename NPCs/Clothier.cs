@@ -4,70 +4,13 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    public class Clothier : ModNPC
+    public class Clothier : GlobalNPC
     {
-        static string[] shopNames = { "Clothing" };
-        static int shopCounter = 0;
-        static string currentShop = shopNames[shopCounter];
-        static int npcid = NPCID.Clothier;
-
-        public override string Texture
+        public override void GetChat(NPC npc, ref string chat)
         {
-            get
-            {
-                return "Terraria/NPC_" + NPCID.Clothier;
-            }
-        }
-
-        public override bool Autoload(ref string name)
-        {
-            name = "Outfitter";
-            return mod.Properties.Autoload;
-        }
-
-        public override void SetStaticDefaults()
-        {
-            //Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[npcid];
-            NPCID.Sets.ExtraFramesCount[npc.type] = NPCID.Sets.ExtraFramesCount[npcid];
-            NPCID.Sets.AttackFrameCount[npc.type] = NPCID.Sets.AttackFrameCount[npcid];
-            NPCID.Sets.DangerDetectRange[npc.type] = NPCID.Sets.DangerDetectRange[npcid];
-            NPCID.Sets.AttackType[npc.type] = NPCID.Sets.AttackType[npcid];
-            NPCID.Sets.AttackTime[npc.type] = NPCID.Sets.AttackTime[npcid];
-            NPCID.Sets.AttackAverageChance[npc.type] = NPCID.Sets.AttackAverageChance[npcid];
-            NPCID.Sets.HatOffsetY[npc.type] = NPCID.Sets.HatOffsetY[npcid];
-        }
-
-        public override void SetDefaults()
-        {
-            npc.townNPC = true;
-            npc.friendly = true;
-            npc.homeless = true;
-            npc.width = 18;
-            npc.height = 40;
-            npc.aiStyle = 7;
-            npc.damage = 10;
-            npc.defense = 15;
-            npc.lifeMax = 300;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.5f;
-            animationType = NPCID.Clothier;
-        }
-
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
-        {
-            return true;
-        }
-
-        public override string TownNPCName()
-        {
-            return "Bob";
-        }
-
-        public override string GetChat()
-        {
-            return Utils.dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
+            if (npc.type != NPCID.Clothier) return;
+            if (!Config.merchantDialog) return;
+            chat = Utils.dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
             "Ah peace and quiet.",
             "One day I'll make the most beautiful piece of clothing ever laid eyes on.",
             "Oh you're back for more? I've got a big selection for you.",
@@ -85,166 +28,11 @@ namespace MerchantsPlus.NPCs
             "I could teach you how to make your own clothes! All you need is a few materials I have in my shop!"});
         }
 
-        public override void SetChatButtons(ref string button, ref string button2)
+        
+
+        public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
-            button = currentShop;
-            button2 = "Cycle Shop";
-        }
-
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-        {
-            if (firstButton)
-            {
-                shop = true;
-
-            }
-            else
-            {
-                if (shopCounter >= shopNames.Length - 1)
-                {
-                    currentShop = shopNames[0];
-                    shopCounter = 0;
-                }
-                else
-                {
-                    currentShop = shopNames[++shopCounter];
-                }
-            }
-        }
-
-        public override void SetupShop(Chest shop, ref int nextSlot)
-        {
-            shop.item[nextSlot++].SetDefaults(ItemID.BlackThread);
-            shop.item[nextSlot++].SetDefaults(ItemID.PinkThread);
-            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarWig);
-            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarShirt);
-            shop.item[nextSlot++].SetDefaults(ItemID.FamiliarPants);
-            if (MerchantsPlus.overhaulLoaded) {
-                Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                shop.item[nextSlot++].SetDefaults(overhaul.ItemType("HaxxCostume"));
-            }
-            if (NPC.downedSlimeKing)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.EyePatch);
-                shop.item[nextSlot++].SetDefaults(ItemID.PlatinumCrown);
-            }
-
-            if (NPC.downedBoss1)
-            { // eye
-                shop.item[nextSlot++].SetDefaults(ItemID.Sunglasses);
-            }
-
-            if (NPC.downedBoss2)
-            { //worm / brain
-                shop.item[nextSlot++].SetDefaults(ItemID.GuyFawkesMask);
-            }
-
-            if (NPC.downedBoss3)
-            { // skeletron
-                shop.item[nextSlot++].SetDefaults(ItemID.ReindeerAntlers);
-            }
-
-            if (Main.hardMode)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.ReaperRobe);
-                shop.item[nextSlot++].SetDefaults(ItemID.ReaperHood);
-            }
-
-            if (NPC.downedMechBossAny)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.SpaceCreaturePants);
-                shop.item[nextSlot++].SetDefaults(ItemID.SpaceCreatureShirt);
-                shop.item[nextSlot++].SetDefaults(ItemID.SpaceCreatureMask);
-            }
-
-            if (NPC.downedPlantBoss)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.BunnyHood);
-            }
-
-            if (Main.raining)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.CrownosLeggings);
-                shop.item[nextSlot++].SetDefaults(ItemID.CrownosBreastplate);
-                shop.item[nextSlot++].SetDefaults(ItemID.CrownosMask);
-            }
-
-            if (Main.bloodMoon)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.CenxsDressPants);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.CenxsLeggings);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.CenxsDress);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.CenxsBreastplate);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.CenxsTiara);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-            }
-
-            if (Main.eclipse)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.JimsLeggings);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.JimsBreastplate);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.JimsHelmet);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-            }
-
-            if (Main.dayTime)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.ArkhalisPants);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.ArkhalisShirt);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.ArkhalisHat);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-            }
-            else
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.LokisPants);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.LokisShirt);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.LokisHelm);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-            }
-
-            if (Main.hardMode)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.LeinforsPants);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.LeinforsShirt);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.LeinforsHat);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-
-                shop.item[nextSlot].SetDefaults(ItemID.LeinforsAccessory);
-                shop.item[nextSlot++].shopCustomPrice = 100000;
-            }
-        }
-
-        public override void NPCLoot()
-        {
-            // Item.NewItem(npc.getRect(), ItemID.SlimeBanner);
-        }
-
-        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
-        {
+            if (npc.type != NPCID.Clothier) return;
             attackDelay = 1;
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
@@ -255,23 +43,6 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.BoneJavelin;
             }
-        }
-
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
-        {
-            damage = 20;
-            knockback = 4f;
-        }
-
-        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
-        {
-            cooldown = 0;
-        }
-
-        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
-        {
-            multiplier = 12f;
-            randomOffset = 2f;
         }
     }
 }

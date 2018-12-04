@@ -10,10 +10,8 @@ namespace MerchantsPlus
 	class MerchantsPlus : Mod
 	{
         internal static MerchantsPlus instance;
-        internal UserInterface examplePersonUserInterface;
         internal ExampleUI ExampleUI;
-
-        private UserInterface _exampleUserInterface;
+        internal UserInterface _exampleUserInterface;
 
         public static int universalPotionCost = 20000;
         public static int universalAccessoryCost = 300000;
@@ -37,8 +35,6 @@ namespace MerchantsPlus
             {
                 _exampleUserInterface.Update(gameTime);
             }
-            if (examplePersonUserInterface != null)
-                examplePersonUserInterface.Update(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -58,22 +54,6 @@ namespace MerchantsPlus
                     InterfaceScaleType.UI)
                 );
             }
-
-
-            int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-            if (InventoryIndex != -1)
-            {
-                layers.Insert(InventoryIndex + 1, new LegacyGameInterfaceLayer(
-                    "MerchantsPlus: Example Person UI",
-                    delegate
-                    {
-                        // If the current UIState of the UserInterface is null, nothing will draw. We don't need to track a separate .visible value.
-                        examplePersonUserInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
         }
 
         public override void Load()
@@ -81,13 +61,11 @@ namespace MerchantsPlus
             instance = this;
 
             if (!Main.dedServ) {
-                examplePersonUserInterface = new UserInterface();
-
                 // Custom UI
                 ExampleUI = new ExampleUI();
                 ExampleUI.Activate();
+
                 _exampleUserInterface = new UserInterface();
-                _exampleUserInterface.SetState(ExampleUI);
             }
 
             overhaulLoaded = ModLoader.GetMod("TerrariaOverhaul") != null;

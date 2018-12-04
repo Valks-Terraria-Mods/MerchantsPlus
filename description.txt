@@ -1,4 +1,4 @@
-You can think of this as a merchant overhaul mod. The mod is 100% compatible with multiplayer / singleplayer. The following mechanics listed below heavily effect all vanilla and custom merchants.
+You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
 
 [c/ffb2fd:Items]
 + Sell more items based on the bosses / enemies defeated.
@@ -18,21 +18,23 @@ You can think of this as a merchant overhaul mod. The mod is 100% compatible wit
 
 [c/ffb2fd:Msc]
 + All merchants have the cycle shop mechanic.
-+ The Angler, Guide, Nurse, Tax Collector and Old Man are now merchants.
-+ All vanilla merchant items have been moved around.
-+ The way merchants arrive to your town is changed. They try to arrive every 10 seconds.
-+ Merchants do not require houses to join your town.
-+ Truffle no longer needs to be in mushroom biome.
-+ Santa Claus comes even if it isn't christmas.
-+ You no longer have to find the mechanic, wizard, tinkerer, tax collector, or stylist.. they automatically come to your town.
-+ The skeleton and travelling merchant move into your town in hardmode.
++ The angler, guide, nurse, tax collector and old man are now merchants.
++ The bound mechanic, wizard and tinkerer glow in the dark.
 
 [c/ffb2fd:Mods Supported!]
-+ Terraria Overhaul
-
-Special thanks to Saerus for helping me out whenever I need it, go check out his awesome mod, ExperienceAndClasses. Go support him and his epic mod! <3
++ Terraria Overhaul (100%)
++ Calamity (1%)
 
 ===========================================
+
+[c/991095:v0.9]
+Vanilla merchant spawning mechanics are no longer effected.
+Vanilla merchants spawning conditions are no longer effected.
+Vanilla merchant buttons are no longer effected.
+Shop / Cycle Shop buttons appear as an additional UI when you press the first button in any merchant.
+Vanilla merchants arrive to your town again.
+You no longer have to worry about missing vanilla merchant mechanics.
+Config was added back.
 
 [c/991095:v0.8.4]
 Mod NPCs should no longer be instantly killed.
@@ -43,6 +45,7 @@ Reforges now cost whatever value the item is instead of 1 gold.
 Made items harder to get by drastically increasing the price.
 Added demon wings to merchant for 2 plat.
 Added / changed a bunch of other items.
+Config was removed.
 
 [c/991095:v0.8.2]
 Nurse now heals past vanilla max hp limit.
