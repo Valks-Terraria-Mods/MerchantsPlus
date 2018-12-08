@@ -23,9 +23,16 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 
 [c/ffb2fd:Mods Supported!]
 + Terraria Overhaul (100%)
++ AutoTrash (100%)
 + Calamity (1%)
 
 ===========================================
+
+[c/991095:v0.9.0.4]
+Fixed map crash bug.
+
+[c/991095:v0.9.0.3]
+Shifted the UI 40 pixels to the left if auto trash mod is loaded.
 
 [c/991095:v0.9.0.2]
 Calamity expert exclusive accessories are now only sold when specified bosses are defeated.

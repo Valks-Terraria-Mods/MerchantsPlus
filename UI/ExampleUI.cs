@@ -93,7 +93,14 @@ namespace MerchantsPlus.UI
             CoinCounterPanel = new UIPanel();
             CoinCounterPanel.SetPadding(0);
 
-            CoinCounterPanel.Left.Set(200f, 0f); // 250
+            if (MerchantsPlus.autoTrashLoaded)
+            {
+                CoinCounterPanel.Left.Set(160f, 0f);
+            }
+            else {
+                CoinCounterPanel.Left.Set(200f, 0f);
+            }
+            
             CoinCounterPanel.Top.Set(428f, 0f);
             CoinCounterPanel.Width.Set(250f, 0f);
             CoinCounterPanel.Height.Set(35f, 0f);
