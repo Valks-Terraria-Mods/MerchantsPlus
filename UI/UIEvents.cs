@@ -107,6 +107,9 @@ namespace MerchantsPlus.UI
                             case NPCID.TaxCollector:
                                 ExampleUI.the_shop = ExampleUI.TAXCOLLECTOR;
                                 break;
+                            case NPCID.TravellingMerchant:
+                                ExampleUI.the_shop = ExampleUI.TRAVELLINGMERCHANT;
+                                break;
                             case NPCID.Truffle:
                                 ExampleUI.the_shop = ExampleUI.TRUFFLE;
                                 break;

@@ -162,11 +162,7 @@ namespace MerchantsPlus.UI
             Main.npcChatText = "";
             Main.npcShop = 20;
             Chest shop = Main.instance.shop[Main.npcShop];
-            shop.SetupShop(Main.npcShop);
-            for (int i = 0; i < shop.item.Length; i++)
-            {
-                shop.item[i].TurnToAir();
-            }
+            shop.SetupShop(0);
 
             int nextSlot = 0;
 

@@ -27,6 +27,13 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 
 ===========================================
 
+[c/991095:v0.9.0.2]
+Calamity expert exclusive accessories are now only sold when specified bosses are defeated.
+
+[c/991095:v0.9.0.1]
+Travelling merchant no longer sells the shop of the last merchants shop you last talked to.
+The skeleton merchants shop is no longer used as a dummy shop with all the items turned to air, instead a actual empty shop is created and then the items are added.
+
 [c/991095:v0.9]
 Vanilla merchant spawning mechanics are no longer effected.
 Vanilla merchants spawning conditions are no longer effected.

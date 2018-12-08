@@ -1,6 +1,7 @@
 .vs/
 bin/
 obj/
+Connected Services/
 MerchantsPlus.csproj
 MerchantsPlus.csproj.user
 MerchantsPlus.sln

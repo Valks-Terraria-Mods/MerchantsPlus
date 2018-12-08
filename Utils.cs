@@ -5,6 +5,65 @@ namespace MerchantsPlus
 {
     class Utils
     {
+        public static bool CalamityDownedCrabulon
+        {
+            get { return CalamityMod.CalamityWorld.downedCrabulon; }
+        }
+
+        public static bool CalamityDownedDesertScourge
+        {
+            get { return CalamityMod.CalamityWorld.downedDesertScourge; }
+        }
+
+        public static bool CalamityDownedCryogen
+        {
+            get { return CalamityMod.CalamityWorld.downedCryogen; }
+        }
+
+        public static bool CalamityDownedSlimeGod
+        {
+            get { return CalamityMod.CalamityWorld.downedSlimeGod; }
+        }
+
+        public static bool CalamityDownedHiveMind
+        {
+            get { return CalamityMod.CalamityWorld.downedHiveMind; }
+        }
+
+        public static bool CalamityDownedPerforators
+        {
+            get { return CalamityMod.CalamityWorld.downedPerforator; }
+        }
+
+        public static bool CalamityDownedBrimstoneElemental
+        {
+            get { return CalamityMod.CalamityWorld.downedBrimstoneElemental; }
+        }
+
+        public static bool CalamityDownedAquaticScourge {
+            get { return CalamityMod.CalamityWorld.downedAquaticScourge; }
+        }
+
+        public static bool CalamityDownedLeviathan {
+            get { return CalamityMod.CalamityWorld.downedLeviathan; }
+        }
+
+        public static bool CalamityDownedPlaguebringer {
+            get { return CalamityMod.CalamityWorld.downedPlaguebringer; }
+        }
+
+        public static bool CalamityDownedProvidence {
+            get { return CalamityMod.CalamityWorld.downedProvidence; }
+        }
+
+        public static bool CalamityDownedPolterghast {
+            get { return CalamityMod.CalamityWorld.downedPolterghast; }
+        }
+
+        public static bool CalamityDownedYharon {
+            get { return CalamityMod.CalamityWorld.downedYharon; }
+        }
+
         public static bool playersHaveItem(short[] items) {
             for (int k = 0; k < 255; k++)
             {

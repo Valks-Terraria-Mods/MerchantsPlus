@@ -23,32 +23,30 @@ namespace MerchantsPlus.Shops
                     if (MerchantsPlus.calamityLoaded)
                     {
                         Mod calamity = ModLoader.GetMod("CalamityMod");
-                        //if (CalamityMod.CalamityWorld.downedCrabulon) {
-                        //    shop.item[nextSlot++].SetDefaults(calamity.ItemType<CalamityMod.Items.Crabulon.FungalClump>());
-                        //}
-                        //if (CalamityMod.CalamityWorld.downedDesertScourge) {
-                        //    shop.item[nextSlot++].SetDefaults(calamity.ItemType("OceanCrest"));
-                        //}
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodyWormTooth"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("RottenBrain"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("ManaOverloader"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("SoulofCryogen"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("Gehenna"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("AquaticEmblem"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("VoidofExtinction")); // VoidOfCalamity
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("LeviathanAmbergris"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("ToxicHeart"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodflareCore"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("Affliction"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("NebulousCore"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("YharimsGift"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("TheCommunity"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("CounterScarf"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("CrownJewel"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("FrostFlare"));
+                        if (Utils.CalamityDownedCrabulon) {
+                            shop.item[nextSlot++].SetDefaults(calamity.ItemType<CalamityMod.Items.Crabulon.FungalClump>());
+                        }
+                        if (Utils.CalamityDownedDesertScourge) {
+                            shop.item[nextSlot++].SetDefaults(calamity.ItemType("OceanCrest"));
+                        }
+                        if (Utils.CalamityDownedPerforators) shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodyWormTooth"));
+                        if (Utils.CalamityDownedHiveMind) shop.item[nextSlot++].SetDefaults(calamity.ItemType("RottenBrain"));
+                        if (Utils.CalamityDownedSlimeGod) shop.item[nextSlot++].SetDefaults(calamity.ItemType("ManaOverloader"));
+                        if (Utils.CalamityDownedCryogen) shop.item[nextSlot++].SetDefaults(calamity.ItemType("SoulofCryogen"));
+                        if (Utils.CalamityDownedCryogen) shop.item[nextSlot++].SetDefaults(calamity.ItemType("FrostFlare"));
+                        if (Utils.CalamityDownedBrimstoneElemental) shop.item[nextSlot++].SetDefaults(calamity.ItemType("Gehenna"));
+                        if (Utils.CalamityDownedAquaticScourge) shop.item[nextSlot++].SetDefaults(calamity.ItemType("AquaticEmblem"));
+                        if (Utils.CalamityDownedLeviathan) shop.item[nextSlot++].SetDefaults(calamity.ItemType("LeviathanAmbergris"));
+                        if (Utils.CalamityDownedLeviathan) shop.item[nextSlot++].SetDefaults(calamity.ItemType("SirensHeart"));
+                        if (Utils.CalamityDownedPlaguebringer) shop.item[nextSlot++].SetDefaults(calamity.ItemType("ToxicHeart"));
+                        if (Utils.CalamityDownedProvidence) shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodflareCore"));
+                        if (Utils.CalamityDownedPolterghast) shop.item[nextSlot++].SetDefaults(calamity.ItemType("Affliction"));
+                        if (Utils.CalamityDownedYharon) shop.item[nextSlot++].SetDefaults(calamity.ItemType("YharimsGift"));
+                        if (NPC.downedBoss1) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CounterScarf"));
+                        if (NPC.downedSlimeKing) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CrownJewel"));
+                        
                         shop.item[nextSlot++].SetDefaults(calamity.ItemType("HeartofDarkness"));
                         shop.item[nextSlot++].SetDefaults(calamity.ItemType("Laudanum"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("SirensHeart"));
                         shop.item[nextSlot++].SetDefaults(calamity.ItemType("StressPills"));
                     }
                     break;
