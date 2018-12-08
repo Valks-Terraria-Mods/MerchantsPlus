@@ -57,7 +57,7 @@ namespace MerchantsPlus.UI
             new string[]{  "Vanilla", "Movement", "Informational", "Combat", "Health and Mana", "Immunity", "Defensive", "Special", "Miscellaneous", "Calamity Special"},
             new string[]{ "Shop", "Msc" },
             new string[]{ "Vanilla", "Mechanics",    "Wood",        "Rich Mahogany",        "Boreal",        "Palm",        "Ebonwood",        "Shadewood",        "Pearlwood",        "Spooky",        "Dynasty",        "Cactus",        "Pumpkin",        "Mushroom",        "Granite",        "Marble",        "Meteorite",        "Crystal",        "Glass",        "Living",        "Skyware",        "Frozen",        "Honey",        "Slime",        "Bone",        "Flesh",        "Steampunk",        "Lihzahrd",        "Martian",        "Obsidian",        "Dungeon",        "Golden"},
-            new string[]{  "Vanilla","Gear", "Pets", "Mounts", "Overhaul"},
+            new string[]{  "Vanilla","Gear", "Ores", "Pets", "Mounts", "Overhaul"},
             new string[]{ "Healing", "Potions" },
             new string[]{ "Vanilla","Tools", "Paint", "Wallpaper", "Paintings 1", "Paintings 2"},
             new string[]{ "Vanilla", "Party Stuff", "Vanity Sets 1", "Vanity Sets 2", "Vanity Sets 3", "Vanity Sets 4", "Boss Masks" },

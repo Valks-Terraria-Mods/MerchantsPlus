@@ -52,6 +52,109 @@ namespace MerchantsPlus.Shops
                 case "Pets":
                     shopPets(shop, ref nextSlot);
                     break;
+                case "Ores":
+                    if (WorldGen.copperBar > 0)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.CopperOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                    }
+                    else {
+                        shop.item[nextSlot].SetDefaults(ItemID.TinOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                    }
+
+                    if (NPC.downedSlimeKing) {
+                        if (WorldGen.ironBar > 0)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.IronOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.LeadOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                    }
+
+                    if (NPC.downedBoss1) {
+                        if (WorldGen.silverBar > 0)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.SilverOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.TungstenOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                    }
+
+                    if (NPC.downedBoss2) {
+                        if (WorldGen.goldBar > 0)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.GoldOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.PlatinumOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                        shop.item[nextSlot].SetDefaults(ItemID.Meteorite);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                    }
+
+                    if (NPC.downedBoss3) {
+                        if (WorldGen.crimson)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.CrimtaneOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                        else {
+                            shop.item[nextSlot].SetDefaults(ItemID.DemoniteOre);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                        }
+                    }
+
+                    if (Main.hardMode) {
+                        shop.item[nextSlot].SetDefaults(ItemID.Hellstone);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
+                    }
+
+                    if (Utils.downedMechBosses() == 1) {
+                        shop.item[nextSlot].SetDefaults(ItemID.PalladiumOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 2;
+                        shop.item[nextSlot].SetDefaults(ItemID.CobaltOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 2;
+                    }
+
+                    if (Utils.downedMechBosses() == 2) {
+                        shop.item[nextSlot].SetDefaults(ItemID.MythrilOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 3;
+                        shop.item[nextSlot].SetDefaults(ItemID.OrichalcumOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 3;
+                    }
+
+                    if (Utils.downedMechBosses() == 3) {
+                        shop.item[nextSlot].SetDefaults(ItemID.AdamantiteOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 4;
+                        shop.item[nextSlot].SetDefaults(ItemID.TitaniumOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 4;
+
+                        shop.item[nextSlot].SetDefaults(ItemID.HallowedBar);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 5;
+                    }
+
+                    if (NPC.downedPlantBoss) {
+                        shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 10;
+                    }
+
+                    if (NPC.downedMoonlord) {
+                        shop.item[nextSlot].SetDefaults(ItemID.LunarOre);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 100;
+                    }
+                    break;
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.Sickle);
                     if (!Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.BugNet); else shop.item[nextSlot++].SetDefaults(ItemID.GoldenBugNet);

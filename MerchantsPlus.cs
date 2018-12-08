@@ -15,6 +15,7 @@ namespace MerchantsPlus
 
         public static int universalPotionCost = 20000;
         public static int universalAccessoryCost = 300000;
+        public static int universalOreCost = 10000;
 
         public static bool overhaulLoaded;
         public static bool calamityLoaded;

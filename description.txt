@@ -28,6 +28,9 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 
 ===========================================
 
+[c/991095:v0.9.0.7]
+Merchant now sells all ores based on bosses downed (as usual) at rediciously high prices!
+
 [c/991095:v0.9.0.6]
 Items like weapons, tools or even dynamite are no longer used when you're clicking UI buttons.
 
