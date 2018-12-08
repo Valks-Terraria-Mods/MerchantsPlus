@@ -36,12 +36,12 @@ namespace MerchantsPlus.NPCs
             projType = ProjectileID.WoodenArrowFriendly;
             if (NPC.downedSlimeKing)
             {
-                projType = ProjectileID.FlamingArrow;
-            }
-            if (NPC.downedBoss1)
-            {
                 projType = ProjectileID.FrostburnArrow;
             }
+            /*if (NPC.downedBoss1)
+            {
+                projType = ProjectileID.FrostburnArrow;
+            }*/
             if (NPC.downedBoss2)
             {
                 projType = ProjectileID.JestersArrow;
