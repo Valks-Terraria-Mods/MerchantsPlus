@@ -4,6 +4,7 @@ using Terraria.GameContent.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameInput;
 
 namespace MerchantsPlus.UI
 {
@@ -61,6 +62,11 @@ namespace MerchantsPlus.UI
             if (visible)
             {
                 base.Draw(spriteBatch);
+            }
+
+            if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface)
+            {
+                Main.player[Main.myPlayer].mouseInterface = true;
             }
         }
     }

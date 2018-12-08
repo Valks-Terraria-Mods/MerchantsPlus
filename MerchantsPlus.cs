@@ -45,7 +45,7 @@ namespace MerchantsPlus
             if (mouseTextIndex != -1)
             {
                 layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "MerchantsPlus: Coins Per Minute",
+                    "MerchantsPlus: Custom Shops",
                     delegate {
                         if (ExampleUI.Visible)
                         {

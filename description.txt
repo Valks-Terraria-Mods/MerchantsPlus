@@ -28,6 +28,14 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 
 ===========================================
 
+[c/991095:v0.9.0.6]
+Items like weapons, tools or even dynamite are no longer used when you're clicking UI buttons.
+
+[c/991095:v0.9.0.5]
+Fixed game crashing when calamity was not loaded when cycling through tinkerers custom shops.
+Fixed offset of flower boots accessory.
+Fixed some accessories not having the universal accessory global cost constant.
+
 [c/991095:v0.9.0.4]
 Fixed map crash bug.
 

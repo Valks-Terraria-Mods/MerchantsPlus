@@ -23,12 +23,8 @@ namespace MerchantsPlus.Shops
                     if (MerchantsPlus.calamityLoaded)
                     {
                         Mod calamity = ModLoader.GetMod("CalamityMod");
-                        if (Utils.CalamityDownedCrabulon) {
-                            shop.item[nextSlot++].SetDefaults(calamity.ItemType<CalamityMod.Items.Crabulon.FungalClump>());
-                        }
-                        if (Utils.CalamityDownedDesertScourge) {
-                            shop.item[nextSlot++].SetDefaults(calamity.ItemType("OceanCrest"));
-                        }
+                        if (Utils.CalamityDownedCrabulon) shop.item[nextSlot++].SetDefaults(calamity.ItemType("FungalClump"));
+                        if (Utils.CalamityDownedDesertScourge) shop.item[nextSlot++].SetDefaults(calamity.ItemType("OceanCrest"));
                         if (Utils.CalamityDownedPerforators) shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodyWormTooth"));
                         if (Utils.CalamityDownedHiveMind) shop.item[nextSlot++].SetDefaults(calamity.ItemType("RottenBrain"));
                         if (Utils.CalamityDownedSlimeGod) shop.item[nextSlot++].SetDefaults(calamity.ItemType("ManaOverloader"));
@@ -56,10 +52,10 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot].SetDefaults(ItemID.GoldRing);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                         shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                         shop.item[nextSlot].SetDefaults(ItemID.LuckyCoin);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     }
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.FlowerBoots);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     if (Utils.multiKills(new short[] { NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish }) > 100)
@@ -74,34 +70,40 @@ namespace MerchantsPlus.Shops
                     }
                     break;
                 case "Special":
-                    if (NPC.downedSlimeKing) shop.item[nextSlot++].SetDefaults(ItemID.RoyalGel);
-                    if (NPC.downedBoss1) shop.item[nextSlot++].SetDefaults(ItemID.EoCShield);
+                    if (NPC.downedSlimeKing) { shop.item[nextSlot].SetDefaults(ItemID.RoyalGel); shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost; }
+                    if (NPC.downedBoss1) { shop.item[nextSlot].SetDefaults(ItemID.EoCShield); shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost; }
                     if (NPC.downedBoss2)
                     {
                         if (WorldGen.crimson)
                         {
-                            shop.item[nextSlot++].SetDefaults(ItemID.BrainOfConfusion);
+                            shop.item[nextSlot].SetDefaults(ItemID.BrainOfConfusion);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                         }
                         else
                         {
-                            shop.item[nextSlot++].SetDefaults(ItemID.WormScarf);
+                            shop.item[nextSlot].SetDefaults(ItemID.WormScarf);
+                            shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                         }
                     }
                     if (NPC.downedQueenBee)
                     {
-                        shop.item[nextSlot++].SetDefaults(ItemID.HiveBackpack);
+                        shop.item[nextSlot].SetDefaults(ItemID.HiveBackpack);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     }
                     if (NPC.downedPlantBoss)
                     {
-                        shop.item[nextSlot++].SetDefaults(ItemID.SporeSac);
+                        shop.item[nextSlot].SetDefaults(ItemID.SporeSac);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     }
                     if (NPC.downedGolemBoss)
                     {
-                        shop.item[nextSlot++].SetDefaults(ItemID.ShinyStone);
+                        shop.item[nextSlot].SetDefaults(ItemID.ShinyStone);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     }
                     if (NPC.downedMoonlord)
                     {
-                        shop.item[nextSlot++].SetDefaults(ItemID.GravityGlobe);
+                        shop.item[nextSlot].SetDefaults(ItemID.GravityGlobe);
+                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     }
                     break;
                 case "Defensive":

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.GameInput;
 
 namespace MerchantsPlus.UI
 {
@@ -24,6 +25,11 @@ namespace MerchantsPlus.UI
             if (IsMouseHovering)
             {
                 Main.hoverItemName = HoverText;
+            }
+
+            if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface) 
+            {
+                Main.player[Main.myPlayer].mouseInterface = true;
             }
         }
     }
