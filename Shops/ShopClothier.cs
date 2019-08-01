@@ -24,11 +24,11 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.FamiliarWig);
                     shop.item[nextSlot++].SetDefaults(ItemID.FamiliarShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.FamiliarPants);
-                    if (MerchantsPlus.overhaulLoaded)
+                    /*if (MerchantsPlus.overhaulLoaded)
                     {
                         Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("HaxxCostume"));
-                    }
+                    }*/
                     if (NPC.downedSlimeKing)
                     {
                         shop.item[nextSlot++].SetDefaults(ItemID.EyePatch);

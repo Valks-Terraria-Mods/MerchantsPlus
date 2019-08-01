@@ -1,5 +1,4 @@
 author = valkyrienyanko
-version = 0.9.0.8
+version = 0.9.1
 displayName = Merchants+ (Beta)
 homepage = https://discord.gg/thMupbv
-weakReferences = TerrariaOverhaul, CalamityMod

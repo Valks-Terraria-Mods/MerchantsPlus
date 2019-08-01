@@ -19,7 +19,7 @@ namespace MerchantsPlus.Shops
             switch (currentShop)
             {
                 case "Overhaul":
-                    if (MerchantsPlus.overhaulLoaded)
+                    /*if (MerchantsPlus.overhaulLoaded)
                     {
                         Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("BunnyPaw"));
@@ -44,7 +44,7 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("TheMeatImpaler"));
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("SteelWhip"));
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("WhipOfPain"));
-                    }
+                    }*/
                     break;
                 case "Mounts":
                     shopMount(shop, ref nextSlot);
@@ -187,11 +187,11 @@ namespace MerchantsPlus.Shops
                     shopManaPotion(shop, ref nextSlot);
                     shopTorches(shop, ref nextSlot);
                     shopArrows(shop, ref nextSlot);
-                    if (MerchantsPlus.overhaulLoaded)
+                    /*if (MerchantsPlus.overhaulLoaded)
                     {
                         Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("WaterArrow"));
-                    }
+                    }*/
 
                     shopRope(shop, ref nextSlot);
                     shopLightPet(shop, ref nextSlot);
@@ -214,12 +214,12 @@ namespace MerchantsPlus.Shops
 
         private void shopPickaxe(Chest shop, ref int nextSlot)
         {
-            if (MerchantsPlus.overhaulLoaded)
+            /*if (MerchantsPlus.overhaulLoaded)
             {
                 Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                 shop.item[nextSlot].SetDefaults(overhaul.ItemType("StonePickaxe"));
             }
-            else
+            else*/
             {
                 if (WorldGen.copperBar > 0)
                 {
@@ -332,12 +332,12 @@ namespace MerchantsPlus.Shops
 
         private void shopAxe(Chest shop, ref int nextSlot)
         {
-            if (MerchantsPlus.overhaulLoaded)
+            /*if (MerchantsPlus.overhaulLoaded)
             {
                 Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                 shop.item[nextSlot].SetDefaults(overhaul.ItemType("StoneAxe"));
             }
-            else
+            else*/
             {
                 if (WorldGen.copperBar > 0)
                 {

@@ -142,11 +142,11 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.FishFinder);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    if (MerchantsPlus.calamityLoaded)
+                    /*if (MerchantsPlus.calamityLoaded)
                     {
                         shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("AlluringBait"));
                         shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("EnchantedPearl"));
-                    }
+                    }*/
                     break;
             }
 

@@ -17,15 +17,15 @@ namespace MerchantsPlus
         public static int universalAccessoryCost = 300000;
         public static int universalOreCost = 10000;
 
-        public static bool overhaulLoaded;
+        /*public static bool overhaulLoaded;
         public static bool calamityLoaded;
         public static bool thoriumLoaded;
-        public static bool autoTrashLoaded;
+        public static bool autoTrashLoaded;*/
 
-        public static Mod calamity;
+        /*public static Mod calamity;
         public static Mod overhaul;
         public static Mod thorium;
-        public static Mod autoTrash;
+        public static Mod autoTrash;*/
 
 		public MerchantsPlus()
 		{
@@ -71,7 +71,7 @@ namespace MerchantsPlus
                 _exampleUserInterface = new UserInterface();
             }
 
-            overhaulLoaded = ModLoader.GetMod("TerrariaOverhaul") != null;
+            /*overhaulLoaded = ModLoader.GetMod("TerrariaOverhaul") != null;
             thoriumLoaded = ModLoader.GetMod("ThoriumMod") != null;
             calamityLoaded = ModLoader.GetMod("CalamityMod") != null;
             autoTrashLoaded = ModLoader.GetMod("AutoTrash") != null;
@@ -90,7 +90,7 @@ namespace MerchantsPlus
 
             if (autoTrashLoaded) {
                 autoTrash = ModLoader.GetMod("AutoTrash");
-            }
+            }*/
             
             Config.Load();
         }

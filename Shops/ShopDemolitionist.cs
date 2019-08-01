@@ -33,12 +33,12 @@ namespace MerchantsPlus.Shops
                     break;
                 case "Explosives":
                     shop.item[nextSlot++].SetDefaults(ItemID.Grenade);
-                    if (MerchantsPlus.overhaulLoaded)
+                    /*if (MerchantsPlus.overhaulLoaded)
                     {
                         Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("RocketJumper"));
                         shop.item[nextSlot++].SetDefaults(overhaul.ItemType("HarmlessRocket"));
-                    }
+                    }*/
                     if (NPC.AnyNPCs(NPCID.PartyGirl))
                     {
                         shop.item[nextSlot++].SetDefaults(ItemID.PartyGirlGrenade);
@@ -52,13 +52,13 @@ namespace MerchantsPlus.Shops
                     if (NPC.downedBoss1)
                     { // eye of chulutu
                         shop.item[nextSlot++].SetDefaults(ItemID.Dynamite);
-                        if (MerchantsPlus.overhaulLoaded)
+                        /*if (MerchantsPlus.overhaulLoaded)
                         {
                             Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                             shop.item[nextSlot++].SetDefaults(overhaul.ItemType("ImpactBomb"));
                             shop.item[nextSlot++].SetDefaults(overhaul.ItemType("ImpactDynamite"));
                             shop.item[nextSlot++].SetDefaults(overhaul.ItemType("ImpactGrenade"));
-                        }
+                        }*/
                     }
 
                     if (NPC.AnyNPCs(NPCID.Angler))

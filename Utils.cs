@@ -5,7 +5,7 @@ namespace MerchantsPlus
 {
     class Utils
     {
-        public static bool CalamityDownedCrabulon
+        /*public static bool CalamityDownedCrabulon
         {
             get { return CalamityMod.CalamityWorld.downedCrabulon; }
         }
@@ -62,7 +62,7 @@ namespace MerchantsPlus
 
         public static bool CalamityDownedYharon {
             get { return CalamityMod.CalamityWorld.downedYharon; }
-        }
+        }*/
 
         public static bool playersHaveItem(short[] items) {
             for (int k = 0; k < 255; k++)

@@ -104,11 +104,11 @@ namespace MerchantsPlus.Shops
             if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.Shotgun);
             if (Utils.downedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.OnyxBlaster);
             if (NPC.downedPlantBoss) shop.item[nextSlot].SetDefaults(ItemID.TacticalShotgun);
-            if ((NPC.downedFishron || NPC.downedMoonlord) && MerchantsPlus.overhaulLoaded)
+            /*if ((NPC.downedFishron || NPC.downedMoonlord) && MerchantsPlus.overhaulLoaded)
             {
                 Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
                 shop.item[nextSlot].SetDefaults(overhaul.ItemType("SuperShotgun"));
-            }
+            }*/
             nextSlot++;
         }
     }

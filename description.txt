@@ -21,11 +21,6 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 + The angler, guide, nurse, tax collector and old man are now merchants.
 + The bound mechanic, wizard and tinkerer glow in the dark.
 
-[c/ffb2fd:Mods Supported!]
-+ Terraria Overhaul (100%)
-+ AutoTrash (100%)
-+ Calamity (1%)
-
 ===========================================
 
 [c/991095:v0.9.0.8]

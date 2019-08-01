@@ -20,9 +20,9 @@ namespace MerchantsPlus.Shops
             switch (currentShop)
             {
                 case "Calamity Special":
-                    if (MerchantsPlus.calamityLoaded)
-                    {
-                        Mod calamity = ModLoader.GetMod("CalamityMod");
+                    //if (MerchantsPlus.calamityLoaded)
+                    //{
+                        /*Mod calamity = ModLoader.GetMod("CalamityMod");
                         if (Utils.CalamityDownedCrabulon) shop.item[nextSlot++].SetDefaults(calamity.ItemType("FungalClump"));
                         if (Utils.CalamityDownedDesertScourge) shop.item[nextSlot++].SetDefaults(calamity.ItemType("OceanCrest"));
                         if (Utils.CalamityDownedPerforators) shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodyWormTooth"));
@@ -37,14 +37,14 @@ namespace MerchantsPlus.Shops
                         if (Utils.CalamityDownedPlaguebringer) shop.item[nextSlot++].SetDefaults(calamity.ItemType("ToxicHeart"));
                         if (Utils.CalamityDownedProvidence) shop.item[nextSlot++].SetDefaults(calamity.ItemType("BloodflareCore"));
                         if (Utils.CalamityDownedPolterghast) shop.item[nextSlot++].SetDefaults(calamity.ItemType("Affliction"));
-                        if (Utils.CalamityDownedYharon) shop.item[nextSlot++].SetDefaults(calamity.ItemType("YharimsGift"));
-                        if (NPC.downedBoss1) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CounterScarf"));
-                        if (NPC.downedSlimeKing) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CrownJewel"));
+                        if (Utils.CalamityDownedYharon) shop.item[nextSlot++].SetDefaults(calamity.ItemType("YharimsGift"));*/
+                        //if (NPC.downedBoss1) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CounterScarf"));
+                        //if (NPC.downedSlimeKing) shop.item[nextSlot++].SetDefaults(calamity.ItemType("CrownJewel"));
                         
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("HeartofDarkness"));
+                        /*shop.item[nextSlot++].SetDefaults(calamity.ItemType("HeartofDarkness"));
                         shop.item[nextSlot++].SetDefaults(calamity.ItemType("Laudanum"));
-                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("StressPills"));
-                    }
+                        shop.item[nextSlot++].SetDefaults(calamity.ItemType("StressPills"));*/
+                    //}
                     break;
                 case "Miscellaneous":
                     if (NPC.downedPirates)
