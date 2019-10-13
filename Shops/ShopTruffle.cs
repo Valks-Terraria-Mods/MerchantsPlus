@@ -16,7 +16,7 @@ namespace MerchantsPlus.Shops
         public void InitShop(string currentShop)
         {
             switch (currentShop) {
-                case "Gear":
+                case "Weapons and Tools":
                     shop.item[nextSlot++].SetDefaults(ItemID.StrangeGlowingMushroom);
                     shop.item[nextSlot++].SetDefaults(ItemID.MushroomSpear);
                     shop.item[nextSlot++].SetDefaults(ItemID.Hammush);

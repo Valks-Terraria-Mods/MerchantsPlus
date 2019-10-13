@@ -18,7 +18,7 @@ namespace MerchantsPlus.Shops
         {
             switch (currentShop)
             {
-                case "Msc":
+                case "Misc.":
                     shop.item[nextSlot++].SetDefaults(ItemID.Cannon);
                     shop.item[nextSlot++].SetDefaults(ItemID.Cannonball);
                     break;

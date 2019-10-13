@@ -158,20 +158,14 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.Paintbrush);
                     shop.item[nextSlot++].SetDefaults(ItemID.PaintRoller);
                     shop.item[nextSlot++].SetDefaults(ItemID.PaintScraper);
-                    shop.item[nextSlot].SetDefaults(ItemID.BuilderPotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BuilderPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.Toolbelt);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.Toolbox);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.PaintSprayer);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.ExtendoGrip);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.PortableCementMixer);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.BrickLayer);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                    shop.item[nextSlot++].SetDefaults(ItemID.Toolbelt);
+                    shop.item[nextSlot++].SetDefaults(ItemID.Toolbox);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PaintSprayer);
+                    shop.item[nextSlot++].SetDefaults(ItemID.ExtendoGrip);
+                    shop.item[nextSlot++].SetDefaults(ItemID.PortableCementMixer);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BrickLayer);
                     break;
                 default:
                     shop.SetupShop(15);

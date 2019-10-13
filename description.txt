@@ -1,27 +1,31 @@
-You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
+This is a vanilla town NPC overhaul mod.
 
-[c/ffb2fd:Items]
-+ Sell more items based on the bosses / enemies defeated.
-+ Sell items based on your characters build.
+[c/ffb2fd:Shops and Items]
++ Sells more/different items based on the bosses/enemies defeated.
++ Sells items based on your character's build.
 + Have a chance to drop items on death.
 
-[c/ffb2fd:Dialog]
+[c/ffb2fd:Dialogue]
++ Custom Dialogue (Can be disabled)
 + World conditions effect how the dialog is played out.
-+ Mostly humerous personalities.
++ Mainly humerous personalities.
 + Some dialog may reward you with items.
 + Interactions with other merchants.
 
 [c/ffb2fd:Stats]
-+ 300 health for all merchants.
-+ Slightly reduced sizes.
++ 500 health for all merchants. (Can be disabled)
++ Slightly reduced sizes. (Can be disabled)
 + Shoot different projectiles based on bosses defeated.
 
-[c/ffb2fd:Msc]
-+ All merchants have the cycle shop mechanic.
-+ The angler, guide, nurse, tax collector and old man are now merchants.
-+ The bound mechanic, wizard and tinkerer glow in the dark.
+[c/ffb2fd:Misc.]
++ All merchants have a cycle shop mechanic.
++ The Angler, Guide, Nurse, Tax Collector and Old Man are now merchants.
++ The Bound Mechanic, Bound Wizard, and Bound Tinkerer glow in the dark.
 
 ===========================================
+
+[c/991095:v1.0.0.0]
+Shop and dialogue have been remastered.
 
 [c/991095:v0.9.0.8]
 Guide no longer shoots you with flaming arrows that damage the player.

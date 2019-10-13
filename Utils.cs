@@ -203,21 +203,37 @@ namespace MerchantsPlus
                             {
                                 return moneyDialog;
                             }
-                            else if (price < 100)
+                            else if (price == 1)
                             {
-                                return moneyDialog + " " + price + " copper was removed from your inventory";
+                                return moneyDialog + " " + price + " Copper Coin was removed from your inventory!";
                             }
-                            else if (price >= 100 && price < 1000)
+                            else if (price <= 100 && price >= 2)
                             {
-                                return moneyDialog + " " + (price / 100) + " silver was removed from your inventory";
+                                return moneyDialog + " " + price + " Copper Coins were removed from your inventory!";
                             }
-                            else if (price >= 1000 && price < 10000)
+                            else if (price == 100)
                             {
-                                return moneyDialog + " " + (price / 1000) + " gold was removed from your inventory";
+                                return moneyDialog + " " + (price / 100) + " Silver Coin was removed from your inventory!";
+                            }
+                            else if (price >= 101 && price <= 999)
+                            {
+                                return moneyDialog + " " + (price / 100) + " Silver Coins were removed from your inventory!";
+                            }
+                            else if (price == 1000)
+                            {
+                                return moneyDialog + " " + (price / 1000) + " Gold Coin removed from your inventory!";
+                            }
+                            else if (price >= 1001 && price <= 9999)
+                            {
+                                return moneyDialog + " " + (price / 1000) + " Gold Coins were removed from your inventory!";
+                            }
+                            else if (price == 10000)
+                            {
+                                return moneyDialog + " " + (price / 10000) + " Platinum Coin was removed from your inventory";
                             }
                             else
                             {
-                                return moneyDialog + " " + (price / 10000) + " platinum was removed from your inventory";
+                                return moneyDialog + " " + (price / 10000) + " Platinum Coins were removed from your inventory";
                             }
                         }
                     }

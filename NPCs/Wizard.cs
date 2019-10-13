@@ -12,7 +12,7 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.Wizard) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "Gandolf? Is that you?",
+            chat = Utils.dialog(new string[] { "Gandolf, is that you?",
                 "My magic is more then you think young one.",
                 "It is dangerous to go alone little one. Bring friends on your journey.",
                 "The dungeon is a dark place litte one, be careful.",

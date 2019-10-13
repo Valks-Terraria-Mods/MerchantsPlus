@@ -21,14 +21,18 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.TaxCollector) return;
             attackDelay = 1;
-            projType = ProjectileID.ThrowingKnife;
+            projType = ProjectileID.CopperCoin;
             if (NPC.downedBoss2)
             {
-                projType = ProjectileID.PoisonedKnife;
+                projType = ProjectileID.SilverCoin;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (NPC.downedMechBossAny)
             {
-                projType = ProjectileID.BoneJavelin;
+                projType = ProjectileID.GoldCoin;
+            }
+            if (NPC.downedPlantBoss)
+            {
+                projType = ProjectileID.PlatinumCoin;
             }
         }
 

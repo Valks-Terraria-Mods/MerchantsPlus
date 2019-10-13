@@ -22,15 +22,7 @@ namespace MerchantsPlus.NPCs
             projType = ProjectileID.NurseSyringeHurt;
             if (NPC.downedSlimeKing)
             {
-                projType = ProjectileID.Flamarang;
-            }
-            if (NPC.downedBoss1)
-            {
-                projType = ProjectileID.Flamelash;
-            }
-            if (NPC.downedBoss2)
-            {
-                projType = ProjectileID.BlueFlare;
+                projType = ProjectileID.ThrowingKnife;
             }
         }
 

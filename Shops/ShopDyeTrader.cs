@@ -17,7 +17,7 @@ namespace MerchantsPlus.Shops
         public void InitShop(string currentShop)
         {
             switch (currentShop) {
-                case "Color":
+                case "Colors":
                     shop.item[nextSlot++].SetDefaults(ItemID.DyeVat);
                     shop.item[nextSlot++].SetDefaults(ItemID.SilverDye);
                     shop.item[nextSlot++].SetDefaults(ItemID.TeamDye);

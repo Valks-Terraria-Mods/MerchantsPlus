@@ -23,11 +23,11 @@ namespace MerchantsPlus.NPCs
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {
-                projType = ProjectileID.PoisonedKnife;
+                projType = ProjectileID.PainterPaintball;
             }
             if (Utils.downedMechBosses() == 1)
             {
-                projType = ProjectileID.BoneJavelin;
+                projType = ProjectileID.Mushroom;
             }
         }
 

@@ -27,20 +27,13 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.LogicGate_NXOR);
                     shop.item[nextSlot++].SetDefaults(ItemID.LogicGate_OR);
                     shop.item[nextSlot++].SetDefaults(ItemID.LogicGate_XOR);
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Above);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Honey);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Lava);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Liquid);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Moon);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Sun);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
-                    shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Water);
-                    shop.item[nextSlot++].shopCustomPrice = 20000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Above);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Honey);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Lava);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Liquid);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Moon);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Sun);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LogicSensor_Water);
                     break;
                 case "Solutions":
                     shop.item[nextSlot++].SetDefaults(ItemID.Clentaminator);

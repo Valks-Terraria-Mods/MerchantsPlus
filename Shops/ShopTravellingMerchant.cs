@@ -17,7 +17,7 @@ namespace MerchantsPlus.Shops
         public void InitShop(string currentShop)
         {
             switch (currentShop) {
-                case "Gear":
+                case "Pets":
                     shop.item[nextSlot++].SetDefaults(ItemID.ShadowOrb);
                     shop.item[nextSlot++].SetDefaults(ItemID.MagicLantern);
                     shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGhost);

@@ -1,4 +1,4 @@
-author = valkyrienyanko
-version = 0.9.1
-displayName = Merchants+ (Beta)
+author = valkyrienyanko and Steviegt6
+version = 1.0.0
+displayName = Merchants+ (v1.0)!
 homepage = https://discord.gg/thMupbv

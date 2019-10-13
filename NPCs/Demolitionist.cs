@@ -26,13 +26,13 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.StickyGrenade;
             }
-            if (NPC.downedBoss1)
+            if (NPC.downedBoss2)
             {
                 projType = ProjectileID.BouncyGrenade;
             }
-            if (NPC.downedBoss2)
+            if (NPC.downedQueenBee)
             {
-                projType = ProjectileID.HappyBomb;
+                projType = ProjectileID.Beenade;
             }
         }
 

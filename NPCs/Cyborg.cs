@@ -11,13 +11,13 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.Cyborg) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] {"Don't set off those explosives off I have behind you.",
-            "Anything that moves in the sky, I see it.",
+            chat = Utils.dialog(new string[] {"Don't set off those explosives off behind you!",
+            "Anything that moves, I see it.",
             "Rocketry is a very delicate task, it requires alot of focus.",
             "Aim. Shoot. Kill.",
-            Main.eclipse ? "Are you afraid of a mere eclipse? I'm not!" : "Always keep your wits about you.",
-            Main.raining ? "This rain is bad for my circuits." : "A bright day is my day.",
-            Main.hardMode ? "The world feels a lot more tougher than it use to be." : "This world is weak."});
+            Main.eclipse ? "You are afraid of a mere eclipse?" : "Always keep your wits about you.",
+            Main.raining ? "This rain is bad for my circuits." : "A bright day is a good day.",
+            Main.hardMode ? "What a good time to be alive." : "This world is weak."});
         }
 
         
@@ -26,7 +26,7 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.Cyborg) return;
             attackDelay = 1;
-            projType = ProjectileID.BouncyGrenade;
+            projType = ProjectileID.RocketIV;
         }
 
         

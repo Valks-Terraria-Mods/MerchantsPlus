@@ -78,69 +78,51 @@ namespace MerchantsPlus.Shops
                     if (Main.bloodMoon)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.CenxsDressPants);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.CenxsLeggings);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.CenxsDress);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.CenxsBreastplate);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.CenxsTiara);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
                     }
 
                     if (Main.eclipse)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.JimsLeggings);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.JimsBreastplate);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.JimsHelmet);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
                     }
 
                     if (Main.dayTime)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.ArkhalisPants);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.ArkhalisShirt);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.ArkhalisHat);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
                     }
                     else
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.LokisPants);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.LokisShirt);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.LokisHelm);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
                     }
 
                     if (Main.hardMode)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.LeinforsPants);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.LeinforsShirt);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.LeinforsHat);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
 
                         shop.item[nextSlot].SetDefaults(ItemID.LeinforsAccessory);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
                     }
                     break;
                 default:

@@ -28,18 +28,6 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.ExplosiveBunny;
             }
-            if (Utils.downedMechBosses() == 2)
-            {
-                projType = ProjectileID.BallofFrost;
-            }
-            if (Utils.downedMechBosses() == 3)
-            {
-                projType = ProjectileID.Flamarang;
-            }
-            if (NPC.downedPlantBoss)
-            {
-                projType = ProjectileID.IceSickle;
-            }
         }
 
        

@@ -19,27 +19,24 @@ namespace MerchantsPlus.Shops
             switch (currentShop)
             {
                 case "Potions":
-                    shop.item[nextSlot].SetDefaults(ItemID.EndurancePotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.EndurancePotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.IronskinPotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.IronskinPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.LifeforcePotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.LifeforcePotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.RegenerationPotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RegenerationPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.HeartreachPotion);
+                    shop.item[nextSlot++].SetDefaults(ItemID.HeartreachPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
                 default:
-                    shop.item[nextSlot].SetDefaults(ItemID.LifeCrystal);
-                    shop.item[nextSlot++].shopCustomPrice = 250000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.LifeCrystal);
                     if (Main.hardMode)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemID.LifeFruit);
-                        shop.item[nextSlot++].shopCustomPrice = 1000000;
+                        shop.item[nextSlot++].SetDefaults(ItemID.LifeFruit);
                     }
-                    shop.item[nextSlot].SetDefaults(ItemID.HeartLantern);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.HeartLantern);
                     break;
             }
         }

@@ -12,10 +12,10 @@ namespace MerchantsPlus.NPCs
             chat = Utils.dialog(new string[] { "You want to fight big pa? Come back at night!" });
         }
 
-        public override void NPCLoot(NPC npc)
-        {
-            if (npc.type != NPCID.OldMan) return;
-            Utils.dropItem(npc, NPCID.OldMan, new short[] { ItemID.Bacon }, 100);
-        }
+        //public override void NPCLoot(NPC npc)
+        //{
+        //    if (npc.type != NPCID.OldMan) return;
+        //    Utils.dropItem(npc, NPCID.OldMan, new short[] { ItemID.Bacon }, 100);
+        //} what were you thinking valk?
     }
 }

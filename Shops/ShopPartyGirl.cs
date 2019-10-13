@@ -19,53 +19,53 @@ namespace MerchantsPlus.Shops
             switch (currentShop)
             {
                 case "Boss Masks":
-                    shop.item[nextSlot].SetDefaults(ItemID.BrainMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.DukeFishronMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.EyeMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.KingSlimeMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BeeMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.SkeletronPrimeMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.FleshMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BossMaskCultist);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BossMaskBetsy);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BossMaskOgre);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.DestroyerMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.EaterMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.GolemMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.PlanteraMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.SkeletronMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.TwinMask);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BossMaskDarkMage);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BossMaskMoonlord);
+                    shop.item[nextSlot++].SetDefaults(ItemID.BrainMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.DukeFishronMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.EyeMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.KingSlimeMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BeeMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.SkeletronPrimeMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.FleshMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BossMaskCultist);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BossMaskBetsy);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BossMaskOgre);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.DestroyerMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.EaterMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.GolemMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.PlanteraMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.SkeletronMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.TwinMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BossMaskDarkMage);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BossMaskMoonlord);
                     shop.item[nextSlot++].shopCustomPrice = 1000000;
                     break;
                 case "Vanity Sets 4":
-                    shop.item[nextSlot].SetDefaults(ItemID.MummyPants);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.MummyPants);
+                    
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PedguinPants);
-                    shop.item[nextSlot].SetDefaults(ItemID.PharaohsMask);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.PharaohsRobe);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.PharaohsMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.PharaohsRobe);
+                    
                     shop.item[nextSlot++].SetDefaults(ItemID.PirateHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PirateShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PiratePants);
@@ -79,12 +79,12 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.RainCoat);
                     shop.item[nextSlot++].SetDefaults(ItemID.RuneHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.RuneRobe);
-                    shop.item[nextSlot].SetDefaults(ItemID.SailorHat);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.SailorShirt);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.SailorPants);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.SailorHat);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.SailorShirt);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.SailorPants);
+                    
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.ScarecrowPants);
@@ -142,10 +142,10 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MartianUniformPants);
                     shop.item[nextSlot++].SetDefaults(ItemID.MermaidAdornment);
                     shop.item[nextSlot++].SetDefaults(ItemID.MermaidTail);
-                    shop.item[nextSlot].SetDefaults(ItemID.MummyMask);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.MummyShirt);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.MummyMask);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.MummyShirt);
+                    
                     break;
                 case "Vanity Sets 2":
                     shop.item[nextSlot++].SetDefaults(ItemID.ReaperHood);
@@ -185,12 +185,12 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsJacket);
                     shop.item[nextSlot++].SetDefaults(ItemID.ArchaeologistsPants);
-                    shop.item[nextSlot].SetDefaults(ItemID.BeeHat);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BeeShirt);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
-                    shop.item[nextSlot].SetDefaults(ItemID.BeePants);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.BeeHat);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BeeShirt);
+                    
+                    shop.item[nextSlot++].SetDefaults(ItemID.BeePants);
+                    
                     break;
                 case "Vanity Sets 1":
                     shop.item[nextSlot++].SetDefaults(ItemID.BrideofFrankensteinDress);
@@ -230,8 +230,8 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.PixiePants);
                     shop.item[nextSlot++].SetDefaults(ItemID.PrincessHat);
                     shop.item[nextSlot++].SetDefaults(ItemID.PrincessDress);
-                    shop.item[nextSlot].SetDefaults(ItemID.PumpkinHelmet);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].SetDefaults(ItemID.PumpkinHelmet);
+                    
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinPants);
                     break;

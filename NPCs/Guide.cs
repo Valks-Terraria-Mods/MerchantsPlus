@@ -22,7 +22,7 @@ namespace MerchantsPlus.NPCs
                     });
             }
             else {
-                message = Main.LocalPlayer.HeldItem.damage > 0 ? "Wow, " + Main.LocalPlayer.HeldItem.damage + " damage is pretty good for a " + Main.LocalPlayer.HeldItem.Name + "!" : "Hmm..";
+                message = Main.LocalPlayer.HeldItem.damage > 0 ? "Wow! " + Main.LocalPlayer.HeldItem.damage + " damage? That's pretty good for a " + Main.LocalPlayer.HeldItem.Name + "!" : "Can I see your weapon?";
             }
             chat = message;
         }
@@ -36,31 +36,27 @@ namespace MerchantsPlus.NPCs
             projType = ProjectileID.WoodenArrowFriendly;
             if (NPC.downedSlimeKing)
             {
-                projType = ProjectileID.FrostburnArrow;
+                projType = ProjectileID.FireArrow;
             }
-            /*if (NPC.downedBoss1)
+            if (NPC.downedBoss1)
             {
                 projType = ProjectileID.FrostburnArrow;
-            }*/
+            }
             if (NPC.downedBoss2)
             {
                 projType = ProjectileID.JestersArrow;
             }
-            if (Main.hardMode)
+            if (NPC.downedBoss3)
             {
                 projType = ProjectileID.UnholyArrow;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Main.hardMode)
             {
-                projType = ProjectileID.HolyArrow;
-            }
-            if (Utils.downedMechBosses() == 2)
-            {
-                projType = ProjectileID.CursedArrow;
+                projType = ProjectileID.HellfireArrow;
             }
             if (Utils.downedMechBosses() == 3)
             {
-                projType = ProjectileID.VenomArrow;
+                projType = ProjectileID.HolyArrow;
             }
             if (NPC.downedPlantBoss)
             {

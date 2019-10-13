@@ -255,10 +255,10 @@ namespace MerchantsPlus.UI
                     ShopTavernkeep shopTavernkeep = new ShopTavernkeep(shop, nextSlot);
                     shopTavernkeep.InitShop(currentShops[the_shop]);
                     break;
-                case TAXCOLLECTOR:
-                    ShopTaxCollector shopTaxCollector = new ShopTaxCollector(shop, nextSlot);
-                    shopTaxCollector.InitShop(currentShops[the_shop]);
-                    break;
+                //case TAXCOLLECTOR:
+                    //ShopTaxCollector shopTaxCollector = new ShopTaxCollector(shop, nextSlot);
+                    //shopTaxCollector.InitShop(currentShops[the_shop]);
+                    //break;
                 case TRAVELLINGMERCHANT:
                     ShopTravellingMerchant shopTravellingMerchant = new ShopTravellingMerchant(shop, nextSlot);
                     shopTravellingMerchant.InitShop(currentShops[the_shop]);

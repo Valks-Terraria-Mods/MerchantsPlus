@@ -24,13 +24,13 @@ namespace MerchantsPlus.NPCs
             if (npc.type != NPCID.Dryad) return;
             attackDelay = 1;
             projType = ProjectileID.ThrowingKnife;
-            if (NPC.downedBoss2)
+            if (NPC.downedBoss3)
             {
-                projType = ProjectileID.PoisonedKnife;
+                projType = ProjectileID.BallofFire;
             }
             if (Utils.downedMechBosses() == 1)
             {
-                projType = ProjectileID.BoneJavelin;
+                projType = ProjectileID.BallofFrost;
             }
         }
 

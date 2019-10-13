@@ -9,11 +9,12 @@ namespace MerchantsPlus
     {
         public static bool merchantScaling = true;
         public static bool merchantExtraLife = true;
-        public static bool merchantDialog = true;
+        public static bool merchantDialog = false;
 
         static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
         static Preferences Configuration = new Preferences(ConfigPath);
 
+        [System.Obsolete]
         public static void Load()
         {
             //Reading the config file
@@ -21,7 +22,7 @@ namespace MerchantsPlus
 
             if (!success)
             {
-                ErrorLogger.Log("Failed to read Example Mod's config file! Recreating config...");
+                ErrorLogger.Log("Failed to read Merchant+'s config file! Recreating config...");
                 CreateConfig();
             }
         }

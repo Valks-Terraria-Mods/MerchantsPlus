@@ -21,16 +21,7 @@ namespace MerchantsPlus.NPCs
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.GoblinTinkerer) return;
-            projType = ProjectileID.ThrowingKnife;
-            if (NPC.downedBoss2)
-            {
-                projType = ProjectileID.PoisonedKnife;
-            }
-            if (Utils.downedMechBosses() == 1)
-            {
-                projType = ProjectileID.BoneJavelin;
-            }
-            attackDelay = 1;
+            projType = ProjectileID.SpikyBall;
         }
 
         

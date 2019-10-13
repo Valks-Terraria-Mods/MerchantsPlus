@@ -24,7 +24,7 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.SkeletonMerchant) return;
             attackDelay = 1;
-            projType = ProjectileID.GreenLaser;
+            projType = ProjectileID.Bone;
         }
     }
 }

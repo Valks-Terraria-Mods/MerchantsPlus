@@ -24,23 +24,7 @@ namespace MerchantsPlus.NPCs
             projType = ProjectileID.Bullet;
             if (Utils.downedMechBosses() == 1)
             {
-                projType = ProjectileID.CursedBullet;
-            }
-            if (Utils.downedMechBosses() == 2)
-            {
-                projType = ProjectileID.IchorBullet;
-            }
-            if (Utils.downedMechBosses() == 3)
-            {
-                projType = ProjectileID.CrystalBullet;
-            }
-            if (NPC.downedPlantBoss)
-            {
-                projType = ProjectileID.ChlorophyteBullet;
-            }
-            if (NPC.downedMoonlord)
-            {
-                projType = ProjectileID.MoonlordBullet;
+                projType = ProjectileID.CannonballFriendly;
             }
         }
 

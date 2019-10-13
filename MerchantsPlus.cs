@@ -13,9 +13,7 @@ namespace MerchantsPlus
         internal ExampleUI ExampleUI;
         internal UserInterface _exampleUserInterface;
 
-        public static int universalPotionCost = 20000;
-        public static int universalAccessoryCost = 300000;
-        public static int universalOreCost = 10000;
+        public static int universalPotionCost = 1000;
 
         /*public static bool overhaulLoaded;
         public static bool calamityLoaded;
@@ -27,7 +25,7 @@ namespace MerchantsPlus
         public static Mod thorium;
         public static Mod autoTrash;*/
 
-		public MerchantsPlus()
+        public MerchantsPlus()
 		{
             
 		}
@@ -59,6 +57,7 @@ namespace MerchantsPlus
             }
         }
 
+        [System.Obsolete]
         public override void Load()
         {
             instance = this;
