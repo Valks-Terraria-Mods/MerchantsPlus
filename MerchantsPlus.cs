@@ -13,9 +13,9 @@ namespace MerchantsPlus
         internal ExampleUI ExampleUI;
         internal UserInterface _exampleUserInterface;
 
-        public static int universalPotionCost = 20000;
-        public static int universalAccessoryCost = 300000;
-        public static int universalOreCost = 10000;
+        public static int universalPotionCost = Utils.coins(0, 0, 10);
+        public static int universalAccessoryCost = Utils.coins(0, 0, 25);
+        public static int universalOreCost = Utils.coins(0, 0, 1);
 
 		public MerchantsPlus()
 		{

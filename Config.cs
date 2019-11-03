@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Terraria;
 using Terraria.IO;
 using Terraria.ModLoader;
@@ -7,9 +7,9 @@ namespace MerchantsPlus
 {
     public static class Config
     {
-        public static bool merchantScaling = true;
-        public static bool merchantExtraLife = true;
-        public static bool merchantDialog = true;
+        public static bool merchantScaling = false;
+        public static bool merchantExtraLife = false;
+        public static bool merchantDialog = false;
 
         static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
         static Preferences Configuration = new Preferences(ConfigPath);

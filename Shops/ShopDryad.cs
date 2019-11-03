@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Shops
@@ -25,9 +25,9 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
                 case "Seeds":
+                    shop.item[nextSlot++].SetDefaults(ItemID.GrassSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.CorruptSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.HallowedSeeds);
-                    shop.item[nextSlot++].SetDefaults(ItemID.GrassSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.MushroomGrassSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.CrimsonSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.BlinkrootSeeds);

@@ -23,6 +23,14 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 
 ===========================================
 
+[c/991095:v0.11.0]
+Merchant extra life, alternate dialog and scaling are now disabled by default in the configs.
+More price refactoring.
+
+[c/991095:v0.10.0]
+Merchant no longers sells all the pets at once, you need to defeat certain bosses / events to unlock more pets.
+Prices for 3 merchants were refactored including the Nurse, Merchant and someone else.
+
 [c/991095:v0.9.0.8]
 Guide no longer shoots you with flaming arrows that damage the player.
 
