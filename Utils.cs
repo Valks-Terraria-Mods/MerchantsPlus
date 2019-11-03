@@ -1,68 +1,30 @@
-﻿using System.Linq;
+using System.Linq;
 using Terraria;
 
 namespace MerchantsPlus
 {
     class Utils
     {
-        /*public static bool CalamityDownedCrabulon
-        {
-            get { return CalamityMod.CalamityWorld.downedCrabulon; }
+        public static bool downedEyeOfCthulhu() {
+            return NPC.downedBoss1;
         }
 
-        public static bool CalamityDownedDesertScourge
-        {
-            get { return CalamityMod.CalamityWorld.downedDesertScourge; }
+        public static bool downedBrainOfCthulhu() {
+            return NPC.downedBoss2;
         }
 
-        public static bool CalamityDownedCryogen
-        {
-            get { return CalamityMod.CalamityWorld.downedCryogen; }
+        public static bool downedSkeletron() {
+            return NPC.downedBoss3;
         }
 
-        public static bool CalamityDownedSlimeGod
-        {
-            get { return CalamityMod.CalamityWorld.downedSlimeGod; }
+        public static int coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0) {
+            int total = 0;
+            total += copper;
+            total += silver * 100;
+            total += gold * 10000;
+            total += platinum * 1000000;
+            return total;
         }
-
-        public static bool CalamityDownedHiveMind
-        {
-            get { return CalamityMod.CalamityWorld.downedHiveMind; }
-        }
-
-        public static bool CalamityDownedPerforators
-        {
-            get { return CalamityMod.CalamityWorld.downedPerforator; }
-        }
-
-        public static bool CalamityDownedBrimstoneElemental
-        {
-            get { return CalamityMod.CalamityWorld.downedBrimstoneElemental; }
-        }
-
-        public static bool CalamityDownedAquaticScourge {
-            get { return CalamityMod.CalamityWorld.downedAquaticScourge; }
-        }
-
-        public static bool CalamityDownedLeviathan {
-            get { return CalamityMod.CalamityWorld.downedLeviathan; }
-        }
-
-        public static bool CalamityDownedPlaguebringer {
-            get { return CalamityMod.CalamityWorld.downedPlaguebringer; }
-        }
-
-        public static bool CalamityDownedProvidence {
-            get { return CalamityMod.CalamityWorld.downedProvidence; }
-        }
-
-        public static bool CalamityDownedPolterghast {
-            get { return CalamityMod.CalamityWorld.downedPolterghast; }
-        }
-
-        public static bool CalamityDownedYharon {
-            get { return CalamityMod.CalamityWorld.downedYharon; }
-        }*/
 
         public static bool playersHaveItem(short[] items) {
             for (int k = 0; k < 255; k++)

@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -60,11 +60,11 @@ namespace MerchantsPlus.Shops
         private void shopBulletOther(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.PartyBullet);
-            shop.item[nextSlot].shopCustomPrice = 100;
-            if (NPC.downedSlimeKing) shop.item[nextSlot].shopCustomPrice = 50;
-            if (NPC.downedBoss1) shop.item[nextSlot].shopCustomPrice = 25;
-            if (NPC.downedBoss2) shop.item[nextSlot].shopCustomPrice = 5;
-            if (NPC.downedQueenBee) shop.item[nextSlot].shopCustomPrice = 1;
+            shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 1);
+            if (NPC.downedSlimeKing) shop.item[nextSlot].shopCustomPrice = Utils.coins(50);
+            if (NPC.downedBoss1) shop.item[nextSlot].shopCustomPrice = Utils.coins(25);
+            if (NPC.downedBoss2) shop.item[nextSlot].shopCustomPrice = Utils.coins(5);
+            if (NPC.downedQueenBee) shop.item[nextSlot].shopCustomPrice = Utils.coins(1);
             if (NPC.downedBoss3) shop.item[nextSlot].SetDefaults(ItemID.ExplodingBullet);
             if (Utils.downedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.GoldenBullet);
             if (Utils.downedMechBosses() == 2) shop.item[nextSlot].SetDefaults(ItemID.NanoBullet);
@@ -104,11 +104,6 @@ namespace MerchantsPlus.Shops
             if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.Shotgun);
             if (Utils.downedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.OnyxBlaster);
             if (NPC.downedPlantBoss) shop.item[nextSlot].SetDefaults(ItemID.TacticalShotgun);
-            /*if ((NPC.downedFishron || NPC.downedMoonlord) && MerchantsPlus.overhaulLoaded)
-            {
-                Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                shop.item[nextSlot].SetDefaults(overhaul.ItemType("SuperShotgun"));
-            }*/
             nextSlot++;
         }
     }

@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,34 +18,6 @@ namespace MerchantsPlus.Shops
         public void InitShop(string currentShop) {
             switch (currentShop)
             {
-                case "Overhaul":
-                    /*if (MerchantsPlus.overhaulLoaded)
-                    {
-                        Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("BunnyPaw"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("Calendar"));
-                        shop.item[nextSlot].SetDefaults(overhaul.ItemType("Charcoal"));
-                        shop.item[nextSlot++].shopCustomPrice = 100;
-                        shop.item[nextSlot].SetDefaults(overhaul.ItemType("Cookie"));
-                        shop.item[nextSlot++].shopCustomPrice = 1500;
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("Gramophone"));
-                        shop.item[nextSlot].shopCustomPrice = 10000;
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("LightningRod"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("Mop"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("MusicDisc"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("OnyxCell"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("RedGel"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("RepairKit1"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("RepairKit2"));
-                        shop.item[nextSlot].SetDefaults(overhaul.ItemType("RepairTable"));
-                        shop.item[nextSlot++].shopCustomPrice = 50000;
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("SmokeDetector"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("BlueNebula"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("TheMeatImpaler"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("SteelWhip"));
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("WhipOfPain"));
-                    }*/
-                    break;
                 case "Mounts":
                     shopMount(shop, ref nextSlot);
                     break;
@@ -187,12 +159,6 @@ namespace MerchantsPlus.Shops
                     shopManaPotion(shop, ref nextSlot);
                     shopTorches(shop, ref nextSlot);
                     shopArrows(shop, ref nextSlot);
-                    /*if (MerchantsPlus.overhaulLoaded)
-                    {
-                        Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                        shop.item[nextSlot++].SetDefaults(overhaul.ItemType("WaterArrow"));
-                    }*/
-
                     shopRope(shop, ref nextSlot);
                     shopLightPet(shop, ref nextSlot);
                     shopHooks(shop, ref nextSlot);
@@ -214,12 +180,6 @@ namespace MerchantsPlus.Shops
 
         private void shopPickaxe(Chest shop, ref int nextSlot)
         {
-            /*if (MerchantsPlus.overhaulLoaded)
-            {
-                Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                shop.item[nextSlot].SetDefaults(overhaul.ItemType("StonePickaxe"));
-            }
-            else*/
             {
                 if (WorldGen.copperBar > 0)
                 {
@@ -332,12 +292,6 @@ namespace MerchantsPlus.Shops
 
         private void shopAxe(Chest shop, ref int nextSlot)
         {
-            /*if (MerchantsPlus.overhaulLoaded)
-            {
-                Mod overhaul = ModLoader.GetMod("TerrariaOverhaul");
-                shop.item[nextSlot].SetDefaults(overhaul.ItemType("StoneAxe"));
-            }
-            else*/
             {
                 if (WorldGen.copperBar > 0)
                 {
@@ -1544,42 +1498,115 @@ namespace MerchantsPlus.Shops
 
         private void shopPets(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ItemID.DogWhistle);
-            shop.item[nextSlot++].shopCustomPrice = 100000;
-            shop.item[nextSlot].SetDefaults(ItemID.UnluckyYarn);
-            shop.item[nextSlot++].shopCustomPrice = 100000;
+            shop.item[nextSlot].SetDefaults(ItemID.Seedling);
+            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
 
             shop.item[nextSlot].SetDefaults(ItemID.Carrot);
-            shop.item[nextSlot++].shopCustomPrice = 100000;
+            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
 
-            shop.item[nextSlot++].SetDefaults(ItemID.AmberMosquito);
-            shop.item[nextSlot++].SetDefaults(ItemID.Fish);
-            shop.item[nextSlot++].SetDefaults(ItemID.BoneRattle);
-            shop.item[nextSlot++].SetDefaults(ItemID.BoneKey);
-            shop.item[nextSlot++].SetDefaults(ItemID.ParrotCracker);
-            shop.item[nextSlot++].SetDefaults(ItemID.Seaweed);
-            shop.item[nextSlot++].SetDefaults(ItemID.StrangeGlowingMushroom);
-            shop.item[nextSlot++].SetDefaults(ItemID.ToySled);
+            shop.item[nextSlot].SetDefaults(ItemID.DogWhistle);
+            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
 
-            shop.item[nextSlot].SetDefaults(ItemID.EatersBone);
-            shop.item[nextSlot++].shopCustomPrice = 100000;
+            if (NPC.downedSlimeKing) {
+                shop.item[nextSlot].SetDefaults(ItemID.Fish);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
 
-            shop.item[nextSlot++].SetDefaults(ItemID.Nectar);
-            shop.item[nextSlot++].SetDefaults(ItemID.LizardEgg);
-            shop.item[nextSlot++].SetDefaults(ItemID.Seedling);
-            shop.item[nextSlot++].SetDefaults(ItemID.TikiTotem);
-            shop.item[nextSlot++].SetDefaults(ItemID.EyeSpring);
-            shop.item[nextSlot++].SetDefaults(ItemID.MagicalPumpkinSeed);
-            shop.item[nextSlot++].SetDefaults(ItemID.CursedSapling);
-            shop.item[nextSlot++].SetDefaults(ItemID.SpiderEgg);
+                shop.item[nextSlot].SetDefaults(ItemID.ZephyrFish);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
 
-            shop.item[nextSlot].SetDefaults(ItemID.BabyGrinchMischiefWhistle);
-            shop.item[nextSlot++].shopCustomPrice = 100000;
+            if (Utils.downedEyeOfCthulhu()) {
+                shop.item[nextSlot].SetDefaults(ItemID.EyeSpring);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
 
-            shop.item[nextSlot++].SetDefaults(ItemID.TartarSauce);
-            shop.item[nextSlot++].SetDefaults(ItemID.ZephyrFish);
-            shop.item[nextSlot++].SetDefaults(ItemID.CompanionCube);
-            shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGato);
+            if (NPC.downedGoblins)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.BabyGrinchMischiefWhistle);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (Utils.downedBrainOfCthulhu()) {
+                shop.item[nextSlot].SetDefaults(ItemID.EatersBone);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.BoneRattle);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (Utils.downedSkeletron()) {
+                shop.item[nextSlot].SetDefaults(ItemID.BoneKey);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.TartarSauce);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedQueenBee) {
+                shop.item[nextSlot].SetDefaults(ItemID.Nectar);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (Main.hardMode) {
+                shop.item[nextSlot].SetDefaults(ItemID.CompanionCube);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.AmberMosquito);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedPlantBoss)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.TikiTotem);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedPirates) {
+                shop.item[nextSlot].SetDefaults(ItemID.ParrotCracker);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedFrost) {
+                shop.item[nextSlot].SetDefaults(ItemID.ToySled);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedHalloweenTree) {
+                shop.item[nextSlot].SetDefaults(ItemID.SpiderEgg);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.CursedSapling);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedHalloweenKing) {
+                shop.item[nextSlot].SetDefaults(ItemID.UnluckyYarn);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.MagicalPumpkinSeed);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedFishron) {
+                shop.item[nextSlot].SetDefaults(ItemID.Seaweed);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.LizardEgg);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedAncientCultist) {
+                shop.item[nextSlot].SetDefaults(ItemID.DD2PetDragon);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+
+                shop.item[nextSlot].SetDefaults(ItemID.DD2PetGato);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
+
+            if (NPC.downedMoonlord) {
+                shop.item[nextSlot].SetDefaults(ItemID.StrangeGlowingMushroom);
+                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            }
         }
 
         private void shopHealPotion(Chest shop, ref int nextSlot)

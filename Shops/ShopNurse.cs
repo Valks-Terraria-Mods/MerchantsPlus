@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Shops
@@ -32,14 +32,14 @@ namespace MerchantsPlus.Shops
                     break;
                 default:
                     shop.item[nextSlot].SetDefaults(ItemID.LifeCrystal);
-                    shop.item[nextSlot++].shopCustomPrice = 250000;
+                    shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                     if (Main.hardMode)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.LifeFruit);
-                        shop.item[nextSlot++].shopCustomPrice = 1000000;
+                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 0, 1);
                     }
                     shop.item[nextSlot].SetDefaults(ItemID.HeartLantern);
-                    shop.item[nextSlot++].shopCustomPrice = 100000;
+                    shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                     break;
             }
         }

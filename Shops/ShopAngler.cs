@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Shops
@@ -40,40 +40,40 @@ namespace MerchantsPlus.Shops
                     break;
                 case "Crates":
                     shop.item[nextSlot].SetDefaults(ItemID.WoodenCrate);
-                    shop.item[nextSlot++].shopCustomPrice = 30000;
+                    shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 3);
                     if (NPC.downedSlimeKing)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.IronCrate);
-                        shop.item[nextSlot++].shopCustomPrice = 100000;
+                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 10);
                     }
                     if (NPC.downedBoss1)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.JungleFishingCrate);
-                        shop.item[nextSlot++].shopCustomPrice = 250000;
+                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                         shop.item[nextSlot].SetDefaults(ItemID.FloatingIslandFishingCrate);
-                        shop.item[nextSlot++].shopCustomPrice = 250000;
+                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                         if (NPC.downedBoss2)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.CorruptFishingCrate);
-                            shop.item[nextSlot++].shopCustomPrice = 250000;
+                            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                             shop.item[nextSlot].SetDefaults(ItemID.CrimsonFishingCrate);
-                            shop.item[nextSlot++].shopCustomPrice = 250000;
+                            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                         }
                         if (Main.hardMode)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.HallowedFishingCrate);
-                            shop.item[nextSlot++].shopCustomPrice = 250000;
+                            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                         }
                         if (NPC.downedBoss3)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.DungeonFishingCrate);
-                            shop.item[nextSlot++].shopCustomPrice = 250000;
+                            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
                         }
                     }
                     if (Main.hardMode)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.GoldenCrate);
-                        shop.item[nextSlot++].shopCustomPrice = 1000000;
+                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 100);
                     }
                     break;
                 case "Bait":
@@ -142,11 +142,6 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.FishFinder);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    /*if (MerchantsPlus.calamityLoaded)
-                    {
-                        shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("AlluringBait"));
-                        shop.item[nextSlot++].SetDefaults(MerchantsPlus.calamity.ItemType("EnchantedPearl"));
-                    }*/
                     break;
             }
 
@@ -155,41 +150,41 @@ namespace MerchantsPlus.Shops
         private void shopFishingPole(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.WoodFishingPole);
-            shop.item[nextSlot].shopCustomPrice = 1000;
+            shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 10);
             if (NPC.downedSlimeKing)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ReinforcedFishingPole);
-                shop.item[nextSlot].shopCustomPrice = 2500;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 25);
             }
             if (NPC.downedBoss1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.FisherofSouls);
-                shop.item[nextSlot].shopCustomPrice = 10000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 1);
             }
             if (NPC.downedBoss2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.FiberglassFishingPole);
-                shop.item[nextSlot].shopCustomPrice = 100000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 10);
             }
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MechanicsRod);
-                shop.item[nextSlot].shopCustomPrice = 250000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 25);
             }
             if (Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
-                shop.item[nextSlot].shopCustomPrice = 500000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 50);
             }
             if (Utils.downedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.HotlineFishingHook);
-                shop.item[nextSlot].shopCustomPrice = 1000000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 0, 1);
             }
             if (Utils.downedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.GoldenFishingRod);
-                shop.item[nextSlot].shopCustomPrice = 2000000;
+                shop.item[nextSlot].shopCustomPrice = Utils.coins(0, 0, 0, 2);
             }
             nextSlot++;
         }
