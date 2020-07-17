@@ -1,25 +1,18 @@
-﻿using MerchantsPlus.UI;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class WitchDoctor : GlobalNPC
+    internal class WitchDoctor : GlobalNPC
     {
-
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.WitchDoctor) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "Be careful, this imbuing station needs tending to..",
+            chat = Utils.Dialog(new string[] { "Be careful, this imbuing station needs tending to..",
                 "A flask a day keeps the Witch Doctor away."});
         }
-
-        
-
-        
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
@@ -30,12 +23,10 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.PoisonedKnife;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.BoneJavelin;
             }
         }
-
-        
     }
 }

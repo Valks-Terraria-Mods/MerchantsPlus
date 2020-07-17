@@ -4,33 +4,30 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class Pirate : GlobalNPC
+    internal class Pirate : GlobalNPC
     {
-
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Pirate) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { Utils.dialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000),
+            chat = Utils.Dialog(new string[] { Utils.DialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000),
                 "Arr?"});
         }
 
-        
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Pirate) return;
             attackDelay = 1;
             projType = ProjectileID.Bullet;
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.CursedBullet;
             }
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 projType = ProjectileID.IchorBullet;
             }
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 projType = ProjectileID.CrystalBullet;
             }
@@ -43,7 +40,5 @@ namespace MerchantsPlus.NPCs
                 projType = ProjectileID.MoonlordBullet;
             }
         }
-
-        
     }
 }

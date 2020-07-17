@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopTravellingMerchant
+    internal class ShopTravellingMerchant
     {
         private Chest shop;
         private int nextSlot;
@@ -16,18 +16,19 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
-            switch (currentShop) {
+            switch (currentShop)
+            {
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.ShadowOrb);
                     shop.item[nextSlot++].SetDefaults(ItemID.MagicLantern);
                     shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGhost);
                     if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.SuspiciousLookingTentacle);
                     break;
+
                 default:
                     shop.SetupShop(19);
                     break;
             }
-            
         }
     }
 }

@@ -4,21 +4,17 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class SantaClaus : GlobalNPC
+    internal class SantaClaus : GlobalNPC
     {
-
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.SantaClaus) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "HOHOHOOOOOHOOOOOO",
+            chat = Utils.Dialog(new string[] { "HOHOHOOOOOHOOOOOO",
                 "HOOOOOOOO HOOOOOO HOOOOOOOO",
                 "You were a good lil' kid wern't ya buddy? HOOOOOOOOO HOOOOOOO HOOOOOOOOOO",
                 "HOOOOOOOOOOOOOOOO HOOOOOOOOOOOO HOOOOOOOOOOOOO"});
         }
-
-       
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
@@ -29,12 +25,10 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.PoisonedKnife;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.BoneJavelin;
             }
         }
-
-        
     }
 }

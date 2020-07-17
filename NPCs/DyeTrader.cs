@@ -1,21 +1,18 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class DyeTrader : GlobalNPC
+    internal class DyeTrader : GlobalNPC
     {
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.DyeTrader) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "Modder still working on my dialog." });
+            chat = Utils.Dialog(new string[] { "Modder still working on my Dialog." });
         }
 
-       
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.DyeTrader) return;
@@ -25,12 +22,10 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.PoisonedKnife;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.BoneJavelin;
             }
         }
-
-        
     }
 }

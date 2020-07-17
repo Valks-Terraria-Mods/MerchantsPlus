@@ -10,7 +10,7 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.Clothier) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
+            chat = Utils.Dialog(new string[] {"There's one thing I like about this world is that you can sit back and relax and make clothes.",
             "Ah peace and quiet.",
             "One day I'll make the most beautiful piece of clothing ever laid eyes on.",
             "Oh you're back for more? I've got a big selection for you.",
@@ -28,8 +28,6 @@ namespace MerchantsPlus.NPCs
             "I could teach you how to make your own clothes! All you need is a few materials I have in my shop!"});
         }
 
-        
-
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Clothier) return;
@@ -39,7 +37,7 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.PoisonedKnife;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.BoneJavelin;
             }

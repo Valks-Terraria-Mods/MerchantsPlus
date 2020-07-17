@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopNurse
+    internal class ShopNurse
     {
         private Chest shop;
         private int nextSlot;
@@ -30,16 +30,17 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.HeartreachPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 default:
                     shop.item[nextSlot].SetDefaults(ItemID.LifeCrystal);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
                     if (Main.hardMode)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.LifeFruit);
-                        shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 0, 1);
+                        shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
                     }
                     shop.item[nextSlot].SetDefaults(ItemID.HeartLantern);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
                     break;
             }
         }

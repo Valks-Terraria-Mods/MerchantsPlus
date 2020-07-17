@@ -4,15 +4,13 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class ArmsDealer : GlobalNPC
+    internal class ArmsDealer : GlobalNPC
     {
-        
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.ArmsDealer) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "GET UR EEPIC GUNS NOW",
+            chat = Utils.Dialog(new string[] { "GET UR EEPIC GUNS NOW",
                 "EPIC GUNS FER SALE BRUH",
                 "IM 5 YEARS OLD DEAL WITH IT BRAH",
                 "YOU NEED A GUN BRAH?",
@@ -23,7 +21,7 @@ namespace MerchantsPlus.NPCs
                 "EPIC GUNS BRAH",
                 "BRAH IT LOOKS LIKE YOU NEED A GUN!",
                 "NEED A GUN BRAH?",
-                Utils.isNPCHere(NPCID.Pirate) ? "TELL YE PIRATE DUDE TO STOP SHOOTIN' CANNON BALLS AT ME" : "WONDER WHERE THAT PIRATE DUDE IS AT, HE OWES MEH GUNNNZZ"});
+                Utils.IsNPCHere(NPCID.Pirate) ? "TELL YE PIRATE DUDE TO STOP SHOOTIN' CANNON BALLS AT ME" : "WONDER WHERE THAT PIRATE DUDE IS AT, HE OWES MEH GUNNNZZ"});
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
@@ -39,15 +37,15 @@ namespace MerchantsPlus.NPCs
             {
                 projType = ProjectileID.MeteorShot;
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 projType = ProjectileID.CursedBullet;
             }
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 projType = ProjectileID.IchorBullet;
             }
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 projType = ProjectileID.CrystalBullet;
             }

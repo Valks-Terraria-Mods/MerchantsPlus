@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopDemolitionist
+    internal class ShopDemolitionist
     {
         private Chest shop;
         private int nextSlot;
@@ -31,6 +30,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.StinkPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "Explosives":
                     shop.item[nextSlot++].SetDefaults(ItemID.Grenade);
                     if (NPC.AnyNPCs(NPCID.PartyGirl))
@@ -84,6 +84,7 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot++].SetDefaults(ItemID.LandMine);
                     }
                     break;
+
                 default:
                     shop.SetupShop(4);
                     break;

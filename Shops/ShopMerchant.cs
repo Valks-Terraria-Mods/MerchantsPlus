@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopMerchant
+    internal class ShopMerchant
     {
         private Chest shop;
         private int nextSlot;
@@ -15,27 +14,32 @@ namespace MerchantsPlus.Shops
             this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop) {
+        public void InitShop(string currentShop)
+        {
             switch (currentShop)
             {
                 case "Mounts":
                     shopMount(shop, ref nextSlot);
                     break;
+
                 case "Pets":
                     shopPets(shop, ref nextSlot);
                     break;
+
                 case "Ores":
                     if (WorldGen.copperBar > 0)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.CopperOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                     }
-                    else {
+                    else
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.TinOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                     }
 
-                    if (NPC.downedSlimeKing) {
+                    if (NPC.downedSlimeKing)
+                    {
                         if (WorldGen.ironBar > 0)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.IronOre);
@@ -48,7 +52,8 @@ namespace MerchantsPlus.Shops
                         }
                     }
 
-                    if (NPC.downedBoss1) {
+                    if (NPC.downedBoss1)
+                    {
                         if (WorldGen.silverBar > 0)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.SilverOre);
@@ -61,7 +66,8 @@ namespace MerchantsPlus.Shops
                         }
                     }
 
-                    if (NPC.downedBoss2) {
+                    if (NPC.downedBoss2)
+                    {
                         if (WorldGen.goldBar > 0)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.GoldOre);
@@ -76,38 +82,44 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                     }
 
-                    if (NPC.downedBoss3) {
+                    if (NPC.downedBoss3)
+                    {
                         if (WorldGen.crimson)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.CrimtaneOre);
                             shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                         }
-                        else {
+                        else
+                        {
                             shop.item[nextSlot].SetDefaults(ItemID.DemoniteOre);
                             shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                         }
                     }
 
-                    if (Main.hardMode) {
+                    if (Main.hardMode)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.Hellstone);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost;
                     }
 
-                    if (Utils.downedMechBosses() == 1) {
+                    if (Utils.DownedMechBosses() == 1)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.PalladiumOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 2;
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 2;
                     }
 
-                    if (Utils.downedMechBosses() == 2) {
+                    if (Utils.DownedMechBosses() == 2)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 3;
                         shop.item[nextSlot].SetDefaults(ItemID.OrichalcumOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 3;
                     }
 
-                    if (Utils.downedMechBosses() == 3) {
+                    if (Utils.DownedMechBosses() == 3)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.AdamantiteOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 4;
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumOre);
@@ -117,16 +129,19 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 5;
                     }
 
-                    if (NPC.downedPlantBoss) {
+                    if (NPC.downedPlantBoss)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 10;
                     }
 
-                    if (NPC.downedMoonlord) {
+                    if (NPC.downedMoonlord)
+                    {
                         shop.item[nextSlot].SetDefaults(ItemID.LunarOre);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalOreCost * 100;
                     }
                     break;
+
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.Sickle);
                     if (!Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.BugNet); else shop.item[nextSlot++].SetDefaults(ItemID.GoldenBugNet);
@@ -136,21 +151,25 @@ namespace MerchantsPlus.Shops
                     shopHelmet(shop, ref nextSlot);
                     shopBreastplate(shop, ref nextSlot);
                     shopGreaves(shop, ref nextSlot);
-                    switch (Utils.getPlayerClass())
+                    switch (Utils.GetPlayerClass())
                     {
                         case "melee":
                             if (!NPC.downedBoss2) shopShortswords(shop, ref nextSlot);
                             shopBroadswords(shop, ref nextSlot);
                             break;
+
                         case "ranged":
                             shopBows(shop, ref nextSlot);
                             break;
+
                         case "mage":
                             shopMageWep(shop, ref nextSlot);
                             break;
+
                         case "summoner":
                             shopSummonWep(shop, ref nextSlot);
                             break;
+
                         case "thrower":
                             shopThrowerWep(shop, ref nextSlot);
                             break;
@@ -172,6 +191,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.DemonWings);
                     shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(10);
                     break;
+
                 default:
                     shop.SetupShop(1);
                     break;
@@ -244,17 +264,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.MoltenPickaxe);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.CobaltPickaxe);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MythrilPickaxe);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.TitaniumPickaxe);
             }
@@ -271,17 +291,20 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlarePickaxe);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexPickaxe);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaPickaxe);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustPickaxe);
                         break;
@@ -356,17 +379,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.MoltenHamaxe);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.CobaltWaraxe);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MythrilWaraxe);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.TitaniumWaraxe);
             }
@@ -378,22 +401,24 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedGolemBoss)
             {
-
             }
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlareAxe);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexAxe);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaAxe);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustAxe);
                         break;
@@ -466,17 +491,15 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.MoltenHamaxe);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
-
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
-
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.Hammush);
             }
@@ -488,22 +511,24 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedGolemBoss)
             {
-
             }
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlareHammer);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexHammer);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaHammer);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustHammer);
                         break;
@@ -573,74 +598,86 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedBoss3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.MoltenHelmet);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.NecroHelmet);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.JungleHat);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.BeeGreaves);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltHelmet);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltMask);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltHat);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpiderMask);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilHelmet);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilHat);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilHood);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpookyHelmet);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumMask);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumHelmet);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumHeadgear);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiMask);
                         break;
@@ -649,17 +686,20 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedPlantBoss)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteMask);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteHelmet);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteHeadgear);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiMask);
                         break;
@@ -668,22 +708,24 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedGolemBoss)
             {
-
             }
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlareHelmet);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexHelmet);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaHelmet);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustHelmet);
                         break;
@@ -753,63 +795,68 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedBoss3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.MoltenBreastplate);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.NecroBreastplate);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.JungleShirt);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.BeeBreastplate);
                         break;
                 }
-
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltBreastplate);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpiderBreastplate);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilChainmail);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpookyBreastplate);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumBreastplate);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiShirt);
                         break;
@@ -818,13 +865,14 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedPlantBoss)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophytePlateMail);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiShirt);
                         break;
@@ -833,22 +881,24 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedGolemBoss)
             {
-
             }
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlareBreastplate);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexBreastplate);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaBreastplate);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustBreastplate);
                         break;
@@ -918,63 +968,68 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedBoss3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.MoltenGreaves);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.NecroGreaves);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.JunglePants);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.BeeGreaves);
                         break;
                 }
-
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.CobaltLeggings);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpiderGreaves);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.MythrilGreaves);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.SpookyLeggings);
                         break;
                 }
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.TitaniumLeggings);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiPants);
                         break;
@@ -983,13 +1038,14 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedPlantBoss)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                     case "ranged":
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteGreaves);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.TikiPants);
                         break;
@@ -998,22 +1054,24 @@ namespace MerchantsPlus.Shops
 
             if (NPC.downedGolemBoss)
             {
-
             }
 
             if (NPC.downedMoonlord)
             {
-                switch (Utils.getPlayerClass())
+                switch (Utils.GetPlayerClass())
                 {
                     case "melee":
                         shop.item[nextSlot].SetDefaults(ItemID.SolarFlareLeggings);
                         break;
+
                     case "ranged":
                         shop.item[nextSlot].SetDefaults(ItemID.VortexLeggings);
                         break;
+
                     case "mage":
                         shop.item[nextSlot].SetDefaults(ItemID.NebulaLeggings);
                         break;
+
                     case "summoner":
                         shop.item[nextSlot].SetDefaults(ItemID.StardustLeggings);
                         break;
@@ -1131,7 +1189,7 @@ namespace MerchantsPlus.Shops
                 }
             }
 
-            if (Utils.kills(NPCID.DD2DarkMageT1) > 0)
+            if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.Arkhalis);
             }
@@ -1146,17 +1204,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.BreakerBlade);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.CobaltSword);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MythrilSword);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.TitaniumSword);
             }
@@ -1248,17 +1306,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.Marrow);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.IceBow);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.DaedalusStormbow);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ShadowFlameBow);
             }
@@ -1315,17 +1373,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.LaserRifle);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SkyFracture);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MagicDagger);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.FrostStaff);
             }
@@ -1345,7 +1403,7 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.Razorpine);
             }
 
-            if (Utils.kills(NPCID.DD2Betsy) > 0)
+            if (Utils.Kills(NPCID.DD2Betsy) > 0)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ApprenticeStaffT3);
             }
@@ -1392,17 +1450,17 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot].SetDefaults(ItemID.SpiderStaff);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.OpticStaff);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.PygmyStaff);
             }
 
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.XenoStaff);
             }
@@ -1439,17 +1497,17 @@ namespace MerchantsPlus.Shops
         {
             shop.item[nextSlot++].SetDefaults(ItemID.FuzzyCarrot);
 
-            if (Utils.kills(NPCID.KingSlime) >= 3)
+            if (Utils.Kills(NPCID.KingSlime) >= 3)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.SlimySaddle);
             }
 
-            if (Utils.kills(NPCID.EyeofCthulhu) >= 3)
+            if (Utils.Kills(NPCID.EyeofCthulhu) >= 3)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.HardySaddle);
             }
 
-            if (Utils.kills(NPCID.QueenBee) >= 3)
+            if (Utils.Kills(NPCID.QueenBee) >= 3)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.HoneyedGoggles);
             }
@@ -1459,38 +1517,37 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot++].SetDefaults(ItemID.AncientHorn);
             }
 
-            if (Utils.kills(NPCID.Retinazer) >= 3)
+            if (Utils.Kills(NPCID.Retinazer) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ReindeerBells);
             }
 
-            if (Utils.kills(NPCID.TheDestroyer) >= 3)
+            if (Utils.Kills(NPCID.TheDestroyer) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ScalyTruffle);
             }
 
-            if (Utils.kills(NPCID.SkeletronPrime) >= 3)
+            if (Utils.Kills(NPCID.SkeletronPrime) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.BrainScrambler);
             }
 
-            if (Utils.kills(NPCID.Plantera) >= 3)
+            if (Utils.Kills(NPCID.Plantera) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.BlessedApple);
             }
 
-
-            if (Utils.kills(NPCID.MartianSaucer) >= 3)
+            if (Utils.Kills(NPCID.MartianSaucer) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.CosmicCarKey);
             }
 
-            if (Utils.kills(NPCID.DukeFishron) >= 3)
+            if (Utils.Kills(NPCID.DukeFishron) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ShrimpyTruffle);
             }
 
-            if (Utils.kills(NPCID.MoonLordCore) >= 3)
+            if (Utils.Kills(NPCID.MoonLordCore) >= 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.DrillContainmentUnit);
             }
@@ -1499,113 +1556,126 @@ namespace MerchantsPlus.Shops
         private void shopPets(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.Seedling);
-            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
             shop.item[nextSlot].SetDefaults(ItemID.Carrot);
-            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
             shop.item[nextSlot].SetDefaults(ItemID.DogWhistle);
-            shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+            shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
-            if (NPC.downedSlimeKing) {
+            if (NPC.downedSlimeKing)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.Fish);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.ZephyrFish);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (Utils.downedEyeOfCthulhu()) {
+            if (Utils.DownedEyeOfCthulhu())
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.EyeSpring);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
             if (NPC.downedGoblins)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.BabyGrinchMischiefWhistle);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (Utils.downedBrainOfCthulhu()) {
+            if (Utils.DownedBrainOfCthulhu())
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.EatersBone);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.BoneRattle);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (Utils.downedSkeletron()) {
+            if (Utils.DownedSkeletron())
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.BoneKey);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.TartarSauce);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedQueenBee) {
+            if (NPC.downedQueenBee)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.Nectar);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (Main.hardMode) {
+            if (Main.hardMode)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.CompanionCube);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.AmberMosquito);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
             if (NPC.downedPlantBoss)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.TikiTotem);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedPirates) {
+            if (NPC.downedPirates)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.ParrotCracker);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedFrost) {
+            if (NPC.downedFrost)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.ToySled);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedHalloweenTree) {
+            if (NPC.downedHalloweenTree)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.SpiderEgg);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.CursedSapling);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedHalloweenKing) {
+            if (NPC.downedHalloweenKing)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.UnluckyYarn);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.MagicalPumpkinSeed);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedFishron) {
+            if (NPC.downedFishron)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.Seaweed);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.LizardEgg);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedAncientCultist) {
+            if (NPC.downedAncientCultist)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.DD2PetDragon);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
 
                 shop.item[nextSlot].SetDefaults(ItemID.DD2PetGato);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
 
-            if (NPC.downedMoonlord) {
+            if (NPC.downedMoonlord)
+            {
                 shop.item[nextSlot].SetDefaults(ItemID.StrangeGlowingMushroom);
-                shop.item[nextSlot++].shopCustomPrice = Utils.coins(0, 0, 25);
+                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
             }
         }
 
@@ -1638,12 +1708,12 @@ namespace MerchantsPlus.Shops
                 shop.item[nextSlot++].SetDefaults(ItemID.RestorationPotion);
             }
 
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.StrangeBrew);
             }
 
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.GreaterHealingPotion);
             }
@@ -1724,15 +1794,15 @@ namespace MerchantsPlus.Shops
             {
                 shop.item[nextSlot].SetDefaults(ItemID.UnholyArrow);
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.HolyArrow);
             }
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.CursedArrow);
             }
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.IchorArrow);
             }
@@ -1791,7 +1861,7 @@ namespace MerchantsPlus.Shops
             {
                 shop.item[nextSlot].SetDefaults(ItemID.BoneDagger);
             }
-            if (Utils.kills(NPCID.DD2DarkMageT1) > 0)
+            if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SpikyBall);
             }
@@ -1807,7 +1877,7 @@ namespace MerchantsPlus.Shops
             {
                 shop.item[nextSlot].SetDefaults(ItemID.MolotovCocktail);
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.BoneJavelin);
             }
@@ -1833,7 +1903,7 @@ namespace MerchantsPlus.Shops
             {
                 shop.item[nextSlot].SetDefaults(ItemID.EmeraldHook);
             }
-            if (Utils.kills(NPCID.DD2DarkMageT1) > 0)
+            if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.RubyHook);
             }
@@ -1849,15 +1919,15 @@ namespace MerchantsPlus.Shops
             {
                 shop.item[nextSlot].SetDefaults(ItemID.IvyWhip);
             }
-            if (Utils.downedMechBosses() == 1)
+            if (Utils.DownedMechBosses() == 1)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.DualHook);
             }
-            if (Utils.downedMechBosses() == 2)
+            if (Utils.DownedMechBosses() == 2)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SpookyHook);
             }
-            if (Utils.downedMechBosses() == 3)
+            if (Utils.DownedMechBosses() == 3)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.ChristmasHook);
             }
@@ -1870,24 +1940,28 @@ namespace MerchantsPlus.Shops
 
         private void shopBuffPotion(Chest shop, ref int nextSlot)
         {
-            switch (Utils.getPlayerClass())
+            switch (Utils.GetPlayerClass())
             {
                 case "melee":
                     shop.item[nextSlot].SetDefaults(ItemID.ArcheryPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "ranged":
                     shop.item[nextSlot].SetDefaults(ItemID.ArcheryPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "mage":
                     shop.item[nextSlot].SetDefaults(ItemID.MagicPowerPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     shop.item[nextSlot].SetDefaults(ItemID.ManaRegenerationPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "summoner":
                     break;
+
                 case "thrower":
                     break;
             }

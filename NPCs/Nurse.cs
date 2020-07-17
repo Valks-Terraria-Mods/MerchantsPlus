@@ -4,16 +4,14 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class Nurse : GlobalNPC
+    internal class Nurse : GlobalNPC
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Nurse) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "I heal people!" });
+            chat = Utils.Dialog(new string[] { "I heal people!" });
         }
-
-        
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
@@ -33,7 +31,5 @@ namespace MerchantsPlus.NPCs
                 projType = ProjectileID.BlueFlare;
             }
         }
-
-        
     }
 }

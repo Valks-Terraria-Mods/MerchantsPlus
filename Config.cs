@@ -1,7 +1,6 @@
 using System.IO;
 using Terraria;
 using Terraria.IO;
-using Terraria.ModLoader;
 
 namespace MerchantsPlus
 {
@@ -11,8 +10,8 @@ namespace MerchantsPlus
         public static bool merchantExtraLife = false;
         public static bool merchantDialog = false;
 
-        static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
-        static Preferences Configuration = new Preferences(ConfigPath);
+        private static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
+        private static Preferences Configuration = new Preferences(ConfigPath);
 
         public static void Load()
         {
@@ -21,13 +20,13 @@ namespace MerchantsPlus
 
             if (!success)
             {
-                ErrorLogger.Log("Failed to read Example Mod's config file! Recreating config...");
+                MerchantsPlus.Console.Warn("Failed to read Example Mod's config file! Recreating config...");
                 CreateConfig();
             }
         }
 
         //Returns "true" if the config file was found and successfully loaded.
-        static bool ReadConfig()
+        private static bool ReadConfig()
         {
             if (Configuration.Load())
             {
@@ -39,8 +38,8 @@ namespace MerchantsPlus
             return false;
         }
 
-        //Creates a config file. This will only be called if the config file doesn't exist yet or it's invalid. 
-        static void CreateConfig()
+        //Creates a config file. This will only be called if the config file doesn't exist yet or it's invalid.
+        private static void CreateConfig()
         {
             Configuration.Clear();
             Configuration.Put("MerchantScaling", merchantScaling);

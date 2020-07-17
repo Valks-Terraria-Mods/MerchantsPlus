@@ -1,14 +1,13 @@
-﻿using Terraria.UI;
-using Terraria.ModLoader;
-using Terraria.GameContent.UI.Elements;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
+using Terraria.UI;
 
 namespace MerchantsPlus.UI
 {
-    class TextButton : UIPanel
+    internal class TextButton : UIPanel
     {
         public bool visible = true;
 

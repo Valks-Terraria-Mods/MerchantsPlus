@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopSkeletonMerchant
+    internal class ShopSkeletonMerchant
     {
         private Chest shop;
         private int nextSlot;
@@ -52,22 +52,24 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxTemple);
                     shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxTheHallow);
                     break;
+
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.PinkString);
                     shop.item[nextSlot++].SetDefaults(ItemID.PurpleCounterweight);
                     shop.item[nextSlot++].SetDefaults(ItemID.YoYoGlove);
                     if (Main.hardMode)
                     {
-                        if (Utils.kills(NPCID.WyvernHead) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofFlight);
+                        if (Utils.Kills(NPCID.WyvernHead) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofFlight);
                         if (NPC.downedMechBoss3) shop.item[nextSlot++].SetDefaults(ItemID.SoulofFright);
-                        if (Utils.kills(NPCID.IlluminantSlime) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofLight);
+                        if (Utils.Kills(NPCID.IlluminantSlime) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofLight);
                         if (NPC.downedMechBoss2) shop.item[nextSlot++].SetDefaults(ItemID.SoulofMight);
-                        if (Utils.kills(NPCID.Clinger) > 0 || Utils.kills(NPCID.IchorSticker) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofNight);
+                        if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofNight);
                         if (NPC.downedMechBoss1) shop.item[nextSlot++].SetDefaults(ItemID.SoulofSight);
                         shop.item[nextSlot].SetDefaults(ItemID.RagePotion);
                         shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     }
                     break;
+
                 default:
                     shop.SetupShop(20);
                     break;

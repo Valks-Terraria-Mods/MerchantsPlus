@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopWitchDoctor
+    internal class ShopWitchDoctor
     {
         private Chest shop;
         private int nextSlot;
@@ -28,11 +28,13 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.FlaskofPoison);
                     shop.item[nextSlot++].SetDefaults(ItemID.FlaskofVenom);
                     break;
+
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.HerculesBeetle);
                     shop.item[nextSlot++].SetDefaults(ItemID.NecromanticScroll);
                     shop.item[nextSlot++].SetDefaults(ItemID.PygmyNecklace);
                     break;
+
                 default:
                     shop.SetupShop(16);
                     break;

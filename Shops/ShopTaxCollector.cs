@@ -1,12 +1,11 @@
 ﻿using Terraria;
-using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopTaxCollector
+    internal class ShopTaxCollector
     {
-        private Chest shop;
-        private int nextSlot;
+        private readonly Chest shop;
+        private readonly int nextSlot;
 
         public ShopTaxCollector(Chest shop, int nextSlot)
         {
@@ -16,7 +15,8 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
-            switch (currentShop) {
+            switch (currentShop)
+            {
                 default:
                     break;
             }

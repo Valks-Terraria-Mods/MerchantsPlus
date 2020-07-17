@@ -4,18 +4,14 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class Demolitionist : GlobalNPC
+    internal class Demolitionist : GlobalNPC
     {
-
-
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Demolitionist) return;
             if (!Config.merchantDialog) return;
-            chat = Utils.dialog(new string[] { "Modder still working on my dialog." });
+            chat = Utils.Dialog(new string[] { "Modder still working on my Dialog." });
         }
-
-        
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
@@ -35,7 +31,5 @@ namespace MerchantsPlus.NPCs
                 projType = ProjectileID.HappyBomb;
             }
         }
-
-        
     }
 }

@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopDryad
+    internal class ShopDryad
     {
         private Chest shop;
         private int nextSlot;
@@ -24,6 +24,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.FeatherfallPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "Seeds":
                     shop.item[nextSlot++].SetDefaults(ItemID.GrassSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.CorruptSeeds);
@@ -38,6 +39,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.WaterleafSeeds);
                     shop.item[nextSlot++].SetDefaults(ItemID.ShiverthornSeeds);
                     break;
+
                 default:
                     shop.SetupShop(3);
                     break;

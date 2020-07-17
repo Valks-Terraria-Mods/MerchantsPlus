@@ -5,10 +5,12 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus
 {
-    class NPCDefaults : GlobalNPC
+    internal class NPCDefaults : GlobalNPC
     {
         public override void SetDefaults(NPC npc)
         {
+            base.SetDefaults(npc);
+
             switch (npc.type)
             {
                 case NPCID.Angler:
@@ -46,8 +48,12 @@ namespace MerchantsPlus
             }
         }
 
-        public override void DrawEffects(NPC npc, ref Color drawColor) {
-            switch (npc.type) {
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            base.DrawEffects(npc, ref drawColor);
+
+            switch (npc.type)
+            {
                 case NPCID.BoundGoblin:
                 case NPCID.BoundMechanic:
                 case NPCID.BoundWizard:

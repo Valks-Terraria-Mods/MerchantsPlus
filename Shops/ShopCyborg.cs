@@ -1,8 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
+
 namespace MerchantsPlus.Shops
 {
-    class ShopCyborg
+    internal class ShopCyborg
     {
         private Chest shop;
         private int nextSlot;
@@ -31,6 +32,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.WrathPotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "Robotics":
                     shop.item[nextSlot++].SetDefaults(ItemID.ProximityMineLauncher);
                     shop.item[nextSlot++].SetDefaults(ItemID.Nanites);
@@ -57,6 +59,7 @@ namespace MerchantsPlus.Shops
                         shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
                     }
                     break;
+
                 default:
                     shop.SetupShop(14);
                     break;

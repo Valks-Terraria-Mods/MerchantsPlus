@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopWizard
+    internal class ShopWizard
     {
         private Chest shop;
         private int nextSlot;
@@ -16,7 +16,8 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
-            switch (currentShop) {
+            switch (currentShop)
+            {
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.IceRod);
                     shop.item[nextSlot++].SetDefaults(ItemID.SpellTome);
@@ -27,11 +28,11 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.CrystalBall);
                     shop.item[nextSlot++].SetDefaults(ItemID.EmptyDropper);
                     break;
+
                 default:
                     shop.SetupShop(7);
                     break;
             }
-            
         }
     }
 }

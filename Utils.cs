@@ -3,21 +3,81 @@ using Terraria;
 
 namespace MerchantsPlus
 {
-    class Utils
+    internal class Utils
     {
-        public static bool downedEyeOfCthulhu() {
+        /// <summary>
+        /// The players progression, the first 7 levels are prehardmode and
+        /// the 18 other levels are hardmode.
+        /// </summary>
+        /// <returns>Returns the players progression level.</returns>
+        public static int Progression()
+        {
+            int progression = 0;
+
+            // Pre
+            if (NPC.downedSlimeKing) progression++;
+            if (DownedEyeOfCthulhu()) progression++;
+            if (NPC.downedGoblins) progression++;
+            if (DownedBrainOfCthulhu() || DownedEaterOfWorlds()) progression++;
+            if (NPC.downedQueenBee) progression++;
+            if (DownedSkeletron()) progression++;
+            if (DownedWallOfFlesh()) progression++;
+
+            // Post
+            if (NPC.downedPirates) progression++;
+            if (NPC.downedClown) progression++;
+            if (NPC.downedMechBoss1) progression++;
+            if (NPC.downedMechBoss2) progression++;
+            if (NPC.downedMechBoss3) progression++;
+            if (NPC.downedHalloweenTree) progression++;
+            if (NPC.downedHalloweenKing) progression++;
+            if (NPC.downedPlantBoss) progression++;
+            if (NPC.downedGolemBoss) progression++;
+            if (NPC.downedFishron) progression++;
+            if (NPC.downedChristmasIceQueen) progression++;
+            if (NPC.downedChristmasSantank) progression++;
+            if (NPC.downedChristmasTree) progression++;
+            if (NPC.downedFrost) progression++;
+            if (NPC.downedMartians) progression++;
+            if (NPC.downedAncientCultist) progression++;
+            if (NPC.downedTowers) progression++;
+            if (NPC.downedMoonlord) progression++;
+
+            return progression;
+        }
+
+        public static bool IsHardMode()
+        {
+            return Main.hardMode;
+        }
+
+        public static bool DownedWallOfFlesh()
+        {
+            return Main.hardMode;
+        }
+
+        public static bool DownedEyeOfCthulhu()
+        {
             return NPC.downedBoss1;
         }
 
-        public static bool downedBrainOfCthulhu() {
+        public static bool DownedEaterOfWorlds()
+        {
             return NPC.downedBoss2;
         }
 
-        public static bool downedSkeletron() {
+        public static bool DownedBrainOfCthulhu()
+        {
+            return NPC.downedBoss2;
+        }
+
+        public static bool DownedSkeletron()
+        {
             return NPC.downedBoss3;
         }
 
-        public static int coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0) {
+        public static int Coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0)
+        {
             int total = 0;
             total += copper;
             total += silver * 100;
@@ -26,7 +86,8 @@ namespace MerchantsPlus
             return total;
         }
 
-        public static bool playersHaveItem(short[] items) {
+        public static bool PlayersHaveItem(short[] items)
+        {
             for (int k = 0; k < 255; k++)
             {
                 Player player = Main.player[k];
@@ -46,10 +107,11 @@ namespace MerchantsPlus
             }
             return false;
         }
-        public static string getPlayerClass()
+
+        public static string GetPlayerClass()
         {
             Player p = Main.LocalPlayer;
-            
+
             if (p.HeldItem != null && p.HeldItem.damage > 0)
             {
                 Item heldItem = p.HeldItem;
@@ -60,7 +122,7 @@ namespace MerchantsPlus
                 if (heldItem.thrown) return "thrower";
                 return "melee";
             }
-            else 
+            else
             {
                 float[] damages = { p.meleeDamage, p.arrowDamage, p.bulletDamage, p.rocketDamage, p.thrownDamage, p.magicDamage, p.minionDamage };
 
@@ -71,27 +133,31 @@ namespace MerchantsPlus
                 {
                     case 0:
                         return "melee";
+
                     case 1:
                     case 2:
                     case 3:
                     case 4:
                         return "ranged";
+
                     case 5:
                         return "mage";
+
                     case 6:
                         return "summoner";
+
                     default:
                         return "melee";
                 }
             }
         }
 
-        public static string dialog(string[] lines)
+        public static string Dialog(string[] lines)
         {
             return lines[Main.rand.Next(lines.Length)];
         }
 
-        public static int downedMechBosses()
+        public static int DownedMechBosses()
         {
             int count = 0;
             if (NPC.downedMechBoss1) count++;
@@ -100,20 +166,22 @@ namespace MerchantsPlus
             return count;
         }
 
-        public static int kills(short theNPC)
+        public static int Kills(short theNPC)
         {
             return NPC.killCount[Item.NPCtoBanner(theNPC)];
         }
 
-        public static int multiKills(short[] npcs) {
-            int kills = 0;
-            for (int i = 0; i < npcs.Length; i++) {
-                kills += NPC.killCount[Item.NPCtoBanner(npcs[i])];
+        public static int MultiKills(short[] npcs)
+        {
+            int Kills = 0;
+            for (int i = 0; i < npcs.Length; i++)
+            {
+                Kills += NPC.killCount[Item.NPCtoBanner(npcs[i])];
             }
-            return kills;
+            return Kills;
         }
 
-        public static bool isNPCHere(short npc)
+        public static bool IsNPCHere(short npc)
         {
             int theNPC = NPC.FindFirstNPC(npc);
             if (theNPC >= 0)
@@ -123,10 +191,10 @@ namespace MerchantsPlus
             return false;
         }
 
-        public static string getNPCName(short npc)
+        public static string GetNPCName(short npc)
         {
             int theNPC = NPC.FindFirstNPC(npc);
-            if (isNPCHere(npc))
+            if (IsNPCHere(npc))
             {
                 return Main.npc[theNPC].GivenName;
             }
@@ -136,7 +204,7 @@ namespace MerchantsPlus
             }
         }
 
-        public static void dropItem(NPC npc, short npcID, short[] item, int chance)
+        public static void DropItem(NPC npc, short npcID, short[] item, int chance)
         {
             if (Main.rand.Next(1, 100) < chance)
             {
@@ -150,7 +218,7 @@ namespace MerchantsPlus
             }
         }
 
-        public static string dialogGift(NPC npc, string moneyDialog, string noMoneyDialog, bool condition, int chance, short item, int price)
+        public static string DialogGift(NPC npc, string moneyDialog, string noMoneyDialog, bool condition, int chance, short item, int price)
         {
             if (condition)
             {

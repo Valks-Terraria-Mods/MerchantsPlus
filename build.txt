@@ -1,4 +1,5 @@
 author = valkyrienyanko
-version = 0.11.0
-displayName = Merchants+ (Beta)
+version = 0.12.1
+displayName = Merchants+ [The Angler Update]
 homepage = https://discord.gg/thMupbv
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

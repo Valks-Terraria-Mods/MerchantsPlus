@@ -5,10 +5,10 @@ using Terraria.GameInput;
 
 namespace MerchantsPlus.UI
 {
-    // This UIHoverImageButton class inherits from UIImageButton. 
-    // Inheriting is a great tool for UI design. 
+    // This UIHoverImageButton class inherits from UIImageButton.
+    // Inheriting is a great tool for UI design.
     // By inheriting, we get the Image drawing, MouseOver sound, and fading for free from UIImageButton
-    // We've added some code to allow the Button to show a text tooltip while hovered. 
+    // We've added some code to allow the Button to show a text tooltip while hovered.
     internal class UIHoverImageButton : UIImageButton
     {
         internal string HoverText;
@@ -27,7 +27,7 @@ namespace MerchantsPlus.UI
                 Main.hoverItemName = HoverText;
             }
 
-            if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface) 
+            if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface)
             {
                 Main.player[Main.myPlayer].mouseInterface = true;
             }

@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopMechanic
+    internal class ShopMechanic
     {
         private Chest shop;
         private int nextSlot;
@@ -39,6 +39,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.GoldenSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.GoldenWorkbench);
                     break;
+
                 case "Martian":
                     shop.item[nextSlot].SetDefaults(ItemID.MartianConduitPlating);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -54,6 +55,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MartianSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.MartianWorkBench);
                     break;
+
                 case "Lihzahrd":
                     shop.item[nextSlot].SetDefaults(ItemID.LihzahrdBrick);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -75,6 +77,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.LihzahrdSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.LihzahrdWorkBench);
                     break;
+
                 case "Steampunk":
                     shop.item[nextSlot].SetDefaults(ItemID.Cog);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -96,6 +99,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.SteampunkSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.SteampunkWorkBench);
                     break;
+
                 case "Flesh":
                     shop.item[nextSlot].SetDefaults(ItemID.FleshBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -117,6 +121,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.FleshSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.FleshWorkBench);
                     break;
+
                 case "Bone":
                     shop.item[nextSlot].SetDefaults(ItemID.BoneBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -136,6 +141,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.BoneSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.BoneWorkBench);
                     break;
+
                 case "Slime":
                     shop.item[nextSlot].SetDefaults(ItemID.SlimeBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -157,6 +163,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.SlimeSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.SlimeWorkBench);
                     break;
+
                 case "Honey":
                     shop.item[nextSlot].SetDefaults(ItemID.HoneyBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -178,6 +185,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.HoneySofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.HoneyWorkBench);
                     break;
+
                 case "Frozen":
                     shop.item[nextSlot].SetDefaults(ItemID.IceBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -199,6 +207,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.FrozenSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.FrozenWorkBench);
                     break;
+
                 case "Skyware":
                     shop.item[nextSlot].SetDefaults(ItemID.SunplateBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -220,6 +229,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.SkywareSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.SkywareWorkbench);
                     break;
+
                 case "Living":
                     shop.item[nextSlot].SetDefaults(ItemID.LivingWoodWand);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -242,6 +252,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.LivingWoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.LivingWoodWorkBench);
                     break;
+
                 case "Glass":
                     shop.item[nextSlot].SetDefaults(ItemID.Glass);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -263,6 +274,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.GlassSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.GlassWorkBench);
                     break;
+
                 case "Crystal":
                     shop.item[nextSlot].SetDefaults(ItemID.CrystalBlock);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -284,6 +296,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.CrystalSofaHowDoesThatEvenWork);
                     shop.item[nextSlot++].SetDefaults(ItemID.CrystalWorkbench);
                     break;
+
                 case "Meteorite":
                     shop.item[nextSlot].SetDefaults(ItemID.Meteorite);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -305,6 +318,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MeteoriteSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.MeteoriteWorkBench);
                     break;
+
                 case "Marble":
                     shop.item[nextSlot].SetDefaults(ItemID.Marble);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -326,6 +340,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MarbleSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.MarbleWorkBench);
                     break;
+
                 case "Granite":
                     shop.item[nextSlot].SetDefaults(ItemID.Granite);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -347,6 +362,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.GraniteSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.GraniteWorkBench);
                     break;
+
                 case "Mushroom":
                     shop.item[nextSlot].SetDefaults(ItemID.Mushroom);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -368,6 +384,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MushroomSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.MushroomWorkBench);
                     break;
+
                 case "Pumpkin":
                     shop.item[nextSlot].SetDefaults(ItemID.Pumpkin);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -389,6 +406,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinWorkBench);
                     break;
+
                 case "Cactus":
                     shop.item[nextSlot].SetDefaults(ItemID.Cactus);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -410,6 +428,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.CactusSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.CactusWorkBench);
                     break;
+
                 case "Dynasty":
                     shop.item[nextSlot].SetDefaults(ItemID.DynastyWood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -431,6 +450,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.DynastySofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.DynastyWorkBench);
                     break;
+
                 case "Spooky":
                     shop.item[nextSlot].SetDefaults(ItemID.SpookyWood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -452,6 +472,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.SpookySofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.SpookyWorkBench);
                     break;
+
                 case "Pearlwood":
                     shop.item[nextSlot].SetDefaults(ItemID.Pearlwood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -474,6 +495,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.PearlwoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.PearlwoodWorkBench);
                     break;
+
                 case "Shadewood":
                     shop.item[nextSlot].SetDefaults(ItemID.Shadewood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -496,6 +518,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.ShadewoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.ShadewoodWorkBench);
                     break;
+
                 case "Ebonwood":
                     shop.item[nextSlot].SetDefaults(ItemID.Ebonwood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -518,6 +541,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.EbonwoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.EbonwoodWorkBench);
                     break;
+
                 case "Palm":
                     shop.item[nextSlot].SetDefaults(ItemID.PalmWood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -541,6 +565,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.PalmWoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.PalmWoodWorkBench);
                     break;
+
                 case "Boreal":
                     shop.item[nextSlot].SetDefaults(ItemID.BorealWood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -563,6 +588,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.BorealWoodSofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.BorealWoodWorkBench);
                     break;
+
                 case "Rich Mahogany":
                     shop.item[nextSlot].SetDefaults(ItemID.RichMahogany);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -588,6 +614,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.RichMahoganySofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.RichMahoganyWorkBench);
                     break;
+
                 case "Wood":
                     shop.item[nextSlot].SetDefaults(ItemID.Wood);
                     shop.item[nextSlot++].shopCustomPrice = 100;
@@ -611,6 +638,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.Sofa);
                     shop.item[nextSlot++].SetDefaults(ItemID.WorkBench);
                     break;
+
                 case "Mechanics":
                     shop.item[nextSlot++].SetDefaults(ItemID.Wrench);
                     shop.item[nextSlot++].SetDefaults(ItemID.BlueWrench);
@@ -635,6 +663,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.Timer3Second);
                     shop.item[nextSlot++].SetDefaults(ItemID.Timer5Second);
                     break;
+
                 default:
                     shop.SetupShop(8);
                     break;

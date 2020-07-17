@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopPartyGirl
+    internal class ShopPartyGirl
     {
         private Chest shop;
         private int nextSlot;
@@ -56,6 +56,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.BossMaskMoonlord);
                     shop.item[nextSlot++].shopCustomPrice = 1000000;
                     break;
+
                 case "Vanity Sets 4":
                     shop.item[nextSlot].SetDefaults(ItemID.MummyPants);
                     shop.item[nextSlot++].shopCustomPrice = 30000;
@@ -103,6 +104,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.WhiteTuxedoShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.WhiteTuxedoPants);
                     break;
+
                 case "Vanity Sets 3":
                     shop.item[nextSlot++].SetDefaults(ItemID.BuccaneerBandana);
                     shop.item[nextSlot++].SetDefaults(ItemID.BuccaneerShirt);
@@ -147,6 +149,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.MummyShirt);
                     shop.item[nextSlot++].shopCustomPrice = 30000;
                     break;
+
                 case "Vanity Sets 2":
                     shop.item[nextSlot++].SetDefaults(ItemID.ReaperHood);
                     shop.item[nextSlot++].SetDefaults(ItemID.ReaperRobe);
@@ -192,6 +195,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.BeePants);
                     shop.item[nextSlot++].shopCustomPrice = 30000;
                     break;
+
                 case "Vanity Sets 1":
                     shop.item[nextSlot++].SetDefaults(ItemID.BrideofFrankensteinDress);
                     shop.item[nextSlot++].SetDefaults(ItemID.BrideofFrankensteinMask);
@@ -235,6 +239,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinShirt);
                     shop.item[nextSlot++].SetDefaults(ItemID.PumpkinPants);
                     break;
+
                 case "Party Stuff":
                     shop.item[nextSlot++].SetDefaults(ItemID.ConfettiGun);
                     shop.item[nextSlot++].SetDefaults(ItemID.Confetti);
@@ -267,6 +272,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.AngelHalo);
                     shop.item[nextSlot++].SetDefaults(ItemID.GingerBeard);
                     break;
+
                 default:
                     shop.SetupShop(13);
                     break;

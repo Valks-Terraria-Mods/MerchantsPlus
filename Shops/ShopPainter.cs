@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopPainter
+    internal class ShopPainter
     {
         private Chest shop;
         private int nextSlot;
@@ -58,6 +58,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.MorbidCuriosity);
                     shop.item[nextSlot++].SetDefaults(ItemID.PillaginMePixels);
                     break;
+
                 case "Paintings 1":
                     shop.item[nextSlot++].SetDefaults(ItemID.ColdWatersintheWhiteLand);
                     shop.item[nextSlot++].SetDefaults(ItemID.Daylight);
@@ -100,6 +101,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.TheCreationoftheGuide);
                     shop.item[nextSlot++].SetDefaults(ItemID.TheCursedMan);
                     break;
+
                 case "Wallpaper":
                     shop.item[nextSlot++].SetDefaults(ItemID.BluegreenWallpaper);
                     shop.item[nextSlot++].SetDefaults(ItemID.BubbleWallpaper);
@@ -122,6 +124,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.StarlitHeavenWallpaper);
                     shop.item[nextSlot++].SetDefaults(ItemID.StarsWallpaper);
                     break;
+
                 case "Paint":
                     shop.item[nextSlot++].SetDefaults(ItemID.BlackPaint);
                     shop.item[nextSlot++].SetDefaults(ItemID.GrayPaint);
@@ -154,6 +157,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.DeepVioletPaint);
                     shop.item[nextSlot++].SetDefaults(ItemID.DeepYellowPaint);
                     break;
+
                 case "Tools":
                     shop.item[nextSlot++].SetDefaults(ItemID.Paintbrush);
                     shop.item[nextSlot++].SetDefaults(ItemID.PaintRoller);
@@ -173,6 +177,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.BrickLayer);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     break;
+
                 default:
                     shop.SetupShop(15);
                     break;

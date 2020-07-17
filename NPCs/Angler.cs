@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    class Angler : GlobalNPC
+    internal class Angler : GlobalNPC
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Angler) return;
             if (!Config.merchantDialog) return;
-            chat =  Utils.dialog(new string[]{"Hey want to do a contest? Whoever gets the most fish wins!",
+            chat = Utils.Dialog(new string[]{"Hey want to do a contest? Whoever gets the most fish wins!",
             "I have more fish than you will ever have in a lifetime!",
             "Did you hear? There's a big monster in the sea and one day I'm going to release him on you. ;)",
             "The bigger the fish the better.",
@@ -36,7 +36,7 @@ namespace MerchantsPlus.NPCs
         public override void NPCLoot(NPC npc)
         {
             if (npc.type != NPCID.Angler) return;
-            Utils.dropItem(npc, NPCID.Angler, new short[] { ItemID.Fish }, 25);
+            Utils.DropItem(npc, NPCID.Angler, new short[] { ItemID.Fish }, 25);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)

@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopSantaClaus
+    internal class ShopSantaClaus
     {
         private Chest shop;
         private int nextSlot;
@@ -30,6 +30,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.WormholePotion);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
                     break;
+
                 case "Lights":
                     shop.item[nextSlot++].SetDefaults(ItemID.RedLight);
                     shop.item[nextSlot++].SetDefaults(ItemID.GreenLight);
@@ -49,6 +50,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.RedAndBlueLights);
                     shop.item[nextSlot++].SetDefaults(ItemID.BlueAndYellowLights);
                     break;
+
                 case "Bulbs":
                     shop.item[nextSlot++].SetDefaults(ItemID.RedBulb);
                     shop.item[nextSlot++].SetDefaults(ItemID.YellowBulb);
@@ -60,6 +62,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.WhiteAndYellowBulb);
                     shop.item[nextSlot++].SetDefaults(ItemID.WhiteAndGreenBulb);
                     break;
+
                 case "Decor":
                     shop.item[nextSlot++].SetDefaults(ItemID.ChristmasTree);
                     shop.item[nextSlot++].SetDefaults(ItemID.BowTopper);
@@ -70,6 +73,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.GreenAndWhiteGarland);
                     shop.item[nextSlot++].SetDefaults(ItemID.MulticoloredBulb);
                     break;
+
                 default:
                     shop.SetupShop(9);
                     break;

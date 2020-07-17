@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    class ShopSteampunker
+    internal class ShopSteampunker
     {
         private Chest shop;
         private int nextSlot;
@@ -42,6 +42,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.LogicSensor_Water);
                     shop.item[nextSlot++].shopCustomPrice = 20000;
                     break;
+
                 case "Solutions":
                     shop.item[nextSlot++].SetDefaults(ItemID.Clentaminator);
                     shop.item[nextSlot++].SetDefaults(ItemID.PurpleSolution);
@@ -50,6 +51,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.DarkBlueSolution);
                     shop.item[nextSlot++].SetDefaults(ItemID.BlueSolution);
                     break;
+
                 case "Gear":
                     shop.item[nextSlot++].SetDefaults(ItemID.Teleporter);
                     shop.item[nextSlot++].SetDefaults(ItemID.Jetpack);
@@ -61,6 +63,7 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot++].SetDefaults(ItemID.StaticHook);
                     shop.item[nextSlot++].SetDefaults(ItemID.ConveyorBeltRight);
                     break;
+
                 default:
                     shop.SetupShop(11);
                     break;

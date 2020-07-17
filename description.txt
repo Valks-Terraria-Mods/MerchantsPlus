@@ -1,4 +1,4 @@
-You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
+You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below. Please keep in mind that this mod is still in BETA.
 
 [c/ffb2fd:Items]
 + Sell more items based on the bosses / enemies defeated.
@@ -6,9 +6,9 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 + Have a chance to drop items on death.
 
 [c/ffb2fd:Dialog]
-+ World conditions effect how the dialog is played out.
++ World conditions effect how the Dialog is played out.
 + Mostly humerous personalities.
-+ Some dialog may reward you with items.
++ Some Dialog may reward you with items.
 + Interactions with other merchants.
 
 [c/ffb2fd:Stats]
@@ -21,10 +21,17 @@ You can think of this as a merchant overhaul mod. The following mechanics that t
 + The angler, guide, nurse, tax collector and old man are now merchants.
 + The bound mechanic, wizard and tinkerer glow in the dark.
 
+GitHub: https://github.com/Valks-Terraria-Mods/MerchantsPlus
+
 ===========================================
 
+[c/991095:v0.12.0]
+Shop category index now resets and is ready for next time you view the shop.
+Complete overhaul of the Angler merchant, every item has not been over looked.
+Fixed several potential bugs.
+
 [c/991095:v0.11.0]
-Merchant extra life, alternate dialog and scaling are now disabled by default in the configs.
+Merchant extra life, alternate Dialog and scaling are now disabled by default in the configs.
 More price refactoring.
 
 [c/991095:v0.10.0]
@@ -99,7 +106,7 @@ Banner merchant now sells banners for ALL npc types. (The merchant has 25 shops 
 Added the mods first custom NPC (Banner NPC that sells Banners) You can cycle the shop of the merchant. (In order for the NPC to arrive to your town you need to have a slime / green slime / purple slime banner in your inventory.)
 
 [c/991095:v0.6.3]
-Added / changed alot more dialog.
+Added / changed alot more Dialog.
 New mod mechanic, bound npcs glow in the dark and the skeleton merchant glows in the dark as well.
 Added alot more projectiles for NPC merchants.
 
@@ -108,7 +115,7 @@ Touched up alot of town NPC projectiles
 Revised merchant items
 
 [c/991095:v0.5]
-Added config in case you want to disable dialog, health, or scaling.
+Added config in case you want to disable Dialog, health, or scaling.
 Made merchants have intelligence :D
 Heavily changed merchant items.
 
@@ -116,18 +123,18 @@ Heavily changed merchant items.
 All NPCs now have unique sizes.
 Arms dealer heavily balanced.
 Added support for nurse, guide and angler NPCs.
-Lots of more humerous dialog to look forward to. ;)
+Lots of more humerous Dialog to look forward to. ;)
 NPCs now have a chance to drop unique loot on death.
 Some NPCs projectiles have been modified based on how many bosses you've defeated.
 Index out of size bug fix for arms dealer and skeleton merchant.
 The angler now has the ai of a slime and he wants to become a bunny hopper when he grows up. :)
 
 [c/991095:v0.3]
-All NPCs have unique dialog and personalities.
+All NPCs have unique Dialog and personalities.
 Arms dealer heavily revised.
 Revised items for most merchants.
 Added more boss and npc kill conditions for all merchants to make the mod less op.
-As a test, the Wizard now gives the player a magic dagger when unique dialog is played and unique conditions are met.
+As a test, the Wizard now gives the player a magic dagger when unique Dialog is played and unique conditions are met.
 
 [c/991095:v0.2]
 Added conditions for various merchants.
