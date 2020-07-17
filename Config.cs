@@ -8,7 +8,7 @@ namespace MerchantsPlus
     {
         public static bool MerchantScaling = false;
         public static bool MerchantExtraLife = false;
-        public static bool MerchantDialog = false;
+        public static bool MerchantDialog = true;
         public static bool MerchantDrops = false;
         public static bool MerchantProjectiles = false;
 

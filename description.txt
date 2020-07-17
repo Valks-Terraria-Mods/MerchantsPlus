@@ -1,8 +1,6 @@
-You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
+This mod turns every town NPC into a merchant with several shops that you can cycle through. All the merchants combined sell almost all the items in the entire game! Not every item is unlocked at first, you will have to defeat monsters and bosses to progress and unlock better items.
 
-Please keep in mind that this mod is still in BETA, it still has long ways to go for it to be considered a 'balanced' mod.
-
-Want to help contribute? Talk to valk#3277 on Discord.
+This mod can be considered very 'cheaty' atm, if you want to help balance it, please talk to me over Discord (valk#3277).
 
 [c/ffb2fd:Items]
 + Merchants sell more items based on bosses / enemies defeated.
@@ -24,6 +22,9 @@ Want to help contribute? Talk to valk#3277 on Discord.
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 
 ===========================================
+
+[c/991095:v0.14.0]
+The Tinkerer no longer sells everything in 'chunks', the items are spread more out meaning you have to progress for fewer rewards now.
 
 [c/991095:v0.13.0]
 Streamlined the dialog for all the merchants. It's plain and boring now. In future updates, quests will be shown in dialog. Quests will tell the player how to unlock more items in the merchants shops.

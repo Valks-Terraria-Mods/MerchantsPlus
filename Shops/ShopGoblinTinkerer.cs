@@ -16,6 +16,8 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
+            int progression = Utils.Progression();
+
             if (currentShop == "Miscellaneous")
             {
                 shop.item[nextSlot].SetDefaults(ItemID.FlowerBoots);
@@ -186,70 +188,112 @@ namespace MerchantsPlus.Shops
             }
 
             if (currentShop == "Combat") {
-                if (NPC.downedBoss2)
+                shop.item[nextSlot].SetDefaults(ItemID.SharkToothNecklace);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                if (progression > 0) {
+                    shop.item[nextSlot].SetDefaults(ItemID.FeralClaws);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > (int) Utils.Progress.BRAIN_OF_CTHULU)
                 {
                     shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
-                if (NPC.downedPlantBoss)
-                {
-                    shop.item[nextSlot].SetDefaults(ItemID.BlackBelt);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                }
-                if (NPC.downedQueenBee)
-                {
+
+                if (progression > (int)Utils.Progress.QUEEN_BEE) {
                     shop.item[nextSlot].SetDefaults(ItemID.HoneyComb);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
 
-                if (NPC.downedMechBoss1)
-                {
-                    shop.item[nextSlot].SetDefaults(ItemID.MoonCharm);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-
-                    shop.item[nextSlot].SetDefaults(ItemID.FeralClaws);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.MagmaStone);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.EyeoftheGolem);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.MoonStone);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                if (progression > 8) {
                     shop.item[nextSlot].SetDefaults(ItemID.MagicQuiver);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
-
-                if (NPC.downedMechBoss2)
+                if (progression > 9) {
+                    shop.item[nextSlot].SetDefaults(ItemID.MoonCharm);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 10)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.PaladinsShield);
+                    shop.item[nextSlot].SetDefaults(ItemID.MoonStone);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.PutridScent);
+                }
+                if (progression > 11)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.SunStone);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.SharkToothNecklace);
+                }
+                if (progression > 12)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.MagmaStone);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.StarCloak);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.SunStone);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.TitanGlove);
+                }
+                if (progression > 13)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.EyeoftheGolem);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
 
-                if (NPC.downedMechBoss3)
+                if (progression > (int)Utils.Progress.PLANT_BOSS)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.BlackBelt);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                
+                if (progression > 15)
                 {
                     shop.item[nextSlot].SetDefaults(ItemID.ApprenticeScarf);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.SquireShield);
+                    
+                }
+                if (progression > 16)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.PutridScent);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.HuntressBuckler);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.MonkBelt);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 17) {
                     shop.item[nextSlot].SetDefaults(ItemID.HerculesBeetle);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 18) {
                     shop.item[nextSlot].SetDefaults(ItemID.NecromanticScroll);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 19) {
                     shop.item[nextSlot].SetDefaults(ItemID.PygmyNecklace);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 20) {
+                    shop.item[nextSlot].SetDefaults(ItemID.PaladinsShield);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 21) {
+                    shop.item[nextSlot].SetDefaults(ItemID.SquireShield);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 22)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.HuntressBuckler);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 23)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.MonkBelt);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 24) {
+                    shop.item[nextSlot].SetDefaults(ItemID.TitanGlove);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
 
@@ -258,15 +302,18 @@ namespace MerchantsPlus.Shops
 
             if (currentShop == "Health and Mana")
             {
+                shop.item[nextSlot].SetDefaults(ItemID.NaturesGift);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 if (NPC.downedBoss2)
                 {
                     shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.BandofRegeneration);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 4)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.NaturesGift);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
                 if (Main.hardMode)
@@ -280,45 +327,73 @@ namespace MerchantsPlus.Shops
 
             if (currentShop == "Informational") {
                 if (WorldGen.goldBar > 0) shop.item[nextSlot].SetDefaults(ItemID.GoldWatch); else shop.item[nextSlot].SetDefaults(ItemID.PlatinumWatch);
-                shop.item[nextSlot].SetDefaults(ItemID.DepthMeter);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.Compass);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.Ruler);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.MetalDetector);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.Stopwatch);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.DPSMeter);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.TallyCounter);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.LifeformAnalyzer);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.Radar);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.MechanicalLens);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                shop.item[nextSlot].SetDefaults(ItemID.LaserRuler);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                if (progression > 0) {
+                    shop.item[nextSlot].SetDefaults(ItemID.DepthMeter);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 1)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Compass);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 2)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Stopwatch);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 3)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.TallyCounter);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 4)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.LifeformAnalyzer);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 5)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.DPSMeter);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 6)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.MetalDetector);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 7)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Radar);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 8)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Ruler);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 9)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.MechanicalLens);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+                if (progression > 10)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.LaserRuler);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
                 return;
             }
 
             if (currentShop == "Movement") {
-                if (NPC.downedBoss1)
-                {
+                shop.item[nextSlot].SetDefaults(ItemID.WaterWalkingBoots);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+
+                if (progression > 0) {
                     shop.item[nextSlot].SetDefaults(ItemID.HermesBoots);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.WaterWalkingBoots);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.IceSkates);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
-                if (NPC.downedBoss2)
-                {
-                    shop.item[nextSlot].SetDefaults(ItemID.RocketBoots);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+
+                if (progression > 1) {
                     shop.item[nextSlot].SetDefaults(ItemID.CloudinaBottle);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                     shop.item[nextSlot].SetDefaults(ItemID.SandstorminaBottle);
@@ -326,30 +401,77 @@ namespace MerchantsPlus.Shops
                     shop.item[nextSlot].SetDefaults(ItemID.TsunamiInABottle);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
-                if (NPC.downedBoss3)
-                {
+
+                if (progression > 2) {
                     shop.item[nextSlot].SetDefaults(ItemID.Aglet);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 3)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.AnkletoftheWind);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.ClimbingClaws);
+                }
+
+                if (progression > 4)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.RocketBoots);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 5)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.IceSkates);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 6)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.Flipper);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 7) {
+                    shop.item[nextSlot].SetDefaults(ItemID.ClimbingClaws);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 8) {
                     shop.item[nextSlot].SetDefaults(ItemID.ShoeSpikes);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.FlyingCarpet);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 9)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.DivingHelmet);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 10)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.ShinyRedBalloon);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.LuckyHorseshoe);
+                }
+
+                if (progression > 11)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.FlyingCarpet);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 12)
+                {
                     shop.item[nextSlot].SetDefaults(ItemID.LavaCharm);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
                 }
-                if (NPC.downedPlantBoss)
+
+                if (progression > 13)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.LuckyHorseshoe);
+                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                }
+
+                if (progression > 14)
                 {
                     shop.item[nextSlot].SetDefaults(ItemID.Tabi);
                     shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;

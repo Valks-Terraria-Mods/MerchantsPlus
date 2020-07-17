@@ -13,9 +13,39 @@ namespace MerchantsPlus
                 dialog.Add($"Quest: Kill {targetKills - curKills} more {enemy}");
         }
 
+        public enum Progress
+        {
+            SLIME_KING,
+            EYE_OF_CTHULU,
+            GOBLIN_ARMY,
+            BRAIN_OF_CTHULU,
+            QUEEN_BEE,
+            SKELETRON,
+            WALL_OF_FLESH,
+            PIRATES,
+            CLOWN,
+            MECH_BOSS_1,
+            MECH_BOSS_2,
+            MECH_BOSS_3,
+            HALLOWEEN_TREE,
+            HALLOWEEN_KING,
+            PLANT_BOSS,
+            GOLEM,
+            FISHRON,
+            CHRISTMAS_ICE_QUEEN,
+            CHRISTMAS_SANTA_TANK,
+            CHRISTMAS_TREE,
+            FROST,
+            MARTIANS,
+            ANCIENT_CULTIST,
+            TOWERS,
+            MOONLORD
+        }
+
         /// <summary>
         /// The players progression, the first 7 levels are prehardmode and
-        /// the 18 other levels are hardmode.
+        /// the 18 other levels are hardmode. (Making a total of 25 progression
+        /// levels.
         /// </summary>
         /// <returns>Returns the players progression level.</returns>
         public static int Progression()

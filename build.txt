@@ -1,5 +1,5 @@
 author = valkyrienyanko
-version = 0.13.1
+version = 0.14.0
 displayName = Merchants+
 homepage = https://discord.gg/thMupbv
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
