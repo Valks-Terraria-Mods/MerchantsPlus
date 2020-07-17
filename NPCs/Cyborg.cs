@@ -4,25 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Cyborg : GlobalNPC
+    internal class Cyborg : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Cyborg) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] {"Don't set off those explosives off I have behind you.",
-            "Anything that moves in the sky, I see it.",
-            "Rocketry is a very delicate task, it requires alot of focus.",
-            "Aim. Shoot. Kill.",
-            Main.eclipse ? "Are you afraid of a mere eclipse? I'm not!" : "Always keep your wits about you.",
-            Main.raining ? "This rain is bad for my circuits." : "A bright day is my day.",
-            Main.hardMode ? "The world feels a lot more tougher than it use to be." : "This world is weak."});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Cyborg) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.BouncyGrenade;
         }
     }

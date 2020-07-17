@@ -1,29 +1,34 @@
-You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below. Please keep in mind that this mod is still in BETA.
+You can think of this as a merchant overhaul mod. The following mechanics that the mod offers are listed below.
+
+Please keep in mind that this mod is still in BETA, it still has long ways to go for it to be considered a 'balanced' mod.
+
+Want to help contribute? Talk to valk#3277 on Discord.
 
 [c/ffb2fd:Items]
-+ Sell more items based on the bosses / enemies defeated.
-+ Sell items based on your characters build.
-+ Have a chance to drop items on death.
++ Merchants sell more items based on bosses / enemies defeated.
++ Merchants sell items based on what you currently have equipped.
++ Merchants have a chance to drop items on death. (disabled by default)
 
 [c/ffb2fd:Dialog]
-+ World conditions effect how the Dialog is played out.
-+ Mostly humerous personalities.
-+ Some Dialog may reward you with items.
-+ Interactions with other merchants.
++ Quests (Quests give you hints on what you need to do to unlock more items)
 
 [c/ffb2fd:Stats]
-+ 300 health for all merchants.
-+ Slightly reduced sizes.
-+ Shoot different projectiles based on bosses defeated.
++ 300 health for all merchants. (disabled by default)
++ Slightly reduced sizes. (disabled by default)
++ Shoot different projectiles based on bosses defeated. (disabled by default)
 
 [c/ffb2fd:Msc]
-+ All merchants have the cycle shop mechanic.
 + The angler, guide, nurse, tax collector and old man are now merchants.
-+ The bound mechanic, wizard and tinkerer glow in the dark.
++ All merchants have the cycle shop mechanic.
 
-GitHub: https://github.com/Valks-Terraria-Mods/MerchantsPlus
+Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 
 ===========================================
+
+[c/991095:v0.13.0]
+Streamlined the dialog for all the merchants. It's plain and boring now. In future updates, quests will be shown in dialog. Quests will tell the player how to unlock more items in the merchants shops.
+Added config options for toggling merchant drops and projectiles.
+The idea of quests have been implemented into Goblin Tinkerer dialog.
 
 [c/991095:v0.12.0]
 Shop category index now resets and is ready for next time you view the shop.

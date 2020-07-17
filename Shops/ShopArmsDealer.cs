@@ -16,36 +16,36 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
-            switch (currentShop)
+            if (currentShop == "Msc")
             {
-                case "Msc":
-                    if (NPC.downedPlantBoss)
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.SniperRifle);
-                        shop.item[nextSlot++].SetDefaults(ItemID.RifleScope);
-                    }
-                    if (Main.dayTime) shop.item[nextSlot++].SetDefaults(ItemID.IllegalGunParts);
-                    if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.EmptyBullet);
-                    shop.item[nextSlot++].SetDefaults(ItemID.AmmoBox);
-                    shop.item[nextSlot].SetDefaults(ItemID.AmmoReservationPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    break;
-
-                case "Guns":
-                    shopBulletMain(shop, ref nextSlot);
-                    shopBulletOther(shop, ref nextSlot);
-                    shopPistol(shop, ref nextSlot);
-                    shopRifle(shop, ref nextSlot);
-                    shopShotgun(shop, ref nextSlot);
-                    break;
-
-                default:
-                    shop.SetupShop(2);
-                    break;
+                if (NPC.downedPlantBoss)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.SniperRifle);
+                    shop.item[nextSlot++].SetDefaults(ItemID.RifleScope);
+                }
+                if (!Main.dayTime) shop.item[nextSlot++].SetDefaults(ItemID.IllegalGunParts);
+                if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.EmptyBullet);
+                shop.item[nextSlot++].SetDefaults(ItemID.AmmoBox);
+                shop.item[nextSlot].SetDefaults(ItemID.AmmoReservationPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                return;
             }
+
+            if (currentShop == "Guns")
+            {
+                ShopBulletMain(shop, ref nextSlot);
+                ShopBulletOther(shop, ref nextSlot);
+                ShopPistol(shop, ref nextSlot);
+                ShopRifle(shop, ref nextSlot);
+                ShopShotgun(shop, ref nextSlot);
+                return;
+            }
+
+            // Default Shop
+            shop.SetupShop(2);
         }
 
-        private void shopBulletMain(Chest shop, ref int nextSlot)
+        private void ShopBulletMain(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.MusketBall);
             if (NPC.downedBoss1) shop.item[nextSlot].SetDefaults(ItemID.SilverBullet);
@@ -58,7 +58,7 @@ namespace MerchantsPlus.Shops
             nextSlot++;
         }
 
-        private void shopBulletOther(Chest shop, ref int nextSlot)
+        private void ShopBulletOther(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.PartyBullet);
             shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 1);
@@ -74,7 +74,7 @@ namespace MerchantsPlus.Shops
             nextSlot++;
         }
 
-        private void shopPistol(Chest shop, ref int nextSlot)
+        private void ShopPistol(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.FlintlockPistol);
             if (NPC.downedSlimeKing) shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
@@ -86,7 +86,7 @@ namespace MerchantsPlus.Shops
             nextSlot++;
         }
 
-        private void shopRifle(Chest shop, ref int nextSlot)
+        private void ShopRifle(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.RedRyder);
             if (NPC.downedBoss1) shop.item[nextSlot].SetDefaults(ItemID.Musket);
@@ -99,7 +99,7 @@ namespace MerchantsPlus.Shops
             nextSlot++;
         }
 
-        private void shopShotgun(Chest shop, ref int nextSlot)
+        private void ShopShotgun(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ItemID.Boomstick);
             if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.Shotgun);

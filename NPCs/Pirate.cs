@@ -4,20 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Pirate : GlobalNPC
+    internal class Pirate : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Pirate) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { Utils.DialogGift(npc, "Oh ye rich friend? Take a cannonball arr.", "Arrrrr", true, 5, ItemID.Cannonball, 100000),
-                "Arr?"});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Pirate) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.Bullet;
             if (Utils.DownedMechBosses() == 1)
             {

@@ -4,22 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Steampunker : GlobalNPC
+    internal class Steampunker : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Steampunker) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "The author of the mod forgot about me. ;(" ,
-                "I don't really have much to say, like I said I'm a forgotten little someone. :(",
-                "Hey, maybe the author of the mod will give me better Dialog in the next update! :/",
-                "Oh someone cares about me? <3"});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Steampunker) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {

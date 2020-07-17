@@ -4,20 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Tavernkeep : GlobalNPC
+    internal class Tavernkeep : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.DD2Bartender) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] {"...", "...", "...", "...", "...",
-                "I AIN'T TELLIN' YOU NOTHIN'"});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.DD2Bartender) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {

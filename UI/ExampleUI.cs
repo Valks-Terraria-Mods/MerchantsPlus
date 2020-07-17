@@ -62,11 +62,11 @@ namespace MerchantsPlus.UI
             new string[]{
                 "Vanilla",
                 "Explosives",
-                "Msc" },
+                "Potions" },
             new string[]{
                 "Vanilla",
                 "Seeds",
-                "Msc" },
+                "Potions" },
             new string[]{
                 "Vanilla",
                 "Color" },

@@ -4,19 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Nurse : GlobalNPC
+    internal class Nurse : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Nurse) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "I heal people!" });
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Nurse) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.NurseSyringeHurt;
             if (NPC.downedSlimeKing)
             {

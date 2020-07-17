@@ -4,20 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class PartyGirl : GlobalNPC
+    internal class PartyGirl : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.PartyGirl) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "PARTY TIME BRUH" ,
-                "SWINGIN' MA HEAD BRUH", "GOTTA' LOVE THIS PARTY BRUH"});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.PartyGirl) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {

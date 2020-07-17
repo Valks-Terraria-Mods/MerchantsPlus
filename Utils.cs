@@ -1,10 +1,18 @@
 using System.Linq;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 
 namespace MerchantsPlus
 {
     internal class Utils
     {
+        public static void QuestKills(List<string> dialog, string enemy, int curKills, int targetKills)
+        {
+            if (curKills < targetKills)
+                dialog.Add($"Quest: Kill {targetKills - curKills} more {enemy}");
+        }
+
         /// <summary>
         /// The players progression, the first 7 levels are prehardmode and
         /// the 18 other levels are hardmode.
@@ -44,6 +52,11 @@ namespace MerchantsPlus
             if (NPC.downedMoonlord) progression++;
 
             return progression;
+        }
+
+        public static bool HasNPC(int npcID)
+        {
+            return NPC.AnyNPCs(npcID);
         }
 
         public static bool IsHardMode()
@@ -256,6 +269,44 @@ namespace MerchantsPlus
 
             // Not enough money.
             return noMoneyDialog;
+        }
+
+        public static bool IsMerchant(int npcID)
+        {
+            switch (npcID) {
+                case NPCID.Angler:
+                case NPCID.ArmsDealer:
+                case NPCID.Clothier:
+                case NPCID.Cyborg:
+                case NPCID.Demolitionist:
+                case NPCID.Dryad:
+                case NPCID.DyeTrader:
+                case NPCID.GoblinTinkerer:
+                case NPCID.Guide:
+                case NPCID.Mechanic:
+                case NPCID.Nurse:
+                case NPCID.Painter:
+                case NPCID.PartyGirl:
+                case NPCID.Pirate:
+                case NPCID.SantaClaus:
+                case NPCID.SkeletonMerchant:
+                case NPCID.Steampunker:
+                case NPCID.Stylist:
+                case NPCID.DD2Bartender:
+                case NPCID.TaxCollector:
+                case NPCID.TravellingMerchant:
+                case NPCID.Truffle:
+                case NPCID.WitchDoctor:
+                case NPCID.Wizard:
+                case NPCID.OldMan:
+                case NPCID.BoundGoblin:
+                case NPCID.BoundMechanic:
+                case NPCID.BoundWizard:
+                case NPCID.SleepingAngler:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

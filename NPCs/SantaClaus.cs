@@ -4,22 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class SantaClaus : GlobalNPC
+    internal class SantaClaus : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.SantaClaus) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "HOHOHOOOOOHOOOOOO",
-                "HOOOOOOOO HOOOOOO HOOOOOOOO",
-                "You were a good lil' kid wern't ya buddy? HOOOOOOOOO HOOOOOOO HOOOOOOOOOO",
-                "HOOOOOOOOOOOOOOOO HOOOOOOOOOOOO HOOOOOOOOOOOOO"});
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.SantaClaus) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {

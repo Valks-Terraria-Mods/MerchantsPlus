@@ -6,9 +6,11 @@ namespace MerchantsPlus
 {
     public static class Config
     {
-        public static bool merchantScaling = false;
-        public static bool merchantExtraLife = false;
-        public static bool merchantDialog = false;
+        public static bool MerchantScaling = false;
+        public static bool MerchantExtraLife = false;
+        public static bool MerchantDialog = false;
+        public static bool MerchantDrops = false;
+        public static bool MerchantProjectiles = false;
 
         private static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
         private static Preferences Configuration = new Preferences(ConfigPath);
@@ -30,9 +32,11 @@ namespace MerchantsPlus
         {
             if (Configuration.Load())
             {
-                Configuration.Get("MerchantScaling", ref merchantScaling);
-                Configuration.Get("MerchantExtraLife", ref merchantExtraLife);
-                Configuration.Get("MerchantDialog", ref merchantDialog);
+                Configuration.Get("MerchantScaling", ref MerchantScaling);
+                Configuration.Get("MerchantExtraLife", ref MerchantExtraLife);
+                Configuration.Get("MerchantDialog", ref MerchantDialog);
+                Configuration.Get("MerchantDrops", ref MerchantDrops);
+                Configuration.Get("MerchantProjectiles", ref MerchantProjectiles);
                 return true;
             }
             return false;
@@ -42,9 +46,11 @@ namespace MerchantsPlus
         private static void CreateConfig()
         {
             Configuration.Clear();
-            Configuration.Put("MerchantScaling", merchantScaling);
-            Configuration.Put("MerchantExtraLife", merchantExtraLife);
-            Configuration.Put("MerchantDialog", merchantDialog);
+            Configuration.Put("MerchantScaling", MerchantScaling);
+            Configuration.Put("MerchantExtraLife", MerchantExtraLife);
+            Configuration.Put("MerchantDialog", MerchantDialog);
+            Configuration.Put("MerchantDrops", MerchantDrops);
+            Configuration.Put("MerchantProjectiles", MerchantProjectiles);
             Configuration.Save();
         }
     }

@@ -16,54 +16,54 @@ namespace MerchantsPlus.Shops
 
         public void InitShop(string currentShop)
         {
-            switch (currentShop)
+            if (currentShop == "Buffs")
             {
-                case "Buffs":
-                    shop.item[nextSlot].SetDefaults(ItemID.GravitationPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.ThornsPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.TitanPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.WarmthPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.WrathPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    break;
-
-                case "Robotics":
-                    shop.item[nextSlot++].SetDefaults(ItemID.ProximityMineLauncher);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Nanites);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PortalGunStation);
-
-                    if (NPC.downedGolemBoss)
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
-                    }
-
-                    if (NPC.downedFishron)
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
-                    }
-
-                    if (NPC.downedAncientCultist)
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
-                    }
-
-                    if (NPC.downedTowerVortex)
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
-                    }
-                    break;
-
-                default:
-                    shop.SetupShop(14);
-                    break;
+                shop.item[nextSlot].SetDefaults(ItemID.GravitationPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                shop.item[nextSlot].SetDefaults(ItemID.ThornsPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                shop.item[nextSlot].SetDefaults(ItemID.TitanPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                shop.item[nextSlot].SetDefaults(ItemID.WarmthPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                shop.item[nextSlot].SetDefaults(ItemID.WrathPotion);
+                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                return;
             }
+
+            if (currentShop == "Robotics")
+            {
+                shop.item[nextSlot++].SetDefaults(ItemID.ProximityMineLauncher);
+                shop.item[nextSlot++].SetDefaults(ItemID.Nanites);
+                shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
+                shop.item[nextSlot++].SetDefaults(ItemID.PortalGunStation);
+
+                if (NPC.downedGolemBoss)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
+                }
+
+                if (NPC.downedFishron)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
+                }
+
+                if (NPC.downedAncientCultist)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
+                }
+
+                if (NPC.downedTowerVortex)
+                {
+                    shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                }
+                return;
+            }
+
+            // Default Shop
+            shop.SetupShop(14);
         }
     }
 }

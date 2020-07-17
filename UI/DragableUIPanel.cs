@@ -15,7 +15,7 @@ namespace MerchantsPlus.UI
         // Stores the offset from the top left of the UIPanel while dragging.
         private Vector2 offset;
 
-        public bool dragging;
+        public bool Dragging;
 
         public override void MouseDown(UIMouseEvent evt)
         {
@@ -32,13 +32,13 @@ namespace MerchantsPlus.UI
         private void DragStart(UIMouseEvent evt)
         {
             offset = new Vector2(evt.MousePosition.X - Left.Pixels, evt.MousePosition.Y - Top.Pixels);
-            dragging = true;
+            Dragging = true;
         }
 
         private void DragEnd(UIMouseEvent evt)
         {
             Vector2 end = evt.MousePosition;
-            dragging = false;
+            Dragging = false;
 
             Left.Set(end.X - offset.X, 0f);
             Top.Set(end.Y - offset.Y, 0f);
@@ -56,7 +56,7 @@ namespace MerchantsPlus.UI
                 Main.LocalPlayer.mouseInterface = true;
             }
 
-            if (dragging)
+            if (Dragging)
             {
                 Left.Set(Main.mouseX - offset.X, 0f); // Main.MouseScreen.X and Main.mouseX are the same.
                 Top.Set(Main.mouseY - offset.Y, 0f);

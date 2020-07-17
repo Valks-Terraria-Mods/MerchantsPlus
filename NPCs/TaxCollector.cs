@@ -4,19 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class TaxCollector : GlobalNPC
+    internal class TaxCollector : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.TaxCollector) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "Heh heh heh (all your gold was removed from your inventory) (jk)" });
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.TaxCollector) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.ThrowingKnife;
             if (NPC.downedBoss2)
             {

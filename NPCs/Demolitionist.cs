@@ -4,19 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class Demolitionist : GlobalNPC
+    internal class Demolitionist : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Demolitionist) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "Modder still working on my Dialog." });
+            base.GetChat(npc, ref chat);
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
         {
             if (npc.type != NPCID.Demolitionist) return;
-            attackDelay = 1;
+            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
             projType = ProjectileID.Grenade;
             if (NPC.downedSlimeKing)
             {

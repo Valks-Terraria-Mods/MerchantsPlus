@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace MerchantsPlus.NPCs
 {
-    internal class OldMan : GlobalNPC
+    internal class OldMan : BaseMerchant
     {
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.OldMan) return;
-            if (!Config.merchantDialog) return;
-            chat = Utils.Dialog(new string[] { "You want to fight big pa? Come back at night!" });
+            base.GetChat(npc, ref chat);
         }
 
         public override void NPCLoot(NPC npc)
         {
             if (npc.type != NPCID.OldMan) return;
+            base.NPCLoot(npc);
             Utils.DropItem(npc, NPCID.OldMan, new short[] { ItemID.Bacon }, 100);
         }
     }
