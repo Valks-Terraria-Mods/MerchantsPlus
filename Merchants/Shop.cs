@@ -2,10 +2,12 @@
 
 using Terraria;
 using Terraria.ID;
+using MerchantsPlus.NPCs;
+using Microsoft.Xna.Framework;
 
-namespace MerchantsPlus.Shops
+namespace MerchantsPlus.Merchants
 {
-    internal abstract class Shop
+    internal abstract class Shop : BaseMerchant
     {
         public List<string> Shops;
 

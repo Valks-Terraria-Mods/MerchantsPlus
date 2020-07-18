@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace MerchantsPlus.Shops
+namespace MerchantsPlus.Merchants
 {
     internal class ShopSkeletonMerchant : Shop
     {

@@ -1,4 +1,4 @@
-﻿using MerchantsPlus.Shops;
+﻿using MerchantsPlus.Merchants;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -73,13 +73,16 @@ namespace MerchantsPlus.UI
 
         public static int TheShop;
 
+        // Shop counters keeps track of the current shop index the player is in within that merchants set of shops
         public static int[] ShopCounters = new int[shops.Count];
+
+        // Current shops keeps track of the current shop name the player is in within that merchants set of shops
         public static string[] CurrentShops = new string[shops.Count];
 
         private TextButton m_OpenShopButton;
 
         /// <summary>
-        /// Assign some default values to CurrentShops[] so the game doesn't crash.
+        /// This is the first shop name the player will see (for all shops) before pressing cycle shop button.
         /// </summary>
         private void InitCurrentShops()
         {

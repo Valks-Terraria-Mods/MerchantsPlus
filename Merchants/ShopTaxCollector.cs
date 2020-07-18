@@ -1,6 +1,6 @@
 ﻿using Terraria.ID;
 
-namespace MerchantsPlus.Shops
+namespace MerchantsPlus.Merchants
 {
     internal class ShopTaxCollector : Shop
     {
