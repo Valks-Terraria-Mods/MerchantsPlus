@@ -13,17 +13,20 @@ namespace MerchantsPlus.Merchants
         {
             base.OpenShop(shop);
 
-            if (shop == "Mounts") {
+            if (shop == "Mounts")
+            {
                 Mounts();
                 return;
             }
 
-            if (shop == "Pets") {
+            if (shop == "Pets")
+            {
                 Pets();
                 return;
             }
 
-            if (shop == "Ores") {
+            if (shop == "Ores")
+            {
                 if (WorldGen.copperBar > 0)
                 {
                     AddItem(ItemID.CopperOre, Utils.UniversalOreCost);
@@ -1532,69 +1535,55 @@ namespace MerchantsPlus.Merchants
             AddItem(ItemID.Seedling, Utils.UniversalPetCost);
 
             AddItem(ItemID.Carrot, Utils.UniversalPetCost);
-            
 
             AddItem(ItemID.DogWhistle, Utils.UniversalPetCost);
-            
 
             if (NPC.downedSlimeKing)
             {
                 AddItem(ItemID.Fish, Utils.UniversalPetCost);
-                
 
                 AddItem(ItemID.ZephyrFish, Utils.UniversalPetCost);
-                
             }
 
             if (Utils.DownedEyeOfCthulhu())
             {
                 AddItem(ItemID.EyeSpring, Utils.UniversalPetCost);
-                
             }
 
             if (NPC.downedGoblins)
             {
                 AddItem(ItemID.BabyGrinchMischiefWhistle, Utils.UniversalPetCost);
-                
             }
 
             if (Utils.DownedBrainOfCthulhu())
             {
                 AddItem(ItemID.EatersBone, Utils.UniversalPetCost);
-                
 
                 AddItem(ItemID.BoneRattle, Utils.UniversalPetCost);
-                
             }
 
             if (Utils.DownedSkeletron())
             {
                 AddItem(ItemID.BoneKey, Utils.UniversalPetCost);
-                
 
                 AddItem(ItemID.TartarSauce, Utils.UniversalPetCost);
-                
             }
 
             if (NPC.downedQueenBee)
             {
                 AddItem(ItemID.Nectar, Utils.UniversalPetCost);
-                
             }
 
             if (Main.hardMode)
             {
                 AddItem(ItemID.CompanionCube, Utils.UniversalPetCost);
-                
 
                 AddItem(ItemID.AmberMosquito, Utils.UniversalPetCost);
-                
             }
 
             if (NPC.downedPlantBoss)
             {
                 AddItem(ItemID.TikiTotem, Utils.UniversalPetCost);
-                
             }
 
             if (NPC.downedPirates)

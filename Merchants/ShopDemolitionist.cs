@@ -17,13 +17,13 @@ namespace MerchantsPlus.Merchants
             {
                 AddItem(ItemID.MiningPotion, Utils.UniversalPotionCost);
                 AddItem(ItemID.NightOwlPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.ShinePotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.SpelunkerPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.StinkPotion, Utils.UniversalPotionCost);
-                
+
                 return;
             }
 

@@ -8,7 +8,6 @@ namespace MerchantsPlus.NPCs
 {
     internal abstract class BaseMerchant : GlobalNPC
     {
-
         public override void SetDefaults(NPC npc)
         {
             base.SetDefaults(npc);
@@ -19,7 +18,7 @@ namespace MerchantsPlus.NPCs
                 if (Config.MerchantExtraLife) npc.lifeMax = 500;
             }
         }
-        
+
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
             base.DrawEffects(npc, ref drawColor);

@@ -17,15 +17,15 @@ namespace MerchantsPlus.Merchants
             {
                 AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
                 AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
-                
+
                 return;
             }
 

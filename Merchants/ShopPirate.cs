@@ -1,4 +1,3 @@
-using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Merchants
@@ -37,6 +36,5 @@ namespace MerchantsPlus.Merchants
             // Default Shop
             Inv.SetupShop(17);
         }
-
     }
 }

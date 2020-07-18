@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 
 namespace MerchantsPlus.Merchants
 {
@@ -169,15 +168,15 @@ namespace MerchantsPlus.Merchants
                 AddItem(ItemID.BuilderPotion, Utils.UniversalPotionCost);
                 AddItem(ItemID.Toolbelt, Utils.UniversalAccessoryCost);
                 AddItem(ItemID.Toolbox, Utils.UniversalAccessoryCost);
-                
+
                 AddItem(ItemID.PaintSprayer, Utils.UniversalAccessoryCost);
-                
+
                 AddItem(ItemID.ExtendoGrip, Utils.UniversalAccessoryCost);
-                
+
                 AddItem(ItemID.PortableCementMixer, Utils.UniversalAccessoryCost);
-                
+
                 AddItem(ItemID.BrickLayer, Utils.UniversalAccessoryCost);
-                
+
                 return;
             }
 

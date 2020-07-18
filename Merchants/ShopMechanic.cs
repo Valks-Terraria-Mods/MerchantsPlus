@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 
 namespace MerchantsPlus.Merchants
 {
@@ -16,61 +15,61 @@ namespace MerchantsPlus.Merchants
             if (shop == "Materials")
             {
                 AddItem(ItemID.Wood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Cactus, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.RichMahogany, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.BorealWood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.PalmWood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Ebonwood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Shadewood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Pearlwood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.SpookyWood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.DynastyWood, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Pumpkin, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Mushroom, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Granite, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Marble, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Meteorite, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.CrystalBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Glass, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.LivingWoodWand, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.SunplateBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.IceBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.HoneyBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.SlimeBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.BoneBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.FleshBlock, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.Cog, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.LihzahrdBrick, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.MartianConduitPlating, Utils.Coins(0, 1));
-                
+
                 AddItem(ItemID.GoldBrick, Utils.Coins(0, 1));
-                
+
                 return;
             }
 

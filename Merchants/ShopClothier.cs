@@ -58,7 +58,6 @@ namespace MerchantsPlus.Merchants
             {
                 AddItem(ItemID.MummyPants, Utils.UniversalVanityCost);
 
-
                 AddItem(ItemID.PedguinHat, Utils.UniversalVanityCost);
 
                 AddItem(ItemID.PedguinShirt, Utils.UniversalVanityCost);
@@ -67,10 +66,7 @@ namespace MerchantsPlus.Merchants
 
                 AddItem(ItemID.PharaohsMask, Utils.UniversalVanityCost);
 
-
-
                 AddItem(ItemID.PharaohsRobe, Utils.UniversalVanityCost);
-
 
                 AddItem(ItemID.PirateHat, Utils.UniversalVanityCost);
 
@@ -98,13 +94,11 @@ namespace MerchantsPlus.Merchants
 
                 AddItem(ItemID.RuneRobe, Utils.UniversalVanityCost);
 
-
                 AddItem(ItemID.SailorHat, Utils.UniversalVanityCost);
 
                 AddItem(ItemID.SailorShirt, Utils.UniversalVanityCost);
 
                 AddItem(ItemID.SailorPants, Utils.UniversalVanityCost);
-
 
                 AddItem(ItemID.ScarecrowHat, Utils.UniversalVanityCost);
 
@@ -221,7 +215,6 @@ namespace MerchantsPlus.Merchants
 
                 AddItem(ItemID.MermaidTail, Utils.UniversalVanityCost);
 
-
                 AddItem(ItemID.MummyMask, Utils.UniversalVanityCost);
 
                 AddItem(ItemID.MummyShirt, Utils.UniversalVanityCost);
@@ -304,7 +297,6 @@ namespace MerchantsPlus.Merchants
                 AddItem(ItemID.ArchaeologistsJacket, Utils.UniversalVanityCost);
 
                 AddItem(ItemID.ArchaeologistsPants, Utils.UniversalVanityCost);
-
 
                 AddItem(ItemID.BeeHat, Utils.UniversalVanityCost);
 
@@ -391,9 +383,7 @@ namespace MerchantsPlus.Merchants
 
                 AddItem(ItemID.PrincessDress, Utils.UniversalVanityCost);
 
-
                 AddItem(ItemID.PumpkinHelmet, Utils.UniversalVanityCost);
-
 
                 AddItem(ItemID.PumpkinShirt, Utils.UniversalVanityCost);
 
@@ -414,127 +404,101 @@ namespace MerchantsPlus.Merchants
                 {
                     AddItem(ItemID.EyePatch, Utils.UniversalVanityCost);
                     AddItem(ItemID.PlatinumCrown, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (NPC.downedBoss1)
                 { // eye
                     AddItem(ItemID.Sunglasses, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (NPC.downedBoss2)
                 { //worm / brain
                     AddItem(ItemID.GuyFawkesMask, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (NPC.downedBoss3)
                 { // skeletron
                     AddItem(ItemID.ReindeerAntlers, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.hardMode)
                 {
                     AddItem(ItemID.ReaperRobe, Utils.UniversalVanityCost);
-                    
+
                     AddItem(ItemID.ReaperHood, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (NPC.downedMechBossAny)
                 {
                     AddItem(ItemID.SpaceCreaturePants, Utils.UniversalVanityCost);
-                    
+
                     AddItem(ItemID.SpaceCreatureShirt, Utils.UniversalVanityCost);
-                    
+
                     AddItem(ItemID.SpaceCreatureMask, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (NPC.downedPlantBoss)
                 {
                     AddItem(ItemID.BunnyHood, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.raining)
                 {
                     AddItem(ItemID.CrownosLeggings, Utils.UniversalVanityCost);
-                    
+
                     AddItem(ItemID.CrownosBreastplate, Utils.UniversalVanityCost);
-                    
+
                     AddItem(ItemID.CrownosMask, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.bloodMoon)
                 {
                     AddItem(ItemID.CenxsDressPants, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.CenxsLeggings, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.CenxsDress, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.CenxsBreastplate, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.CenxsTiara, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.eclipse)
                 {
                     AddItem(ItemID.JimsLeggings, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.JimsBreastplate, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.JimsHelmet, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.dayTime)
                 {
                     AddItem(ItemID.ArkhalisPants, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.ArkhalisShirt, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.ArkhalisHat, Utils.UniversalVanityCost);
-                    
                 }
                 else
                 {
                     AddItem(ItemID.LokisPants, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.LokisShirt, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.LokisHelm, Utils.UniversalVanityCost);
-                    
                 }
 
                 if (Main.hardMode)
                 {
                     AddItem(ItemID.LeinforsPants, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.LeinforsShirt, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.LeinforsHat, Utils.UniversalVanityCost);
-                    
 
                     AddItem(ItemID.LeinforsAccessory, Utils.UniversalVanityCost);
-                    
                 }
                 return;
             }

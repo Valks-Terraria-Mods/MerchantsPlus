@@ -17,13 +17,13 @@ namespace MerchantsPlus.Merchants
             {
                 AddItem(ItemID.EndurancePotion, Utils.UniversalPotionCost);
                 AddItem(ItemID.IronskinPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.LifeforcePotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.RegenerationPotion, Utils.UniversalPotionCost);
-                
+
                 AddItem(ItemID.HeartreachPotion, Utils.UniversalPotionCost);
-                
+
                 return;
             }
 

@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.UI;
 
 namespace MerchantsPlus.UI
@@ -36,7 +35,7 @@ namespace MerchantsPlus.UI
         public const int WITCHDOCTOR = 23;
         public const int WIZARD = 24;
 
-        private static readonly Dictionary<int, Shop> shops = new Dictionary<int, Shop>() {
+        public static Dictionary<int, Shop> Shops = new Dictionary<int, Shop>() {
             { ANGLER, new ShopAngler(false, "Fishing Gear", "Bait", "Buffs", "Crates") },
             { ARMSDEALER, new ShopArmsDealer(true, "Guns", "Msc") },
             { CLOTHIER, new ShopClothier(true, "Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
@@ -44,7 +43,7 @@ namespace MerchantsPlus.UI
             { DEMOLITIONIST, new ShopDemolitionist(true, "Explosives", "Potions") },
             { DRYAD, new ShopDryad(true, "Seeds", "Potions") },
             { DYETRADER, new ShopDyeTrader(true, "Color") },
-            { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana", 
+            { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana",
                 "Immunity", "Defensive", "Special", "Miscellaneous") },
             { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
             { MERCHANT, new ShopMerchant(true, "Gear", "Ores", "Pets", "Mounts") },
@@ -55,9 +54,9 @@ namespace MerchantsPlus.UI
             { SANTACLAUS, new ShopSantaClaus(true, "Decor", "Bulbs", "Lights", "Potions") },
             { SKELETONMERCHANT, new ShopSkeletonMerchant(true, "Gear", "Music Boxes") },
             { STEAMPUNKER, new ShopSteampunker(true, "Gear", "Solutions", "Logic") },
-            { STYLIST, new ShopStylist(true, "Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean", 
-                "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army", 
-                "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness", 
+            { STYLIST, new ShopStylist(true, "Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
+                "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
+                "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
                 "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
             { TAVERNKEEP, new ShopTavernkeep(true, "Gear") },
             { TAXCOLLECTOR, new ShopTaxCollector(false) },
@@ -74,10 +73,10 @@ namespace MerchantsPlus.UI
         public static int TheShop;
 
         // Shop counters keeps track of the current shop index the player is in within that merchants set of shops
-        public static int[] ShopCounters = new int[shops.Count];
+        public static int[] ShopCounters = new int[Shops.Count];
 
         // Current shops keeps track of the current shop name the player is in within that merchants set of shops
-        public static string[] CurrentShops = new string[shops.Count];
+        private string[] CurrentShops = new string[Shops.Count];
 
         private TextButton m_OpenShopButton;
 
@@ -144,15 +143,15 @@ namespace MerchantsPlus.UI
 
         private void ShiftShop()
         {
-            if (shops[TheShop].Shops.Count == 0) return; // Safe Guard
-            if (ShopCounters[TheShop] >= shops[TheShop].Shops.Count - 1)
+            if (Shops[TheShop].Shops.Count == 0) return; // Safe Guard
+            if (ShopCounters[TheShop] >= Shops[TheShop].Shops.Count - 1)
             {
-                CurrentShops[TheShop] = shops[TheShop].Shops[0];
+                CurrentShops[TheShop] = Shops[TheShop].Shops[0];
                 ShopCounters[TheShop] = 0;
             }
             else
             {
-                CurrentShops[TheShop] = shops[TheShop].Shops[++ShopCounters[TheShop]];
+                CurrentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
             }
         }
 
@@ -163,7 +162,7 @@ namespace MerchantsPlus.UI
 
         private void OpenShop()
         {
-            shops[TheShop].OpenShop(CurrentShops[TheShop]);
+            Shops[TheShop].OpenShop(CurrentShops[TheShop]);
         }
     }
 }

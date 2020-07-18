@@ -2,14 +2,13 @@
 
 using Terraria;
 using Terraria.ID;
-using MerchantsPlus.NPCs;
-using Microsoft.Xna.Framework;
 
 namespace MerchantsPlus.Merchants
 {
-    internal abstract class Shop : BaseMerchant
+    internal abstract class Shop
     {
         public List<string> Shops;
+        public List<string> Quests;
 
         protected Chest Inv;
         protected int NextSlot = 0;
@@ -28,6 +27,8 @@ namespace MerchantsPlus.Merchants
                 otherShops.Add(shops[i]);
 
             Shops.AddRange(otherShops);
+
+            Quests = new List<string>();
         }
 
         /// <summary>
@@ -51,6 +52,8 @@ namespace MerchantsPlus.Merchants
             Inv.SetupShop(0);
 
             NextSlot = 0;
+
+            Quests.Clear();
         }
 
         protected void AddItem(int itemID)

@@ -1,4 +1,3 @@
-using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Merchants

@@ -1,7 +1,6 @@
 using System.IO;
 using Terraria;
 using Terraria.IO;
-using System.Collections.Generic;
 
 namespace MerchantsPlus
 {
