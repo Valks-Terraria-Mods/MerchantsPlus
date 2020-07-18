@@ -3,67 +3,63 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopCyborg
+    internal class ShopCyborg : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopCyborg(Chest shop, int nextSlot)
+        public ShopCyborg(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            if (currentShop == "Buffs")
+            base.OpenShop(shop);
+
+            if (shop == "Buffs")
             {
-                shop.item[nextSlot].SetDefaults(ItemID.GravitationPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.ThornsPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.TitanPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.WarmthPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.WrathPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
+                
                 return;
             }
 
-            if (currentShop == "Robotics")
+            if (shop == "Robotics")
             {
-                shop.item[nextSlot++].SetDefaults(ItemID.ProximityMineLauncher);
-                shop.item[nextSlot++].SetDefaults(ItemID.Nanites);
-                shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
-                shop.item[nextSlot++].SetDefaults(ItemID.PortalGunStation);
+                AddItem(ItemID.ProximityMineLauncher);
+                AddItem(ItemID.Nanites);
+                AddItem(ItemID.PortalGun);
+                AddItem(ItemID.PortalGunStation);
 
                 if (NPC.downedGolemBoss)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.ElectrosphereLauncher);
+                    AddItem(ItemID.ElectrosphereLauncher);
                 }
 
                 if (NPC.downedFishron)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.RocketLauncher);
+                    AddItem(ItemID.RocketLauncher);
                 }
 
                 if (NPC.downedAncientCultist)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.SnowmanCannon);
+                    AddItem(ItemID.SnowmanCannon);
                 }
 
                 if (NPC.downedTowerVortex)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.NailGun);
+                    AddItem(ItemID.NailGun);
                 }
                 return;
             }
 
             // Default Shop
-            shop.SetupShop(14);
+            Inv.SetupShop(14);
         }
     }
 }

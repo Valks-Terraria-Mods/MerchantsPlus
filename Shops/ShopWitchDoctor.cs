@@ -3,42 +3,39 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopWitchDoctor
+    internal class ShopWitchDoctor : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopWitchDoctor(Chest shop, int nextSlot)
+        public ShopWitchDoctor(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
+            base.OpenShop(shop);
+
+            if (shop == "Flasks")
             {
-                case "Flasks":
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofCursedFlames);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofFire);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofGold);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofIchor);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofNanites);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofParty);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofPoison);
-                    shop.item[nextSlot++].SetDefaults(ItemID.FlaskofVenom);
-                    break;
-
-                case "Gear":
-                    shop.item[nextSlot++].SetDefaults(ItemID.HerculesBeetle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.NecromanticScroll);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PygmyNecklace);
-                    break;
-
-                default:
-                    shop.SetupShop(16);
-                    break;
+                AddItem(ItemID.FlaskofCursedFlames);
+                AddItem(ItemID.FlaskofFire);
+                AddItem(ItemID.FlaskofGold);
+                AddItem(ItemID.FlaskofIchor);
+                AddItem(ItemID.FlaskofNanites);
+                AddItem(ItemID.FlaskofParty);
+                AddItem(ItemID.FlaskofPoison);
+                AddItem(ItemID.FlaskofVenom);
+                return;
             }
+
+            if (shop == "Gear")
+            {
+                AddItem(ItemID.HerculesBeetle);
+                AddItem(ItemID.NecromanticScroll);
+                AddItem(ItemID.PygmyNecklace);
+                return;
+            }
+
+            // Default Shop
+            Inv.SetupShop(16);
         }
     }
 }

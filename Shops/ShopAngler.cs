@@ -1,331 +1,262 @@
-using Terraria;
 using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopAngler
+    internal class ShopAngler : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopAngler(Chest shop, int nextSlot)
+        public ShopAngler(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
+            base.OpenShop(shop);
+
             int progression = Utils.Progression();
 
-            if (currentShop == "Buffs")
+            if (shop == "Buffs")
             {
-                shop.item[nextSlot].SetDefaults(ItemID.FlipperPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                AddItem(ItemID.FlipperPotion, Utils.UniversalPotionCost);
 
                 if (progression > 0)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.WaterWalkingPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    AddItem(ItemID.WaterWalkingPotion, Utils.UniversalPotionCost);
                 }
 
                 if (progression > 1)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.GillsPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    AddItem(ItemID.GillsPotion, Utils.UniversalPotionCost);
                 }
 
                 if (progression > 2)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.Sashimi);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.CookedFish);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.CookedShrimp);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    AddItem(ItemID.Sashimi, Utils.UniversalPotionCost);
+                    AddItem(ItemID.CookedFish, Utils.UniversalPotionCost);
+                    AddItem(ItemID.CookedShrimp, Utils.UniversalPotionCost);
                 }
 
                 if (progression > 3)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.SonarPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    AddItem(ItemID.SonarPotion, Utils.UniversalPotionCost);
                 }
 
                 if (progression > 4)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.CratePotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.FishingPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                    AddItem(ItemID.CratePotion, Utils.UniversalPotionCost);
+                    AddItem(ItemID.FishingPotion, Utils.UniversalPotionCost);
                 }
 
                 return;
             }
 
-            if (currentShop == "Crates")
+            if (shop == "Crates")
             {
-                shop.item[nextSlot].SetDefaults(ItemID.WoodenCrate);
-                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 10);
+                AddItem(ItemID.WoodenCrate, Utils.Coins(0, 0, 10));
 
                 if (progression > 0)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.IronCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 15);
+                    AddItem(ItemID.IronCrate, Utils.Coins(0, 0, 15));
                 }
 
                 if (progression > 1)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.JungleFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 10);
-                    shop.item[nextSlot].SetDefaults(ItemID.FloatingIslandFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 10);
+                    AddItem(ItemID.JungleFishingCrate, Utils.Coins(0, 0, 10));
+                    AddItem(ItemID.FloatingIslandFishingCrate, Utils.Coins(0, 0, 10));
                 }
 
                 if (progression > 2)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.CorruptFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 10);
-                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 10);
+                    AddItem(ItemID.CorruptFishingCrate, Utils.Coins(0, 0, 10));
+                    AddItem(ItemID.CrimsonFishingCrate, Utils.Coins(0, 0, 10));
                 }
 
                 if (progression > 3)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.DungeonFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
+                    AddItem(ItemID.DungeonFishingCrate, Utils.Coins(0, 0, 25));
                 }
 
                 if (progression > 4)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.GoldenCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 30);
+                    AddItem(ItemID.GoldenCrate, Utils.Coins(0, 0, 30));
                 }
 
                 if (progression > 5)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.HallowedFishingCrate);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
+                    AddItem(ItemID.HallowedFishingCrate, Utils.Coins(0, 0, 30));
                 }
                 return;
             }
 
-            if (currentShop == "Bait")
+            if (shop == "Bait")
             {
                 // 5% Bait Power
-                shop.item[nextSlot].SetDefaults(ItemID.MonarchButterfly);
-                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 10);
+                AddItem(ItemID.MonarchButterfly, Utils.Coins(0, 10));
 
                 if (progression > 0)
                 {
                     // 10% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.SulphurButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 20);
-                    shop.item[nextSlot].SetDefaults(ItemID.Scorpion);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 20);
-                    shop.item[nextSlot].SetDefaults(ItemID.Snail);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 20);
-                    shop.item[nextSlot].SetDefaults(ItemID.Grasshopper);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 20);
+                    AddItem(ItemID.SulphurButterfly, Utils.Coins(0, 20));
+                    AddItem(ItemID.Scorpion, Utils.Coins(0, 20));
+                    AddItem(ItemID.Snail, Utils.Coins(0, 20));
+                    AddItem(ItemID.Grasshopper, Utils.Coins(0, 20));
                 }
 
                 if (progression > 1)
                 {
                     // 15% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.ApprenticeBait);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 30);
-                    shop.item[nextSlot].SetDefaults(ItemID.ZebraSwallowtailButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 30);
-                    shop.item[nextSlot].SetDefaults(ItemID.BlackScorpion);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 30);
-                    shop.item[nextSlot].SetDefaults(ItemID.GlowingSnail);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 30);
-                    shop.item[nextSlot].SetDefaults(ItemID.Grubby);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 30);
+                    AddItem(ItemID.ApprenticeBait, Utils.Coins(0, 30));
+                    AddItem(ItemID.ZebraSwallowtailButterfly, Utils.Coins(0, 30));
+                    AddItem(ItemID.BlackScorpion, Utils.Coins(0, 30));
+                    AddItem(ItemID.GlowingSnail, Utils.Coins(0, 30));
+                    AddItem(ItemID.Grubby, Utils.Coins(0, 30));
                 }
 
                 if (progression > 2)
                 {
                     // 20% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.Firefly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 40);
-                    shop.item[nextSlot].SetDefaults(ItemID.UlyssesButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 40);
-                    shop.item[nextSlot].SetDefaults(ItemID.BlueJellyfish);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 40);
-                    shop.item[nextSlot].SetDefaults(ItemID.GreenJellyfish);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 40);
-                    shop.item[nextSlot].SetDefaults(ItemID.PinkJellyfish);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 40);
+                    AddItem(ItemID.Firefly, Utils.Coins(0, 40));
+                    AddItem(ItemID.UlyssesButterfly, Utils.Coins(0, 40));
+                    AddItem(ItemID.BlueJellyfish, Utils.Coins(0, 40));
+                    AddItem(ItemID.GreenJellyfish, Utils.Coins(0, 40));
+                    AddItem(ItemID.PinkJellyfish, Utils.Coins(0, 40));
                 }
 
                 if (progression > 3)
                 {
                     // 25% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.JuliaButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 50);
-                    shop.item[nextSlot].SetDefaults(ItemID.Worm);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 50);
-                    shop.item[nextSlot].SetDefaults(ItemID.Sluggy);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 50);
+                    AddItem(ItemID.JuliaButterfly, Utils.Coins(0, 50));
+                    AddItem(ItemID.Worm, Utils.Coins(0, 50));
+                    AddItem(ItemID.Sluggy, Utils.Coins(0, 50));
                 }
 
                 if (progression > 4)
                 {
                     // 30% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.JourneymanBait);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 60);
-                    shop.item[nextSlot].SetDefaults(ItemID.RedAdmiralButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 60);
+                    AddItem(ItemID.JourneymanBait, Utils.Coins(0, 60));
+                    AddItem(ItemID.RedAdmiralButterfly, Utils.Coins(0, 60));
                 }
 
                 if (progression > 5)
                 {
                     // 35% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.PurpleEmperorButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 70);
-                    shop.item[nextSlot].SetDefaults(ItemID.LightningBug);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 70);
-                    shop.item[nextSlot].SetDefaults(ItemID.EnchantedNightcrawler);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 70);
+                    AddItem(ItemID.PurpleEmperorButterfly, Utils.Coins(0, 70));
+                    AddItem(ItemID.LightningBug, Utils.Coins(0, 70));
+                    AddItem(ItemID.EnchantedNightcrawler, Utils.Coins(0, 70));
                 }
 
                 if (progression > 6)
                 {
                     // 40% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.Buggy);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 80);
+                    AddItem(ItemID.Buggy, Utils.Coins(0, 80));
                 }
 
                 if (progression > 7)
                 {
                     // 50% Bait Power
-                    shop.item[nextSlot].SetDefaults(ItemID.MasterBait);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.TreeNymphButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.GoldButterfly);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.GoldWorm);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.GoldGrasshopper);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 1);
+                    AddItem(ItemID.MasterBait, Utils.Coins(0, 0, 1));
+                    AddItem(ItemID.TreeNymphButterfly, Utils.Coins(0, 0, 1));
+                    AddItem(ItemID.GoldButterfly, Utils.Coins(0, 0, 1));
+                    AddItem(ItemID.GoldWorm, Utils.Coins(0, 0, 1));
+                    AddItem(ItemID.GoldGrasshopper, Utils.Coins(0, 0, 1));
                 }
 
                 if (progression > 8)
                 {
-                    shop.item[nextSlot].SetDefaults(ItemID.TruffleWorm);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
+                    AddItem(ItemID.TruffleWorm, Utils.Coins(0, 0, 0, 1));
                 }
                 return;
             }
 
             // Default Shop
-            ShopFishingPole(shop, ref nextSlot, progression);
+            ShopFishingPole(progression);
 
             if (progression > 0)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.AnglerPants);
-                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 15);
+                AddItem(ItemID.AnglerPants, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 1)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
-                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 15);
+                AddItem(ItemID.AnglerVest, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 2)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 15);
+                AddItem(ItemID.AnglerHat, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 3)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.FishFinder);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.FishFinder, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 4)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.AnglerEarring);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.AnglerEarring, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 5)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.Sextant);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.Sextant, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 6)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.WeatherRadio);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.WeatherRadio, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 7)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.FishermansGuide);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.FishermansGuide, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 8)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.TackleBox);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.TackleBox, Utils.UniversalAccessoryCost);
             }
 
             if (progression > 9)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.HighTestFishingLine);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalAccessoryCost;
+                AddItem(ItemID.HighTestFishingLine, Utils.UniversalAccessoryCost);
             }
         }
 
-        private void ShopFishingPole(Chest shop, ref int nextSlot, int progression)
+        private void ShopFishingPole(int progression)
         {
-            shop.item[nextSlot].SetDefaults(ItemID.WoodFishingPole);
-            shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 10);
+            ReplaceItem(ItemID.WoodFishingPole, Utils.Coins(0, 10));
 
             if (progression > 0)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.ReinforcedFishingPole);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 25);
+                ReplaceItem(ItemID.ReinforcedFishingPole, Utils.Coins(0, 25));
             }
             if (progression > 1)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.FisherofSouls);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 1);
+                ReplaceItem(ItemID.FisherofSouls, Utils.Coins(0, 0, 1));
             }
             if (progression > 2)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.FiberglassFishingPole);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 10);
+                ReplaceItem(ItemID.FiberglassFishingPole, Utils.Coins(0, 0, 10));
             }
             if (progression > 3)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.MechanicsRod);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 25);
+                ReplaceItem(ItemID.MechanicsRod, Utils.Coins(0, 0, 25));
             }
             if (progression > 4)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 50);
+                ReplaceItem(ItemID.SittingDucksFishingRod, Utils.Coins(0, 0, 50));
             }
 
             if (progression > 5)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.HotlineFishingHook);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
+                ReplaceItem(ItemID.HotlineFishingHook, Utils.Coins(0, 0, 0, 1));
             }
 
             if (progression > 6)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.GoldenFishingRod);
-                shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 0, 0, 2);
+                ReplaceItem(ItemID.GoldenFishingRod, Utils.Coins(0, 0, 0, 2));
             }
-            nextSlot++;
+
+            NextSlot++;
         }
     }
 }

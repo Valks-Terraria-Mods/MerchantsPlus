@@ -3,45 +3,42 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopDryad
+    internal class ShopDryad : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopDryad(Chest shop, int nextSlot)
+        public ShopDryad(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            if (currentShop == "Potions") {
-                shop.item[nextSlot].SetDefaults(ItemID.CalmingPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                shop.item[nextSlot].SetDefaults(ItemID.FeatherfallPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+            base.OpenShop(shop);
+
+            if (shop == "Potions")
+            {
+                AddItem(ItemID.CalmingPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.FeatherfallPotion, Utils.UniversalPotionCost);
                 return;
             }
 
-            if (currentShop == "Seeds") {
-                shop.item[nextSlot++].SetDefaults(ItemID.GrassSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.CorruptSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.HallowedSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.MushroomGrassSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.CrimsonSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.BlinkrootSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.DaybloomSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.DeathweedSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.FireblossomSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.MoonglowSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.WaterleafSeeds);
-                shop.item[nextSlot++].SetDefaults(ItemID.ShiverthornSeeds);
+            if (shop == "Seeds")
+            {
+                AddItem(ItemID.GrassSeeds);
+                AddItem(ItemID.CorruptSeeds);
+                AddItem(ItemID.HallowedSeeds);
+                AddItem(ItemID.MushroomGrassSeeds);
+                AddItem(ItemID.CrimsonSeeds);
+                AddItem(ItemID.BlinkrootSeeds);
+                AddItem(ItemID.DaybloomSeeds);
+                AddItem(ItemID.DeathweedSeeds);
+                AddItem(ItemID.FireblossomSeeds);
+                AddItem(ItemID.MoonglowSeeds);
+                AddItem(ItemID.WaterleafSeeds);
+                AddItem(ItemID.ShiverthornSeeds);
                 return;
             }
 
             // Default Shop
-            shop.SetupShop(3);
+            Inv.SetupShop(3);
         }
     }
 }

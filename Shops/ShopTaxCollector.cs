@@ -1,25 +1,19 @@
-﻿using Terraria;
+﻿using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopTaxCollector
+    internal class ShopTaxCollector : Shop
     {
-        private readonly Chest shop;
-        private readonly int nextSlot;
-
-        public ShopTaxCollector(Chest shop, int nextSlot)
+        public ShopTaxCollector(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
-            {
-                default:
-                    break;
-            }
+            base.OpenShop(shop);
+
+            // Default Shop
+            AddItem(ItemID.UglySweater, Utils.Coins(0, 0, 0, 99));
         }
     }
 }

@@ -3,46 +3,37 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopNurse
+    internal class ShopNurse : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopNurse(Chest shop, int nextSlot)
+        public ShopNurse(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
-            {
-                case "Potions":
-                    shop.item[nextSlot].SetDefaults(ItemID.EndurancePotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.IronskinPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.LifeforcePotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.RegenerationPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.HeartreachPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    break;
+            base.OpenShop(shop);
 
-                default:
-                    shop.item[nextSlot].SetDefaults(ItemID.LifeCrystal);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
-                    if (Main.hardMode)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LifeFruit);
-                        shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
-                    }
-                    shop.item[nextSlot].SetDefaults(ItemID.HeartLantern);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 25);
-                    break;
+            if (shop == "Potions")
+            {
+                AddItem(ItemID.EndurancePotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.IronskinPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.LifeforcePotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.RegenerationPotion, Utils.UniversalPotionCost);
+                
+                AddItem(ItemID.HeartreachPotion, Utils.UniversalPotionCost);
+                
+                return;
             }
+
+            // Default Shop
+            AddItem(ItemID.LifeCrystal, Utils.Coins(0, 0, 0, 1));
+            if (Main.hardMode)
+            {
+                AddItem(ItemID.LifeFruit, Utils.Coins(0, 0, 0, 1));
+            }
+            AddItem(ItemID.HeartLantern, Utils.Coins(0, 0, 0, 1));
         }
     }
 }

@@ -3,32 +3,27 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopTruffle
+    internal class ShopTruffle : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopTruffle(Chest shop, int nextSlot)
+        public ShopTruffle(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
-            {
-                case "Gear":
-                    shop.item[nextSlot++].SetDefaults(ItemID.StrangeGlowingMushroom);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MushroomSpear);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Hammush);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Autohammer);
-                    break;
+            base.OpenShop(shop);
 
-                default:
-                    shop.SetupShop(10);
-                    break;
+            if (shop == "Gear")
+            {
+                AddItem(ItemID.StrangeGlowingMushroom);
+                AddItem(ItemID.MushroomSpear);
+                AddItem(ItemID.Hammush);
+                AddItem(ItemID.Autohammer);
+                return;
             }
+
+            // Default Shop
+            Inv.SetupShop(10);
         }
     }
 }

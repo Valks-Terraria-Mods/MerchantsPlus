@@ -3,72 +3,67 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopTavernkeep
+    internal class ShopTavernkeep : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopTavernkeep(Chest shop, int nextSlot)
+        public ShopTavernkeep(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
+            base.OpenShop(shop);
+
+            if (shop == "Gear")
             {
-                case "Gear":
-                    shop.item[nextSlot++].SetDefaults(ItemID.Ale);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DD2ElderCrystal);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DD2ElderCrystalStand);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DefendersForge);
-                    shopBallista(shop, nextSlot);
-                    shopExplosive(shop, nextSlot);
-                    shopLightning(shop, nextSlot);
-                    shopFlameburst(shop, nextSlot);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ApprenticeScarf);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SquireShield);
-                    shop.item[nextSlot++].SetDefaults(ItemID.HuntressBuckler);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MonkBelt);
-                    break;
-
-                default:
-                    shop.SetupShop(21);
-                    break;
+                AddItem(ItemID.Ale);
+                AddItem(ItemID.DD2ElderCrystal);
+                AddItem(ItemID.DD2ElderCrystalStand);
+                AddItem(ItemID.DefendersForge);
+                Ballista();
+                Explosive();
+                Lightning();
+                Flameburst();
+                AddItem(ItemID.ApprenticeScarf);
+                AddItem(ItemID.SquireShield);
+                AddItem(ItemID.HuntressBuckler);
+                AddItem(ItemID.MonkBelt);
+                return;
             }
+
+            // Default Shop
+            Inv.SetupShop(21);
         }
 
-        private void shopFlameburst(Chest shop, int nextSlot)
+        private void Flameburst()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.DD2FlameburstTowerT1Popper);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.DD2FlameburstTowerT2Popper);
-            if (NPC.downedGolemBoss) shop.item[nextSlot].SetDefaults(ItemID.DD2FlameburstTowerT3Popper);
-            nextSlot++;
+            ReplaceItem(ItemID.DD2FlameburstTowerT1Popper);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2FlameburstTowerT2Popper);
+            if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2FlameburstTowerT3Popper);
+            NextSlot++;
         }
 
-        private void shopBallista(Chest shop, int nextSlot)
+        private void Ballista()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.DD2BallistraTowerT1Popper);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.DD2BallistraTowerT2Popper);
-            if (NPC.downedGolemBoss) shop.item[nextSlot].SetDefaults(ItemID.DD2BallistraTowerT3Popper);
-            nextSlot++;
+            ReplaceItem(ItemID.DD2BallistraTowerT1Popper);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2BallistraTowerT2Popper);
+            if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2BallistraTowerT3Popper);
+            NextSlot++;
         }
 
-        private void shopLightning(Chest shop, int nextSlot)
+        private void Lightning()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.DD2LightningAuraT1Popper);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.DD2LightningAuraT2Popper);
-            if (NPC.downedGolemBoss) shop.item[nextSlot].SetDefaults(ItemID.DD2LightningAuraT3Popper);
-            nextSlot++;
+            ReplaceItem(ItemID.DD2LightningAuraT1Popper);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2LightningAuraT2Popper);
+            if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2LightningAuraT3Popper);
+            NextSlot++;
         }
 
-        private void shopExplosive(Chest shop, int nextSlot)
+        private void Explosive()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.DD2ExplosiveTrapT1Popper);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.DD2ExplosiveTrapT2Popper);
-            if (NPC.downedGolemBoss) shop.item[nextSlot].SetDefaults(ItemID.DD2ExplosiveTrapT3Popper);
-            nextSlot++;
+            ReplaceItem(ItemID.DD2ExplosiveTrapT1Popper);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2ExplosiveTrapT2Popper);
+            if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2ExplosiveTrapT3Popper);
+            NextSlot++;
         }
     }
 }

@@ -3,77 +3,73 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopSkeletonMerchant
+    internal class ShopSkeletonMerchant : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopSkeletonMerchant(Chest shop, int nextSlot)
+        public ShopSkeletonMerchant(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
+            base.OpenShop(shop);
+
+            if (shop == "Music Boxes")
             {
-                case "Music Boxes":
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxAltOverworldDay);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxAltUnderground);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxBoss1);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxBoss2);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxBoss3);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxBoss4);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxBoss5);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxCorruption);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxCrimson);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxDD2);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxDesert);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxDungeon);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxEclipse);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxEerie);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxFrostMoon);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxGoblins);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxIce);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxJungle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxLunarBoss);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxMartians);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxMushrooms);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxNight);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxOcean);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxOverworldDay);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxPlantera);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxPumpkinMoon);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxRain);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxSandstorm);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxSnow);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxSpace);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxTemple);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MusicBoxTheHallow);
-                    break;
-
-                case "Gear":
-                    shop.item[nextSlot++].SetDefaults(ItemID.PinkString);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PurpleCounterweight);
-                    shop.item[nextSlot++].SetDefaults(ItemID.YoYoGlove);
-                    if (Main.hardMode)
-                    {
-                        if (Utils.Kills(NPCID.WyvernHead) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofFlight);
-                        if (NPC.downedMechBoss3) shop.item[nextSlot++].SetDefaults(ItemID.SoulofFright);
-                        if (Utils.Kills(NPCID.IlluminantSlime) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofLight);
-                        if (NPC.downedMechBoss2) shop.item[nextSlot++].SetDefaults(ItemID.SoulofMight);
-                        if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0) shop.item[nextSlot++].SetDefaults(ItemID.SoulofNight);
-                        if (NPC.downedMechBoss1) shop.item[nextSlot++].SetDefaults(ItemID.SoulofSight);
-                        shop.item[nextSlot].SetDefaults(ItemID.RagePotion);
-                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    }
-                    break;
-
-                default:
-                    shop.SetupShop(20);
-                    break;
+                AddItem(ItemID.MusicBoxAltOverworldDay);
+                AddItem(ItemID.MusicBoxAltUnderground);
+                AddItem(ItemID.MusicBoxBoss1);
+                AddItem(ItemID.MusicBoxBoss2);
+                AddItem(ItemID.MusicBoxBoss3);
+                AddItem(ItemID.MusicBoxBoss4);
+                AddItem(ItemID.MusicBoxBoss5);
+                AddItem(ItemID.MusicBoxCorruption);
+                AddItem(ItemID.MusicBoxCrimson);
+                AddItem(ItemID.MusicBoxDD2);
+                AddItem(ItemID.MusicBoxDesert);
+                AddItem(ItemID.MusicBoxDungeon);
+                AddItem(ItemID.MusicBoxEclipse);
+                AddItem(ItemID.MusicBoxEerie);
+                AddItem(ItemID.MusicBoxFrostMoon);
+                AddItem(ItemID.MusicBoxGoblins);
+                AddItem(ItemID.MusicBoxIce);
+                AddItem(ItemID.MusicBoxJungle);
+                AddItem(ItemID.MusicBoxLunarBoss);
+                AddItem(ItemID.MusicBoxMartians);
+                AddItem(ItemID.MusicBoxMushrooms);
+                AddItem(ItemID.MusicBoxNight);
+                AddItem(ItemID.MusicBoxOcean);
+                AddItem(ItemID.MusicBoxOverworldDay);
+                AddItem(ItemID.MusicBoxPlantera);
+                AddItem(ItemID.MusicBoxPumpkinMoon);
+                AddItem(ItemID.MusicBoxRain);
+                AddItem(ItemID.MusicBoxSandstorm);
+                AddItem(ItemID.MusicBoxSnow);
+                AddItem(ItemID.MusicBoxSpace);
+                AddItem(ItemID.MusicBoxTemple);
+                AddItem(ItemID.MusicBoxTheHallow);
+                return;
             }
+
+            if (shop == "Gear")
+            {
+                AddItem(ItemID.PinkString);
+                AddItem(ItemID.PurpleCounterweight);
+                AddItem(ItemID.YoYoGlove);
+                if (Main.hardMode)
+                {
+                    if (Utils.Kills(NPCID.WyvernHead) > 0) AddItem(ItemID.SoulofFlight);
+                    if (NPC.downedMechBoss3) AddItem(ItemID.SoulofFright);
+                    if (Utils.Kills(NPCID.IlluminantSlime) > 0) AddItem(ItemID.SoulofLight);
+                    if (NPC.downedMechBoss2) AddItem(ItemID.SoulofMight);
+                    if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0) AddItem(ItemID.SoulofNight);
+                    if (NPC.downedMechBoss1) AddItem(ItemID.SoulofSight);
+                    AddItem(ItemID.RagePotion, Utils.UniversalPotionCost);
+                }
+                return;
+            }
+
+            // Default Shop
+            Inv.SetupShop(20);
         }
     }
 }

@@ -3,49 +3,40 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopPirate
+    internal class ShopPirate : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopPirate(Chest shop, int nextSlot)
+        public ShopPirate(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
+            base.OpenShop(shop);
+
+            if (shop == "Potions")
             {
-                case "Potions":
-                    shop.item[nextSlot].SetDefaults(ItemID.TrapsightPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.HunterPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    shop.item[nextSlot].SetDefaults(ItemID.InfernoPotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    break;
-
-                case "Arrr":
-                    shop.item[nextSlot++].SetDefaults(ItemID.Sail);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ParrotCracker);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BunnyCannon);
-
-                    shop.item[nextSlot].SetDefaults(ItemID.RangerEmblem);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.SorcererEmblem);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.SummonerEmblem);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
-                    shop.item[nextSlot].SetDefaults(ItemID.WarriorEmblem);
-                    shop.item[nextSlot++].shopCustomPrice = Utils.Coins(0, 0, 0, 1);
-                    break;
-
-                default:
-                    shop.SetupShop(17);
-                    break;
+                AddItem(ItemID.TrapsightPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.HunterPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.InfernoPotion, Utils.UniversalPotionCost);
+                return;
             }
+
+            if (shop == "Arrr")
+            {
+                AddItem(ItemID.Sail);
+                AddItem(ItemID.ParrotCracker);
+                AddItem(ItemID.BunnyCannon);
+
+                AddItem(ItemID.RangerEmblem, Utils.Coins(0, 0, 0, 1));
+                AddItem(ItemID.SorcererEmblem, Utils.Coins(0, 0, 0, 1));
+                AddItem(ItemID.SummonerEmblem, Utils.Coins(0, 0, 0, 1));
+                AddItem(ItemID.WarriorEmblem, Utils.Coins(0, 0, 0, 1));
+                return;
+            }
+
+            // Default Shop
+            Inv.SetupShop(17);
         }
+
     }
 }

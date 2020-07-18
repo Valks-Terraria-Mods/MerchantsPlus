@@ -3,41 +3,28 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopGuide
+    internal class ShopGuide : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopGuide(Chest shop, int nextSlot)
+        public ShopGuide(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
-            {
-                case "Msc":
-                    shop.item[nextSlot++].SetDefaults(ItemID.Cannon);
-                    shop.item[nextSlot++].SetDefaults(ItemID.Cannonball);
-                    break;
+            base.OpenShop(shop);
 
-                default:
-                    shop.item[nextSlot++].SetDefaults(ItemID.CordageGuide);
-                    if (Utils.IsNPCHere(NPCID.Merchant))
-                    {
-                        shop.item[nextSlot++].SetDefaults(ItemID.Torch);
-                        shop.item[nextSlot++].SetDefaults(ItemID.WoodenArrow);
-                    }
-                    if (Utils.IsNPCHere(NPCID.ArmsDealer)) shop.item[nextSlot++].SetDefaults(ItemID.MusketBall);
-                    if (NPC.downedBoss3 && !Main.hardMode)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ObsidianSkinPotion);
-                        shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                        shop.item[nextSlot++].SetDefaults(ItemID.GuideVoodooDoll);
-                    }
-                    break;
+            // Default Shop
+            AddItem(ItemID.CordageGuide);
+            if (!Utils.IsNPCHere(NPCID.Merchant)) AddItem(ItemID.Torch);
+            if (Utils.DownedSkeletron() && !Main.hardMode)
+            {
+                AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.GuideVoodooDoll, Utils.Coins(0, 0, 10));
+            }
+            if (!Utils.IsNPCHere(NPCID.Pirate))
+            {
+                AddItem(ItemID.Cannon);
+                AddItem(ItemID.Cannonball);
             }
         }
     }

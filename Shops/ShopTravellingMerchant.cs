@@ -3,32 +3,27 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopTravellingMerchant
+    internal class ShopTravellingMerchant : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopTravellingMerchant(Chest shop, int nextSlot)
+        public ShopTravellingMerchant(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            switch (currentShop)
-            {
-                case "Gear":
-                    shop.item[nextSlot++].SetDefaults(ItemID.ShadowOrb);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MagicLantern);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DD2PetGhost);
-                    if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.SuspiciousLookingTentacle);
-                    break;
+            base.OpenShop(shop);
 
-                default:
-                    shop.SetupShop(19);
-                    break;
+            if (shop == "Gear")
+            {
+                AddItem(ItemID.ShadowOrb);
+                AddItem(ItemID.MagicLantern);
+                AddItem(ItemID.DD2PetGhost);
+                if (Main.hardMode) AddItem(ItemID.SuspiciousLookingTentacle);
+                return;
             }
+
+            // Default Shop
+            Inv.SetupShop(19);
         }
     }
 }

@@ -1,6 +1,6 @@
-This mod turns every town NPC into a merchant with several shops that you can cycle through. All the merchants combined sell almost all the items in the entire game! Not every item is unlocked at first, you will have to defeat monsters and bosses to progress and unlock better items.
+MerchantsPlus turns every NPC that you can chat with into a merchant with several unique shops that you can cycle through. All the shops combined sell almost all the items in the entire game! Not every item is unlocked at first, you will have to defeat monsters and bosses to progress and unlock better items.
 
-This mod can be considered very 'cheaty' atm, if you want to help balance it, please talk to me over Discord (valk#3277).
+The mod is getting more balanced every update, if you have any suggestions or bug reports or would like to contribute in another way please talk to me over Discord (valk#3277).
 
 [c/ffb2fd:Items]
 + Merchants sell more items based on bosses / enemies defeated.
@@ -21,7 +21,29 @@ This mod can be considered very 'cheaty' atm, if you want to help balance it, pl
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 
+Special Thanks
+- To everyone in the tModLoader Discord for all your generous help
+- To ReLogic for making Terraria
+- To the team that made tModLoader possible in the first place
+
 ===========================================
+
+[c/991095:v0.16.0]
+Added 'UniversalVanityCost' set at 5 gold.
+Applied 'UniversalVanityCost' to all vanity items in Party Girl shop.
+Added config option 'ShopPriceMultiplier'.
+Reduced universal accessory cost from 25 to 20 gold.
+The mechanic no longer sells EVERY furniture set, instead she sells their respective materials.
+Party girl vanity items moved to Clothier merchant.
+You no longer need to press the shop button whenever you click the cycle shop button.
+LOTS of prices have been tweaked.
+More items now require 'progression levels' to unlock.
+The mod has been abstracted on a whole new level!
+
+[c/991095:v0.15.0]
+Universal pet cost reduced from 25 to 5 gold.
+Guide shop items have been tweaked.
+Removed empty shop in Merchant shop.
 
 [c/991095:v0.14.0]
 The Tinkerer no longer sells everything in 'chunks', the items are spread more out meaning you have to progress for fewer rewards now.

@@ -3,109 +3,105 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopArmsDealer
+    internal class ShopArmsDealer : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopArmsDealer(Chest shop, int nextSlot)
+        public ShopArmsDealer(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            if (currentShop == "Msc")
+            base.OpenShop(shop);
+
+            if (shop == "Msc")
             {
                 if (NPC.downedPlantBoss)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.SniperRifle);
-                    shop.item[nextSlot++].SetDefaults(ItemID.RifleScope);
+                    AddItem(ItemID.SniperRifle);
+                    AddItem(ItemID.RifleScope);
                 }
-                if (!Main.dayTime) shop.item[nextSlot++].SetDefaults(ItemID.IllegalGunParts);
-                if (Main.hardMode) shop.item[nextSlot++].SetDefaults(ItemID.EmptyBullet);
-                shop.item[nextSlot++].SetDefaults(ItemID.AmmoBox);
-                shop.item[nextSlot].SetDefaults(ItemID.AmmoReservationPotion);
-                shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
+                if (!Main.dayTime) AddItem(ItemID.IllegalGunParts);
+                if (Main.hardMode) AddItem(ItemID.EmptyBullet);
+                AddItem(ItemID.AmmoBox);
+                AddItem(ItemID.AmmoReservationPotion, Utils.UniversalPotionCost);
                 return;
             }
 
-            if (currentShop == "Guns")
+            if (shop == "Guns")
             {
-                ShopBulletMain(shop, ref nextSlot);
-                ShopBulletOther(shop, ref nextSlot);
-                ShopPistol(shop, ref nextSlot);
-                ShopRifle(shop, ref nextSlot);
-                ShopShotgun(shop, ref nextSlot);
+                ShopBulletMain();
+                ShopBulletOther();
+                ShopPistol();
+                ShopRifle();
+                ShopShotgun();
                 return;
             }
 
             // Default Shop
-            shop.SetupShop(2);
+            Inv.SetupShop(2);
         }
 
-        private void ShopBulletMain(Chest shop, ref int nextSlot)
+        private void ShopBulletMain()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.MusketBall);
-            if (NPC.downedBoss1) shop.item[nextSlot].SetDefaults(ItemID.SilverBullet);
-            if (NPC.downedBoss2) shop.item[nextSlot].SetDefaults(ItemID.MeteorShot);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.CursedBullet);
-            if (Utils.DownedMechBosses() == 2) shop.item[nextSlot].SetDefaults(ItemID.IchorBullet);
-            if (Utils.DownedMechBosses() == 3) shop.item[nextSlot].SetDefaults(ItemID.CrystalBullet);
-            if (NPC.downedPlantBoss) shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteBullet);
-            if (NPC.downedMoonlord) shop.item[nextSlot].SetDefaults(ItemID.MoonlordBullet);
-            nextSlot++;
+            ReplaceItem(ItemID.MusketBall);
+            if (NPC.downedBoss1) ReplaceItem(ItemID.SilverBullet);
+            if (NPC.downedBoss2) ReplaceItem(ItemID.MeteorShot);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.CursedBullet);
+            if (Utils.DownedMechBosses() == 2) ReplaceItem(ItemID.IchorBullet);
+            if (Utils.DownedMechBosses() == 3) ReplaceItem(ItemID.CrystalBullet);
+            if (NPC.downedPlantBoss) ReplaceItem(ItemID.ChlorophyteBullet);
+            if (NPC.downedMoonlord) ReplaceItem(ItemID.MoonlordBullet);
+            NextSlot++;
         }
 
-        private void ShopBulletOther(Chest shop, ref int nextSlot)
+        private void ShopBulletOther()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.PartyBullet);
-            shop.item[nextSlot].shopCustomPrice = Utils.Coins(0, 1);
-            if (NPC.downedSlimeKing) shop.item[nextSlot].shopCustomPrice = Utils.Coins(50);
-            if (NPC.downedBoss1) shop.item[nextSlot].shopCustomPrice = Utils.Coins(25);
-            if (NPC.downedBoss2) shop.item[nextSlot].shopCustomPrice = Utils.Coins(5);
-            if (NPC.downedQueenBee) shop.item[nextSlot].shopCustomPrice = Utils.Coins(1);
-            if (NPC.downedBoss3) shop.item[nextSlot].SetDefaults(ItemID.ExplodingBullet);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.GoldenBullet);
-            if (Utils.DownedMechBosses() == 2) shop.item[nextSlot].SetDefaults(ItemID.NanoBullet);
-            if (Utils.DownedMechBosses() == 3) shop.item[nextSlot].SetDefaults(ItemID.HighVelocityBullet);
-            if (NPC.downedPlantBoss) shop.item[nextSlot].SetDefaults(ItemID.VenomBullet);
-            nextSlot++;
+            ReplaceItem(ItemID.PartyBullet);
+            ReplacePrice(Utils.Coins(0, 1));
+            if (NPC.downedSlimeKing) ReplacePrice(Utils.Coins(50));
+            if (NPC.downedBoss1) ReplacePrice(Utils.Coins(25));
+            if (NPC.downedBoss2) ReplacePrice(Utils.Coins(5));
+            if (NPC.downedQueenBee) ReplacePrice(Utils.Coins(1));
+            if (NPC.downedBoss3) ReplaceItem(ItemID.ExplodingBullet);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.GoldenBullet);
+            if (Utils.DownedMechBosses() == 2) ReplaceItem(ItemID.NanoBullet);
+            if (Utils.DownedMechBosses() == 3) ReplaceItem(ItemID.HighVelocityBullet);
+            if (NPC.downedPlantBoss) ReplaceItem(ItemID.VenomBullet);
+            NextSlot++;
         }
 
-        private void ShopPistol(Chest shop, ref int nextSlot)
+        private void ShopPistol()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.FlintlockPistol);
-            if (NPC.downedSlimeKing) shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
-            if (NPC.downedBoss1) shop.item[nextSlot].SetDefaults(ItemID.Revolver);
-            if (NPC.downedBoss2) shop.item[nextSlot].SetDefaults(ItemID.Handgun);
-            if (NPC.downedQueenBee) shop.item[nextSlot].SetDefaults(ItemID.PhoenixBlaster);
-            if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.Uzi);
-            if (Utils.DownedMechBosses() == 3) shop.item[nextSlot].SetDefaults(ItemID.VenusMagnum);
-            nextSlot++;
+            ReplaceItem(ItemID.FlintlockPistol);
+            if (NPC.downedSlimeKing) ReplaceItem(ItemID.TheUndertaker);
+            if (NPC.downedBoss1) ReplaceItem(ItemID.Revolver);
+            if (NPC.downedBoss2) ReplaceItem(ItemID.Handgun);
+            if (NPC.downedQueenBee) ReplaceItem(ItemID.PhoenixBlaster);
+            if (Main.hardMode) ReplaceItem(ItemID.Uzi);
+            if (Utils.DownedMechBosses() == 3) ReplaceItem(ItemID.VenusMagnum);
+            NextSlot++;
         }
 
-        private void ShopRifle(Chest shop, ref int nextSlot)
+        private void ShopRifle()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.RedRyder);
-            if (NPC.downedBoss1) shop.item[nextSlot].SetDefaults(ItemID.Musket);
-            if (NPC.downedBoss2) shop.item[nextSlot].SetDefaults(ItemID.Minishark);
-            if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.ClockworkAssaultRifle);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
-            if (Utils.DownedMechBosses() == 2) shop.item[nextSlot].SetDefaults(ItemID.Megashark);
-            if (NPC.downedAncientCultist) shop.item[nextSlot].SetDefaults(ItemID.VortexBeater);
-            if (NPC.downedMoonlord) shop.item[nextSlot].SetDefaults(ItemID.SDMG);
-            nextSlot++;
+            ReplaceItem(ItemID.RedRyder);
+            if (NPC.downedBoss1) ReplaceItem(ItemID.Musket);
+            if (NPC.downedBoss2) ReplaceItem(ItemID.Minishark);
+            if (Main.hardMode) ReplaceItem(ItemID.ClockworkAssaultRifle);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.Gatligator);
+            if (Utils.DownedMechBosses() == 2) ReplaceItem(ItemID.Megashark);
+            if (NPC.downedAncientCultist) ReplaceItem(ItemID.VortexBeater);
+            if (NPC.downedMoonlord) ReplaceItem(ItemID.SDMG);
+            NextSlot++;
         }
 
-        private void ShopShotgun(Chest shop, ref int nextSlot)
+        private void ShopShotgun()
         {
-            shop.item[nextSlot].SetDefaults(ItemID.Boomstick);
-            if (Main.hardMode) shop.item[nextSlot].SetDefaults(ItemID.Shotgun);
-            if (Utils.DownedMechBosses() == 1) shop.item[nextSlot].SetDefaults(ItemID.OnyxBlaster);
-            if (NPC.downedPlantBoss) shop.item[nextSlot].SetDefaults(ItemID.TacticalShotgun);
-            nextSlot++;
+            ReplaceItem(ItemID.Boomstick);
+            if (Main.hardMode) ReplaceItem(ItemID.Shotgun);
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.OnyxBlaster);
+            if (NPC.downedPlantBoss) ReplaceItem(ItemID.TacticalShotgun);
+            NextSlot++;
         }
     }
 }

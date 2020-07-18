@@ -1,5 +1,5 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 
@@ -7,6 +7,12 @@ namespace MerchantsPlus
 {
     internal class Utils
     {
+        public static int UniversalPotionCost = Coins(0, 0, 5);
+        public static int UniversalAccessoryCost = Coins(0, 0, 20);
+        public static int UniversalOreCost = Coins(0, 0, 1);
+        public static int UniversalPetCost = Coins(0, 0, 5);
+        public static int UniversalVanityCost = Coins(0, 0, 5);
+
         public static void QuestKills(List<string> dialog, string enemy, int curKills, int targetKills)
         {
             if (curKills < targetKills)
@@ -121,12 +127,13 @@ namespace MerchantsPlus
 
         public static int Coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0)
         {
-            int total = 0;
+            double total = 0;
             total += copper;
             total += silver * 100;
             total += gold * 10000;
             total += platinum * 1000000;
-            return total;
+            total *= Config.ShopPriceMultiplier;
+            return (int)total;
         }
 
         public static bool PlayersHaveItem(short[] items)
@@ -303,7 +310,8 @@ namespace MerchantsPlus
 
         public static bool IsMerchant(int npcID)
         {
-            switch (npcID) {
+            switch (npcID)
+            {
                 case NPCID.Angler:
                 case NPCID.ArmsDealer:
                 case NPCID.Clothier:
@@ -334,6 +342,7 @@ namespace MerchantsPlus
                 case NPCID.BoundWizard:
                 case NPCID.SleepingAngler:
                     return true;
+
                 default:
                     return false;
             }

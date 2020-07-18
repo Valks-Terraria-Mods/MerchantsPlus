@@ -1,6 +1,7 @@
 using System.IO;
 using Terraria;
 using Terraria.IO;
+using System.Collections.Generic;
 
 namespace MerchantsPlus
 {
@@ -11,6 +12,8 @@ namespace MerchantsPlus
         public static bool MerchantDialog = true;
         public static bool MerchantDrops = false;
         public static bool MerchantProjectiles = false;
+
+        public static double ShopPriceMultiplier = 1.0;
 
         private static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
         private static Preferences Configuration = new Preferences(ConfigPath);
@@ -37,6 +40,7 @@ namespace MerchantsPlus
                 Configuration.Get("MerchantDialog", ref MerchantDialog);
                 Configuration.Get("MerchantDrops", ref MerchantDrops);
                 Configuration.Get("MerchantProjectiles", ref MerchantProjectiles);
+                Configuration.Get("ShopPriceMultiplier", ref ShopPriceMultiplier);
                 return true;
             }
             return false;
@@ -51,6 +55,7 @@ namespace MerchantsPlus
             Configuration.Put("MerchantDialog", MerchantDialog);
             Configuration.Put("MerchantDrops", MerchantDrops);
             Configuration.Put("MerchantProjectiles", MerchantProjectiles);
+            Configuration.Put("ShopPriceMultiplier", ShopPriceMultiplier);
             Configuration.Save();
         }
     }

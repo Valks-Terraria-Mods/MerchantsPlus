@@ -10,15 +10,12 @@ namespace MerchantsPlus
 {
     internal class MerchantsPlus : Mod
     {
-        internal static MerchantsPlus instance;
-        internal ExampleUI ExampleUI;
-        internal UserInterface _exampleUserInterface;
-
+        public static MerchantsPlus Instance;
         public static ILog Console;
 
-        public static int universalPotionCost = Utils.Coins(0, 0, 5);
-        public static int universalAccessoryCost = Utils.Coins(0, 0, 25);
-        public static int universalOreCost = Utils.Coins(0, 0, 1);
+        public UserInterface UserInterface;
+
+        private ShopUI m_ShopUI;
 
         public MerchantsPlus()
         {
@@ -26,16 +23,16 @@ namespace MerchantsPlus
 
         public override void Load()
         {
-            instance = this;
+            Instance = this;
             Console = this.Logger;
 
             if (!Main.dedServ)
             {
                 // Custom UI
-                ExampleUI = new ExampleUI();
-                ExampleUI.Activate();
+                m_ShopUI = new ShopUI();
+                m_ShopUI.Activate();
 
-                _exampleUserInterface = new UserInterface();
+                UserInterface = new UserInterface();
             }
 
             Config.Load();
@@ -43,16 +40,16 @@ namespace MerchantsPlus
 
         public override void Unload()
         {
-            instance = null;
+            Instance = null;
         }
 
         public override void UpdateUI(GameTime gameTime)
         {
             base.UpdateUI(gameTime);
 
-            if (ExampleUI.Visible)
+            if (ShopUI.Visible)
             {
-                _exampleUserInterface.Update(gameTime);
+                UserInterface.Update(gameTime);
             }
         }
 
@@ -67,9 +64,9 @@ namespace MerchantsPlus
                     "MerchantsPlus: Custom Shops",
                     delegate
                     {
-                        if (ExampleUI.Visible)
+                        if (ShopUI.Visible)
                         {
-                            _exampleUserInterface.Draw(Main.spriteBatch, new GameTime());
+                            UserInterface.Draw(Main.spriteBatch, new GameTime());
                         }
                         return true;
                     },

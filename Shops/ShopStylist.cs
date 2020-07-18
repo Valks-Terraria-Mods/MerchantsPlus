@@ -3,1555 +3,1566 @@ using Terraria.ID;
 
 namespace MerchantsPlus.Shops
 {
-    internal class ShopStylist
+    internal class ShopStylist : Shop
     {
-        private Chest shop;
-        private int nextSlot;
-
-        public ShopStylist(Chest shop, int nextSlot)
+        public ShopStylist(bool merchant, params string[] shops) : base(merchant, shops)
         {
-            this.shop = shop;
-            this.nextSlot = nextSlot;
         }
 
-        public void InitShop(string currentShop)
+        public override void OpenShop(string shop)
         {
-            const int bannerKillsRequirement = 50; // 50 Kills
-            const int bannerCostEasy = 10000; // 1 gold
-            const int bannerCostHard = 100000; // 10 gold
-            const int bannerCostInsane = 250000; // 25 gold
+            base.OpenShop(shop);
 
-            switch (currentShop)
+            int bannerKillsRequirement = 50; // 50 Kills
+            int bannerCostEasy = Utils.Coins(0, 0, 1); // 1 gold
+            int bannerCostHard = Utils.Coins(0, 0, 10); // 10 gold
+            int bannerCostInsane = Utils.Coins(0, 0, 25); // 25 gold
+
+            if (shop == "Eclipse")
             {
-                case "Eclipse":
-                    if (Utils.Kills(NPCID.Eyezor) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.EyezorBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-                    if (Utils.Kills(NPCID.Frankenstein) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FrankensteinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SwampThing) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SwampThingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Vampire) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VampireBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.CreatureFromTheDeep) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CreatureFromTheDeepBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Fritz) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FritzBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Reaper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ReaperBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.ThePossessed) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ThePossessedBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Mothron) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MothronBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Butcher) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ButcherBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DeadlySphere) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DeadlySphereBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DrManFly) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DrManFlyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Nailhead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NailheadBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Psycho) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PsychoBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Bloodmoon":
-                    if (Utils.Kills(NPCID.BloodZombie) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BloodZombieBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Drippler) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DripplerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.TheGroom) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.TheGroomBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.CorruptBunny) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CorruptBunnyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.CorruptGoldfish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CorruptGoldfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.CorruptPenguin) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CorruptPenguinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Clown) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ClownBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Goblin Army":
-                    if (Utils.Kills(NPCID.GoblinPeon) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinPeonBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GoblinSorcerer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinSorcererBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GoblinThief) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinThiefBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GoblinWarrior) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinWarriorBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GoblinArcher) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinArcherBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GoblinSummoner) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoblinSummonerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Dungeon":
-                    if (Utils.Kills(NPCID.AngryBones) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AngryBonesBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.DarkCaster) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SkeletonMageBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.CursedSkull) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CursedSkullBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.DungeonSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DungeonSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.BlueArmoredBones) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BlueArmoredBonesBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.RustyArmoredBonesSword) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RustyArmoredBonesBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.HellArmoredBones) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HellArmoredBonesBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Paladin) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PaladinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Necromancer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NecromancerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.RaggedCaster) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RaggedCasterBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SkeletonCommando) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SkeletonCommandoBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SkeletonSniper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SkeletonSniperBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.TacticalSkeleton) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.TacticalSkeletonBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GiantCursedSkull) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GiantCursedSkullBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.BoneLee) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BoneLeeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DungeonSpiritBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Desert":
-                    if (Utils.Kills(NPCID.Antlion) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AntlionBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.FlyingAntlion) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FlyingAntlionBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.WalkingAntlion) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WalkingAntlionBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Vulture) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VultureBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SandSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SandSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Mummy) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MummyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.LightMummy) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LightMummyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DarkMummy) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DarkMummyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DesertBeast) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DesertBasiliskBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DesertLamiaDark) >= bannerKillsRequirement || Utils.Kills(NPCID.DesertLamiaLight) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DesertLamiaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DesertGhoul) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DesertGhoulBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DungeonSpiritBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Tumbleweed) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.TumbleweedBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SandShark) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SandsharkBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DuneSplicerHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DuneSplicerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SandElemental) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SandElementalBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Old Ones Army":
-                    if (Utils.Kills(NPCID.DD2WyvernT1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2WyvernBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2JavelinstT1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2JavelinThrowerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2SkeletonT1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2SkeletonBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2GoblinT1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2GoblinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2GoblinBomberT1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2GoblinBomberBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2LightningBugBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2KoboldWalkerT2) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2KoboldBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2KoboldFlyerT2) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2KoboldFlyerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2DrakinT2) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2DrakinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Frost Legion":
-                    if (Utils.Kills(NPCID.MisterStabby) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MisterStabbyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SnowmanGangsta) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SnowmanGangstaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.SnowBalla) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SnowBallaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Pirate Invasion":
-                    if (Utils.Kills(NPCID.Pirate) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PirateBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.PirateDeadeye) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PirateDeadeyeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.PirateCorsair) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PirateCorsairBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.PirateCrossbower) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PirateCrossbowerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.PirateCaptain) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PirateCaptainBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Parrot) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ParrotBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Pumpkin Moon":
-                    if (Utils.Kills(NPCID.Scarecrow1) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ScarecrowBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Splinterling) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SplinterlingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Hellhound) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HellhoundBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Poltergeist) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PoltergeistBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.HeadlessHorseman) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HeadlessHorsemanBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Frost Moon":
-                    if (Utils.Kills(NPCID.GingerbreadMan) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GingerbreadManBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.ZombieElf) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ZombieElfBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.ElfArcher) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ElfArcherBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Nutcracker) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NutcrackerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Yeti) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.YetiBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.ElfCopter) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ElfCopterBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Krampus) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.KrampusBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Flocko) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FlockoBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Martian Madness":
-                    if (Utils.Kills(NPCID.Scutlix) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ScutlixBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MartianWalker) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianWalkerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MartianDrone) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianDroneBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MartianTurret) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianTeslaTurretBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GigaZapper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianGigazapperBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MartianEngineer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianEngineerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MartianOfficer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianOfficerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.RayGunner) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianRaygunnerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GrayGrunt) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianGreyGruntBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.BrainScrambler) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MartianBrainscramblerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Solar Zone":
-                    if (Utils.Kills(NPCID.SolarSolenian) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarSolenianBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.SolarDrakomire) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarDrakomireBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.SolarDrakomireRider) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarDrakomireRiderBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.SolarCorite) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarCoriteBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.SolarSroller) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarSrollerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.SolarCrawltipedeHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SolarCrawltipedeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    break;
-
-                case "Vortex Zone":
-                    if (Utils.Kills(NPCID.VortexHornet) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VortexHornetBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.VortexHornetQueen) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VortexHornetQueenBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.VortexLarva) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VortexLarvaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.VortexRifleman) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.VortexRiflemanBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.VortexSoldier) >= bannerKillsRequirement)
-                    {
-                    }
-                    shop.item[nextSlot].SetDefaults(ItemID.VortexSoldierBanner);
-                    shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    break;
-
-                case "Nebula Zone":
-                    if (Utils.Kills(NPCID.NebulaBeast) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NebulaBeastBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.NebulaBrain) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NebulaBrainBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.NebulaHeadcrab) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NebulaHeadcrabBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.NebulaSoldier) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NebulaSoldierBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    break;
-
-                case "Stardust Zone":
-                    if (Utils.Kills(NPCID.StardustJellyfishSmall) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustJellyfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.StardustJellyfishBig) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustLargeCellBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.StardustCellSmall) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustSmallCellBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.StardustSoldier) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustSoldierBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.StardustSpiderSmall) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustSpiderBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    if (Utils.Kills(NPCID.StardustWormHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.StardustWormBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostInsane;
-                    }
-
-                    break;
-
-                case "Ocean":
-                    if (Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PinkJellyfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Crab) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CrabBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SeaSnail) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SeaSnailBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Squid) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SquidBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Shark) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SharkBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    break;
-
-                case "Snow":
-
-                    if (Utils.Kills(NPCID.IceSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.ZombieEskimo) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ZombieEskimoBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceElementalBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Wolf) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WolfBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IceGolem) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceGolemBanner);
-                        shop.item[nextSlot++].shopCustomPrice = 1000000;
-                    }
-
-                    if (Utils.Kills(NPCID.Penguin) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PenguinBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.IceBat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceBatBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SnowFlinx) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SnowFlinxBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SpikedIceSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SpikedIceSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.UndeadViking) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.UndeadVikingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.ArmoredViking) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ArmoredVikingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IceTortoise) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceTortoiseBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IceElementalBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IcyMerman) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IcyMermanBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.PigronCorruption) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PigronBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-                    break;
-
-                case "Jungle":
-
-                    if (Utils.Kills(NPCID.Piranha) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PiranhaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Snatcher) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SnatcherBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.JungleBat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.JungleBatBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.JungleSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.JungleSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.DoctorBones) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DoctorBonesBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.AnglerFish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerFishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Arapaima) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ArapaimaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GiantTortoise) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.TortoiseBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.AngryTrapper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AngryTrapperBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Derpling) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DerplingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GiantFlyingFox) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GiantFlyingFoxBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Hornet) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HornetBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.ManEater) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ManEaterBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.SpikedJungleSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SpikedJungleSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.LacBeetle) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LacBeetleBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.JungleCreeper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.JungleCreeperBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Moth) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MothBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Lihzahrd) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LihzahrdBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.FlyingSnake) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FlyingSnakeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Mushroom":
-
-                    if (Utils.Kills(NPCID.FungiBulb) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FungiBulbBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.AnomuraFungus) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AnomuraFungusBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MushiLadybug) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MushiLadybugBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Spore) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SporeZombieBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.FungoFish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FungoFishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Corruption":
-
-                    if (Utils.Kills(NPCID.EaterofSouls) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.EaterofSoulsBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.DevourerHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DevourerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Corruptor) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CorruptorBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.CorruptSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CorruptSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Slimer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SlimerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WorldFeederBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.CursedHammer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CursedHammerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Clinger) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ClingerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Crimson":
-
-                    if (Utils.Kills(NPCID.BloodCrawler) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BloodCrawlerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.FaceMonster) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FaceMonsterBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Crimera) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CrimeraBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Herpling) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HerplingBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Crimslime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CrimslimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.BloodJelly) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BloodJellyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BloodFeederBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.CrimsonAxe) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CrimsonAxeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IchorSticker) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IchorStickerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.FloatyGross) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FloatyGrossBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Hallow":
-
-                    if (Utils.Kills(NPCID.Pixie) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PixieBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Unicorn) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.UnicornBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.RainbowSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RainbowSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Gastropod) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GastropodBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DD2LightningBugBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IlluminantSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IlluminantSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.IlluminantBat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.IlluminantBatBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.ChaosElemental) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ChaosElementalBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.EnchantedSword) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.EnchantedSwordBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Space":
-                    if (Utils.Kills(NPCID.Harpy) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HarpyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.WyvernHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WyvernBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Underworld":
-
-                    if (Utils.Kills(NPCID.Hellbat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HellbatBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.LavaSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LavaSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.FireImp) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FireImpBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Demon) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DemonBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.BoneSerpentHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BoneSerpentBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Lavabat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LavaBatBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.RedDevil) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RedDevilBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    break;
-
-                case "Overworld":
-
-                    if (Utils.Kills(NPCID.BlueSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GreenSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GreenSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.PurpleSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PurpleSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Pinky) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PinkyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Zombie) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ZombieBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Raven) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RavenBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.DemonEye) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DemonEyeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.PossessedArmor) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PossessedArmorBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.HoppinJack) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HoppinJackBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Werewolf) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WerewolfBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Bunny) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BunnyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Bird) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BirdBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Worm) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WormBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.RedSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RedSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.YellowSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.YellowSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.ToxicSludge) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ToxicSludgeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.Skeleton) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SkeletonBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Salamander) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SalamanderBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Crawdad) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CrawdadBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GiantShelly) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GiantShellyBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.UndeadMiner) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.UndeadMinerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Tim) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.TimBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Nymph) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.NypmhBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.CochinealBeetle) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CochinealBeetleBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.BlueJellyfish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.JellyfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GreenJellyfish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GreenJellyfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PinkJellyfishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.WallCreeper) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.SpiderBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.BlackRecluse) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BlackRecluseBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.GraniteGolem) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GraniteGolemBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.GraniteFlyer) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GraniteFlyerBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.Medusa) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MedusaBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-
-                    if (Utils.Kills(NPCID.MeteorHead) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.MeteorHeadBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.FlyingFish) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.FlyingFishBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.UmbrellaSlime) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.UmbrellaSlimeBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.ZombieRaincoat) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RaincoatZombieBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostEasy;
-                    }
-
-                    if (Utils.Kills(NPCID.AngryNimbus) >= bannerKillsRequirement)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AngryNimbusBanner);
-                        shop.item[nextSlot++].shopCustomPrice = bannerCostHard;
-                    }
-                    break;
-
-                case "Hair Dyes":
-                    shop.item[nextSlot++].SetDefaults(ItemID.HairDyeRemover);
-                    shop.item[nextSlot++].SetDefaults(ItemID.DepthHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.LifeHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.ManaHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MoneyHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.TimeHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.TeamHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.PartyHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BiomeHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.SpeedHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.RainbowHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.MartianHairDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.TwilightHairDye);
-                    shop.item[nextSlot].SetDefaults(ItemID.LovePotion);
-                    shop.item[nextSlot++].shopCustomPrice = MerchantsPlus.universalPotionCost;
-                    break;
-
-                default:
-                    shop.SetupShop(18);
-                    break;
+                if (Utils.Kills(NPCID.Eyezor) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.EyezorBanner, bannerCostHard);
+                    
+                }
+                if (Utils.Kills(NPCID.Frankenstein) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FrankensteinBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SwampThing) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SwampThingBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Vampire) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VampireBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CreatureFromTheDeep) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CreatureFromTheDeepBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Fritz) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FritzBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Reaper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ReaperBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ThePossessed) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ThePossessedBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Mothron) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MothronBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Butcher) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ButcherBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DeadlySphere) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DeadlySphereBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DrManFly) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DrManFlyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Nailhead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NailheadBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Psycho) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PsychoBanner, bannerCostHard);
+                    
+                }
+                return;
             }
+
+            if (shop == "Bloodmoon")
+            {
+                if (Utils.Kills(NPCID.BloodZombie) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BloodZombieBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Drippler) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DripplerBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.TheGroom) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.TheGroomBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CorruptBunny) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CorruptBunnyBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CorruptGoldfish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CorruptGoldfishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CorruptPenguin) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CorruptPenguinBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Clown) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ClownBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Goblin Army")
+            {
+                if (Utils.Kills(NPCID.GoblinPeon) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinPeonBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GoblinSorcerer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinSorcererBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GoblinThief) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinThiefBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GoblinWarrior) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinWarriorBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GoblinArcher) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinArcherBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GoblinSummoner) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GoblinSummonerBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Dungeon")
+            {
+                if (Utils.Kills(NPCID.AngryBones) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AngryBonesBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DarkCaster) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SkeletonMageBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CursedSkull) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CursedSkullBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DungeonSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DungeonSlimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BlueArmoredBones) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BlueArmoredBonesBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RustyArmoredBonesSword) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RustyArmoredBonesBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.HellArmoredBones) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HellArmoredBonesBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Paladin) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PaladinBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Necromancer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NecromancerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RaggedCaster) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RaggedCasterBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SkeletonCommando) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SkeletonCommandoBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SkeletonSniper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SkeletonSniperBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.TacticalSkeleton) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.TacticalSkeletonBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GiantCursedSkull) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GiantCursedSkullBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BoneLee) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BoneLeeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DungeonSpiritBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Desert")
+            {
+                if (Utils.Kills(NPCID.Antlion) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AntlionBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FlyingAntlion) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FlyingAntlionBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.WalkingAntlion) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WalkingAntlionBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Vulture) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VultureBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SandSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SandSlimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Mummy) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MummyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.LightMummy) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.LightMummyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DarkMummy) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DarkMummyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DesertBeast) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DesertBasiliskBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DesertLamiaDark) >= bannerKillsRequirement || Utils.Kills(NPCID.DesertLamiaLight) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DesertLamiaBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DesertGhoul) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DesertGhoulBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DungeonSpiritBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Tumbleweed) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.TumbleweedBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SandShark) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SandsharkBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DuneSplicerHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DuneSplicerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SandElemental) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SandElementalBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Old Ones Army")
+            {
+                if (Utils.Kills(NPCID.DD2WyvernT1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2WyvernBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2JavelinstT1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2JavelinThrowerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2SkeletonT1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2SkeletonBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2GoblinT1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2GoblinBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2GoblinBomberT1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2GoblinBomberBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2LightningBugBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2KoboldWalkerT2) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2KoboldBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2KoboldFlyerT2) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2KoboldFlyerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2DrakinT2) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2DrakinBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Frost Legion")
+            {
+                if (Utils.Kills(NPCID.MisterStabby) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MisterStabbyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SnowmanGangsta) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SnowmanGangstaBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SnowBalla) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SnowBallaBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Pirate Invasion")
+            {
+                if (Utils.Kills(NPCID.Pirate) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PirateBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PirateDeadeye) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PirateDeadeyeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PirateCorsair) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PirateCorsairBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PirateCrossbower) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PirateCrossbowerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PirateCaptain) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PirateCaptainBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Parrot) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ParrotBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Pumpkin Moon")
+            {
+                if (Utils.Kills(NPCID.Scarecrow1) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ScarecrowBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Splinterling) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SplinterlingBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Hellhound) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HellhoundBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Poltergeist) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PoltergeistBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.HeadlessHorseman) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HeadlessHorsemanBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Frost Moon")
+            {
+                if (Utils.Kills(NPCID.GingerbreadMan) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GingerbreadManBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ZombieElf) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ZombieElfBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ElfArcher) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ElfArcherBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Nutcracker) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NutcrackerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Yeti) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.YetiBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ElfCopter) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ElfCopterBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Krampus) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.KrampusBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Flocko) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FlockoBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Martian Madness")
+            {
+                if (Utils.Kills(NPCID.Scutlix) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ScutlixBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MartianWalker) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianWalkerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MartianDrone) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianDroneBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MartianTurret) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianTeslaTurretBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GigaZapper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianGigazapperBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MartianEngineer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianEngineerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MartianOfficer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianOfficerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RayGunner) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianRaygunnerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GrayGrunt) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianGreyGruntBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BrainScrambler) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MartianBrainscramblerBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Solar Zone")
+            {
+                if (Utils.Kills(NPCID.SolarSolenian) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarSolenianBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SolarDrakomire) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarDrakomireBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SolarDrakomireRider) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarDrakomireRiderBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SolarCorite) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarCoriteBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SolarSroller) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarSrollerBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SolarCrawltipedeHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SolarCrawltipedeBanner, bannerCostInsane);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Vortex Zone")
+            {
+                if (Utils.Kills(NPCID.VortexHornet) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VortexHornetBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.VortexHornetQueen) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VortexHornetQueenBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.VortexLarva) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VortexLarvaBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.VortexRifleman) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.VortexRiflemanBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.VortexSoldier) >= bannerKillsRequirement)
+                {
+                }
+                AddItem(ItemID.VortexSoldierBanner, bannerCostInsane);
+                
+                return;
+            }
+
+            if (shop == "Nebula Zone")
+            {
+                if (Utils.Kills(NPCID.NebulaBeast) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NebulaBeastBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.NebulaBrain) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NebulaBrainBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.NebulaHeadcrab) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NebulaHeadcrabBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.NebulaSoldier) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NebulaSoldierBanner, bannerCostInsane);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Stardust Zone")
+            {
+                if (Utils.Kills(NPCID.StardustJellyfishSmall) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustJellyfishBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.StardustJellyfishBig) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustLargeCellBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.StardustCellSmall) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustSmallCellBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.StardustSoldier) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustSoldierBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.StardustSpiderSmall) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustSpiderBanner, bannerCostInsane);
+                    
+                }
+
+                if (Utils.Kills(NPCID.StardustWormHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.StardustWormBanner, bannerCostInsane);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Ocean")
+            {
+                if (Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PinkJellyfishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Crab) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CrabBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SeaSnail) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SeaSnailBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Squid) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SquidBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Shark) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SharkBanner, bannerCostEasy);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Snow")
+            {
+                if (Utils.Kills(NPCID.IceSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ZombieEskimo) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ZombieEskimoBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceElementalBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Wolf) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WolfBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IceGolem) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceGolemBanner, bannerCostInsane);
+                }
+
+                if (Utils.Kills(NPCID.Penguin) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PenguinBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IceBat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceBatBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SnowFlinx) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SnowFlinxBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SpikedIceSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SpikedIceSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.UndeadViking) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.UndeadVikingBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ArmoredViking) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ArmoredVikingBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IceTortoise) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceTortoiseBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IceElementalBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IcyMerman) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IcyMermanBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PigronCorruption) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PigronBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Jungle")
+            {
+                if (Utils.Kills(NPCID.Piranha) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PiranhaBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Snatcher) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SnatcherBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.JungleBat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.JungleBatBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.JungleSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.JungleSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DoctorBones) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DoctorBonesBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.AnglerFish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AnglerFishBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Arapaima) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ArapaimaBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GiantTortoise) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.TortoiseBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.AngryTrapper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AngryTrapperBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Derpling) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DerplingBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GiantFlyingFox) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GiantFlyingFoxBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Hornet) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HornetBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ManEater) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ManEaterBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.SpikedJungleSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SpikedJungleSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.LacBeetle) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.LacBeetleBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.JungleCreeper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.JungleCreeperBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Moth) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MothBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Lihzahrd) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.LihzahrdBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FlyingSnake) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FlyingSnakeBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Mushroom")
+            {
+                if (Utils.Kills(NPCID.FungiBulb) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FungiBulbBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.AnomuraFungus) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AnomuraFungusBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MushiLadybug) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MushiLadybugBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Spore) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SporeZombieBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FungoFish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FungoFishBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Corruption")
+            {
+                if (Utils.Kills(NPCID.EaterofSouls) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.EaterofSoulsBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DevourerHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DevourerBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Corruptor) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CorruptorBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CorruptSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CorruptSlimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Slimer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SlimerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WorldFeederBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CursedHammer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CursedHammerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Clinger) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ClingerBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Crimson")
+            {
+                if (Utils.Kills(NPCID.BloodCrawler) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BloodCrawlerBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FaceMonster) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FaceMonsterBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Crimera) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CrimeraBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Herpling) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HerplingBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Crimslime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CrimslimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BloodJelly) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BloodJellyBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BloodFeederBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CrimsonAxe) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CrimsonAxeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IchorSticker) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IchorStickerBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FloatyGross) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FloatyGrossBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Hallow")
+            {
+                if (Utils.Kills(NPCID.Pixie) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PixieBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Unicorn) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.UnicornBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RainbowSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RainbowSlimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Gastropod) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GastropodBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DD2LightningBugBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IlluminantSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IlluminantSlimeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.IlluminantBat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.IlluminantBatBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ChaosElemental) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ChaosElementalBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.EnchantedSword) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.EnchantedSwordBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Space")
+            {
+                if (Utils.Kills(NPCID.Harpy) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HarpyBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.WyvernHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WyvernBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Underworld")
+            {
+                if (Utils.Kills(NPCID.Hellbat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HellbatBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.LavaSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.LavaSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FireImp) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FireImpBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Demon) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DemonBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BoneSerpentHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BoneSerpentBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Lavabat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.LavaBatBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RedDevil) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RedDevilBanner, bannerCostHard);
+                    
+                }
+                return;
+            }
+
+            if (shop == "Overworld")
+            {
+                if (Utils.Kills(NPCID.BlueSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GreenSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GreenSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PurpleSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PurpleSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Pinky) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PinkyBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Zombie) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ZombieBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Raven) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RavenBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.DemonEye) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.DemonEyeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PossessedArmor) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PossessedArmorBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.HoppinJack) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.HoppinJackBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Werewolf) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WerewolfBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Bunny) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BunnyBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Bird) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BirdBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Worm) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.WormBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.RedSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RedSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.YellowSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.YellowSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ToxicSludge) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.ToxicSludgeBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Skeleton) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SkeletonBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Salamander) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SalamanderBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Crawdad) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CrawdadBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GiantShelly) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GiantShellyBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.UndeadMiner) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.UndeadMinerBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Tim) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.TimBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Nymph) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.NypmhBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.CochinealBeetle) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.CochinealBeetleBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BlueJellyfish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.JellyfishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GreenJellyfish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GreenJellyfishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.PinkJellyfishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.WallCreeper) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.SpiderBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.BlackRecluse) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.BlackRecluseBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GraniteGolem) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GraniteGolemBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.GraniteFlyer) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.GraniteFlyerBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.Medusa) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MedusaBanner, bannerCostHard);
+                    
+                }
+
+                if (Utils.Kills(NPCID.MeteorHead) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.MeteorHeadBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.FlyingFish) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.FlyingFishBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.UmbrellaSlime) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.UmbrellaSlimeBanner, bannerCostEasy);
+                    
+                }
+
+                if (Utils.Kills(NPCID.ZombieRaincoat) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.RaincoatZombieBanner, bannerCostEasy);
+                }
+
+                if (Utils.Kills(NPCID.AngryNimbus) >= bannerKillsRequirement)
+                {
+                    AddItem(ItemID.AngryNimbusBanner, bannerCostHard);
+                }
+                return;
+            }
+
+            if (shop == "Hair Dyes")
+            {
+                AddItem(ItemID.HairDyeRemover);
+                AddItem(ItemID.DepthHairDye);
+                AddItem(ItemID.LifeHairDye);
+                AddItem(ItemID.ManaHairDye);
+                AddItem(ItemID.MoneyHairDye);
+                AddItem(ItemID.TimeHairDye);
+                AddItem(ItemID.TeamHairDye);
+                AddItem(ItemID.PartyHairDye);
+                AddItem(ItemID.BiomeHairDye);
+                AddItem(ItemID.SpeedHairDye);
+                AddItem(ItemID.RainbowHairDye);
+                AddItem(ItemID.MartianHairDye);
+                AddItem(ItemID.TwilightHairDye);
+                AddItem(ItemID.LovePotion, Utils.UniversalPotionCost);
+                return;
+            }
+
+            // Default Shop
+            Inv.SetupShop(18);
         }
     }
 }
