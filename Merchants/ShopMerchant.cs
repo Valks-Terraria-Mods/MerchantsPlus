@@ -167,12 +167,33 @@ namespace MerchantsPlus.Merchants
                 AddItem(ItemID.Wood, Utils.Coins(0, 1));
                 BuffPotion();
                 AddItem(ItemID.EmptyBucket, Utils.Coins(0, 0, 1));
-                AddItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 10));
+                Wings();
                 return;
             }
 
             // Default Shop
             Inv.SetupShop(1);
+        }
+
+        private void Wings()
+        {
+            ReplaceItem(ItemID.AngelWings, Utils.Coins(0, 0, 0, 10));
+            if (NPC.downedSlimeKing) ReplaceItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 10));
+            if (Utils.DownedEyeOfCthulhu()) ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 0, 10));
+            if (NPC.downedGoblins) ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 0, 10));
+            if (Utils.DownedBrainOfCthulhu()) ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 0, 10));
+            if (NPC.downedQueenBee) ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 10));
+            if (Utils.DownedSkeletron()) ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 0, 10));
+            if (Main.hardMode) ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 10));
+            if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 2));
+            if (Utils.DownedMechBosses() == 2) ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 2));
+            if (Utils.DownedMechBosses() == 3) ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
+            if (NPC.downedPlantBoss) ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
+            if (NPC.downedGolemBoss) ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 2));
+            if (NPC.downedFishron) ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
+            if (NPC.downedMoonlord) ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));
+
+            NextSlot++;
         }
 
         private void Pickaxe()

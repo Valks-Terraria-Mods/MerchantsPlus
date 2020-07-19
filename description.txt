@@ -1,23 +1,32 @@
-MerchantsPlus turns every NPC that you can chat with into a merchant with several unique shops that you can cycle through. All the shops combined sell almost all the items in the entire game! Not every item is unlocked at first, you will have to defeat monsters and bosses to progress and unlock better items.
+This mod adds over [c/2bd42b:90] unique shops with almost every item in Terraria spread across all merchants. 
 
-The mod is getting more balanced every update, if you have any suggestions or bug reports or would like to contribute in another way please talk to me over Discord (valk#3277).
+Even the guide, nurse, angler, tax collector and old man are now merchants!
+
+Although not all the items are unlocked at once, you will need to defeat bosses and other types of enemies to progress.
+
+The mod gets more balanced with every update, if you have any suggestions or bug reports please talk to me over Discord (valk#3277).
+
+Currently there is no wiki, the best way to learn how everything works is by looking directly at the source linked below.
 
 [c/ffb2fd:Items]
-+ Merchants sell more items based on bosses / enemies defeated.
-+ Merchants sell items based on what you currently have equipped.
-+ Merchants have a chance to drop items on death. (disabled by default)
++ Sell more items based on bosses / enemies defeated.
++ Some items get 'upgraded' as you progress.
++ Sell items based on what you currently have equipped.
 
 [c/ffb2fd:Dialog]
-+ Quests (Quests give you hints on what you need to do to unlock more items)
++ Quests (Quests give you hints on what you need to do to unlock more items) (WIP)
 
-[c/ffb2fd:Stats]
+[c/ffb2fd:Extra]
++ Merchants have a chance to drop items on death. (disabled by default)
 + 300 health for all merchants. (disabled by default)
 + Slightly reduced sizes. (disabled by default)
 + Shoot different projectiles based on bosses defeated. (disabled by default)
 
-[c/ffb2fd:Msc]
-+ The angler, guide, nurse, tax collector and old man are now merchants.
-+ All merchants have the cycle shop mechanic.
+[c/ffb2fd:Planned]
++ Items with no sell value will have sell value
++ Accessory that gives discount on all shop items
++ Accessory that makes coins drop on enemy hit / kill
++ More complex UI's conveying more information to the player about shops and items including things such as quests
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 
@@ -27,6 +36,23 @@ Special Thanks
 - To the team that made tModLoader possible in the first place
 
 ===========================================
+
+[c/991095:v0.17.1]
+Hotfix which fixes the Witch doctors and Dye Traders shops not cycling properly.
+
+[c/991095:v0.17.0]
+Added 'UniversalSeedCost' set at 1 gold.
+Arms Dealer: Combined Msc shop with Guns shop
+The stylist now says something useful.
+Wings are no longer just 'Demon Wings' in Merchant shop.
+The clothier now sells Yoraiz0r's Spell for 2 plat once you defeated the ancient cultist.
+Adding missing vanity dev sets to the clothier clothing shop: Yoraiz0r, Skiph, Will, Aaron
+The Dye Trader now has multiple shops and sells ALL the dyes.
+Added 'UniversalDyeCost' set at 1 gold.
+The Witch doctor now has a "Wings" shop and sells ALL the wings.
+Removed Dye Vat from Dye Trader
+Removed individual unique enemy kill requirements for all the dyes as it was a unnecessary level of complexity.
+Removed Clentaminator from Steampunker
 
 [c/991095:v0.16.0]
 Added 'UniversalVanityCost' set at 5 gold.

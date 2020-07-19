@@ -13,8 +13,15 @@ namespace MerchantsPlus.Merchants
         {
             base.OpenShop(shop);
 
-            if (shop == "Msc")
+            if (shop == "Guns")
             {
+                ShopBulletMain();
+                ShopBulletOther();
+                ShopPistol();
+                ShopRifle();
+                ShopShotgun();
+
+                // Msc
                 if (NPC.downedPlantBoss)
                 {
                     AddItem(ItemID.SniperRifle);
@@ -24,16 +31,6 @@ namespace MerchantsPlus.Merchants
                 if (Main.hardMode) AddItem(ItemID.EmptyBullet);
                 AddItem(ItemID.AmmoBox);
                 AddItem(ItemID.AmmoReservationPotion, Utils.UniversalPotionCost);
-                return;
-            }
-
-            if (shop == "Guns")
-            {
-                ShopBulletMain();
-                ShopBulletOther();
-                ShopPistol();
-                ShopRifle();
-                ShopShotgun();
                 return;
             }
 

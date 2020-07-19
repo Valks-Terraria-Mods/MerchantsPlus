@@ -21,18 +21,18 @@ namespace MerchantsPlus.Merchants
 
             if (shop == "Seeds")
             {
-                AddItem(ItemID.GrassSeeds);
-                AddItem(ItemID.CorruptSeeds);
-                AddItem(ItemID.HallowedSeeds);
-                AddItem(ItemID.MushroomGrassSeeds);
-                AddItem(ItemID.CrimsonSeeds);
-                AddItem(ItemID.BlinkrootSeeds);
-                AddItem(ItemID.DaybloomSeeds);
-                AddItem(ItemID.DeathweedSeeds);
-                AddItem(ItemID.FireblossomSeeds);
-                AddItem(ItemID.MoonglowSeeds);
-                AddItem(ItemID.WaterleafSeeds);
-                AddItem(ItemID.ShiverthornSeeds);
+                AddItem(ItemID.GrassSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.CorruptSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.HallowedSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.MushroomGrassSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.CrimsonSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.BlinkrootSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.DaybloomSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.DeathweedSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.FireblossomSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.MoonglowSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.WaterleafSeeds, Utils.UniversalSeedCost);
+                AddItem(ItemID.ShiverthornSeeds, Utils.UniversalSeedCost);
                 return;
             }
 

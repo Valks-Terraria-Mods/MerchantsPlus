@@ -37,12 +37,12 @@ namespace MerchantsPlus.UI
 
         public static Dictionary<int, Shop> Shops = new Dictionary<int, Shop>() {
             { ANGLER, new ShopAngler(false, "Fishing Gear", "Bait", "Buffs", "Crates") },
-            { ARMSDEALER, new ShopArmsDealer(true, "Guns", "Msc") },
+            { ARMSDEALER, new ShopArmsDealer(true, "Guns") },
             { CLOTHIER, new ShopClothier(true, "Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
             { CYBORG, new ShopCyborg(true, "Robotics", "Buffs") },
             { DEMOLITIONIST, new ShopDemolitionist(true, "Explosives", "Potions") },
             { DRYAD, new ShopDryad(true, "Seeds", "Potions") },
-            { DYETRADER, new ShopDyeTrader(true, "Color") },
+            { DYETRADER, new ShopDyeTrader(true, "Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
             { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana",
                 "Immunity", "Defensive", "Special", "Miscellaneous") },
             { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
@@ -62,7 +62,7 @@ namespace MerchantsPlus.UI
             { TAXCOLLECTOR, new ShopTaxCollector(false) },
             { TRAVELLINGMERCHANT, new ShopTravellingMerchant(true, "Gear") },
             { TRUFFLE, new ShopTruffle(true, "Gear") },
-            { WITCHDOCTOR, new ShopWitchDoctor(true, "Gear", "Flasks") },
+            { WITCHDOCTOR, new ShopWitchDoctor(true, "Gear", "Flasks", "Wings") },
             { WIZARD, new ShopWizard(true, "Gear") },
             { GUIDE, new ShopGuide(false, "Shop") }
         };

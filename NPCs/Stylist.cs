@@ -9,6 +9,8 @@ namespace MerchantsPlus.NPCs
         {
             if (npc.type != NPCID.Stylist) return;
             base.GetChat(npc, ref chat);
+
+            chat = Utils.Dialog(new string[] { "Defeat 50 enemies of any type and I'll sell you the banner for that enemy." });
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)

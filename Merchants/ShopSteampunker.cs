@@ -34,7 +34,6 @@ namespace MerchantsPlus.Merchants
 
             if (shop == "Solutions")
             {
-                AddItem(ItemID.Clentaminator);
                 AddItem(ItemID.PurpleSolution);
                 AddItem(ItemID.RedSolution);
                 AddItem(ItemID.GreenSolution);

@@ -16,39 +16,22 @@ namespace MerchantsPlus.Merchants
             if (shop == "Boss Masks")
             {
                 AddItem(ItemID.BrainMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.DukeFishronMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.EyeMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.KingSlimeMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BeeMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.SkeletronPrimeMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.FleshMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BossMaskCultist, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BossMaskBetsy, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BossMaskOgre, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.DestroyerMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.EaterMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.GolemMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.PlanteraMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.SkeletronMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.TwinMask, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BossMaskDarkMage, Utils.UniversalVanityCost);
-
                 AddItem(ItemID.BossMaskMoonlord, Utils.UniversalVanityCost);
 
                 return;
@@ -424,17 +407,23 @@ namespace MerchantsPlus.Merchants
                 if (Main.hardMode)
                 {
                     AddItem(ItemID.ReaperRobe, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.ReaperHood, Utils.UniversalVanityCost);
                 }
 
                 if (NPC.downedMechBossAny)
                 {
                     AddItem(ItemID.SpaceCreaturePants, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.SpaceCreatureShirt, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.SpaceCreatureMask, Utils.UniversalVanityCost);
+                    AddItem(ItemID.SkiphsPants, Utils.UniversalVanityCost);
+                    AddItem(ItemID.SkiphsShirt, Utils.UniversalVanityCost);
+                    AddItem(ItemID.SkiphsHelm, Utils.UniversalVanityCost);
+                    AddItem(ItemID.WillsLeggings, Utils.UniversalVanityCost);
+                    AddItem(ItemID.WillsBreastplate, Utils.UniversalVanityCost);
+                    AddItem(ItemID.WillsHelmet, Utils.UniversalVanityCost);
+                    AddItem(ItemID.AaronsLeggings, Utils.UniversalVanityCost);
+                    AddItem(ItemID.AaronsBreastplate, Utils.UniversalVanityCost);
+                    AddItem(ItemID.AaronsHelmet, Utils.UniversalVanityCost);
                 }
 
                 if (NPC.downedPlantBoss)
@@ -445,60 +434,54 @@ namespace MerchantsPlus.Merchants
                 if (Main.raining)
                 {
                     AddItem(ItemID.CrownosLeggings, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CrownosBreastplate, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CrownosMask, Utils.UniversalVanityCost);
                 }
 
                 if (Main.bloodMoon)
                 {
                     AddItem(ItemID.CenxsDressPants, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CenxsLeggings, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CenxsDress, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CenxsBreastplate, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.CenxsTiara, Utils.UniversalVanityCost);
                 }
 
                 if (Main.eclipse)
                 {
                     AddItem(ItemID.JimsLeggings, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.JimsBreastplate, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.JimsHelmet, Utils.UniversalVanityCost);
                 }
 
                 if (Main.dayTime)
                 {
                     AddItem(ItemID.ArkhalisPants, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.ArkhalisShirt, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.ArkhalisHat, Utils.UniversalVanityCost);
+                    AddItem(ItemID.Yoraiz0rPants, Utils.UniversalVanityCost);
+                    AddItem(ItemID.Yoraiz0rShirt, Utils.UniversalVanityCost);
+                    AddItem(ItemID.Yoraiz0rHead, Utils.UniversalVanityCost);
+                    AddItem(ItemID.Yoraiz0rDarkness, Utils.UniversalVanityCost);
                 }
                 else
                 {
                     AddItem(ItemID.LokisPants, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.LokisShirt, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.LokisHelm, Utils.UniversalVanityCost);
                 }
 
                 if (Main.hardMode)
                 {
                     AddItem(ItemID.LeinforsPants, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.LeinforsShirt, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.LeinforsHat, Utils.UniversalVanityCost);
-
                     AddItem(ItemID.LeinforsAccessory, Utils.UniversalVanityCost);
+                }
+
+                if (NPC.downedAncientCultist)
+                {
+                    AddItem(ItemID.Yoraiz0rWings, Utils.Coins(0, 0, 0, 2));
                 }
                 return;
             }
