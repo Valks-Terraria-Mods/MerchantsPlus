@@ -33,6 +33,7 @@ namespace MerchantsPlus.Merchants
                     AddItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
                     AddItem(ItemID.Yoraiz0rDarkness, Utils.Coins(0, 0, 0, 2));
                     AddItem(ItemID.LokisWings, Utils.Coins(0, 0, 0, 2));
+                    AddItem(ItemID.BejeweledValkyrieWing, Utils.Coins(0, 0, 0, 2));
                     AddItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
                     AddItem(ItemID.SkiphsWings, Utils.Coins(0, 0, 0, 2));
                     AddItem(ItemID.RedsWings, Utils.Coins(0, 0, 0, 2));

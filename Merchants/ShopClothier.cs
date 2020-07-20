@@ -424,6 +424,8 @@ namespace MerchantsPlus.Merchants
                     AddItem(ItemID.AaronsLeggings, Utils.UniversalVanityCost);
                     AddItem(ItemID.AaronsBreastplate, Utils.UniversalVanityCost);
                     AddItem(ItemID.AaronsHelmet, Utils.UniversalVanityCost);
+                    AddItem(ItemID.BejeweledValkyrieBody, Utils.UniversalVanityCost);
+                    AddItem(ItemID.BejeweledValkyrieHead, Utils.UniversalVanityCost);
                 }
 
                 if (NPC.downedPlantBoss)
