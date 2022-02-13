@@ -3,9 +3,9 @@ MerchantsPlus is a mod that modifys merchants in a way which gives them multiple
 
 We now have a [wiki](https://github.com/valkyrienyanko/MerchantsPlus/wiki)!
 
+Download the mod [here](https://github.com/Valks-Terraria-Mods/MerchantsPlus/releases)  
+
 ## Contributing
 See current [issues](https://github.com/valkyrienyanko/MerchantsPlus/issues).
 
 [CONTRIBUTING.md](https://github.com/valkyrienyanko/MerchantsPlus/blob/master/CONTRIBUTING.md)
-
-If you have any questions, contact **valk#3277** on discord.
