@@ -1,5 +1,5 @@
 author = valkyrienyanko
-version = 0.18.0
+version = 0.18.1
 displayName = MerchantsPlus
-homepage = https://discord.gg/thMupbv
+homepage = https://github.com/Valks-Terraria-Mods/MerchantsPlus
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
