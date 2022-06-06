@@ -1,4 +1,4 @@
-This mod adds over [c/2bd42b:90] unique shops with almost every item in Terraria spread across all merchants. 
+This mod adds over 90 unique shops with almost every item in Terraria spread across all merchants. 
 
 Even the guide, nurse, angler, tax collector and old man are now merchants!
 
@@ -11,22 +11,22 @@ Want to help contribute? Here are some ways you can contribute:
 - Suggesting price changes / item condition changes for making the mod more balanced.
 - Listing items that have no sell value.
 
-[c/ffb2fd:Items]
+Items
 + Sell more items based on bosses / enemies defeated.
 + Some items get 'upgraded' as you progress.
 + Sell items based on what you currently have equipped.
 + Items that had no sell values now have unique sell values.
 
-[c/ffb2fd:Dialog]
+Dialog
 + Quests (Quests give you hints on what you need to do to unlock more items) (WIP)
 
-[c/ffb2fd:Extra]
+Extra
 + Merchants have a chance to drop items on death. (disabled by default)
 + 300 health for all merchants. (disabled by default)
 + Slightly reduced sizes. (disabled by default)
 + Shoot different projectiles based on bosses defeated. (disabled by default)
 
-[c/ffb2fd:Planned]
+Planned
 + Accessory that gives discount on all shop items
 + Accessory that makes coins drop on enemy hit / kill
 + More complex UI's conveying more information to the player about shops and items including things such as quests
@@ -37,173 +37,3 @@ Special Thanks
 - To everyone in the tModLoader Discord for all your generous help
 - To ReLogic for making Terraria
 - To the team that made tModLoader possible in the first place
-
-===========================================
-
-[c/991095:v0.18]
-Added missing dev set to clothier shop.
-All boss bags now have unique sell values based on world difficulty.
-ALL vanity items now have unique sell values.
-ALL armour items now have unique sell values.
-ALL block items now have unique sell values. (of course I missed a few, that's for you guys to point out :P)
-Lots of other things that did not have sell value now have sell value.
-
-[c/991095:v0.17.1]
-Hotfix which fixes the Witch doctors and Dye Traders shops not cycling properly.
-
-[c/991095:v0.17.0]
-Added 'UniversalSeedCost' set at 1 gold.
-Arms Dealer: Combined Msc shop with Guns shop
-The stylist now says something useful.
-Wings are no longer just 'Demon Wings' in Merchant shop.
-The clothier now sells Yoraiz0r's Spell for 2 plat once you defeated the ancient cultist.
-Adding missing vanity dev sets to the clothier clothing shop: Yoraiz0r, Skiph, Will, Aaron
-The Dye Trader now has multiple shops and sells ALL the dyes.
-Added 'UniversalDyeCost' set at 1 gold.
-The Witch doctor now has a "Wings" shop and sells ALL the wings.
-Removed Dye Vat from Dye Trader
-Removed individual unique enemy kill requirements for all the dyes as it was a unnecessary level of complexity.
-Removed Clentaminator from Steampunker
-
-[c/991095:v0.16.0]
-Added 'UniversalVanityCost' set at 5 gold.
-Applied 'UniversalVanityCost' to all vanity items in Party Girl shop.
-Added config option 'ShopPriceMultiplier'.
-Reduced universal accessory cost from 25 to 20 gold.
-The mechanic no longer sells EVERY furniture set, instead she sells their respective materials.
-Party girl vanity items moved to Clothier merchant.
-You no longer need to press the shop button whenever you click the cycle shop button.
-LOTS of prices have been tweaked.
-More items now require 'progression levels' to unlock.
-The mod has been abstracted on a whole new level!
-
-[c/991095:v0.15.0]
-Universal pet cost reduced from 25 to 5 gold.
-Guide shop items have been tweaked.
-Removed empty shop in Merchant shop.
-
-[c/991095:v0.14.0]
-The Tinkerer no longer sells everything in 'chunks', the items are spread more out meaning you have to progress for fewer rewards now.
-
-[c/991095:v0.13.0]
-Streamlined the dialog for all the merchants. It's plain and boring now. In future updates, quests will be shown in dialog. Quests will tell the player how to unlock more items in the merchants shops.
-Added config options for toggling merchant drops and projectiles.
-The idea of quests have been implemented into Goblin Tinkerer dialog.
-
-[c/991095:v0.12.0]
-Shop category index now resets and is ready for next time you view the shop.
-Complete overhaul of the Angler merchant, every item has not been over looked.
-Fixed several potential bugs.
-
-[c/991095:v0.11.0]
-Merchant extra life, alternate Dialog and scaling are now disabled by default in the configs.
-More price refactoring.
-
-[c/991095:v0.10.0]
-Merchant no longers sells all the pets at once, you need to defeat certain bosses / events to unlock more pets.
-Prices for 3 merchants were refactored including the Nurse, Merchant and someone else.
-
-[c/991095:v0.9.0.8]
-Guide no longer shoots you with flaming arrows that damage the player.
-
-[c/991095:v0.9.0.7]
-Merchant now sells all ores based on bosses downed (as usual) at rediciously high prices!
-
-[c/991095:v0.9.0.6]
-Items like weapons, tools or even dynamite are no longer used when you're clicking UI buttons.
-
-[c/991095:v0.9.0.5]
-Fixed game crashing when calamity was not loaded when cycling through tinkerers custom shops.
-Fixed offset of flower boots accessory.
-Fixed some accessories not having the universal accessory global cost constant.
-
-[c/991095:v0.9.0.4]
-Fixed map crash bug.
-
-[c/991095:v0.9.0.3]
-Shifted the UI 40 pixels to the left if auto trash mod is loaded.
-
-[c/991095:v0.9.0.2]
-Calamity expert exclusive accessories are now only sold when specified bosses are defeated.
-
-[c/991095:v0.9.0.1]
-Travelling merchant no longer sells the shop of the last merchants shop you last talked to.
-The skeleton merchants shop is no longer used as a dummy shop with all the items turned to air, instead a actual empty shop is created and then the items are added.
-
-[c/991095:v0.9]
-Vanilla merchant spawning mechanics are no longer effected.
-Vanilla merchants spawning conditions are no longer effected.
-Vanilla merchant buttons are no longer effected.
-Shop / Cycle Shop buttons appear as an additional UI when you press the first button in any merchant.
-Vanilla merchants arrive to your town again.
-You no longer have to worry about missing vanilla merchant mechanics.
-Config was added back.
-
-[c/991095:v0.8.4]
-Mod NPCs should no longer be instantly killed.
-Balanced tinkerer and nurse a bit.
-Vanilla merchants should no longer arrive to your world ever.
-Fixed merchants not being able to shoot anything.
-Reforges now cost whatever value the item is instead of 1 gold.
-Made items harder to get by drastically increasing the price.
-Added demon wings to merchant for 2 plat.
-Added / changed a bunch of other items.
-Config was removed.
-
-[c/991095:v0.8.2]
-Nurse now heals past vanilla max hp limit.
-Dye Trader strange plants button was added.
-Tinkerer reforge button was added.
-
-[c/991095:v0.8]
-Replaced all vanilla merchants with custom merchants.
-
-[c/991095:v0.6.7]
-Furniture merchant added.
-
-[c/991095:v0.6.6]
-Banner merchant only sells the banners if you killed 50 of that enemy type.
-
-[c/991095:v0.6.5]
-Banner merchant now sells banners for ALL npc types. (The merchant has 25 shops to hold them all in..)
-
-[c/991095:v0.6.4]
-Added the mods first custom NPC (Banner NPC that sells Banners) You can cycle the shop of the merchant. (In order for the NPC to arrive to your town you need to have a slime / green slime / purple slime banner in your inventory.)
-
-[c/991095:v0.6.3]
-Added / changed alot more Dialog.
-New mod mechanic, bound npcs glow in the dark and the skeleton merchant glows in the dark as well.
-Added alot more projectiles for NPC merchants.
-
-[c/991095:v0.6]
-Touched up alot of town NPC projectiles
-Revised merchant items
-
-[c/991095:v0.5]
-Added config in case you want to disable Dialog, health, or scaling.
-Made merchants have intelligence :D
-Heavily changed merchant items.
-
-[c/991095:v0.4]
-All NPCs now have unique sizes.
-Arms dealer heavily balanced.
-Added support for nurse, guide and angler NPCs.
-Lots of more humerous Dialog to look forward to. ;)
-NPCs now have a chance to drop unique loot on death.
-Some NPCs projectiles have been modified based on how many bosses you've defeated.
-Index out of size bug fix for arms dealer and skeleton merchant.
-The angler now has the ai of a slime and he wants to become a bunny hopper when he grows up. :)
-
-[c/991095:v0.3]
-All NPCs have unique Dialog and personalities.
-Arms dealer heavily revised.
-Revised items for most merchants.
-Added more boss and npc kill conditions for all merchants to make the mod less op.
-As a test, the Wizard now gives the player a magic dagger when unique Dialog is played and unique conditions are met.
-
-[c/991095:v0.2]
-Added conditions for various merchants.
-Added more items.
-
-[c/991095:v0.1]
-Various bug fixes.
