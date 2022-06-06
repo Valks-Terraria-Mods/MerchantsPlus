@@ -167,41 +167,14 @@ namespace MerchantsPlus
             if (p.HeldItem != null && p.HeldItem.damage > 0)
             {
                 Item heldItem = p.HeldItem;
-                if (heldItem.melee) return "melee";
-                if (heldItem.ranged) return "ranged";
-                if (heldItem.magic) return "mage";
-                if (heldItem.summon) return "summoner";
-                if (heldItem.thrown) return "thrower";
-                return "melee";
+                if (heldItem.CountsAsClass(DamageClass.Melee)) return "melee";
+                if (heldItem.CountsAsClass(DamageClass.Ranged)) return "ranged";
+                if (heldItem.CountsAsClass(DamageClass.Magic)) return "mage";
+                if (heldItem.CountsAsClass(DamageClass.Summon)) return "summoner";
+                if (heldItem.CountsAsClass(DamageClass.Throwing)) return "thrower";
             }
-            else
-            {
-                float[] damages = { p.meleeDamage, p.arrowDamage, p.bulletDamage, p.rocketDamage, p.thrownDamage, p.magicDamage, p.minionDamage };
 
-                float maxValue = damages.Max();
-                int maxIndex = damages.ToList().IndexOf(maxValue);
-
-                switch (maxIndex)
-                {
-                    case 0:
-                        return "melee";
-
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        return "ranged";
-
-                    case 5:
-                        return "mage";
-
-                    case 6:
-                        return "summoner";
-
-                    default:
-                        return "melee";
-                }
-            }
+            return "melee";
         }
 
         public static string Dialog(string[] lines)
@@ -256,20 +229,6 @@ namespace MerchantsPlus
             }
         }
 
-        public static void DropItem(NPC npc, short npcID, short[] item, int chance)
-        {
-            if (Main.rand.Next(1, 100) < chance)
-            {
-                if (npc.type == npcID)
-                {
-                    for (int i = 0; i < item.Length; i++)
-                    {
-                        Item.NewItem(npc.position, item[i]);
-                    }
-                }
-            }
-        }
-
         public static string DialogGift(NPC npc, string moneyDialog, string noMoneyDialog, bool condition, int chance, short item, int price)
         {
             if (condition)
@@ -280,7 +239,7 @@ namespace MerchantsPlus
                     { // Take the gold. (1 is 1 copper) (100 is 1 silver) (1000 is 1 gold)
                         if (!Main.LocalPlayer.HasItem(item))
                         {
-                            Item.NewItem(npc.position, item);
+                            Item.NewItem(NPC.GetSource_NaturalSpawn(), npc.position, item);
                             if (price <= 0)
                             {
                                 return moneyDialog;

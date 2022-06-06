@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 namespace MerchantsPlus.NPCs
@@ -11,11 +12,12 @@ namespace MerchantsPlus.NPCs
             base.GetChat(npc, ref chat);
         }
 
-        public override void NPCLoot(NPC npc)
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type != NPCID.OldMan) return;
-            base.NPCLoot(npc);
-            Utils.DropItem(npc, NPCID.OldMan, new short[] { ItemID.Bacon }, 100);
+            if (npc.type == NPCID.OldMan)
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.Bacon, 1));
+            }
         }
     }
 }

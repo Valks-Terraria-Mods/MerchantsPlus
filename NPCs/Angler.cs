@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 namespace MerchantsPlus.NPCs
@@ -11,11 +12,12 @@ namespace MerchantsPlus.NPCs
             base.GetChat(npc, ref chat);
         }
 
-        public override void NPCLoot(NPC npc)
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type != NPCID.Angler) return;
-            base.NPCLoot(npc);
-            Utils.DropItem(npc, NPCID.Angler, new short[] { ItemID.Fish }, 25);
+            if (npc.type == NPCID.Angler)
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.Fish, 1));
+            }
         }
 
         public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)

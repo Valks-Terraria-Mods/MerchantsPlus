@@ -39,7 +39,7 @@ namespace MerchantsPlus.NPCs
             chat = Utils.Dialog(new string[] { "Defeat more bosses to unlock more gear." });
         }
 
-        public override void NPCLoot(NPC npc)
+        public override void OnKill(NPC npc)
         {
             if (!Config.MerchantDrops) return;
         }

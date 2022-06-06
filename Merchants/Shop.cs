@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 
 namespace MerchantsPlus.Merchants
@@ -43,10 +44,10 @@ namespace MerchantsPlus.Merchants
 
         private void PrepareShop()
         {
-            Main.PlaySound(SoundID.MenuTick, -1, -1, 1, 1f, 0f);
+            SoundEngine.PlaySound(SoundID.MenuTick);
             Main.playerInventory = true;
             Main.npcChatText = "";
-            Main.npcShop = 20;
+            //Main.npcShop = 20;
 
             Inv = Main.instance.shop[Main.npcShop];
             Inv.SetupShop(0);

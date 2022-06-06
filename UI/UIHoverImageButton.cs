@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
+using ReLogic.Content;
 
 namespace MerchantsPlus.UI
 {
@@ -13,7 +13,7 @@ namespace MerchantsPlus.UI
     {
         internal string HoverText;
 
-        public UIHoverImageButton(Texture2D texture, string hoverText) : base(texture)
+        public UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : base(texture)
         {
             HoverText = hoverText;
         }

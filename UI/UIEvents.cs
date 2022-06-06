@@ -113,7 +113,7 @@ namespace MerchantsPlus.UI
                         break;
                 }
                 ShopUI.Visible = true;
-                MerchantsPlus.Instance.UserInterface.SetState(new ShopUI());
+                MerchantsPlus.UserInterface.SetState(new ShopUI());
             }
 
             // Reset shop category index

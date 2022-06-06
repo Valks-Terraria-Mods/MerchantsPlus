@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 using Terraria.UI;
@@ -24,7 +25,7 @@ namespace MerchantsPlus.UI
             BorderColor = BORDER;
 
             uitext = new UIText(text, text_size);
-            Vector2 text_measure = Main.fontMouseText.MeasureString(uitext.Text);
+            Vector2 text_measure = FontAssets.MouseText.Value.MeasureString(uitext.Text);
 
             float width = (text_measure.X * text_size);
             float height = (text_measure.Y * text_size) / 2f;

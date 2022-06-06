@@ -1,10 +1,10 @@
-using log4net;
-using MerchantsPlus.UI;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.UI;
+global using log4net;
+global using MerchantsPlus.UI;
+global using Microsoft.Xna.Framework;
+global using System.Collections.Generic;
+global using Terraria;
+global using Terraria.ModLoader;
+global using Terraria.UI;
 
 namespace MerchantsPlus
 {
@@ -13,13 +13,9 @@ namespace MerchantsPlus
         public static MerchantsPlus Instance;
         public static ILog Console;
 
-        public UserInterface UserInterface;
+        public static UserInterface UserInterface;
 
         private ShopUI m_ShopUI;
-
-        public MerchantsPlus()
-        {
-        }
 
         public override void Load()
         {
@@ -41,38 +37,6 @@ namespace MerchantsPlus
         public override void Unload()
         {
             Instance = null;
-        }
-
-        public override void UpdateUI(GameTime gameTime)
-        {
-            base.UpdateUI(gameTime);
-
-            if (ShopUI.Visible)
-            {
-                UserInterface.Update(gameTime);
-            }
-        }
-
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            base.ModifyInterfaceLayers(layers);
-
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex != -1)
-            {
-                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "MerchantsPlus: Custom Shops",
-                    delegate
-                    {
-                        if (ShopUI.Visible)
-                        {
-                            UserInterface.Draw(Main.spriteBatch, new GameTime());
-                        }
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
         }
     }
 }

@@ -99,7 +99,7 @@ namespace MerchantsPlus.UI
             ShopPanel.Top.Set(428f, 0f);
             ShopPanel.Width.Set(250f, 0f);
             ShopPanel.Height.Set(35f, 0f);
-            ShopPanel.BackgroundColor = Main.bgColor;
+            ShopPanel.BackgroundColor = Main.tileColor;
 
             m_OpenShopButton = new TextButton(CurrentShops[TheShop], 0.9f);
             m_OpenShopButton.Left.Set(10, 0f);
