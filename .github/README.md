@@ -1,3 +1,5 @@
+[![](https://img.shields.io/static/v1?style=flat-square&logo=discord&logoColor=white&color=blue&label=discord&message=valks%20games)](https://discord.gg/866cg8yfxZ)
+
 ## About
 MerchantsPlus is a mod that modifys merchants in a way which gives them multiple shops which you can cycle through. Items in each shop are not all unlocked at once and need to be unlocked by progressing through the world. In addition the mod can optionally modify the size, health and dialog of the merchants.
 
