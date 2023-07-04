@@ -2,9 +2,21 @@
 
 internal class ModifyUI : ModSystem
 {
-    public static UserInterface UserInterface { get; private set; }
-
+    UserInterface userInterface;
+    GameTime lastUpdateUiGameTime;
     ShopUI shopUI;
+
+    internal void ShowShopUI()
+    {
+        ShopUI.Visible = true;
+        userInterface?.SetState(shopUI);
+    }
+
+    internal void HideShopUI()
+    {
+        ShopUI.Visible = false;
+        userInterface?.SetState(null);
+    }
 
     public override void Load()
     {
@@ -13,24 +25,21 @@ internal class ModifyUI : ModSystem
             shopUI = new ShopUI();
             shopUI.Activate();
 
-            UserInterface = new UserInterface();
+            userInterface = new UserInterface();
         }
     }
 
     public override void UpdateUI(GameTime gameTime)
     {
-        base.UpdateUI(gameTime);
-
-        if (ShopUI.Visible)
+        lastUpdateUiGameTime = gameTime;
+        if (userInterface?.CurrentState != null)
         {
-            UserInterface.Update(gameTime);
+            userInterface.Update(gameTime);
         }
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
-        base.ModifyInterfaceLayers(layers);
-
         int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
         if (mouseTextIndex != -1)
         {
@@ -38,14 +47,13 @@ internal class ModifyUI : ModSystem
                 "MerchantsPlus: Custom Shops",
                 delegate
                 {
-                    if (ShopUI.Visible)
+                    if (lastUpdateUiGameTime != null && userInterface?.CurrentState != null)
                     {
-                        UserInterface.Draw(Main.spriteBatch, new GameTime());
+                        userInterface.Draw(Main.spriteBatch, lastUpdateUiGameTime);
                     }
                     return true;
                 },
-                InterfaceScaleType.UI)
-            );
+                InterfaceScaleType.UI));
         }
     }
 }
