@@ -11,7 +11,7 @@ public class PlayerHooks : ModPlayer
             if (ShopUI.Visible)
             {
                 ModContent.GetInstance<ModifyUI>().HideShopUI();
-                Main.NewText("Hiding shop ui");
+                //Main.NewText("Hiding shop ui");
             }
         }
     }
