@@ -37,30 +37,30 @@ internal class ShopUI : UIState
         { CLOTHIER, new ShopClothier(true, "Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
         { CYBORG, new ShopCyborg(true, "Robotics", "Buffs") },
         { DEMOLITIONIST, new ShopDemolitionist(true, "Explosives", "Potions") },
-        { DRYAD, new ShopDryad(true, "Seeds", "Potions") },
-        { DYETRADER, new ShopDyeTrader(true, "Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
+        { DRYAD, new ShopDryad(true, "Dryad Seeds", "Potions") },
+        { DYETRADER, new ShopDyeTrader(true, "Basic Dyes", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
         { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana",
             "Immunity", "Defensive", "Special", "Miscellaneous") },
         { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
-        { MERCHANT, new ShopMerchant(true, "Gear", "Ores", "Pets", "Mounts") },
-        { NURSE, new ShopNurse(true, "Potions") },
+        { MERCHANT, new ShopMerchant(true, "Merchant", "Ores", "Pets", "Mounts") },
+        { NURSE, new ShopNurse(true, "Nurse") },
         { PAINTER, new ShopPainter(true, "Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
         { PARTYGIRL, new ShopPartyGirl(true, "Party Stuff") },
         { PIRATE, new ShopPirate(true, "Arrr", "Potions") },
         { SANTACLAUS, new ShopSantaClaus(true, "Decor", "Bulbs", "Lights", "Potions") },
-        { SKELETONMERCHANT, new ShopSkeletonMerchant(true, "Gear", "Music Boxes") },
-        { STEAMPUNKER, new ShopSteampunker(true, "Gear", "Solutions", "Logic") },
+        { SKELETONMERCHANT, new ShopSkeletonMerchant(true, "Skeleton Merchant", "Music Boxes") },
+        { STEAMPUNKER, new ShopSteampunker(true, "Steam Punker", "Solutions", "Logic") },
         { STYLIST, new ShopStylist(true, "Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
             "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
             "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
             "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
-        { TAVERNKEEP, new ShopTavernkeep(true, "Gear") },
+        { TAVERNKEEP, new ShopTavernkeep(true, "Tavern Keeper") },
         { TAXCOLLECTOR, new ShopTaxCollector(false) },
-        { TRAVELLINGMERCHANT, new ShopTravellingMerchant(true, "Gear") },
-        { TRUFFLE, new ShopTruffle(true, "Gear") },
-        { WITCHDOCTOR, new ShopWitchDoctor(true, "Gear", "Flasks", "Wings") },
-        { WIZARD, new ShopWizard(true, "Gear") },
-        { GUIDE, new ShopGuide(false, "Shop") }
+        { TRAVELLINGMERCHANT, new ShopTravellingMerchant(true, "Travelling Merchant") },
+        { TRUFFLE, new ShopTruffle(true, "Truffle") },
+        { WITCHDOCTOR, new ShopWitchDoctor(true, "Witch Doctor", "Flasks", "Wings") },
+        { WIZARD, new ShopWizard(true, "Wizard") },
+        { GUIDE, new ShopGuide(false, "Guide") }
     };
 
     public static bool Visible { get; set; }
@@ -68,18 +68,20 @@ internal class ShopUI : UIState
     public static int CurrentShopIndex { get; set; }
     public static int[] ShopCycleIndexes { get; } = new int[Shops.Count];
 
-    public UIPanel ShopPanel;
+    public string[] ShopNames { get; } = new string[Shops.Count];
+    public UIText CurrentShopName { get; private set; }
 
-    readonly string[] shopNames = new string[Shops.Count];
-
-    UIText currentShopName;
+    UIPanel ShopPanel;
 
     public override void OnInitialize()
     {
         // This is the first shop name the player will see (for all shops)
         // before pressing cycle shop button
-        for (int i = 0; i < shopNames.Length; i++)
-            shopNames[i] = "Shop";
+        for (int i = 0; i < Shops.Count; i++)
+            ShopNames[i] = Shops[i].ToString();
+
+        //for (int i = 0; i < ShopNames.Length; i++)
+        //    ShopNames[i] = "Shop";
 
         ShopPanel = new UIPanel();
         ShopPanel.SetPadding(0);
@@ -89,11 +91,11 @@ internal class ShopUI : UIState
         ShopPanel.Height.Set(35f, 0f);
         ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        currentShopName = new UIText(shopNames[CurrentShopIndex], 0.9f);
-        currentShopName.Left.Set(10, 0f);
-        currentShopName.Top.Set(8, 0f);
-        currentShopName.OnClick += new MouseEvent(ShopButtonClicked);
-        ShopPanel.Append(currentShopName);
+        CurrentShopName = new UIText(ShopNames[CurrentShopIndex], 0.9f);
+        CurrentShopName.Left.Set(10, 0f);
+        CurrentShopName.Top.Set(8, 0f);
+        CurrentShopName.OnClick += new MouseEvent(ShopButtonClicked);
+        ShopPanel.Append(CurrentShopName);
 
         var cycleShopButton = new TextButton("Cycle Shop", 0.9f);
         cycleShopButton.Left.Set(150, 0f);
@@ -104,15 +106,18 @@ internal class ShopUI : UIState
         Append(ShopPanel);
     }
 
+    public void UpdateShopName() =>
+        CurrentShopName.SetText(ShopNames[CurrentShopIndex]);
+
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
-        ShopPanel.RemoveChild(currentShopName);
+        ShopPanel.RemoveChild(CurrentShopName);
 
         ShiftShop();
 
-        currentShopName.SetText(shopNames[CurrentShopIndex]);
+        UpdateShopName();
 
-        ShopPanel.Append(currentShopName);
+        ShopPanel.Append(CurrentShopName);
 
         OpenShop();
     }
@@ -122,12 +127,12 @@ internal class ShopUI : UIState
         if (Shops[CurrentShopIndex].Shops.Count == 0) return; // Safe Guard
         if (ShopCycleIndexes[CurrentShopIndex] >= Shops[CurrentShopIndex].Shops.Count - 1)
         {
-            shopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[0];
+            ShopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[0];
             ShopCycleIndexes[CurrentShopIndex] = 0;
         }
         else
         {
-            shopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[++ShopCycleIndexes[CurrentShopIndex]];
+            ShopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[++ShopCycleIndexes[CurrentShopIndex]];
         }
     }
 
@@ -135,5 +140,5 @@ internal class ShopUI : UIState
         OpenShop();
 
     private void OpenShop() =>
-        Shops[CurrentShopIndex].OpenShop(shopNames[CurrentShopIndex]);
+        Shops[CurrentShopIndex].OpenShop(ShopNames[CurrentShopIndex]);
 }

@@ -80,4 +80,7 @@ internal abstract class Shop
     {
         Inv.item[NextSlot].shopCustomPrice = price;
     }
+
+    public override string ToString() => 
+        GetType().Name.Replace("Shop", "").AddSpaceBeforeEachCapital();
 }
