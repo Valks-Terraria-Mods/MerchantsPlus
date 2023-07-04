@@ -111,14 +111,8 @@ internal class ShopUI : UIState
 
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
-        ShopPanel.RemoveChild(CurrentShopName);
-
         ShiftShop();
-
         UpdateShopName();
-
-        ShopPanel.Append(CurrentShopName);
-
         OpenShop();
     }
 
