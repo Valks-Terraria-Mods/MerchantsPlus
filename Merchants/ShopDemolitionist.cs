@@ -1,90 +1,88 @@
-using Terraria;
 using Terraria.ID;
 
-namespace MerchantsPlus.Merchants
+namespace MerchantsPlus.Merchants;
+
+internal class ShopDemolitionist : Shop
 {
-    internal class ShopDemolitionist : Shop
+    public ShopDemolitionist(bool merchant, params string[] shops) : base(merchant, shops)
     {
-        public ShopDemolitionist(bool merchant, params string[] shops) : base(merchant, shops)
+    }
+
+    public override void OpenShop(string shop)
+    {
+        base.OpenShop(shop);
+
+        if (shop == "Potions")
         {
+            AddItem(ItemID.MiningPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.NightOwlPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.ShinePotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.SpelunkerPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.StinkPotion, Utils.UniversalPotionCost);
+
+            return;
         }
 
-        public override void OpenShop(string shop)
+        if (shop == "Explosives")
         {
-            base.OpenShop(shop);
-
-            if (shop == "Potions")
+            AddItem(ItemID.Grenade);
+            if (NPC.AnyNPCs(NPCID.PartyGirl))
             {
-                AddItem(ItemID.MiningPotion, Utils.UniversalPotionCost);
-                AddItem(ItemID.NightOwlPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.ShinePotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.SpelunkerPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.StinkPotion, Utils.UniversalPotionCost);
-
-                return;
+                AddItem(ItemID.PartyGirlGrenade);
             }
 
-            if (shop == "Explosives")
+            if (NPC.downedSlimeKing)
             {
-                AddItem(ItemID.Grenade);
-                if (NPC.AnyNPCs(NPCID.PartyGirl))
-                {
-                    AddItem(ItemID.PartyGirlGrenade);
-                }
-
-                if (NPC.downedSlimeKing)
-                {
-                    AddItem(ItemID.Bomb);
-                }
-
-                if (Utils.DownedEyeOfCthulhu())
-                {
-                    AddItem(ItemID.Dynamite);
-                }
-
-                if (Utils.HasNPC(NPCID.Angler))
-                {
-                    AddItem(ItemID.BombFish);
-                }
-
-                if (NPC.downedQueenBee)
-                {
-                    AddItem(ItemID.Beenade);
-                }
-
-                if (Utils.DownedSkeletron())
-                {
-                    AddItem(ItemID.ExplosiveBunny);
-                }
-
-                if (Main.hardMode)
-                {
-                    AddItem(ItemID.Explosives);
-                    AddItem(ItemID.StickyGrenade);
-                    AddItem(ItemID.StickyBomb);
-                    AddItem(ItemID.StickyDynamite);
-                    AddItem(ItemID.BouncyGrenade);
-                    AddItem(ItemID.BouncyBomb);
-                    AddItem(ItemID.BouncyDynamite);
-                }
-
-                if (NPC.downedClown)
-                {
-                    AddItem(ItemID.ExplosiveJackOLantern);
-                }
-
-                if (NPC.downedMoonlord)
-                {
-                    AddItem(ItemID.LandMine);
-                }
-                return;
+                AddItem(ItemID.Bomb);
             }
 
-            // Default Shop
-            Inv.SetupShop(4);
+            if (Utils.DownedEyeOfCthulhu())
+            {
+                AddItem(ItemID.Dynamite);
+            }
+
+            if (Utils.HasNPC(NPCID.Angler))
+            {
+                AddItem(ItemID.BombFish);
+            }
+
+            if (NPC.downedQueenBee)
+            {
+                AddItem(ItemID.Beenade);
+            }
+
+            if (Utils.DownedSkeletron())
+            {
+                AddItem(ItemID.ExplosiveBunny);
+            }
+
+            if (Main.hardMode)
+            {
+                AddItem(ItemID.Explosives);
+                AddItem(ItemID.StickyGrenade);
+                AddItem(ItemID.StickyBomb);
+                AddItem(ItemID.StickyDynamite);
+                AddItem(ItemID.BouncyGrenade);
+                AddItem(ItemID.BouncyBomb);
+                AddItem(ItemID.BouncyDynamite);
+            }
+
+            if (NPC.downedClown)
+            {
+                AddItem(ItemID.ExplosiveJackOLantern);
+            }
+
+            if (NPC.downedMoonlord)
+            {
+                AddItem(ItemID.LandMine);
+            }
+            return;
         }
+
+        // Default Shop
+        Inv.SetupShop(4);
     }
 }

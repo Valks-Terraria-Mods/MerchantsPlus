@@ -1,164 +1,155 @@
 ﻿using MerchantsPlus.Merchants;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 
-namespace MerchantsPlus.UI
+namespace MerchantsPlus.UI;
+
+internal class ShopUI : UIState
 {
-    internal class ShopUI : UIState
+    public const int ANGLER = 0;
+    public const int ARMSDEALER = 1;
+    public const int CLOTHIER = 2;
+    public const int CYBORG = 3;
+    public const int DEMOLITIONIST = 4;
+    public const int DRYAD = 5;
+    public const int DYETRADER = 6;
+    public const int GOBLINTINKERER = 7;
+    public const int GUIDE = 8;
+    public const int MECHANIC = 9;
+    public const int MERCHANT = 10;
+    public const int NURSE = 11;
+    public const int PAINTER = 12;
+    public const int PARTYGIRL = 13;
+    public const int PIRATE = 14;
+    public const int SANTACLAUS = 15;
+    public const int SKELETONMERCHANT = 16;
+    public const int STEAMPUNKER = 17;
+    public const int STYLIST = 18;
+    public const int TAVERNKEEP = 19;
+    public const int TAXCOLLECTOR = 20;
+    public const int TRAVELLINGMERCHANT = 21;
+    public const int TRUFFLE = 22;
+    public const int WITCHDOCTOR = 23;
+    public const int WIZARD = 24;
+
+    public static Dictionary<int, Shop> Shops = new() {
+        { ANGLER, new ShopAngler(false, "Fishing Gear", "Bait", "Buffs", "Crates") },
+        { ARMSDEALER, new ShopArmsDealer(true, "Guns") },
+        { CLOTHIER, new ShopClothier(true, "Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
+        { CYBORG, new ShopCyborg(true, "Robotics", "Buffs") },
+        { DEMOLITIONIST, new ShopDemolitionist(true, "Explosives", "Potions") },
+        { DRYAD, new ShopDryad(true, "Seeds", "Potions") },
+        { DYETRADER, new ShopDyeTrader(true, "Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
+        { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana",
+            "Immunity", "Defensive", "Special", "Miscellaneous") },
+        { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
+        { MERCHANT, new ShopMerchant(true, "Gear", "Ores", "Pets", "Mounts") },
+        { NURSE, new ShopNurse(true, "Potions") },
+        { PAINTER, new ShopPainter(true, "Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
+        { PARTYGIRL, new ShopPartyGirl(true, "Party Stuff") },
+        { PIRATE, new ShopPirate(true, "Arrr", "Potions") },
+        { SANTACLAUS, new ShopSantaClaus(true, "Decor", "Bulbs", "Lights", "Potions") },
+        { SKELETONMERCHANT, new ShopSkeletonMerchant(true, "Gear", "Music Boxes") },
+        { STEAMPUNKER, new ShopSteampunker(true, "Gear", "Solutions", "Logic") },
+        { STYLIST, new ShopStylist(true, "Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
+            "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
+            "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
+            "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
+        { TAVERNKEEP, new ShopTavernkeep(true, "Gear") },
+        { TAXCOLLECTOR, new ShopTaxCollector(false) },
+        { TRAVELLINGMERCHANT, new ShopTravellingMerchant(true, "Gear") },
+        { TRUFFLE, new ShopTruffle(true, "Gear") },
+        { WITCHDOCTOR, new ShopWitchDoctor(true, "Gear", "Flasks", "Wings") },
+        { WIZARD, new ShopWizard(true, "Gear") },
+        { GUIDE, new ShopGuide(false, "Shop") }
+    };
+
+    public UIPanel ShopPanel;
+    public static bool Visible { get; set; }
+
+    public static int TheShop { get; set; }
+
+    // Shop counters keeps track of the current shop index the player is in
+    // within that merchants set of shops
+    public static int[] ShopCounters { get; } = new int[Shops.Count];
+
+    // Current shops keeps track of the current shop name the player is in
+    // within that merchants set of shops
+    readonly string[] currentShops = new string[Shops.Count];
+
+    UIText shopName;
+
+    public override void OnInitialize()
     {
-        public const int ANGLER = 0;
-        public const int ARMSDEALER = 1;
-        public const int CLOTHIER = 2;
-        public const int CYBORG = 3;
-        public const int DEMOLITIONIST = 4;
-        public const int DRYAD = 5;
-        public const int DYETRADER = 6;
-        public const int GOBLINTINKERER = 7;
-        public const int GUIDE = 8;
-        public const int MECHANIC = 9;
-        public const int MERCHANT = 10;
-        public const int NURSE = 11;
-        public const int PAINTER = 12;
-        public const int PARTYGIRL = 13;
-        public const int PIRATE = 14;
-        public const int SANTACLAUS = 15;
-        public const int SKELETONMERCHANT = 16;
-        public const int STEAMPUNKER = 17;
-        public const int STYLIST = 18;
-        public const int TAVERNKEEP = 19;
-        public const int TAXCOLLECTOR = 20;
-        public const int TRAVELLINGMERCHANT = 21;
-        public const int TRUFFLE = 22;
-        public const int WITCHDOCTOR = 23;
-        public const int WIZARD = 24;
+        // This is the first shop name the player will see (for all shops)
+        // before pressing cycle shop button
+        for (int i = 0; i < currentShops.Length; i++)
+            currentShops[i] = "Shop";
 
-        public static Dictionary<int, Shop> Shops = new Dictionary<int, Shop>() {
-            { ANGLER, new ShopAngler(false, "Fishing Gear", "Bait", "Buffs", "Crates") },
-            { ARMSDEALER, new ShopArmsDealer(true, "Guns") },
-            { CLOTHIER, new ShopClothier(true, "Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
-            { CYBORG, new ShopCyborg(true, "Robotics", "Buffs") },
-            { DEMOLITIONIST, new ShopDemolitionist(true, "Explosives", "Potions") },
-            { DRYAD, new ShopDryad(true, "Seeds", "Potions") },
-            { DYETRADER, new ShopDyeTrader(true, "Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
-            { GOBLINTINKERER, new ShopGoblinTinkerer(true, "Movement", "Informational", "Combat", "Health and Mana",
-                "Immunity", "Defensive", "Special", "Miscellaneous") },
-            { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
-            { MERCHANT, new ShopMerchant(true, "Gear", "Ores", "Pets", "Mounts") },
-            { NURSE, new ShopNurse(true, "Potions") },
-            { PAINTER, new ShopPainter(true, "Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
-            { PARTYGIRL, new ShopPartyGirl(true, "Party Stuff") },
-            { PIRATE, new ShopPirate(true, "Arrr", "Potions") },
-            { SANTACLAUS, new ShopSantaClaus(true, "Decor", "Bulbs", "Lights", "Potions") },
-            { SKELETONMERCHANT, new ShopSkeletonMerchant(true, "Gear", "Music Boxes") },
-            { STEAMPUNKER, new ShopSteampunker(true, "Gear", "Solutions", "Logic") },
-            { STYLIST, new ShopStylist(true, "Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
-                "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
-                "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
-                "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
-            { TAVERNKEEP, new ShopTavernkeep(true, "Gear") },
-            { TAXCOLLECTOR, new ShopTaxCollector(false) },
-            { TRAVELLINGMERCHANT, new ShopTravellingMerchant(true, "Gear") },
-            { TRUFFLE, new ShopTruffle(true, "Gear") },
-            { WITCHDOCTOR, new ShopWitchDoctor(true, "Gear", "Flasks", "Wings") },
-            { WIZARD, new ShopWizard(true, "Gear") },
-            { GUIDE, new ShopGuide(false, "Shop") }
-        };
+        ShopPanel = new UIPanel();
+        ShopPanel.SetPadding(0);
+        ShopPanel.Left.Set(200f, 0f);
+        ShopPanel.Top.Set(428f, 0f);
+        ShopPanel.Width.Set(250f, 0f);
+        ShopPanel.Height.Set(35f, 0f);
+        ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        public UIPanel ShopPanel;
-        public static bool Visible;
+        shopName = new UIText(currentShops[TheShop], 0.9f);
+        shopName.Left.Set(10, 0f);
+        shopName.Top.Set(8, 0f);
+        shopName.OnClick += new MouseEvent(ShopButtonClicked);
+        ShopPanel.Append(shopName);
 
-        public static int TheShop;
+        TextButton cycleShopButton = new TextButton("Cycle Shop", 0.9f);
+        cycleShopButton.Left.Set(150, 0f);
+        cycleShopButton.Top.Set(4, 0f);
+        cycleShopButton.OnClick += new MouseEvent(CycleShopButtonClicked);
+        ShopPanel.Append(cycleShopButton);
 
-        // Shop counters keeps track of the current shop index the player is in within that merchants set of shops
-        public static int[] ShopCounters = new int[Shops.Count];
+        Append(ShopPanel);
+    }
 
-        // Current shops keeps track of the current shop name the player is in within that merchants set of shops
-        private string[] currentShops = new string[Shops.Count];
-
-        private UIText shopName;
-
-        /// <summary>
-        /// This is the first shop name the player will see (for all shops) before pressing cycle shop button.
-        /// </summary>
-        private void InitCurrentShops()
+    public override void Update(GameTime gameTime)
+    {
+        if (Main.LocalPlayer.talkNPC <= 0)
         {
-            for (int i = 0; i < currentShops.Length; i++)
-                currentShops[i] = "Shop";
+            Visible = false;
         }
+    }
 
-        public override void OnInitialize()
+    private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
+        ShopPanel.RemoveChild(shopName);
+
+        ShiftShop();
+
+        shopName.SetText(currentShops[TheShop]);
+
+        ShopPanel.Append(shopName);
+
+        OpenShop();
+    }
+
+    private void ShiftShop()
+    {
+        if (Shops[TheShop].Shops.Count == 0) return; // Safe Guard
+        if (ShopCounters[TheShop] >= Shops[TheShop].Shops.Count - 1)
         {
-            InitCurrentShops();
-
-            ShopPanel = new UIPanel();
-            ShopPanel.SetPadding(0);
-            ShopPanel.Left.Set(200f, 0f);
-            ShopPanel.Top.Set(428f, 0f);
-            ShopPanel.Width.Set(250f, 0f);
-            ShopPanel.Height.Set(35f, 0f);
-            ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
-
-            shopName = new UIText(currentShops[TheShop], 0.9f);
-            shopName.Left.Set(10, 0f);
-            shopName.Top.Set(8, 0f);
-            shopName.OnClick += new MouseEvent(ShopButtonClicked);
-            ShopPanel.Append(shopName);
-
-            TextButton cycleShopButton = new TextButton("Cycle Shop", 0.9f);
-            cycleShopButton.Left.Set(150, 0f);
-            cycleShopButton.Top.Set(4, 0f);
-            cycleShopButton.OnClick += new MouseEvent(CycleShopButtonClicked);
-            ShopPanel.Append(cycleShopButton);
-
-            Append(ShopPanel);
+            currentShops[TheShop] = Shops[TheShop].Shops[0];
+            ShopCounters[TheShop] = 0;
         }
-
-        public override void Update(GameTime gameTime)
+        else
         {
-            if (Main.LocalPlayer.talkNPC <= 0)
-            {
-                Visible = false;
-            }
+            currentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
         }
+    }
 
-        private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
-        {
-            ShopPanel.RemoveChild(shopName);
+    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
+        OpenShop();
+    }
 
-            ShiftShop();
-
-            shopName.SetText(currentShops[TheShop]);
-
-            ShopPanel.Append(shopName);
-
-            OpenShop();
-        }
-
-        private void ShiftShop()
-        {
-            if (Shops[TheShop].Shops.Count == 0) return; // Safe Guard
-            if (ShopCounters[TheShop] >= Shops[TheShop].Shops.Count - 1)
-            {
-                currentShops[TheShop] = Shops[TheShop].Shops[0];
-                ShopCounters[TheShop] = 0;
-            }
-            else
-            {
-                currentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
-            }
-        }
-
-        private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
-        {
-            OpenShop();
-        }
-
-        private void OpenShop()
-        {
-            Shops[TheShop].OpenShop(currentShops[TheShop]);
-        }
+    private void OpenShop()
+    {
+        Shops[TheShop].OpenShop(currentShops[TheShop]);
     }
 }

@@ -1,65 +1,63 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 
-namespace MerchantsPlus.Merchants
+namespace MerchantsPlus.Merchants;
+
+internal class ShopCyborg : Shop
 {
-    internal class ShopCyborg : Shop
+    public ShopCyborg(bool merchant, params string[] shops) : base(merchant, shops)
     {
-        public ShopCyborg(bool merchant, params string[] shops) : base(merchant, shops)
+    }
+
+    public override void OpenShop(string shop)
+    {
+        base.OpenShop(shop);
+
+        if (shop == "Buffs")
         {
+            AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
+
+            AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
+
+            return;
         }
 
-        public override void OpenShop(string shop)
+        if (shop == "Robotics")
         {
-            base.OpenShop(shop);
+            AddItem(ItemID.ProximityMineLauncher);
+            AddItem(ItemID.Nanites);
+            AddItem(ItemID.PortalGun);
+            AddItem(ItemID.PortalGunStation);
 
-            if (shop == "Buffs")
+            if (NPC.downedGolemBoss)
             {
-                AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
-                AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
-
-                AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
-
-                return;
+                AddItem(ItemID.ElectrosphereLauncher);
             }
 
-            if (shop == "Robotics")
+            if (NPC.downedFishron)
             {
-                AddItem(ItemID.ProximityMineLauncher);
-                AddItem(ItemID.Nanites);
-                AddItem(ItemID.PortalGun);
-                AddItem(ItemID.PortalGunStation);
-
-                if (NPC.downedGolemBoss)
-                {
-                    AddItem(ItemID.ElectrosphereLauncher);
-                }
-
-                if (NPC.downedFishron)
-                {
-                    AddItem(ItemID.RocketLauncher);
-                }
-
-                if (NPC.downedAncientCultist)
-                {
-                    AddItem(ItemID.SnowmanCannon);
-                }
-
-                if (NPC.downedTowerVortex)
-                {
-                    AddItem(ItemID.NailGun);
-                }
-                return;
+                AddItem(ItemID.RocketLauncher);
             }
 
-            // Default Shop
-            Inv.SetupShop(14);
+            if (NPC.downedAncientCultist)
+            {
+                AddItem(ItemID.SnowmanCannon);
+            }
+
+            if (NPC.downedTowerVortex)
+            {
+                AddItem(ItemID.NailGun);
+            }
+            return;
         }
+
+        // Default Shop
+        Inv.SetupShop(14);
     }
 }

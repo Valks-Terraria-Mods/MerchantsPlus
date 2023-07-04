@@ -1,29 +1,27 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 
-namespace MerchantsPlus.NPCs
+namespace MerchantsPlus.NPCs;
+
+internal class Steampunker : BaseMerchant
 {
-    internal class Steampunker : BaseMerchant
+    public override void GetChat(NPC npc, ref string chat)
     {
-        public override void GetChat(NPC npc, ref string chat)
-        {
-            if (npc.type != NPCID.Steampunker) return;
-            base.GetChat(npc, ref chat);
-        }
+        if (npc.type != NPCID.Steampunker) return;
+        base.GetChat(npc, ref chat);
+    }
 
-        public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
+    public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
+    {
+        if (npc.type != NPCID.Steampunker) return;
+        base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
+        projType = ProjectileID.ThrowingKnife;
+        if (NPC.downedBoss2)
         {
-            if (npc.type != NPCID.Steampunker) return;
-            base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-            projType = ProjectileID.ThrowingKnife;
-            if (NPC.downedBoss2)
-            {
-                projType = ProjectileID.PoisonedKnife;
-            }
-            if (Utils.DownedMechBosses() == 1)
-            {
-                projType = ProjectileID.BoneJavelin;
-            }
+            projType = ProjectileID.PoisonedKnife;
+        }
+        if (Utils.DownedMechBosses() == 1)
+        {
+            projType = ProjectileID.BoneJavelin;
         }
     }
 }

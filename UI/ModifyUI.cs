@@ -1,37 +1,36 @@
-﻿namespace MerchantsPlus.UI
+﻿namespace MerchantsPlus.UI;
+
+internal class ModifyUI : ModSystem
 {
-    internal class ModifyUI : ModSystem
+    public override void UpdateUI(GameTime gameTime)
     {
-        public override void UpdateUI(GameTime gameTime)
-        {
-            base.UpdateUI(gameTime);
+        base.UpdateUI(gameTime);
 
-            if (ShopUI.Visible)
-            {
-                MerchantsPlus.UserInterface.Update(gameTime);
-            }
+        if (ShopUI.Visible)
+        {
+            MerchantsPlus.UserInterface.Update(gameTime);
         }
+    }
 
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+    public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+    {
+        base.ModifyInterfaceLayers(layers);
+
+        int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+        if (mouseTextIndex != -1)
         {
-            base.ModifyInterfaceLayers(layers);
-
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex != -1)
-            {
-                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "MerchantsPlus: Custom Shops",
-                    delegate
+            layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                "MerchantsPlus: Custom Shops",
+                delegate
+                {
+                    if (ShopUI.Visible)
                     {
-                        if (ShopUI.Visible)
-                        {
-                            MerchantsPlus.UserInterface.Draw(Main.spriteBatch, new GameTime());
-                        }
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
+                        MerchantsPlus.UserInterface.Draw(Main.spriteBatch, new GameTime());
+                    }
+                    return true;
+                },
+                InterfaceScaleType.UI)
+            );
         }
     }
 }

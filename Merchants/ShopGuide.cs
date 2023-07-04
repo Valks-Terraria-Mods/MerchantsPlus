@@ -1,31 +1,29 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 
-namespace MerchantsPlus.Merchants
+namespace MerchantsPlus.Merchants;
+
+internal class ShopGuide : Shop
 {
-    internal class ShopGuide : Shop
+    public ShopGuide(bool merchant, params string[] shops) : base(merchant, shops)
     {
-        public ShopGuide(bool merchant, params string[] shops) : base(merchant, shops)
+    }
+
+    public override void OpenShop(string shop)
+    {
+        base.OpenShop(shop);
+
+        // Default Shop
+        AddItem(ItemID.CordageGuide);
+        if (!Utils.IsNPCHere(NPCID.Merchant)) AddItem(ItemID.Torch);
+        if (Utils.DownedSkeletron() && !Main.hardMode)
         {
+            AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.GuideVoodooDoll, Utils.Coins(0, 0, 10));
         }
-
-        public override void OpenShop(string shop)
+        if (!Utils.IsNPCHere(NPCID.Pirate))
         {
-            base.OpenShop(shop);
-
-            // Default Shop
-            AddItem(ItemID.CordageGuide);
-            if (!Utils.IsNPCHere(NPCID.Merchant)) AddItem(ItemID.Torch);
-            if (Utils.DownedSkeletron() && !Main.hardMode)
-            {
-                AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
-                AddItem(ItemID.GuideVoodooDoll, Utils.Coins(0, 0, 10));
-            }
-            if (!Utils.IsNPCHere(NPCID.Pirate))
-            {
-                AddItem(ItemID.Cannon);
-                AddItem(ItemID.Cannonball);
-            }
+            AddItem(ItemID.Cannon);
+            AddItem(ItemID.Cannonball);
         }
     }
 }

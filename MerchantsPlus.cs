@@ -6,37 +6,36 @@ global using Terraria;
 global using Terraria.ModLoader;
 global using Terraria.UI;
 
-namespace MerchantsPlus
+namespace MerchantsPlus;
+
+internal class MerchantsPlus : Mod
 {
-    internal class MerchantsPlus : Mod
+    public static MerchantsPlus Instance;
+    public static ILog Console;
+
+    public static UserInterface UserInterface;
+
+    private ShopUI m_ShopUI;
+
+    public override void Load()
     {
-        public static MerchantsPlus Instance;
-        public static ILog Console;
+        Instance = this;
+        Console = this.Logger;
 
-        public static UserInterface UserInterface;
-
-        private ShopUI m_ShopUI;
-
-        public override void Load()
+        if (!Main.dedServ)
         {
-            Instance = this;
-            Console = this.Logger;
+            // Custom UI
+            m_ShopUI = new ShopUI();
+            m_ShopUI.Activate();
 
-            if (!Main.dedServ)
-            {
-                // Custom UI
-                m_ShopUI = new ShopUI();
-                m_ShopUI.Activate();
-
-                UserInterface = new UserInterface();
-            }
-
-            Config.Load();
+            UserInterface = new UserInterface();
         }
 
-        public override void Unload()
-        {
-            Instance = null;
-        }
+        Config.Load();
+    }
+
+    public override void Unload()
+    {
+        Instance = null;
     }
 }
