@@ -65,26 +65,21 @@ internal class ShopUI : UIState
 
     public static bool Visible { get; set; }
 
-    public static int TheShop { get; set; }
-
-    // Shop counters keeps track of the current shop index the player is in
-    // within that merchants set of shops
-    public static int[] ShopCounters { get; } = new int[Shops.Count];
+    public static int CurrentShopIndex { get; set; }
+    public static int[] ShopCycleIndexes { get; } = new int[Shops.Count];
 
     public UIPanel ShopPanel;
 
-    // Current shops keeps track of the current shop name the player is in
-    // within that merchants set of shops
-    readonly string[] currentShops = new string[Shops.Count];
+    readonly string[] shopNames = new string[Shops.Count];
 
-    UIText shopName;
+    UIText currentShopName;
 
     public override void OnInitialize()
     {
         // This is the first shop name the player will see (for all shops)
         // before pressing cycle shop button
-        for (int i = 0; i < currentShops.Length; i++)
-            currentShops[i] = "Shop";
+        for (int i = 0; i < shopNames.Length; i++)
+            shopNames[i] = "Shop";
 
         ShopPanel = new UIPanel();
         ShopPanel.SetPadding(0);
@@ -94,11 +89,11 @@ internal class ShopUI : UIState
         ShopPanel.Height.Set(35f, 0f);
         ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        shopName = new UIText(currentShops[TheShop], 0.9f);
-        shopName.Left.Set(10, 0f);
-        shopName.Top.Set(8, 0f);
-        shopName.OnClick += new MouseEvent(ShopButtonClicked);
-        ShopPanel.Append(shopName);
+        currentShopName = new UIText(shopNames[CurrentShopIndex], 0.9f);
+        currentShopName.Left.Set(10, 0f);
+        currentShopName.Top.Set(8, 0f);
+        currentShopName.OnClick += new MouseEvent(ShopButtonClicked);
+        ShopPanel.Append(currentShopName);
 
         TextButton cycleShopButton = new TextButton("Cycle Shop", 0.9f);
         cycleShopButton.Left.Set(150, 0f);
@@ -119,28 +114,28 @@ internal class ShopUI : UIState
 
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
-        ShopPanel.RemoveChild(shopName);
+        ShopPanel.RemoveChild(currentShopName);
 
         ShiftShop();
 
-        shopName.SetText(currentShops[TheShop]);
+        currentShopName.SetText(shopNames[CurrentShopIndex]);
 
-        ShopPanel.Append(shopName);
+        ShopPanel.Append(currentShopName);
 
         OpenShop();
     }
 
     private void ShiftShop()
     {
-        if (Shops[TheShop].Shops.Count == 0) return; // Safe Guard
-        if (ShopCounters[TheShop] >= Shops[TheShop].Shops.Count - 1)
+        if (Shops[CurrentShopIndex].Shops.Count == 0) return; // Safe Guard
+        if (ShopCycleIndexes[CurrentShopIndex] >= Shops[CurrentShopIndex].Shops.Count - 1)
         {
-            currentShops[TheShop] = Shops[TheShop].Shops[0];
-            ShopCounters[TheShop] = 0;
+            shopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[0];
+            ShopCycleIndexes[CurrentShopIndex] = 0;
         }
         else
         {
-            currentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
+            shopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[++ShopCycleIndexes[CurrentShopIndex]];
         }
     }
 
@@ -151,6 +146,6 @@ internal class ShopUI : UIState
 
     private void OpenShop()
     {
-        Shops[TheShop].OpenShop(currentShops[TheShop]);
+        Shops[CurrentShopIndex].OpenShop(shopNames[CurrentShopIndex]);
     }
 }

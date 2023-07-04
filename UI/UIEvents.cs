@@ -11,103 +11,103 @@ internal class UIEvents : GlobalNPC
             switch (npc.type)
             {
                 case NPCID.Angler:
-                    ShopUI.TheShop = ShopUI.ANGLER;
+                    ShopUI.CurrentShopIndex = ShopUI.ANGLER;
                     break;
 
                 case NPCID.ArmsDealer:
-                    ShopUI.TheShop = ShopUI.ARMSDEALER;
+                    ShopUI.CurrentShopIndex = ShopUI.ARMSDEALER;
                     break;
 
                 case NPCID.Clothier:
-                    ShopUI.TheShop = ShopUI.CLOTHIER;
+                    ShopUI.CurrentShopIndex = ShopUI.CLOTHIER;
                     break;
 
                 case NPCID.Cyborg:
-                    ShopUI.TheShop = ShopUI.CYBORG;
+                    ShopUI.CurrentShopIndex = ShopUI.CYBORG;
                     break;
 
                 case NPCID.Demolitionist:
-                    ShopUI.TheShop = ShopUI.DEMOLITIONIST;
+                    ShopUI.CurrentShopIndex = ShopUI.DEMOLITIONIST;
                     break;
 
                 case NPCID.Dryad:
-                    ShopUI.TheShop = ShopUI.DRYAD;
+                    ShopUI.CurrentShopIndex = ShopUI.DRYAD;
                     break;
 
                 case NPCID.DyeTrader:
-                    ShopUI.TheShop = ShopUI.DYETRADER;
+                    ShopUI.CurrentShopIndex = ShopUI.DYETRADER;
                     break;
 
                 case NPCID.GoblinTinkerer:
-                    ShopUI.TheShop = ShopUI.GOBLINTINKERER;
+                    ShopUI.CurrentShopIndex = ShopUI.GOBLINTINKERER;
                     break;
 
                 case NPCID.Guide:
-                    ShopUI.TheShop = ShopUI.GUIDE;
+                    ShopUI.CurrentShopIndex = ShopUI.GUIDE;
                     break;
 
                 case NPCID.Mechanic:
-                    ShopUI.TheShop = ShopUI.MECHANIC;
+                    ShopUI.CurrentShopIndex = ShopUI.MECHANIC;
                     break;
 
                 case NPCID.Merchant:
-                    ShopUI.TheShop = ShopUI.MERCHANT;
+                    ShopUI.CurrentShopIndex = ShopUI.MERCHANT;
                     break;
 
                 case NPCID.Nurse:
-                    ShopUI.TheShop = ShopUI.NURSE;
+                    ShopUI.CurrentShopIndex = ShopUI.NURSE;
                     break;
 
                 case NPCID.Painter:
-                    ShopUI.TheShop = ShopUI.PAINTER;
+                    ShopUI.CurrentShopIndex = ShopUI.PAINTER;
                     break;
 
                 case NPCID.PartyGirl:
-                    ShopUI.TheShop = ShopUI.PARTYGIRL;
+                    ShopUI.CurrentShopIndex = ShopUI.PARTYGIRL;
                     break;
 
                 case NPCID.Pirate:
-                    ShopUI.TheShop = ShopUI.PIRATE;
+                    ShopUI.CurrentShopIndex = ShopUI.PIRATE;
                     break;
 
                 case NPCID.SantaClaus:
-                    ShopUI.TheShop = ShopUI.SANTACLAUS;
+                    ShopUI.CurrentShopIndex = ShopUI.SANTACLAUS;
                     break;
 
                 case NPCID.SkeletonMerchant:
-                    ShopUI.TheShop = ShopUI.SKELETONMERCHANT;
+                    ShopUI.CurrentShopIndex = ShopUI.SKELETONMERCHANT;
                     break;
 
                 case NPCID.Steampunker:
-                    ShopUI.TheShop = ShopUI.STEAMPUNKER;
+                    ShopUI.CurrentShopIndex = ShopUI.STEAMPUNKER;
                     break;
 
                 case NPCID.Stylist:
-                    ShopUI.TheShop = ShopUI.STYLIST;
+                    ShopUI.CurrentShopIndex = ShopUI.STYLIST;
                     break;
 
                 case NPCID.DD2Bartender:
-                    ShopUI.TheShop = ShopUI.TAVERNKEEP;
+                    ShopUI.CurrentShopIndex = ShopUI.TAVERNKEEP;
                     break;
 
                 case NPCID.TaxCollector:
-                    ShopUI.TheShop = ShopUI.TAXCOLLECTOR;
+                    ShopUI.CurrentShopIndex = ShopUI.TAXCOLLECTOR;
                     break;
 
                 case NPCID.TravellingMerchant:
-                    ShopUI.TheShop = ShopUI.TRAVELLINGMERCHANT;
+                    ShopUI.CurrentShopIndex = ShopUI.TRAVELLINGMERCHANT;
                     break;
 
                 case NPCID.Truffle:
-                    ShopUI.TheShop = ShopUI.TRUFFLE;
+                    ShopUI.CurrentShopIndex = ShopUI.TRUFFLE;
                     break;
 
                 case NPCID.WitchDoctor:
-                    ShopUI.TheShop = ShopUI.WITCHDOCTOR;
+                    ShopUI.CurrentShopIndex = ShopUI.WITCHDOCTOR;
                     break;
 
                 case NPCID.Wizard:
-                    ShopUI.TheShop = ShopUI.WIZARD;
+                    ShopUI.CurrentShopIndex = ShopUI.WIZARD;
                     break;
             }
             ShopUI.Visible = true;
@@ -115,7 +115,7 @@ internal class UIEvents : GlobalNPC
         }
 
         // Reset shop category index
-        ShopUI.ShopCounters[ShopUI.TheShop] = 0;
+        ShopUI.ShopCycleIndexes[ShopUI.CurrentShopIndex] = 0;
 
         return base.CanChat(npc);
     }
