@@ -76,17 +76,17 @@ namespace MerchantsPlus.UI
         public static int[] ShopCounters = new int[Shops.Count];
 
         // Current shops keeps track of the current shop name the player is in within that merchants set of shops
-        private string[] CurrentShops = new string[Shops.Count];
+        private string[] currentShops = new string[Shops.Count];
 
-        private TextButton m_OpenShopButton;
+        private UIText shopName;
 
         /// <summary>
         /// This is the first shop name the player will see (for all shops) before pressing cycle shop button.
         /// </summary>
         private void InitCurrentShops()
         {
-            for (int i = 0; i < CurrentShops.Length; i++)
-                CurrentShops[i] = "Shop";
+            for (int i = 0; i < currentShops.Length; i++)
+                currentShops[i] = "Shop";
         }
 
         public override void OnInitialize()
@@ -101,11 +101,11 @@ namespace MerchantsPlus.UI
             ShopPanel.Height.Set(35f, 0f);
             ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-            m_OpenShopButton = new TextButton(CurrentShops[TheShop], 0.9f);
-            m_OpenShopButton.Left.Set(10, 0f);
-            m_OpenShopButton.Top.Set(4, 0f);
-            m_OpenShopButton.OnClick += new MouseEvent(ShopButtonClicked);
-            ShopPanel.Append(m_OpenShopButton);
+            shopName = new UIText(currentShops[TheShop], 0.9f);
+            shopName.Left.Set(10, 0f);
+            shopName.Top.Set(8, 0f);
+            shopName.OnClick += new MouseEvent(ShopButtonClicked);
+            ShopPanel.Append(shopName);
 
             TextButton cycleShopButton = new TextButton("Cycle Shop", 0.9f);
             cycleShopButton.Left.Set(150, 0f);
@@ -126,17 +126,13 @@ namespace MerchantsPlus.UI
 
         private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            ShopPanel.RemoveChild(m_OpenShopButton);
+            ShopPanel.RemoveChild(shopName);
 
             ShiftShop();
 
-            // Recreate 'Open Shop Button', to update the name of the new shop once the cycle shop button is clicked
-            m_OpenShopButton = new TextButton(CurrentShops[TheShop], 0.9f);
-            m_OpenShopButton.Left.Set(10, 0f);
-            m_OpenShopButton.Top.Set(4, 0f);
-            m_OpenShopButton.OnClick += new MouseEvent(ShopButtonClicked);
+            shopName.SetText(currentShops[TheShop]);
 
-            ShopPanel.Append(m_OpenShopButton);
+            ShopPanel.Append(shopName);
 
             OpenShop();
         }
@@ -146,12 +142,12 @@ namespace MerchantsPlus.UI
             if (Shops[TheShop].Shops.Count == 0) return; // Safe Guard
             if (ShopCounters[TheShop] >= Shops[TheShop].Shops.Count - 1)
             {
-                CurrentShops[TheShop] = Shops[TheShop].Shops[0];
+                currentShops[TheShop] = Shops[TheShop].Shops[0];
                 ShopCounters[TheShop] = 0;
             }
             else
             {
-                CurrentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
+                currentShops[TheShop] = Shops[TheShop].Shops[++ShopCounters[TheShop]];
             }
         }
 
@@ -162,7 +158,7 @@ namespace MerchantsPlus.UI
 
         private void OpenShop()
         {
-            Shops[TheShop].OpenShop(CurrentShops[TheShop]);
+            Shops[TheShop].OpenShop(currentShops[TheShop]);
         }
     }
 }
