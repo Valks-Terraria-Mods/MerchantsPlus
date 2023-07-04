@@ -10,12 +10,11 @@ namespace MerchantsPlus;
 
 internal class MerchantsPlus : Mod
 {
-    public static MerchantsPlus Instance;
-    public static ILog Console;
+    public static MerchantsPlus Instance { get; private set; }
+    public static ILog Console { get; private set; }
+    public static UserInterface UserInterface { get; private set; }
 
-    public static UserInterface UserInterface;
-
-    private ShopUI m_ShopUI;
+    ShopUI shopUI;
 
     public override void Load()
     {
@@ -24,9 +23,8 @@ internal class MerchantsPlus : Mod
 
         if (!Main.dedServ)
         {
-            // Custom UI
-            m_ShopUI = new ShopUI();
-            m_ShopUI.Activate();
+            shopUI = new ShopUI();
+            shopUI.Activate();
 
             UserInterface = new UserInterface();
         }

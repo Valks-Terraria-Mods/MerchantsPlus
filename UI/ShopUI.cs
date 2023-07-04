@@ -95,7 +95,7 @@ internal class ShopUI : UIState
         currentShopName.OnClick += new MouseEvent(ShopButtonClicked);
         ShopPanel.Append(currentShopName);
 
-        TextButton cycleShopButton = new TextButton("Cycle Shop", 0.9f);
+        var cycleShopButton = new TextButton("Cycle Shop", 0.9f);
         cycleShopButton.Left.Set(150, 0f);
         cycleShopButton.Top.Set(4, 0f);
         cycleShopButton.OnClick += new MouseEvent(CycleShopButtonClicked);
