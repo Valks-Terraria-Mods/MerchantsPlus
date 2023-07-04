@@ -43,7 +43,7 @@ internal class ShopUI : UIState
             "Immunity", "Defensive", "Special", "Miscellaneous") },
         { MECHANIC, new ShopMechanic(true, "Mechanics", "Materials") },
         { MERCHANT, new ShopMerchant(true, "Merchant", "Ores", "Pets", "Mounts") },
-        { NURSE, new ShopNurse(true, "Nurse") },
+        { NURSE, new ShopNurse(false, "Nurse") },
         { PAINTER, new ShopPainter(true, "Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
         { PARTYGIRL, new ShopPartyGirl(true, "Party Stuff") },
         { PIRATE, new ShopPirate(true, "Arrr", "Potions") },
