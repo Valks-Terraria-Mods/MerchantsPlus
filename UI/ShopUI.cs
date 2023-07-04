@@ -63,7 +63,6 @@ internal class ShopUI : UIState
         { GUIDE, new ShopGuide(false, "Shop") }
     };
 
-    public UIPanel ShopPanel;
     public static bool Visible { get; set; }
 
     public static int TheShop { get; set; }
@@ -71,6 +70,8 @@ internal class ShopUI : UIState
     // Shop counters keeps track of the current shop index the player is in
     // within that merchants set of shops
     public static int[] ShopCounters { get; } = new int[Shops.Count];
+
+    public UIPanel ShopPanel;
 
     // Current shops keeps track of the current shop name the player is in
     // within that merchants set of shops
