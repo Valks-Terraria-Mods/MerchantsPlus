@@ -12,23 +12,11 @@ internal class MerchantsPlus : Mod
 {
     public static MerchantsPlus Instance { get; private set; }
     public static ILog Console { get; private set; }
-    public static UserInterface UserInterface { get; private set; }
-
-    ShopUI shopUI;
-
+    
     public override void Load()
     {
         Instance = this;
         Console = this.Logger;
-
-        if (!Main.dedServ)
-        {
-            shopUI = new ShopUI();
-            shopUI.Activate();
-
-            UserInterface = new UserInterface();
-        }
-
         Config.Load();
     }
 

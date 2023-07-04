@@ -2,13 +2,28 @@
 
 internal class ModifyUI : ModSystem
 {
+    public static UserInterface UserInterface { get; private set; }
+
+    ShopUI shopUI;
+
+    public override void Load()
+    {
+        if (!Main.dedServ)
+        {
+            shopUI = new ShopUI();
+            shopUI.Activate();
+
+            UserInterface = new UserInterface();
+        }
+    }
+
     public override void UpdateUI(GameTime gameTime)
     {
         base.UpdateUI(gameTime);
 
         if (ShopUI.Visible)
         {
-            MerchantsPlus.UserInterface.Update(gameTime);
+            UserInterface.Update(gameTime);
         }
     }
 
@@ -25,7 +40,7 @@ internal class ModifyUI : ModSystem
                 {
                     if (ShopUI.Visible)
                     {
-                        MerchantsPlus.UserInterface.Draw(Main.spriteBatch, new GameTime());
+                        UserInterface.Draw(Main.spriteBatch, new GameTime());
                     }
                     return true;
                 },

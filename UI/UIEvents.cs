@@ -10,7 +10,7 @@ internal class UIEvents : GlobalNPC
         {
             SetShopIndex(npc);
             ShopUI.Visible = true;
-            MerchantsPlus.UserInterface.SetState(new ShopUI());
+            ModifyUI.UserInterface.SetState(new ShopUI());
         }
 
         // Reset shop category index
