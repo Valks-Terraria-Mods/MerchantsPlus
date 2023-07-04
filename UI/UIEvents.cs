@@ -6,12 +6,12 @@ internal class UIEvents : GlobalNPC
 {
     public override bool? CanChat(NPC npc)
     {
-        if (!ShopUI.Visible)
-        {
-            SetShopIndex(npc);
-            ShopUI.Visible = true;
-            ModifyUI.UserInterface.SetState(new ShopUI());
-        }
+        if (ShopUI.Visible || !Utils.TalkingToNPC())
+            return base.CanChat(npc);
+
+        SetShopIndex(npc);
+        Main.NewText("Showing shop ui");
+        ModContent.GetInstance<ModifyUI>().ShowShopUI();
 
         // Reset shop category index
         ShopUI.ShopCycleIndexes[ShopUI.CurrentShopIndex] = 0;

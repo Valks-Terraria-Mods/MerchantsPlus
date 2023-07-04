@@ -104,9 +104,6 @@ internal class ShopUI : UIState
         Append(ShopPanel);
     }
 
-    public override void Update(GameTime gameTime) =>
-        Visible = Main.LocalPlayer.talkNPC > 0;
-
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShopPanel.RemoveChild(currentShopName);

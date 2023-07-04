@@ -12,6 +12,8 @@ internal class Utils
     public static int UniversalSeedCost = Coins(0, 0, 1);
     public static int UniversalDyeCost = Coins(0, 0, 1);
 
+    public static bool TalkingToNPC() => Main.LocalPlayer.talkNPC > 0;
+
     public static void QuestKills(List<string> dialog, string enemy, int curKills, int targetKills)
     {
         if (curKills < targetKills)
