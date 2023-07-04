@@ -104,13 +104,8 @@ internal class ShopUI : UIState
         Append(ShopPanel);
     }
 
-    public override void Update(GameTime gameTime)
-    {
-        if (Main.LocalPlayer.talkNPC <= 0)
-        {
-            Visible = false;
-        }
-    }
+    public override void Update(GameTime gameTime) =>
+        Visible = Main.LocalPlayer.talkNPC > 0;
 
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
@@ -139,13 +134,9 @@ internal class ShopUI : UIState
         }
     }
 
-    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
-    {
+    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement) =>
         OpenShop();
-    }
 
-    private void OpenShop()
-    {
+    private void OpenShop() =>
         Shops[CurrentShopIndex].OpenShop(shopNames[CurrentShopIndex]);
-    }
 }
