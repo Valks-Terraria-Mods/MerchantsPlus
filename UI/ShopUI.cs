@@ -69,7 +69,7 @@ internal class ShopUI : UIState
     public static int[] ShopCycleIndexes { get; } = new int[Shops.Count];
 
     public string[] ShopNames { get; } = new string[Shops.Count];
-    public UIText CurrentShopName { get; private set; }
+    public UIText CurrentShopName { get; set; }
 
     UIPanel ShopPanel;
 
@@ -109,14 +109,14 @@ internal class ShopUI : UIState
     public void UpdateShopName() =>
         CurrentShopName.SetText(ShopNames[CurrentShopIndex]);
 
-    private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShiftShop();
         UpdateShopName();
         OpenShop();
     }
 
-    private void ShiftShop()
+    void ShiftShop()
     {
         if (Shops[CurrentShopIndex].Shops.Count == 0) return; // Safe Guard
         if (ShopCycleIndexes[CurrentShopIndex] >= Shops[CurrentShopIndex].Shops.Count - 1)
@@ -130,9 +130,9 @@ internal class ShopUI : UIState
         }
     }
 
-    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement) =>
+    void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement) =>
         OpenShop();
 
-    private void OpenShop() =>
+    void OpenShop() =>
         Shops[CurrentShopIndex].OpenShop(ShopNames[CurrentShopIndex]);
 }

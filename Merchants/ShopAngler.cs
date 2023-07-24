@@ -221,7 +221,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    private void ShopFishingPole(int progression)
+    void ShopFishingPole(int progression)
     {
         ReplaceItem(ItemID.WoodFishingPole, Utils.Coins(0, 10));
 

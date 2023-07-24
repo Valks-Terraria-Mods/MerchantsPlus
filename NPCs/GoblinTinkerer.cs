@@ -9,7 +9,7 @@ internal class GoblinTinkerer : BaseMerchant
         if (npc.type != NPCID.GoblinTinkerer) return;
         base.GetChat(npc, ref chat);
 
-        List<string> dialog = new List<string>();
+        var dialog = new List<string>();
         Utils.QuestKills(dialog, "Zombie", Utils.Kills(NPCID.Zombie), 100);
         Utils.QuestKills(dialog, "Jellyfish", Utils.MultiKills(new short[] { NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish }), 100);
         Utils.QuestKills(dialog, "Skeleton", Utils.MultiKills(new short[] { NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones }), 1);

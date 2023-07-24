@@ -9,17 +9,17 @@ internal class TextButton : UIPanel
 {
     public bool visible = true;
 
-    private static readonly Color BORDER = Color.Transparent;
-    private static readonly Color BORDER_HIGHLIGHT = Color.Black;
+    static readonly Color COLOR_BORDER = Color.Transparent;
+    static readonly Color COLOR_BORDER_HIGHLIGHT = Color.Black;
 
-    private UIText uitext;
+    readonly UIText uitext;
 
     public TextButton(string text, float text_size)
     {
         SetPadding(0f);
 
         BackgroundColor = Color.Transparent;
-        BorderColor = BORDER;
+        BorderColor = COLOR_BORDER;
 
         uitext = new UIText(text, text_size);
         Vector2 text_measure = FontAssets.MouseText.Value.MeasureString(uitext.Text);
@@ -43,14 +43,14 @@ internal class TextButton : UIPanel
     public override void MouseOut(UIMouseEvent evt)
     {
         base.MouseOut(evt);
-        //BorderColor = BORDER;
+        //BorderColor = COLOR_BORDER;
         uitext.TextColor = new Color(255, 255, 255);
     }
 
     public override void MouseOver(UIMouseEvent evt)
     {
         base.MouseOver(evt);
-        //BorderColor = BORDER_HIGHLIGHT;
+        //BorderColor = COLOR_BORDER_HIGHLIGHT;
         uitext.TextColor = new Color(254, 218, 0);
     }
 

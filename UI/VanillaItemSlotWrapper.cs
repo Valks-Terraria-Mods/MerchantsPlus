@@ -14,8 +14,8 @@ namespace MerchantsPlus.UI;
 internal class VanillaItemSlotWrapper : UIElement
 {
     internal Item item;
-    private readonly int context;
-    private readonly float scale;
+    readonly int context;
+    readonly float scale;
     internal Func<Item, bool> validItem;
 
     public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f)
