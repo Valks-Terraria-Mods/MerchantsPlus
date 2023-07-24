@@ -39,6 +39,12 @@ internal abstract class Shop
         SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
         Main.npcChatText = "";
+
+        // Not sure what this line of code does
+        // Note that any number greater than 1 will cause index out of bounds error
+        // freezing the game
+        // If this line of code is commented out then an error will appear saying
+        // "Object reference not set to an instance of an object"
         Main.SetNPCShopIndex(1);
 
         var npc = Main.LocalPlayer.TalkNPC;
@@ -46,7 +52,14 @@ internal abstract class Shop
         // For future reference this code was updated from
         // https://github.com/tModLoader/tModLoader/blob/e6caaaf678efd2a69deece4d72fdaecc4391bd26/patches/tModLoader/Terraria/ModLoader/NPCLoader.cs#L1192
         Inv = Main.instance.shop[Main.npcShop];
-        Inv.SetupShop(NPCShopDatabase.GetShopName(npc.type, "Shop"), npc);
+
+        // Setting this to '2' will setup the shop items for the arms dealer
+        // The arms dealer sells 3 guns
+        Inv.SetupShop(NPCShopDatabase.GetShopNameFromVanillaIndex(2), npc);
+
+        // Lets remove these guns as we will add our own items later
+        for (int i = 0; i < Inv.item.Length; i++)
+            Inv.item[i].SetDefaults(0);
 
         NextSlot = 0;
 
