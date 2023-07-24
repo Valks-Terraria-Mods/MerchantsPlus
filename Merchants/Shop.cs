@@ -44,10 +44,14 @@ internal abstract class Shop
         SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
         Main.npcChatText = "";
-        Main.SetNPCShopIndex(20);
+        Main.SetNPCShopIndex(1);
 
+        var npc = Main.LocalPlayer.TalkNPC;
+
+        // For future reference this code was updated from
+        // https://github.com/tModLoader/tModLoader/blob/e6caaaf678efd2a69deece4d72fdaecc4391bd26/patches/tModLoader/Terraria/ModLoader/NPCLoader.cs#L1192
         Inv = Main.instance.shop[Main.npcShop];
-        Inv.SetupShop(0);
+        Inv.SetupShop(NPCShopDatabase.GetShopName(npc.type, "Shop"), npc);
 
         NextSlot = 0;
 

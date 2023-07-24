@@ -94,13 +94,13 @@ internal class ShopUI : UIState
         CurrentShopName = new UIText(ShopNames[CurrentShopIndex], 0.9f);
         CurrentShopName.Left.Set(10, 0f);
         CurrentShopName.Top.Set(8, 0f);
-        CurrentShopName.OnClick += new MouseEvent(ShopButtonClicked);
+        CurrentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
         ShopPanel.Append(CurrentShopName);
 
         var cycleShopButton = new TextButton("Cycle Shop", 0.9f);
         cycleShopButton.Left.Set(150, 0f);
         cycleShopButton.Top.Set(4, 0f);
-        cycleShopButton.OnClick += new MouseEvent(CycleShopButtonClicked);
+        cycleShopButton.OnLeftClick += new MouseEvent(CycleShopButtonClicked);
         ShopPanel.Append(cycleShopButton);
 
         Append(ShopPanel);

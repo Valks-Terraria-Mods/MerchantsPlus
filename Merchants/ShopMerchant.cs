@@ -1,4 +1,5 @@
 using Terraria.ID;
+using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
@@ -26,7 +27,7 @@ internal class ShopMerchant : Shop
 
         if (shop == "Ores")
         {
-            if (WorldGen.copperBar > 0)
+            if (GenVars.copperBar > 0)
             {
                 AddItem(ItemID.CopperOre, Utils.UniversalOreCost);
             }
@@ -37,7 +38,7 @@ internal class ShopMerchant : Shop
 
             if (NPC.downedSlimeKing)
             {
-                if (WorldGen.ironBar > 0)
+                if (GenVars.ironBar > 0)
                 {
                     AddItem(ItemID.IronOre, Utils.UniversalOreCost);
                 }
@@ -49,7 +50,7 @@ internal class ShopMerchant : Shop
 
             if (NPC.downedBoss1)
             {
-                if (WorldGen.silverBar > 0)
+                if (GenVars.silverBar > 0)
                 {
                     AddItem(ItemID.SilverOre, Utils.UniversalOreCost);
                 }
@@ -61,7 +62,7 @@ internal class ShopMerchant : Shop
 
             if (NPC.downedBoss2)
             {
-                if (WorldGen.goldBar > 0)
+                if (GenVars.goldBar > 0)
                 {
                     AddItem(ItemID.GoldOre, Utils.UniversalOreCost);
                 }
@@ -74,7 +75,7 @@ internal class ShopMerchant : Shop
 
             if (NPC.downedBoss3)
             {
-                if (WorldGen.crimson)
+                if (GenVars.crimsonLeft)
                 {
                     AddItem(ItemID.CrimtaneOre, Utils.UniversalOreCost);
                 }
@@ -198,7 +199,7 @@ internal class ShopMerchant : Shop
     private void Pickaxe()
     {
         {
-            if (WorldGen.copperBar > 0)
+            if (GenVars.copperBar > 0)
             {
                 ReplaceItem(ItemID.CopperPickaxe);
             }
@@ -210,7 +211,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronPickaxe);
             }
@@ -222,7 +223,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverPickaxe);
             }
@@ -234,7 +235,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldPickaxe);
             }
@@ -246,7 +247,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.DeathbringerPickaxe);
             }
@@ -313,7 +314,7 @@ internal class ShopMerchant : Shop
     private void Axe()
     {
         {
-            if (WorldGen.copperBar > 0)
+            if (GenVars.copperBar > 0)
             {
                 ReplaceItem(ItemID.CopperAxe);
             }
@@ -325,7 +326,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronAxe);
             }
@@ -337,7 +338,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverAxe);
             }
@@ -349,7 +350,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldAxe);
             }
@@ -361,7 +362,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.BloodLustCluster);
             }
@@ -426,7 +427,7 @@ internal class ShopMerchant : Shop
 
     private void Hammer()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperHammer);
         }
@@ -437,7 +438,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronHammer);
             }
@@ -449,7 +450,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverHammer);
             }
@@ -461,7 +462,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldHammer);
             }
@@ -473,7 +474,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.FleshGrinder);
             }
@@ -536,7 +537,7 @@ internal class ShopMerchant : Shop
 
     private void Helmet()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperHelmet);
         }
@@ -547,7 +548,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronHelmet);
             }
@@ -559,7 +560,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverHelmet);
             }
@@ -571,7 +572,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldHelmet);
             }
@@ -583,7 +584,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.CrimsonHelmet);
             }
@@ -733,7 +734,7 @@ internal class ShopMerchant : Shop
 
     private void Breastplate()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperChainmail);
         }
@@ -744,7 +745,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronChainmail);
             }
@@ -756,7 +757,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverChainmail);
             }
@@ -768,7 +769,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldChainmail);
             }
@@ -780,7 +781,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.CrimsonScalemail);
             }
@@ -906,7 +907,7 @@ internal class ShopMerchant : Shop
 
     private void shopGreaves()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperGreaves);
         }
@@ -917,7 +918,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronGreaves);
             }
@@ -929,7 +930,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverGreaves);
             }
@@ -941,7 +942,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldGreaves);
             }
@@ -953,7 +954,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.CrimsonGreaves);
             }
@@ -1079,7 +1080,7 @@ internal class ShopMerchant : Shop
 
     private void Shortswords()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperShortsword);
         }
@@ -1090,7 +1091,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronShortsword);
             }
@@ -1102,7 +1103,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverShortsword);
             }
@@ -1114,7 +1115,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldShortsword);
             }
@@ -1129,7 +1130,7 @@ internal class ShopMerchant : Shop
 
     private void Broadswords()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperBroadsword);
         }
@@ -1140,7 +1141,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronBroadsword);
             }
@@ -1152,7 +1153,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverBroadsword);
             }
@@ -1164,7 +1165,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldBroadsword);
             }
@@ -1176,7 +1177,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.BloodButcherer);
             }
@@ -1231,7 +1232,7 @@ internal class ShopMerchant : Shop
 
     private void Bows()
     {
-        if (WorldGen.copperBar > 0)
+        if (GenVars.copperBar > 0)
         {
             ReplaceItem(ItemID.CopperBow);
         }
@@ -1242,7 +1243,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedSlimeKing)
         {
-            if (WorldGen.ironBar > 0)
+            if (GenVars.ironBar > 0)
             {
                 ReplaceItem(ItemID.IronBow);
             }
@@ -1254,7 +1255,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss1)
         {
-            if (WorldGen.silverBar > 0)
+            if (GenVars.silverBar > 0)
             {
                 ReplaceItem(ItemID.SilverBow);
             }
@@ -1266,7 +1267,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedGoblins)
         {
-            if (WorldGen.goldBar > 0)
+            if (GenVars.goldBar > 0)
             {
                 ReplaceItem(ItemID.GoldBow);
             }
@@ -1278,7 +1279,7 @@ internal class ShopMerchant : Shop
 
         if (NPC.downedBoss2)
         {
-            if (WorldGen.crimson)
+            if (GenVars.crimsonLeft)
             {
                 ReplaceItem(ItemID.TendonBow);
             }

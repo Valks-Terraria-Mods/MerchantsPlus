@@ -1,4 +1,5 @@
 using Terraria.ID;
+using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
@@ -286,7 +287,7 @@ internal class ShopGoblinTinkerer : Shop
 
         if (shop == "Informational")
         {
-            if (WorldGen.goldBar > 0) AddItem(ItemID.GoldWatch); else AddItem(ItemID.PlatinumWatch);
+            if (GenVars.goldBar > 0) AddItem(ItemID.GoldWatch); else AddItem(ItemID.PlatinumWatch);
             if (progression > 0)
             {
                 AddItem(ItemID.DepthMeter, Utils.UniversalAccessoryCost);
