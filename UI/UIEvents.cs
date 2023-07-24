@@ -23,40 +23,35 @@ internal class UIEvents : GlobalNPC
         ShopUI.ShopCycleIndexes[ShopUI.CurrentShopIndex] = 0;
     }
 
-    static bool IsShopNPC(NPC npc)
+    static bool IsShopNPC(NPC npc) => npc.type switch
     {
-        switch (npc.type)
-        {
-            case NPCID.Angler:
-            case NPCID.ArmsDealer:
-            case NPCID.Clothier:
-            case NPCID.Cyborg:
-            case NPCID.Demolitionist:
-            case NPCID.Dryad:
-            case NPCID.DyeTrader:
-            case NPCID.GoblinTinkerer:
-            case NPCID.Guide:
-            case NPCID.Mechanic:
-            case NPCID.Merchant:
-            case NPCID.Nurse:
-            case NPCID.Painter:
-            case NPCID.PartyGirl:
-            case NPCID.Pirate:
-            case NPCID.SantaClaus:
-            case NPCID.SkeletonMerchant:
-            case NPCID.Steampunker:
-            case NPCID.Stylist:
-            case NPCID.DD2Bartender:
-            case NPCID.TaxCollector:
-            case NPCID.TravellingMerchant:
-            case NPCID.Truffle:
-            case NPCID.WitchDoctor:
-            case NPCID.Wizard:
-                return true;
-        }
-
-        return false;
-    }
+        NPCID.Angler or
+        NPCID.ArmsDealer or
+        NPCID.Clothier or
+        NPCID.Cyborg or
+        NPCID.Demolitionist or
+        NPCID.Dryad or
+        NPCID.DyeTrader or
+        NPCID.GoblinTinkerer or
+        NPCID.Guide or
+        NPCID.Mechanic or
+        NPCID.Merchant or
+        NPCID.Nurse or
+        NPCID.Painter or
+        NPCID.PartyGirl or
+        NPCID.Pirate or
+        NPCID.SantaClaus or
+        NPCID.SkeletonMerchant or
+        NPCID.Steampunker or
+        NPCID.Stylist or
+        NPCID.DD2Bartender or
+        NPCID.TaxCollector or
+        NPCID.TravellingMerchant or
+        NPCID.Truffle or
+        NPCID.WitchDoctor or
+        NPCID.Wizard => true,
+        _ => false,
+    };
 
     static void SetShopIndex(NPC npc)
     {

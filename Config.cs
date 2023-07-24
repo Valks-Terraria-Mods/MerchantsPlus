@@ -5,16 +5,52 @@ namespace MerchantsPlus;
 
 public static class Config
 {
-    public static bool MerchantScaling = false;
-    public static bool MerchantExtraLife = false;
-    public static bool MerchantDialog = true;
-    public static bool MerchantDrops = false;
-    public static bool MerchantProjectiles = false;
+    public static double ShopPriceMultiplier
+    {
+        get => shopPriceMultiplier;
+        set => shopPriceMultiplier = value;
+    }
+    
+    public static bool MerchantScaling
+    {
+        get => merchantScaling;
+        set => merchantScaling = value;
+    }
 
-    public static double ShopPriceMultiplier = 1.0;
+    public static bool MerchantExtraLife
+    {
+        get => merchantExtraLife;
+        set => merchantExtraLife = value;
+    }
 
-    private static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
-    private static Preferences Configuration = new Preferences(ConfigPath);
+    public static bool MerchantDialog
+    {
+        get => merchantDialog;
+        set => merchantDialog = value;
+    }
+
+    public static bool MerchantDrops
+    {
+        get => merchantDrops;
+        set => merchantDrops = value;
+    }
+
+    public static bool MerchantProjectiles
+    {
+        get => merchantProjectiles;
+        set => merchantProjectiles = value;
+    }
+
+    static double shopPriceMultiplier = 1.0;
+
+    static bool merchantExtraLife;
+    static bool merchantDialog = true;
+    static bool merchantDrops;
+    static bool merchantProjectiles;
+    static bool merchantScaling;
+
+    static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
+    static readonly Preferences Configuration = new(ConfigPath);
 
     public static void Load()
     {
@@ -29,31 +65,32 @@ public static class Config
     }
 
     //Returns "true" if the config file was found and successfully loaded.
-    private static bool ReadConfig()
+    static bool ReadConfig()
     {
-        if (Configuration.Load())
-        {
-            Configuration.Get("MerchantScaling", ref MerchantScaling);
-            Configuration.Get("MerchantExtraLife", ref MerchantExtraLife);
-            Configuration.Get("MerchantDialog", ref MerchantDialog);
-            Configuration.Get("MerchantDrops", ref MerchantDrops);
-            Configuration.Get("MerchantProjectiles", ref MerchantProjectiles);
-            Configuration.Get("ShopPriceMultiplier", ref ShopPriceMultiplier);
-            return true;
-        }
-        return false;
+        if (!Configuration.Load())
+            return false;
+
+        Configuration.Get("MerchantScaling", ref merchantScaling);
+        Configuration.Get("MerchantExtraLife", ref merchantExtraLife);
+        Configuration.Get("MerchantDialog", ref merchantDialog);
+        Configuration.Get("MerchantDrops", ref merchantDrops);
+        Configuration.Get("MerchantProjectiles", ref merchantProjectiles);
+        Configuration.Get("ShopPriceMultiplier", ref shopPriceMultiplier);
+
+        return true;
     }
 
-    //Creates a config file. This will only be called if the config file doesn't exist yet or it's invalid.
-    private static void CreateConfig()
+    // Creates a config file. This will only be called if the config file
+    // doesn't exist yet or it's invalid.
+    static void CreateConfig()
     {
         Configuration.Clear();
-        Configuration.Put("MerchantScaling", MerchantScaling);
-        Configuration.Put("MerchantExtraLife", MerchantExtraLife);
-        Configuration.Put("MerchantDialog", MerchantDialog);
-        Configuration.Put("MerchantDrops", MerchantDrops);
-        Configuration.Put("MerchantProjectiles", MerchantProjectiles);
-        Configuration.Put("ShopPriceMultiplier", ShopPriceMultiplier);
+        Configuration.Put("MerchantScaling", merchantScaling);
+        Configuration.Put("MerchantExtraLife", merchantExtraLife);
+        Configuration.Put("MerchantDialog", merchantDialog);
+        Configuration.Put("MerchantDrops", merchantDrops);
+        Configuration.Put("MerchantProjectiles", merchantProjectiles);
+        Configuration.Put("ShopPriceMultiplier", shopPriceMultiplier);
         Configuration.Save();
     }
 }

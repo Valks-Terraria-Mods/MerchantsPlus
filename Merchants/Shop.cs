@@ -20,7 +20,7 @@ internal abstract class Shop
         Shops = new List<string>();
         if (merchant) Shops.Add("Vanilla");
 
-        List<string> otherShops = new List<string>();
+        var otherShops = new List<string>();
         for (int i = 0; i < shops.Length; i++)
             otherShops.Add(shops[i]);
 
@@ -35,11 +35,6 @@ internal abstract class Shop
     /// <param name="shop">The current shop we are in.</param>
     /// <param name="nextSlot">The nextSlot of the item to sell.</param>
     public virtual void OpenShop(string shop)
-    {
-        PrepareShop();
-    }
-
-    private void PrepareShop()
     {
         SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
@@ -58,10 +53,8 @@ internal abstract class Shop
         Quests.Clear();
     }
 
-    protected void AddItem(int itemID)
-    {
+    protected void AddItem(int itemID) => 
         Inv.item[NextSlot++].SetDefaults(itemID);
-    }
 
     protected void AddItem(int itemID, int price)
     {
@@ -69,10 +62,8 @@ internal abstract class Shop
         Inv.item[NextSlot++].shopCustomPrice = price;
     }
 
-    protected void ReplaceItem(int itemID)
-    {
+    protected void ReplaceItem(int itemID) => 
         Inv.item[NextSlot].SetDefaults(itemID);
-    }
 
     protected void ReplaceItem(int itemID, int price)
     {
@@ -80,10 +71,8 @@ internal abstract class Shop
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
-    protected void ReplacePrice(int price)
-    {
+    protected void ReplacePrice(int price) => 
         Inv.item[NextSlot].shopCustomPrice = price;
-    }
 
     public override string ToString() => 
         GetType().Name.Replace("Shop", "").AddSpaceBeforeEachCapital();

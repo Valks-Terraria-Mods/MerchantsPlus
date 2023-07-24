@@ -37,7 +37,7 @@ internal class ShopArmsDealer : Shop
         Inv.SetupShop(2);
     }
 
-    private void ShopBulletMain()
+    void ShopBulletMain()
     {
         ReplaceItem(ItemID.MusketBall);
         if (NPC.downedBoss1) ReplaceItem(ItemID.SilverBullet);
@@ -50,7 +50,7 @@ internal class ShopArmsDealer : Shop
         NextSlot++;
     }
 
-    private void ShopBulletOther()
+    void ShopBulletOther()
     {
         ReplaceItem(ItemID.PartyBullet);
         ReplacePrice(Utils.Coins(0, 1));
@@ -66,7 +66,7 @@ internal class ShopArmsDealer : Shop
         NextSlot++;
     }
 
-    private void ShopPistol()
+    void ShopPistol()
     {
         ReplaceItem(ItemID.FlintlockPistol);
         if (NPC.downedSlimeKing) ReplaceItem(ItemID.TheUndertaker);
@@ -78,7 +78,7 @@ internal class ShopArmsDealer : Shop
         NextSlot++;
     }
 
-    private void ShopRifle()
+    void ShopRifle()
     {
         ReplaceItem(ItemID.RedRyder);
         if (NPC.downedBoss1) ReplaceItem(ItemID.Musket);
@@ -91,7 +91,7 @@ internal class ShopArmsDealer : Shop
         NextSlot++;
     }
 
-    private void ShopShotgun()
+    void ShopShotgun()
     {
         ReplaceItem(ItemID.Boomstick);
         if (Main.hardMode) ReplaceItem(ItemID.Shotgun);

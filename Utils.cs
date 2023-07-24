@@ -98,40 +98,13 @@ internal class Utils
         return progression;
     }
 
-    public static bool HasNPC(int npcID)
-    {
-        return NPC.AnyNPCs(npcID);
-    }
-
-    public static bool IsHardMode()
-    {
-        return Main.hardMode;
-    }
-
-    public static bool DownedWallOfFlesh()
-    {
-        return Main.hardMode;
-    }
-
-    public static bool DownedEyeOfCthulhu()
-    {
-        return NPC.downedBoss1;
-    }
-
-    public static bool DownedEaterOfWorlds()
-    {
-        return NPC.downedBoss2;
-    }
-
-    public static bool DownedBrainOfCthulhu()
-    {
-        return NPC.downedBoss2;
-    }
-
-    public static bool DownedSkeletron()
-    {
-        return NPC.downedBoss3;
-    }
+    public static bool HasNPC(int npcID) => NPC.AnyNPCs(npcID);
+    public static bool IsHardMode() => Main.hardMode;
+    public static bool DownedWallOfFlesh() => Main.hardMode;
+    public static bool DownedEyeOfCthulhu() => NPC.downedBoss1;
+    public static bool DownedEaterOfWorlds() => NPC.downedBoss2;
+    public static bool DownedBrainOfCthulhu() => NPC.downedBoss2;
+    public static bool DownedSkeletron() => NPC.downedBoss3;
 
     public static int Coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0)
     {
@@ -183,10 +156,8 @@ internal class Utils
         return "melee";
     }
 
-    public static string Dialog(string[] lines)
-    {
-        return lines[Main.rand.Next(lines.Length)];
-    }
+    public static string Dialog(string[] lines) => 
+        lines[Main.rand.Next(lines.Length)];
 
     public static int DownedMechBosses()
     {
@@ -197,10 +168,8 @@ internal class Utils
         return count;
     }
 
-    public static int Kills(short theNPC)
-    {
-        return NPC.killCount[Item.NPCtoBanner(theNPC)];
-    }
+    public static int Kills(short theNPC) => 
+        NPC.killCount[Item.NPCtoBanner(theNPC)];
 
     public static int MultiKills(short[] npcs)
     {
@@ -254,11 +223,11 @@ internal class Utils
                         {
                             return moneyDialog + " " + price + " copper was removed from your inventory";
                         }
-                        else if (price >= 100 && price < 1000)
+                        else if (price is >= 100 and < 1000)
                         {
                             return moneyDialog + " " + (price / 100) + " silver was removed from your inventory";
                         }
-                        else if (price >= 1000 && price < 10000)
+                        else if (price is >= 1000 and < 10000)
                         {
                             return moneyDialog + " " + (price / 1000) + " gold was removed from your inventory";
                         }
@@ -275,43 +244,37 @@ internal class Utils
         return noMoneyDialog;
     }
 
-    public static bool IsMerchant(int npcID)
+    public static bool IsMerchant(int npcID) => npcID switch
     {
-        switch (npcID)
-        {
-            case NPCID.Angler:
-            case NPCID.ArmsDealer:
-            case NPCID.Clothier:
-            case NPCID.Cyborg:
-            case NPCID.Demolitionist:
-            case NPCID.Dryad:
-            case NPCID.DyeTrader:
-            case NPCID.GoblinTinkerer:
-            case NPCID.Guide:
-            case NPCID.Mechanic:
-            case NPCID.Nurse:
-            case NPCID.Painter:
-            case NPCID.PartyGirl:
-            case NPCID.Pirate:
-            case NPCID.SantaClaus:
-            case NPCID.SkeletonMerchant:
-            case NPCID.Steampunker:
-            case NPCID.Stylist:
-            case NPCID.DD2Bartender:
-            case NPCID.TaxCollector:
-            case NPCID.TravellingMerchant:
-            case NPCID.Truffle:
-            case NPCID.WitchDoctor:
-            case NPCID.Wizard:
-            case NPCID.OldMan:
-            case NPCID.BoundGoblin:
-            case NPCID.BoundMechanic:
-            case NPCID.BoundWizard:
-            case NPCID.SleepingAngler:
-                return true;
-
-            default:
-                return false;
-        }
-    }
+        NPCID.Angler or
+        NPCID.ArmsDealer or
+        NPCID.Clothier or
+        NPCID.Cyborg or
+        NPCID.Demolitionist or
+        NPCID.Dryad or
+        NPCID.DyeTrader or
+        NPCID.GoblinTinkerer or
+        NPCID.Guide or
+        NPCID.Mechanic or
+        NPCID.Nurse or
+        NPCID.Painter or
+        NPCID.PartyGirl or
+        NPCID.Pirate or
+        NPCID.SantaClaus or
+        NPCID.SkeletonMerchant or
+        NPCID.Steampunker or
+        NPCID.Stylist or
+        NPCID.DD2Bartender or
+        NPCID.TaxCollector or
+        NPCID.TravellingMerchant or
+        NPCID.Truffle or
+        NPCID.WitchDoctor or
+        NPCID.Wizard or
+        NPCID.OldMan or
+        NPCID.BoundGoblin or
+        NPCID.BoundMechanic or
+        NPCID.BoundWizard or
+        NPCID.SleepingAngler => true,
+        _ => false,
+    };
 }

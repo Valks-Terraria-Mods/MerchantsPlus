@@ -33,7 +33,7 @@ internal class ShopTavernkeep : Shop
         Inv.SetupShop(21);
     }
 
-    private void Flameburst()
+    void Flameburst()
     {
         ReplaceItem(ItemID.DD2FlameburstTowerT1Popper);
         if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2FlameburstTowerT2Popper);
@@ -41,7 +41,7 @@ internal class ShopTavernkeep : Shop
         NextSlot++;
     }
 
-    private void Ballista()
+    void Ballista()
     {
         ReplaceItem(ItemID.DD2BallistraTowerT1Popper);
         if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2BallistraTowerT2Popper);
@@ -49,7 +49,7 @@ internal class ShopTavernkeep : Shop
         NextSlot++;
     }
 
-    private void Lightning()
+    void Lightning()
     {
         ReplaceItem(ItemID.DD2LightningAuraT1Popper);
         if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2LightningAuraT2Popper);
@@ -57,7 +57,7 @@ internal class ShopTavernkeep : Shop
         NextSlot++;
     }
 
-    private void Explosive()
+    void Explosive()
     {
         ReplaceItem(ItemID.DD2ExplosiveTrapT1Popper);
         if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2ExplosiveTrapT2Popper);

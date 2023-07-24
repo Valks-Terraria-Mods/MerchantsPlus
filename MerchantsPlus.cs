@@ -6,12 +6,14 @@ global using Terraria;
 global using Terraria.ModLoader;
 global using Terraria.UI;
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace MerchantsPlus;
 
 internal class MerchantsPlus : Mod
 {
-    public static MerchantsPlus Instance { get; private set; }
-    public static ILog Console { get; private set; }
+    public static MerchantsPlus Instance { get; set; }
+    public static ILog Console { get; set; }
     
     public override void Load()
     {
@@ -20,6 +22,8 @@ internal class MerchantsPlus : Mod
         Config.Load();
     }
 
+    [SuppressMessage("Style", "IDE0022:Use expression body for method", 
+        Justification = "More code could be added")]
     public override void Unload()
     {
         Instance = null;
