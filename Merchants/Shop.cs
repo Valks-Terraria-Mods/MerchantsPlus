@@ -44,10 +44,10 @@ internal abstract class Shop
         SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
         Main.npcChatText = "";
-        Main.SetNPCShopIndex(20);
+        //Main.SetNPCShopIndex(20);
 
         Inv = Main.instance.shop[Main.npcShop];
-        Inv.SetupShop(0);
+        //Inv.SetupShop(0);
 
         NextSlot = 0;
 
