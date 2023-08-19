@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopMechanic : Shop
 {
-    public ShopMechanic(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopMechanic(params string[] shops) : base(shops)
     {
     }
 

@@ -10,8 +10,8 @@ internal abstract class BaseMerchant : GlobalNPC
 
         if (Utils.IsMerchant(npc.type))
         {
-            if (Config.MerchantScaling) npc.scale = 0.9f;
-            if (Config.MerchantExtraLife) npc.lifeMax = 500;
+            if (Config.Instance.ToggleScaling) npc.scale = 0.9f;
+            if (Config.Instance.ToggleExtraLife) npc.lifeMax = 500;
         }
     }
 
@@ -31,18 +31,18 @@ internal abstract class BaseMerchant : GlobalNPC
 
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (!Config.MerchantDialog) return;
+        if (!Config.Instance.ToggleDialog) return;
         chat = Utils.Dialog(new string[] { "Defeat more bosses to unlock more gear." });
     }
 
     public override void OnKill(NPC npc)
     {
-        if (!Config.MerchantDrops) return;
+        if (!Config.Instance.ToggleDrops) return;
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (!Config.MerchantProjectiles) return;
+        if (!Config.Instance.ToggleProjectiles) return;
         attackDelay = 1;
     }
 }

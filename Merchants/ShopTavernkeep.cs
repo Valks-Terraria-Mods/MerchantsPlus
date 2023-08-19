@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopTavernkeep : Shop
 {
-    public ShopTavernkeep(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopTavernkeep(params string[] shops) : base(shops)
     {
     }
 

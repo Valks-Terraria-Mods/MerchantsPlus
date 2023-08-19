@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopDryad : Shop
 {
-    public ShopDryad(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopDryad(params string[] shops) : base(shops)
     {
     }
 

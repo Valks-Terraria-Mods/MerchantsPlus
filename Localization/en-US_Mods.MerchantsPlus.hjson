@@ -1,0 +1,35 @@
+Configs: {
+	Config: {
+		DisplayName: Config
+
+		ShopPriceMultiplier: {
+			Label: Shop Price Multiplier
+			Tooltip: ""
+		}
+
+		ToggleExtraLife: {
+			Label: Toggle Extra Life
+			Tooltip: ""
+		}
+
+		ToggleDialog: {
+			Label: Toggle Dialog
+			Tooltip: ""
+		}
+
+		ToggleDrops: {
+			Label: Toggle Drops
+			Tooltip: ""
+		}
+
+		ToggleProjectiles: {
+			Label: Toggle Projectiles
+			Tooltip: ""
+		}
+
+		ToggleScaling: {
+			Label: Toggle Scaling
+			Tooltip: ""
+		}
+	}
+}

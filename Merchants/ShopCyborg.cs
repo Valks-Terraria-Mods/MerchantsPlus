@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopCyborg : Shop
 {
-    public ShopCyborg(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopCyborg(params string[] shops) : base(shops)
     {
     }
 

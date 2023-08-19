@@ -106,15 +106,11 @@ internal class Utils
     public static bool DownedBrainOfCthulhu() => NPC.downedBoss2;
     public static bool DownedSkeletron() => NPC.downedBoss3;
 
-    public static int Coins(int copper = 0, int silver = 0, int gold = 0, int platinum = 0)
+    public static int Coins(int copper, int silver = 0, int gold = 0, int platinum = 0)
     {
-        double total = 0;
-        total += copper;
-        total += silver * 100;
-        total += gold * 10000;
-        total += platinum * 1000000;
-        total *= Config.ShopPriceMultiplier;
-        return (int)total;
+        float basePrice = Item.sellPrice(platinum, gold, silver, copper);
+
+        return (int)(basePrice * Config.Instance.ShopPriceMultiplier);
     }
 
     public static bool PlayersHaveItem(short[] items)

@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopTaxCollector : Shop
 {
-    public ShopTaxCollector(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopTaxCollector(params string[] shops) : base(shops)
     {
     }
 

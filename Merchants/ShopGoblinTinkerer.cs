@@ -5,7 +5,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopGoblinTinkerer : Shop
 {
-    public ShopGoblinTinkerer(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopGoblinTinkerer(params string[] shops) : base(shops)
     {
     }
 

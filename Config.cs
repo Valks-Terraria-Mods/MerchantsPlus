@@ -1,96 +1,37 @@
-using System.IO;
-using Terraria.IO;
+using System.ComponentModel;
+using Terraria.ModLoader.Config;
 
 namespace MerchantsPlus;
 
-public static class Config
+[BackgroundColor(0, 0, 0, 100)]
+public class Config : ModConfig
 {
-    public static double ShopPriceMultiplier
-    {
-        get => shopPriceMultiplier;
-        set => shopPriceMultiplier = value;
-    }
-    
-    public static bool MerchantScaling
-    {
-        get => merchantScaling;
-        set => merchantScaling = value;
-    }
+    public static Config Instance { get; private set; }
 
-    public static bool MerchantExtraLife
-    {
-        get => merchantExtraLife;
-        set => merchantExtraLife = value;
-    }
+    public override ConfigScope Mode => ConfigScope.ServerSide;
+    public override void OnLoaded() => Instance = this;
 
-    public static bool MerchantDialog
-    {
-        get => merchantDialog;
-        set => merchantDialog = value;
-    }
+    [DefaultValue(1.0f)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public float ShopPriceMultiplier = 1.0f;
 
-    public static bool MerchantDrops
-    {
-        get => merchantDrops;
-        set => merchantDrops = value;
-    }
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool ToggleExtraLife;
 
-    public static bool MerchantProjectiles
-    {
-        get => merchantProjectiles;
-        set => merchantProjectiles = value;
-    }
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool ToggleDialog;
 
-    static double shopPriceMultiplier = 1.0;
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool ToggleDrops;
 
-    static bool merchantExtraLife;
-    static bool merchantDialog = true;
-    static bool merchantDrops;
-    static bool merchantProjectiles;
-    static bool merchantScaling;
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool ToggleProjectiles;
 
-    static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "MerchantsPlus.json");
-    static readonly Preferences Configuration = new(ConfigPath);
-
-    public static void Load()
-    {
-        //Reading the config file
-        bool success = ReadConfig();
-
-        if (!success)
-        {
-            MerchantsPlus.Console.Warn("Failed to read Example Mod's config file! Recreating config...");
-            CreateConfig();
-        }
-    }
-
-    //Returns "true" if the config file was found and successfully loaded.
-    static bool ReadConfig()
-    {
-        if (!Configuration.Load())
-            return false;
-
-        Configuration.Get("MerchantScaling", ref merchantScaling);
-        Configuration.Get("MerchantExtraLife", ref merchantExtraLife);
-        Configuration.Get("MerchantDialog", ref merchantDialog);
-        Configuration.Get("MerchantDrops", ref merchantDrops);
-        Configuration.Get("MerchantProjectiles", ref merchantProjectiles);
-        Configuration.Get("ShopPriceMultiplier", ref shopPriceMultiplier);
-
-        return true;
-    }
-
-    // Creates a config file. This will only be called if the config file
-    // doesn't exist yet or it's invalid.
-    static void CreateConfig()
-    {
-        Configuration.Clear();
-        Configuration.Put("MerchantScaling", merchantScaling);
-        Configuration.Put("MerchantExtraLife", merchantExtraLife);
-        Configuration.Put("MerchantDialog", merchantDialog);
-        Configuration.Put("MerchantDrops", merchantDrops);
-        Configuration.Put("MerchantProjectiles", merchantProjectiles);
-        Configuration.Put("ShopPriceMultiplier", shopPriceMultiplier);
-        Configuration.Save();
-    }
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool ToggleScaling;
 }
