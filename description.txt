@@ -1,10 +1,14 @@
 Mod updated to 1.4.4
 
-This mod adds over 90 unique shops with almost every item in Terraria spread across all merchants. 
+This mod adds over 90 unique shops containing NEARLY EVERY ITEM IN TERRARIA spread across all merchants. 
 
 Even the guide, nurse, angler, tax collector and old man are now merchants!
 
 Although not all the items are unlocked at once, you will need to defeat bosses and other types of enemies to progress.
+
+For example, the merchant sells a copper (or tin depending on what kind of world you are in) pickaxe at first. If you defeat the slime king then he will sell a iron pick and a silver pick when you beat the Eye of Cthulhu. He also sells items based on your currently equipped gear. If you have a bow equipped then he will sell you a bow that progresses as you defeat bosses. If you are holding a sword then he will sell a sword and so on.
+
+Progression is not entirely tied to bosses but also world events and even killing say 1000 of a certain enemy.
 
 Featuring
 + Merchants sell more items based on bosses and enemies defeated
@@ -25,6 +29,9 @@ Want to help contribute? Here are some ways you can contribute:
 FAQ
 Q: Is this compatible with other mods?
 A: This mod does not touch vanilla shops but rather adds its own additional shops to merchants so it should be fully compatible with other mods
+
+Q: I looked at the source code and the sell prices do not match up with that from script and in game.
+A: This is because of the "happiness currency multiplier" that currently cannot be disabled via modding.
 
 Send bug reports and suggestions here for faster response: https://discord.gg/866cg8yfxZ
 
