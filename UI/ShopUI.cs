@@ -32,35 +32,37 @@ internal class ShopUI : UIState
     public const int WIZARD = 24;
 
     public static Dictionary<int, Shop> Shops = new() {
-        { ANGLER, new ShopAngler("Fishing Gear", "Bait", "Buffs", "Crates") },
+        // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
+        // CORRECTLY INSIDE THEIR RESPECTIVE SHOP CLASSES!
+        { ANGLER, new ShopAngler("Bait", "Buffs", "Crates") },
         { ARMSDEALER, new ShopArmsDealer("Guns") },
         { CLOTHIER, new ShopClothier("Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
         { CYBORG, new ShopCyborg("Robotics", "Buffs") },
         { DEMOLITIONIST, new ShopDemolitionist("Explosives", "Potions") },
-        { DRYAD, new ShopDryad("Dryad Seeds", "Potions") },
-        { DYETRADER, new ShopDyeTrader("Basic Dyes", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
+        { DRYAD, new ShopDryad("Seeds", "Potions") },
+        { DYETRADER, new ShopDyeTrader("Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
         { GOBLINTINKERER, new ShopGoblinTinkerer("Movement", "Informational", "Combat", "Health and Mana",
             "Immunity", "Defensive", "Special", "Miscellaneous") },
         { MECHANIC, new ShopMechanic("Mechanics", "Materials") },
-        { MERCHANT, new ShopMerchant("Merchant", "Ores", "Pets", "Mounts") },
-        { NURSE, new ShopNurse("Nurse") },
+        { MERCHANT, new ShopMerchant("Gear", "Ores", "Pets", "Mounts") },
+        { NURSE, new ShopNurse("Potions") },
         { PAINTER, new ShopPainter("Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
         { PARTYGIRL, new ShopPartyGirl("Party Stuff") },
         { PIRATE, new ShopPirate("Arrr", "Potions") },
         { SANTACLAUS, new ShopSantaClaus("Decor", "Bulbs", "Lights", "Potions") },
-        { SKELETONMERCHANT, new ShopSkeletonMerchant("Skeleton Merchant", "Music Boxes") },
-        { STEAMPUNKER, new ShopSteampunker("Steam Punker", "Solutions", "Logic") },
+        { SKELETONMERCHANT, new ShopSkeletonMerchant("Gear", "Music Boxes") },
+        { STEAMPUNKER, new ShopSteampunker("Gear", "Solutions", "Logic") },
         { STYLIST, new ShopStylist("Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
             "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
             "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
             "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
-        { TAVERNKEEP, new ShopTavernkeep("Tavern Keeper") },
+        { TAVERNKEEP, new ShopTavernkeep("Gear") },
         { TAXCOLLECTOR, new ShopTaxCollector() },
-        { TRAVELLINGMERCHANT, new ShopTravellingMerchant("Travelling Merchant") },
-        { TRUFFLE, new ShopTruffle("Truffle") },
-        { WITCHDOCTOR, new ShopWitchDoctor("Witch Doctor", "Flasks", "Wings") },
-        { WIZARD, new ShopWizard("Wizard") },
-        { GUIDE, new ShopGuide("Guide") }
+        { TRAVELLINGMERCHANT, new ShopTravellingMerchant("Gear") },
+        { TRUFFLE, new ShopTruffle("Gear") },
+        { WITCHDOCTOR, new ShopWitchDoctor("Gear", "Flasks", "Wings") },
+        { WIZARD, new ShopWizard("Gear") },
+        { GUIDE, new ShopGuide("Gear") }
     };
 
     public static bool Visible { get; set; }
