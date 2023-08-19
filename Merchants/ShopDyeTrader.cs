@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopDyeTrader : Shop
 {
-    public ShopDyeTrader(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopDyeTrader(params string[] shops) : base(shops)
     {
     }
 

@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopSteampunker : Shop
 {
-    public ShopSteampunker(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopSteampunker(params string[] shops) : base(shops)
     {
     }
 

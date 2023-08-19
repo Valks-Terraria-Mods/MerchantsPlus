@@ -4,7 +4,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopTruffle : Shop
 {
-    public ShopTruffle(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopTruffle(params string[] shops) : base(shops)
     {
     }
 

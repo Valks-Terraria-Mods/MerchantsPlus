@@ -5,7 +5,7 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopMerchant : Shop
 {
-    public ShopMerchant(bool merchant, params string[] shops) : base(merchant, shops)
+    public ShopMerchant(params string[] shops) : base(shops)
     {
     }
 
@@ -13,162 +13,20 @@ internal class ShopMerchant : Shop
     {
         base.OpenShop(shop);
 
-        if (shop == "Mounts")
+        switch (shop)
         {
-            Mounts();
-            return;
-        }
-
-        if (shop == "Pets")
-        {
-            Pets();
-            return;
-        }
-
-        if (shop == "Ores")
-        {
-            if (GenVars.copperBar > 0)
-            {
-                AddItem(ItemID.CopperOre, Utils.UniversalOreCost);
-            }
-            else
-            {
-                AddItem(ItemID.TinOre, Utils.UniversalOreCost);
-            }
-
-            if (NPC.downedSlimeKing)
-            {
-                if (GenVars.ironBar > 0)
-                {
-                    AddItem(ItemID.IronOre, Utils.UniversalOreCost);
-                }
-                else
-                {
-                    AddItem(ItemID.LeadOre, Utils.UniversalOreCost);
-                }
-            }
-
-            if (NPC.downedBoss1)
-            {
-                if (GenVars.silverBar > 0)
-                {
-                    AddItem(ItemID.SilverOre, Utils.UniversalOreCost);
-                }
-                else
-                {
-                    AddItem(ItemID.TungstenOre, Utils.UniversalOreCost);
-                }
-            }
-
-            if (NPC.downedBoss2)
-            {
-                if (GenVars.goldBar > 0)
-                {
-                    AddItem(ItemID.GoldOre, Utils.UniversalOreCost);
-                }
-                else
-                {
-                    AddItem(ItemID.PlatinumOre, Utils.UniversalOreCost);
-                }
-                AddItem(ItemID.Meteorite, Utils.UniversalOreCost);
-            }
-
-            if (NPC.downedBoss3)
-            {
-                if (GenVars.crimsonLeft)
-                {
-                    AddItem(ItemID.CrimtaneOre, Utils.UniversalOreCost);
-                }
-                else
-                {
-                    AddItem(ItemID.DemoniteOre, Utils.UniversalOreCost);
-                }
-            }
-
-            if (Main.hardMode)
-            {
-                AddItem(ItemID.Hellstone, Utils.UniversalOreCost);
-            }
-
-            if (Utils.DownedMechBosses() == 1)
-            {
-                AddItem(ItemID.PalladiumOre, Utils.UniversalOreCost * 2);
-                AddItem(ItemID.CobaltOre, Utils.UniversalOreCost * 2);
-            }
-
-            if (Utils.DownedMechBosses() == 2)
-            {
-                AddItem(ItemID.MythrilOre, Utils.UniversalOreCost * 3);
-                AddItem(ItemID.OrichalcumOre, Utils.UniversalOreCost * 3);
-            }
-
-            if (Utils.DownedMechBosses() == 3)
-            {
-                AddItem(ItemID.AdamantiteOre, Utils.UniversalOreCost * 4);
-                AddItem(ItemID.TitaniumOre, Utils.UniversalOreCost * 4);
-
-                AddItem(ItemID.HallowedBar, Utils.UniversalOreCost * 5);
-            }
-
-            if (NPC.downedPlantBoss)
-            {
-                AddItem(ItemID.ChlorophyteOre, Utils.UniversalOreCost * 10);
-            }
-
-            if (NPC.downedMoonlord)
-            {
-                AddItem(ItemID.LunarOre, Utils.UniversalOreCost * 100);
-            }
-            return;
-        }
-
-        if (shop == "Gear")
-        {
-            AddItem(ItemID.Sickle);
-            if (!Main.hardMode) AddItem(ItemID.BugNet); else AddItem(ItemID.GoldenBugNet);
-            Pickaxe();
-            Axe();
-            Hammer();
-            Helmet();
-            Breastplate();
-            ShopGreaves();
-            switch (Utils.GetPlayerClass())
-            {
-                case "melee":
-                    if (!NPC.downedBoss2) Shortswords();
-                    Broadswords();
-                    break;
-
-                case "ranged":
-                    Bows();
-                    break;
-
-                case "mage":
-                    MageWeapon();
-                    break;
-
-                case "summoner":
-                    SummonerWeapon();
-                    break;
-
-                case "thrower":
-                    ThrowerWep();
-                    break;
-            }
-            HealPotion();
-            ManaPotion();
-            Torches();
-            Arrows();
-            Rope();
-            LightPet();
-            Hooks();
-            AddItem(ItemID.PiggyBank);
-            AddItem(ItemID.Safe);
-            AddItem(ItemID.Wood, Utils.Coins(0, 1));
-            BuffPotion();
-            AddItem(ItemID.EmptyBucket, Utils.Coins(0, 0, 1));
-            Wings();
-            return;
+            case "Mounts":
+                Mounts();
+                return;
+            case "Pets":
+                Pets();
+                return;
+            case "Ores":
+                Ores();
+                return;
+            case "Gear":
+                Gear();
+                return;
         }
 
         // Default Shop
@@ -1649,6 +1507,154 @@ internal class ShopMerchant : Shop
         {
             AddItem(ItemID.StrangeGlowingMushroom, Utils.UniversalPetCost);
         }
+    }
+
+    void Ores()
+    {
+        if (GenVars.copperBar > 0)
+        {
+            AddItem(ItemID.CopperOre, Utils.UniversalOreCost);
+        }
+        else
+        {
+            AddItem(ItemID.TinOre, Utils.UniversalOreCost);
+        }
+
+        if (NPC.downedSlimeKing)
+        {
+            if (GenVars.ironBar > 0)
+            {
+                AddItem(ItemID.IronOre, Utils.UniversalOreCost);
+            }
+            else
+            {
+                AddItem(ItemID.LeadOre, Utils.UniversalOreCost);
+            }
+        }
+
+        if (NPC.downedBoss1)
+        {
+            if (GenVars.silverBar > 0)
+            {
+                AddItem(ItemID.SilverOre, Utils.UniversalOreCost);
+            }
+            else
+            {
+                AddItem(ItemID.TungstenOre, Utils.UniversalOreCost);
+            }
+        }
+
+        if (NPC.downedBoss2)
+        {
+            if (GenVars.goldBar > 0)
+            {
+                AddItem(ItemID.GoldOre, Utils.UniversalOreCost);
+            }
+            else
+            {
+                AddItem(ItemID.PlatinumOre, Utils.UniversalOreCost);
+            }
+            AddItem(ItemID.Meteorite, Utils.UniversalOreCost);
+        }
+
+        if (NPC.downedBoss3)
+        {
+            if (GenVars.crimsonLeft)
+            {
+                AddItem(ItemID.CrimtaneOre, Utils.UniversalOreCost);
+            }
+            else
+            {
+                AddItem(ItemID.DemoniteOre, Utils.UniversalOreCost);
+            }
+        }
+
+        if (Main.hardMode)
+        {
+            AddItem(ItemID.Hellstone, Utils.UniversalOreCost);
+        }
+
+        if (Utils.DownedMechBosses() == 1)
+        {
+            AddItem(ItemID.PalladiumOre, Utils.UniversalOreCost * 2);
+            AddItem(ItemID.CobaltOre, Utils.UniversalOreCost * 2);
+        }
+
+        if (Utils.DownedMechBosses() == 2)
+        {
+            AddItem(ItemID.MythrilOre, Utils.UniversalOreCost * 3);
+            AddItem(ItemID.OrichalcumOre, Utils.UniversalOreCost * 3);
+        }
+
+        if (Utils.DownedMechBosses() == 3)
+        {
+            AddItem(ItemID.AdamantiteOre, Utils.UniversalOreCost * 4);
+            AddItem(ItemID.TitaniumOre, Utils.UniversalOreCost * 4);
+
+            AddItem(ItemID.HallowedBar, Utils.UniversalOreCost * 5);
+        }
+
+        if (NPC.downedPlantBoss)
+        {
+            AddItem(ItemID.ChlorophyteOre, Utils.UniversalOreCost * 10);
+        }
+
+        if (NPC.downedMoonlord)
+        {
+            AddItem(ItemID.LunarOre, Utils.UniversalOreCost * 100);
+        }
+    }
+
+    void Gear()
+    {
+        AddItem(ItemID.Sickle);
+        if (!Main.hardMode)
+            AddItem(ItemID.BugNet);
+        else
+            AddItem(ItemID.GoldenBugNet);
+        Pickaxe();
+        Axe();
+        Hammer();
+        Helmet();
+        Breastplate();
+        ShopGreaves();
+        switch (Utils.GetPlayerClass())
+        {
+            case "melee":
+                if (!NPC.downedBoss2)
+                    Shortswords();
+                Broadswords();
+                break;
+
+            case "ranged":
+                Bows();
+                break;
+
+            case "mage":
+                MageWeapon();
+                break;
+
+            case "summoner":
+                SummonerWeapon();
+                break;
+
+            case "thrower":
+                ThrowerWep();
+                break;
+        }
+        HealPotion();
+        ManaPotion();
+        Torches();
+        Arrows();
+        Rope();
+        LightPet();
+        Hooks();
+        AddItem(ItemID.PiggyBank);
+        AddItem(ItemID.Safe);
+        AddItem(ItemID.Wood, Utils.Coins(0, 1));
+        BuffPotion();
+        AddItem(ItemID.EmptyBucket, Utils.Coins(0, 0, 1));
+        Wings();
     }
 
     void HealPotion()

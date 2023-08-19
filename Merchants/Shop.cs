@@ -15,16 +15,12 @@ internal abstract class Shop
     /// Sets up a new shop for a particular merchant.
     /// </summary>
     /// <param name="merchant">Is the NPC a merchant by default?</param>
-    public Shop(bool merchant, params string[] shops)
+    public Shop(params string[] shops)
     {
         Shops = new List<string>();
-        if (merchant) Shops.Add("Vanilla");
 
-        var otherShops = new List<string>();
         for (int i = 0; i < shops.Length; i++)
-            otherShops.Add(shops[i]);
-
-        Shops.AddRange(otherShops);
+            Shops.Add(shops[i]);
 
         Quests = new List<string>();
     }
