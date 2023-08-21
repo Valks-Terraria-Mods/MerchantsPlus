@@ -31,7 +31,7 @@ internal class ShopUI : UIState
     public const int WITCHDOCTOR = 23;
     public const int WIZARD = 24;
 
-    public static Dictionary<int, Shop> Shops = new() {
+    static readonly Dictionary<int, Shop> shops = new() {
         // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
         // CORRECTLY INSIDE THEIR RESPECTIVE SHOP CLASSES!
         { ANGLER, new ShopAngler("Bait", "Buffs", "Crates") },
@@ -66,50 +66,51 @@ internal class ShopUI : UIState
     };
 
     public static bool Visible { get; set; }
-
     public static int CurrentShopIndex { get; set; }
-    public static int[] ShopCycleIndexes { get; } = new int[Shops.Count];
+    public static int[] ShopCycleIndexes { get; private set; }
 
-    public string[] ShopNames { get; } = new string[Shops.Count];
-    public UIText CurrentShopName { get; set; }
-
-    UIPanel ShopPanel;
+    string[] shopNames;
+    UIText currentShopName;
+    UIPanel shopPanel;
 
     public override void OnInitialize()
     {
+        ShopCycleIndexes = new int[shops.Count];
+        shopNames = new string[shops.Count];
+
         // This is the first shop name the player will see (for all shops)
         // before pressing cycle shop button
-        for (int i = 0; i < Shops.Count; i++)
-            ShopNames[i] = Shops[i].ToString();
+        for (int i = 0; i < shops.Count; i++)
+            shopNames[i] = shops[i].ToString();
 
         //for (int i = 0; i < ShopNames.Length; i++)
         //    ShopNames[i] = "Shop";
 
-        ShopPanel = new UIPanel();
-        ShopPanel.SetPadding(0);
-        ShopPanel.Left.Set(200f, 0f);
-        ShopPanel.Top.Set(428f, 0f);
-        ShopPanel.Width.Set(250f, 0f);
-        ShopPanel.Height.Set(35f, 0f);
-        ShopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
+        shopPanel = new UIPanel();
+        shopPanel.SetPadding(0);
+        shopPanel.Left.Set(200f, 0f);
+        shopPanel.Top.Set(428f, 0f);
+        shopPanel.Width.Set(250f, 0f);
+        shopPanel.Height.Set(35f, 0f);
+        shopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        CurrentShopName = new UIText(ShopNames[CurrentShopIndex], 0.9f);
-        CurrentShopName.Left.Set(10, 0f);
-        CurrentShopName.Top.Set(8, 0f);
-        CurrentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
-        ShopPanel.Append(CurrentShopName);
+        currentShopName = new UIText(shopNames[CurrentShopIndex], 0.9f);
+        currentShopName.Left.Set(10, 0f);
+        currentShopName.Top.Set(8, 0f);
+        currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+        shopPanel.Append(currentShopName);
 
         var cycleShopButton = new TextButton("Cycle Shop", 0.9f);
         cycleShopButton.Left.Set(150, 0f);
         cycleShopButton.Top.Set(4, 0f);
         cycleShopButton.OnLeftClick += new MouseEvent(CycleShopButtonClicked);
-        ShopPanel.Append(cycleShopButton);
+        shopPanel.Append(cycleShopButton);
 
-        Append(ShopPanel);
+        Append(shopPanel);
     }
 
     public void UpdateShopName() =>
-        CurrentShopName.SetText(ShopNames[CurrentShopIndex]);
+        currentShopName.SetText(shopNames[CurrentShopIndex]);
 
     void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
@@ -120,15 +121,15 @@ internal class ShopUI : UIState
 
     void ShiftShop()
     {
-        if (Shops[CurrentShopIndex].Shops.Count == 0) return; // Safe Guard
-        if (ShopCycleIndexes[CurrentShopIndex] >= Shops[CurrentShopIndex].Shops.Count - 1)
+        if (shops[CurrentShopIndex].Shops.Count == 0) return; // Safe Guard
+        if (ShopCycleIndexes[CurrentShopIndex] >= shops[CurrentShopIndex].Shops.Count - 1)
         {
-            ShopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[0];
+            shopNames[CurrentShopIndex] = shops[CurrentShopIndex].Shops[0];
             ShopCycleIndexes[CurrentShopIndex] = 0;
         }
         else
         {
-            ShopNames[CurrentShopIndex] = Shops[CurrentShopIndex].Shops[++ShopCycleIndexes[CurrentShopIndex]];
+            shopNames[CurrentShopIndex] = shops[CurrentShopIndex].Shops[++ShopCycleIndexes[CurrentShopIndex]];
         }
     }
 
@@ -136,5 +137,5 @@ internal class ShopUI : UIState
         OpenShop();
 
     void OpenShop() =>
-        Shops[CurrentShopIndex].OpenShop(ShopNames[CurrentShopIndex]);
+        shops[CurrentShopIndex].OpenShop(shopNames[CurrentShopIndex]);
 }
