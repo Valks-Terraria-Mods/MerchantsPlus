@@ -5,6 +5,7 @@ namespace MerchantsPlus.Merchants;
 
 internal abstract class Shop
 {
+    public int CycleIndex { get; set; }
     public List<string> Shops;
     public List<string> Quests;
 
@@ -26,7 +27,7 @@ internal abstract class Shop
     }
 
     /// <summary>
-    /// Initalizes the merchants particular shop.
+    /// Opens the merchants shop.
     /// </summary>
     /// <param name="shop">The current shop we are in.</param>
     /// <param name="nextSlot">The nextSlot of the item to sell.</param>
