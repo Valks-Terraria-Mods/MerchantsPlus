@@ -1,4 +1,6 @@
 ﻿using MerchantsPlus.Merchants;
+using Terraria.ModLoader.UI.ModBrowser;
+using Magic = MerchantsPlus.MagicStorageDefs;
 
 namespace MerchantsPlus;
 
@@ -13,42 +15,63 @@ internal class ShopGolem : Shop
         switch (shop)
         {
             case "Storage":
-                AddItem(MagicStorageDefs.StorageHeart.Type, 
-                    Utils.Coins(), 0);
+                if (Utils.Progression() >= 0)
+                {
+                    AddItem(Magic.StorageHeart.Type, Utils.Coins());
+                    AddItem(Magic.CraftingAccess.Type, Utils.Coins());
+                    AddItem(Magic.StorageAccess.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitTiny.Type, Utils.Coins());
+                }
+                
+                AddItem(Magic.StorageUnit.Type, Utils.Coins(), 1);
 
-                AddItem(MagicStorageDefs.CraftingAccess.Type, 
-                    Utils.Coins(), 0);
+                if (Utils.Progression() >= 2)
+                {
+                    if (WorldGen.crimson)
+                    {
+                        AddItem(Magic.UpgradeCrimtane.Type, Utils.Coins());
+                        AddItem(Magic.StorageUnitCrimtane.Type, Utils.Coins());
+                    }
+                    else
+                    {
+                        AddItem(Magic.UpgradeDemonite.Type, Utils.Coins());
+                        AddItem(Magic.StorageUnitDemonite.Type, Utils.Coins());
+                    }
+                }
 
-                AddItem(MagicStorageDefs.StorageAccess.Type, 
-                    Utils.Coins(), 0);
+                if (Utils.Progression() >= 3)
+                {
+                    AddItem(Magic.UpgradeHellstone.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitHellstone.Type, Utils.Coins());
+                }
+                
+                if (Utils.Progression() >= 4)
+                {
+                    AddItem(Magic.StorageUnitBlueChlorophyte.Type, Utils.Coins());
+                }
+                
+                if (Utils.Progression() >= 5)
+                {
+                    AddItem(Magic.UpgradeHallowed.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitHallowed.Type, Utils.Coins());
+                }
 
-                AddItem(MagicStorageDefs.StorageUnitTiny.Type, 
-                    Utils.Coins(), 0);
+                if (Utils.Progression() >= 6)
+                {
+                    AddItem(Magic.UpgradeLuminite.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitLuminite.Type, Utils.Coins());
+                }
 
-                AddItem(MagicStorageDefs.StorageUnit.Type, 
-                    Utils.Coins(), 1);
+                if (Utils.Progression() >= 7)
+                {
+                    AddItem(Magic.UpgradeTerra.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitTerra.Type, Utils.Coins());
+                }
 
-                if (WorldGen.crimson)
-                    AddItem(MagicStorageDefs.StorageUnitCrimtane.Type, 
-                        Utils.Coins(), 2);
-                else
-                    AddItem(MagicStorageDefs.StorageUnitDemonite.Type, 
-                        Utils.Coins(), 2);
-
-                AddItem(MagicStorageDefs.StorageUnitHellstone.Type, 
-                    Utils.Coins(), 3);
-
-                AddItem(MagicStorageDefs.StorageUnitHallowed.Type, 
-                    Utils.Coins(), 4);
-
-                AddItem(MagicStorageDefs.StorageUnitLuminite.Type, 
-                    Utils.Coins(), 5);
-
-                AddItem(MagicStorageDefs.StorageUnitTerra.Type, 
-                    Utils.Coins(), 6);
-
-                AddItem(MagicStorageDefs.RemoteAccess.Type,
-                    Utils.Coins(), 7);
+                if (Utils.Progression() >= 8)
+                {
+                    AddItem(Magic.RemoteAccess.Type, Utils.Coins());
+                }
 
                 break;
         }
