@@ -106,7 +106,7 @@ internal class ShopUI : UIState
     }
 
     void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement) =>
-        OpenShop(0);
+        OpenShop(Shops[CurrentMerchantID].CycleIndex);
 
     void OpenShop(int shopIndex)
     {
