@@ -39,6 +39,7 @@ internal class ShopUI : UIState
     public static bool Visible { get; set; }
     public static int CurrentMerchantID { get; set; }
 
+    UIText merchantName;
     UIText currentShopName;
     UIPanel shopPanel;
 
@@ -46,28 +47,65 @@ internal class ShopUI : UIState
     {
         shopPanel = new UIPanel();
         shopPanel.SetPadding(0);
-        shopPanel.Left.Set(200f, 0f);
+        shopPanel.Left.Set(75f, 0f);
         shopPanel.Top.Set(428f, 0f);
-        shopPanel.Width.Set(250f, 0f);
+        shopPanel.Width.Set(375f, 0f);
         shopPanel.Height.Set(35f, 0f);
         shopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        currentShopName = new UIText("Shop Name", 0.9f);
-        currentShopName.Left.Set(10, 0f);
+        merchantName = new UIText("Merchant Name", 0.9f)
+        {
+            HAlign = 0.03f
+        };
+
+        merchantName.Top.Set(8, 0f);
+
+        shopPanel.Append(merchantName);
+
+        currentShopName = new UIText("Shop Name", 0.9f)
+        {
+            HAlign = 0.5f
+        };
+
         currentShopName.Top.Set(8, 0f);
         currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+
         shopPanel.Append(currentShopName);
 
-        var cycleShopButton = new TextButton("Cycle Shop", 0.9f);
-        cycleShopButton.Left.Set(150, 0f);
+        var cycleShopButton = new TextButton("Cycle Shop", 0.9f)
+        {
+            HAlign = 0.97f
+        };
+
         cycleShopButton.Top.Set(4, 0f);
         cycleShopButton.OnLeftClick += new MouseEvent(CycleShopButtonClicked);
+
         shopPanel.Append(cycleShopButton);
 
         Append(shopPanel);
     }
 
-    public void UpdateShopName()
+    public void UpdateUI()
+    {
+        UpdateShopName();
+        UpdateMerchantName();
+    }
+
+    void UpdateMerchantName()
+    {
+        foreach (var npc in Main.npc)
+        {
+            if (npc.type == CurrentMerchantID)
+            {
+                merchantName.SetText(npc.TypeName);
+                return;
+            }
+        }
+
+        merchantName.SetText("Merchant");
+    }
+
+    void UpdateShopName()
     {
         if (Shops[CurrentMerchantID].Shops.Length == 0)
         {
@@ -83,7 +121,7 @@ internal class ShopUI : UIState
     void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShiftShop();
-        UpdateShopName();
+        UpdateUI();
         OpenShop(Shops[CurrentMerchantID].CycleIndex);
     }
 

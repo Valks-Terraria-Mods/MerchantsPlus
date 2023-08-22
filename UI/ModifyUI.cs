@@ -8,7 +8,7 @@ internal class ModifyUI : ModSystem
 
     internal void ShowShopUI()
     {
-        shopUI.UpdateShopName();
+        shopUI.UpdateUI();
         ShopUI.Visible = true;
         userInterface?.SetState(shopUI);
     }
