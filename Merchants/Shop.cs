@@ -66,10 +66,13 @@ internal abstract class Shop
     protected void AddItem(int itemID) => 
         Inv.item[NextSlot++].SetDefaults(itemID);
 
-    protected void AddItem(int itemID, int price)
+    protected void AddItem(int itemID, int price, int progression = 0)
     {
-        Inv.item[NextSlot].SetDefaults(itemID);
-        Inv.item[NextSlot++].shopCustomPrice = price;
+        if (Utils.Progression() >= progression)
+        {
+            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot++].shopCustomPrice = price;
+        }
     }
 
     protected void ReplaceItem(int itemID) => 

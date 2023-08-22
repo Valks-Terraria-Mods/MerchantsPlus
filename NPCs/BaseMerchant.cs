@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria.GameContent.Personalities;
+using Terraria.ID;
 
 namespace MerchantsPlus.NPCs;
 

@@ -7,7 +7,7 @@ namespace MerchantsPlus.UI;
 // This UI will appear when a new dialog is opened with a merchant
 internal class ShopUI : UIState
 {
-    static readonly Dictionary<int, Shop> shops = new() {
+    public static Dictionary<int, Shop> Shops { get; } = new() {
         // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
         // CORRECTLY INSIDE THEIR RESPECTIVE SHOP CLASSES!
         { NPCID.Angler, new ShopAngler("Bait", "Buffs", "Crates") },
@@ -74,34 +74,34 @@ internal class ShopUI : UIState
 
     public void UpdateShopName()
     {
-        if (shops[CurrentMerchantID].Shops.Count == 0)
+        if (Shops[CurrentMerchantID].Shops.Count == 0)
         {
             currentShopName.SetText("Shop");
             return;
         }
 
-        int shopIndex = shops[CurrentMerchantID].CycleIndex;
+        int shopIndex = Shops[CurrentMerchantID].CycleIndex;
 
-        currentShopName.SetText(shops[CurrentMerchantID].Shops[shopIndex]);
+        currentShopName.SetText(Shops[CurrentMerchantID].Shops[shopIndex]);
     }
 
     void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShiftShop();
         UpdateShopName();
-        OpenShop(shops[CurrentMerchantID].CycleIndex);
+        OpenShop(Shops[CurrentMerchantID].CycleIndex);
     }
 
     void ShiftShop()
     {
-        if (shops[CurrentMerchantID].Shops.Count == 0) return; // Safe Guard
-        if (shops[CurrentMerchantID].CycleIndex >= shops[CurrentMerchantID].Shops.Count - 1)
+        if (Shops[CurrentMerchantID].Shops.Count == 0) return; // Safe Guard
+        if (Shops[CurrentMerchantID].CycleIndex >= Shops[CurrentMerchantID].Shops.Count - 1)
         {
-            shops[CurrentMerchantID].CycleIndex = 0;
+            Shops[CurrentMerchantID].CycleIndex = 0;
         }
         else
         {
-            shops[CurrentMerchantID].CycleIndex++;
+            Shops[CurrentMerchantID].CycleIndex++;
         }
     }
 
@@ -112,9 +112,9 @@ internal class ShopUI : UIState
     {
         string shopToOpen = "";
 
-        if (shops[CurrentMerchantID].Shops.Count != 0)
-            shopToOpen = shops[CurrentMerchantID].Shops[shopIndex];
+        if (Shops[CurrentMerchantID].Shops.Count != 0)
+            shopToOpen = Shops[CurrentMerchantID].Shops[shopIndex];
 
-        shops[CurrentMerchantID].OpenShop(shopToOpen);
+        Shops[CurrentMerchantID].OpenShop(shopToOpen);
     }
 }

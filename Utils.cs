@@ -106,6 +106,9 @@ internal class Utils
     public static bool DownedBrainOfCthulhu() => NPC.downedBoss2;
     public static bool DownedSkeletron() => NPC.downedBoss3;
 
+    public static int Coins() => 
+        (int)(Item.sellPrice(0, 1) * Config.Instance.ShopPriceMultiplier);
+
     public static int Coins(int copper, int silver = 0, int gold = 0, int platinum = 0)
     {
         float basePrice = Item.sellPrice(platinum, gold, silver, copper);
