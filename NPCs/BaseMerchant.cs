@@ -1,7 +1,4 @@
-﻿using Terraria.GameContent.Personalities;
-using Terraria.ID;
-
-namespace MerchantsPlus.NPCs;
+﻿namespace MerchantsPlus.NPCs;
 
 internal abstract class BaseMerchant : GlobalNPC
 {

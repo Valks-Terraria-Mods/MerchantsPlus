@@ -1,6 +1,5 @@
 ﻿using MerchantsPlus.Merchants;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 
 namespace MerchantsPlus.UI;
 
@@ -10,35 +9,31 @@ internal class ShopUI : UIState
     public static Dictionary<int, Shop> Shops { get; } = new() {
         // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
         // CORRECTLY INSIDE THEIR RESPECTIVE SHOP CLASSES!
-        { NPCID.Angler, new ShopAngler("Bait", "Buffs", "Crates") },
-        { NPCID.ArmsDealer, new ShopArmsDealer("Guns") },
-        { NPCID.Clothier, new ShopClothier("Clothing", "Boss Masks", "Vanity I", "Vanity II", "Vanity III", "Vanity IV") },
-        { NPCID.Cyborg, new ShopCyborg("Robotics", "Buffs") },
-        { NPCID.Demolitionist, new ShopDemolitionist("Explosives", "Potions") },
-        { NPCID.Dryad, new ShopDryad("Seeds", "Potions") },
-        { NPCID.DyeTrader, new ShopDyeTrader("Basic", "Bright", "Gradient", "Compound", "Strange", "Lunar") },
-        { NPCID.GoblinTinkerer, new ShopGoblinTinkerer("Movement", "Informational", "Combat", "Health and Mana",
-            "Immunity", "Defensive", "Special", "Miscellaneous") },
-        { NPCID.Mechanic, new ShopMechanic("Mechanics", "Materials") },
-        { NPCID.Merchant, new ShopMerchant("Gear", "Ores", "Pets", "Mounts") },
-        { NPCID.Nurse, new ShopNurse("Potions") },
-        { NPCID.Painter, new ShopPainter("Tools", "Paint", "Wallpaper", "Paintings I", "Paintings II") },
-        { NPCID.PartyGirl, new ShopPartyGirl("Party Stuff") },
-        { NPCID.Pirate, new ShopPirate("Arrr", "Potions") },
-        { NPCID.SantaClaus, new ShopSantaClaus("Decor", "Bulbs", "Lights", "Potions") },
-        { NPCID.SkeletonMerchant, new ShopSkeletonMerchant("Gear", "Music Boxes") },
-        { NPCID.Steampunker, new ShopSteampunker("Gear", "Solutions", "Logic") },
-        { NPCID.Stylist, new ShopStylist("Hair Dyes", "Overworld", "Underworld", "Desert", "Snow", "Jungle", "Ocean",
-            "Corruption", "Crimson", "Hallow", "Space", "Mushroom", "Dungeon", "Bloodmoon", "Eclipse", "Goblin Army",
-            "Old Ones Army", "Frost Legion", "Pumpkin Moon", "Frost Moon", "Pirate Invasion", "Martian Madness",
-            "Solar Zone", "Vortex Zone", "Nebula Zone", "Stardust Zone") },
-        { NPCID.DD2Bartender, new ShopTavernkeep("Gear") },
+        { NPCID.Angler, new ShopAngler() },
+        { NPCID.ArmsDealer, new ShopArmsDealer() },
+        { NPCID.Clothier, new ShopClothier() },
+        { NPCID.Cyborg, new ShopCyborg() },
+        { NPCID.Demolitionist, new ShopDemolitionist() },
+        { NPCID.Dryad, new ShopDryad() },
+        { NPCID.DyeTrader, new ShopDyeTrader() },
+        { NPCID.GoblinTinkerer, new ShopGoblinTinkerer() },
+        { NPCID.Mechanic, new ShopMechanic() },
+        { NPCID.Merchant, new ShopMerchant() },
+        { NPCID.Nurse, new ShopNurse() },
+        { NPCID.Painter, new ShopPainter() },
+        { NPCID.PartyGirl, new ShopPartyGirl() },
+        { NPCID.Pirate, new ShopPirate() },
+        { NPCID.SantaClaus, new ShopSantaClaus() },
+        { NPCID.SkeletonMerchant, new ShopSkeletonMerchant() },
+        { NPCID.Steampunker, new ShopSteampunker() },
+        { NPCID.Stylist, new ShopStylist() },
+        { NPCID.DD2Bartender, new ShopTavernkeep() },
         { NPCID.TaxCollector, new ShopTaxCollector() },
-        { NPCID.TravellingMerchant, new ShopTravellingMerchant("Gear") },
-        { NPCID.Truffle, new ShopTruffle("Gear") },
-        { NPCID.WitchDoctor, new ShopWitchDoctor("Gear", "Flasks", "Wings") },
-        { NPCID.Wizard, new ShopWizard("Gear") },
-        { NPCID.Guide, new ShopGuide("Gear") }
+        { NPCID.TravellingMerchant, new ShopTravellingMerchant() },
+        { NPCID.Truffle, new ShopTruffle() },
+        { NPCID.WitchDoctor, new ShopWitchDoctor() },
+        { NPCID.Wizard, new ShopWizard() },
+        { NPCID.Guide, new ShopGuide() }
     };
 
     public static bool Visible { get; set; }
@@ -74,7 +69,7 @@ internal class ShopUI : UIState
 
     public void UpdateShopName()
     {
-        if (Shops[CurrentMerchantID].Shops.Count == 0)
+        if (Shops[CurrentMerchantID].Shops.Length == 0)
         {
             currentShopName.SetText("Shop");
             return;
@@ -94,8 +89,8 @@ internal class ShopUI : UIState
 
     void ShiftShop()
     {
-        if (Shops[CurrentMerchantID].Shops.Count == 0) return; // Safe Guard
-        if (Shops[CurrentMerchantID].CycleIndex >= Shops[CurrentMerchantID].Shops.Count - 1)
+        if (Shops[CurrentMerchantID].Shops.Length == 0) return; // Safe Guard
+        if (Shops[CurrentMerchantID].CycleIndex >= Shops[CurrentMerchantID].Shops.Length - 1)
         {
             Shops[CurrentMerchantID].CycleIndex = 0;
         }
@@ -112,7 +107,7 @@ internal class ShopUI : UIState
     {
         string shopToOpen = "";
 
-        if (Shops[CurrentMerchantID].Shops.Count != 0)
+        if (Shops[CurrentMerchantID].Shops.Length != 0)
             shopToOpen = Shops[CurrentMerchantID].Shops[shopIndex];
 
         Shops[CurrentMerchantID].OpenShop(shopToOpen);

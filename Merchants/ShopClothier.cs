@@ -1,12 +1,14 @@
-using Terraria.ID;
-
 namespace MerchantsPlus.Merchants;
 
 internal class ShopClothier : Shop
 {
-    public ShopClothier(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { 
+        "Clothing", 
+        "Boss Masks", 
+        "Vanity I", 
+        "Vanity II", 
+        "Vanity III", 
+        "Vanity IV" };
 
     public override void OpenShop(string shop)
     {

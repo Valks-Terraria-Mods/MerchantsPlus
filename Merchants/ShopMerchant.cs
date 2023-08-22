@@ -1,13 +1,14 @@
-using Terraria.ID;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
 internal class ShopMerchant : Shop
 {
-    public ShopMerchant(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { 
+        "Gear", 
+        "Ores", 
+        "Pets", 
+        "Mounts" };
 
     public override void OpenShop(string shop)
     {

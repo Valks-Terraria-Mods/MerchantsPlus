@@ -1,12 +1,8 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopCyborg : Shop
 {
-    public ShopCyborg(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Robotics", "Buffs" };
 
     public override void OpenShop(string shop)
     {

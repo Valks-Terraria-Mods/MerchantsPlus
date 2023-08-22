@@ -1,12 +1,8 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopTaxCollector : Shop
 {
-    public ShopTaxCollector(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => Array.Empty<string>();
 
     public override void OpenShop(string shop)
     {

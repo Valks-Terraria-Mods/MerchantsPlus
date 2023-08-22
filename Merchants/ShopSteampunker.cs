@@ -1,12 +1,8 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopSteampunker : Shop
 {
-    public ShopSteampunker(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Gear", "Solutions", "Logic" };
 
     public override void OpenShop(string shop)
     {

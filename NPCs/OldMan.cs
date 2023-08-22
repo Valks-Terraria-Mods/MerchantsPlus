@@ -1,5 +1,4 @@
 ﻿using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 
 namespace MerchantsPlus.NPCs;
 

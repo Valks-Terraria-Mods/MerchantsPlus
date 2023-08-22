@@ -1,6 +1,4 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Items;
+﻿namespace MerchantsPlus.Items;
 
 class ItemsBossBags : BaseItem
 {

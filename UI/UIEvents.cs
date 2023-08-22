@@ -1,7 +1,4 @@
-﻿using System;
-using Terraria.ID;
-
-namespace MerchantsPlus.UI;
+﻿namespace MerchantsPlus.UI;
 
 internal class UIEvents : GlobalNPC
 {

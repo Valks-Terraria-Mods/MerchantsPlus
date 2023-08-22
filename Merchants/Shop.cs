@@ -1,30 +1,15 @@
 ﻿using Terraria.Audio;
-using Terraria.ID;
 
 namespace MerchantsPlus.Merchants;
 
 internal abstract class Shop
 {
     public int CycleIndex { get; set; }
-    public List<string> Shops;
-    public List<string> Quests;
+    public abstract string[] Shops { get; }
+    public List<string> Quests { get; } = new();
 
     protected Chest Inv;
     protected int NextSlot = 0;
-
-    /// <summary>
-    /// Sets up a new shop for a particular merchant.
-    /// </summary>
-    /// <param name="merchant">Is the NPC a merchant by default?</param>
-    public Shop(params string[] shops)
-    {
-        Shops = new List<string>();
-
-        for (int i = 0; i < shops.Length; i++)
-            Shops.Add(shops[i]);
-
-        Quests = new List<string>();
-    }
 
     /// <summary>
     /// Opens the merchants shop.

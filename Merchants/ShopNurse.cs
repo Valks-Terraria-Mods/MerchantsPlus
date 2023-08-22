@@ -1,12 +1,8 @@
-using Terraria.ID;
-
 namespace MerchantsPlus.Merchants;
 
 internal class ShopNurse : Shop
 {
-    public ShopNurse(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Potions" };
 
     public override void OpenShop(string shop)
     {

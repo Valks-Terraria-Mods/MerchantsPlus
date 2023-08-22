@@ -1,12 +1,14 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopDyeTrader : Shop
 {
-    public ShopDyeTrader(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { 
+        "Basic", 
+        "Bright", 
+        "Gradient", 
+        "Compound", 
+        "Strange", 
+        "Lunar" };
 
     public override void OpenShop(string shop)
     {
