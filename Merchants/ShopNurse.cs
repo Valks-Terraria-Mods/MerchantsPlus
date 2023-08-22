@@ -2,7 +2,11 @@ namespace MerchantsPlus.Merchants;
 
 internal class ShopNurse : Shop
 {
-    public override string[] Shops => new string[] { "Potions" };
+    public override string[] Shops => new string[] 
+    { 
+        "Life", 
+        "Potions"
+    };
 
     public override void OpenShop(string shop)
     {
@@ -22,12 +26,14 @@ internal class ShopNurse : Shop
             return;
         }
 
-        // Default Shop
-        AddItem(ItemID.LifeCrystal, Utils.Coins(0, 0, 0, 1));
-        if (Main.hardMode)
+        if (shop == "Life")
         {
-            AddItem(ItemID.LifeFruit, Utils.Coins(0, 0, 0, 1));
+            AddItem(ItemID.LifeCrystal, Utils.Coins(0, 0, 0, 1));
+            if (Main.hardMode)
+            {
+                AddItem(ItemID.LifeFruit, Utils.Coins(0, 0, 0, 1));
+            }
+            AddItem(ItemID.HeartLantern, Utils.Coins(0, 0, 0, 1));
         }
-        AddItem(ItemID.HeartLantern, Utils.Coins(0, 0, 0, 1));
     }
 }
