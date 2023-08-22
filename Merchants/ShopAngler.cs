@@ -1,12 +1,8 @@
-using Terraria.ID;
-
 namespace MerchantsPlus.Merchants;
 
 internal class ShopAngler : Shop
 {
-    public ShopAngler(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Bait", "Buffs", "Crates" };
 
     public override void OpenShop(string shop)
     {

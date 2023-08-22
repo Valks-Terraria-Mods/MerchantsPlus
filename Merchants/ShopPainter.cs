@@ -1,12 +1,13 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopPainter : Shop
 {
-    public ShopPainter(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { 
+        "Tools", 
+        "Paint", 
+        "Wallpaper", 
+        "Paintings I", 
+        "Paintings II" };
 
     public override void OpenShop(string shop)
     {

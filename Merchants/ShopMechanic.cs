@@ -1,12 +1,8 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopMechanic : Shop
 {
-    public ShopMechanic(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Mechanics", "Materials" };
 
     public override void OpenShop(string shop)
     {

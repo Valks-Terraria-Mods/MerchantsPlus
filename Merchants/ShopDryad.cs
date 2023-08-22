@@ -1,12 +1,8 @@
-using Terraria.ID;
-
 namespace MerchantsPlus.Merchants;
 
 internal class ShopDryad : Shop
 {
-    public ShopDryad(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Seeds", "Potions" };
 
     public override void OpenShop(string shop)
     {

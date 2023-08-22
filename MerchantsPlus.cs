@@ -4,6 +4,8 @@ global using System.Collections.Generic;
 global using Terraria;
 global using Terraria.ModLoader;
 global using Terraria.UI;
+global using Terraria.ID;
+global using System;
 
 using MerchantsPlus.Merchants;
 
@@ -19,8 +21,7 @@ internal class MerchantsPlus : Mod
         if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
         {
             MagicStorageDefs = new(magicStorage);
-            AddShopForModdedNPC(MagicStorageDefs.Golem.Type, 
-                new ShopGolem("Storage"));
+            AddShopForModdedNPC(MagicStorageDefs.Golem.Type, new ShopGolem());
         }
     }
 

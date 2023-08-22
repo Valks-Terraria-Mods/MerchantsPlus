@@ -1,6 +1,4 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.NPCs;
+﻿namespace MerchantsPlus.NPCs;
 
 internal class WitchDoctor : BaseMerchant
 {

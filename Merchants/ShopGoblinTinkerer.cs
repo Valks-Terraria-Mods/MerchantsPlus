@@ -1,13 +1,18 @@
-using Terraria.ID;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
 internal class ShopGoblinTinkerer : Shop
 {
-    public ShopGoblinTinkerer(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { 
+        "Movement", 
+        "Informational", 
+        "Combat", 
+        "Health and Mana",
+        "Immunity", 
+        "Defensive", 
+        "Special", 
+        "Miscellaneous" };
 
     public override void OpenShop(string shop)
     {

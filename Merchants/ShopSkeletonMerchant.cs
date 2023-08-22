@@ -1,12 +1,8 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopSkeletonMerchant : Shop
 {
-    public ShopSkeletonMerchant(params string[] shops) : base(shops)
-    {
-    }
+    public override string[] Shops => new string[] { "Gear", "Music Boxes" };
 
     public override void OpenShop(string shop)
     {

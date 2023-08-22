@@ -1,12 +1,11 @@
 ﻿using MerchantsPlus.Merchants;
-using Terraria.ModLoader.UI.ModBrowser;
 using Magic = MerchantsPlus.MagicStorageDefs;
 
 namespace MerchantsPlus;
 
 internal class ShopGolem : Shop
 {
-    public ShopGolem(params string[] shops) : base(shops) { }
+    public override string[] Shops => new string[] { "Storage" };
 
     public override void OpenShop(string shop)
     {

@@ -1,12 +1,36 @@
-﻿using Terraria.ID;
-
-namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Merchants;
 
 internal class ShopStylist : Shop
 {
-    public ShopStylist(params string[] shops) : base(shops)
+    public override string[] Shops => new string[]
     {
-    }
+        "Hair Dyes", 
+        "Overworld", 
+        "Underworld", 
+        "Desert", 
+        "Snow", 
+        "Jungle", 
+        "Ocean",
+        "Corruption", 
+        "Crimson", 
+        "Hallow", 
+        "Space", 
+        "Mushroom", 
+        "Dungeon", 
+        "Bloodmoon", 
+        "Eclipse", 
+        "Goblin Army",
+        "Old Ones Army", 
+        "Frost Legion", 
+        "Pumpkin Moon", 
+        "Frost Moon", 
+        "Pirate Invasion", 
+        "Martian Madness",
+        "Solar Zone", 
+        "Vortex Zone", 
+        "Nebula Zone", 
+        "Stardust Zone"
+    };
 
     public override void OpenShop(string shop)
     {
