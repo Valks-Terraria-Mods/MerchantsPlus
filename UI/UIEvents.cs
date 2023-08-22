@@ -37,12 +37,12 @@ internal class UIEvents : GlobalNPC
     static bool IsShopNPC(NPC npc) => ShopNPCs.Contains(npc.type);
     static void SetShopIndex(NPC npc) => ShopUI.CurrentMerchantID = npc.type;
 
-    static NPC currentNPC;
+    //static NPC currentNPC;
 
     public override void GetChat(NPC npc, ref string chat)
     {
         // Do not change shop if the player is talking to the same NPC
-        bool sameNPC = npc.type == currentNPC?.type;
+        //bool sameNPC = npc.type == currentNPC?.type;
 
         // Do not change shop if not talking to a NPC
         bool notTalkingToNPC = !Utils.TalkingToNPC();
@@ -50,10 +50,10 @@ internal class UIEvents : GlobalNPC
         // Do not change shop if this is not a shop NPC
         bool notShopNPC = !IsShopNPC(npc);
 
-        if (sameNPC || notTalkingToNPC || notShopNPC)
+        if (notTalkingToNPC || notShopNPC)
             return;
 
-        currentNPC = npc;
+        //currentNPC = npc;
         SetShopIndex(npc);
         //Main.NewText("Showing shop ui for " + npc.FullName);
         ModContent.GetInstance<ModifyUI>().ShowShopUI();
