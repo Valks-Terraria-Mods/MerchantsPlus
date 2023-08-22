@@ -45,7 +45,7 @@ internal static class Utils
     public static int UniversalSeedCost = Coins(0, 0, 1);
     public static int UniversalDyeCost = Coins(0, 0, 1);
 
-    public static bool TalkingToNPC() => Main.LocalPlayer.talkNPC > 0;
+    public static bool TalkingToNPC() => Main.LocalPlayer.talkNPC >= 0;
 
     public static void QuestKills(List<string> dialog, string enemy, int curKills, int targetKills)
     {
@@ -131,6 +131,7 @@ internal static class Utils
     public static bool DownedEaterOfWorlds() => NPC.downedBoss2;
     public static bool DownedBrainOfCthulhu() => NPC.downedBoss2;
     public static bool DownedSkeletron() => NPC.downedBoss3;
+    public static bool DownedPlantera() => NPC.downedPlantBoss;
 
     public static int Coins() => 
         (int)(Item.sellPrice(0, 1) * Config.Instance.ShopPriceMultiplier);
