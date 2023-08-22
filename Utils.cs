@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Reflection;
 using Terraria.ID;
 
 namespace MerchantsPlus;
@@ -9,8 +11,34 @@ public static class ExtensionsString
         string.Concat(v.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
 }
 
-internal class Utils
+internal static class Utils
 {
+    /// <summary>
+    /// <para>
+    /// Loop through all the properties of type 'PropType' in a class where
+    /// these properties are defined 'DefClass' and set them to the object
+    /// value returned by 'propFunc'.
+    /// </para>
+    /// 
+    /// <para>
+    /// Note that this function is specifically used for setting properties like
+    /// ModItem and ModNPC, thus the reason why 'propFunc' takes in a string param.
+    /// </para>
+    /// </summary>
+    /// <typeparam name="DefClass">The class the properties are defined in</typeparam>
+    /// <typeparam name="PropType">The type of properties to look for</typeparam>
+    /// <param name="defClass">The class the properties are defined in</param>
+    /// <param name="propFunc">The function to set the value for each property</param>
+    public static void SetPropValues<DefClass, PropType>(object defClass, 
+        Func<string, object> propFunc)
+    {
+        PropertyInfo[] properties = typeof(DefClass).GetProperties();
+
+        foreach (PropertyInfo prop in properties)
+            if (prop.PropertyType == typeof(PropType))
+                prop.SetValue(defClass, propFunc(prop.Name));
+    }
+
     public static int UniversalPotionCost = Coins(0, 0, 5);
     public static int UniversalAccessoryCost = Coins(0, 0, 20);
     public static int UniversalOreCost = Coins(0, 0, 1);
