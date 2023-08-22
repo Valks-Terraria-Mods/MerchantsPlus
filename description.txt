@@ -10,6 +10,9 @@ For example, the merchant sells a copper (or tin depending on what kind of world
 
 Progression is not entirely tied to bosses but also world events and even killing say 1000 of a certain enemy.
 
+If you are interested how progression works for the majority of items have a look at the following source code.
+https://github.com/Valks-Terraria-Mods/MerchantsPlus/blob/3ce86bbc9593acfd8ee82f5ec344a5ba2bc8d698/Utils.cs#L59-L99
+
 Featuring
 + Merchants sell more items based on bosses and enemies defeated
 + Some merchants items get upgraded as you progress
@@ -20,6 +23,9 @@ Featuring
 + All merchants have 300 health (disabled by default)
 + Merchants have slightly reduced sizes (disabled by default)
 + Merchants shoot different projectiles based on bosses defeated (disabled by default)
+
+New
++ Adds a shop for the NPC from the Magic Storage mod
 
 Want to help contribute? Here are some ways you can contribute:
 - Suggesting new shops and items
