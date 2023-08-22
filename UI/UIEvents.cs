@@ -42,12 +42,12 @@ internal class UIEvents : GlobalNPC
         //bool sameNPC = npc.type == currentNPC?.type;
 
         // Do not change shop if not talking to a NPC
-        bool notTalkingToNPC = !Utils.TalkingToNPC();
+        //bool notTalkingToNPC = !Utils.TalkingToNPC();
 
         // Do not change shop if this is not a shop NPC
         bool notShopNPC = !IsShopNPC(npc);
 
-        if (notTalkingToNPC || notShopNPC)
+        if (notShopNPC)
             return;
 
         //currentNPC = npc;

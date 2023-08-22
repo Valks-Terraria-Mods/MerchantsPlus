@@ -265,19 +265,19 @@ internal class ShopMerchant : Shop
             switch (Utils.GetPlayerClass())
             {
                 case "melee":
-                    ReplaceItem(ItemID.SolarFlareAxe);
+                    ReplaceItem(ItemID.LunarHamaxeSolar);
                     break;
 
                 case "ranged":
-                    ReplaceItem(ItemID.VortexAxe);
+                    ReplaceItem(ItemID.LunarHamaxeVortex);
                     break;
 
                 case "mage":
-                    ReplaceItem(ItemID.NebulaAxe);
+                    ReplaceItem(ItemID.LunarHamaxeNebula);
                     break;
 
                 case "summoner":
-                    ReplaceItem(ItemID.StardustAxe);
+                    ReplaceItem(ItemID.LunarHamaxeStardust);
                     break;
             }
         }
@@ -375,19 +375,19 @@ internal class ShopMerchant : Shop
             switch (Utils.GetPlayerClass())
             {
                 case "melee":
-                    ReplaceItem(ItemID.SolarFlareHammer);
+                    ReplaceItem(ItemID.LunarHamaxeSolar);
                     break;
 
                 case "ranged":
-                    ReplaceItem(ItemID.VortexHammer);
+                    ReplaceItem(ItemID.LunarHamaxeVortex);
                     break;
 
                 case "mage":
-                    ReplaceItem(ItemID.NebulaHammer);
+                    ReplaceItem(ItemID.LunarHamaxeNebula);
                     break;
 
                 case "summoner":
-                    ReplaceItem(ItemID.StardustHammer);
+                    ReplaceItem(ItemID.LunarHamaxeStardust);
                     break;
             }
         }
