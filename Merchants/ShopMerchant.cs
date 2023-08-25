@@ -1352,61 +1352,61 @@ internal class ShopMerchant : Shop
 
     void Mounts()
     {
-        AddItem(ItemID.FuzzyCarrot);
+        AddItem(ItemID.FuzzyCarrot, Utils.UniversalMountCost);
 
-        if (Utils.Kills(NPCID.KingSlime) >= 3)
+        if (Utils.Kills(NPCID.KingSlime) >= 1)
         {
-            AddItem(ItemID.SlimySaddle);
+            AddItem(ItemID.SlimySaddle, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.EyeofCthulhu) >= 3)
+        if (Utils.Kills(NPCID.EyeofCthulhu) >= 1)
         {
-            AddItem(ItemID.HardySaddle);
+            AddItem(ItemID.HardySaddle, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.QueenBee) >= 3)
+        if (Utils.Kills(NPCID.QueenBee) >= 1)
         {
-            AddItem(ItemID.HoneyedGoggles);
+            AddItem(ItemID.HoneyedGoggles, Utils.UniversalMountCost);
         }
 
         if (Main.hardMode)
         {
-            AddItem(ItemID.AncientHorn);
+            AddItem(ItemID.AncientHorn, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.Retinazer) >= 3)
+        if (Utils.Kills(NPCID.Retinazer) >= 1)
         {
-            AddItem(ItemID.ReindeerBells);
+            AddItem(ItemID.ReindeerBells, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.TheDestroyer) >= 3)
+        if (Utils.Kills(NPCID.TheDestroyer) >= 1)
         {
-            AddItem(ItemID.ScalyTruffle);
+            AddItem(ItemID.ScalyTruffle, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.SkeletronPrime) >= 3)
+        if (Utils.Kills(NPCID.SkeletronPrime) >= 1)
         {
-            AddItem(ItemID.BrainScrambler);
+            AddItem(ItemID.BrainScrambler, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.Plantera) >= 3)
+        if (Utils.Kills(NPCID.Plantera) >= 1)
         {
-            AddItem(ItemID.BlessedApple);
+            AddItem(ItemID.BlessedApple, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.MartianSaucer) >= 3)
+        if (Utils.Kills(NPCID.MartianSaucer) >= 1)
         {
-            AddItem(ItemID.CosmicCarKey);
+            AddItem(ItemID.CosmicCarKey, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.DukeFishron) >= 3)
+        if (Utils.Kills(NPCID.DukeFishron) >= 1)
         {
-            AddItem(ItemID.ShrimpyTruffle);
+            AddItem(ItemID.ShrimpyTruffle, Utils.UniversalMountCost);
         }
 
-        if (Utils.Kills(NPCID.MoonLordCore) >= 3)
+        if (Utils.Kills(NPCID.MoonLordCore) >= 1)
         {
-            AddItem(ItemID.DrillContainmentUnit);
+            AddItem(ItemID.DrillContainmentUnit, Utils.UniversalMountCost);
         }
     }
 

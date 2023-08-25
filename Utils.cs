@@ -37,11 +37,12 @@ internal static class Utils
                 prop.SetValue(defClass, propFunc(prop.Name));
     }
 
-    public static int UniversalPotionCost = Coins(0, 0, 5);
-    public static int UniversalAccessoryCost = Coins(0, 0, 20);
+    public static int UniversalPotionCost = Coins(0, 0, 1);
+    public static int UniversalAccessoryCost = Coins(0, 0, 1);
     public static int UniversalOreCost = Coins(0, 0, 1);
-    public static int UniversalPetCost = Coins(0, 0, 5);
-    public static int UniversalVanityCost = Coins(0, 0, 5);
+    public static int UniversalPetCost = Coins(0, 0, 1);
+    public static int UniversalMountCost = Coins(0, 0, 1);
+    public static int UniversalVanityCost = Coins(0, 0, 1);
     public static int UniversalSeedCost = Coins(0, 0, 1);
     public static int UniversalDyeCost = Coins(0, 0, 1);
 
