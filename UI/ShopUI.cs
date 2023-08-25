@@ -39,13 +39,12 @@ internal class ShopUI : UIState
     public static bool Visible { get; set; }
     public static int CurrentMerchantID { get; set; }
 
-    UIText merchantName;
-    UIText currentShopName;
-    UIPanel shopPanel;
+    TextButton merchantName;
+    TextButton currentShopName;
 
     public override void OnInitialize()
     {
-        shopPanel = new UIPanel();
+        UIPanel shopPanel = new();
         shopPanel.SetPadding(0);
         shopPanel.Left.Set(75f, 0f);
         shopPanel.Top.Set(428f, 0f);
@@ -53,26 +52,27 @@ internal class ShopUI : UIState
         shopPanel.Height.Set(35f, 0f);
         shopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        merchantName = new UIText("Merchant Name", 0.9f)
+        merchantName = new TextButton("Merchant Name", 0.9f)
         {
             HAlign = 0.03f
         };
 
-        merchantName.Top.Set(8, 0f);
+        merchantName.Top.Set(4, 0f);
+        merchantName.OnLeftClick += new MouseEvent(ShopButtonClicked);
 
         shopPanel.Append(merchantName);
 
-        currentShopName = new UIText("Shop Name", 0.9f)
+        currentShopName = new TextButton("Shop Name", 0.9f)
         {
             HAlign = 0.5f
         };
 
-        currentShopName.Top.Set(8, 0f);
+        currentShopName.Top.Set(4, 0f);
         currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
 
         shopPanel.Append(currentShopName);
 
-        var cycleShopButton = new TextButton("Cycle Shop", 0.9f)
+        TextButton cycleShopButton = new("Cycle Shop", 0.9f)
         {
             HAlign = 0.97f
         };

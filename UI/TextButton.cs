@@ -66,4 +66,6 @@ internal class TextButton : UIPanel
             Main.player[Main.myPlayer].mouseInterface = true;
         }
     }
+
+    public void SetText(string text) => uitext.SetText(text);
 }

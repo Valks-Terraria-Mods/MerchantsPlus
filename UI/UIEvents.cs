@@ -2,36 +2,7 @@
 
 internal class UIEvents : GlobalNPC
 {
-    public static HashSet<int> ShopNPCs { get; } = new()
-    {
-        NPCID.Angler,
-        NPCID.ArmsDealer,
-        NPCID.Clothier,
-        NPCID.Cyborg,
-        NPCID.Demolitionist,
-        NPCID.Dryad,
-        NPCID.DyeTrader,
-        NPCID.GoblinTinkerer,
-        NPCID.Guide,
-        NPCID.Mechanic,
-        NPCID.Merchant,
-        NPCID.Nurse,
-        NPCID.Painter,
-        NPCID.PartyGirl,
-        NPCID.Pirate,
-        NPCID.SantaClaus,
-        NPCID.SkeletonMerchant,
-        NPCID.Steampunker,
-        NPCID.Stylist,
-        NPCID.DD2Bartender,
-        NPCID.TaxCollector,
-        NPCID.TravellingMerchant,
-        NPCID.Truffle,
-        NPCID.WitchDoctor,
-        NPCID.Wizard
-    };
-
-    static bool IsShopNPC(NPC npc) => ShopNPCs.Contains(npc.type);
+    static bool IsShopNPC(NPC npc) => ShopUI.Shops.ContainsKey(npc.type);
     static void SetShopIndex(NPC npc) => ShopUI.CurrentMerchantID = npc.type;
 
     //static NPC currentNPC;

@@ -27,7 +27,6 @@ internal class MerchantsPlus : Mod
 
     void AddShopForModdedNPC(int type, Shop shop)
     {
-        UIEvents.ShopNPCs.Add(type);
         ShopUI.Shops.Add(type, shop);
     }
 }
