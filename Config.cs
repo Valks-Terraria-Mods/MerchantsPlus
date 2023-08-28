@@ -15,7 +15,7 @@ public class Config : ModConfig
     [BackgroundColor(0, 0, 0, 100)]
     public float ShopPriceMultiplier = 1.0f;
 
-    [DefaultValue(false)]
+    [DefaultValue(true)]
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleExtraLife;
 
@@ -23,15 +23,15 @@ public class Config : ModConfig
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleDialog;
 
-    [DefaultValue(false)]
+    [DefaultValue(true)]
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleDrops;
 
-    [DefaultValue(false)]
+    [DefaultValue(true)]
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleProjectiles;
 
-    [DefaultValue(false)]
+    [DefaultValue(true)]
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleScaling;
 }
