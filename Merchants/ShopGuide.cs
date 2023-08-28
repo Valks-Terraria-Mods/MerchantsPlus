@@ -18,6 +18,9 @@ internal class ShopGuide : Shop
             AddItem(ItemID.MagicMirror, Utils.Coins(0, 0, 1));
         }
 
+        AddItem(ItemID.TeleportationPotion, Utils.Coins(0, 1));
+        AddItem(ItemID.GenderChangePotion, Utils.Coins(1));
+
         AddItem(ItemID.CordageGuide, Utils.Coins(0, 0, 1));
 
         if (!Utils.IsNPCHere(NPCID.Merchant)) 
