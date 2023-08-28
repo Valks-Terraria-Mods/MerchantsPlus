@@ -1,6 +1,6 @@
 Mod updated to 1.4.4
 
-This mod adds over 90 unique shops containing NEARLY EVERY ITEM IN TERRARIA spread across all merchants. 
+This mod makes the game easier by adding over 90 unique shops containing NEARLY EVERY ITEM IN TERRARIA spread across all merchants. 
 
 Even the guide, nurse, angler, tax collector and old man are now merchants!
 
@@ -19,10 +19,10 @@ Featuring
 + Merchants sell items based on what you currently have equipped
 + Items that use to have no sell value now have unique sell values
 + Quests (Quests give you hints on what you need to do to unlock more items) (WIP)
-+ Merchants have a chance to drop items on death (disabled by default)
-+ All merchants have 300 health (disabled by default)
-+ Merchants have slightly reduced sizes (disabled by default)
-+ Merchants shoot different projectiles based on bosses defeated (disabled by default)
++ Merchants have a chance to drop items on death (enabled by default)
++ All merchants have 300 health (enabled by default)
++ Merchants have slightly reduced sizes (enabled by default)
++ Merchants shoot different projectiles based on bosses defeated (enabled by default)
 
 New
 + Adds a shop for the NPC from the Magic Storage mod

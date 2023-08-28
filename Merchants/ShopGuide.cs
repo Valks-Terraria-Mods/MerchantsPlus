@@ -21,6 +21,11 @@ internal class ShopGuide : Shop
         AddItem(ItemID.TeleportationPotion, Utils.Coins(0, 1));
         AddItem(ItemID.GenderChangePotion, Utils.Coins(1));
 
+        if (Utils.DownedEyeOfCthulhu())
+        {
+            AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
+        }
+
         AddItem(ItemID.CordageGuide, Utils.Coins(0, 0, 1));
 
         if (!Utils.IsNPCHere(NPCID.Merchant)) 
@@ -28,7 +33,6 @@ internal class ShopGuide : Shop
 
         if (Utils.DownedSkeletron() && !Main.hardMode)
         {
-            AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
             AddItem(ItemID.GuideVoodooDoll, Utils.Coins(0, 0, 5));
         }
 
