@@ -1,15 +1,58 @@
-[![](https://img.shields.io/static/v1?style=flat-square&logo=discord&logoColor=white&color=blue&label=discord&message=valks%20games)](https://discord.gg/866cg8yfxZ)
+Mod updated to 1.4.4
 
-## About
-MerchantsPlus is a mod that modifys merchants in a way which gives them multiple shops which you can cycle through. Items in each shop are not all unlocked at once and need to be unlocked by progressing through the world. In addition the mod can optionally modify the size, health and dialog of the merchants.
+This mod makes the game easier by adding 
+over 90 unique shops containing NEARLY EVERY ITEM IN TERRARIA spread 
+across all merchants. 
 
-Out of all the mods I have made, this is the mod I spent the most time making. Every town NPC (non-merchants now have shops (e.g. the nurse is a merchant now)) have one or more shops that you can cycle through adding almost every item in the game. Lots of merchants sell you progressively better gear the more you progress in your world (defeating raids / bosses / other events). The "Merchant" merchant will sell you class specific items based on the items you're holding (e.g. if you're holding a bow or have archer armor, the merchant will sell you archer specific items). The merchants even sell you mod specific items from TerrariaOverhaul and Calamity (very wip). And lots more!
+Even the guide, nurse, angler, tax collector and old man are now merchants!
 
-We now have a [wiki](https://github.com/valkyrienyanko/MerchantsPlus/wiki)!
+Although not all the items are unlocked at once, you will need to defeat bosses and other types of enemies to progress.
 
-Download the mod [here](https://github.com/Valks-Terraria-Mods/MerchantsPlus/releases)  
+For
+ example, the merchant sells a copper (or tin depending on what kind of 
+world you are in) pickaxe at first. If you defeat the slime king then he
+ will sell a iron pick and a silver pick when you beat the Eye of 
+Cthulhu. He also sells items based on your currently equipped gear. If 
+you have a bow equipped then he will sell you a bow that progresses as 
+you defeat bosses. If you are holding a sword then he will sell a sword 
+and so on.
 
-## Contributing
-See current [issues](https://github.com/valkyrienyanko/MerchantsPlus/issues).
+Progression is not entirely tied to bosses but also world events and even killing say 1000 of a certain enemy.
 
-[CONTRIBUTING.md](https://github.com/valkyrienyanko/MerchantsPlus/blob/master/CONTRIBUTING.md)
+If you are interested how progression works for the majority of items have a look at the following source code.
+https://github.com/Valks-Terraria-Mods/MerchantsPlus/blob/3ce86bbc9593acfd8ee82f5ec344a5ba2bc8d698/Utils.cs#L59-L99
+
+Featuring
++ Merchants sell more items based on bosses and enemies defeated
++ Some merchants items get upgraded as you progress
++ Merchants sell items based on what you currently have equipped
++ Items that use to have no sell value now have unique sell values
++ Quests (Quests give you hints on what you need to do to unlock more items) (WIP)
++ Merchants have a chance to drop items on death (enabled by default)
++ All merchants have 300 health (enabled by default)
++ Merchants have slightly reduced sizes (enabled by default)
++ Merchants shoot different projectiles based on bosses defeated (enabled by default)
+
+New
++ Adds a shop for the NPC from the Magic Storage mod
+
+Want to help contribute? Here are some ways you can contribute:
+- Suggesting new shops and items
+- Suggesting price changes and item condition changes for making the mod more balanced
+- Listing items that have no sell value
+
+FAQ
+Q: Is this compatible with other mods?
+A:
+ This mod does not touch vanilla shops but rather adds its own 
+additional shops to merchants so it should be fully compatible with 
+other mods
+
+Q: I looked at the source code and the sell prices do not match up with that from script and in game.
+A: This is because of the "happiness currency multiplier" that currently cannot be disabled via modding.
+
+Send bug reports and suggestions here for faster response: https://discord.gg/866cg8yfxZ
+
+Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
+
+My Other Mods: https://steamcommunity.com/sharedfiles/filedetails/?id=3025618564
