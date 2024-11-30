@@ -1,8 +1,8 @@
 namespace MerchantsPlus.Merchants;
 
-internal class ShopAngler : Shop
+public class ShopAngler : Shop
 {
-    public override string[] Shops => new string[] { "Bait", "Buffs", "Crates" };
+    public override string[] Shops => ["Bait", "Buffs", "Crates"];
 
     public override void OpenShop(string shop)
     {
@@ -27,7 +27,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    void DefaultShop(int progression)
+    private void DefaultShop(int progression)
     {
         ShopFishingPole(progression);
 
@@ -82,7 +82,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    void Bait(int progression)
+    private void Bait(int progression)
     {
         // 5% Bait Power
         AddItem(ItemID.MonarchButterfly, Utils.Coins(0, 10));
@@ -161,7 +161,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    void Crates(int progression)
+    private void Crates(int progression)
     {
         AddItem(ItemID.WoodenCrate, Utils.Coins(0, 0, 10));
 
@@ -198,7 +198,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    void Buffs(int progression)
+    private void Buffs(int progression)
     {
         AddItem(ItemID.FlipperPotion, Utils.UniversalPotionCost);
 
@@ -231,7 +231,7 @@ internal class ShopAngler : Shop
         }
     }
 
-    void ShopFishingPole(int progression)
+    private void ShopFishingPole(int progression)
     {
         ReplaceItem(ItemID.WoodFishingPole, Utils.Coins(0, 10));
 

@@ -10,12 +10,12 @@ namespace MerchantsPlus.UI;
 // If you want more control, you might need to write your own UIElement.
 // I've added basic functionality for validating the item attempting to be placed in the slot via the validItem Func.
 // See ExamplePersonUI for usage and use the Awesomify chat option of Example Person to see in action.
-internal class VanillaItemSlotWrapper : UIElement
+public class VanillaItemSlotWrapper : UIElement
 {
-    internal Item item;
-    readonly int context;
-    readonly float scale;
-    internal Func<Item, bool> validItem;
+    public Item item;
+    private readonly int context;
+    private readonly float scale;
+    public Func<Item, bool> validItem;
 
     public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f)
     {

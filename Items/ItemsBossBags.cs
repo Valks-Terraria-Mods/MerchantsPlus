@@ -1,115 +1,32 @@
-﻿namespace MerchantsPlus.Items;
+﻿using Terraria;
+using Terraria.ID;
 
-class ItemsBossBags : BaseItem
+namespace MerchantsPlus.Items;
+
+public class ItemsBossBags : BaseItem
 {
     public override void SetDefaults(Item item)
     {
         base.SetDefaults(item);
 
-        if (item.type == ItemID.KingSlimeBossBag)
+        item.shopCustomPrice = item.type switch
         {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 5);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 3);
-        }
-        if (item.type == ItemID.EyeOfCthulhuBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 8);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 4);
-        }
-        if (item.type == ItemID.BrainOfCthulhuBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 13);
-        }
-        if (item.type == ItemID.EaterOfWorldsBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 13);
-        }
-        if (item.type == ItemID.QueenBeeBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 14);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 6);
-        }
-        if (item.type == ItemID.SkeletronBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 13);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 6);
-        }
-        if (item.type == ItemID.WallOfFleshBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 22);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 10);
-        }
-        if (item.type == ItemID.TwinsBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 35);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
-        }
-        if (item.type == ItemID.DestroyerBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 35);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
-        }
-        if (item.type == ItemID.SkeletronPrimeBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 35);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
-        }
-        if (item.type == ItemID.PlanteraBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 55);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 30);
-        }
-        if (item.type == ItemID.GolemBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 40);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 30);
-        }
-        if (item.type == ItemID.FishronBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 70);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 30);
-        }
-        if (item.type == ItemID.CultistBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 30);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 15);
-        }
-        if (item.type == ItemID.MoonLordBossBag)
-        {
-            if (Main.expertMode)
-                item.shopCustomPrice = Utils.Coins(0, 0, 0, 10);
-            else
-                item.shopCustomPrice = Utils.Coins(0, 0, 0, 3);
-        }
+            ItemID.KingSlimeBossBag => Main.expertMode ? Utils.Coins(0, 0, 5) : Utils.Coins(0, 0, 3),
+            ItemID.EyeOfCthulhuBossBag => Main.expertMode ? Utils.Coins(0, 0, 8) : Utils.Coins(0, 0, 4),
+            ItemID.BrainOfCthulhuBossBag => Main.expertMode ? Utils.Coins(0, 0, 20) : Utils.Coins(0, 0, 13),
+            ItemID.EaterOfWorldsBossBag => Main.expertMode ? Utils.Coins(0, 0, 20) : Utils.Coins(0, 0, 13),
+            ItemID.QueenBeeBossBag => Main.expertMode ? Utils.Coins(0, 0, 14) : Utils.Coins(0, 0, 6),
+            ItemID.SkeletronBossBag => Main.expertMode ? Utils.Coins(0, 0, 13) : Utils.Coins(0, 0, 6),
+            ItemID.WallOfFleshBossBag => Main.expertMode ? Utils.Coins(0, 0, 22) : Utils.Coins(0, 0, 10),
+            ItemID.TwinsBossBag => Main.expertMode ? Utils.Coins(0, 0, 35) : Utils.Coins(0, 0, 20),
+            ItemID.DestroyerBossBag => Main.expertMode ? Utils.Coins(0, 0, 35) : Utils.Coins(0, 0, 20),
+            ItemID.SkeletronPrimeBossBag => Main.expertMode ? Utils.Coins(0, 0, 35) : Utils.Coins(0, 0, 20),
+            ItemID.PlanteraBossBag => Main.expertMode ? Utils.Coins(0, 0, 55) : Utils.Coins(0, 0, 30),
+            ItemID.GolemBossBag => Main.expertMode ? Utils.Coins(0, 0, 40) : Utils.Coins(0, 0, 30),
+            ItemID.FishronBossBag => Main.expertMode ? Utils.Coins(0, 0, 70) : Utils.Coins(0, 0, 30),
+            ItemID.CultistBossBag => Main.expertMode ? Utils.Coins(0, 0, 30) : Utils.Coins(0, 0, 15),
+            ItemID.MoonLordBossBag => Main.expertMode ? Utils.Coins(0, 0, 0, 10) : Utils.Coins(0, 0, 0, 3),
+            _ => item.shopCustomPrice
+        };
     }
 }

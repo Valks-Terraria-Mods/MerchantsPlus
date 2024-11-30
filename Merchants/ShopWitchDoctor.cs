@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopWitchDoctor : Shop
+public class ShopWitchDoctor : Shop
 {
-    public override string[] Shops => new string[] { "Gear", "Flasks", "Wings" };
+    public override string[] Shops => ["Gear", "Flasks", "Wings"];
 
     public override void OpenShop(string shop)
     {
@@ -25,46 +25,28 @@ internal class ShopWitchDoctor : Shop
         Inv.SetupShop(16);
     }
 
-    void Gear()
+    private void Gear()
     {
         AddItem(ItemID.HerculesBeetle);
-
-        if (NPC.downedHalloweenTree)
-            AddItem(ItemID.NecromanticScroll);
-
-        if (Utils.DownedPlantera())
-            AddItem(ItemID.PygmyNecklace);
+        AddItem(ItemID.NecromanticScroll, NPC.downedHalloweenTree);
+        AddItem(ItemID.PygmyNecklace, Utils.DownedPlantera());
     }
 
-    void Flasks()
+    private void Flasks()
     {
         int progression = Utils.Progression();
 
         AddItem(ItemID.FlaskofNanites);
-
-        if (progression > 8)
-            AddItem(ItemID.FlaskofFire);
-
-        if (progression > 9)
-            AddItem(ItemID.FlaskofGold);
-
-        if (progression > 10)
-            AddItem(ItemID.FlaskofIchor);
-
-        if (progression > 11)
-            AddItem(ItemID.FlaskofCursedFlames);
-
-        if (progression > 12)
-            AddItem(ItemID.FlaskofParty);
-
-        if (progression > 13)
-            AddItem(ItemID.FlaskofPoison);
-
-        if (progression > 14)
-            AddItem(ItemID.FlaskofVenom);
+        AddItem(ItemID.FlaskofFire, progression > 8);
+        AddItem(ItemID.FlaskofGold, progression > 9);
+        AddItem(ItemID.FlaskofIchor, progression > 10);
+        AddItem(ItemID.FlaskofCursedFlames, progression > 11);
+        AddItem(ItemID.FlaskofParty, progression > 12);
+        AddItem(ItemID.FlaskofPoison, progression > 13);
+        AddItem(ItemID.FlaskofVenom, progression > 14);
     }
 
-    void Wings()
+    private void Wings()
     {
         // Fledgling wings
         AddItem(ItemID.CreativeWings, Utils.Coins(0, 0, 0, 1));
@@ -74,10 +56,14 @@ internal class ShopWitchDoctor : Shop
             AddItem(ItemID.AngelWings, Utils.Coins(0, 0, 0, 2));
 
             if (Utils.Kills(NPCID.Demon) >= 3)
+            {
                 AddItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 2));
+            }
 
             if (Utils.Kills(NPCID.Shark) >= 3)
+            {
                 AddItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 2));
+            }
 
             if (NPC.downedMechBossAny)
             {
@@ -106,13 +92,25 @@ internal class ShopWitchDoctor : Shop
                 AddItem(ItemID.Hoverboard, Utils.Coins(0, 0, 0, 2));
             }
             if (NPC.downedChristmasIceQueen)
+            {
                 AddItem(ItemID.FestiveWings, Utils.Coins(0, 0, 0, 2));
+            }
+
             if (NPC.downedHalloweenKing)
+            {
                 AddItem(ItemID.SpookyWings, Utils.Coins(0, 0, 0, 2));
+            }
+
             if (Utils.IsNPCHere(NPCID.Steampunker))
+            {
                 AddItem(ItemID.SteampunkWings, Utils.Coins(0, 0, 0, 2));
+            }
+
             if (NPC.downedFishron)
+            {
                 AddItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
+            }
+
             if (NPC.downedMoonlord)
             {
                 AddItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));

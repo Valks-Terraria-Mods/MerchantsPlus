@@ -2,11 +2,15 @@
 
 namespace MerchantsPlus.NPCs;
 
-internal class OldMan : BaseMerchant
+public class OldMan : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.OldMan) return;
+        if (npc.type != NPCID.OldMan)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 

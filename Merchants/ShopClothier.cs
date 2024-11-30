@@ -1,14 +1,14 @@
 namespace MerchantsPlus.Merchants;
 
-internal class ShopClothier : Shop
+public class ShopClothier : Shop
 {
-    public override string[] Shops => new string[] { 
+    public override string[] Shops => [ 
         "Clothing", 
         "Boss Masks", 
         "Vanity I", 
         "Vanity II", 
         "Vanity III", 
-        "Vanity IV" };
+        "Vanity IV" ];
 
     public override void OpenShop(string shop)
     {
@@ -41,7 +41,7 @@ internal class ShopClothier : Shop
         }
     }
 
-    void Clothing()
+    private void Clothing()
     {
         AddItem(ItemID.BlackThread);
         AddItem(ItemID.PinkThread);
@@ -153,7 +153,7 @@ internal class ShopClothier : Shop
         }
     }
 
-    void VanityI()
+    private void VanityI()
     {
         AddItem(ItemID.BrideofFrankensteinDress, Utils.UniversalVanityCost);
 
@@ -236,7 +236,7 @@ internal class ShopClothier : Shop
         AddItem(ItemID.PumpkinPants, Utils.UniversalVanityCost);
     }
 
-    void VanityII()
+    private void VanityII()
     {
         AddItem(ItemID.ReaperHood, Utils.UniversalVanityCost);
 
@@ -319,7 +319,7 @@ internal class ShopClothier : Shop
         AddItem(ItemID.BeePants, Utils.UniversalVanityCost);
     }
 
-    void VanityIII()
+    private void VanityIII()
     {
         AddItem(ItemID.BuccaneerBandana, Utils.UniversalVanityCost);
 
@@ -402,7 +402,7 @@ internal class ShopClothier : Shop
         AddItem(ItemID.MummyShirt, Utils.UniversalVanityCost);
     }
 
-    void VanityIV()
+    private void VanityIV()
     {
         AddItem(ItemID.MummyPants, Utils.UniversalVanityCost);
 
@@ -483,7 +483,7 @@ internal class ShopClothier : Shop
         AddItem(ItemID.WhiteTuxedoPants, Utils.UniversalVanityCost);
     }
 
-    void BossMasks()
+    private void BossMasks()
     {
         AddItem(ItemID.BrainMask, Utils.UniversalVanityCost);
         AddItem(ItemID.DukeFishronMask, Utils.UniversalVanityCost);

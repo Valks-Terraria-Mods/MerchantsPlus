@@ -2,11 +2,11 @@
 
 namespace MerchantsPlus.Merchants;
 
-internal abstract class Shop
+public abstract class Shop
 {
     public int CycleIndex { get; set; }
     public abstract string[] Shops { get; }
-    public List<string> Quests { get; } = new();
+    public List<string> Quests { get; } = [];
 
     protected Chest Inv;
     protected int NextSlot = 0;
@@ -41,15 +41,22 @@ internal abstract class Shop
 
         // Lets remove these guns as we will add our own items later
         for (int i = 0; i < Inv.item.Length; i++)
+        {
             Inv.item[i].SetDefaults(0);
+        }
 
         NextSlot = 0;
 
         Quests.Clear();
     }
 
-    protected void AddItem(int itemID) => 
-        Inv.item[NextSlot++].SetDefaults(itemID);
+    protected void AddItem(int itemID, bool condition = true)
+    {
+        if (condition)
+        {
+            Inv.item[NextSlot++].SetDefaults(itemID);
+        }
+    }
 
     protected void AddItem(int itemID, int price, int progression = 0)
     {
@@ -60,8 +67,10 @@ internal abstract class Shop
         }
     }
 
-    protected void ReplaceItem(int itemID) => 
+    protected void ReplaceItem(int itemID)
+    {
         Inv.item[NextSlot].SetDefaults(itemID);
+    }
 
     protected void ReplaceItem(int itemID, int price)
     {
@@ -69,9 +78,13 @@ internal abstract class Shop
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
-    protected void ReplacePrice(int price) => 
+    protected void ReplacePrice(int price)
+    {
         Inv.item[NextSlot].shopCustomPrice = price;
+    }
 
-    public override string ToString() => 
-        GetType().Name.Replace("Shop", "").AddSpaceBeforeEachCapital();
+    public override string ToString()
+    {
+        return GetType().Name.Replace("Shop", "").AddSpaceBeforeEachCapital();
+    }
 }

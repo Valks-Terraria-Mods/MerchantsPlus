@@ -4,7 +4,7 @@ using Terraria.GameContent.UI.Elements;
 namespace MerchantsPlus.UI;
 
 // This UI will appear when a new dialog is opened with a merchant
-internal class ShopUI : UIState
+public class ShopUI : UIState
 {
     public static Dictionary<int, Shop> Shops { get; } = new() {
         // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
@@ -39,8 +39,8 @@ internal class ShopUI : UIState
     public static bool Visible { get; set; }
     public static int CurrentMerchantID { get; set; }
 
-    TextButton merchantName;
-    TextButton currentShopName;
+    private TextButton merchantName;
+    private TextButton currentShopName;
 
     public override void OnInitialize()
     {
@@ -91,7 +91,7 @@ internal class ShopUI : UIState
         UpdateMerchantName();
     }
 
-    void UpdateMerchantName()
+    private void UpdateMerchantName()
     {
         foreach (var npc in Main.npc)
         {
@@ -105,7 +105,7 @@ internal class ShopUI : UIState
         merchantName.SetText("Merchant");
     }
 
-    void UpdateShopName()
+    private void UpdateShopName()
     {
         if (Shops[CurrentMerchantID].Shops.Length == 0)
         {
@@ -118,16 +118,20 @@ internal class ShopUI : UIState
         currentShopName.SetText(Shops[CurrentMerchantID].Shops[shopIndex]);
     }
 
-    void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShiftShop();
         UpdateUI();
         OpenShop(Shops[CurrentMerchantID].CycleIndex);
     }
 
-    void ShiftShop()
+    private void ShiftShop()
     {
-        if (Shops[CurrentMerchantID].Shops.Length == 0) return; // Safe Guard
+        if (Shops[CurrentMerchantID].Shops.Length == 0)
+        {
+            return; // Safe Guard
+        }
+
         if (Shops[CurrentMerchantID].CycleIndex >= Shops[CurrentMerchantID].Shops.Length - 1)
         {
             Shops[CurrentMerchantID].CycleIndex = 0;
@@ -138,15 +142,19 @@ internal class ShopUI : UIState
         }
     }
 
-    void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement) =>
+    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
         OpenShop(Shops[CurrentMerchantID].CycleIndex);
+    }
 
-    void OpenShop(int shopIndex)
+    private void OpenShop(int shopIndex)
     {
         string shopToOpen = "";
 
         if (Shops[CurrentMerchantID].Shops.Length != 0)
+        {
             shopToOpen = Shops[CurrentMerchantID].Shops[shopIndex];
+        }
 
         Shops[CurrentMerchantID].OpenShop(shopToOpen);
     }

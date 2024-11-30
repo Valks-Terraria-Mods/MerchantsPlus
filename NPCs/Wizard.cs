@@ -1,45 +1,36 @@
 ﻿namespace MerchantsPlus.NPCs;
 
-internal class Wizard : BaseMerchant
+public class Wizard : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.Wizard) return;
+        if (npc.type != NPCID.Wizard)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.Wizard) return;
+        if (npc.type != NPCID.Wizard)
+        {
+            return;
+        }
+
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-        projType = ProjectileID.RainbowCrystalExplosion;
-        if (Utils.DownedMechBosses() == 1)
+
+        projType = true switch
         {
-            projType = ProjectileID.BallofFire;
-        }
-        if (Utils.DownedMechBosses() == 2)
-        {
-            projType = ProjectileID.BallofFrost;
-        }
-        if (Utils.DownedMechBosses() == 3)
-        {
-            projType = ProjectileID.MagnetSphereBall;
-        }
-        if (NPC.downedPlantBoss)
-        {
-            projType = ProjectileID.RainbowRodBullet;
-        }
-        if (NPC.downedGolemBoss)
-        {
-            projType = ProjectileID.RainbowBack;
-        }
-        if (NPC.downedFishron)
-        {
-            projType = ProjectileID.RainbowFront;
-        }
-        if (NPC.downedMoonlord)
-        {
-            projType = ProjectileID.RainbowCrystal;
-        }
+            _ when NPC.downedMoonlord => ProjectileID.RainbowCrystal,
+            _ when NPC.downedFishron => ProjectileID.RainbowFront,
+            _ when NPC.downedGolemBoss => ProjectileID.RainbowBack,
+            _ when NPC.downedPlantBoss => ProjectileID.RainbowRodBullet,
+            _ when Utils.DownedMechBosses() == 3 => ProjectileID.MagnetSphereBall,
+            _ when Utils.DownedMechBosses() == 2 => ProjectileID.BallofFrost,
+            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BallofFire,
+            _ => ProjectileID.RainbowCrystalExplosion
+        };
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopSteampunker : Shop
+public class ShopSteampunker : Shop
 {
-    public override string[] Shops => new string[] { "Gear", "Solutions", "Logic" };
+    public override string[] Shops => ["Gear", "Solutions", "Logic"];
 
     public override void OpenShop(string shop)
     {

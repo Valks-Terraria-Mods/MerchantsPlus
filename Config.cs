@@ -9,7 +9,14 @@ public class Config : ModConfig
     public static Config Instance { get; private set; }
 
     public override ConfigScope Mode => ConfigScope.ServerSide;
-    public override void OnLoaded() => Instance = this;
+    public override void OnLoaded()
+    {
+        Instance = this;
+    }
+
+    [DefaultValue(true)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool DisableHappinessPriceMultiplier;
 
     [DefaultValue(1.0f)]
     [BackgroundColor(0, 0, 0, 100)]

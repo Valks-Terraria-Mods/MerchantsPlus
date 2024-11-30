@@ -1,53 +1,37 @@
 ﻿namespace MerchantsPlus.NPCs;
 
-internal class Guide : BaseMerchant
+public class Guide : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.Guide) return;
+        if (npc.type != NPCID.Guide)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.Guide) return;
+        if (npc.type != NPCID.Guide)
+        {
+            return;
+        }
+
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-        projType = ProjectileID.WoodenArrowFriendly;
-        if (NPC.downedSlimeKing)
+
+        projType = true switch
         {
-            projType = ProjectileID.FrostburnArrow;
-        }
-        /*if (NPC.downedBoss1)
-        {
-            projType = ProjectileID.FrostburnArrow;
-        }*/
-        if (NPC.downedBoss2)
-        {
-            projType = ProjectileID.JestersArrow;
-        }
-        if (Main.hardMode)
-        {
-            projType = ProjectileID.UnholyArrow;
-        }
-        if (Utils.DownedMechBosses() == 1)
-        {
-            projType = ProjectileID.HolyArrow;
-        }
-        if (Utils.DownedMechBosses() == 2)
-        {
-            projType = ProjectileID.CursedArrow;
-        }
-        if (Utils.DownedMechBosses() == 3)
-        {
-            projType = ProjectileID.VenomArrow;
-        }
-        if (NPC.downedPlantBoss)
-        {
-            projType = ProjectileID.ChlorophyteArrow;
-        }
-        if (NPC.downedMoonlord)
-        {
-            projType = ProjectileID.MoonlordArrow;
-        }
+            _ when NPC.downedMoonlord => ProjectileID.MoonlordArrow,
+            _ when NPC.downedPlantBoss => ProjectileID.ChlorophyteArrow,
+            _ when Utils.DownedMechBosses() == 3 => ProjectileID.VenomArrow,
+            _ when Utils.DownedMechBosses() == 2 => ProjectileID.CursedArrow,
+            _ when Utils.DownedMechBosses() == 1 => ProjectileID.HolyArrow,
+            _ when Main.hardMode => ProjectileID.UnholyArrow,
+            _ when NPC.downedBoss2 => ProjectileID.JestersArrow,
+            _ when NPC.downedSlimeKing => ProjectileID.FrostburnArrow,
+            _ => ProjectileID.WoodenArrowFriendly
+        };
     }
 }

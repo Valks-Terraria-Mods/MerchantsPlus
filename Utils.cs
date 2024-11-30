@@ -5,11 +5,13 @@ namespace MerchantsPlus;
 
 public static class ExtensionsString
 {
-    public static string AddSpaceBeforeEachCapital(this string v) =>
-        string.Concat(v.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+    public static string AddSpaceBeforeEachCapital(this string v)
+    {
+        return string.Concat(v.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+    }
 }
 
-internal static class Utils
+public static class Utils
 {
     /// <summary>
     /// <para>
@@ -33,8 +35,12 @@ internal static class Utils
         PropertyInfo[] properties = typeof(DefClass).GetProperties();
 
         foreach (PropertyInfo prop in properties)
+        {
             if (prop.PropertyType == typeof(PropType))
+            {
                 prop.SetValue(defClass, propFunc(prop.Name));
+            }
+        }
     }
 
     public static int UniversalPotionCost = Coins(0, 0, 1);
@@ -46,12 +52,17 @@ internal static class Utils
     public static int UniversalSeedCost = Coins(0, 0, 1);
     public static int UniversalDyeCost = Coins(0, 0, 1);
 
-    public static bool TalkingToNPC() => Main.LocalPlayer.talkNPC >= 0;
+    public static bool TalkingToNPC()
+    {
+        return Main.LocalPlayer.talkNPC >= 0;
+    }
 
     public static void QuestKills(List<string> dialog, string enemy, int curKills, int targetKills)
     {
         if (curKills < targetKills)
+        {
             dialog.Add($"Quest: Kill {targetKills - curKills} more {enemy}");
+        }
     }
 
     public enum Progress
@@ -91,50 +102,83 @@ internal static class Utils
     /// <returns>Returns the players progression level.</returns>
     public static int Progression()
     {
-        int progression = 0;
+        List<Func<bool>> conditions =
+        [
+            () => NPC.downedSlimeKing,
+            DownedEyeOfCthulhu,
+            () => NPC.downedGoblins,
+            () => DownedBrainOfCthulhu() || DownedEaterOfWorlds(),
+            () => NPC.downedQueenBee,
+            DownedSkeletron,
+            DownedWallOfFlesh,
+            () => NPC.downedPirates,
+            () => NPC.downedClown,
+            () => NPC.downedMechBoss1,
+            () => NPC.downedMechBoss2,
+            () => NPC.downedMechBoss3,
+            () => NPC.downedHalloweenTree,
+            () => NPC.downedHalloweenKing,
+            () => NPC.downedPlantBoss,
+            () => NPC.downedGolemBoss,
+            () => NPC.downedFishron,
+            () => NPC.downedChristmasIceQueen,
+            () => NPC.downedChristmasSantank,
+            () => NPC.downedChristmasTree,
+            () => NPC.downedFrost,
+            () => NPC.downedMartians,
+            () => NPC.downedAncientCultist,
+            () => NPC.downedTowers,
+            () => NPC.downedMoonlord
+        ];
 
-        // Pre
-        if (NPC.downedSlimeKing) progression++;
-        if (DownedEyeOfCthulhu()) progression++;
-        if (NPC.downedGoblins) progression++;
-        if (DownedBrainOfCthulhu() || DownedEaterOfWorlds()) progression++;
-        if (NPC.downedQueenBee) progression++;
-        if (DownedSkeletron()) progression++;
-        if (DownedWallOfFlesh()) progression++;
-
-        // Post
-        if (NPC.downedPirates) progression++;
-        if (NPC.downedClown) progression++;
-        if (NPC.downedMechBoss1) progression++;
-        if (NPC.downedMechBoss2) progression++;
-        if (NPC.downedMechBoss3) progression++;
-        if (NPC.downedHalloweenTree) progression++;
-        if (NPC.downedHalloweenKing) progression++;
-        if (NPC.downedPlantBoss) progression++;
-        if (NPC.downedGolemBoss) progression++;
-        if (NPC.downedFishron) progression++;
-        if (NPC.downedChristmasIceQueen) progression++;
-        if (NPC.downedChristmasSantank) progression++;
-        if (NPC.downedChristmasTree) progression++;
-        if (NPC.downedFrost) progression++;
-        if (NPC.downedMartians) progression++;
-        if (NPC.downedAncientCultist) progression++;
-        if (NPC.downedTowers) progression++;
-        if (NPC.downedMoonlord) progression++;
-
-        return progression;
+        return conditions.Count(condition => condition());
     }
 
-    public static bool HasNPC(int npcID) => NPC.AnyNPCs(npcID);
-    public static bool IsHardMode() => Main.hardMode;
-    public static bool DownedWallOfFlesh() => Main.hardMode;
-    public static bool DownedEyeOfCthulhu() => NPC.downedBoss1;
-    public static bool DownedEaterOfWorlds() => NPC.downedBoss2;
-    public static bool DownedBrainOfCthulhu() => NPC.downedBoss2;
-    public static bool DownedSkeletron() => NPC.downedBoss3;
-    public static bool DownedPlantera() => NPC.downedPlantBoss;
+    public static bool HasNPC(int npcID)
+    {
+        return NPC.AnyNPCs(npcID);
+    }
 
-    public static int Coins() => Coins(0, 1);
+    public static bool IsHardMode()
+    {
+        return Main.hardMode;
+    }
+
+    public static bool DownedWallOfFlesh()
+    {
+        return Main.hardMode;
+    }
+
+    public static bool DownedEyeOfCthulhu()
+    {
+        return NPC.downedBoss1;
+    }
+
+    public static bool DownedEaterOfWorlds()
+    {
+        return NPC.downedBoss2;
+    }
+
+    public static bool DownedBrainOfCthulhu()
+    {
+        return NPC.downedBoss2;
+    }
+
+    public static bool DownedSkeletron()
+    {
+        return NPC.downedBoss3;
+    }
+
+    public static bool DownedPlantera()
+    {
+        return NPC.downedPlantBoss;
+    }
+
+    public static int Coins()
+    {
+        return Coins(0, 1);
+    }
+
     public static int Coins(int copper, int silver = 0, int gold = 0, int platinum = 0)
     {
         float basePrice = Item.sellPrice(platinum, gold, silver, copper);
@@ -171,30 +215,65 @@ internal static class Utils
         if (p.HeldItem != null && p.HeldItem.damage > 0)
         {
             Item heldItem = p.HeldItem;
-            if (heldItem.CountsAsClass(DamageClass.Melee)) return "melee";
-            if (heldItem.CountsAsClass(DamageClass.Ranged)) return "ranged";
-            if (heldItem.CountsAsClass(DamageClass.Magic)) return "mage";
-            if (heldItem.CountsAsClass(DamageClass.Summon)) return "summoner";
-            if (heldItem.CountsAsClass(DamageClass.Throwing)) return "thrower";
+            if (heldItem.CountsAsClass(DamageClass.Melee))
+            {
+                return "melee";
+            }
+
+            if (heldItem.CountsAsClass(DamageClass.Ranged))
+            {
+                return "ranged";
+            }
+
+            if (heldItem.CountsAsClass(DamageClass.Magic))
+            {
+                return "mage";
+            }
+
+            if (heldItem.CountsAsClass(DamageClass.Summon))
+            {
+                return "summoner";
+            }
+
+            if (heldItem.CountsAsClass(DamageClass.Throwing))
+            {
+                return "thrower";
+            }
         }
 
         return "melee";
     }
 
-    public static string Dialog(string[] lines) => 
-        lines[Main.rand.Next(lines.Length)];
+    public static string Dialog(string[] lines)
+    {
+        return lines[Main.rand.Next(lines.Length)];
+    }
 
     public static int DownedMechBosses()
     {
         int count = 0;
-        if (NPC.downedMechBoss1) count++;
-        if (NPC.downedMechBoss2) count++;
-        if (NPC.downedMechBoss3) count++;
+        if (NPC.downedMechBoss1)
+        {
+            count++;
+        }
+
+        if (NPC.downedMechBoss2)
+        {
+            count++;
+        }
+
+        if (NPC.downedMechBoss3)
+        {
+            count++;
+        }
+
         return count;
     }
 
-    public static int Kills(short theNPC) => 
-        NPC.killCount[Item.NPCtoBanner(theNPC)];
+    public static int Kills(short theNPC)
+    {
+        return NPC.killCount[Item.NPCtoBanner(theNPC)];
+    }
 
     public static int MultiKills(short[] npcs)
     {
@@ -269,37 +348,40 @@ internal static class Utils
         return noMoneyDialog;
     }
 
-    public static bool IsMerchant(int npcID) => npcID switch
+    public static bool IsMerchant(int npcID)
     {
-        NPCID.Angler or
-        NPCID.ArmsDealer or
-        NPCID.Clothier or
-        NPCID.Cyborg or
-        NPCID.Demolitionist or
-        NPCID.Dryad or
-        NPCID.DyeTrader or
-        NPCID.GoblinTinkerer or
-        NPCID.Guide or
-        NPCID.Mechanic or
-        NPCID.Nurse or
-        NPCID.Painter or
-        NPCID.PartyGirl or
-        NPCID.Pirate or
-        NPCID.SantaClaus or
-        NPCID.SkeletonMerchant or
-        NPCID.Steampunker or
-        NPCID.Stylist or
-        NPCID.DD2Bartender or
-        NPCID.TaxCollector or
-        NPCID.TravellingMerchant or
-        NPCID.Truffle or
-        NPCID.WitchDoctor or
-        NPCID.Wizard or
-        NPCID.OldMan or
-        NPCID.BoundGoblin or
-        NPCID.BoundMechanic or
-        NPCID.BoundWizard or
-        NPCID.SleepingAngler => true,
-        _ => false,
-    };
+        return npcID switch
+        {
+            NPCID.Angler or
+            NPCID.ArmsDealer or
+            NPCID.Clothier or
+            NPCID.Cyborg or
+            NPCID.Demolitionist or
+            NPCID.Dryad or
+            NPCID.DyeTrader or
+            NPCID.GoblinTinkerer or
+            NPCID.Guide or
+            NPCID.Mechanic or
+            NPCID.Nurse or
+            NPCID.Painter or
+            NPCID.PartyGirl or
+            NPCID.Pirate or
+            NPCID.SantaClaus or
+            NPCID.SkeletonMerchant or
+            NPCID.Steampunker or
+            NPCID.Stylist or
+            NPCID.DD2Bartender or
+            NPCID.TaxCollector or
+            NPCID.TravellingMerchant or
+            NPCID.Truffle or
+            NPCID.WitchDoctor or
+            NPCID.Wizard or
+            NPCID.OldMan or
+            NPCID.BoundGoblin or
+            NPCID.BoundMechanic or
+            NPCID.BoundWizard or
+            NPCID.SleepingAngler => true,
+            _ => false,
+        };
+    }
 }

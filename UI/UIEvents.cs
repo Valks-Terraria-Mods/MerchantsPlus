@@ -1,9 +1,16 @@
 ﻿namespace MerchantsPlus.UI;
 
-internal class UIEvents : GlobalNPC
+public class UIEvents : GlobalNPC
 {
-    static bool IsShopNPC(NPC npc) => ShopUI.Shops.ContainsKey(npc.type);
-    static void SetShopIndex(NPC npc) => ShopUI.CurrentMerchantID = npc.type;
+    private static bool IsShopNPC(NPC npc)
+    {
+        return ShopUI.Shops.ContainsKey(npc.type);
+    }
+
+    private static void SetShopIndex(NPC npc)
+    {
+        ShopUI.CurrentMerchantID = npc.type;
+    }
 
     //static NPC currentNPC;
 
@@ -19,7 +26,9 @@ internal class UIEvents : GlobalNPC
         bool notShopNPC = !IsShopNPC(npc);
 
         if (notShopNPC)
+        {
             return;
+        }
 
         //currentNPC = npc;
         SetShopIndex(npc);

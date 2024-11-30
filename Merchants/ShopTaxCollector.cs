@@ -1,6 +1,8 @@
-﻿namespace MerchantsPlus.Merchants;
+﻿using Terraria.GameContent;
 
-internal class ShopTaxCollector : Shop
+namespace MerchantsPlus.Merchants;
+
+public class ShopTaxCollector : Shop
 {
     public override string[] Shops => Array.Empty<string>();
 

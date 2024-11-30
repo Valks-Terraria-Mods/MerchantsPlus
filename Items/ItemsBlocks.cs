@@ -6,9 +6,9 @@ class ItemsBlocks : BaseItem
     {
         base.SetDefaults(item);
 
-        if (item.type == ItemID.DirtBlock) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.StoneBlock) item.shopCustomPrice = Utils.Coins(1);
-        
+        if (item.type == ItemID.DirtBlock) item.shopCustomPrice = Utils.Coins(1);
+
         if (item.type == ItemID.StoneWall) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.DirtWall) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.EbonstoneBlock) item.shopCustomPrice = Utils.Coins(1);
@@ -59,7 +59,7 @@ class ItemsBlocks : BaseItem
         if (item.type == ItemID.MythrilBrickWall) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.SiltBlock) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.PlankedWall) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.Mannequin) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.Womannquin) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.Boulder) item.shopCustomPrice = Utils.Coins(1);
@@ -90,7 +90,7 @@ class ItemsBlocks : BaseItem
         if (item.type == ItemID.YellowStuccoWall) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.GrayStucco) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.GrayStuccoWall) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.RainbowBrick) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.RainbowBrickWall) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.TinBrick) item.shopCustomPrice = Utils.Coins(1);
@@ -109,10 +109,10 @@ class ItemsBlocks : BaseItem
         if (item.type == ItemID.DiscWall) item.shopCustomPrice = Utils.Coins(1);
 
         if (item.type == ItemID.CrimstoneBlock) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.Campfire) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.SlushBlock) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.CrimsandBlock) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.WallSkeleton) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.HangingSkeleton) item.shopCustomPrice = Utils.Coins(1);
@@ -127,7 +127,7 @@ class ItemsBlocks : BaseItem
         if (item.type == ItemID.GreenBrickPlatform) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.MetalShelf) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.BrassShelf) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.BrassLantern) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.CagedLantern) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.CarriageLantern) item.shopCustomPrice = Utils.Coins(1);
@@ -142,7 +142,7 @@ class ItemsBlocks : BaseItem
         if (item.type == ItemID.PinkDungeonCandle) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.Catacomb) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.DungeonShelf) item.shopCustomPrice = Utils.Coins(1);
-        
+
         if (item.type == ItemID.LeadFence) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.GothicChair) item.shopCustomPrice = Utils.Coins(1);
         if (item.type == ItemID.GlassChair) item.shopCustomPrice = Utils.Coins(1);

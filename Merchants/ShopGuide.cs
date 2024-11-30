@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopGuide : Shop
+public class ShopGuide : Shop
 {
-    public override string[] Shops => new string[] { "Gear", "Pylons" };
+    public override string[] Shops => ["Gear", "Pylons"];
 
     public override void OpenShop(string shop)
     {
@@ -30,7 +30,9 @@ internal class ShopGuide : Shop
             AddItem(ItemID.CordageGuide, Utils.Coins(0, 0, 1));
 
             if (!Utils.IsNPCHere(NPCID.Merchant))
+            {
                 AddItem(ItemID.Torch);
+            }
 
             if (Utils.DownedSkeletron() && !Main.hardMode)
             {

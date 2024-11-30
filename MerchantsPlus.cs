@@ -11,10 +11,14 @@ using MerchantsPlus.Merchants;
 
 namespace MerchantsPlus;
 
-internal class MerchantsPlus : Mod
+public class MerchantsPlus : Mod
 {
     public static MagicStorageDefs MagicStorageDefs { get; private set; }
-    public static bool IsMagicStorageLoaded() => MagicStorageDefs != null;
+
+    public static bool IsMagicStorageLoaded()
+    {
+        return MagicStorageDefs != null;
+    }
 
     public override void Load()
     {
@@ -25,7 +29,7 @@ internal class MerchantsPlus : Mod
         }
     }
 
-    void AddShopForModdedNPC(int type, Shop shop)
+    private static void AddShopForModdedNPC(int type, Shop shop)
     {
         ShopUI.Shops.Add(type, shop);
     }

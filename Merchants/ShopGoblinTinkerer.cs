@@ -2,9 +2,9 @@ using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
-internal class ShopGoblinTinkerer : Shop
+public class ShopGoblinTinkerer : Shop
 {
-    public override string[] Shops => new string[] { 
+    public override string[] Shops => [ 
         "Movement", 
         "Informational", 
         "Combat", 
@@ -12,7 +12,7 @@ internal class ShopGoblinTinkerer : Shop
         "Immunity", 
         "Defensive", 
         "Special", 
-        "Miscellaneous" };
+        "Miscellaneous" ];
 
     public override void OpenShop(string shop)
     {
@@ -292,7 +292,15 @@ internal class ShopGoblinTinkerer : Shop
 
         if (shop == "Informational")
         {
-            if (GenVars.goldBar > 0) AddItem(ItemID.GoldWatch); else AddItem(ItemID.PlatinumWatch);
+            if (GenVars.goldBar > 0)
+            {
+                AddItem(ItemID.GoldWatch);
+            }
+            else
+            {
+                AddItem(ItemID.PlatinumWatch);
+            }
+
             if (progression > 0)
             {
                 AddItem(ItemID.DepthMeter, Utils.UniversalAccessoryCost);

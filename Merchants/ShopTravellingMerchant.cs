@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopTravellingMerchant : Shop
+public class ShopTravellingMerchant : Shop
 {
-    public override string[] Shops => new string[] { "Gear" };
+    public override string[] Shops => ["Gear"];
 
     public override void OpenShop(string shop)
     {
@@ -13,7 +13,11 @@ internal class ShopTravellingMerchant : Shop
             AddItem(ItemID.ShadowOrb);
             AddItem(ItemID.MagicLantern);
             AddItem(ItemID.DD2PetGhost);
-            if (Main.hardMode) AddItem(ItemID.SuspiciousLookingTentacle);
+            if (Main.hardMode)
+            {
+                AddItem(ItemID.SuspiciousLookingTentacle);
+            }
+
             return;
         }
 

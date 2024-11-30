@@ -29,31 +29,37 @@ public class MagicStorageDefs
     public static ModItem UpgradeLuminite { get; private set; }
     public static ModItem UpgradeTerra { get; private set; }
 
-    readonly Mod magicStorage;
+    private readonly Mod magicStorage;
 
     public MagicStorageDefs(Mod magicStorage)
     {
         this.magicStorage = magicStorage;
 
         if (magicStorage == null)
+        {
             return;
+        }
 
         Utils.SetPropValues<MagicStorageDefs, ModNPC>(this, TryGetNPC);
         Utils.SetPropValues<MagicStorageDefs, ModItem>(this, TryGetItem);
     }
 
-    ModNPC TryGetNPC(string name)
+    private ModNPC TryGetNPC(string name)
     {
         if (magicStorage.TryFind(name, out ModNPC npc))
+        {
             return npc;
+        }
 
         return null;
     }
 
-    ModItem TryGetItem(string name)
+    private ModItem TryGetItem(string name)
     {
         if (magicStorage.TryFind(name, out ModItem item))
+        {
             return item;
+        }
 
         return null;
     }

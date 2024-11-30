@@ -3,9 +3,9 @@ using Magic = MerchantsPlus.MagicStorageDefs;
 
 namespace MerchantsPlus;
 
-internal class ShopGolem : Shop
+public class ShopGolem : Shop
 {
-    public override string[] Shops => new string[] { "Storage" };
+    public override string[] Shops => ["Storage"];
 
     public override void OpenShop(string shop)
     {

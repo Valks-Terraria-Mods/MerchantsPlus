@@ -1,33 +1,34 @@
 ﻿namespace MerchantsPlus.NPCs;
 
-internal class Mechanic : BaseMerchant
+public class Mechanic : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.Mechanic) return;
+        if (npc.type != NPCID.Mechanic)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.Mechanic) return;
+        if (npc.type != NPCID.Mechanic)
+        {
+            return;
+        }
+
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-        projType = ProjectileID.MechanicWrench;
-        if (Utils.DownedMechBosses() == 1)
+
+        projType = true switch
         {
-            projType = ProjectileID.ExplosiveBunny;
-        }
-        if (Utils.DownedMechBosses() == 2)
-        {
-            projType = ProjectileID.BallofFrost;
-        }
-        if (Utils.DownedMechBosses() == 3)
-        {
-            projType = ProjectileID.Flamarang;
-        }
-        if (NPC.downedPlantBoss)
-        {
-            projType = ProjectileID.IceSickle;
-        }
+            _ when NPC.downedPlantBoss => ProjectileID.IceSickle,
+            _ when Utils.DownedMechBosses() == 3 => ProjectileID.Flamarang,
+            _ when Utils.DownedMechBosses() == 2 => ProjectileID.BallofFrost,
+            _ when Utils.DownedMechBosses() == 1 => ProjectileID.ExplosiveBunny,
+            _ => ProjectileID.MechanicWrench
+        };
     }
+
 }

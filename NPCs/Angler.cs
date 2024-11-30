@@ -2,11 +2,15 @@
 
 namespace MerchantsPlus.NPCs;
 
-internal class Angler : BaseMerchant
+public class Angler : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.Angler) return;
+        if (npc.type != NPCID.Angler)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 
@@ -14,26 +18,26 @@ internal class Angler : BaseMerchant
     {
         if (npc.type == NPCID.Angler)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Fish, 1));
+            _ = npcLoot.Add(ItemDropRule.Common(ItemID.Fish, 1));
         }
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.Angler) return;
+        if (npc.type != NPCID.Angler)
+        {
+            return;
+        }
+
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-        projType = ProjectileID.FrostDaggerfish;
-        if (NPC.downedSlimeKing)
+
+        projType = true switch
         {
-            projType = ProjectileID.IceSickle;
-        }
-        if (NPC.downedBoss1)
-        {
-            projType = ProjectileID.Blizzard;
-        }
-        if (NPC.downedBoss2)
-        {
-            projType = ProjectileID.InfluxWaver;
-        }
+            _ when NPC.downedBoss2 => ProjectileID.InfluxWaver,
+            _ when NPC.downedBoss1 => ProjectileID.Blizzard,
+            _ when NPC.downedSlimeKing => ProjectileID.IceSickle,
+            _ => ProjectileID.FrostDaggerfish
+        };
     }
+
 }

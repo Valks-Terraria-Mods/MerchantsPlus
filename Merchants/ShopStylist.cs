@@ -1,9 +1,9 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopStylist : Shop
+public class ShopStylist : Shop
 {
-    public override string[] Shops => new string[]
-    {
+    public override string[] Shops =>
+    [
         "Hair Dyes", 
         "Overworld", 
         "Underworld", 
@@ -30,7 +30,7 @@ internal class ShopStylist : Shop
         "Vortex Zone", 
         "Nebula Zone", 
         "Stardust Zone"
-    };
+    ];
 
     public override void OpenShop(string shop)
     {

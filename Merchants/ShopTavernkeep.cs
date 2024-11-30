@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopTavernkeep : Shop
+public class ShopTavernkeep : Shop
 {
-    public override string[] Shops => new string[] { "Gear" };
+    public override string[] Shops => ["Gear"];
 
     public override void OpenShop(string shop)
     {
@@ -29,35 +29,67 @@ internal class ShopTavernkeep : Shop
         Inv.SetupShop(21);
     }
 
-    void Flameburst()
+    private void Flameburst()
     {
         ReplaceItem(ItemID.DD2FlameburstTowerT1Popper);
-        if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2FlameburstTowerT2Popper);
-        if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2FlameburstTowerT3Popper);
+        if (Utils.DownedMechBosses() == 1)
+        {
+            ReplaceItem(ItemID.DD2FlameburstTowerT2Popper);
+        }
+
+        if (NPC.downedGolemBoss)
+        {
+            ReplaceItem(ItemID.DD2FlameburstTowerT3Popper);
+        }
+
         NextSlot++;
     }
 
-    void Ballista()
+    private void Ballista()
     {
         ReplaceItem(ItemID.DD2BallistraTowerT1Popper);
-        if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2BallistraTowerT2Popper);
-        if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2BallistraTowerT3Popper);
+        if (Utils.DownedMechBosses() == 1)
+        {
+            ReplaceItem(ItemID.DD2BallistraTowerT2Popper);
+        }
+
+        if (NPC.downedGolemBoss)
+        {
+            ReplaceItem(ItemID.DD2BallistraTowerT3Popper);
+        }
+
         NextSlot++;
     }
 
-    void Lightning()
+    private void Lightning()
     {
         ReplaceItem(ItemID.DD2LightningAuraT1Popper);
-        if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2LightningAuraT2Popper);
-        if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2LightningAuraT3Popper);
+        if (Utils.DownedMechBosses() == 1)
+        {
+            ReplaceItem(ItemID.DD2LightningAuraT2Popper);
+        }
+
+        if (NPC.downedGolemBoss)
+        {
+            ReplaceItem(ItemID.DD2LightningAuraT3Popper);
+        }
+
         NextSlot++;
     }
 
-    void Explosive()
+    private void Explosive()
     {
         ReplaceItem(ItemID.DD2ExplosiveTrapT1Popper);
-        if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DD2ExplosiveTrapT2Popper);
-        if (NPC.downedGolemBoss) ReplaceItem(ItemID.DD2ExplosiveTrapT3Popper);
+        if (Utils.DownedMechBosses() == 1)
+        {
+            ReplaceItem(ItemID.DD2ExplosiveTrapT2Popper);
+        }
+
+        if (NPC.downedGolemBoss)
+        {
+            ReplaceItem(ItemID.DD2ExplosiveTrapT3Popper);
+        }
+
         NextSlot++;
     }
 }

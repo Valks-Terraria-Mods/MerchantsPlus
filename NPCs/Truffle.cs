@@ -1,25 +1,31 @@
 ﻿namespace MerchantsPlus.NPCs;
 
-internal class Truffle : BaseMerchant
+public class Truffle : BaseMerchant
 {
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.Truffle) return;
+        if (npc.type != NPCID.Truffle)
+        {
+            return;
+        }
+
         base.GetChat(npc, ref chat);
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.Truffle) return;
+        if (npc.type != NPCID.Truffle)
+        {
+            return;
+        }
+
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-        projType = ProjectileID.ThrowingKnife;
-        if (NPC.downedBoss2)
+
+        projType = true switch
         {
-            projType = ProjectileID.PoisonedKnife;
-        }
-        if (Utils.DownedMechBosses() == 1)
-        {
-            projType = ProjectileID.BoneJavelin;
-        }
+            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BoneJavelin,
+            _ when NPC.downedBoss2 => ProjectileID.PoisonedKnife,
+            _ => ProjectileID.ThrowingKnife
+        };
     }
 }

@@ -1,19 +1,19 @@
 ﻿namespace MerchantsPlus.UI;
 
-internal class ModifyUI : ModSystem
+public class ModifyUI : ModSystem
 {
-    UserInterface userInterface;
-    GameTime lastUpdateUiGameTime;
-    ShopUI shopUI;
+    private UserInterface userInterface;
+    private GameTime lastUpdateUiGameTime;
+    private ShopUI shopUI;
 
-    internal void ShowShopUI()
+    public void ShowShopUI()
     {
         shopUI.UpdateUI();
         ShopUI.Visible = true;
         userInterface?.SetState(shopUI);
     }
 
-    internal void HideShopUI()
+    public void HideShopUI()
     {
         ShopUI.Visible = false;
         userInterface?.SetState(null);

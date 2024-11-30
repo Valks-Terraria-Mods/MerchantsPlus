@@ -4,32 +4,37 @@ Configs: {
 
 		ShopPriceMultiplier: {
 			Label: Shop Price Multiplier
-			Tooltip: ""
+			Tooltip: Configure how expensive shop items should be with this multiplier.
 		}
 
 		ToggleExtraLife: {
 			Label: Toggle Extra Life
-			Tooltip: ""
+			Tooltip: If enabled merchants will have extra life.
 		}
 
 		ToggleDialog: {
 			Label: Toggle Dialog
-			Tooltip: ""
+			Tooltip: If disabled then merchants dialog will no longer be modified by this mod.
 		}
 
 		ToggleDrops: {
 			Label: Toggle Drops
-			Tooltip: ""
+			Tooltip: If enabled merchants will drop items setup by this mod.
 		}
 
 		ToggleProjectiles: {
 			Label: Toggle Projectiles
-			Tooltip: ""
+			Tooltip: If enabled merchants will shoot new projectiles based on your current world progression.
 		}
 
 		ToggleScaling: {
 			Label: Toggle Scaling
-			Tooltip: ""
+			Tooltip: If enabled merchants will have different heights.
+		}
+
+		DisableHappinessPriceMultiplier: {
+			Label: Disable Happiness Price Multiplier
+			Tooltip: If this is disabled then all prices will be rounded nicely.
 		}
 	}
 }

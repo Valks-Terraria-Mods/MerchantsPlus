@@ -2,13 +2,13 @@ using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Merchants;
 
-internal class ShopMerchant : Shop
+public class ShopMerchant : Shop
 {
-    public override string[] Shops => new string[] { 
+    public override string[] Shops => [ 
         "Gear", 
         "Ores", 
         "Pets", 
-        "Mounts" };
+        "Mounts" ];
 
     public override void OpenShop(string shop)
     {
@@ -34,28 +34,84 @@ internal class ShopMerchant : Shop
         Inv.SetupShop(1);
     }
 
-    void Wings()
+    private void Wings()
     {
         ReplaceItem(ItemID.AngelWings, Utils.Coins(0, 0, 0, 10));
-        if (NPC.downedSlimeKing) ReplaceItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 10));
-        if (Utils.DownedEyeOfCthulhu()) ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 0, 10));
-        if (NPC.downedGoblins) ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 0, 10));
-        if (Utils.DownedBrainOfCthulhu()) ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 0, 10));
-        if (NPC.downedQueenBee) ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 10));
-        if (Utils.DownedSkeletron()) ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 0, 10));
-        if (Main.hardMode) ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 10));
-        if (Utils.DownedMechBosses() == 1) ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 2));
-        if (Utils.DownedMechBosses() == 2) ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 2));
-        if (Utils.DownedMechBosses() == 3) ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
-        if (NPC.downedPlantBoss) ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
-        if (NPC.downedGolemBoss) ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 2));
-        if (NPC.downedFishron) ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
-        if (NPC.downedMoonlord) ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));
+
+        if (NPC.downedSlimeKing)
+        {
+            ReplaceItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (Utils.DownedEyeOfCthulhu())
+        {
+            ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (NPC.downedGoblins)
+        {
+            ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (Utils.DownedBrainOfCthulhu())
+        {
+            ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (NPC.downedQueenBee)
+        {
+            ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (Utils.DownedSkeletron())
+        {
+            ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (Main.hardMode)
+        {
+            ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 10));
+        }
+
+        if (Utils.DownedMechBosses() == 1)
+        {
+            ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (Utils.DownedMechBosses() == 2)
+        {
+            ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (Utils.DownedMechBosses() == 3)
+        {
+            ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (NPC.downedPlantBoss)
+        {
+            ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (NPC.downedGolemBoss)
+        {
+            ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (NPC.downedFishron)
+        {
+            ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
+        }
+
+        if (NPC.downedMoonlord)
+        {
+            ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));
+        }
 
         NextSlot++;
     }
 
-    void Pickaxe()
+    private void Pickaxe()
     {
         {
             if (GenVars.copperBar > 0)
@@ -170,7 +226,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Axe()
+    private void Axe()
     {
         {
             if (GenVars.copperBar > 0)
@@ -284,7 +340,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Hammer()
+    private void Hammer()
     {
         if (GenVars.copperBar > 0)
         {
@@ -394,7 +450,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Helmet()
+    private void Helmet()
     {
         if (GenVars.copperBar > 0)
         {
@@ -591,7 +647,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Breastplate()
+    private void Breastplate()
     {
         if (GenVars.copperBar > 0)
         {
@@ -764,7 +820,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void ShopGreaves()
+    private void ShopGreaves()
     {
         if (GenVars.copperBar > 0)
         {
@@ -937,7 +993,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Shortswords()
+    private void Shortswords()
     {
         if (GenVars.copperBar > 0)
         {
@@ -987,7 +1043,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Broadswords()
+    private void Broadswords()
     {
         if (GenVars.copperBar > 0)
         {
@@ -1089,7 +1145,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Bows()
+    private void Bows()
     {
         if (GenVars.copperBar > 0)
         {
@@ -1191,7 +1247,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void MageWeapon()
+    private void MageWeapon()
     {
         ReplaceItem(ItemID.WandofSparking);
 
@@ -1288,7 +1344,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void SummonerWeapon()
+    private void SummonerWeapon()
     {
         ReplaceItem(ItemID.SlimeStaff);
 
@@ -1350,7 +1406,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Mounts()
+    private void Mounts()
     {
         AddItem(ItemID.FuzzyCarrot, Utils.UniversalMountCost);
 
@@ -1410,7 +1466,7 @@ internal class ShopMerchant : Shop
         }
     }
 
-    void Pets()
+    private void Pets()
     {
         AddItem(ItemID.Seedling, Utils.UniversalPetCost);
 
@@ -1510,7 +1566,7 @@ internal class ShopMerchant : Shop
         }
     }
 
-    void Ores()
+    private void Ores()
     {
         if (GenVars.copperBar > 0)
         {
@@ -1606,13 +1662,18 @@ internal class ShopMerchant : Shop
         }
     }
 
-    void Gear()
+    private void Gear()
     {
         AddItem(ItemID.Sickle);
         if (!Main.hardMode)
+        {
             AddItem(ItemID.BugNet);
+        }
         else
+        {
             AddItem(ItemID.GoldenBugNet);
+        }
+
         Pickaxe();
         Axe();
         Hammer();
@@ -1623,7 +1684,10 @@ internal class ShopMerchant : Shop
         {
             case "melee":
                 if (!NPC.downedBoss2)
+                {
                     Shortswords();
+                }
+
                 Broadswords();
                 break;
 
@@ -1658,7 +1722,7 @@ internal class ShopMerchant : Shop
         Wings();
     }
 
-    void HealPotion()
+    private void HealPotion()
     {
         ReplaceItem(ItemID.LesserHealingPotion);
 
@@ -1705,7 +1769,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void ManaPotion()
+    private void ManaPotion()
     {
         ReplaceItem(ItemID.LesserManaPotion);
 
@@ -1727,7 +1791,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Torches()
+    private void Torches()
     {
         ReplaceItem(ItemID.CactusCandle, Utils.Coins(0, 1));
         if (NPC.downedSlimeKing)
@@ -1753,7 +1817,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Arrows()
+    private void Arrows()
     {
         ReplaceItem(ItemID.WoodenArrow);
         if (NPC.downedSlimeKing)
@@ -1799,7 +1863,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Rope()
+    private void Rope()
     {
         ReplaceItem(ItemID.VineRope, Utils.Coins(1));
         if (NPC.downedSlimeKing)
@@ -1813,7 +1877,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void LightPet()
+    private void LightPet()
     {
         ReplaceItem(ItemID.FairyBell);
         if (Main.hardMode)
@@ -1823,7 +1887,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void ThrowerWep()
+    private void ThrowerWep()
     {
         ReplaceItem(ItemID.Snowball);
         if (NPC.downedSlimeKing)
@@ -1865,7 +1929,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void Hooks()
+    private void Hooks()
     {
         ReplaceItem(ItemID.GrapplingHook);
         if (NPC.downedSlimeKing)
@@ -1919,7 +1983,7 @@ internal class ShopMerchant : Shop
         NextSlot++;
     }
 
-    void BuffPotion()
+    private void BuffPotion()
     {
         switch (Utils.GetPlayerClass())
         {

@@ -1,8 +1,8 @@
 ﻿namespace MerchantsPlus.Merchants;
 
-internal class ShopSkeletonMerchant : Shop
+public class ShopSkeletonMerchant : Shop
 {
-    public override string[] Shops => new string[] { "Gear", "Music Boxes" };
+    public override string[] Shops => ["Gear", "Music Boxes"];
 
     public override void OpenShop(string shop)
     {
@@ -52,12 +52,36 @@ internal class ShopSkeletonMerchant : Shop
             AddItem(ItemID.YoYoGlove);
             if (Main.hardMode)
             {
-                if (Utils.Kills(NPCID.WyvernHead) > 0) AddItem(ItemID.SoulofFlight);
-                if (NPC.downedMechBoss3) AddItem(ItemID.SoulofFright);
-                if (Utils.Kills(NPCID.IlluminantSlime) > 0) AddItem(ItemID.SoulofLight);
-                if (NPC.downedMechBoss2) AddItem(ItemID.SoulofMight);
-                if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0) AddItem(ItemID.SoulofNight);
-                if (NPC.downedMechBoss1) AddItem(ItemID.SoulofSight);
+                if (Utils.Kills(NPCID.WyvernHead) > 0)
+                {
+                    AddItem(ItemID.SoulofFlight);
+                }
+
+                if (NPC.downedMechBoss3)
+                {
+                    AddItem(ItemID.SoulofFright);
+                }
+
+                if (Utils.Kills(NPCID.IlluminantSlime) > 0)
+                {
+                    AddItem(ItemID.SoulofLight);
+                }
+
+                if (NPC.downedMechBoss2)
+                {
+                    AddItem(ItemID.SoulofMight);
+                }
+
+                if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0)
+                {
+                    AddItem(ItemID.SoulofNight);
+                }
+
+                if (NPC.downedMechBoss1)
+                {
+                    AddItem(ItemID.SoulofSight);
+                }
+
                 AddItem(ItemID.RagePotion, Utils.UniversalPotionCost);
             }
             return;
