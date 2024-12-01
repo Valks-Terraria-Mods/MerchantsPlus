@@ -7,10 +7,10 @@ public class RemoveHappinessCurrencyMultiplier : ModSystem
 {
     public override void Load()
     {
-        // Remove happiness currency multiplier
         On_ShopHelper.GetShoppingSettings += On_ShopHelper_GetShopSettings;
     }
 
+    // https://github.com/tModLoader/tModLoader/wiki/Advanced-Detouring-Guide
     private static ShoppingSettings On_ShopHelper_GetShopSettings(On_ShopHelper.orig_GetShoppingSettings orig, ShopHelper self, Player player, NPC npc)
     {
         ShoppingSettings settings = orig(self, player, npc);

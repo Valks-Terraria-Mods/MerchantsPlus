@@ -36,5 +36,10 @@ Configs: {
 			Label: Disable Happiness Price Multiplier
 			Tooltip: If this is disabled then all prices will be rounded nicely.
 		}
+
+		DisablePrehardmodeWings: {
+			Label: Disable Prehardmode Wings
+			Tooltip: ""
+		}
 	}
 }

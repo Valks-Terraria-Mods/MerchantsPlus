@@ -47,7 +47,7 @@ public static class Utils
     public static int UniversalAccessoryCost = Coins(0, 0, 1);
     public static int UniversalOreCost = Coins(0, 0, 1);
     public static int UniversalPetCost = Coins(0, 0, 1);
-    public static int UniversalMountCost = Coins(0, 0, 1);
+    public static int UniversalMountCost = Coins(0, 0, 5);
     public static int UniversalVanityCost = Coins(0, 0, 1);
     public static int UniversalSeedCost = Coins(0, 0, 1);
     public static int UniversalDyeCost = Coins(0, 0, 1);
@@ -181,7 +181,7 @@ public static class Utils
 
     public static int Coins(int copper, int silver = 0, int gold = 0, int platinum = 0)
     {
-        float basePrice = Item.sellPrice(platinum, gold, silver, copper);
+        float basePrice = Item.buyPrice(platinum, gold, silver, copper);
 
         return (int)(basePrice * Config.Instance.ShopPriceMultiplier);
     }

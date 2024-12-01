@@ -18,7 +18,7 @@ public abstract class Shop
     /// <param name="nextSlot">The nextSlot of the item to sell.</param>
     public virtual void OpenShop(string shop)
     {
-        SoundEngine.PlaySound(SoundID.MenuTick);
+        _ = SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
         Main.npcChatText = "";
 

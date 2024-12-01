@@ -18,6 +18,10 @@ public class Config : ModConfig
     [BackgroundColor(0, 0, 0, 100)]
     public bool DisableHappinessPriceMultiplier;
 
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool DisablePrehardmodeWings;
+
     [DefaultValue(1.0f)]
     [BackgroundColor(0, 0, 0, 100)]
     public float ShopPriceMultiplier = 1.0f;

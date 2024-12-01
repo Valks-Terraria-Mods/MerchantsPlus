@@ -2,56 +2,61 @@
 
 public class ModifyUI : ModSystem
 {
-    private UserInterface userInterface;
-    private GameTime lastUpdateUiGameTime;
-    private ShopUI shopUI;
+    private UserInterface _userInterface;
+    private GameTime _lastUpdateUiGameTime;
+    private ShopUI _shopUI;
 
     public void ShowShopUI()
     {
-        shopUI.UpdateUI();
         ShopUI.Visible = true;
-        userInterface?.SetState(shopUI);
+
+        _shopUI.UpdateUI();
+        _userInterface?.SetState(_shopUI);
     }
 
     public void HideShopUI()
     {
         ShopUI.Visible = false;
-        userInterface?.SetState(null);
+
+        _userInterface?.SetState(null);
     }
 
     public override void Load()
     {
         if (!Main.dedServ)
         {
-            shopUI = new ShopUI();
-            shopUI.Activate();
+            _shopUI = new ShopUI();
+            _shopUI.Activate();
 
-            userInterface = new UserInterface();
+            _userInterface = new UserInterface();
         }
     }
 
     public override void UpdateUI(GameTime gameTime)
     {
-        lastUpdateUiGameTime = gameTime;
-        if (userInterface?.CurrentState != null)
+        _lastUpdateUiGameTime = gameTime;
+
+        if (_userInterface?.CurrentState != null)
         {
-            userInterface.Update(gameTime);
+            _userInterface.Update(gameTime);
         }
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
         int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+
         if (mouseTextIndex != -1)
         {
             layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
                 "MerchantsPlus: Custom Shops",
                 delegate
                 {
-                    if (lastUpdateUiGameTime != null && userInterface?.CurrentState != null)
+                    if (_lastUpdateUiGameTime != null && _userInterface?.CurrentState != null)
                     {
-                        userInterface.Draw(Main.spriteBatch, lastUpdateUiGameTime);
+                        _userInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                     }
+
                     return true;
                 },
                 InterfaceScaleType.UI));

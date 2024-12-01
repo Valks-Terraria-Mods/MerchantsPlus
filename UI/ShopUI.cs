@@ -39,8 +39,8 @@ public class ShopUI : UIState
     public static bool Visible { get; set; }
     public static int CurrentMerchantID { get; set; }
 
-    private TextButton merchantName;
-    private TextButton currentShopName;
+    private TextButton _merchantName;
+    private TextButton _currentShopName;
 
     public override void OnInitialize()
     {
@@ -52,25 +52,25 @@ public class ShopUI : UIState
         shopPanel.Height.Set(35f, 0f);
         shopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
 
-        merchantName = new TextButton("Merchant Name", 0.9f)
+        _merchantName = new TextButton("Merchant Name", 0.9f)
         {
             HAlign = 0.03f
         };
 
-        merchantName.Top.Set(4, 0f);
-        merchantName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+        _merchantName.Top.Set(4, 0f);
+        _merchantName.OnLeftClick += new MouseEvent(ShopButtonClicked);
 
-        shopPanel.Append(merchantName);
+        shopPanel.Append(_merchantName);
 
-        currentShopName = new TextButton("Shop Name", 0.9f)
+        _currentShopName = new TextButton("Shop Name", 0.9f)
         {
             HAlign = 0.5f
         };
 
-        currentShopName.Top.Set(4, 0f);
-        currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+        _currentShopName.Top.Set(4, 0f);
+        _currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
 
-        shopPanel.Append(currentShopName);
+        shopPanel.Append(_currentShopName);
 
         TextButton cycleShopButton = new("Cycle Shop", 0.9f)
         {
@@ -97,25 +97,25 @@ public class ShopUI : UIState
         {
             if (npc.type == CurrentMerchantID)
             {
-                merchantName.SetText(npc.TypeName);
+                _merchantName.SetText(npc.TypeName);
                 return;
             }
         }
 
-        merchantName.SetText("Merchant");
+        _merchantName.SetText("Merchant");
     }
 
     private void UpdateShopName()
     {
         if (Shops[CurrentMerchantID].Shops.Length == 0)
         {
-            currentShopName.SetText("Shop");
+            _currentShopName.SetText("Shop");
             return;
         }
 
         int shopIndex = Shops[CurrentMerchantID].CycleIndex;
 
-        currentShopName.SetText(Shops[CurrentMerchantID].Shops[shopIndex]);
+        _currentShopName.SetText(Shops[CurrentMerchantID].Shops[shopIndex]);
     }
 
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)

@@ -36,76 +36,80 @@ public class ShopMerchant : Shop
 
     private void Wings()
     {
-        ReplaceItem(ItemID.AngelWings, Utils.Coins(0, 0, 0, 10));
-
-        if (NPC.downedSlimeKing)
+        if (!Config.Instance.DisablePrehardmodeWings)
         {
-            ReplaceItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 10));
-        }
+            // Creative wings are fledgling wings
+            ReplaceItem(ItemID.CreativeWings, Utils.Coins(0, 0, 3, 0));
 
-        if (Utils.DownedEyeOfCthulhu())
-        {
-            ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 0, 10));
-        }
+            if (NPC.downedSlimeKing)
+            {
+                ReplaceItem(ItemID.AngelWings, Utils.Coins(0, 0, 10, 0));
+            }
 
-        if (NPC.downedGoblins)
-        {
-            ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 0, 10));
-        }
+            if (Utils.DownedEyeOfCthulhu())
+            {
+                ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 10, 0));
+            }
 
-        if (Utils.DownedBrainOfCthulhu())
-        {
-            ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 0, 10));
-        }
+            if (NPC.downedGoblins)
+            {
+                ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 10, 0));
+            }
 
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 10));
-        }
+            if (Utils.DownedBrainOfCthulhu())
+            {
+                ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 10, 0));
+            }
 
-        if (Utils.DownedSkeletron())
-        {
-            ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 0, 10));
+            if (NPC.downedQueenBee)
+            {
+                ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 10, 0));
+            }
+
+            if (Utils.DownedSkeletron())
+            {
+                ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 10, 0));
+            }
         }
 
         if (Main.hardMode)
         {
-            ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 10));
+            ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (Utils.DownedMechBosses() == 1)
         {
-            ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (Utils.DownedMechBosses() == 2)
         {
-            ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (Utils.DownedMechBosses() == 3)
         {
-            ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (NPC.downedPlantBoss)
         {
-            ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (NPC.downedGolemBoss)
         {
-            ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (NPC.downedFishron)
         {
-            ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 1));
         }
 
         if (NPC.downedMoonlord)
         {
-            ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));
+            ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 1));
         }
 
         NextSlot++;
