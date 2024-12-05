@@ -93,7 +93,7 @@ public class ShopUI : UIState
 
     private void UpdateMerchantName()
     {
-        foreach (var npc in Main.npc)
+        foreach (NPC npc in Main.npc)
         {
             if (npc.type == CurrentMerchantID)
             {
@@ -102,6 +102,7 @@ public class ShopUI : UIState
             }
         }
 
+        // If cannot find the merchant name, default to "Merchant"
         _merchantName.SetText("Merchant");
     }
 
@@ -125,7 +126,7 @@ public class ShopUI : UIState
         OpenShop(Shops[CurrentMerchantID].CycleIndex);
     }
 
-    private void ShiftShop()
+    private static void ShiftShop()
     {
         if (Shops[CurrentMerchantID].Shops.Length == 0)
         {
@@ -147,7 +148,7 @@ public class ShopUI : UIState
         OpenShop(Shops[CurrentMerchantID].CycleIndex);
     }
 
-    private void OpenShop(int shopIndex)
+    private static void OpenShop(int shopIndex)
     {
         string shopToOpen = "";
 

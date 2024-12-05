@@ -11,7 +11,7 @@ public class GoblinTinkerer : BaseMerchant
 
         base.GetChat(npc, ref chat);
 
-        var dialog = new List<string>();
+        List<string> dialog = new List<string>();
         Utils.QuestKills(dialog, "Zombie", Utils.Kills(NPCID.Zombie), 100);
         Utils.QuestKills(dialog, "Jellyfish", Utils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]), 100);
         Utils.QuestKills(dialog, "Skeleton", Utils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]), 1);

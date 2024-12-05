@@ -117,27 +117,13 @@ public class ShopMerchant : Shop
 
     private void Pickaxe()
     {
+        if (GenVars.ironBar > 0)
         {
-            if (GenVars.copperBar > 0)
-            {
-                ReplaceItem(ItemID.CopperPickaxe);
-            }
-            else
-            {
-                ReplaceItem(ItemID.TinPickaxe);
-            }
+            ReplaceItem(ItemID.IronPickaxe);
         }
-
-        if (NPC.downedSlimeKing)
+        else
         {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronPickaxe);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadPickaxe);
-            }
+            ReplaceItem(ItemID.LeadPickaxe);
         }
 
         if (NPC.downedBoss1)
@@ -227,32 +213,19 @@ public class ShopMerchant : Shop
                     break;
             }
         }
+
         NextSlot++;
     }
 
     private void Axe()
     {
+        if (GenVars.ironBar > 0)
         {
-            if (GenVars.copperBar > 0)
-            {
-                ReplaceItem(ItemID.CopperAxe);
-            }
-            else
-            {
-                ReplaceItem(ItemID.TinAxe);
-            }
+            ReplaceItem(ItemID.IronAxe);
         }
-
-        if (NPC.downedSlimeKing)
+        else
         {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronAxe);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadAxe);
-            }
+            ReplaceItem(ItemID.LeadAxe);
         }
 
         if (NPC.downedBoss1)
@@ -346,25 +319,13 @@ public class ShopMerchant : Shop
 
     private void Hammer()
     {
-        if (GenVars.copperBar > 0)
+        if (GenVars.ironBar > 0)
         {
-            ReplaceItem(ItemID.CopperHammer);
+            ReplaceItem(ItemID.IronHammer);
         }
         else
         {
-            ReplaceItem(ItemID.TinHammer);
-        }
-
-        if (NPC.downedSlimeKing)
-        {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronHammer);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadHammer);
-            }
+            ReplaceItem(ItemID.LeadHammer);
         }
 
         if (NPC.downedBoss1)
@@ -1669,6 +1630,7 @@ public class ShopMerchant : Shop
     private void Gear()
     {
         AddItem(ItemID.Sickle);
+
         if (!Main.hardMode)
         {
             AddItem(ItemID.BugNet);
@@ -1684,6 +1646,7 @@ public class ShopMerchant : Shop
         Helmet();
         Breastplate();
         ShopGreaves();
+
         switch (Utils.GetPlayerClass())
         {
             case "melee":
@@ -1711,6 +1674,7 @@ public class ShopMerchant : Shop
                 ThrowerWep();
                 break;
         }
+
         HealPotion();
         ManaPotion();
         Torches();

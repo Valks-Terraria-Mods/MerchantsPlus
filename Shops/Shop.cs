@@ -29,7 +29,7 @@ public abstract class Shop
         // "Object reference not set to an instance of an object"
         Main.SetNPCShopIndex(1);
 
-        var npc = Main.LocalPlayer.TalkNPC;
+        NPC npc = Main.LocalPlayer.TalkNPC;
 
         // For future reference this code was updated from
         // https://github.com/tModLoader/tModLoader/blob/e6caaaf678efd2a69deece4d72fdaecc4391bd26/patches/tModLoader/Terraria/ModLoader/NPCLoader.cs#L1192
