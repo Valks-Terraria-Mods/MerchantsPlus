@@ -1,34 +1,34 @@
-﻿namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Shops;
 
 public class ShopStylist : Shop
 {
     public override string[] Shops =>
     [
-        "Hair Dyes", 
-        "Overworld", 
-        "Underworld", 
-        "Desert", 
-        "Snow", 
-        "Jungle", 
+        "Hair Dyes",
+        "Overworld",
+        "Underworld",
+        "Desert",
+        "Snow",
+        "Jungle",
         "Ocean",
-        "Corruption", 
-        "Crimson", 
-        "Hallow", 
-        "Space", 
-        "Mushroom", 
-        "Dungeon", 
-        "Bloodmoon", 
-        "Eclipse", 
+        "Corruption",
+        "Crimson",
+        "Hallow",
+        "Space",
+        "Mushroom",
+        "Dungeon",
+        "Bloodmoon",
+        "Eclipse",
         "Goblin Army",
-        "Old Ones Army", 
-        "Frost Legion", 
-        "Pumpkin Moon", 
-        "Frost Moon", 
-        "Pirate Invasion", 
+        "Old Ones Army",
+        "Frost Legion",
+        "Pumpkin Moon",
+        "Frost Moon",
+        "Pirate Invasion",
         "Martian Madness",
-        "Solar Zone", 
-        "Vortex Zone", 
-        "Nebula Zone", 
+        "Solar Zone",
+        "Vortex Zone",
+        "Nebula Zone",
         "Stardust Zone"
     ];
 

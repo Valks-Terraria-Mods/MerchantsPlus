@@ -1,17 +1,17 @@
 using Terraria.WorldBuilding;
 
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public class ShopGoblinTinkerer : Shop
 {
-    public override string[] Shops => [ 
-        "Movement", 
-        "Informational", 
-        "Combat", 
+    public override string[] Shops => [
+        "Movement",
+        "Informational",
+        "Combat",
         "Health and Mana",
-        "Immunity", 
-        "Defensive", 
-        "Special", 
+        "Immunity",
+        "Defensive",
+        "Special",
         "Miscellaneous" ];
 
     public override void OpenShop(string shop)

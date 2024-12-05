@@ -1,3 +1,4 @@
+using MerchantsPlus.ModDefs;
 using System.Linq;
 using System.Reflection;
 
@@ -13,6 +14,32 @@ public static class ExtensionsString
 
 public static class Utils
 {
+    public static void SetModValues(object instance, Mod mod)
+    {
+        Utils.SetPropValues<MagicStorage, ModNPC>(instance, (string name) => Utils.TryGetNPC(mod, name));
+        Utils.SetPropValues<MagicStorage, ModItem>(instance, (string name) => Utils.TryGetItem(mod, name));
+    }
+
+    public static ModNPC TryGetNPC(Mod mod, string name)
+    {
+        if (mod.TryFind(name, out ModNPC npc))
+        {
+            return npc;
+        }
+
+        return null;
+    }
+
+    public static ModItem TryGetItem(Mod mod, string name)
+    {
+        if (mod.TryFind(name, out ModItem item))
+        {
+            return item;
+        }
+
+        return null;
+    }
+
     /// <summary>
     /// <para>
     /// Loop through all the properties of type 'PropType' in a class where
@@ -318,7 +345,8 @@ public static class Utils
                 { // Take the gold. (1 is 1 copper) (100 is 1 silver) (1000 is 1 gold)
                     if (!Main.LocalPlayer.HasItem(item))
                     {
-                        Item.NewItem(NPC.GetSource_NaturalSpawn(), npc.position, item);
+                        _ = Item.NewItem(NPC.GetSource_NaturalSpawn(), npc.position, item);
+
                         if (price <= 0)
                         {
                             return moneyDialog;

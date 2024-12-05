@@ -1,10 +1,10 @@
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public class ShopNurse : Shop
 {
     public override string[] Shops =>
     [
-        "Life", 
+        "Life",
         "Potions"
     ];
 

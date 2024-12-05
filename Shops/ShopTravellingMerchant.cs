@@ -1,4 +1,4 @@
-﻿namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Shops;
 
 public class ShopTravellingMerchant : Shop
 {

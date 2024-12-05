@@ -1,13 +1,13 @@
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public class ShopClothier : Shop
 {
-    public override string[] Shops => [ 
-        "Clothing", 
-        "Boss Masks", 
-        "Vanity I", 
-        "Vanity II", 
-        "Vanity III", 
+    public override string[] Shops => [
+        "Clothing",
+        "Boss Masks",
+        "Vanity I",
+        "Vanity II",
+        "Vanity III",
         "Vanity IV" ];
 
     public override void OpenShop(string shop)

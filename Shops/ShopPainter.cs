@@ -1,12 +1,12 @@
-﻿namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Shops;
 
 public class ShopPainter : Shop
 {
-    public override string[] Shops => [ 
-        "Tools", 
-        "Paint", 
-        "Wallpaper", 
-        "Paintings I", 
+    public override string[] Shops => [
+        "Tools",
+        "Paint",
+        "Wallpaper",
+        "Paintings I",
         "Paintings II" ];
 
     public override void OpenShop(string shop)

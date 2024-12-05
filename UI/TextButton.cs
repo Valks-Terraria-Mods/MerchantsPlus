@@ -9,7 +9,6 @@ public class TextButton : UIPanel
 {
     public bool visible = true;
     private static readonly Color COLOR_BORDER = Color.Transparent;
-    private static readonly Color COLOR_BORDER_HIGHLIGHT = Color.Black;
     private readonly UIText uitext;
 
     public TextButton(string text, float text_size)

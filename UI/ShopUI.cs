@@ -1,4 +1,4 @@
-﻿using MerchantsPlus.Merchants;
+﻿using MerchantsPlus.Shops;
 using Terraria.GameContent.UI.Elements;
 
 namespace MerchantsPlus.UI;

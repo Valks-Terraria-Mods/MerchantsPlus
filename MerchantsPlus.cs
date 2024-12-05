@@ -6,26 +6,26 @@ global using Terraria.ModLoader;
 global using Terraria.UI;
 global using Terraria.ID;
 global using System;
-
-using MerchantsPlus.Merchants;
+using MerchantsPlus.Shops;
+using MerchantsPlus.ModDefs;
 
 namespace MerchantsPlus;
 
 public class MerchantsPlus : Mod
 {
-    public static MagicStorageDefs MagicStorageDefs { get; private set; }
-
-    public static bool IsMagicStorageLoaded()
-    {
-        return MagicStorageDefs != null;
-    }
+    public static MagicStorage MagicStorage { get; private set; }
 
     public override void Load()
     {
         if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
         {
-            MagicStorageDefs = new(magicStorage);
-            AddShopForModdedNPC(MagicStorageDefs.Golem.Type, new ShopGolem());
+            MagicStorage = new(magicStorage);
+            AddShopForModdedNPC(MagicStorage.Golem.Type, new ShopGolem());
+        }
+
+        if (ModLoader.TryGetMod("Calamity", out Mod calamity))
+        {
+
         }
     }
 

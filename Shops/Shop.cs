@@ -1,6 +1,6 @@
 ﻿using Terraria.Audio;
 
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public abstract class Shop
 {

@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public class ShopTaxCollector : Shop
 {

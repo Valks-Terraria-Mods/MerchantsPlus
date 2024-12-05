@@ -1,6 +1,6 @@
-﻿namespace MerchantsPlus;
+﻿namespace MerchantsPlus.ModDefs;
 
-public class MagicStorageDefs
+public class MagicStorage
 {
     // ModNPC
     public static ModNPC Golem { get; private set; }
@@ -29,38 +29,11 @@ public class MagicStorageDefs
     public static ModItem UpgradeLuminite { get; private set; }
     public static ModItem UpgradeTerra { get; private set; }
 
-    private readonly Mod magicStorage;
-
-    public MagicStorageDefs(Mod magicStorage)
+    public MagicStorage(Mod magicStorage)
     {
-        this.magicStorage = magicStorage;
-
-        if (magicStorage == null)
+        if (magicStorage != null)
         {
-            return;
+            Utils.SetModValues(this, magicStorage);
         }
-
-        Utils.SetPropValues<MagicStorageDefs, ModNPC>(this, TryGetNPC);
-        Utils.SetPropValues<MagicStorageDefs, ModItem>(this, TryGetItem);
-    }
-
-    private ModNPC TryGetNPC(string name)
-    {
-        if (magicStorage.TryFind(name, out ModNPC npc))
-        {
-            return npc;
-        }
-
-        return null;
-    }
-
-    private ModItem TryGetItem(string name)
-    {
-        if (magicStorage.TryFind(name, out ModItem item))
-        {
-            return item;
-        }
-
-        return null;
     }
 }

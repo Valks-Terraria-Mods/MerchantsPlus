@@ -1,13 +1,13 @@
-﻿namespace MerchantsPlus.Merchants;
+﻿namespace MerchantsPlus.Shops;
 
 public class ShopDyeTrader : Shop
 {
-    public override string[] Shops => [ 
-        "Basic", 
-        "Bright", 
-        "Gradient", 
-        "Compound", 
-        "Strange", 
+    public override string[] Shops => [
+        "Basic",
+        "Bright",
+        "Gradient",
+        "Compound",
+        "Strange",
         "Lunar" ];
 
     public override void OpenShop(string shop)

@@ -1,7 +1,6 @@
-﻿using MerchantsPlus.Merchants;
-using Magic = MerchantsPlus.MagicStorageDefs;
+﻿using Magic = MerchantsPlus.ModDefs.MagicStorage;
 
-namespace MerchantsPlus;
+namespace MerchantsPlus.Shops;
 
 public class ShopGolem : Shop
 {
@@ -21,7 +20,7 @@ public class ShopGolem : Shop
                     AddItem(Magic.StorageAccess.Type, Utils.Coins());
                     AddItem(Magic.StorageUnitTiny.Type, Utils.Coins());
                 }
-                
+
                 AddItem(Magic.StorageUnit.Type, Utils.Coins(), 1);
 
                 if (Utils.Progression() >= 2)
@@ -43,12 +42,12 @@ public class ShopGolem : Shop
                     AddItem(Magic.UpgradeHellstone.Type, Utils.Coins());
                     AddItem(Magic.StorageUnitHellstone.Type, Utils.Coins());
                 }
-                
+
                 if (Utils.Progression() >= 4)
                 {
                     AddItem(Magic.StorageUnitBlueChlorophyte.Type, Utils.Coins());
                 }
-                
+
                 if (Utils.Progression() >= 5)
                 {
                     AddItem(Magic.UpgradeHallowed.Type, Utils.Coins());

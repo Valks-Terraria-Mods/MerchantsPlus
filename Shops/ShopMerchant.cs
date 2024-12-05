@@ -1,13 +1,13 @@
 using Terraria.WorldBuilding;
 
-namespace MerchantsPlus.Merchants;
+namespace MerchantsPlus.Shops;
 
 public class ShopMerchant : Shop
 {
-    public override string[] Shops => [ 
-        "Gear", 
-        "Ores", 
-        "Pets", 
+    public override string[] Shops => [
+        "Gear",
+        "Ores",
+        "Pets",
         "Mounts" ];
 
     public override void OpenShop(string shop)
@@ -960,25 +960,13 @@ public class ShopMerchant : Shop
 
     private void Shortswords()
     {
-        if (GenVars.copperBar > 0)
+        if (GenVars.ironBar > 0)
         {
-            ReplaceItem(ItemID.CopperShortsword);
+            ReplaceItem(ItemID.IronShortsword);
         }
         else
         {
-            ReplaceItem(ItemID.TinShortsword);
-        }
-
-        if (NPC.downedSlimeKing)
-        {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronShortsword);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadShortsword);
-            }
+            ReplaceItem(ItemID.LeadShortsword);
         }
 
         if (NPC.downedBoss1)
@@ -1010,25 +998,13 @@ public class ShopMerchant : Shop
 
     private void Broadswords()
     {
-        if (GenVars.copperBar > 0)
+        if (GenVars.ironBar > 0)
         {
-            ReplaceItem(ItemID.CopperBroadsword);
+            ReplaceItem(ItemID.IronBroadsword);
         }
         else
         {
-            ReplaceItem(ItemID.TinBroadsword);
-        }
-
-        if (NPC.downedSlimeKing)
-        {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronBroadsword);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadBroadsword);
-            }
+            ReplaceItem(ItemID.LeadBroadsword);
         }
 
         if (NPC.downedBoss1)
@@ -1112,25 +1088,13 @@ public class ShopMerchant : Shop
 
     private void Bows()
     {
-        if (GenVars.copperBar > 0)
+        if (GenVars.ironBar > 0)
         {
-            ReplaceItem(ItemID.CopperBow);
+            ReplaceItem(ItemID.IronBow);
         }
         else
         {
-            ReplaceItem(ItemID.TinBow);
-        }
-
-        if (NPC.downedSlimeKing)
-        {
-            if (GenVars.ironBar > 0)
-            {
-                ReplaceItem(ItemID.IronBow);
-            }
-            else
-            {
-                ReplaceItem(ItemID.LeadBow);
-            }
+            ReplaceItem(ItemID.LeadBow);
         }
 
         if (NPC.downedBoss1)

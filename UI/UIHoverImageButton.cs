@@ -9,14 +9,9 @@ namespace MerchantsPlus.UI;
 // Inheriting is a great tool for UI design.
 // By inheriting, we get the Image drawing, MouseOver sound, and fading for free from UIImageButton
 // We've added some code to allow the Button to show a text tooltip while hovered.
-public class UIHoverImageButton : UIImageButton
+public class UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : UIImageButton(texture)
 {
-    public string HoverText;
-
-    public UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : base(texture)
-    {
-        HoverText = hoverText;
-    }
+    public string HoverText = hoverText;
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
