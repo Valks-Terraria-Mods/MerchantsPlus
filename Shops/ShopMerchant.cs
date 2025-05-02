@@ -1277,6 +1277,11 @@ public class ShopMerchant : Shop
     {
         ReplaceItem(ItemID.SlimeStaff);
 
+        if (NPC.downedClown)
+        {
+            ReplaceItem(ItemID.VampireFrogStaff);
+        }
+
         if (NPC.downedQueenBee)
         {
             ReplaceItem(ItemID.HornetStaff);
