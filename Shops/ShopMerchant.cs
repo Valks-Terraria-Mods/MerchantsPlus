@@ -266,7 +266,7 @@ public class ShopMerchant : Shop
 
         if (NPC.downedBoss3)
         {
-            ReplaceItem(ItemID.MoltenHamaxe);
+            // Could put the molten hamaxe here but merchant already sells it as a pickaxe
         }
 
         if (Utils.DownedMechBosses() == 1)
@@ -491,7 +491,7 @@ public class ShopMerchant : Shop
                     break;
 
                 case "summoner":
-                    ReplaceItem(ItemID.BeeGreaves);
+                    ReplaceItem(ItemID.BeeHeadgear);
                     break;
             }
         }
