@@ -22,6 +22,6 @@ public class ShopWizard : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(7);
+        Inv.SetupShop(ShopType.Wizard);
     }
 }

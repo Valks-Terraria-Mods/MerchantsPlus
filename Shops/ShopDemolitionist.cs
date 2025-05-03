@@ -12,30 +12,27 @@ public class ShopDemolitionist : Shop
         {
             AddItem(ItemID.MiningPotion, Utils.UniversalPotionCost);
             AddItem(ItemID.NightOwlPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.ShinePotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.SpelunkerPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.StinkPotion, Utils.UniversalPotionCost);
-
             return;
         }
 
         if (shop == "Explosives")
         {
             AddItem(ItemID.Grenade);
+
             if (NPC.AnyNPCs(NPCID.PartyGirl))
             {
                 AddItem(ItemID.PartyGirlGrenade);
             }
 
-            if (NPC.downedSlimeKing)
+            if (Progression.SlimeKing)
             {
                 AddItem(ItemID.Bomb);
             }
 
-            if (Utils.DownedEyeOfCthulhu())
+            if (Progression.EyeOfCthulhu)
             {
                 AddItem(ItemID.Dynamite);
             }
@@ -45,17 +42,17 @@ public class ShopDemolitionist : Shop
                 AddItem(ItemID.BombFish);
             }
 
-            if (NPC.downedQueenBee)
+            if (Progression.QueenBee)
             {
                 AddItem(ItemID.Beenade);
             }
 
-            if (Utils.DownedSkeletron())
+            if (Progression.Skeletron)
             {
                 AddItem(ItemID.ExplosiveBunny);
             }
 
-            if (Main.hardMode)
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.Explosives);
                 AddItem(ItemID.StickyGrenade);
@@ -66,12 +63,12 @@ public class ShopDemolitionist : Shop
                 AddItem(ItemID.BouncyDynamite);
             }
 
-            if (NPC.downedClown)
+            if (Progression.BloodMoon)
             {
                 AddItem(ItemID.ExplosiveJackOLantern);
             }
 
-            if (NPC.downedMoonlord)
+            if (Progression.Moonlord)
             {
                 AddItem(ItemID.LandMine);
             }
@@ -79,6 +76,6 @@ public class ShopDemolitionist : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(4);
+        Inv.SetupShop(ShopType.Demolitionist);
     }
 }

@@ -21,15 +21,14 @@ public class ShopPirate : Shop
             AddItem(ItemID.Sail);
             AddItem(ItemID.ParrotCracker);
             AddItem(ItemID.BunnyCannon);
-
-            AddItem(ItemID.RangerEmblem, Utils.Coins(0, 0, 0, 1));
-            AddItem(ItemID.SorcererEmblem, Utils.Coins(0, 0, 0, 1));
-            AddItem(ItemID.SummonerEmblem, Utils.Coins(0, 0, 0, 1));
-            AddItem(ItemID.WarriorEmblem, Utils.Coins(0, 0, 0, 1));
+            AddItem(ItemID.RangerEmblem, Coins.Platinum());
+            AddItem(ItemID.SorcererEmblem, Coins.Platinum());
+            AddItem(ItemID.SummonerEmblem, Coins.Platinum());
+            AddItem(ItemID.WarriorEmblem, Coins.Platinum());
             return;
         }
 
         // Default Shop
-        Inv.SetupShop(17);
+        Inv.SetupShop(ShopType.Pirate);
     }
 }

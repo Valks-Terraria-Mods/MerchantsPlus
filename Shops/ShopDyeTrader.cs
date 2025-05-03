@@ -157,11 +157,10 @@ public class ShopDyeTrader : Shop
             AddItem(ItemID.BlackDye, Utils.UniversalDyeCost);
             AddItem(ItemID.BrownDye, Utils.UniversalDyeCost);
             AddItem(ItemID.SilverDye, Utils.UniversalDyeCost);
-
             return;
         }
 
         // Default Shop
-        Inv.SetupShop(12);
+        Inv.SetupShop(ShopType.DyeTrader);
     }
 }

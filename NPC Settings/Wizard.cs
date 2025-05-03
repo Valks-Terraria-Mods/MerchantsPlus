@@ -27,9 +27,9 @@ public class Wizard : BaseMerchant
             _ when NPC.downedFishron => ProjectileID.RainbowFront,
             _ when NPC.downedGolemBoss => ProjectileID.RainbowBack,
             _ when NPC.downedPlantBoss => ProjectileID.RainbowRodBullet,
-            _ when Utils.DownedMechBosses() == 3 => ProjectileID.MagnetSphereBall,
-            _ when Utils.DownedMechBosses() == 2 => ProjectileID.BallofFrost,
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BallofFire,
+            _ when Progression.DownedMechs(3) => ProjectileID.MagnetSphereBall,
+            _ when Progression.DownedMechs(2) => ProjectileID.BallofFrost,
+            _ when Progression.DownedMechs(1) => ProjectileID.BallofFire,
             _ => ProjectileID.RainbowCrystalExplosion
         };
     }

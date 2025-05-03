@@ -20,7 +20,7 @@ public class ItemsArmour : BaseItem
             case ItemID.NebulaLeggings:
             case ItemID.NebulaBreastplate:
             case ItemID.NebulaHelmet:
-                item.shopCustomPrice = Utils.Coins(0, 0, 20);
+                item.shopCustomPrice = Coins.Gold(20);
                 break;
             case ItemID.PalmWoodGreaves:
             case ItemID.PalmWoodBreastplate:
@@ -49,7 +49,7 @@ public class ItemsArmour : BaseItem
             case ItemID.WoodGreaves:
             case ItemID.WoodBreastplate:
             case ItemID.WoodHelmet:
-                item.shopCustomPrice = Utils.Coins(0, 5);
+                item.shopCustomPrice = Coins.Silver(5);
                 break;
         }
     }

@@ -13,7 +13,8 @@ public class ShopTravellingMerchant : Shop
             AddItem(ItemID.ShadowOrb);
             AddItem(ItemID.MagicLantern);
             AddItem(ItemID.DD2PetGhost);
-            if (Main.hardMode)
+
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.SuspiciousLookingTentacle);
             }
@@ -22,6 +23,6 @@ public class ShopTravellingMerchant : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(19);
+        Inv.SetupShop(ShopType.TravellingMerchant);
     }
 }

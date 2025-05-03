@@ -18,13 +18,13 @@ public class ShopSteampunker : Shop
             AddItem(ItemID.LogicGate_NXOR);
             AddItem(ItemID.LogicGate_OR);
             AddItem(ItemID.LogicGate_XOR);
-            AddItem(ItemID.LogicSensor_Above, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Honey, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Lava, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Liquid, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Moon, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Sun, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.LogicSensor_Water, Utils.Coins(0, 0, 1));
+            AddItem(ItemID.LogicSensor_Above, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Honey, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Lava, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Liquid, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Moon, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Sun, Coins.Gold());
+            AddItem(ItemID.LogicSensor_Water, Coins.Gold());
             return;
         }
 
@@ -53,6 +53,6 @@ public class ShopSteampunker : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(11);
+        Inv.SetupShop(ShopType.Steampunker);
     }
 }

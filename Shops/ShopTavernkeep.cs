@@ -26,21 +26,14 @@ public class ShopTavernkeep : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(21);
+        Inv.SetupShop(ShopType.TavernKeep);
     }
 
     private void Flameburst()
     {
         ReplaceItem(ItemID.DD2FlameburstTowerT1Popper);
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DD2FlameburstTowerT2Popper);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.DD2FlameburstTowerT3Popper);
-        }
+        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2FlameburstTowerT2Popper);
+        ReplaceItem(Progression.Golem, ItemID.DD2FlameburstTowerT3Popper);
 
         NextSlot++;
     }
@@ -48,15 +41,8 @@ public class ShopTavernkeep : Shop
     private void Ballista()
     {
         ReplaceItem(ItemID.DD2BallistraTowerT1Popper);
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DD2BallistraTowerT2Popper);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.DD2BallistraTowerT3Popper);
-        }
+        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2BallistraTowerT2Popper);
+        ReplaceItem(Progression.Golem, ItemID.DD2BallistraTowerT3Popper);
 
         NextSlot++;
     }
@@ -64,15 +50,8 @@ public class ShopTavernkeep : Shop
     private void Lightning()
     {
         ReplaceItem(ItemID.DD2LightningAuraT1Popper);
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DD2LightningAuraT2Popper);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.DD2LightningAuraT3Popper);
-        }
+        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2LightningAuraT2Popper);
+        ReplaceItem(Progression.Golem, ItemID.DD2LightningAuraT3Popper);
 
         NextSlot++;
     }
@@ -80,15 +59,8 @@ public class ShopTavernkeep : Shop
     private void Explosive()
     {
         ReplaceItem(ItemID.DD2ExplosiveTrapT1Popper);
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DD2ExplosiveTrapT2Popper);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.DD2ExplosiveTrapT3Popper);
-        }
+        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2ExplosiveTrapT2Popper);
+        ReplaceItem(Progression.Golem, ItemID.DD2ExplosiveTrapT3Popper);
 
         NextSlot++;
     }

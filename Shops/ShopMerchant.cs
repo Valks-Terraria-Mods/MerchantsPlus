@@ -31,86 +31,31 @@ public class ShopMerchant : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(1);
+        Inv.SetupShop(ShopType.Merchant);
     }
 
     private void Wings()
     {
         if (!Config.Instance.DisablePrehardmodeWings)
         {
-            // Creative wings are fledgling wings
-            ReplaceItem(ItemID.CreativeWings, Utils.Coins(0, 0, 3, 0));
+            ReplaceItem(ItemID.CreativeWings, Coins.Gold(3)); // Fledgling wings
 
-            if (NPC.downedSlimeKing)
-            {
-                ReplaceItem(ItemID.AngelWings, Utils.Coins(0, 0, 10, 0));
-            }
-
-            if (Utils.DownedEyeOfCthulhu())
-            {
-                ReplaceItem(ItemID.LeafWings, Utils.Coins(0, 0, 10, 0));
-            }
-
-            if (NPC.downedGoblins)
-            {
-                ReplaceItem(ItemID.HarpyWings, Utils.Coins(0, 0, 10, 0));
-            }
-
-            if (Utils.DownedBrainOfCthulhu())
-            {
-                ReplaceItem(ItemID.FrozenWings, Utils.Coins(0, 0, 10, 0));
-            }
-
-            if (NPC.downedQueenBee)
-            {
-                ReplaceItem(ItemID.FinWings, Utils.Coins(0, 0, 10, 0));
-            }
-
-            if (Utils.DownedSkeletron())
-            {
-                ReplaceItem(ItemID.FairyWings, Utils.Coins(0, 0, 10, 0));
-            }
+            ReplaceItem(Progression.SlimeKing,      ItemID.AngelWings,  Coins.Gold(10));
+            ReplaceItem(Progression.EyeOfCthulhu,   ItemID.LeafWings,   Coins.Gold(10));
+            ReplaceItem(Progression.GoblinArmy,     ItemID.HarpyWings,  Coins.Gold(10));
+            ReplaceItem(Progression.BrainOfCthulhu, ItemID.FrozenWings, Coins.Gold(10));
+            ReplaceItem(Progression.QueenBee,       ItemID.FinWings,    Coins.Gold(10));
+            ReplaceItem(Progression.Skeletron,      ItemID.FairyWings,  Coins.Gold(10));
         }
 
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.ArkhalisWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.LeinforsWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (NPC.downedFishron)
-        {
-            ReplaceItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 1));
-        }
+        ReplaceItem(Progression.Hardmode,           ItemID.ArkhalisWings, Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(1), ItemID.DTownsWings,   Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(2), ItemID.CrownosWings,  Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(3), ItemID.CenxsWings,    Coins.Platinum());
+        ReplaceItem(Progression.Plantera,           ItemID.JimsWings,     Coins.Platinum());
+        ReplaceItem(Progression.Golem,              ItemID.LeinforsWings, Coins.Platinum());
+        ReplaceItem(Progression.Fishron,            ItemID.FishronWings,  Coins.Platinum());
+        ReplaceItem(Progression.Moonlord,           ItemID.WingsStardust, Coins.Platinum());
 
         NextSlot++;
     }
@@ -126,7 +71,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadPickaxe);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -138,7 +83,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -150,7 +95,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -162,53 +107,30 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.MoltenPickaxe);
-        }
+        ReplaceItem(Progression.Skeletron,          ItemID.MoltenPickaxe);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltPickaxe);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilPickaxe);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumPickaxe);
+        ReplaceItem(Progression.Plantera,           ItemID.ChlorophytePickaxe);
+        ReplaceItem(Progression.Golem,              ItemID.Picksaw);
 
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.CobaltPickaxe);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.MythrilPickaxe);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.TitaniumPickaxe);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.ChlorophytePickaxe);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.Picksaw);
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlarePickaxe);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.VortexPickaxe);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.NebulaPickaxe);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.StardustPickaxe);
                     break;
             }
@@ -228,7 +150,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadAxe);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -240,7 +162,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -252,7 +174,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -264,52 +186,28 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
-        {
-            // Could put the molten hamaxe here but merchant already sells it as a pickaxe
-        }
+        ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltWaraxe);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilWaraxe);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumWaraxe);
+        ReplaceItem(Progression.Plantera,           ItemID.ChlorophyteGreataxe);
 
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.CobaltWaraxe);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.MythrilWaraxe);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.TitaniumWaraxe);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.ChlorophyteGreataxe);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.LunarHamaxeSolar);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.LunarHamaxeVortex);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.LunarHamaxeNebula);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.LunarHamaxeStardust);
                     break;
             }
@@ -328,7 +226,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadHammer);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -340,7 +238,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -352,7 +250,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -364,54 +262,32 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.MoltenHamaxe);
-        }
+        ReplaceItem(Progression.Skeletron,          ItemID.MoltenHamaxe);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.Hammush);
+        ReplaceItem(Progression.Plantera,           ItemID.ChlorophyteJackhammer);
 
-        if (Utils.DownedMechBosses() == 1)
-        {
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.Hammush);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.ChlorophyteJackhammer);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.LunarHamaxeSolar);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.LunarHamaxeVortex);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.LunarHamaxeNebula);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.LunarHamaxeStardust);
                     break;
             }
         }
+
         NextSlot++;
     }
 
@@ -426,7 +302,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.TinHelmet);
         }
 
-        if (NPC.downedSlimeKing)
+        if (Progression.SlimeKing)
         {
             if (GenVars.ironBar > 0)
             {
@@ -438,7 +314,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -450,7 +326,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -462,7 +338,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -474,141 +350,138 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
+        if (Progression.Skeletron)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenHelmet);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.NecroHelmet);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.JungleHat);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.BeeHeadgear);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 1)
+        if (Progression.DownedMechs(1))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.CobaltHelmet);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.CobaltMask);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.CobaltHat);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpiderMask);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 2)
+        if (Progression.DownedMechs(2))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.MythrilHelmet);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.MythrilHat);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.MythrilHood);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpookyHelmet);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 3)
+        if (Progression.DownedMechs(3))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.TitaniumMask);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.TitaniumHelmet);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.TitaniumHeadgear);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiMask);
                     break;
             }
         }
 
-        if (NPC.downedPlantBoss)
+        if (Progression.Plantera)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.ChlorophyteMask);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.ChlorophyteHelmet);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.ChlorophyteHeadgear);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiMask);
                     break;
             }
         }
 
-        if (NPC.downedGolemBoss)
-        {
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareHelmet);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.VortexHelmet);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.NebulaHelmet);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.StardustHelmet);
                     break;
             }
         }
+
         NextSlot++;
     }
 
@@ -623,7 +496,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.TinChainmail);
         }
 
-        if (NPC.downedSlimeKing)
+        if (Progression.SlimeKing)
         {
             if (GenVars.ironBar > 0)
             {
@@ -635,7 +508,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -647,7 +520,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -659,7 +532,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -671,117 +544,114 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
+        if (Progression.Skeletron)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenBreastplate);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.NecroBreastplate);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.JungleShirt);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.BeeBreastplate);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 1)
+        if (Progression.DownedMechs(1))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.CobaltBreastplate);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpiderBreastplate);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 2)
+        if (Progression.DownedMechs(2))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.MythrilChainmail);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpookyBreastplate);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 3)
+        if (Progression.DownedMechs(3))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.TitaniumBreastplate);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiShirt);
                     break;
             }
         }
 
-        if (NPC.downedPlantBoss)
+        if (Progression.Plantera)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.ChlorophytePlateMail);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiShirt);
                     break;
             }
         }
 
-        if (NPC.downedGolemBoss)
-        {
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareBreastplate);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.VortexBreastplate);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.NebulaBreastplate);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.StardustBreastplate);
                     break;
             }
         }
+
         NextSlot++;
     }
 
@@ -796,7 +666,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.TinGreaves);
         }
 
-        if (NPC.downedSlimeKing)
+        if (Progression.SlimeKing)
         {
             if (GenVars.ironBar > 0)
             {
@@ -808,7 +678,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -820,7 +690,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -832,7 +702,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -844,113 +714,109 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss3)
+        if (Progression.Skeletron)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenGreaves);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.NecroGreaves);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.JunglePants);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.BeeGreaves);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 1)
+        if (Progression.DownedMechs(1))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.CobaltLeggings);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpiderGreaves);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 2)
+        if (Progression.DownedMechs(2))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.MythrilGreaves);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.SpookyLeggings);
                     break;
             }
         }
 
-        if (Utils.DownedMechBosses() == 3)
+        if (Progression.DownedMechs(3))
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.TitaniumLeggings);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiPants);
                     break;
             }
         }
 
-        if (NPC.downedPlantBoss)
+        if (Progression.Plantera)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
-                case "ranged":
-                case "mage":
+                case PlayerClass.Melee:
+                case PlayerClass.Ranger:
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.ChlorophyteGreaves);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.TikiPants);
                     break;
             }
         }
 
-        if (NPC.downedGolemBoss)
-        {
-        }
-
-        if (NPC.downedMoonlord)
+        if (Progression.Moonlord)
         {
             switch (Utils.GetPlayerClass())
             {
-                case "melee":
+                case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareLeggings);
                     break;
 
-                case "ranged":
+                case PlayerClass.Ranger:
                     ReplaceItem(ItemID.VortexLeggings);
                     break;
 
-                case "mage":
+                case PlayerClass.Mage:
                     ReplaceItem(ItemID.NebulaLeggings);
                     break;
 
-                case "summoner":
+                case PlayerClass.Summoner:
                     ReplaceItem(ItemID.StardustLeggings);
                     break;
             }
@@ -969,7 +835,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadShortsword);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -981,7 +847,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -1007,7 +873,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadBroadsword);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -1019,7 +885,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -1031,7 +897,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -1043,45 +909,14 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
-        {
-            ReplaceItem(ItemID.Arkhalis);
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.BeeKeeper);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.BreakerBlade);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.CobaltSword);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.MythrilSword);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.TitaniumSword);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.Seedler);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.TerraBlade);
-        }
+        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.Arkhalis);
+        ReplaceItem(Progression.QueenBee,                 ItemID.BeeKeeper);
+        ReplaceItem(Progression.Hardmode,                 ItemID.BreakerBlade);
+        ReplaceItem(Progression.DownedMechs(1),       ItemID.CobaltSword);
+        ReplaceItem(Progression.DownedMechs(2),       ItemID.MythrilSword);
+        ReplaceItem(Progression.DownedMechs(3),       ItemID.TitaniumSword);
+        ReplaceItem(Progression.Plantera,                 ItemID.Seedler);
+        ReplaceItem(Progression.Moonlord,                 ItemID.TerraBlade);
 
         NextSlot++;
     }
@@ -1097,7 +932,7 @@ public class ShopMerchant : Shop
             ReplaceItem(ItemID.LeadBow);
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -1109,7 +944,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedGoblins)
+        if (Progression.GoblinArmy)
         {
             if (GenVars.goldBar > 0)
             {
@@ -1121,7 +956,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.crimsonLeft)
             {
@@ -1133,45 +968,14 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.BeesKnees);
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.MoltenFury);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.Marrow);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.IceBow);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.DaedalusStormbow);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.ShadowFlameBow);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.DD2PhoenixBow);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.Phantasm);
-        }
+        ReplaceItem(Progression.QueenBee,           ItemID.BeesKnees);
+        ReplaceItem(Progression.Skeletron,          ItemID.MoltenFury);
+        ReplaceItem(Progression.Hardmode,           ItemID.Marrow);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.IceBow);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.DaedalusStormbow);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.ShadowFlameBow);
+        ReplaceItem(Progression.Plantera,           ItemID.DD2PhoenixBow);
+        ReplaceItem(Progression.Moonlord,           ItemID.Phantasm);
 
         NextSlot++;
     }
@@ -1180,95 +984,24 @@ public class ShopMerchant : Shop
     {
         ReplaceItem(ItemID.WandofSparking);
 
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.EmeraldStaff);
-        }
-
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.AmberStaff);
-        }
-
-        if (NPC.downedGoblins)
-        {
-            ReplaceItem(ItemID.DiamondStaff);
-        }
-
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.SpaceGun);
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.BookofSkulls);
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.DemonScythe);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.LaserRifle);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.SkyFracture);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.MagicDagger);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.FrostStaff);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.UnholyTrident);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.HeatRay);
-        }
-
-        if (NPC.downedFrost)
-        {
-            ReplaceItem(ItemID.Razorpine);
-        }
-
-        if (Utils.Kills(NPCID.DD2Betsy) > 0)
-        {
-            ReplaceItem(ItemID.ApprenticeStaffT3);
-        }
-
-        if (NPC.downedMartians)
-        {
-            ReplaceItem(ItemID.LaserMachinegun);
-        }
-
-        if (NPC.downedFishron)
-        {
-            ReplaceItem(ItemID.ChargedBlasterCannon);
-        }
-
-        if (NPC.downedAncientCultist)
-        {
-            ReplaceItem(ItemID.SpectreStaff);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.Phantasm);
-        }
+        ReplaceItem(Progression.SlimeKing,           ItemID.EmeraldStaff);
+        ReplaceItem(Progression.EyeOfCthulhu,        ItemID.AmberStaff);
+        ReplaceItem(Progression.GoblinArmy,          ItemID.DiamondStaff);
+        ReplaceItem(Progression.BrainOrEater,        ItemID.SpaceGun);
+        ReplaceItem(Progression.QueenBee,            ItemID.BookofSkulls);
+        ReplaceItem(Progression.Skeletron,           ItemID.DemonScythe);
+        ReplaceItem(Progression.Hardmode,            ItemID.LaserRifle);
+        ReplaceItem(Progression.DownedMechs(1),  ItemID.SkyFracture);
+        ReplaceItem(Progression.DownedMechs(2),  ItemID.MagicDagger);
+        ReplaceItem(Progression.DownedMechs(3),  ItemID.FrostStaff);
+        ReplaceItem(Progression.Plantera,            ItemID.UnholyTrident);
+        ReplaceItem(Progression.Golem,               ItemID.HeatRay);
+        ReplaceItem(NPC.downedFrost,                 ItemID.Razorpine);
+        ReplaceItem(Utils.Kills(NPCID.DD2Betsy) > 0, ItemID.ApprenticeStaffT3);
+        ReplaceItem(NPC.downedMartians,              ItemID.LaserMachinegun);
+        ReplaceItem(NPC.downedFishron,               ItemID.ChargedBlasterCannon);
+        ReplaceItem(NPC.downedAncientCultist,        ItemID.SpectreStaff);
+        ReplaceItem(Progression.Moonlord,            ItemID.Phantasm);
 
         NextSlot++;
     }
@@ -1276,66 +1009,18 @@ public class ShopMerchant : Shop
     private void SummonerWeapon()
     {
         ReplaceItem(ItemID.SlimeStaff);
-
-        if (NPC.downedClown)
-        {
-            ReplaceItem(ItemID.VampireFrogStaff);
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.HornetStaff);
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.ImpStaff);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.SpiderStaff);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.OpticStaff);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.PygmyStaff);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.XenoStaff);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.RavenStaff);
-        }
-
-        if (NPC.downedGolemBoss)
-        {
-            ReplaceItem(ItemID.PirateStaff);
-        }
-
-        if (NPC.downedFrost)
-        {
-            ReplaceItem(ItemID.TempestStaff);
-        }
-
-        if (NPC.downedAncientCultist)
-        {
-            ReplaceItem(ItemID.DeadlySphereStaff);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.StardustDragonStaff);
-        }
+        ReplaceItem(Progression.BloodMoon,          ItemID.VampireFrogStaff);
+        ReplaceItem(Progression.QueenBee,           ItemID.HornetStaff);
+        ReplaceItem(Progression.Skeletron,          ItemID.ImpStaff);
+        ReplaceItem(Progression.Hardmode,           ItemID.SpiderStaff);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.OpticStaff);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.PygmyStaff);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.XenoStaff);
+        ReplaceItem(Progression.Plantera,           ItemID.RavenStaff);
+        ReplaceItem(Progression.Golem,              ItemID.PirateStaff);
+        ReplaceItem(NPC.downedFrost,                ItemID.TempestStaff);
+        ReplaceItem(NPC.downedAncientCultist,       ItemID.DeadlySphereStaff);
+        ReplaceItem(Progression.Moonlord,           ItemID.StardustDragonStaff);
 
         NextSlot++;
     }
@@ -1344,160 +1029,53 @@ public class ShopMerchant : Shop
     {
         AddItem(ItemID.FuzzyCarrot, Utils.UniversalMountCost);
 
-        if (Utils.Kills(NPCID.KingSlime) >= 1)
-        {
-            AddItem(ItemID.SlimySaddle, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.EyeofCthulhu) >= 1)
-        {
-            AddItem(ItemID.HardySaddle, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.QueenBee) >= 1)
-        {
-            AddItem(ItemID.HoneyedGoggles, Utils.UniversalMountCost);
-        }
-
-        if (Main.hardMode)
-        {
-            AddItem(ItemID.AncientHorn, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.Retinazer) >= 1)
-        {
-            AddItem(ItemID.ReindeerBells, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.TheDestroyer) >= 1)
-        {
-            AddItem(ItemID.ScalyTruffle, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.SkeletronPrime) >= 1)
-        {
-            AddItem(ItemID.BrainScrambler, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.Plantera) >= 1)
-        {
-            AddItem(ItemID.BlessedApple, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.MartianSaucer) >= 1)
-        {
-            AddItem(ItemID.CosmicCarKey, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.DukeFishron) >= 1)
-        {
-            AddItem(ItemID.ShrimpyTruffle, Utils.UniversalMountCost);
-        }
-
-        if (Utils.Kills(NPCID.MoonLordCore) >= 1)
-        {
-            AddItem(ItemID.DrillContainmentUnit, Utils.UniversalMountCost);
-        }
+        AddItem(Utils.Kills(NPCID.KingSlime) >= 1,      ItemID.SlimySaddle,          Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.EyeofCthulhu) >= 1,   ItemID.HardySaddle,          Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.QueenBee) >= 1,       ItemID.HoneyedGoggles,       Utils.UniversalMountCost);
+        AddItem(Progression.Hardmode,                   ItemID.AncientHorn,          Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.Retinazer) >= 1,      ItemID.ReindeerBells,        Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.TheDestroyer) >= 1,   ItemID.ScalyTruffle,         Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.SkeletronPrime) >= 1, ItemID.BrainScrambler,       Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.Plantera) >= 1,       ItemID.BlessedApple,         Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.MartianSaucer) >= 1,  ItemID.CosmicCarKey,         Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.DukeFishron) >= 1,    ItemID.ShrimpyTruffle,       Utils.UniversalMountCost);
+        AddItem(Utils.Kills(NPCID.MoonLordCore) >= 1,   ItemID.DrillContainmentUnit, Utils.UniversalMountCost);
     }
 
     private void Pets()
     {
-        AddItem(ItemID.Seedling, Utils.UniversalPetCost);
-
-        AddItem(ItemID.Carrot, Utils.UniversalPetCost);
-
+        AddItem(ItemID.Seedling,   Utils.UniversalPetCost);
+        AddItem(ItemID.Carrot,     Utils.UniversalPetCost);
         AddItem(ItemID.DogWhistle, Utils.UniversalPetCost);
 
-        if (NPC.downedSlimeKing)
+        AddItem(Progression.SlimeKing,    ItemID.Fish,                      Utils.UniversalPetCost);
+        AddItem(Progression.SlimeKing,    ItemID.ZephyrFish,                Utils.UniversalPetCost);
+        AddItem(Progression.EyeOfCthulhu, ItemID.EyeSpring,                 Utils.UniversalPetCost);
+        AddItem(Progression.GoblinArmy,   ItemID.BabyGrinchMischiefWhistle, Utils.UniversalPetCost);
+        AddItem(Progression.EyeOfCthulhu, ItemID.EatersBone,                Utils.UniversalPetCost);
+        AddItem(Progression.EyeOfCthulhu, ItemID.BoneRattle,                Utils.UniversalPetCost);
+        AddItem(Progression.Skeletron,    ItemID.BoneKey,                   Utils.UniversalPetCost);
+        AddItem(Progression.Skeletron,    ItemID.TartarSauce,               Utils.UniversalPetCost);
+        AddItem(Progression.QueenBee,     ItemID.Nectar,                    Utils.UniversalPetCost);
+        AddItem(Progression.Hardmode,     ItemID.CompanionCube,             Utils.UniversalPetCost);
+        AddItem(Progression.Hardmode,     ItemID.AmberMosquito,             Utils.UniversalPetCost);
+        AddItem(Progression.Plantera,     ItemID.TikiTotem,                 Utils.UniversalPetCost);
+        AddItem(Progression.Pirates,      ItemID.ParrotCracker,             Utils.UniversalPetCost);
+        AddItem(Progression.Christmas,    ItemID.ToySled,                   Utils.UniversalPetCost);
+
+        if (Progression.Halloween)
         {
-            AddItem(ItemID.Fish, Utils.UniversalPetCost);
-
-            AddItem(ItemID.ZephyrFish, Utils.UniversalPetCost);
-        }
-
-        if (Utils.DownedEyeOfCthulhu())
-        {
-            AddItem(ItemID.EyeSpring, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedGoblins)
-        {
-            AddItem(ItemID.BabyGrinchMischiefWhistle, Utils.UniversalPetCost);
-        }
-
-        if (Utils.DownedBrainOfCthulhu())
-        {
-            AddItem(ItemID.EatersBone, Utils.UniversalPetCost);
-
-            AddItem(ItemID.BoneRattle, Utils.UniversalPetCost);
-        }
-
-        if (Utils.DownedSkeletron())
-        {
-            AddItem(ItemID.BoneKey, Utils.UniversalPetCost);
-
-            AddItem(ItemID.TartarSauce, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            AddItem(ItemID.Nectar, Utils.UniversalPetCost);
-        }
-
-        if (Main.hardMode)
-        {
-            AddItem(ItemID.CompanionCube, Utils.UniversalPetCost);
-
-            AddItem(ItemID.AmberMosquito, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            AddItem(ItemID.TikiTotem, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedPirates)
-        {
-            AddItem(ItemID.ParrotCracker, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedFrost)
-        {
-            AddItem(ItemID.ToySled, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedHalloweenTree)
-        {
-            AddItem(ItemID.SpiderEgg, Utils.UniversalPetCost);
-
-            AddItem(ItemID.CursedSapling, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedHalloweenKing)
-        {
-            AddItem(ItemID.UnluckyYarn, Utils.UniversalPetCost);
-
+            AddItem(ItemID.SpiderEgg,          Utils.UniversalPetCost);
+            AddItem(ItemID.CursedSapling,      Utils.UniversalPetCost);
+            AddItem(ItemID.UnluckyYarn,        Utils.UniversalPetCost);
             AddItem(ItemID.MagicalPumpkinSeed, Utils.UniversalPetCost);
         }
 
-        if (NPC.downedFishron)
-        {
-            AddItem(ItemID.Seaweed, Utils.UniversalPetCost);
-
-            AddItem(ItemID.LizardEgg, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedAncientCultist)
-        {
-            AddItem(ItemID.DD2PetDragon, Utils.UniversalPetCost);
-
-            AddItem(ItemID.DD2PetGato, Utils.UniversalPetCost);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            AddItem(ItemID.StrangeGlowingMushroom, Utils.UniversalPetCost);
-        }
+        AddItem(Progression.Fishron,  ItemID.Seaweed,                Utils.UniversalPetCost);
+        AddItem(Progression.Fishron,  ItemID.LizardEgg,              Utils.UniversalPetCost);
+        AddItem(Progression.Cultist,  ItemID.DD2PetDragon,           Utils.UniversalPetCost);
+        AddItem(Progression.Cultist,  ItemID.DD2PetGato,             Utils.UniversalPetCost);
+        AddItem(Progression.Moonlord, ItemID.StrangeGlowingMushroom, Utils.UniversalPetCost);
     }
 
     private void Ores()
@@ -1511,7 +1089,7 @@ public class ShopMerchant : Shop
             AddItem(ItemID.TinOre, Utils.UniversalOreCost);
         }
 
-        if (NPC.downedSlimeKing)
+        if (Progression.SlimeKing)
         {
             if (GenVars.ironBar > 0)
             {
@@ -1523,7 +1101,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss1)
+        if (Progression.EyeOfCthulhu)
         {
             if (GenVars.silverBar > 0)
             {
@@ -1535,7 +1113,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (NPC.downedBoss2)
+        if (Progression.BrainOrEater)
         {
             if (GenVars.goldBar > 0)
             {
@@ -1545,10 +1123,11 @@ public class ShopMerchant : Shop
             {
                 AddItem(ItemID.PlatinumOre, Utils.UniversalOreCost);
             }
+
             AddItem(ItemID.Meteorite, Utils.UniversalOreCost);
         }
 
-        if (NPC.downedBoss3)
+        if (Progression.Skeletron)
         {
             if (GenVars.crimsonLeft)
             {
@@ -1560,24 +1139,21 @@ public class ShopMerchant : Shop
             }
         }
 
-        if (Main.hardMode)
-        {
-            AddItem(ItemID.Hellstone, Utils.UniversalOreCost);
-        }
+        AddItem(Progression.Hardmode, ItemID.Hellstone, Utils.UniversalOreCost);
 
-        if (Utils.DownedMechBosses() == 1)
+        if (Progression.DownedMechs(1))
         {
             AddItem(ItemID.PalladiumOre, Utils.UniversalOreCost * 2);
             AddItem(ItemID.CobaltOre, Utils.UniversalOreCost * 2);
         }
 
-        if (Utils.DownedMechBosses() == 2)
+        if (Progression.DownedMechs(2))
         {
             AddItem(ItemID.MythrilOre, Utils.UniversalOreCost * 3);
             AddItem(ItemID.OrichalcumOre, Utils.UniversalOreCost * 3);
         }
 
-        if (Utils.DownedMechBosses() == 3)
+        if (Progression.DownedMechs(3))
         {
             AddItem(ItemID.AdamantiteOre, Utils.UniversalOreCost * 4);
             AddItem(ItemID.TitaniumOre, Utils.UniversalOreCost * 4);
@@ -1585,15 +1161,8 @@ public class ShopMerchant : Shop
             AddItem(ItemID.HallowedBar, Utils.UniversalOreCost * 5);
         }
 
-        if (NPC.downedPlantBoss)
-        {
-            AddItem(ItemID.ChlorophyteOre, Utils.UniversalOreCost * 10);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            AddItem(ItemID.LunarOre, Utils.UniversalOreCost * 100);
-        }
+        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, Utils.UniversalOreCost * 10);
+        AddItem(Progression.Moonlord, ItemID.LunarOre, Utils.UniversalOreCost * 100);
     }
 
     private void Gear()
@@ -1618,7 +1187,7 @@ public class ShopMerchant : Shop
 
         switch (Utils.GetPlayerClass())
         {
-            case "melee":
+            case PlayerClass.Melee:
                 if (!NPC.downedBoss2)
                 {
                     Shortswords();
@@ -1627,19 +1196,19 @@ public class ShopMerchant : Shop
                 Broadswords();
                 break;
 
-            case "ranged":
+            case PlayerClass.Ranger:
                 Bows();
                 break;
 
-            case "mage":
+            case PlayerClass.Mage:
                 MageWeapon();
                 break;
 
-            case "summoner":
+            case PlayerClass.Summoner:
                 SummonerWeapon();
                 break;
 
-            case "thrower":
+            case PlayerClass.Thrower:
                 ThrowerWep();
                 break;
         }
@@ -1651,11 +1220,15 @@ public class ShopMerchant : Shop
         Rope();
         LightPet();
         Hooks();
+
         AddItem(ItemID.PiggyBank);
         AddItem(ItemID.Safe);
-        AddItem(ItemID.Wood, Utils.Coins(0, 1));
+        AddItem(ItemID.Wood, Coins.Silver());
+
         BuffPotion();
-        AddItem(ItemID.EmptyBucket, Utils.Coins(0, 0, 1));
+
+        AddItem(ItemID.EmptyBucket, Coins.Gold());
+
         Wings();
     }
 
@@ -1663,45 +1236,14 @@ public class ShopMerchant : Shop
     {
         ReplaceItem(ItemID.LesserHealingPotion);
 
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.Eggnog);
-        }
-
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.LesserRestorationPotion);
-        }
-
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.Honeyfin);
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.HealingPotion);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.RestorationPotion);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.StrangeBrew);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.GreaterHealingPotion);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.SuperHealingPotion);
-        }
+        ReplaceItem(Progression.SlimeKing,          ItemID.Eggnog);
+        ReplaceItem(Progression.EyeOfCthulhu,       ItemID.LesserRestorationPotion);
+        ReplaceItem(Progression.BrainOrEater,       ItemID.Honeyfin);
+        ReplaceItem(Progression.Skeletron,          ItemID.HealingPotion);
+        ReplaceItem(Progression.Hardmode,           ItemID.RestorationPotion);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.StrangeBrew);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.GreaterHealingPotion);
+        ReplaceItem(Progression.Moonlord,           ItemID.SuperHealingPotion);
 
         NextSlot++;
     }
@@ -1710,213 +1252,97 @@ public class ShopMerchant : Shop
     {
         ReplaceItem(ItemID.LesserManaPotion);
 
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.ManaPotion);
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.GreaterManaPotion);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.SuperManaPotion);
-        }
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.ManaPotion);
+        ReplaceItem(Progression.Skeletron,    ItemID.GreaterManaPotion);
+        ReplaceItem(Progression.Moonlord,     ItemID.SuperManaPotion);
 
         NextSlot++;
     }
 
     private void Torches()
     {
-        ReplaceItem(ItemID.CactusCandle, Utils.Coins(0, 1));
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.RichMahoganyCandle);
-        }
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.Torch);
-        }
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.BoneTorch);
-        }
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.CursedTorch);
-        }
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.UltrabrightTorch);
-        }
+        ReplaceItem(ItemID.CactusCandle, Coins.Silver());
+
+        ReplaceItem(Progression.SlimeKing,    ItemID.RichMahoganyCandle);
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Torch);
+        ReplaceItem(Progression.Skeletron,    ItemID.BoneTorch);
+        ReplaceItem(Progression.Hardmode,     ItemID.CursedTorch);
+        ReplaceItem(Progression.Moonlord,     ItemID.UltrabrightTorch);
+
         NextSlot++;
     }
 
     private void Arrows()
     {
         ReplaceItem(ItemID.WoodenArrow);
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.BoneArrow);
-        }
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.FlamingArrow);
-        }
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.FrostburnArrow);
-        }
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.JestersArrow);
-        }
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.UnholyArrow);
-        }
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.HolyArrow);
-        }
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.CursedArrow);
-        }
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.IchorArrow);
-        }
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.ChlorophyteArrow);
-        }
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.MoonlordArrow);
-        }
+
+        ReplaceItem(Progression.SlimeKing,          ItemID.BoneArrow);
+        ReplaceItem(Progression.EyeOfCthulhu,       ItemID.FlamingArrow);
+        ReplaceItem(Progression.BrainOrEater,       ItemID.FrostburnArrow);
+        ReplaceItem(Progression.Skeletron,          ItemID.JestersArrow);
+        ReplaceItem(Progression.Hardmode,           ItemID.UnholyArrow);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.HolyArrow);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.CursedArrow);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.IchorArrow);
+        ReplaceItem(Progression.Plantera,           ItemID.ChlorophyteArrow);
+        ReplaceItem(Progression.Moonlord,           ItemID.MoonlordArrow);
+
         NextSlot++;
     }
 
     private void Rope()
     {
-        ReplaceItem(ItemID.VineRope, Utils.Coins(1));
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.Rope);
-        }
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.Chain);
-        }
+        ReplaceItem(ItemID.VineRope, Coins.Copper());
+
+        ReplaceItem(Progression.SlimeKing, ItemID.Rope);
+        ReplaceItem(Progression.Skeletron, ItemID.Chain);
+
         NextSlot++;
     }
 
     private void LightPet()
     {
         ReplaceItem(ItemID.FairyBell);
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.WispinaBottle);
-        }
+
+        ReplaceItem(Progression.Hardmode, ItemID.WispinaBottle);
+
         NextSlot++;
     }
 
     private void ThrowerWep()
     {
         ReplaceItem(ItemID.Snowball);
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.Shuriken);
-        }
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.ThrowingKnife);
-        }
-        if (NPC.downedGoblins)
-        {
-            ReplaceItem(ItemID.PoisonedKnife);
-        }
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.BoneDagger);
-        }
-        if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
-        {
-            ReplaceItem(ItemID.SpikyBall);
-        }
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.Javelin);
-        }
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.Bone);
-        }
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.MolotovCocktail);
-        }
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.BoneJavelin);
-        }
+
+        ReplaceItem(Progression.SlimeKing,                ItemID.Shuriken);
+        ReplaceItem(Progression.EyeOfCthulhu,             ItemID.ThrowingKnife);
+        ReplaceItem(Progression.GoblinArmy,               ItemID.PoisonedKnife);
+        ReplaceItem(Progression.BrainOrEater,             ItemID.BoneDagger);
+        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.SpikyBall);
+        ReplaceItem(Progression.QueenBee,                 ItemID.Javelin);
+        ReplaceItem(Progression.Skeletron,                ItemID.Bone);
+        ReplaceItem(Progression.Hardmode,                 ItemID.MolotovCocktail);
+        ReplaceItem(Progression.DownedMechs(1),       ItemID.BoneJavelin);
+
         NextSlot++;
     }
 
     private void Hooks()
     {
         ReplaceItem(ItemID.GrapplingHook);
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.AmethystHook);
-        }
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.TopazHook);
-        }
-        if (NPC.downedGoblins)
-        {
-            ReplaceItem(ItemID.SapphireHook);
-        }
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.EmeraldHook);
-        }
-        if (Utils.Kills(NPCID.DD2DarkMageT1) > 0)
-        {
-            ReplaceItem(ItemID.RubyHook);
-        }
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.DiamondHook);
-        }
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.SkeletronHand);
-        }
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.IvyWhip);
-        }
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.DualHook);
-        }
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.SpookyHook);
-        }
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.ChristmasHook);
-        }
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.LunarHook);
-        }
+
+        ReplaceItem(Progression.SlimeKing,                ItemID.AmethystHook);
+        ReplaceItem(Progression.EyeOfCthulhu,             ItemID.TopazHook);
+        ReplaceItem(Progression.GoblinArmy,               ItemID.SapphireHook);
+        ReplaceItem(Progression.BrainOrEater,             ItemID.EmeraldHook);
+        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.RubyHook);
+        ReplaceItem(Progression.QueenBee,                 ItemID.DiamondHook);
+        ReplaceItem(Progression.Skeletron,                ItemID.SkeletronHand);
+        ReplaceItem(Progression.Hardmode,                 ItemID.IvyWhip);
+        ReplaceItem(Progression.DownedMechs(1),       ItemID.DualHook);
+        ReplaceItem(Progression.DownedMechs(2),       ItemID.SpookyHook);
+        ReplaceItem(Progression.DownedMechs(3),       ItemID.ChristmasHook);
+        ReplaceItem(Progression.Moonlord,                 ItemID.LunarHook);
+
         NextSlot++;
     }
 
@@ -1924,23 +1350,23 @@ public class ShopMerchant : Shop
     {
         switch (Utils.GetPlayerClass())
         {
-            case "melee":
+            case PlayerClass.Melee:
                 AddItem(ItemID.ArcheryPotion, Utils.UniversalPotionCost);
                 break;
 
-            case "ranged":
+            case PlayerClass.Ranger:
                 AddItem(ItemID.ArcheryPotion, Utils.UniversalPotionCost);
                 break;
 
-            case "mage":
+            case PlayerClass.Mage:
                 AddItem(ItemID.MagicPowerPotion, Utils.UniversalPotionCost);
                 AddItem(ItemID.ManaRegenerationPotion, Utils.UniversalPotionCost);
                 break;
 
-            case "summoner":
+            case PlayerClass.Summoner:
                 break;
 
-            case "thrower":
+            case PlayerClass.Thrower:
                 break;
         }
     }

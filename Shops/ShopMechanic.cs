@@ -10,62 +10,34 @@ public class ShopMechanic : Shop
 
         if (shop == "Materials")
         {
-            AddItem(ItemID.Wood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Cactus, Utils.Coins(0, 1));
-
-            AddItem(ItemID.RichMahogany, Utils.Coins(0, 1));
-
-            AddItem(ItemID.BorealWood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.PalmWood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Ebonwood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Shadewood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Pearlwood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.SpookyWood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.DynastyWood, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Pumpkin, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Mushroom, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Granite, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Marble, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Meteorite, Utils.Coins(0, 1));
-
-            AddItem(ItemID.CrystalBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Glass, Utils.Coins(0, 1));
-
-            AddItem(ItemID.LivingWoodWand, Utils.Coins(0, 1));
-
-            AddItem(ItemID.SunplateBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.IceBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.HoneyBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.SlimeBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.BoneBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.FleshBlock, Utils.Coins(0, 1));
-
-            AddItem(ItemID.Cog, Utils.Coins(0, 1));
-
-            AddItem(ItemID.LihzahrdBrick, Utils.Coins(0, 1));
-
-            AddItem(ItemID.MartianConduitPlating, Utils.Coins(0, 1));
-
-            AddItem(ItemID.GoldBrick, Utils.Coins(0, 1));
-
+            AddItem(ItemID.Wood, Coins.Silver());
+            AddItem(ItemID.Cactus, Coins.Silver());
+            AddItem(ItemID.RichMahogany, Coins.Silver());
+            AddItem(ItemID.BorealWood, Coins.Silver());
+            AddItem(ItemID.PalmWood, Coins.Silver());
+            AddItem(ItemID.Ebonwood, Coins.Silver());
+            AddItem(ItemID.Shadewood, Coins.Silver());
+            AddItem(ItemID.Pearlwood, Coins.Silver());
+            AddItem(ItemID.SpookyWood, Coins.Silver());
+            AddItem(ItemID.DynastyWood, Coins.Silver());
+            AddItem(ItemID.Pumpkin, Coins.Silver());
+            AddItem(ItemID.Mushroom, Coins.Silver());
+            AddItem(ItemID.Granite, Coins.Silver());
+            AddItem(ItemID.Marble, Coins.Silver());
+            AddItem(ItemID.Meteorite, Coins.Silver());
+            AddItem(ItemID.CrystalBlock, Coins.Silver());
+            AddItem(ItemID.Glass, Coins.Silver());
+            AddItem(ItemID.LivingWoodWand, Coins.Silver());
+            AddItem(ItemID.SunplateBlock, Coins.Silver());
+            AddItem(ItemID.IceBlock, Coins.Silver());
+            AddItem(ItemID.HoneyBlock, Coins.Silver());
+            AddItem(ItemID.SlimeBlock, Coins.Silver());
+            AddItem(ItemID.BoneBlock, Coins.Silver());
+            AddItem(ItemID.FleshBlock, Coins.Silver());
+            AddItem(ItemID.Cog, Coins.Silver());
+            AddItem(ItemID.LihzahrdBrick, Coins.Silver());
+            AddItem(ItemID.MartianConduitPlating, Coins.Silver());
+            AddItem(ItemID.GoldBrick, Coins.Silver());
             return;
         }
 
@@ -97,6 +69,6 @@ public class ShopMechanic : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(8);
+        Inv.SetupShop(ShopType.Mechanic);
     }
 }

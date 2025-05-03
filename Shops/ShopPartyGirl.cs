@@ -44,6 +44,6 @@ public class ShopPartyGirl : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(13);
+        Inv.SetupShop(ShopType.PartyGirl);
     }
 }

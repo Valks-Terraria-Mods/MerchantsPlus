@@ -24,9 +24,9 @@ public class Mechanic : BaseMerchant
         projType = true switch
         {
             _ when NPC.downedPlantBoss => ProjectileID.IceSickle,
-            _ when Utils.DownedMechBosses() == 3 => ProjectileID.Flamarang,
-            _ when Utils.DownedMechBosses() == 2 => ProjectileID.BallofFrost,
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.ExplosiveBunny,
+            _ when Progression.DownedMechs(3) => ProjectileID.Flamarang,
+            _ when Progression.DownedMechs(2) => ProjectileID.BallofFrost,
+            _ when Progression.DownedMechs(1) => ProjectileID.ExplosiveBunny,
             _ => ProjectileID.MechanicWrench
         };
     }

@@ -13,62 +13,62 @@ public class ShopGolem : Shop
         switch (shop)
         {
             case "Storage":
-                if (Utils.Progression() >= 0)
+                if (Progression.Level() >= 0)
                 {
-                    AddItem(Magic.StorageHeart.Type, Utils.Coins());
-                    AddItem(Magic.CraftingAccess.Type, Utils.Coins());
-                    AddItem(Magic.StorageAccess.Type, Utils.Coins());
-                    AddItem(Magic.StorageUnitTiny.Type, Utils.Coins());
+                    AddItem(Magic.StorageHeart.Type, Coins.Silver(1));
+                    AddItem(Magic.CraftingAccess.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageAccess.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageUnitTiny.Type, Coins.Silver(1));
                 }
 
-                AddItem(Magic.StorageUnit.Type, Utils.Coins(), 1);
+                AddItem(Magic.StorageUnit.Type, Coins.Silver(1), 1);
 
-                if (Utils.Progression() >= 2)
+                if (Progression.Level() >= 2)
                 {
                     if (WorldGen.crimson)
                     {
-                        AddItem(Magic.UpgradeCrimtane.Type, Utils.Coins());
-                        AddItem(Magic.StorageUnitCrimtane.Type, Utils.Coins());
+                        AddItem(Magic.UpgradeCrimtane.Type, Coins.Silver(1));
+                        AddItem(Magic.StorageUnitCrimtane.Type, Coins.Silver(1));
                     }
                     else
                     {
-                        AddItem(Magic.UpgradeDemonite.Type, Utils.Coins());
-                        AddItem(Magic.StorageUnitDemonite.Type, Utils.Coins());
+                        AddItem(Magic.UpgradeDemonite.Type, Coins.Silver(1));
+                        AddItem(Magic.StorageUnitDemonite.Type, Coins.Silver(1));
                     }
                 }
 
-                if (Utils.Progression() >= 3)
+                if (Progression.Level() >= 3)
                 {
-                    AddItem(Magic.UpgradeHellstone.Type, Utils.Coins());
-                    AddItem(Magic.StorageUnitHellstone.Type, Utils.Coins());
+                    AddItem(Magic.UpgradeHellstone.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageUnitHellstone.Type, Coins.Silver(1));
                 }
 
-                if (Utils.Progression() >= 4)
+                if (Progression.Level() >= 4)
                 {
-                    AddItem(Magic.StorageUnitBlueChlorophyte.Type, Utils.Coins());
+                    AddItem(Magic.StorageUnitBlueChlorophyte.Type, Coins.Silver(1));
                 }
 
-                if (Utils.Progression() >= 5)
+                if (Progression.Level() >= 5)
                 {
-                    AddItem(Magic.UpgradeHallowed.Type, Utils.Coins());
-                    AddItem(Magic.StorageUnitHallowed.Type, Utils.Coins());
+                    AddItem(Magic.UpgradeHallowed.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageUnitHallowed.Type, Coins.Silver(1));
                 }
 
-                if (Utils.Progression() >= 6)
+                if (Progression.Level() >= 6)
                 {
-                    AddItem(Magic.UpgradeLuminite.Type, Utils.Coins());
-                    AddItem(Magic.StorageUnitLuminite.Type, Utils.Coins());
+                    AddItem(Magic.UpgradeLuminite.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageUnitLuminite.Type, Coins.Silver(1));
                 }
 
-                if (Utils.Progression() >= 7)
+                if (Progression.Level() >= 7)
                 {
-                    AddItem(Magic.UpgradeTerra.Type, Utils.Coins());
-                    AddItem(Magic.StorageUnitTerra.Type, Utils.Coins());
+                    AddItem(Magic.UpgradeTerra.Type, Coins.Silver(1));
+                    AddItem(Magic.StorageUnitTerra.Type, Coins.Silver(1));
                 }
 
-                if (Utils.Progression() >= 8)
+                if (Progression.Level() >= 8)
                 {
-                    AddItem(Magic.RemoteAccess.Type, Utils.Coins());
+                    AddItem(Magic.RemoteAccess.Type, Coins.Silver(1));
                 }
 
                 break;

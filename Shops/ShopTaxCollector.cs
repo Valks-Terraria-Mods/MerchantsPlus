@@ -11,6 +11,6 @@ public class ShopTaxCollector : Shop
         base.OpenShop(shop);
 
         // Default Shop
-        AddItem(ItemID.UglySweater, Utils.Coins(0, 0, 0, 99));
+        AddItem(ItemID.UglySweater, Coins.Platinum(99));
     }
 }

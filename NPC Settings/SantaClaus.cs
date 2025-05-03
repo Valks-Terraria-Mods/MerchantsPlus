@@ -24,7 +24,7 @@ public class SantaClaus : BaseMerchant
         projType = true switch
         {
             _ when NPC.downedBoss2 => ProjectileID.PoisonedKnife,
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BoneJavelin,
+            _ when Progression.DownedMechs(1) => ProjectileID.BoneJavelin,
             _ => ProjectileID.ThrowingKnife
         };
     }

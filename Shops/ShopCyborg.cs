@@ -12,13 +12,9 @@ public class ShopCyborg : Shop
         {
             AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
             AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
-
             AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
 
             return;
@@ -31,7 +27,7 @@ public class ShopCyborg : Shop
             AddItem(ItemID.PortalGun);
             AddItem(ItemID.PortalGunStation);
 
-            if (NPC.downedGolemBoss)
+            if (Progression.Golem)
             {
                 AddItem(ItemID.ElectrosphereLauncher);
             }
@@ -54,6 +50,6 @@ public class ShopCyborg : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(14);
+        Inv.SetupShop(ShopType.Cyborg);
     }
 }

@@ -22,19 +22,19 @@ public class ShopWitchDoctor : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(16);
+        Inv.SetupShop(ShopType.WitchDoctor);
     }
 
     private void Gear()
     {
         AddItem(ItemID.HerculesBeetle);
-        AddItem(ItemID.NecromanticScroll, NPC.downedHalloweenTree);
-        AddItem(ItemID.PygmyNecklace, Utils.DownedPlantera());
+        AddItem(ItemID.NecromanticScroll, Progression.Halloween);
+        AddItem(ItemID.PygmyNecklace, Progression.Plantera);
     }
 
     private void Flasks()
     {
-        int progression = Utils.Progression();
+        int progression = Progression.Level();
 
         AddItem(ItemID.FlaskofNanites);
         AddItem(ItemID.FlaskofFire, progression > 8);
@@ -48,75 +48,52 @@ public class ShopWitchDoctor : Shop
 
     private void Wings()
     {
-        // Fledgling wings
-        AddItem(ItemID.CreativeWings, Utils.Coins(0, 0, 0, 1));
+        AddItem(ItemID.CreativeWings, Coins.Platinum()); // Fledgling wings
 
-        if (Utils.IsHardMode())
+        if (Progression.Hardmode)
         {
-            AddItem(ItemID.AngelWings, Utils.Coins(0, 0, 0, 2));
-
-            if (Utils.Kills(NPCID.Demon) >= 3)
-            {
-                AddItem(ItemID.DemonWings, Utils.Coins(0, 0, 0, 2));
-            }
-
-            if (Utils.Kills(NPCID.Shark) >= 3)
-            {
-                AddItem(ItemID.FinWings, Utils.Coins(0, 0, 0, 2));
-            }
+            AddItem(ItemID.AngelWings, Coins.Platinum(2));
+            AddItem(Utils.Kills(NPCID.Demon) >= 3, ItemID.DemonWings, Coins.Platinum(2));
+            AddItem(Utils.Kills(NPCID.Shark) >= 3, ItemID.FinWings, Coins.Platinum(2));
 
             if (NPC.downedMechBossAny)
             {
-                AddItem(ItemID.Jetpack, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.BeeWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.ButterflyWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.FairyWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.BatWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.HarpyWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.BoneWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.WillsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.CrownosWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.DTownsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.CenxsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.Yoraiz0rDarkness, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.LokisWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.BejeweledValkyrieWing, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.JimsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.SkiphsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.RedsWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.MothronWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.LeafWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.FrozenWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.FlameWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.BeetleWings, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.Hoverboard, Utils.Coins(0, 0, 0, 2));
-            }
-            if (NPC.downedChristmasIceQueen)
-            {
-                AddItem(ItemID.FestiveWings, Utils.Coins(0, 0, 0, 2));
+                AddItem(ItemID.Jetpack, Coins.Platinum(2));
+                AddItem(ItemID.BeeWings, Coins.Platinum(2));
+                AddItem(ItemID.ButterflyWings, Coins.Platinum(2));
+                AddItem(ItemID.FairyWings, Coins.Platinum(2));
+                AddItem(ItemID.BatWings, Coins.Platinum(2));
+                AddItem(ItemID.HarpyWings, Coins.Platinum(2));
+                AddItem(ItemID.BoneWings, Coins.Platinum(2));
+                AddItem(ItemID.WillsWings, Coins.Platinum(2));
+                AddItem(ItemID.CrownosWings, Coins.Platinum(2));
+                AddItem(ItemID.DTownsWings, Coins.Platinum(2));
+                AddItem(ItemID.CenxsWings, Coins.Platinum(2));
+                AddItem(ItemID.Yoraiz0rDarkness, Coins.Platinum(2));
+                AddItem(ItemID.LokisWings, Coins.Platinum(2));
+                AddItem(ItemID.BejeweledValkyrieWing, Coins.Platinum(2));
+                AddItem(ItemID.JimsWings, Coins.Platinum(2));
+                AddItem(ItemID.SkiphsWings, Coins.Platinum(2));
+                AddItem(ItemID.RedsWings, Coins.Platinum(2));
+                AddItem(ItemID.MothronWings, Coins.Platinum(2));
+                AddItem(ItemID.LeafWings, Coins.Platinum(2));
+                AddItem(ItemID.FrozenWings, Coins.Platinum(2));
+                AddItem(ItemID.FlameWings, Coins.Platinum(2));
+                AddItem(ItemID.BeetleWings, Coins.Platinum(2));
+                AddItem(ItemID.Hoverboard, Coins.Platinum(2));
             }
 
-            if (NPC.downedHalloweenKing)
-            {
-                AddItem(ItemID.SpookyWings, Utils.Coins(0, 0, 0, 2));
-            }
+            AddItem(NPC.downedChristmasIceQueen, ItemID.FestiveWings, Coins.Platinum(2));
+            AddItem(NPC.downedHalloweenKing, ItemID.SpookyWings, Coins.Platinum(2));
+            AddItem(Utils.IsNPCHere(NPCID.Steampunker), ItemID.SteampunkWings, Coins.Platinum(2));
+            AddItem(NPC.downedFishron, ItemID.FishronWings, Coins.Platinum(2));
 
-            if (Utils.IsNPCHere(NPCID.Steampunker))
+            if (Progression.Moonlord)
             {
-                AddItem(ItemID.SteampunkWings, Utils.Coins(0, 0, 0, 2));
-            }
-
-            if (NPC.downedFishron)
-            {
-                AddItem(ItemID.FishronWings, Utils.Coins(0, 0, 0, 2));
-            }
-
-            if (NPC.downedMoonlord)
-            {
-                AddItem(ItemID.WingsStardust, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.WingsVortex, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.WingsNebula, Utils.Coins(0, 0, 0, 2));
-                AddItem(ItemID.WingsSolar, Utils.Coins(0, 0, 0, 2));
+                AddItem(ItemID.WingsStardust, Coins.Platinum(2));
+                AddItem(ItemID.WingsVortex, Coins.Platinum(2));
+                AddItem(ItemID.WingsNebula, Coins.Platinum(2));
+                AddItem(ItemID.WingsSolar, Coins.Platinum(2));
             }
         }
     }

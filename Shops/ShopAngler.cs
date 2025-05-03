@@ -8,7 +8,7 @@ public class ShopAngler : Shop
     {
         base.OpenShop(shop);
 
-        int progression = Utils.Progression();
+        int progression = Progression.Level();
 
         switch (shop)
         {
@@ -85,116 +85,116 @@ public class ShopAngler : Shop
     private void Bait(int progression)
     {
         // 5% Bait Power
-        AddItem(ItemID.MonarchButterfly, Utils.Coins(0, 10));
+        AddItem(ItemID.MonarchButterfly, Coins.Silver(10));
 
         if (progression > 0)
         {
             // 10% Bait Power
-            AddItem(ItemID.SulphurButterfly, Utils.Coins(0, 20));
-            AddItem(ItemID.Scorpion, Utils.Coins(0, 20));
-            AddItem(ItemID.Snail, Utils.Coins(0, 20));
-            AddItem(ItemID.Grasshopper, Utils.Coins(0, 20));
+            AddItem(ItemID.SulphurButterfly, Coins.Silver(20));
+            AddItem(ItemID.Scorpion, Coins.Silver(20));
+            AddItem(ItemID.Snail, Coins.Silver(20));
+            AddItem(ItemID.Grasshopper, Coins.Silver(20));
         }
 
         if (progression > 1)
         {
             // 15% Bait Power
-            AddItem(ItemID.ApprenticeBait, Utils.Coins(0, 30));
-            AddItem(ItemID.ZebraSwallowtailButterfly, Utils.Coins(0, 30));
-            AddItem(ItemID.BlackScorpion, Utils.Coins(0, 30));
-            AddItem(ItemID.GlowingSnail, Utils.Coins(0, 30));
-            AddItem(ItemID.Grubby, Utils.Coins(0, 30));
+            AddItem(ItemID.ApprenticeBait, Coins.Silver(30));
+            AddItem(ItemID.ZebraSwallowtailButterfly, Coins.Silver(30));
+            AddItem(ItemID.BlackScorpion, Coins.Silver(30));
+            AddItem(ItemID.GlowingSnail, Coins.Silver(30));
+            AddItem(ItemID.Grubby, Coins.Silver(30));
         }
 
         if (progression > 2)
         {
             // 20% Bait Power
-            AddItem(ItemID.Firefly, Utils.Coins(0, 40));
-            AddItem(ItemID.UlyssesButterfly, Utils.Coins(0, 40));
-            AddItem(ItemID.BlueJellyfish, Utils.Coins(0, 40));
-            AddItem(ItemID.GreenJellyfish, Utils.Coins(0, 40));
-            AddItem(ItemID.PinkJellyfish, Utils.Coins(0, 40));
+            AddItem(ItemID.Firefly, Coins.Silver(40));
+            AddItem(ItemID.UlyssesButterfly, Coins.Silver(40));
+            AddItem(ItemID.BlueJellyfish, Coins.Silver(40));
+            AddItem(ItemID.GreenJellyfish, Coins.Silver(40));
+            AddItem(ItemID.PinkJellyfish, Coins.Silver(40));
         }
 
         if (progression > 3)
         {
             // 25% Bait Power
-            AddItem(ItemID.JuliaButterfly, Utils.Coins(0, 50));
-            AddItem(ItemID.Worm, Utils.Coins(0, 50));
-            AddItem(ItemID.Sluggy, Utils.Coins(0, 50));
+            AddItem(ItemID.JuliaButterfly, Coins.Silver(50));
+            AddItem(ItemID.Worm, Coins.Silver(50));
+            AddItem(ItemID.Sluggy, Coins.Silver(50));
         }
 
         if (progression > 4)
         {
             // 30% Bait Power
-            AddItem(ItemID.JourneymanBait, Utils.Coins(0, 60));
-            AddItem(ItemID.RedAdmiralButterfly, Utils.Coins(0, 60));
+            AddItem(ItemID.JourneymanBait, Coins.Silver(60));
+            AddItem(ItemID.RedAdmiralButterfly, Coins.Silver(60));
         }
 
         if (progression > 5)
         {
             // 35% Bait Power
-            AddItem(ItemID.PurpleEmperorButterfly, Utils.Coins(0, 70));
-            AddItem(ItemID.LightningBug, Utils.Coins(0, 70));
-            AddItem(ItemID.EnchantedNightcrawler, Utils.Coins(0, 70));
+            AddItem(ItemID.PurpleEmperorButterfly, Coins.Silver(70));
+            AddItem(ItemID.LightningBug, Coins.Silver(70));
+            AddItem(ItemID.EnchantedNightcrawler, Coins.Silver(70));
         }
 
         if (progression > 6)
         {
             // 40% Bait Power
-            AddItem(ItemID.Buggy, Utils.Coins(0, 80));
+            AddItem(ItemID.Buggy, Coins.Silver(80));
         }
 
         if (progression > 7)
         {
             // 50% Bait Power
-            AddItem(ItemID.MasterBait, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TreeNymphButterfly, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.GoldButterfly, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.GoldWorm, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.GoldGrasshopper, Utils.Coins(0, 0, 1));
+            AddItem(ItemID.MasterBait, Coins.Gold());
+            AddItem(ItemID.TreeNymphButterfly, Coins.Gold());
+            AddItem(ItemID.GoldButterfly, Coins.Gold());
+            AddItem(ItemID.GoldWorm, Coins.Gold());
+            AddItem(ItemID.GoldGrasshopper, Coins.Gold());
         }
 
         if (progression > 8)
         {
-            AddItem(ItemID.TruffleWorm, Utils.Coins(0, 0, 0, 1));
+            AddItem(ItemID.TruffleWorm, Coins.Platinum());
         }
     }
 
     private void Crates(int progression)
     {
-        AddItem(ItemID.WoodenCrate, Utils.Coins(0, 0, 10));
+        AddItem(ItemID.WoodenCrate, Coins.Gold(10));
 
         if (progression > 0)
         {
-            AddItem(ItemID.IronCrate, Utils.Coins(0, 0, 15));
+            AddItem(ItemID.IronCrate, Coins.Gold(15));
         }
 
         if (progression > 1)
         {
-            AddItem(ItemID.JungleFishingCrate, Utils.Coins(0, 0, 10));
-            AddItem(ItemID.FloatingIslandFishingCrate, Utils.Coins(0, 0, 10));
+            AddItem(ItemID.JungleFishingCrate, Coins.Gold(10));
+            AddItem(ItemID.FloatingIslandFishingCrate, Coins.Gold(10));
         }
 
         if (progression > 2)
         {
-            AddItem(ItemID.CorruptFishingCrate, Utils.Coins(0, 0, 10));
-            AddItem(ItemID.CrimsonFishingCrate, Utils.Coins(0, 0, 10));
+            AddItem(ItemID.CorruptFishingCrate, Coins.Gold(10));
+            AddItem(ItemID.CrimsonFishingCrate, Coins.Gold(10));
         }
 
         if (progression > 3)
         {
-            AddItem(ItemID.DungeonFishingCrate, Utils.Coins(0, 0, 25));
+            AddItem(ItemID.DungeonFishingCrate, Coins.Gold(25));
         }
 
         if (progression > 4)
         {
-            AddItem(ItemID.GoldenCrate, Utils.Coins(0, 0, 30));
+            AddItem(ItemID.GoldenCrate, Coins.Gold(30));
         }
 
         if (progression > 5)
         {
-            AddItem(ItemID.HallowedFishingCrate, Utils.Coins(0, 0, 30));
+            AddItem(ItemID.HallowedFishingCrate, Coins.Gold(30));
         }
     }
 
@@ -233,38 +233,15 @@ public class ShopAngler : Shop
 
     private void ShopFishingPole(int progression)
     {
-        ReplaceItem(ItemID.WoodFishingPole, Utils.Coins(0, 10));
+        ReplaceItem(ItemID.WoodFishingPole, Coins.Silver(10));
 
-        if (progression > 0)
-        {
-            ReplaceItem(ItemID.ReinforcedFishingPole, Utils.Coins(0, 25));
-        }
-        if (progression > 1)
-        {
-            ReplaceItem(ItemID.FisherofSouls, Utils.Coins(0, 0, 1));
-        }
-        if (progression > 2)
-        {
-            ReplaceItem(ItemID.FiberglassFishingPole, Utils.Coins(0, 0, 10));
-        }
-        if (progression > 3)
-        {
-            ReplaceItem(ItemID.MechanicsRod, Utils.Coins(0, 0, 25));
-        }
-        if (progression > 4)
-        {
-            ReplaceItem(ItemID.SittingDucksFishingRod, Utils.Coins(0, 0, 50));
-        }
-
-        if (progression > 5)
-        {
-            ReplaceItem(ItemID.HotlineFishingHook, Utils.Coins(0, 0, 0, 1));
-        }
-
-        if (progression > 6)
-        {
-            ReplaceItem(ItemID.GoldenFishingRod, Utils.Coins(0, 0, 0, 2));
-        }
+        ReplaceItem(progression > 0, ItemID.ReinforcedFishingPole, Coins.Silver(25));
+        ReplaceItem(progression > 1, ItemID.FisherofSouls, Coins.Gold());
+        ReplaceItem(progression > 2, ItemID.FiberglassFishingPole, Coins.Gold(10));
+        ReplaceItem(progression > 3, ItemID.MechanicsRod, Coins.Gold(25));
+        ReplaceItem(progression > 4, ItemID.SittingDucksFishingRod, Coins.Gold(50));
+        ReplaceItem(progression > 5, ItemID.HotlineFishingHook, Coins.Platinum());
+        ReplaceItem(progression > 6, ItemID.GoldenFishingRod, Coins.Platinum(2));
 
         NextSlot++;
     }

@@ -18,6 +18,6 @@ public class ShopTruffle : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(10);
+        Inv.SetupShop(ShopType.Truffle);
     }
 }

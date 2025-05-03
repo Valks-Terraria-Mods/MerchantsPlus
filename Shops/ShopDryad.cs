@@ -33,6 +33,6 @@ public class ShopDryad : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(3);
+        Inv.SetupShop(ShopType.Dryad);
     }
 }

@@ -10,55 +10,55 @@ public class ShopGuide : Shop
 
         if (shop == "Gear")
         {
-            if (!Utils.IsHardMode())
+            if (!Progression.Hardmode)
             {
-                AddItem(ItemID.RecallPotion, Utils.Coins(0, 1));
+                AddItem(ItemID.RecallPotion, Coins.Silver());
             }
             else
             {
-                AddItem(ItemID.MagicMirror, Utils.Coins(0, 0, 1));
+                AddItem(ItemID.MagicMirror, Coins.Gold());
             }
 
-            AddItem(ItemID.TeleportationPotion, Utils.Coins(0, 1));
-            AddItem(ItemID.GenderChangePotion, Utils.Coins(1));
+            AddItem(ItemID.TeleportationPotion, Coins.Silver());
+            AddItem(ItemID.GenderChangePotion, Coins.Copper());
 
-            if (Utils.DownedEyeOfCthulhu())
+            if (Progression.EyeOfCthulhu)
             {
                 AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
             }
 
-            AddItem(ItemID.CordageGuide, Utils.Coins(0, 0, 1));
+            AddItem(ItemID.CordageGuide, Coins.Gold());
 
             if (!Utils.IsNPCHere(NPCID.Merchant))
             {
                 AddItem(ItemID.Torch);
             }
 
-            if (Utils.DownedSkeletron() && !Main.hardMode)
+            if (Progression.Skeletron && !Progression.Hardmode)
             {
-                AddItem(ItemID.GuideVoodooDoll, Utils.Coins(0, 0, 5));
+                AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
             }
 
             if (!Utils.IsNPCHere(NPCID.Pirate))
             {
-                AddItem(ItemID.Cannon, Utils.Coins(0, 0, 2));
+                AddItem(ItemID.Cannon, Coins.Gold(2));
                 AddItem(ItemID.Cannonball);
             }
 
-            AddItem(ItemID.Gel, Utils.Coins(0, 1));
+            AddItem(ItemID.Gel, Coins.Silver());
         }
 
         if (shop == "Pylons")
         {
-            AddItem(ItemID.TeleportationPylonVictory, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonUnderground, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonSnow, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonPurity, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonOcean, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonMushroom, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonJungle, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonHallow, Utils.Coins(0, 0, 1));
-            AddItem(ItemID.TeleportationPylonDesert, Utils.Coins(0, 0, 1));
+            AddItem(ItemID.TeleportationPylonVictory, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonUnderground, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonSnow, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonPurity, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonOcean, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonMushroom, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonJungle, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonHallow, Coins.Gold());
+            AddItem(ItemID.TeleportationPylonDesert, Coins.Gold());
         }
     }
 }

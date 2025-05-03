@@ -18,7 +18,7 @@ public class ShopGoblinTinkerer : Shop
     {
         base.OpenShop(shop);
 
-        int progression = Utils.Progression();
+        int progression = Progression.Level();
 
         if (shop == "Miscellaneous")
         {
@@ -31,7 +31,7 @@ public class ShopGoblinTinkerer : Shop
                 AddItem(ItemID.LuckyCoin, Utils.UniversalAccessoryCost);
             }
 
-            if (Utils.MultiKills(new short[] { NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish }) > 100)
+            if (Utils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]) > 100)
             {
                 AddItem(ItemID.JellyfishNecklace, Utils.UniversalAccessoryCost);
             }
@@ -45,9 +45,10 @@ public class ShopGoblinTinkerer : Shop
 
         if (shop == "Special")
         {
-            if (NPC.downedSlimeKing) { AddItem(ItemID.RoyalGel, Utils.UniversalAccessoryCost); }
-            if (NPC.downedBoss1) { AddItem(ItemID.EoCShield, Utils.UniversalAccessoryCost); }
-            if (NPC.downedBoss2)
+            AddItem(Progression.SlimeKing,       ItemID.RoyalGel,          Utils.UniversalAccessoryCost);
+            AddItem(Progression.EyeOfCthulhu,    ItemID.EoCShield,         Utils.UniversalAccessoryCost);
+
+            if (Progression.BrainOrEater)
             {
                 if (WorldGen.crimson)
                 {
@@ -58,60 +59,35 @@ public class ShopGoblinTinkerer : Shop
                     AddItem(ItemID.WormScarf, Utils.UniversalAccessoryCost);
                 }
             }
-            if (NPC.downedQueenBee)
-            {
-                AddItem(ItemID.HiveBackpack, Utils.UniversalAccessoryCost);
-            }
-            if (NPC.downedPlantBoss)
-            {
-                AddItem(ItemID.SporeSac, Utils.UniversalAccessoryCost);
-            }
-            if (NPC.downedGolemBoss)
-            {
-                AddItem(ItemID.ShinyStone, Utils.UniversalAccessoryCost);
-            }
-            if (NPC.downedMoonlord)
-            {
-                AddItem(ItemID.GravityGlobe, Utils.UniversalAccessoryCost);
-            }
+
+            AddItem(Progression.QueenBee,        ItemID.HiveBackpack,     Utils.UniversalAccessoryCost);
+            AddItem(Progression.Plantera,        ItemID.SporeSac,         Utils.UniversalAccessoryCost);
+            AddItem(Progression.Golem,           ItemID.ShinyStone,       Utils.UniversalAccessoryCost);
+            AddItem(Progression.Moonlord,        ItemID.GravityGlobe,     Utils.UniversalAccessoryCost);
             return;
         }
 
         if (shop == "Defensive")
         {
-            if (NPC.downedBoss3)
-            {
-                AddItem(ItemID.CobaltShield, Utils.UniversalAccessoryCost);
-            }
-
-            if (Utils.Kills(NPCID.Zombie) > 100)
-            {
-                AddItem(ItemID.Shackle, Utils.UniversalAccessoryCost);
-            }
-
-            if (Utils.Kills(NPCID.BigMimicCrimson) > 0)
-            {
-                AddItem(ItemID.FleshKnuckles, Utils.UniversalAccessoryCost);
-            }
-            if (Utils.Kills(NPCID.IceTortoise) > 0)
-            {
-                AddItem(ItemID.FrozenTurtleShell, Utils.UniversalAccessoryCost);
-            }
+            AddItem(Progression.Skeletron,                  ItemID.CobaltShield,      Utils.UniversalAccessoryCost);
+            AddItem(Utils.Kills(NPCID.Zombie) > 100,        ItemID.Shackle,           Utils.UniversalAccessoryCost);
+            AddItem(Utils.Kills(NPCID.BigMimicCrimson) > 0, ItemID.FleshKnuckles,     Utils.UniversalAccessoryCost);
+            AddItem(Utils.Kills(NPCID.IceTortoise) > 0,     ItemID.FrozenTurtleShell, Utils.UniversalAccessoryCost);
 
             return;
         }
 
         if (shop == "Immunity")
         {
-            if (Main.hardMode)
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.HandWarmer, Utils.UniversalAccessoryCost);
 
-                if (Utils.MultiKills(new short[] { NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish }) > 0)
+                if (Utils.MultiKills([NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish]) > 0)
                 {
                     AddItem(ItemID.AdhesiveBandage, Utils.UniversalAccessoryCost);
                 }
-                if (Utils.MultiKills(new short[] { NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones }) > 0)
+                if (Utils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]) > 0)
                 {
                     AddItem(ItemID.ArmorPolish, Utils.UniversalAccessoryCost);
                 }
@@ -124,7 +100,7 @@ public class ShopGoblinTinkerer : Shop
                     AddItem(ItemID.Blindfold, Utils.UniversalAccessoryCost);
                 }
 
-                if (Utils.MultiKills(new short[] { NPCID.Pixie, NPCID.DarkMummy }) > 0)
+                if (Utils.MultiKills([NPCID.Pixie, NPCID.DarkMummy]) > 0)
                 {
                     AddItem(ItemID.Megaphone, Utils.UniversalAccessoryCost);
                 }
@@ -137,7 +113,7 @@ public class ShopGoblinTinkerer : Shop
                     AddItem(ItemID.FastClock, Utils.UniversalAccessoryCost);
                 }
 
-                if (Main.hardMode)
+                if (Progression.Hardmode)
                 {
                     AddItem(ItemID.ObsidianRose, Utils.UniversalAccessoryCost);
                 }
@@ -174,12 +150,12 @@ public class ShopGoblinTinkerer : Shop
                 AddItem(ItemID.FeralClaws, Utils.UniversalAccessoryCost);
             }
 
-            if (progression > (int)Utils.Progress.BRAIN_OF_CTHULU)
+            if (Progression.BrainOfCthulhu)
             {
                 AddItem(ItemID.PanicNecklace, Utils.UniversalAccessoryCost);
             }
 
-            if (progression > (int)Utils.Progress.QUEEN_BEE)
+            if (Progression.QueenBee)
             {
                 AddItem(ItemID.HoneyComb, Utils.UniversalAccessoryCost);
             }
@@ -211,7 +187,7 @@ public class ShopGoblinTinkerer : Shop
                 AddItem(ItemID.EyeoftheGolem, Utils.UniversalAccessoryCost);
             }
 
-            if (progression > (int)Utils.Progress.PLANT_BOSS)
+            if (Progression.Plantera)
             {
                 AddItem(ItemID.BlackBelt, Utils.UniversalAccessoryCost);
             }
@@ -243,25 +219,9 @@ public class ShopGoblinTinkerer : Shop
             if (progression > 20)
             {
                 AddItem(ItemID.PaladinsShield, Utils.UniversalAccessoryCost);
-            }
-
-            if (progression > 21)
-            {
                 AddItem(ItemID.SquireShield, Utils.UniversalAccessoryCost);
-            }
-
-            if (progression > 22)
-            {
                 AddItem(ItemID.HuntressBuckler, Utils.UniversalAccessoryCost);
-            }
-
-            if (progression > 23)
-            {
                 AddItem(ItemID.MonkBelt, Utils.UniversalAccessoryCost);
-            }
-
-            if (progression > 24)
-            {
                 AddItem(ItemID.TitanGlove, Utils.UniversalAccessoryCost);
             }
 
@@ -272,7 +232,7 @@ public class ShopGoblinTinkerer : Shop
         {
             AddItem(ItemID.NaturesGift, Utils.UniversalAccessoryCost);
 
-            if (NPC.downedBoss2)
+            if (Progression.BrainOrEater)
             {
                 AddItem(ItemID.BandofStarpower, Utils.UniversalAccessoryCost);
 
@@ -282,7 +242,7 @@ public class ShopGoblinTinkerer : Shop
             {
                 AddItem(ItemID.CelestialMagnet, Utils.UniversalAccessoryCost);
             }
-            if (Main.hardMode)
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.PhilosophersStone, Utils.UniversalAccessoryCost);
             }
@@ -435,6 +395,6 @@ public class ShopGoblinTinkerer : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(6);
+        Inv.SetupShop(ShopType.GoblinTinkerer);
     }
 }

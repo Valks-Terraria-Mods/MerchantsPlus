@@ -11,17 +11,17 @@ public class GoblinTinkerer : BaseMerchant
 
         base.GetChat(npc, ref chat);
 
-        List<string> dialog = new List<string>();
+        List<string> dialog = [];
         Utils.QuestKills(dialog, "Zombie", Utils.Kills(NPCID.Zombie), 100);
         Utils.QuestKills(dialog, "Jellyfish", Utils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]), 100);
         Utils.QuestKills(dialog, "Skeleton", Utils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]), 1);
         
-        if (Utils.DownedSkeletron())
+        if (Progression.Skeletron)
         {
             Utils.QuestKills(dialog, "Cursed Skull", Utils.Kills(NPCID.CursedSkull), 1);
         }
 
-        if (Utils.IsHardMode())
+        if (Progression.Hardmode)
         {
             Utils.QuestKills(dialog, "Corruptor", Utils.Kills(NPCID.Corruptor), 1);
             Utils.QuestKills(dialog, "Light Mummy", Utils.Kills(NPCID.LightMummy), 1);
@@ -52,7 +52,7 @@ public class GoblinTinkerer : BaseMerchant
 
         projType = true switch
         {
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BoneJavelin,
+            _ when Progression.DownedMechs(1) => ProjectileID.BoneJavelin,
             _ when NPC.downedBoss2 => ProjectileID.PoisonedKnife,
             _ => ProjectileID.ThrowingKnife
         };

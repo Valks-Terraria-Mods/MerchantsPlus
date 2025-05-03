@@ -25,9 +25,9 @@ public class ArmsDealer : BaseMerchant
         {
             _ when NPC.downedMoonlord => ProjectileID.MoonlordBullet,
             _ when NPC.downedPlantBoss => ProjectileID.ChlorophyteBullet,
-            _ when Utils.DownedMechBosses() == 3 => ProjectileID.CrystalBullet,
-            _ when Utils.DownedMechBosses() == 2 => ProjectileID.IchorBullet,
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.CursedBullet,
+            _ when Progression.DownedMechs(3) => ProjectileID.CrystalBullet,
+            _ when Progression.DownedMechs(2) => ProjectileID.IchorBullet,
+            _ when Progression.DownedMechs(1) => ProjectileID.CursedBullet,
             _ when NPC.downedBoss2 => ProjectileID.MeteorShot,
             _ when NPC.downedSlimeKing => ProjectileID.GoldenBullet,
             _ => ProjectileID.Bullet

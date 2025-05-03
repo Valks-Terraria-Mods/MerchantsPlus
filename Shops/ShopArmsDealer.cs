@@ -17,17 +17,18 @@ public class ShopArmsDealer : Shop
             ShopShotgun();
 
             // Msc
-            if (NPC.downedPlantBoss)
+            if (Progression.Plantera)
             {
                 AddItem(ItemID.SniperRifle);
                 AddItem(ItemID.RifleScope);
             }
+
             if (!Main.dayTime)
             {
                 AddItem(ItemID.IllegalGunParts);
             }
 
-            if (Main.hardMode)
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.EmptyBullet);
             }
@@ -38,46 +39,20 @@ public class ShopArmsDealer : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(2);
+        Inv.SetupShop(ShopType.ArmsDealer);
     }
 
     private void ShopBulletMain()
     {
         ReplaceItem(ItemID.MusketBall);
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.SilverBullet);
-        }
 
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.MeteorShot);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.CursedBullet);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.IchorBullet);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.CrystalBullet);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.ChlorophyteBullet);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.MoonlordBullet);
-        }
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.SilverBullet);
+        ReplaceItem(Progression.BrainOrEater, ItemID.MeteorShot);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.CursedBullet);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.IchorBullet);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.CrystalBullet);
+        ReplaceItem(Progression.Plantera, ItemID.ChlorophyteBullet);
+        ReplaceItem(Progression.Moonlord, ItemID.MoonlordBullet);
 
         NextSlot++;
     }
@@ -85,51 +60,17 @@ public class ShopArmsDealer : Shop
     private void ShopBulletOther()
     {
         ReplaceItem(ItemID.PartyBullet);
-        ReplacePrice(Utils.Coins(0, 1));
-        if (NPC.downedSlimeKing)
-        {
-            ReplacePrice(Utils.Coins(50));
-        }
+        ReplacePrice(Coins.Silver());
 
-        if (NPC.downedBoss1)
-        {
-            ReplacePrice(Utils.Coins(25));
-        }
-
-        if (NPC.downedBoss2)
-        {
-            ReplacePrice(Utils.Coins(5));
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            ReplacePrice(Utils.Coins(1));
-        }
-
-        if (NPC.downedBoss3)
-        {
-            ReplaceItem(ItemID.ExplodingBullet);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.GoldenBullet);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.NanoBullet);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.HighVelocityBullet);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.VenomBullet);
-        }
+        ReplacePrice(Progression.SlimeKing, Coins.Copper(50));
+        ReplacePrice(Progression.EyeOfCthulhu, Coins.Copper(25));
+        ReplacePrice(Progression.BrainOrEater, Coins.Copper(5));
+        ReplacePrice(Progression.QueenBee, Coins.Copper());
+        ReplaceItem(Progression.Skeletron, ItemID.ExplodingBullet);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.GoldenBullet);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.NanoBullet);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.HighVelocityBullet);
+        ReplaceItem(Progression.Plantera, ItemID.VenomBullet);
 
         NextSlot++;
     }
@@ -137,35 +78,13 @@ public class ShopArmsDealer : Shop
     private void ShopPistol()
     {
         ReplaceItem(ItemID.FlintlockPistol);
-        if (NPC.downedSlimeKing)
-        {
-            ReplaceItem(ItemID.TheUndertaker);
-        }
 
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.Revolver);
-        }
-
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.Handgun);
-        }
-
-        if (NPC.downedQueenBee)
-        {
-            ReplaceItem(ItemID.PhoenixBlaster);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.Uzi);
-        }
-
-        if (Utils.DownedMechBosses() == 3)
-        {
-            ReplaceItem(ItemID.VenusMagnum);
-        }
+        ReplaceItem(Progression.SlimeKing, ItemID.TheUndertaker);
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Revolver);
+        ReplaceItem(Progression.BrainOrEater, ItemID.Handgun);
+        ReplaceItem(Progression.QueenBee, ItemID.PhoenixBlaster);
+        ReplaceItem(Progression.Hardmode, ItemID.Uzi);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.VenusMagnum);
 
         NextSlot++;
     }
@@ -173,40 +92,14 @@ public class ShopArmsDealer : Shop
     private void ShopRifle()
     {
         ReplaceItem(ItemID.RedRyder);
-        if (NPC.downedBoss1)
-        {
-            ReplaceItem(ItemID.Musket);
-        }
 
-        if (NPC.downedBoss2)
-        {
-            ReplaceItem(ItemID.Minishark);
-        }
-
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.ClockworkAssaultRifle);
-        }
-
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.Gatligator);
-        }
-
-        if (Utils.DownedMechBosses() == 2)
-        {
-            ReplaceItem(ItemID.Megashark);
-        }
-
-        if (NPC.downedAncientCultist)
-        {
-            ReplaceItem(ItemID.VortexBeater);
-        }
-
-        if (NPC.downedMoonlord)
-        {
-            ReplaceItem(ItemID.SDMG);
-        }
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Musket);
+        ReplaceItem(Progression.BrainOrEater, ItemID.Minishark);
+        ReplaceItem(Progression.Hardmode, ItemID.ClockworkAssaultRifle);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.Gatligator);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.Megashark);
+        ReplaceItem(NPC.downedAncientCultist, ItemID.VortexBeater);
+        ReplaceItem(Progression.Moonlord, ItemID.SDMG);
 
         NextSlot++;
     }
@@ -214,20 +107,10 @@ public class ShopArmsDealer : Shop
     private void ShopShotgun()
     {
         ReplaceItem(ItemID.Boomstick);
-        if (Main.hardMode)
-        {
-            ReplaceItem(ItemID.Shotgun);
-        }
 
-        if (Utils.DownedMechBosses() == 1)
-        {
-            ReplaceItem(ItemID.OnyxBlaster);
-        }
-
-        if (NPC.downedPlantBoss)
-        {
-            ReplaceItem(ItemID.TacticalShotgun);
-        }
+        ReplaceItem(Progression.Hardmode, ItemID.Shotgun);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.OnyxBlaster);
+        ReplaceItem(Progression.Plantera, ItemID.TacticalShotgun);
 
         NextSlot++;
     }

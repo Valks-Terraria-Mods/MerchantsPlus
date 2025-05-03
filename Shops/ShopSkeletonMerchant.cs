@@ -50,7 +50,8 @@ public class ShopSkeletonMerchant : Shop
             AddItem(ItemID.PinkString);
             AddItem(ItemID.PurpleCounterweight);
             AddItem(ItemID.YoYoGlove);
-            if (Main.hardMode)
+
+            if (Progression.Hardmode)
             {
                 if (Utils.Kills(NPCID.WyvernHead) > 0)
                 {
@@ -84,10 +85,11 @@ public class ShopSkeletonMerchant : Shop
 
                 AddItem(ItemID.RagePotion, Utils.UniversalPotionCost);
             }
+
             return;
         }
 
         // Default Shop
-        Inv.SetupShop(20);
+        Inv.SetupShop(ShopType.SkeletonMerchant);
     }
 }

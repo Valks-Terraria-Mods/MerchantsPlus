@@ -23,7 +23,7 @@ public class Merchant : BaseMerchant
 
         projType = true switch
         {
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.BoneJavelin,
+            _ when Progression.DownedMechs(1) => ProjectileID.BoneJavelin,
             _ when NPC.downedBoss2 => ProjectileID.PoisonedKnife,
             _ => ProjectileID.ThrowingKnife
         };

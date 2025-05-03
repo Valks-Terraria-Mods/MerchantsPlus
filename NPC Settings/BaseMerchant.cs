@@ -6,7 +6,7 @@ public abstract class BaseMerchant : GlobalNPC
     {
         base.SetDefaults(npc);
 
-        if (Utils.IsMerchant(npc.type))
+        if (IsMerchant(npc.type))
         {
             if (Config.Instance.ToggleScaling)
             {
@@ -60,5 +60,42 @@ public abstract class BaseMerchant : GlobalNPC
         }
 
         attackDelay = 1;
+    }
+
+    private static bool IsMerchant(int npcID)
+    {
+        return npcID switch
+        {
+            NPCID.Angler or
+            NPCID.ArmsDealer or
+            NPCID.Clothier or
+            NPCID.Cyborg or
+            NPCID.Demolitionist or
+            NPCID.Dryad or
+            NPCID.DyeTrader or
+            NPCID.GoblinTinkerer or
+            NPCID.Guide or
+            NPCID.Mechanic or
+            NPCID.Nurse or
+            NPCID.Painter or
+            NPCID.PartyGirl or
+            NPCID.Pirate or
+            NPCID.SantaClaus or
+            NPCID.SkeletonMerchant or
+            NPCID.Steampunker or
+            NPCID.Stylist or
+            NPCID.DD2Bartender or
+            NPCID.TaxCollector or
+            NPCID.TravellingMerchant or
+            NPCID.Truffle or
+            NPCID.WitchDoctor or
+            NPCID.Wizard or
+            NPCID.OldMan or
+            NPCID.BoundGoblin or
+            NPCID.BoundMechanic or
+            NPCID.BoundWizard or
+            NPCID.SleepingAngler => true,
+            _ => false,
+        };
     }
 }

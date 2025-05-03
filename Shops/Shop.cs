@@ -60,7 +60,16 @@ public abstract class Shop
 
     protected void AddItem(int itemID, int price, int progression = 0)
     {
-        if (Utils.Progression() >= progression)
+        if (Progression.Level() >= progression)
+        {
+            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot++].shopCustomPrice = price;
+        }
+    }
+
+    protected void AddItem(bool condition, int itemID, int price, int progression = 0)
+    {
+        if (condition && Progression.Level() >= progression)
         {
             Inv.item[NextSlot].SetDefaults(itemID);
             Inv.item[NextSlot++].shopCustomPrice = price;
@@ -72,15 +81,36 @@ public abstract class Shop
         Inv.item[NextSlot].SetDefaults(itemID);
     }
 
+    protected void ReplaceItem(bool condition, int itemID)
+    {
+        if (condition)
+            Inv.item[NextSlot].SetDefaults(itemID);
+    }
+
     protected void ReplaceItem(int itemID, int price)
     {
         Inv.item[NextSlot].SetDefaults(itemID);
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
+    protected void ReplaceItem(bool condition, int itemID, int price)
+    {
+        if (condition)
+        {
+            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot].shopCustomPrice = price;
+        }
+    }
+
     protected void ReplacePrice(int price)
     {
         Inv.item[NextSlot].shopCustomPrice = price;
+    }
+
+    protected void ReplacePrice(bool condition, int price)
+    {
+        if (condition)
+            Inv.item[NextSlot].shopCustomPrice = price;
     }
 
     public override string ToString()

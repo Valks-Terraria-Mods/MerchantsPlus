@@ -25,9 +25,9 @@ public class Guide : BaseMerchant
         {
             _ when NPC.downedMoonlord => ProjectileID.MoonlordArrow,
             _ when NPC.downedPlantBoss => ProjectileID.ChlorophyteArrow,
-            _ when Utils.DownedMechBosses() == 3 => ProjectileID.VenomArrow,
-            _ when Utils.DownedMechBosses() == 2 => ProjectileID.CursedArrow,
-            _ when Utils.DownedMechBosses() == 1 => ProjectileID.HolyArrow,
+            _ when Progression.DownedMechs(3) => ProjectileID.VenomArrow,
+            _ when Progression.DownedMechs(2) => ProjectileID.CursedArrow,
+            _ when Progression.DownedMechs(1) => ProjectileID.HolyArrow,
             _ when Main.hardMode => ProjectileID.UnholyArrow,
             _ when NPC.downedBoss2 => ProjectileID.JestersArrow,
             _ when NPC.downedSlimeKing => ProjectileID.FrostburnArrow,

@@ -72,6 +72,6 @@ public class ShopSantaClaus : Shop
         }
 
         // Default Shop
-        Inv.SetupShop(9);
+        Inv.SetupShop(ShopType.SantaClaus);
     }
 }
