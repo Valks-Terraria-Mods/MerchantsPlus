@@ -186,10 +186,11 @@ public class ShopMerchant : Shop
             }
         }
 
+        ReplaceItem(Progression.Hardmode,       ItemID.MoltenHamaxe);
         ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltWaraxe);
         ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilWaraxe);
         ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumWaraxe);
-        ReplaceItem(Progression.Plantera,           ItemID.ChlorophyteGreataxe);
+        ReplaceItem(Progression.Plantera,       ItemID.ChlorophyteGreataxe);
 
         if (Progression.Moonlord)
         {
