@@ -49,13 +49,31 @@ public class ShopMerchant : Shop
         }
 
         ReplaceItem(Progression.Hardmode,           ItemID.ArkhalisWings, Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DTownsWings,   Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(2), ItemID.CrownosWings,  Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(3), ItemID.CenxsWings,    Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(1),     ItemID.DTownsWings,   Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(2),     ItemID.CrownosWings,  Coins.Platinum());
+        ReplaceItem(Progression.DownedMechs(3),     ItemID.CenxsWings,    Coins.Platinum());
         ReplaceItem(Progression.Plantera,           ItemID.JimsWings,     Coins.Platinum());
         ReplaceItem(Progression.Golem,              ItemID.LeinforsWings, Coins.Platinum());
         ReplaceItem(Progression.Fishron,            ItemID.FishronWings,  Coins.Platinum());
-        ReplaceItem(Progression.Moonlord,           ItemID.WingsStardust, Coins.Platinum());
+
+        switch (Utils.GetPlayerClass())
+        {
+            case PlayerClass.Melee:
+                ReplaceItem(Progression.Moonlord, ItemID.WingsSolar, Coins.Platinum());
+                break;
+            case PlayerClass.Ranger:
+                ReplaceItem(Progression.Moonlord, ItemID.WingsVortex, Coins.Platinum());
+                break;
+            case PlayerClass.Mage:
+                ReplaceItem(Progression.Moonlord, ItemID.WingsNebula, Coins.Platinum());
+                break;
+            case PlayerClass.Summoner:
+                ReplaceItem(Progression.Moonlord, ItemID.WingsStardust, Coins.Platinum());
+                break;
+            default:
+                ReplaceItem(Progression.Moonlord, ItemID.WingsStardust, Coins.Platinum());
+                break;
+        }
 
         NextSlot++;
     }
