@@ -38,6 +38,7 @@ public class ShopUI : UIState
 
     private TextButton _merchantName;
     private TextButton _currentShopName;
+    private TextButton _cycleShopBtn;
 
     public override void OnInitialize()
     {
@@ -69,15 +70,15 @@ public class ShopUI : UIState
 
         shopPanel.Append(_currentShopName);
 
-        TextButton cycleShopButton = new("Cycle Shop", 0.9f)
+        _cycleShopBtn = new("Cycle Shop", 0.9f)
         {
             HAlign = 0.97f
         };
 
-        cycleShopButton.Top.Set(4, 0f);
-        cycleShopButton.OnLeftClick += CycleShopButtonClicked;
+        _cycleShopBtn.Top.Set(4, 0f);
+        _cycleShopBtn.OnLeftClick += CycleShopButtonClicked;
 
-        shopPanel.Append(cycleShopButton);
+        shopPanel.Append(_cycleShopBtn);
 
         Append(shopPanel);
     }
@@ -86,6 +87,12 @@ public class ShopUI : UIState
     {
         UpdateShopName();
         UpdateMerchantName();
+        UpdateCycleShopName();
+    }
+
+    private void UpdateCycleShopName()
+    {
+        _cycleShopBtn.SetText(Shops[CurrentMerchantId].Shops.Length == 1 ? "" : "Cycle Shop");
     }
 
     private void UpdateMerchantName()
