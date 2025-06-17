@@ -1,4 +1,6 @@
+qodana.yaml
 .vs/
+.idea/
 obj/
 bin/
 _references/

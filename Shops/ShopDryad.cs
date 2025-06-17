@@ -10,25 +10,25 @@ public class ShopDryad : Shop
 
         if (shop == "Potions")
         {
-            AddItem(ItemID.CalmingPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.FeatherfallPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.CalmingPotion, ItemCosts.Potions);
+            AddItem(ItemID.FeatherfallPotion, ItemCosts.Potions);
             return;
         }
 
         if (shop == "Seeds")
         {
-            AddItem(ItemID.GrassSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.CorruptSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.HallowedSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.MushroomGrassSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.CrimsonSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.BlinkrootSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.DaybloomSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.DeathweedSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.FireblossomSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.MoonglowSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.WaterleafSeeds, Utils.UniversalSeedCost);
-            AddItem(ItemID.ShiverthornSeeds, Utils.UniversalSeedCost);
+            AddItem(ItemID.GrassSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.CorruptSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.HallowedSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.MushroomGrassSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.CrimsonSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.BlinkrootSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.DaybloomSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.DeathweedSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.FireblossomSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.MoonglowSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.WaterleafSeeds, ItemCosts.Seeds);
+            AddItem(ItemID.ShiverthornSeeds, ItemCosts.Seeds);
             return;
         }
 

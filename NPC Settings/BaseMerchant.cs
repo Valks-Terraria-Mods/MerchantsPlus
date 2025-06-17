@@ -41,15 +41,15 @@ public abstract class BaseMerchant : GlobalNPC
             return;
         }
 
-        chat = Utils.Dialog(["Defeat more bosses to unlock more gear."]);
+        chat = QuestUtils.Dialog(["Defeat more bosses to unlock more gear."]);
     }
 
     public override void OnKill(NPC npc)
     {
-        if (!Config.Instance.ToggleDrops)
-        {
-            return;
-        }
+        //if (!Config.Instance.ToggleDrops)
+        //{
+        //    return;
+        //}
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)

@@ -10,9 +10,9 @@ public class ShopPirate : Shop
 
         if (shop == "Potions")
         {
-            AddItem(ItemID.TrapsightPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.HunterPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.InfernoPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.TrapsightPotion, ItemCosts.Potions);
+            AddItem(ItemID.HunterPotion, ItemCosts.Potions);
+            AddItem(ItemID.InfernoPotion, ItemCosts.Potions);
             return;
         }
 

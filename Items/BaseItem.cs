@@ -10,8 +10,8 @@ public class BaseItem : GlobalItem
         {
             ItemID.ManaCrystal => Coins.Silver(10),
             ItemID.EmptyBucket => Coins.Silver(10),
-            ItemID.Seed => Coins.Copper(1),
-            ItemID.Snowball => Coins.Copper(1),
+            ItemID.Seed => Coins.Copper(),
+            ItemID.Snowball => Coins.Copper(),
             ItemID.CursedDart => Coins.Silver(),
             ItemID.IchorDart => Coins.Silver(),
             ItemID.CrystalDart => Coins.Silver(),

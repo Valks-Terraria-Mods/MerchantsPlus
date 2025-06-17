@@ -53,8 +53,8 @@ public class ShopWitchDoctor : Shop
         if (Progression.Hardmode)
         {
             AddItem(ItemID.AngelWings, Coins.Platinum(2));
-            AddItem(Utils.Kills(NPCID.Demon) >= 3, ItemID.DemonWings, Coins.Platinum(2));
-            AddItem(Utils.Kills(NPCID.Shark) >= 3, ItemID.FinWings, Coins.Platinum(2));
+            AddItem(WorldUtils.Kills(NPCID.Demon) >= 3, ItemID.DemonWings, Coins.Platinum(2));
+            AddItem(WorldUtils.Kills(NPCID.Shark) >= 3, ItemID.FinWings, Coins.Platinum(2));
 
             if (NPC.downedMechBossAny)
             {
@@ -85,7 +85,7 @@ public class ShopWitchDoctor : Shop
 
             AddItem(NPC.downedChristmasIceQueen, ItemID.FestiveWings, Coins.Platinum(2));
             AddItem(NPC.downedHalloweenKing, ItemID.SpookyWings, Coins.Platinum(2));
-            AddItem(Utils.IsNPCHere(NPCID.Steampunker), ItemID.SteampunkWings, Coins.Platinum(2));
+            AddItem(WorldUtils.IsNpcHere(NPCID.Steampunker), ItemID.SteampunkWings, Coins.Platinum(2));
             AddItem(NPC.downedFishron, ItemID.FishronWings, Coins.Platinum(2));
 
             if (Progression.Moonlord)

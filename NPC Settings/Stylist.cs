@@ -11,7 +11,7 @@ public class Stylist : BaseMerchant
 
         base.GetChat(npc, ref chat);
 
-        chat = Utils.Dialog(["Defeat 50 enemies of any type and I'll sell you the banner for that enemy."]);
+        chat = QuestUtils.Dialog(["Defeat 50 enemies of any type and I'll sell you the banner for that enemy."]);
     }
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)

@@ -3,12 +3,9 @@ using Terraria.GameContent.UI.Elements;
 
 namespace MerchantsPlus.UI;
 
-// This UI will appear when a new dialog is opened with a merchant
 public class ShopUI : UIState
 {
     public static Dictionary<int, Shop> Shops { get; } = new() {
-        // DO NOT CHANGE THESE NAMES WITHOUT CHECKING THAT THEY MATCH
-        // CORRECTLY INSIDE THEIR RESPECTIVE SHOP CLASSES!
         { NPCID.Angler, new ShopAngler() },
         { NPCID.ArmsDealer, new ShopArmsDealer() },
         { NPCID.Clothier, new ShopClothier() },
@@ -37,7 +34,7 @@ public class ShopUI : UIState
     };
 
     public static bool Visible { get; set; }
-    public static int CurrentMerchantID { get; set; }
+    public static int CurrentMerchantId { get; set; }
 
     private TextButton _merchantName;
     private TextButton _currentShopName;
@@ -58,7 +55,7 @@ public class ShopUI : UIState
         };
 
         _merchantName.Top.Set(4, 0f);
-        _merchantName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+        _merchantName.OnLeftClick += ShopButtonClicked;
 
         shopPanel.Append(_merchantName);
 
@@ -68,7 +65,7 @@ public class ShopUI : UIState
         };
 
         _currentShopName.Top.Set(4, 0f);
-        _currentShopName.OnLeftClick += new MouseEvent(ShopButtonClicked);
+        _currentShopName.OnLeftClick += ShopButtonClicked;
 
         shopPanel.Append(_currentShopName);
 
@@ -78,7 +75,7 @@ public class ShopUI : UIState
         };
 
         cycleShopButton.Top.Set(4, 0f);
-        cycleShopButton.OnLeftClick += new MouseEvent(CycleShopButtonClicked);
+        cycleShopButton.OnLeftClick += CycleShopButtonClicked;
 
         shopPanel.Append(cycleShopButton);
 
@@ -95,68 +92,68 @@ public class ShopUI : UIState
     {
         foreach (NPC npc in Main.npc)
         {
-            if (npc.type == CurrentMerchantID)
-            {
-                _merchantName.SetText(npc.TypeName);
-                return;
-            }
+            if (npc.type != CurrentMerchantId) 
+                continue;
+            
+            _merchantName.SetText(npc.TypeName);
+            return;
         }
 
-        // If cannot find the merchant name, default to "Merchant"
+        // If you cannot find the merchant name, default to "Merchant"
         _merchantName.SetText("Merchant");
     }
 
     private void UpdateShopName()
     {
-        if (Shops[CurrentMerchantID].Shops.Length == 0)
+        if (Shops[CurrentMerchantId].Shops.Length == 0)
         {
             _currentShopName.SetText("Shop");
             return;
         }
 
-        int shopIndex = Shops[CurrentMerchantID].CycleIndex;
+        int shopIndex = Shops[CurrentMerchantId].CycleIndex;
 
-        _currentShopName.SetText(Shops[CurrentMerchantID].Shops[shopIndex]);
+        _currentShopName.SetText(Shops[CurrentMerchantId].Shops[shopIndex]);
     }
 
     private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         ShiftShop();
         UpdateUI();
-        OpenShop(Shops[CurrentMerchantID].CycleIndex);
+        OpenShop(Shops[CurrentMerchantId].CycleIndex);
     }
 
     private static void ShiftShop()
     {
-        if (Shops[CurrentMerchantID].Shops.Length == 0)
+        if (Shops[CurrentMerchantId].Shops.Length == 0)
         {
-            return; // Safe Guard
+            return; // SafeGuard
         }
 
-        if (Shops[CurrentMerchantID].CycleIndex >= Shops[CurrentMerchantID].Shops.Length - 1)
+        if (Shops[CurrentMerchantId].CycleIndex >= Shops[CurrentMerchantId].Shops.Length - 1)
         {
-            Shops[CurrentMerchantID].CycleIndex = 0;
+            Shops[CurrentMerchantId].CycleIndex = 0;
         }
         else
         {
-            Shops[CurrentMerchantID].CycleIndex++;
+            Shops[CurrentMerchantId].CycleIndex++;
         }
     }
 
     private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
-        OpenShop(Shops[CurrentMerchantID].CycleIndex);
+        OpenShop(Shops[CurrentMerchantId].CycleIndex);
     }
 
     private static void OpenShop(int shopIndex)
     {
         string shopToOpen = "";
 
-        if (Shops[CurrentMerchantID].Shops.Length != 0)
+        if (Shops[CurrentMerchantId].Shops.Length != 0)
         {
-            shopToOpen = Shops[CurrentMerchantID].Shops[shopIndex];
+            shopToOpen = Shops[CurrentMerchantId].Shops[shopIndex];
         }
 
-        Shops[CurrentMerchantID].OpenShop(shopToOpen);
+        Shops[CurrentMerchantId].OpenShop(shopToOpen);
     }
 }

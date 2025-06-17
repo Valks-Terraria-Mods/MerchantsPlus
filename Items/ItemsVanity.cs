@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-
-namespace MerchantsPlus.Items;
+﻿namespace MerchantsPlus.Items;
 
 public class ItemsVanity : BaseItem
 {

@@ -10,12 +10,12 @@ public class ShopCyborg : Shop
 
         if (shop == "Buffs")
         {
-            AddItem(ItemID.GravitationPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.SwiftnessPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.ThornsPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.TitanPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.WarmthPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.WrathPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.GravitationPotion, ItemCosts.Potions);
+            AddItem(ItemID.SwiftnessPotion, ItemCosts.Potions);
+            AddItem(ItemID.ThornsPotion, ItemCosts.Potions);
+            AddItem(ItemID.TitanPotion, ItemCosts.Potions);
+            AddItem(ItemID.WarmthPotion, ItemCosts.Potions);
+            AddItem(ItemID.WrathPotion, ItemCosts.Potions);
 
             return;
         }

@@ -9,7 +9,7 @@ public class UIEvents : GlobalNPC
 
     private static void SetShopIndex(NPC npc)
     {
-        ShopUI.CurrentMerchantID = npc.type;
+        ShopUI.CurrentMerchantId = npc.type;
     }
 
     //static NPC currentNPC;

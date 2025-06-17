@@ -34,7 +34,7 @@ public class ShopArmsDealer : Shop
             }
 
             AddItem(ItemID.AmmoBox);
-            AddItem(ItemID.AmmoReservationPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.AmmoReservationPotion, ItemCosts.Potions);
             return;
         }
 

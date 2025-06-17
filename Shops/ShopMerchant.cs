@@ -56,7 +56,7 @@ public class ShopMerchant : Shop
         ReplaceItem(Progression.Golem,              ItemID.LeinforsWings, Coins.Platinum());
         ReplaceItem(Progression.Fishron,            ItemID.FishronWings,  Coins.Platinum());
 
-        switch (Utils.GetPlayerClass())
+        switch (PlayerUtils.GetPlayerClass())
         {
             case PlayerClass.Melee:
                 ReplaceItem(Progression.Moonlord, ItemID.WingsSolar, Coins.Platinum());
@@ -134,7 +134,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlarePickaxe);
@@ -212,7 +212,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.LunarHamaxeSolar);
@@ -287,7 +287,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.LunarHamaxeSolar);
@@ -371,7 +371,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Skeletron)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenHelmet);
@@ -393,7 +393,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(1))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.CobaltHelmet);
@@ -415,7 +415,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(2))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.MythrilHelmet);
@@ -437,7 +437,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(3))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.TitaniumMask);
@@ -459,7 +459,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Plantera)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.ChlorophyteMask);
@@ -481,7 +481,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareHelmet);
@@ -565,7 +565,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Skeletron)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenBreastplate);
@@ -587,7 +587,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(1))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -603,7 +603,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(2))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -619,7 +619,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(3))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -635,7 +635,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Plantera)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -651,7 +651,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareBreastplate);
@@ -735,7 +735,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Skeletron)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.MoltenGreaves);
@@ -757,7 +757,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(1))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -773,7 +773,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(2))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -789,7 +789,7 @@ public class ShopMerchant : Shop
 
         if (Progression.DownedMechs(3))
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -805,7 +805,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Plantera)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
@@ -821,7 +821,7 @@ public class ShopMerchant : Shop
 
         if (Progression.Moonlord)
         {
-            switch (Utils.GetPlayerClass())
+            switch (PlayerUtils.GetPlayerClass())
             {
                 case PlayerClass.Melee:
                     ReplaceItem(ItemID.SolarFlareLeggings);
@@ -928,7 +928,7 @@ public class ShopMerchant : Shop
             }
         }
 
-        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.Arkhalis);
+        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.Arkhalis);
         ReplaceItem(Progression.QueenBee,                 ItemID.BeeKeeper);
         ReplaceItem(Progression.Hardmode,                 ItemID.BreakerBlade);
         ReplaceItem(Progression.DownedMechs(1),       ItemID.CobaltSword);
@@ -1016,7 +1016,7 @@ public class ShopMerchant : Shop
         ReplaceItem(Progression.Plantera,            ItemID.UnholyTrident);
         ReplaceItem(Progression.Golem,               ItemID.HeatRay);
         ReplaceItem(NPC.downedFrost,                 ItemID.Razorpine);
-        ReplaceItem(Utils.Kills(NPCID.DD2Betsy) > 0, ItemID.ApprenticeStaffT3);
+        ReplaceItem(WorldUtils.Kills(NPCID.DD2Betsy) > 0, ItemID.ApprenticeStaffT3);
         ReplaceItem(NPC.downedMartians,              ItemID.LaserMachinegun);
         ReplaceItem(NPC.downedFishron,               ItemID.ChargedBlasterCannon);
         ReplaceItem(NPC.downedAncientCultist,        ItemID.SpectreStaff);
@@ -1046,77 +1046,77 @@ public class ShopMerchant : Shop
 
     private void Mounts()
     {
-        AddItem(ItemID.FuzzyCarrot, Utils.UniversalMountCost);
+        AddItem(ItemID.FuzzyCarrot, ItemCosts.Mounts);
 
-        AddItem(Utils.Kills(NPCID.KingSlime) >= 1,      ItemID.SlimySaddle,          Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.EyeofCthulhu) >= 1,   ItemID.HardySaddle,          Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.QueenBee) >= 1,       ItemID.HoneyedGoggles,       Utils.UniversalMountCost);
-        AddItem(Progression.Hardmode,                   ItemID.AncientHorn,          Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.Retinazer) >= 1,      ItemID.ReindeerBells,        Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.TheDestroyer) >= 1,   ItemID.ScalyTruffle,         Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.SkeletronPrime) >= 1, ItemID.BrainScrambler,       Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.Plantera) >= 1,       ItemID.BlessedApple,         Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.MartianSaucer) >= 1,  ItemID.CosmicCarKey,         Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.DukeFishron) >= 1,    ItemID.ShrimpyTruffle,       Utils.UniversalMountCost);
-        AddItem(Utils.Kills(NPCID.MoonLordCore) >= 1,   ItemID.DrillContainmentUnit, Utils.UniversalMountCost);
+        AddItem(WorldUtils.Kills(NPCID.KingSlime) >= 1,      ItemID.SlimySaddle,          ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.EyeofCthulhu) >= 1,   ItemID.HardySaddle,          ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.QueenBee) >= 1,       ItemID.HoneyedGoggles,       ItemCosts.Mounts);
+        AddItem(Progression.Hardmode,                   ItemID.AncientHorn,          ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.Retinazer) >= 1,      ItemID.ReindeerBells,        ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.TheDestroyer) >= 1,   ItemID.ScalyTruffle,         ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.SkeletronPrime) >= 1, ItemID.BrainScrambler,       ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.Plantera) >= 1,       ItemID.BlessedApple,         ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.MartianSaucer) >= 1,  ItemID.CosmicCarKey,         ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.DukeFishron) >= 1,    ItemID.ShrimpyTruffle,       ItemCosts.Mounts);
+        AddItem(WorldUtils.Kills(NPCID.MoonLordCore) >= 1,   ItemID.DrillContainmentUnit, ItemCosts.Mounts);
     }
 
     private void Pets()
     {
-        AddItem(ItemID.Seedling,   Utils.UniversalPetCost);
-        AddItem(ItemID.Carrot,     Utils.UniversalPetCost);
-        AddItem(ItemID.DogWhistle, Utils.UniversalPetCost);
+        AddItem(ItemID.Seedling,   ItemCosts.Pets);
+        AddItem(ItemID.Carrot,     ItemCosts.Pets);
+        AddItem(ItemID.DogWhistle, ItemCosts.Pets);
 
-        AddItem(Progression.SlimeKing,    ItemID.Fish,                      Utils.UniversalPetCost);
-        AddItem(Progression.SlimeKing,    ItemID.ZephyrFish,                Utils.UniversalPetCost);
-        AddItem(Progression.EyeOfCthulhu, ItemID.EyeSpring,                 Utils.UniversalPetCost);
-        AddItem(Progression.GoblinArmy,   ItemID.BabyGrinchMischiefWhistle, Utils.UniversalPetCost);
-        AddItem(Progression.EyeOfCthulhu, ItemID.EatersBone,                Utils.UniversalPetCost);
-        AddItem(Progression.EyeOfCthulhu, ItemID.BoneRattle,                Utils.UniversalPetCost);
-        AddItem(Progression.Skeletron,    ItemID.BoneKey,                   Utils.UniversalPetCost);
-        AddItem(Progression.Skeletron,    ItemID.TartarSauce,               Utils.UniversalPetCost);
-        AddItem(Progression.QueenBee,     ItemID.Nectar,                    Utils.UniversalPetCost);
-        AddItem(Progression.Hardmode,     ItemID.CompanionCube,             Utils.UniversalPetCost);
-        AddItem(Progression.Hardmode,     ItemID.AmberMosquito,             Utils.UniversalPetCost);
-        AddItem(Progression.Plantera,     ItemID.TikiTotem,                 Utils.UniversalPetCost);
-        AddItem(Progression.Pirates,      ItemID.ParrotCracker,             Utils.UniversalPetCost);
-        AddItem(Progression.Christmas,    ItemID.ToySled,                   Utils.UniversalPetCost);
+        AddItem(Progression.SlimeKing,    ItemID.Fish,                      ItemCosts.Pets);
+        AddItem(Progression.SlimeKing,    ItemID.ZephyrFish,                ItemCosts.Pets);
+        AddItem(Progression.EyeOfCthulhu, ItemID.EyeSpring,                 ItemCosts.Pets);
+        AddItem(Progression.GoblinArmy,   ItemID.BabyGrinchMischiefWhistle, ItemCosts.Pets);
+        AddItem(Progression.EyeOfCthulhu, ItemID.EatersBone,                ItemCosts.Pets);
+        AddItem(Progression.EyeOfCthulhu, ItemID.BoneRattle,                ItemCosts.Pets);
+        AddItem(Progression.Skeletron,    ItemID.BoneKey,                   ItemCosts.Pets);
+        AddItem(Progression.Skeletron,    ItemID.TartarSauce,               ItemCosts.Pets);
+        AddItem(Progression.QueenBee,     ItemID.Nectar,                    ItemCosts.Pets);
+        AddItem(Progression.Hardmode,     ItemID.CompanionCube,             ItemCosts.Pets);
+        AddItem(Progression.Hardmode,     ItemID.AmberMosquito,             ItemCosts.Pets);
+        AddItem(Progression.Plantera,     ItemID.TikiTotem,                 ItemCosts.Pets);
+        AddItem(Progression.Pirates,      ItemID.ParrotCracker,             ItemCosts.Pets);
+        AddItem(Progression.Christmas,    ItemID.ToySled,                   ItemCosts.Pets);
 
         if (Progression.Halloween)
         {
-            AddItem(ItemID.SpiderEgg,          Utils.UniversalPetCost);
-            AddItem(ItemID.CursedSapling,      Utils.UniversalPetCost);
-            AddItem(ItemID.UnluckyYarn,        Utils.UniversalPetCost);
-            AddItem(ItemID.MagicalPumpkinSeed, Utils.UniversalPetCost);
+            AddItem(ItemID.SpiderEgg,          ItemCosts.Pets);
+            AddItem(ItemID.CursedSapling,      ItemCosts.Pets);
+            AddItem(ItemID.UnluckyYarn,        ItemCosts.Pets);
+            AddItem(ItemID.MagicalPumpkinSeed, ItemCosts.Pets);
         }
 
-        AddItem(Progression.Fishron,  ItemID.Seaweed,                Utils.UniversalPetCost);
-        AddItem(Progression.Fishron,  ItemID.LizardEgg,              Utils.UniversalPetCost);
-        AddItem(Progression.Cultist,  ItemID.DD2PetDragon,           Utils.UniversalPetCost);
-        AddItem(Progression.Cultist,  ItemID.DD2PetGato,             Utils.UniversalPetCost);
-        AddItem(Progression.Moonlord, ItemID.StrangeGlowingMushroom, Utils.UniversalPetCost);
+        AddItem(Progression.Fishron,  ItemID.Seaweed,                ItemCosts.Pets);
+        AddItem(Progression.Fishron,  ItemID.LizardEgg,              ItemCosts.Pets);
+        AddItem(Progression.Cultist,  ItemID.DD2PetDragon,           ItemCosts.Pets);
+        AddItem(Progression.Cultist,  ItemID.DD2PetGato,             ItemCosts.Pets);
+        AddItem(Progression.Moonlord, ItemID.StrangeGlowingMushroom, ItemCosts.Pets);
     }
 
     private void Ores()
     {
         if (GenVars.copperBar > 0)
         {
-            AddItem(ItemID.CopperOre, Utils.UniversalOreCost);
+            AddItem(ItemID.CopperOre, ItemCosts.Ores);
         }
         else
         {
-            AddItem(ItemID.TinOre, Utils.UniversalOreCost);
+            AddItem(ItemID.TinOre, ItemCosts.Ores);
         }
 
         if (Progression.SlimeKing)
         {
             if (GenVars.ironBar > 0)
             {
-                AddItem(ItemID.IronOre, Utils.UniversalOreCost);
+                AddItem(ItemID.IronOre, ItemCosts.Ores);
             }
             else
             {
-                AddItem(ItemID.LeadOre, Utils.UniversalOreCost);
+                AddItem(ItemID.LeadOre, ItemCosts.Ores);
             }
         }
 
@@ -1124,11 +1124,11 @@ public class ShopMerchant : Shop
         {
             if (GenVars.silverBar > 0)
             {
-                AddItem(ItemID.SilverOre, Utils.UniversalOreCost);
+                AddItem(ItemID.SilverOre, ItemCosts.Ores);
             }
             else
             {
-                AddItem(ItemID.TungstenOre, Utils.UniversalOreCost);
+                AddItem(ItemID.TungstenOre, ItemCosts.Ores);
             }
         }
 
@@ -1136,52 +1136,52 @@ public class ShopMerchant : Shop
         {
             if (GenVars.goldBar > 0)
             {
-                AddItem(ItemID.GoldOre, Utils.UniversalOreCost);
+                AddItem(ItemID.GoldOre, ItemCosts.Ores);
             }
             else
             {
-                AddItem(ItemID.PlatinumOre, Utils.UniversalOreCost);
+                AddItem(ItemID.PlatinumOre, ItemCosts.Ores);
             }
 
-            AddItem(ItemID.Meteorite, Utils.UniversalOreCost);
+            AddItem(ItemID.Meteorite, ItemCosts.Ores);
         }
 
         if (Progression.Skeletron)
         {
             if (GenVars.crimsonLeft)
             {
-                AddItem(ItemID.CrimtaneOre, Utils.UniversalOreCost);
+                AddItem(ItemID.CrimtaneOre, ItemCosts.Ores);
             }
             else
             {
-                AddItem(ItemID.DemoniteOre, Utils.UniversalOreCost);
+                AddItem(ItemID.DemoniteOre, ItemCosts.Ores);
             }
         }
 
-        AddItem(Progression.Hardmode, ItemID.Hellstone, Utils.UniversalOreCost);
+        AddItem(Progression.Hardmode, ItemID.Hellstone, ItemCosts.Ores);
 
         if (Progression.DownedMechs(1))
         {
-            AddItem(ItemID.PalladiumOre, Utils.UniversalOreCost * 2);
-            AddItem(ItemID.CobaltOre, Utils.UniversalOreCost * 2);
+            AddItem(ItemID.PalladiumOre, ItemCosts.Ores * 2);
+            AddItem(ItemID.CobaltOre, ItemCosts.Ores * 2);
         }
 
         if (Progression.DownedMechs(2))
         {
-            AddItem(ItemID.MythrilOre, Utils.UniversalOreCost * 3);
-            AddItem(ItemID.OrichalcumOre, Utils.UniversalOreCost * 3);
+            AddItem(ItemID.MythrilOre, ItemCosts.Ores * 3);
+            AddItem(ItemID.OrichalcumOre, ItemCosts.Ores * 3);
         }
 
         if (Progression.DownedMechs(3))
         {
-            AddItem(ItemID.AdamantiteOre, Utils.UniversalOreCost * 4);
-            AddItem(ItemID.TitaniumOre, Utils.UniversalOreCost * 4);
+            AddItem(ItemID.AdamantiteOre, ItemCosts.Ores * 4);
+            AddItem(ItemID.TitaniumOre, ItemCosts.Ores * 4);
 
-            AddItem(ItemID.HallowedBar, Utils.UniversalOreCost * 5);
+            AddItem(ItemID.HallowedBar, ItemCosts.Ores * 5);
         }
 
-        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, Utils.UniversalOreCost * 10);
-        AddItem(Progression.Moonlord, ItemID.LunarOre, Utils.UniversalOreCost * 100);
+        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, ItemCosts.Ores * 10);
+        AddItem(Progression.Moonlord, ItemID.LunarOre, ItemCosts.Ores * 100);
     }
 
     private void Gear()
@@ -1204,7 +1204,7 @@ public class ShopMerchant : Shop
         Breastplate();
         ShopGreaves();
 
-        switch (Utils.GetPlayerClass())
+        switch (PlayerUtils.GetPlayerClass())
         {
             case PlayerClass.Melee:
                 if (!NPC.downedBoss2)
@@ -1336,7 +1336,7 @@ public class ShopMerchant : Shop
         ReplaceItem(Progression.EyeOfCthulhu,             ItemID.ThrowingKnife);
         ReplaceItem(Progression.GoblinArmy,               ItemID.PoisonedKnife);
         ReplaceItem(Progression.BrainOrEater,             ItemID.BoneDagger);
-        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.SpikyBall);
+        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.SpikyBall);
         ReplaceItem(Progression.QueenBee,                 ItemID.Javelin);
         ReplaceItem(Progression.Skeletron,                ItemID.Bone);
         ReplaceItem(Progression.Hardmode,                 ItemID.MolotovCocktail);
@@ -1353,7 +1353,7 @@ public class ShopMerchant : Shop
         ReplaceItem(Progression.EyeOfCthulhu,             ItemID.TopazHook);
         ReplaceItem(Progression.GoblinArmy,               ItemID.SapphireHook);
         ReplaceItem(Progression.BrainOrEater,             ItemID.EmeraldHook);
-        ReplaceItem(Utils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.RubyHook);
+        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.RubyHook);
         ReplaceItem(Progression.QueenBee,                 ItemID.DiamondHook);
         ReplaceItem(Progression.Skeletron,                ItemID.SkeletronHand);
         ReplaceItem(Progression.Hardmode,                 ItemID.IvyWhip);
@@ -1367,19 +1367,19 @@ public class ShopMerchant : Shop
 
     private void BuffPotion()
     {
-        switch (Utils.GetPlayerClass())
+        switch (PlayerUtils.GetPlayerClass())
         {
             case PlayerClass.Melee:
-                AddItem(ItemID.ArcheryPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.ArcheryPotion, ItemCosts.Potions);
                 break;
 
             case PlayerClass.Ranger:
-                AddItem(ItemID.ArcheryPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.ArcheryPotion, ItemCosts.Potions);
                 break;
 
             case PlayerClass.Mage:
-                AddItem(ItemID.MagicPowerPotion, Utils.UniversalPotionCost);
-                AddItem(ItemID.ManaRegenerationPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.MagicPowerPotion, ItemCosts.Potions);
+                AddItem(ItemID.ManaRegenerationPotion, ItemCosts.Potions);
                 break;
 
             case PlayerClass.Summoner:

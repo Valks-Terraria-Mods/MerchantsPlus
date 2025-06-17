@@ -43,364 +43,364 @@ public class ShopStylist : Shop
 
         if (shop == "Eclipse")
         {
-            AddItem(Utils.Kills(NPCID.Eyezor) >= bannerKillsRequirement, ItemID.EyezorBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Frankenstein) >= bannerKillsRequirement, ItemID.FrankensteinBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SwampThing) >= bannerKillsRequirement, ItemID.SwampThingBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Vampire) >= bannerKillsRequirement, ItemID.VampireBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.CreatureFromTheDeep) >= bannerKillsRequirement, ItemID.CreatureFromTheDeepBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Fritz) >= bannerKillsRequirement, ItemID.FritzBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Reaper) >= bannerKillsRequirement, ItemID.ReaperBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.ThePossessed) >= bannerKillsRequirement, ItemID.ThePossessedBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Mothron) >= bannerKillsRequirement, ItemID.MothronBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Butcher) >= bannerKillsRequirement, ItemID.ButcherBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DeadlySphere) >= bannerKillsRequirement, ItemID.DeadlySphereBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DrManFly) >= bannerKillsRequirement, ItemID.DrManFlyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Nailhead) >= bannerKillsRequirement, ItemID.NailheadBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Psycho) >= bannerKillsRequirement, ItemID.PsychoBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Eyezor) >= bannerKillsRequirement, ItemID.EyezorBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Frankenstein) >= bannerKillsRequirement, ItemID.FrankensteinBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SwampThing) >= bannerKillsRequirement, ItemID.SwampThingBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Vampire) >= bannerKillsRequirement, ItemID.VampireBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.CreatureFromTheDeep) >= bannerKillsRequirement, ItemID.CreatureFromTheDeepBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Fritz) >= bannerKillsRequirement, ItemID.FritzBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Reaper) >= bannerKillsRequirement, ItemID.ReaperBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.ThePossessed) >= bannerKillsRequirement, ItemID.ThePossessedBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Mothron) >= bannerKillsRequirement, ItemID.MothronBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Butcher) >= bannerKillsRequirement, ItemID.ButcherBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DeadlySphere) >= bannerKillsRequirement, ItemID.DeadlySphereBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DrManFly) >= bannerKillsRequirement, ItemID.DrManFlyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Nailhead) >= bannerKillsRequirement, ItemID.NailheadBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Psycho) >= bannerKillsRequirement, ItemID.PsychoBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Bloodmoon")
         {
-            AddItem(Utils.Kills(NPCID.BloodZombie) >= bannerKillsRequirement, ItemID.BloodZombieBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Drippler) >= bannerKillsRequirement, ItemID.DripplerBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.TheGroom) >= bannerKillsRequirement, ItemID.TheGroomBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.CorruptBunny) >= bannerKillsRequirement, ItemID.CorruptBunnyBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.CorruptGoldfish) >= bannerKillsRequirement, ItemID.CorruptGoldfishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.CorruptPenguin) >= bannerKillsRequirement, ItemID.CorruptPenguinBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Clown) >= bannerKillsRequirement, ItemID.ClownBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BloodZombie) >= bannerKillsRequirement, ItemID.BloodZombieBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Drippler) >= bannerKillsRequirement, ItemID.DripplerBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.TheGroom) >= bannerKillsRequirement, ItemID.TheGroomBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.CorruptBunny) >= bannerKillsRequirement, ItemID.CorruptBunnyBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.CorruptGoldfish) >= bannerKillsRequirement, ItemID.CorruptGoldfishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.CorruptPenguin) >= bannerKillsRequirement, ItemID.CorruptPenguinBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Clown) >= bannerKillsRequirement, ItemID.ClownBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Goblin Army")
         {
-            AddItem(Utils.Kills(NPCID.GoblinPeon) >= bannerKillsRequirement, ItemID.GoblinPeonBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GoblinSorcerer) >= bannerKillsRequirement, ItemID.GoblinSorcererBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GoblinThief) >= bannerKillsRequirement, ItemID.GoblinThiefBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GoblinWarrior) >= bannerKillsRequirement, ItemID.GoblinWarriorBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GoblinArcher) >= bannerKillsRequirement, ItemID.GoblinArcherBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GoblinSummoner) >= bannerKillsRequirement, ItemID.GoblinSummonerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GoblinPeon) >= bannerKillsRequirement, ItemID.GoblinPeonBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GoblinSorcerer) >= bannerKillsRequirement, ItemID.GoblinSorcererBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GoblinThief) >= bannerKillsRequirement, ItemID.GoblinThiefBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GoblinWarrior) >= bannerKillsRequirement, ItemID.GoblinWarriorBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GoblinArcher) >= bannerKillsRequirement, ItemID.GoblinArcherBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GoblinSummoner) >= bannerKillsRequirement, ItemID.GoblinSummonerBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Dungeon")
         {
-            AddItem(Utils.Kills(NPCID.AngryBones) >= bannerKillsRequirement, ItemID.AngryBonesBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DarkCaster) >= bannerKillsRequirement, ItemID.SkeletonMageBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.CursedSkull) >= bannerKillsRequirement, ItemID.CursedSkullBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DungeonSlime) >= bannerKillsRequirement, ItemID.DungeonSlimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BlueArmoredBones) >= bannerKillsRequirement, ItemID.BlueArmoredBonesBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.RustyArmoredBonesSword) >= bannerKillsRequirement, ItemID.RustyArmoredBonesBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.HellArmoredBones) >= bannerKillsRequirement, ItemID.HellArmoredBonesBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Paladin) >= bannerKillsRequirement, ItemID.PaladinBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Necromancer) >= bannerKillsRequirement, ItemID.NecromancerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.RaggedCaster) >= bannerKillsRequirement, ItemID.RaggedCasterBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SkeletonCommando) >= bannerKillsRequirement, ItemID.SkeletonCommandoBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SkeletonSniper) >= bannerKillsRequirement, ItemID.SkeletonSniperBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.TacticalSkeleton) >= bannerKillsRequirement, ItemID.TacticalSkeletonBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GiantCursedSkull) >= bannerKillsRequirement, ItemID.GiantCursedSkullBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BoneLee) >= bannerKillsRequirement, ItemID.BoneLeeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement, ItemID.DungeonSpiritBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.AngryBones) >= bannerKillsRequirement, ItemID.AngryBonesBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DarkCaster) >= bannerKillsRequirement, ItemID.SkeletonMageBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.CursedSkull) >= bannerKillsRequirement, ItemID.CursedSkullBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DungeonSlime) >= bannerKillsRequirement, ItemID.DungeonSlimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BlueArmoredBones) >= bannerKillsRequirement, ItemID.BlueArmoredBonesBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.RustyArmoredBonesSword) >= bannerKillsRequirement, ItemID.RustyArmoredBonesBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.HellArmoredBones) >= bannerKillsRequirement, ItemID.HellArmoredBonesBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Paladin) >= bannerKillsRequirement, ItemID.PaladinBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Necromancer) >= bannerKillsRequirement, ItemID.NecromancerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.RaggedCaster) >= bannerKillsRequirement, ItemID.RaggedCasterBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SkeletonCommando) >= bannerKillsRequirement, ItemID.SkeletonCommandoBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SkeletonSniper) >= bannerKillsRequirement, ItemID.SkeletonSniperBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.TacticalSkeleton) >= bannerKillsRequirement, ItemID.TacticalSkeletonBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GiantCursedSkull) >= bannerKillsRequirement, ItemID.GiantCursedSkullBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BoneLee) >= bannerKillsRequirement, ItemID.BoneLeeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement, ItemID.DungeonSpiritBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Desert")
         {
-            AddItem(Utils.Kills(NPCID.Antlion) >= bannerKillsRequirement, ItemID.AntlionBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.FlyingAntlion) >= bannerKillsRequirement, ItemID.FlyingAntlionBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.WalkingAntlion) >= bannerKillsRequirement, ItemID.WalkingAntlionBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Vulture) >= bannerKillsRequirement, ItemID.VultureBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SandSlime) >= bannerKillsRequirement, ItemID.SandSlimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Mummy) >= bannerKillsRequirement, ItemID.MummyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.LightMummy) >= bannerKillsRequirement, ItemID.LightMummyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DarkMummy) >= bannerKillsRequirement, ItemID.DarkMummyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DesertBeast) >= bannerKillsRequirement, ItemID.DesertBasiliskBanner, bannerCostHard);
-            AddItem((Utils.Kills(NPCID.DesertLamiaDark) >= bannerKillsRequirement || Utils.Kills(NPCID.DesertLamiaLight) >= bannerKillsRequirement), ItemID.DesertLamiaBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DesertGhoul) >= bannerKillsRequirement, ItemID.DesertGhoulBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement, ItemID.DungeonSpiritBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Tumbleweed) >= bannerKillsRequirement, ItemID.TumbleweedBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SandShark) >= bannerKillsRequirement, ItemID.SandsharkBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DuneSplicerHead) >= bannerKillsRequirement, ItemID.DuneSplicerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SandElemental) >= bannerKillsRequirement, ItemID.SandElementalBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Antlion) >= bannerKillsRequirement, ItemID.AntlionBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.FlyingAntlion) >= bannerKillsRequirement, ItemID.FlyingAntlionBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.WalkingAntlion) >= bannerKillsRequirement, ItemID.WalkingAntlionBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Vulture) >= bannerKillsRequirement, ItemID.VultureBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SandSlime) >= bannerKillsRequirement, ItemID.SandSlimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Mummy) >= bannerKillsRequirement, ItemID.MummyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.LightMummy) >= bannerKillsRequirement, ItemID.LightMummyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DarkMummy) >= bannerKillsRequirement, ItemID.DarkMummyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DesertBeast) >= bannerKillsRequirement, ItemID.DesertBasiliskBanner, bannerCostHard);
+            AddItem((WorldUtils.Kills(NPCID.DesertLamiaDark) >= bannerKillsRequirement || WorldUtils.Kills(NPCID.DesertLamiaLight) >= bannerKillsRequirement), ItemID.DesertLamiaBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DesertGhoul) >= bannerKillsRequirement, ItemID.DesertGhoulBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DungeonSpirit) >= bannerKillsRequirement, ItemID.DungeonSpiritBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Tumbleweed) >= bannerKillsRequirement, ItemID.TumbleweedBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SandShark) >= bannerKillsRequirement, ItemID.SandsharkBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DuneSplicerHead) >= bannerKillsRequirement, ItemID.DuneSplicerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SandElemental) >= bannerKillsRequirement, ItemID.SandElementalBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Old Ones Army")
         {
-            AddItem(Utils.Kills(NPCID.DD2WyvernT1) >= bannerKillsRequirement, ItemID.DD2WyvernBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2JavelinstT1) >= bannerKillsRequirement, ItemID.DD2JavelinThrowerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2SkeletonT1) >= bannerKillsRequirement, ItemID.DD2SkeletonBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2GoblinT1) >= bannerKillsRequirement, ItemID.DD2GoblinBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2GoblinBomberT1) >= bannerKillsRequirement, ItemID.DD2GoblinBomberBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement, ItemID.DD2LightningBugBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2KoboldWalkerT2) >= bannerKillsRequirement, ItemID.DD2KoboldBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2KoboldFlyerT2) >= bannerKillsRequirement, ItemID.DD2KoboldFlyerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2DrakinT2) >= bannerKillsRequirement, ItemID.DD2DrakinBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2WyvernT1) >= bannerKillsRequirement, ItemID.DD2WyvernBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2JavelinstT1) >= bannerKillsRequirement, ItemID.DD2JavelinThrowerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2SkeletonT1) >= bannerKillsRequirement, ItemID.DD2SkeletonBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2GoblinT1) >= bannerKillsRequirement, ItemID.DD2GoblinBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2GoblinBomberT1) >= bannerKillsRequirement, ItemID.DD2GoblinBomberBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement, ItemID.DD2LightningBugBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2KoboldWalkerT2) >= bannerKillsRequirement, ItemID.DD2KoboldBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2KoboldFlyerT2) >= bannerKillsRequirement, ItemID.DD2KoboldFlyerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2DrakinT2) >= bannerKillsRequirement, ItemID.DD2DrakinBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Frost Legion")
         {
-            AddItem(Utils.Kills(NPCID.MisterStabby) >= bannerKillsRequirement, ItemID.MisterStabbyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SnowmanGangsta) >= bannerKillsRequirement, ItemID.SnowmanGangstaBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.SnowBalla) >= bannerKillsRequirement, ItemID.SnowBallaBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MisterStabby) >= bannerKillsRequirement, ItemID.MisterStabbyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SnowmanGangsta) >= bannerKillsRequirement, ItemID.SnowmanGangstaBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.SnowBalla) >= bannerKillsRequirement, ItemID.SnowBallaBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Pirate Invasion")
         {
-            AddItem(Utils.Kills(NPCID.Pirate) >= bannerKillsRequirement, ItemID.PirateBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.PirateDeadeye) >= bannerKillsRequirement, ItemID.PirateDeadeyeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.PirateCorsair) >= bannerKillsRequirement, ItemID.PirateCorsairBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.PirateCrossbower) >= bannerKillsRequirement, ItemID.PirateCrossbowerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.PirateCaptain) >= bannerKillsRequirement, ItemID.PirateCaptainBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Parrot) >= bannerKillsRequirement, ItemID.ParrotBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Pirate) >= bannerKillsRequirement, ItemID.PirateBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.PirateDeadeye) >= bannerKillsRequirement, ItemID.PirateDeadeyeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.PirateCorsair) >= bannerKillsRequirement, ItemID.PirateCorsairBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.PirateCrossbower) >= bannerKillsRequirement, ItemID.PirateCrossbowerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.PirateCaptain) >= bannerKillsRequirement, ItemID.PirateCaptainBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Parrot) >= bannerKillsRequirement, ItemID.ParrotBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Pumpkin Moon")
         {
-            AddItem(Utils.Kills(NPCID.Scarecrow1) >= bannerKillsRequirement, ItemID.ScarecrowBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Splinterling) >= bannerKillsRequirement, ItemID.SplinterlingBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Hellhound) >= bannerKillsRequirement, ItemID.HellhoundBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Poltergeist) >= bannerKillsRequirement, ItemID.PoltergeistBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.HeadlessHorseman) >= bannerKillsRequirement, ItemID.HeadlessHorsemanBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Scarecrow1) >= bannerKillsRequirement, ItemID.ScarecrowBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Splinterling) >= bannerKillsRequirement, ItemID.SplinterlingBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Hellhound) >= bannerKillsRequirement, ItemID.HellhoundBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Poltergeist) >= bannerKillsRequirement, ItemID.PoltergeistBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.HeadlessHorseman) >= bannerKillsRequirement, ItemID.HeadlessHorsemanBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Frost Moon")
         {
-            AddItem(Utils.Kills(NPCID.GingerbreadMan) >= bannerKillsRequirement, ItemID.GingerbreadManBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.ZombieElf) >= bannerKillsRequirement, ItemID.ZombieElfBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.ElfArcher) >= bannerKillsRequirement, ItemID.ElfArcherBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Nutcracker) >= bannerKillsRequirement, ItemID.NutcrackerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Yeti) >= bannerKillsRequirement, ItemID.YetiBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.ElfCopter) >= bannerKillsRequirement, ItemID.ElfCopterBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Krampus) >= bannerKillsRequirement, ItemID.KrampusBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Flocko) >= bannerKillsRequirement, ItemID.FlockoBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GingerbreadMan) >= bannerKillsRequirement, ItemID.GingerbreadManBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.ZombieElf) >= bannerKillsRequirement, ItemID.ZombieElfBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.ElfArcher) >= bannerKillsRequirement, ItemID.ElfArcherBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Nutcracker) >= bannerKillsRequirement, ItemID.NutcrackerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Yeti) >= bannerKillsRequirement, ItemID.YetiBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.ElfCopter) >= bannerKillsRequirement, ItemID.ElfCopterBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Krampus) >= bannerKillsRequirement, ItemID.KrampusBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Flocko) >= bannerKillsRequirement, ItemID.FlockoBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Martian Madness")
         {
-            AddItem(Utils.Kills(NPCID.Scutlix) >= bannerKillsRequirement, ItemID.ScutlixBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MartianWalker) >= bannerKillsRequirement, ItemID.MartianWalkerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MartianDrone) >= bannerKillsRequirement, ItemID.MartianDroneBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MartianTurret) >= bannerKillsRequirement, ItemID.MartianTeslaTurretBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GigaZapper) >= bannerKillsRequirement, ItemID.MartianGigazapperBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MartianEngineer) >= bannerKillsRequirement, ItemID.MartianEngineerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MartianOfficer) >= bannerKillsRequirement, ItemID.MartianOfficerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.RayGunner) >= bannerKillsRequirement, ItemID.MartianRaygunnerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GrayGrunt) >= bannerKillsRequirement, ItemID.MartianGreyGruntBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BrainScrambler) >= bannerKillsRequirement, ItemID.MartianBrainscramblerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Scutlix) >= bannerKillsRequirement, ItemID.ScutlixBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MartianWalker) >= bannerKillsRequirement, ItemID.MartianWalkerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MartianDrone) >= bannerKillsRequirement, ItemID.MartianDroneBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MartianTurret) >= bannerKillsRequirement, ItemID.MartianTeslaTurretBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GigaZapper) >= bannerKillsRequirement, ItemID.MartianGigazapperBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MartianEngineer) >= bannerKillsRequirement, ItemID.MartianEngineerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MartianOfficer) >= bannerKillsRequirement, ItemID.MartianOfficerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.RayGunner) >= bannerKillsRequirement, ItemID.MartianRaygunnerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GrayGrunt) >= bannerKillsRequirement, ItemID.MartianGreyGruntBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BrainScrambler) >= bannerKillsRequirement, ItemID.MartianBrainscramblerBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Solar Zone")
         {
-            AddItem(Utils.Kills(NPCID.SolarSolenian) >= bannerKillsRequirement, ItemID.SolarSolenianBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.SolarDrakomire) >= bannerKillsRequirement, ItemID.SolarDrakomireBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.SolarDrakomireRider) >= bannerKillsRequirement, ItemID.SolarDrakomireRiderBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.SolarCorite) >= bannerKillsRequirement, ItemID.SolarCoriteBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.SolarSroller) >= bannerKillsRequirement, ItemID.SolarSrollerBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.SolarCrawltipedeHead) >= bannerKillsRequirement, ItemID.SolarCrawltipedeBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarSolenian) >= bannerKillsRequirement, ItemID.SolarSolenianBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarDrakomire) >= bannerKillsRequirement, ItemID.SolarDrakomireBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarDrakomireRider) >= bannerKillsRequirement, ItemID.SolarDrakomireRiderBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarCorite) >= bannerKillsRequirement, ItemID.SolarCoriteBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarSroller) >= bannerKillsRequirement, ItemID.SolarSrollerBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.SolarCrawltipedeHead) >= bannerKillsRequirement, ItemID.SolarCrawltipedeBanner, bannerCostInsane);
             return;
         }
 
         if (shop == "Vortex Zone")
         {
-            AddItem(Utils.Kills(NPCID.VortexHornet) >= bannerKillsRequirement, ItemID.VortexHornetBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.VortexHornetQueen) >= bannerKillsRequirement, ItemID.VortexHornetQueenBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.VortexLarva) >= bannerKillsRequirement, ItemID.VortexLarvaBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.VortexRifleman) >= bannerKillsRequirement, ItemID.VortexRiflemanBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.VortexSoldier) >= bannerKillsRequirement, ItemID.VortexSoldierBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.VortexHornet) >= bannerKillsRequirement, ItemID.VortexHornetBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.VortexHornetQueen) >= bannerKillsRequirement, ItemID.VortexHornetQueenBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.VortexLarva) >= bannerKillsRequirement, ItemID.VortexLarvaBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.VortexRifleman) >= bannerKillsRequirement, ItemID.VortexRiflemanBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.VortexSoldier) >= bannerKillsRequirement, ItemID.VortexSoldierBanner, bannerCostInsane);
             return;
         }
 
         if (shop == "Nebula Zone")
         {
-            AddItem(Utils.Kills(NPCID.NebulaBeast) >= bannerKillsRequirement, ItemID.NebulaBeastBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.NebulaBrain) >= bannerKillsRequirement, ItemID.NebulaBrainBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.NebulaHeadcrab) >= bannerKillsRequirement, ItemID.NebulaHeadcrabBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.NebulaSoldier) >= bannerKillsRequirement, ItemID.NebulaSoldierBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.NebulaBeast) >= bannerKillsRequirement, ItemID.NebulaBeastBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.NebulaBrain) >= bannerKillsRequirement, ItemID.NebulaBrainBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.NebulaHeadcrab) >= bannerKillsRequirement, ItemID.NebulaHeadcrabBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.NebulaSoldier) >= bannerKillsRequirement, ItemID.NebulaSoldierBanner, bannerCostInsane);
             return;
         }
 
         if (shop == "Stardust Zone")
         {
-            AddItem(Utils.Kills(NPCID.StardustJellyfishSmall) >= bannerKillsRequirement, ItemID.StardustJellyfishBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.StardustJellyfishBig) >= bannerKillsRequirement, ItemID.StardustLargeCellBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.StardustCellSmall) >= bannerKillsRequirement, ItemID.StardustSmallCellBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.StardustSoldier) >= bannerKillsRequirement, ItemID.StardustSoldierBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.StardustSpiderSmall) >= bannerKillsRequirement, ItemID.StardustSpiderBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.StardustWormHead) >= bannerKillsRequirement, ItemID.StardustWormBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustJellyfishSmall) >= bannerKillsRequirement, ItemID.StardustJellyfishBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustJellyfishBig) >= bannerKillsRequirement, ItemID.StardustLargeCellBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustCellSmall) >= bannerKillsRequirement, ItemID.StardustSmallCellBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustSoldier) >= bannerKillsRequirement, ItemID.StardustSoldierBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustSpiderSmall) >= bannerKillsRequirement, ItemID.StardustSpiderBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.StardustWormHead) >= bannerKillsRequirement, ItemID.StardustWormBanner, bannerCostInsane);
             return;
         }
 
         if (shop == "Ocean")
         {
-            AddItem(Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement, ItemID.PinkJellyfishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Crab) >= bannerKillsRequirement, ItemID.CrabBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.SeaSnail) >= bannerKillsRequirement, ItemID.SeaSnailBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Squid) >= bannerKillsRequirement, ItemID.SquidBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Shark) >= bannerKillsRequirement, ItemID.SharkBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement, ItemID.PinkJellyfishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Crab) >= bannerKillsRequirement, ItemID.CrabBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.SeaSnail) >= bannerKillsRequirement, ItemID.SeaSnailBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Squid) >= bannerKillsRequirement, ItemID.SquidBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Shark) >= bannerKillsRequirement, ItemID.SharkBanner, bannerCostEasy);
             return;
         }
 
         if (shop == "Snow")
         {
-            AddItem(Utils.Kills(NPCID.IceSlime) >= bannerKillsRequirement, ItemID.IceSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.ZombieEskimo) >= bannerKillsRequirement, ItemID.ZombieEskimoBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement, ItemID.IceElementalBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Wolf) >= bannerKillsRequirement, ItemID.WolfBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IceGolem) >= bannerKillsRequirement, ItemID.IceGolemBanner, bannerCostInsane);
-            AddItem(Utils.Kills(NPCID.Penguin) >= bannerKillsRequirement, ItemID.PenguinBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.IceBat) >= bannerKillsRequirement, ItemID.IceBatBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.SnowFlinx) >= bannerKillsRequirement, ItemID.SnowFlinxBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.SpikedIceSlime) >= bannerKillsRequirement, ItemID.SpikedIceSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.UndeadViking) >= bannerKillsRequirement, ItemID.UndeadVikingBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.ArmoredViking) >= bannerKillsRequirement, ItemID.ArmoredVikingBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IceTortoise) >= bannerKillsRequirement, ItemID.IceTortoiseBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IceElemental) >= bannerKillsRequirement, ItemID.IceElementalBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IcyMerman) >= bannerKillsRequirement, ItemID.IcyMermanBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.PigronCorruption) >= bannerKillsRequirement, ItemID.PigronBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IceSlime) >= bannerKillsRequirement, ItemID.IceSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.ZombieEskimo) >= bannerKillsRequirement, ItemID.ZombieEskimoBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.IceElemental) >= bannerKillsRequirement, ItemID.IceElementalBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Wolf) >= bannerKillsRequirement, ItemID.WolfBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IceGolem) >= bannerKillsRequirement, ItemID.IceGolemBanner, bannerCostInsane);
+            AddItem(WorldUtils.Kills(NPCID.Penguin) >= bannerKillsRequirement, ItemID.PenguinBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.IceBat) >= bannerKillsRequirement, ItemID.IceBatBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.SnowFlinx) >= bannerKillsRequirement, ItemID.SnowFlinxBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.SpikedIceSlime) >= bannerKillsRequirement, ItemID.SpikedIceSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.UndeadViking) >= bannerKillsRequirement, ItemID.UndeadVikingBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.ArmoredViking) >= bannerKillsRequirement, ItemID.ArmoredVikingBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IceTortoise) >= bannerKillsRequirement, ItemID.IceTortoiseBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IceElemental) >= bannerKillsRequirement, ItemID.IceElementalBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IcyMerman) >= bannerKillsRequirement, ItemID.IcyMermanBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.PigronCorruption) >= bannerKillsRequirement, ItemID.PigronBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Jungle")
         {
-            AddItem(Utils.Kills(NPCID.Piranha) >= bannerKillsRequirement, ItemID.PiranhaBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Snatcher) >= bannerKillsRequirement, ItemID.SnatcherBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.JungleBat) >= bannerKillsRequirement, ItemID.JungleBatBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.JungleSlime) >= bannerKillsRequirement, ItemID.JungleSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.DoctorBones) >= bannerKillsRequirement, ItemID.DoctorBonesBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.AnglerFish) >= bannerKillsRequirement, ItemID.AnglerFishBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Arapaima) >= bannerKillsRequirement, ItemID.ArapaimaBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GiantTortoise) >= bannerKillsRequirement, ItemID.TortoiseBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.AngryTrapper) >= bannerKillsRequirement, ItemID.AngryTrapperBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Derpling) >= bannerKillsRequirement, ItemID.DerplingBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GiantFlyingFox) >= bannerKillsRequirement, ItemID.GiantFlyingFoxBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Hornet) >= bannerKillsRequirement, ItemID.HornetBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.ManEater) >= bannerKillsRequirement, ItemID.ManEaterBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.SpikedJungleSlime) >= bannerKillsRequirement, ItemID.SpikedJungleSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.LacBeetle) >= bannerKillsRequirement, ItemID.LacBeetleBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.JungleCreeper) >= bannerKillsRequirement, ItemID.JungleCreeperBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Moth) >= bannerKillsRequirement, ItemID.MothBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Lihzahrd) >= bannerKillsRequirement, ItemID.LihzahrdBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.FlyingSnake) >= bannerKillsRequirement, ItemID.FlyingSnakeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Piranha) >= bannerKillsRequirement, ItemID.PiranhaBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Snatcher) >= bannerKillsRequirement, ItemID.SnatcherBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.JungleBat) >= bannerKillsRequirement, ItemID.JungleBatBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.JungleSlime) >= bannerKillsRequirement, ItemID.JungleSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.DoctorBones) >= bannerKillsRequirement, ItemID.DoctorBonesBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.AnglerFish) >= bannerKillsRequirement, ItemID.AnglerFishBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Arapaima) >= bannerKillsRequirement, ItemID.ArapaimaBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GiantTortoise) >= bannerKillsRequirement, ItemID.TortoiseBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.AngryTrapper) >= bannerKillsRequirement, ItemID.AngryTrapperBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Derpling) >= bannerKillsRequirement, ItemID.DerplingBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GiantFlyingFox) >= bannerKillsRequirement, ItemID.GiantFlyingFoxBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Hornet) >= bannerKillsRequirement, ItemID.HornetBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.ManEater) >= bannerKillsRequirement, ItemID.ManEaterBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.SpikedJungleSlime) >= bannerKillsRequirement, ItemID.SpikedJungleSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.LacBeetle) >= bannerKillsRequirement, ItemID.LacBeetleBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.JungleCreeper) >= bannerKillsRequirement, ItemID.JungleCreeperBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Moth) >= bannerKillsRequirement, ItemID.MothBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Lihzahrd) >= bannerKillsRequirement, ItemID.LihzahrdBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.FlyingSnake) >= bannerKillsRequirement, ItemID.FlyingSnakeBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Mushroom")
         {
-            AddItem(Utils.Kills(NPCID.FungiBulb) >= bannerKillsRequirement, ItemID.FungiBulbBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.AnomuraFungus) >= bannerKillsRequirement, ItemID.AnomuraFungusBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MushiLadybug) >= bannerKillsRequirement, ItemID.MushiLadybugBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Spore) >= bannerKillsRequirement, ItemID.SporeZombieBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.FungoFish) >= bannerKillsRequirement, ItemID.FungoFishBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.FungiBulb) >= bannerKillsRequirement, ItemID.FungiBulbBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.AnomuraFungus) >= bannerKillsRequirement, ItemID.AnomuraFungusBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MushiLadybug) >= bannerKillsRequirement, ItemID.MushiLadybugBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Spore) >= bannerKillsRequirement, ItemID.SporeZombieBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.FungoFish) >= bannerKillsRequirement, ItemID.FungoFishBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Corruption")
         {
-            AddItem(Utils.Kills(NPCID.EaterofSouls) >= bannerKillsRequirement, ItemID.EaterofSoulsBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.DevourerHead) >= bannerKillsRequirement, ItemID.DevourerBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Corruptor) >= bannerKillsRequirement, ItemID.CorruptorBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.CorruptSlime) >= bannerKillsRequirement, ItemID.CorruptSlimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Slimer) >= bannerKillsRequirement, ItemID.SlimerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement, ItemID.WorldFeederBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.CursedHammer) >= bannerKillsRequirement, ItemID.CursedHammerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Clinger) >= bannerKillsRequirement, ItemID.ClingerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.EaterofSouls) >= bannerKillsRequirement, ItemID.EaterofSoulsBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.DevourerHead) >= bannerKillsRequirement, ItemID.DevourerBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Corruptor) >= bannerKillsRequirement, ItemID.CorruptorBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.CorruptSlime) >= bannerKillsRequirement, ItemID.CorruptSlimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Slimer) >= bannerKillsRequirement, ItemID.SlimerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement, ItemID.WorldFeederBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.CursedHammer) >= bannerKillsRequirement, ItemID.CursedHammerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Clinger) >= bannerKillsRequirement, ItemID.ClingerBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Crimson")
         {
-            AddItem(Utils.Kills(NPCID.BloodCrawler) >= bannerKillsRequirement, ItemID.BloodCrawlerBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.FaceMonster) >= bannerKillsRequirement, ItemID.FaceMonsterBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Crimera) >= bannerKillsRequirement, ItemID.CrimeraBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Herpling) >= bannerKillsRequirement, ItemID.HerplingBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Crimslime) >= bannerKillsRequirement, ItemID.CrimslimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BloodJelly) >= bannerKillsRequirement, ItemID.BloodJellyBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement, ItemID.BloodFeederBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.CrimsonAxe) >= bannerKillsRequirement, ItemID.CrimsonAxeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IchorSticker) >= bannerKillsRequirement, ItemID.IchorStickerBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.FloatyGross) >= bannerKillsRequirement, ItemID.FloatyGrossBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BloodCrawler) >= bannerKillsRequirement, ItemID.BloodCrawlerBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.FaceMonster) >= bannerKillsRequirement, ItemID.FaceMonsterBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Crimera) >= bannerKillsRequirement, ItemID.CrimeraBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Herpling) >= bannerKillsRequirement, ItemID.HerplingBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Crimslime) >= bannerKillsRequirement, ItemID.CrimslimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BloodJelly) >= bannerKillsRequirement, ItemID.BloodJellyBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BloodFeeder) >= bannerKillsRequirement, ItemID.BloodFeederBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.CrimsonAxe) >= bannerKillsRequirement, ItemID.CrimsonAxeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IchorSticker) >= bannerKillsRequirement, ItemID.IchorStickerBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.FloatyGross) >= bannerKillsRequirement, ItemID.FloatyGrossBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Hallow")
         {
-            AddItem(Utils.Kills(NPCID.Pixie) >= bannerKillsRequirement, ItemID.PixieBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Unicorn) >= bannerKillsRequirement, ItemID.UnicornBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.RainbowSlime) >= bannerKillsRequirement, ItemID.RainbowSlimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Gastropod) >= bannerKillsRequirement, ItemID.GastropodBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement, ItemID.DD2LightningBugBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IlluminantSlime) >= bannerKillsRequirement, ItemID.IlluminantSlimeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.IlluminantBat) >= bannerKillsRequirement, ItemID.IlluminantBatBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.ChaosElemental) >= bannerKillsRequirement, ItemID.ChaosElementalBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.EnchantedSword) >= bannerKillsRequirement, ItemID.EnchantedSwordBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Pixie) >= bannerKillsRequirement, ItemID.PixieBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Unicorn) >= bannerKillsRequirement, ItemID.UnicornBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.RainbowSlime) >= bannerKillsRequirement, ItemID.RainbowSlimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Gastropod) >= bannerKillsRequirement, ItemID.GastropodBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.DD2LightningBugT3) >= bannerKillsRequirement, ItemID.DD2LightningBugBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IlluminantSlime) >= bannerKillsRequirement, ItemID.IlluminantSlimeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.IlluminantBat) >= bannerKillsRequirement, ItemID.IlluminantBatBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.ChaosElemental) >= bannerKillsRequirement, ItemID.ChaosElementalBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.EnchantedSword) >= bannerKillsRequirement, ItemID.EnchantedSwordBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Space")
         {
-            AddItem(Utils.Kills(NPCID.Harpy) >= bannerKillsRequirement, ItemID.HarpyBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.WyvernHead) >= bannerKillsRequirement, ItemID.WyvernBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Harpy) >= bannerKillsRequirement, ItemID.HarpyBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.WyvernHead) >= bannerKillsRequirement, ItemID.WyvernBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Underworld")
         {
-            AddItem(Utils.Kills(NPCID.Hellbat) >= bannerKillsRequirement, ItemID.HellbatBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.LavaSlime) >= bannerKillsRequirement, ItemID.LavaSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.FireImp) >= bannerKillsRequirement, ItemID.FireImpBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Demon) >= bannerKillsRequirement, ItemID.DemonBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.BoneSerpentHead) >= bannerKillsRequirement, ItemID.BoneSerpentBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Lavabat) >= bannerKillsRequirement, ItemID.LavaBatBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.RedDevil) >= bannerKillsRequirement, ItemID.RedDevilBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Hellbat) >= bannerKillsRequirement, ItemID.HellbatBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.LavaSlime) >= bannerKillsRequirement, ItemID.LavaSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.FireImp) >= bannerKillsRequirement, ItemID.FireImpBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Demon) >= bannerKillsRequirement, ItemID.DemonBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.BoneSerpentHead) >= bannerKillsRequirement, ItemID.BoneSerpentBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Lavabat) >= bannerKillsRequirement, ItemID.LavaBatBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.RedDevil) >= bannerKillsRequirement, ItemID.RedDevilBanner, bannerCostHard);
             return;
         }
 
         if (shop == "Overworld")
         {
-            AddItem(Utils.Kills(NPCID.BlueSlime) >= bannerKillsRequirement, ItemID.SlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GreenSlime) >= bannerKillsRequirement, ItemID.GreenSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.PurpleSlime) >= bannerKillsRequirement, ItemID.PurpleSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Pinky) >= bannerKillsRequirement, ItemID.PinkyBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Zombie) >= bannerKillsRequirement, ItemID.ZombieBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Raven) >= bannerKillsRequirement, ItemID.RavenBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.DemonEye) >= bannerKillsRequirement, ItemID.DemonEyeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.PossessedArmor) >= bannerKillsRequirement, ItemID.PossessedArmorBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.HoppinJack) >= bannerKillsRequirement, ItemID.HoppinJackBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Werewolf) >= bannerKillsRequirement, ItemID.WerewolfBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Bunny) >= bannerKillsRequirement, ItemID.BunnyBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Bird) >= bannerKillsRequirement, ItemID.BirdBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Worm) >= bannerKillsRequirement, ItemID.WormBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.RedSlime) >= bannerKillsRequirement, ItemID.RedSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.YellowSlime) >= bannerKillsRequirement, ItemID.YellowSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.ToxicSludge) >= bannerKillsRequirement, ItemID.ToxicSludgeBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.Skeleton) >= bannerKillsRequirement, ItemID.SkeletonBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Salamander) >= bannerKillsRequirement, ItemID.SalamanderBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Crawdad) >= bannerKillsRequirement, ItemID.CrawdadBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GiantShelly) >= bannerKillsRequirement, ItemID.GiantShellyBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.UndeadMiner) >= bannerKillsRequirement, ItemID.UndeadMinerBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Tim) >= bannerKillsRequirement, ItemID.TimBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Nymph) >= bannerKillsRequirement, ItemID.NypmhBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.CochinealBeetle) >= bannerKillsRequirement, ItemID.CochinealBeetleBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.BlueJellyfish) >= bannerKillsRequirement, ItemID.JellyfishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GreenJellyfish) >= bannerKillsRequirement, ItemID.GreenJellyfishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement, ItemID.PinkJellyfishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.WallCreeper) >= bannerKillsRequirement, ItemID.SpiderBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.BlackRecluse) >= bannerKillsRequirement, ItemID.BlackRecluseBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.GraniteGolem) >= bannerKillsRequirement, ItemID.GraniteGolemBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.GraniteFlyer) >= bannerKillsRequirement, ItemID.GraniteFlyerBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.Medusa) >= bannerKillsRequirement, ItemID.MedusaBanner, bannerCostHard);
-            AddItem(Utils.Kills(NPCID.MeteorHead) >= bannerKillsRequirement, ItemID.MeteorHeadBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.FlyingFish) >= bannerKillsRequirement, ItemID.FlyingFishBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.UmbrellaSlime) >= bannerKillsRequirement, ItemID.UmbrellaSlimeBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.ZombieRaincoat) >= bannerKillsRequirement, ItemID.RaincoatZombieBanner, bannerCostEasy);
-            AddItem(Utils.Kills(NPCID.AngryNimbus) >= bannerKillsRequirement, ItemID.AngryNimbusBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.BlueSlime) >= bannerKillsRequirement, ItemID.SlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GreenSlime) >= bannerKillsRequirement, ItemID.GreenSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.PurpleSlime) >= bannerKillsRequirement, ItemID.PurpleSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Pinky) >= bannerKillsRequirement, ItemID.PinkyBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Zombie) >= bannerKillsRequirement, ItemID.ZombieBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Raven) >= bannerKillsRequirement, ItemID.RavenBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.DemonEye) >= bannerKillsRequirement, ItemID.DemonEyeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.PossessedArmor) >= bannerKillsRequirement, ItemID.PossessedArmorBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.HoppinJack) >= bannerKillsRequirement, ItemID.HoppinJackBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Werewolf) >= bannerKillsRequirement, ItemID.WerewolfBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Bunny) >= bannerKillsRequirement, ItemID.BunnyBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Bird) >= bannerKillsRequirement, ItemID.BirdBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Worm) >= bannerKillsRequirement, ItemID.WormBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.RedSlime) >= bannerKillsRequirement, ItemID.RedSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.YellowSlime) >= bannerKillsRequirement, ItemID.YellowSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.ToxicSludge) >= bannerKillsRequirement, ItemID.ToxicSludgeBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.Skeleton) >= bannerKillsRequirement, ItemID.SkeletonBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Salamander) >= bannerKillsRequirement, ItemID.SalamanderBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Crawdad) >= bannerKillsRequirement, ItemID.CrawdadBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GiantShelly) >= bannerKillsRequirement, ItemID.GiantShellyBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.UndeadMiner) >= bannerKillsRequirement, ItemID.UndeadMinerBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Tim) >= bannerKillsRequirement, ItemID.TimBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Nymph) >= bannerKillsRequirement, ItemID.NypmhBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.CochinealBeetle) >= bannerKillsRequirement, ItemID.CochinealBeetleBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.BlueJellyfish) >= bannerKillsRequirement, ItemID.JellyfishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GreenJellyfish) >= bannerKillsRequirement, ItemID.GreenJellyfishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.PinkJellyfish) >= bannerKillsRequirement, ItemID.PinkJellyfishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.WallCreeper) >= bannerKillsRequirement, ItemID.SpiderBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.BlackRecluse) >= bannerKillsRequirement, ItemID.BlackRecluseBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.GraniteGolem) >= bannerKillsRequirement, ItemID.GraniteGolemBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.GraniteFlyer) >= bannerKillsRequirement, ItemID.GraniteFlyerBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.Medusa) >= bannerKillsRequirement, ItemID.MedusaBanner, bannerCostHard);
+            AddItem(WorldUtils.Kills(NPCID.MeteorHead) >= bannerKillsRequirement, ItemID.MeteorHeadBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.FlyingFish) >= bannerKillsRequirement, ItemID.FlyingFishBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.UmbrellaSlime) >= bannerKillsRequirement, ItemID.UmbrellaSlimeBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.ZombieRaincoat) >= bannerKillsRequirement, ItemID.RaincoatZombieBanner, bannerCostEasy);
+            AddItem(WorldUtils.Kills(NPCID.AngryNimbus) >= bannerKillsRequirement, ItemID.AngryNimbusBanner, bannerCostHard);
             return;
         }
 
@@ -419,7 +419,7 @@ public class ShopStylist : Shop
             AddItem(ItemID.RainbowHairDye);
             AddItem(ItemID.MartianHairDye);
             AddItem(ItemID.TwilightHairDye);
-            AddItem(ItemID.LovePotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.LovePotion, ItemCosts.Potions);
             return;
         }
 

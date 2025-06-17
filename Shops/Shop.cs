@@ -9,7 +9,7 @@ public abstract class Shop
     public List<string> Quests { get; } = [];
 
     protected Chest Inv;
-    protected int NextSlot = 0;
+    protected int NextSlot;
 
     /// <summary>
     /// Opens the merchants shop.
@@ -35,14 +35,14 @@ public abstract class Shop
         // https://github.com/tModLoader/tModLoader/blob/e6caaaf678efd2a69deece4d72fdaecc4391bd26/patches/tModLoader/Terraria/ModLoader/NPCLoader.cs#L1192
         Inv = Main.instance.shop[Main.npcShop];
 
-        // Setting this to '2' will setup the shop items for the arms dealer
+        // Setting this to '2' will set up the shop items for the arms dealer
         // The arms dealer sells 3 guns
         Inv.SetupShop(NPCShopDatabase.GetShopNameFromVanillaIndex(2), npc);
 
-        // Lets remove these guns as we will add our own items later
-        for (int i = 0; i < Inv.item.Length; i++)
+        // Let's remove these guns as we will add our own items later
+        foreach (Item item in Inv.item)
         {
-            Inv.item[i].SetDefaults(0);
+            item.SetDefaults(0);
         }
 
         NextSlot = 0;
@@ -50,54 +50,54 @@ public abstract class Shop
         Quests.Clear();
     }
 
-    protected void AddItem(int itemID, bool condition = true)
+    protected void AddItem(int itemId, bool condition = true)
     {
         if (condition)
         {
-            Inv.item[NextSlot++].SetDefaults(itemID);
+            Inv.item[NextSlot++].SetDefaults(itemId);
         }
     }
 
-    protected void AddItem(int itemID, int price, int progression = 0)
+    protected void AddItem(int itemId, int price, int progression = 0)
     {
         if (Progression.Level() >= progression)
         {
-            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
         }
     }
 
-    protected void AddItem(bool condition, int itemID, int price, int progression = 0)
+    protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
         if (condition && Progression.Level() >= progression)
         {
-            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
         }
     }
 
-    protected void ReplaceItem(int itemID)
+    protected void ReplaceItem(int itemId)
     {
-        Inv.item[NextSlot].SetDefaults(itemID);
+        Inv.item[NextSlot].SetDefaults(itemId);
     }
 
-    protected void ReplaceItem(bool condition, int itemID)
+    protected void ReplaceItem(bool condition, int itemId)
     {
         if (condition)
-            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot].SetDefaults(itemId);
     }
 
-    protected void ReplaceItem(int itemID, int price)
+    protected void ReplaceItem(int itemId, int price)
     {
-        Inv.item[NextSlot].SetDefaults(itemID);
+        Inv.item[NextSlot].SetDefaults(itemId);
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
-    protected void ReplaceItem(bool condition, int itemID, int price)
+    protected void ReplaceItem(bool condition, int itemId, int price)
     {
         if (condition)
         {
-            Inv.item[NextSlot].SetDefaults(itemID);
+            Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot].shopCustomPrice = price;
         }
     }

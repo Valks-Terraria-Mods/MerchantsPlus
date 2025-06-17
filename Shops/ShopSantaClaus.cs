@@ -14,11 +14,11 @@ public class ShopSantaClaus : Shop
 
         if (shop == "Potions")
         {
-            AddItem(ItemID.InvisibilityPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.GenderChangePotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.RecallPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.TeleportationPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.WormholePotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.InvisibilityPotion, ItemCosts.Potions);
+            AddItem(ItemID.GenderChangePotion, ItemCosts.Potions);
+            AddItem(ItemID.RecallPotion, ItemCosts.Potions);
+            AddItem(ItemID.TeleportationPotion, ItemCosts.Potions);
+            AddItem(ItemID.WormholePotion, ItemCosts.Potions);
             return;
         }
 

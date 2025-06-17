@@ -13,23 +13,15 @@ namespace MerchantsPlus;
 
 public class MerchantsPlus : Mod
 {
-    public static MagicStorage MagicStorage { get; private set; }
-
     public override void Load()
     {
         if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
         {
-            MagicStorage = new(magicStorage);
-            AddShopForModdedNPC(MagicStorage.Golem.Type, new ShopGolem());
-        }
-
-        if (ModLoader.TryGetMod("Calamity", out Mod calamity))
-        {
-
+            AddShopForModdedNpc(MagicStorage.Golem.Type, new ShopGolem());
         }
     }
 
-    private static void AddShopForModdedNPC(int type, Shop shop)
+    private static void AddShopForModdedNpc(int type, Shop shop)
     {
         ShopUI.Shops.Add(type, shop);
     }

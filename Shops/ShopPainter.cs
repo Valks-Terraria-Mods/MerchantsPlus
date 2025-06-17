@@ -166,13 +166,13 @@ public class ShopPainter : Shop
             AddItem(ItemID.Paintbrush);
             AddItem(ItemID.PaintRoller);
             AddItem(ItemID.PaintScraper);
-            AddItem(ItemID.BuilderPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.Toolbelt, Utils.UniversalAccessoryCost);
-            AddItem(ItemID.Toolbox, Utils.UniversalAccessoryCost);
-            AddItem(ItemID.PaintSprayer, Utils.UniversalAccessoryCost);
-            AddItem(ItemID.ExtendoGrip, Utils.UniversalAccessoryCost);
-            AddItem(ItemID.PortableCementMixer, Utils.UniversalAccessoryCost);
-            AddItem(ItemID.BrickLayer, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.BuilderPotion, ItemCosts.Potions);
+            AddItem(ItemID.Toolbelt, ItemCosts.Accessories);
+            AddItem(ItemID.Toolbox, ItemCosts.Accessories);
+            AddItem(ItemID.PaintSprayer, ItemCosts.Accessories);
+            AddItem(ItemID.ExtendoGrip, ItemCosts.Accessories);
+            AddItem(ItemID.PortableCementMixer, ItemCosts.Accessories);
+            AddItem(ItemID.BrickLayer, ItemCosts.Accessories);
             return;
         }
 

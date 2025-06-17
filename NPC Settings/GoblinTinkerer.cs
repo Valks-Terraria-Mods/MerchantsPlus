@@ -12,32 +12,32 @@ public class GoblinTinkerer : BaseMerchant
         base.GetChat(npc, ref chat);
 
         List<string> dialog = [];
-        Utils.QuestKills(dialog, "Zombie", Utils.Kills(NPCID.Zombie), 100);
-        Utils.QuestKills(dialog, "Jellyfish", Utils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]), 100);
-        Utils.QuestKills(dialog, "Skeleton", Utils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]), 1);
+        QuestUtils.QuestKills(dialog, "Zombie", WorldUtils.Kills(NPCID.Zombie), 100);
+        QuestUtils.QuestKills(dialog, "Jellyfish", WorldUtils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]), 100);
+        QuestUtils.QuestKills(dialog, "Skeleton", WorldUtils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]), 1);
         
         if (Progression.Skeletron)
         {
-            Utils.QuestKills(dialog, "Cursed Skull", Utils.Kills(NPCID.CursedSkull), 1);
+            QuestUtils.QuestKills(dialog, "Cursed Skull", WorldUtils.Kills(NPCID.CursedSkull), 1);
         }
 
         if (Progression.Hardmode)
         {
-            Utils.QuestKills(dialog, "Corruptor", Utils.Kills(NPCID.Corruptor), 1);
-            Utils.QuestKills(dialog, "Light Mummy", Utils.Kills(NPCID.LightMummy), 1);
-            Utils.QuestKills(dialog, "Medusa", Utils.Kills(NPCID.Medusa), 1);
-            Utils.QuestKills(dialog, "Mimic", Utils.Kills(NPCID.Mimic), 2);
-            Utils.QuestKills(dialog, "Pixies", Utils.MultiKills([NPCID.Pixie]), 10);
-            Utils.QuestKills(dialog, "Corrupt Slime", Utils.Kills(NPCID.CorruptSlime), 1);
-            Utils.QuestKills(dialog, "Toxic Sludge", Utils.Kills(NPCID.ToxicSludge), 1);
-            Utils.QuestKills(dialog, "Werewolf", Utils.MultiKills([NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish]), 1);
-            Utils.QuestKills(dialog, "Ice Tortoise", Utils.Kills(NPCID.IceTortoise), 1);
-            Utils.QuestKills(dialog, "Big Mimic Crimson", Utils.Kills(NPCID.BigMimicCrimson), 1);
+            QuestUtils.QuestKills(dialog, "Corruptor", WorldUtils.Kills(NPCID.Corruptor), 1);
+            QuestUtils.QuestKills(dialog, "Light Mummy", WorldUtils.Kills(NPCID.LightMummy), 1);
+            QuestUtils.QuestKills(dialog, "Medusa", WorldUtils.Kills(NPCID.Medusa), 1);
+            QuestUtils.QuestKills(dialog, "Mimic", WorldUtils.Kills(NPCID.Mimic), 2);
+            QuestUtils.QuestKills(dialog, "Pixies", WorldUtils.MultiKills([NPCID.Pixie]), 10);
+            QuestUtils.QuestKills(dialog, "Corrupt Slime", WorldUtils.Kills(NPCID.CorruptSlime), 1);
+            QuestUtils.QuestKills(dialog, "Toxic Sludge", WorldUtils.Kills(NPCID.ToxicSludge), 1);
+            QuestUtils.QuestKills(dialog, "Werewolf", WorldUtils.MultiKills([NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish]), 1);
+            QuestUtils.QuestKills(dialog, "Ice Tortoise", WorldUtils.Kills(NPCID.IceTortoise), 1);
+            QuestUtils.QuestKills(dialog, "Big Mimic Crimson", WorldUtils.Kills(NPCID.BigMimicCrimson), 1);
         }
 
         if (dialog.Count > 0)
         {
-            chat = Utils.Dialog(dialog.ToArray());
+            chat = QuestUtils.Dialog(dialog.ToArray());
         }
     }
 

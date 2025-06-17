@@ -24,12 +24,12 @@ public class ShopGuide : Shop
 
             if (Progression.EyeOfCthulhu)
             {
-                AddItem(ItemID.ObsidianSkinPotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.ObsidianSkinPotion, ItemCosts.Potions);
             }
 
             AddItem(ItemID.CordageGuide, Coins.Gold());
 
-            if (!Utils.IsNPCHere(NPCID.Merchant))
+            if (!WorldUtils.IsNpcHere(NPCID.Merchant))
             {
                 AddItem(ItemID.Torch);
             }
@@ -39,7 +39,7 @@ public class ShopGuide : Shop
                 AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
             }
 
-            if (!Utils.IsNPCHere(NPCID.Pirate))
+            if (!WorldUtils.IsNpcHere(NPCID.Pirate))
             {
                 AddItem(ItemID.Cannon, Coins.Gold(2));
                 AddItem(ItemID.Cannonball);

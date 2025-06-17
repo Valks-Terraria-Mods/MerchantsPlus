@@ -18,7 +18,7 @@ public class OldMan : BaseMerchant
     {
         if (npc.type == NPCID.OldMan)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Bacon, 1));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Bacon));
         }
     }
 }

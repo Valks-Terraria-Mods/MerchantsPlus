@@ -33,52 +33,52 @@ public class ShopAngler : Shop
 
         if (progression > 0)
         {
-            AddItem(ItemID.AnglerPants, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.AnglerPants, ItemCosts.Accessories);
         }
 
         if (progression > 1)
         {
-            AddItem(ItemID.AnglerVest, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.AnglerVest, ItemCosts.Accessories);
         }
 
         if (progression > 2)
         {
-            AddItem(ItemID.AnglerHat, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.AnglerHat, ItemCosts.Accessories);
         }
 
         if (progression > 3)
         {
-            AddItem(ItemID.FishFinder, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.FishFinder, ItemCosts.Accessories);
         }
 
         if (progression > 4)
         {
-            AddItem(ItemID.AnglerEarring, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.AnglerEarring, ItemCosts.Accessories);
         }
 
         if (progression > 5)
         {
-            AddItem(ItemID.Sextant, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.Sextant, ItemCosts.Accessories);
         }
 
         if (progression > 6)
         {
-            AddItem(ItemID.WeatherRadio, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.WeatherRadio, ItemCosts.Accessories);
         }
 
         if (progression > 7)
         {
-            AddItem(ItemID.FishermansGuide, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.FishermansGuide, ItemCosts.Accessories);
         }
 
         if (progression > 8)
         {
-            AddItem(ItemID.TackleBox, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.TackleBox, ItemCosts.Accessories);
         }
 
         if (progression > 9)
         {
-            AddItem(ItemID.HighTestFishingLine, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.HighTestFishingLine, ItemCosts.Accessories);
         }
     }
 
@@ -200,34 +200,34 @@ public class ShopAngler : Shop
 
     private void Buffs(int progression)
     {
-        AddItem(ItemID.FlipperPotion, Utils.UniversalPotionCost);
+        AddItem(ItemID.FlipperPotion, ItemCosts.Potions);
 
         if (progression > 0)
         {
-            AddItem(ItemID.WaterWalkingPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.WaterWalkingPotion, ItemCosts.Potions);
         }
 
         if (progression > 1)
         {
-            AddItem(ItemID.GillsPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.GillsPotion, ItemCosts.Potions);
         }
 
         if (progression > 2)
         {
-            AddItem(ItemID.Sashimi, Utils.UniversalPotionCost);
-            AddItem(ItemID.CookedFish, Utils.UniversalPotionCost);
-            AddItem(ItemID.CookedShrimp, Utils.UniversalPotionCost);
+            AddItem(ItemID.Sashimi, ItemCosts.Potions);
+            AddItem(ItemID.CookedFish, ItemCosts.Potions);
+            AddItem(ItemID.CookedShrimp, ItemCosts.Potions);
         }
 
         if (progression > 3)
         {
-            AddItem(ItemID.SonarPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.SonarPotion, ItemCosts.Potions);
         }
 
         if (progression > 4)
         {
-            AddItem(ItemID.CratePotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.FishingPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.CratePotion, ItemCosts.Potions);
+            AddItem(ItemID.FishingPotion, ItemCosts.Potions);
         }
     }
 

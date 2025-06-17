@@ -53,7 +53,7 @@ public class ShopSkeletonMerchant : Shop
 
             if (Progression.Hardmode)
             {
-                if (Utils.Kills(NPCID.WyvernHead) > 0)
+                if (WorldUtils.Kills(NPCID.WyvernHead) > 0)
                 {
                     AddItem(ItemID.SoulofFlight);
                 }
@@ -63,7 +63,7 @@ public class ShopSkeletonMerchant : Shop
                     AddItem(ItemID.SoulofFright);
                 }
 
-                if (Utils.Kills(NPCID.IlluminantSlime) > 0)
+                if (WorldUtils.Kills(NPCID.IlluminantSlime) > 0)
                 {
                     AddItem(ItemID.SoulofLight);
                 }
@@ -73,7 +73,7 @@ public class ShopSkeletonMerchant : Shop
                     AddItem(ItemID.SoulofMight);
                 }
 
-                if (Utils.Kills(NPCID.Clinger) > 0 || Utils.Kills(NPCID.IchorSticker) > 0)
+                if (WorldUtils.Kills(NPCID.Clinger) > 0 || WorldUtils.Kills(NPCID.IchorSticker) > 0)
                 {
                     AddItem(ItemID.SoulofNight);
                 }
@@ -83,7 +83,7 @@ public class ShopSkeletonMerchant : Shop
                     AddItem(ItemID.SoulofSight);
                 }
 
-                AddItem(ItemID.RagePotion, Utils.UniversalPotionCost);
+                AddItem(ItemID.RagePotion, ItemCosts.Potions);
             }
 
             return;

@@ -16,147 +16,147 @@ public class ShopDyeTrader : Shop
 
         if (shop == "Lunar")
         {
-            AddItem(ItemID.NebulaDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SolarDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.StardustDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VortexDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.NebulaDye, ItemCosts.Dyes);
+            AddItem(ItemID.SolarDye, ItemCosts.Dyes);
+            AddItem(ItemID.StardustDye, ItemCosts.Dyes);
+            AddItem(ItemID.VortexDye, ItemCosts.Dyes);
             return;
         }
 
         if (shop == "Strange")
         {
-            AddItem(ItemID.AcidDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueAcidDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.RedAcidDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ChlorophyteDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GelDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.MushroomDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GrimDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.HadesDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BurningHadesDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ShadowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LivingOceanDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LivingFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.RainbowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.MartianArmorDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.MidnightRainbowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.MirageDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.NegativeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PixieDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PhaseDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PurpleOozeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveCopperDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveGoldDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveObsidianDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveMetalDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ReflectiveSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ShadowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ShiftingSandsDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.DevDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.TwilightDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.WispDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.InfernalWispDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.UnicornWispDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LokisDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PinkGelDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.ShiftingPearlSandsDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.TeamDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VoidDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.AcidDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueAcidDye, ItemCosts.Dyes);
+            AddItem(ItemID.RedAcidDye, ItemCosts.Dyes);
+            AddItem(ItemID.ChlorophyteDye, ItemCosts.Dyes);
+            AddItem(ItemID.GelDye, ItemCosts.Dyes);
+            AddItem(ItemID.MushroomDye, ItemCosts.Dyes);
+            AddItem(ItemID.GrimDye, ItemCosts.Dyes);
+            AddItem(ItemID.HadesDye, ItemCosts.Dyes);
+            AddItem(ItemID.BurningHadesDye, ItemCosts.Dyes);
+            AddItem(ItemID.ShadowDye, ItemCosts.Dyes);
+            AddItem(ItemID.LivingOceanDye, ItemCosts.Dyes);
+            AddItem(ItemID.LivingFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.RainbowDye, ItemCosts.Dyes);
+            AddItem(ItemID.MartianArmorDye, ItemCosts.Dyes);
+            AddItem(ItemID.MidnightRainbowDye, ItemCosts.Dyes);
+            AddItem(ItemID.MirageDye, ItemCosts.Dyes);
+            AddItem(ItemID.NegativeDye, ItemCosts.Dyes);
+            AddItem(ItemID.PixieDye, ItemCosts.Dyes);
+            AddItem(ItemID.PhaseDye, ItemCosts.Dyes);
+            AddItem(ItemID.PurpleOozeDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveCopperDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveGoldDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveObsidianDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveMetalDye, ItemCosts.Dyes);
+            AddItem(ItemID.ReflectiveSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.ShadowDye, ItemCosts.Dyes);
+            AddItem(ItemID.ShiftingSandsDye, ItemCosts.Dyes);
+            AddItem(ItemID.DevDye, ItemCosts.Dyes);
+            AddItem(ItemID.TwilightDye, ItemCosts.Dyes);
+            AddItem(ItemID.WispDye, ItemCosts.Dyes);
+            AddItem(ItemID.InfernalWispDye, ItemCosts.Dyes);
+            AddItem(ItemID.UnicornWispDye, ItemCosts.Dyes);
+            AddItem(ItemID.LokisDye, ItemCosts.Dyes);
+            AddItem(ItemID.PinkGelDye, ItemCosts.Dyes);
+            AddItem(ItemID.ShiftingPearlSandsDye, ItemCosts.Dyes);
+            AddItem(ItemID.TeamDye, ItemCosts.Dyes);
+            AddItem(ItemID.VoidDye, ItemCosts.Dyes);
             return;
         }
 
         if (shop == "Compound")
         {
-            AddItem(ItemID.RedandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.OrangeandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.YellowandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LimeandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.TealandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.CyanandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SkyBlueandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PurpleandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VioletandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PinkandBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrownAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SilverAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.FlameAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.FlameAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenFlameAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueFlameAndBlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.RedandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.OrangeandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.YellowandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LimeandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.TealandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.CyanandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SkyBlueandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PurpleandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VioletandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PinkandSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrownAndSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlackAndWhiteDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.FlameAndSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenFlameAndSilverDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueFlameAndSilverDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.RedandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.OrangeandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.YellowandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.LimeandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.TealandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.CyanandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.SkyBlueandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.PurpleandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.VioletandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.PinkandBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrownAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.SilverAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.FlameAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.FlameAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenFlameAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueFlameAndBlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.RedandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.OrangeandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.YellowandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.LimeandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.TealandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.CyanandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.SkyBlueandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.PurpleandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.VioletandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.PinkandSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrownAndSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlackAndWhiteDye, ItemCosts.Dyes);
+            AddItem(ItemID.FlameAndSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenFlameAndSilverDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueFlameAndSilverDye, ItemCosts.Dyes);
             return;
         }
 
         if (shop == "Gradient")
         {
-            AddItem(ItemID.FlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.YellowGradientDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.CyanGradientDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VioletGradientDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.RainbowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.IntenseFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.IntenseGreenFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.IntenseBlueFlameDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.IntenseRainbowDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.FlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.YellowGradientDye, ItemCosts.Dyes);
+            AddItem(ItemID.CyanGradientDye, ItemCosts.Dyes);
+            AddItem(ItemID.VioletGradientDye, ItemCosts.Dyes);
+            AddItem(ItemID.RainbowDye, ItemCosts.Dyes);
+            AddItem(ItemID.IntenseFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.IntenseGreenFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.IntenseBlueFlameDye, ItemCosts.Dyes);
+            AddItem(ItemID.IntenseRainbowDye, ItemCosts.Dyes);
             return;
         }
 
         if (shop == "Bright")
         {
-            AddItem(ItemID.BrightRedDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightOrangeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightYellowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightLimeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightGreenDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightTealDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightCyanDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightSkyBlueDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightBlueDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightPurpleDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightVioletDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightPinkDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightBrownDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrightSilverDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.BrightRedDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightOrangeDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightYellowDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightLimeDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightGreenDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightTealDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightCyanDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightSkyBlueDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightBlueDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightPurpleDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightVioletDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightPinkDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightBrownDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrightSilverDye, ItemCosts.Dyes);
             return;
         }
 
         if (shop == "Basic")
         {
-            AddItem(ItemID.RedDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.OrangeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.YellowDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.LimeDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.GreenDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.TealDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SkyBlueDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlueDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PurpleDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.VioletDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.PinkDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BlackDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.BrownDye, Utils.UniversalDyeCost);
-            AddItem(ItemID.SilverDye, Utils.UniversalDyeCost);
+            AddItem(ItemID.RedDye, ItemCosts.Dyes);
+            AddItem(ItemID.OrangeDye, ItemCosts.Dyes);
+            AddItem(ItemID.YellowDye, ItemCosts.Dyes);
+            AddItem(ItemID.LimeDye, ItemCosts.Dyes);
+            AddItem(ItemID.GreenDye, ItemCosts.Dyes);
+            AddItem(ItemID.TealDye, ItemCosts.Dyes);
+            AddItem(ItemID.SkyBlueDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlueDye, ItemCosts.Dyes);
+            AddItem(ItemID.PurpleDye, ItemCosts.Dyes);
+            AddItem(ItemID.VioletDye, ItemCosts.Dyes);
+            AddItem(ItemID.PinkDye, ItemCosts.Dyes);
+            AddItem(ItemID.BlackDye, ItemCosts.Dyes);
+            AddItem(ItemID.BrownDye, ItemCosts.Dyes);
+            AddItem(ItemID.SilverDye, ItemCosts.Dyes);
             return;
         }
 

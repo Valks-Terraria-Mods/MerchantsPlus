@@ -10,11 +10,11 @@ public class ShopDemolitionist : Shop
 
         if (shop == "Potions")
         {
-            AddItem(ItemID.MiningPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.NightOwlPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.ShinePotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.SpelunkerPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.StinkPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.MiningPotion, ItemCosts.Potions);
+            AddItem(ItemID.NightOwlPotion, ItemCosts.Potions);
+            AddItem(ItemID.ShinePotion, ItemCosts.Potions);
+            AddItem(ItemID.SpelunkerPotion, ItemCosts.Potions);
+            AddItem(ItemID.StinkPotion, ItemCosts.Potions);
             return;
         }
 
@@ -37,7 +37,7 @@ public class ShopDemolitionist : Shop
                 AddItem(ItemID.Dynamite);
             }
 
-            if (Utils.HasNPC(NPCID.Angler))
+            if (WorldUtils.HasNpc(NPCID.Angler))
             {
                 AddItem(ItemID.BombFish);
             }

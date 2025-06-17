@@ -14,11 +14,11 @@ public class ShopNurse : Shop
 
         if (shop == "Potions")
         {
-            AddItem(ItemID.EndurancePotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.IronskinPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.LifeforcePotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.RegenerationPotion, Utils.UniversalPotionCost);
-            AddItem(ItemID.HeartreachPotion, Utils.UniversalPotionCost);
+            AddItem(ItemID.EndurancePotion, ItemCosts.Potions);
+            AddItem(ItemID.IronskinPotion, ItemCosts.Potions);
+            AddItem(ItemID.LifeforcePotion, ItemCosts.Potions);
+            AddItem(ItemID.RegenerationPotion, ItemCosts.Potions);
+            AddItem(ItemID.HeartreachPotion, ItemCosts.Potions);
             return;
         }
 

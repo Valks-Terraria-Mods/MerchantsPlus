@@ -33,7 +33,7 @@ public class MagicStorage
     {
         if (magicStorage != null)
         {
-            Utils.SetModValues(this, magicStorage);
+            ModHelpers.SetModValues(this, magicStorage);
         }
     }
 }

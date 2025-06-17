@@ -6,13 +6,13 @@ public class PlayerHooks : ModPlayer
 {
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (!Utils.TalkingToNPC())
+        if (PlayerUtils.TalkingToNpc()) 
+            return;
+        
+        if (ShopUI.Visible)
         {
-            if (ShopUI.Visible)
-            {
-                ModContent.GetInstance<ModifyUI>().HideShopUI();
-                //Main.NewText("Hiding shop ui");
-            }
+            ModContent.GetInstance<ModifyUI>().HideShopUI();
+            //Main.NewText("Hiding shop ui");
         }
     }
 }

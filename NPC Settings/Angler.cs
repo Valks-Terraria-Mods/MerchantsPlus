@@ -18,7 +18,7 @@ public class Angler : BaseMerchant
     {
         if (npc.type == NPCID.Angler)
         {
-            _ = npcLoot.Add(ItemDropRule.Common(ItemID.Fish, 1));
+            _ = npcLoot.Add(ItemDropRule.Common(ItemID.Fish));
         }
     }
 

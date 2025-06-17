@@ -22,57 +22,57 @@ public class ShopGoblinTinkerer : Shop
 
         if (shop == "Miscellaneous")
         {
-            AddItem(ItemID.FlowerBoots, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.FlowerBoots, ItemCosts.Accessories);
 
             if (NPC.downedPirates)
             {
-                AddItem(ItemID.GoldRing, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.DiscountCard, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.LuckyCoin, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.GoldRing, ItemCosts.Accessories);
+                AddItem(ItemID.DiscountCard, ItemCosts.Accessories);
+                AddItem(ItemID.LuckyCoin, ItemCosts.Accessories);
             }
 
-            if (Utils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]) > 100)
+            if (WorldUtils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]) > 100)
             {
-                AddItem(ItemID.JellyfishNecklace, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.JellyfishNecklace, ItemCosts.Accessories);
             }
 
             if (NPC.downedMechBoss1)
             {
-                AddItem(ItemID.NeptunesShell, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.NeptunesShell, ItemCosts.Accessories);
             }
             return;
         }
 
         if (shop == "Special")
         {
-            AddItem(Progression.SlimeKing,       ItemID.RoyalGel,          Utils.UniversalAccessoryCost);
-            AddItem(Progression.EyeOfCthulhu,    ItemID.EoCShield,         Utils.UniversalAccessoryCost);
+            AddItem(Progression.SlimeKing,       ItemID.RoyalGel,          ItemCosts.Accessories);
+            AddItem(Progression.EyeOfCthulhu,    ItemID.EoCShield,         ItemCosts.Accessories);
 
             if (Progression.BrainOrEater)
             {
                 if (WorldGen.crimson)
                 {
-                    AddItem(ItemID.BrainOfConfusion, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.BrainOfConfusion, ItemCosts.Accessories);
                 }
                 else
                 {
-                    AddItem(ItemID.WormScarf, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.WormScarf, ItemCosts.Accessories);
                 }
             }
 
-            AddItem(Progression.QueenBee,        ItemID.HiveBackpack,     Utils.UniversalAccessoryCost);
-            AddItem(Progression.Plantera,        ItemID.SporeSac,         Utils.UniversalAccessoryCost);
-            AddItem(Progression.Golem,           ItemID.ShinyStone,       Utils.UniversalAccessoryCost);
-            AddItem(Progression.Moonlord,        ItemID.GravityGlobe,     Utils.UniversalAccessoryCost);
+            AddItem(Progression.QueenBee,        ItemID.HiveBackpack,     ItemCosts.Accessories);
+            AddItem(Progression.Plantera,        ItemID.SporeSac,         ItemCosts.Accessories);
+            AddItem(Progression.Golem,           ItemID.ShinyStone,       ItemCosts.Accessories);
+            AddItem(Progression.Moonlord,        ItemID.GravityGlobe,     ItemCosts.Accessories);
             return;
         }
 
         if (shop == "Defensive")
         {
-            AddItem(Progression.Skeletron,                  ItemID.CobaltShield,      Utils.UniversalAccessoryCost);
-            AddItem(Utils.Kills(NPCID.Zombie) > 100,        ItemID.Shackle,           Utils.UniversalAccessoryCost);
-            AddItem(Utils.Kills(NPCID.BigMimicCrimson) > 0, ItemID.FleshKnuckles,     Utils.UniversalAccessoryCost);
-            AddItem(Utils.Kills(NPCID.IceTortoise) > 0,     ItemID.FrozenTurtleShell, Utils.UniversalAccessoryCost);
+            AddItem(Progression.Skeletron,                  ItemID.CobaltShield,      ItemCosts.Accessories);
+            AddItem(WorldUtils.Kills(NPCID.Zombie) > 100,        ItemID.Shackle,           ItemCosts.Accessories);
+            AddItem(WorldUtils.Kills(NPCID.BigMimicCrimson) > 0, ItemID.FleshKnuckles,     ItemCosts.Accessories);
+            AddItem(WorldUtils.Kills(NPCID.IceTortoise) > 0,     ItemID.FrozenTurtleShell, ItemCosts.Accessories);
 
             return;
         }
@@ -81,60 +81,60 @@ public class ShopGoblinTinkerer : Shop
         {
             if (Progression.Hardmode)
             {
-                AddItem(ItemID.HandWarmer, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.HandWarmer, ItemCosts.Accessories);
 
-                if (Utils.MultiKills([NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish]) > 0)
+                if (WorldUtils.MultiKills([NPCID.RustyArmoredBonesAxe, NPCID.Werewolf, NPCID.AnglerFish]) > 0)
                 {
-                    AddItem(ItemID.AdhesiveBandage, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.AdhesiveBandage, ItemCosts.Accessories);
                 }
-                if (Utils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]) > 0)
+                if (WorldUtils.MultiKills([NPCID.ArmoredSkeleton, NPCID.BlueArmoredBones]) > 0)
                 {
-                    AddItem(ItemID.ArmorPolish, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.ArmorPolish, ItemCosts.Accessories);
                 }
-                if (Utils.Kills(NPCID.ToxicSludge) > 0)
+                if (WorldUtils.Kills(NPCID.ToxicSludge) > 0)
                 {
-                    AddItem(ItemID.Bezoar, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.Bezoar, ItemCosts.Accessories);
                 }
-                if (Utils.Kills(NPCID.CorruptSlime) > 0)
+                if (WorldUtils.Kills(NPCID.CorruptSlime) > 0)
                 {
-                    AddItem(ItemID.Blindfold, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.Blindfold, ItemCosts.Accessories);
                 }
 
-                if (Utils.MultiKills([NPCID.Pixie, NPCID.DarkMummy]) > 0)
+                if (WorldUtils.MultiKills([NPCID.Pixie, NPCID.DarkMummy]) > 0)
                 {
-                    AddItem(ItemID.Megaphone, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.Megaphone, ItemCosts.Accessories);
                 }
-                if (Utils.Kills(NPCID.Mimic) > 2)
+                if (WorldUtils.Kills(NPCID.Mimic) > 2)
                 {
-                    AddItem(ItemID.CrossNecklace, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.CrossNecklace, ItemCosts.Accessories);
                 }
-                if (Utils.Kills(NPCID.Pixie) > 10)
+                if (WorldUtils.Kills(NPCID.Pixie) > 10)
                 {
-                    AddItem(ItemID.FastClock, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.FastClock, ItemCosts.Accessories);
                 }
 
                 if (Progression.Hardmode)
                 {
-                    AddItem(ItemID.ObsidianRose, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.ObsidianRose, ItemCosts.Accessories);
                 }
 
-                if (Utils.Kills(NPCID.Medusa) > 0)
+                if (WorldUtils.Kills(NPCID.Medusa) > 0)
                 {
-                    AddItem(ItemID.PocketMirror, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.PocketMirror, ItemCosts.Accessories);
                 }
 
-                if (Utils.Kills(NPCID.LightMummy) > 0)
+                if (WorldUtils.Kills(NPCID.LightMummy) > 0)
                 {
-                    AddItem(ItemID.TrifoldMap, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.TrifoldMap, ItemCosts.Accessories);
                 }
 
-                if (Utils.Kills(NPCID.Corruptor) > 0)
+                if (WorldUtils.Kills(NPCID.Corruptor) > 0)
                 {
-                    AddItem(ItemID.Vitamins, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.Vitamins, ItemCosts.Accessories);
                 }
-                if (Utils.Kills(NPCID.CursedSkull) > 0)
+                if (WorldUtils.Kills(NPCID.CursedSkull) > 0)
                 {
-                    AddItem(ItemID.Nazar, Utils.UniversalAccessoryCost);
+                    AddItem(ItemID.Nazar, ItemCosts.Accessories);
                 }
             }
 
@@ -143,86 +143,86 @@ public class ShopGoblinTinkerer : Shop
 
         if (shop == "Combat")
         {
-            AddItem(ItemID.SharkToothNecklace, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.SharkToothNecklace, ItemCosts.Accessories);
 
             if (progression > 0)
             {
-                AddItem(ItemID.FeralClaws, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.FeralClaws, ItemCosts.Accessories);
             }
 
             if (Progression.BrainOfCthulhu)
             {
-                AddItem(ItemID.PanicNecklace, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.PanicNecklace, ItemCosts.Accessories);
             }
 
             if (Progression.QueenBee)
             {
-                AddItem(ItemID.HoneyComb, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.HoneyComb, ItemCosts.Accessories);
             }
 
             if (progression > 8)
             {
-                AddItem(ItemID.MagicQuiver, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MagicQuiver, ItemCosts.Accessories);
             }
             if (progression > 9)
             {
-                AddItem(ItemID.MoonCharm, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MoonCharm, ItemCosts.Accessories);
             }
             if (progression > 10)
             {
-                AddItem(ItemID.MoonStone, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MoonStone, ItemCosts.Accessories);
             }
             if (progression > 11)
             {
-                AddItem(ItemID.SunStone, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.SunStone, ItemCosts.Accessories);
             }
             if (progression > 12)
             {
-                AddItem(ItemID.MagmaStone, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MagmaStone, ItemCosts.Accessories);
 
-                AddItem(ItemID.StarCloak, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.StarCloak, ItemCosts.Accessories);
             }
             if (progression > 13)
             {
-                AddItem(ItemID.EyeoftheGolem, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.EyeoftheGolem, ItemCosts.Accessories);
             }
 
             if (Progression.Plantera)
             {
-                AddItem(ItemID.BlackBelt, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.BlackBelt, ItemCosts.Accessories);
             }
 
             if (progression > 15)
             {
-                AddItem(ItemID.ApprenticeScarf, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.ApprenticeScarf, ItemCosts.Accessories);
             }
             if (progression > 16)
             {
-                AddItem(ItemID.PutridScent, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.PutridScent, ItemCosts.Accessories);
             }
 
             if (progression > 17)
             {
-                AddItem(ItemID.HerculesBeetle, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.HerculesBeetle, ItemCosts.Accessories);
             }
 
             if (progression > 18)
             {
-                AddItem(ItemID.NecromanticScroll, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.NecromanticScroll, ItemCosts.Accessories);
             }
 
             if (progression > 19)
             {
-                AddItem(ItemID.PygmyNecklace, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.PygmyNecklace, ItemCosts.Accessories);
             }
 
             if (progression > 20)
             {
-                AddItem(ItemID.PaladinsShield, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.SquireShield, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.HuntressBuckler, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.MonkBelt, Utils.UniversalAccessoryCost);
-                AddItem(ItemID.TitanGlove, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.PaladinsShield, ItemCosts.Accessories);
+                AddItem(ItemID.SquireShield, ItemCosts.Accessories);
+                AddItem(ItemID.HuntressBuckler, ItemCosts.Accessories);
+                AddItem(ItemID.MonkBelt, ItemCosts.Accessories);
+                AddItem(ItemID.TitanGlove, ItemCosts.Accessories);
             }
 
             return;
@@ -230,21 +230,21 @@ public class ShopGoblinTinkerer : Shop
 
         if (shop == "Health and Mana")
         {
-            AddItem(ItemID.NaturesGift, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.NaturesGift, ItemCosts.Accessories);
 
             if (Progression.BrainOrEater)
             {
-                AddItem(ItemID.BandofStarpower, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.BandofStarpower, ItemCosts.Accessories);
 
-                AddItem(ItemID.BandofRegeneration, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.BandofRegeneration, ItemCosts.Accessories);
             }
             if (progression > 4)
             {
-                AddItem(ItemID.CelestialMagnet, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.CelestialMagnet, ItemCosts.Accessories);
             }
             if (Progression.Hardmode)
             {
-                AddItem(ItemID.PhilosophersStone, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.PhilosophersStone, ItemCosts.Accessories);
             }
 
             return;
@@ -263,132 +263,132 @@ public class ShopGoblinTinkerer : Shop
 
             if (progression > 0)
             {
-                AddItem(ItemID.DepthMeter, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.DepthMeter, ItemCosts.Accessories);
             }
             if (progression > 1)
             {
-                AddItem(ItemID.Compass, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Compass, ItemCosts.Accessories);
             }
             if (progression > 2)
             {
-                AddItem(ItemID.Stopwatch, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Stopwatch, ItemCosts.Accessories);
             }
             if (progression > 3)
             {
-                AddItem(ItemID.TallyCounter, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.TallyCounter, ItemCosts.Accessories);
             }
             if (progression > 4)
             {
-                AddItem(ItemID.LifeformAnalyzer, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.LifeformAnalyzer, ItemCosts.Accessories);
             }
             if (progression > 5)
             {
-                AddItem(ItemID.DPSMeter, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.DPSMeter, ItemCosts.Accessories);
             }
             if (progression > 6)
             {
-                AddItem(ItemID.MetalDetector, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MetalDetector, ItemCosts.Accessories);
             }
             if (progression > 7)
             {
-                AddItem(ItemID.Radar, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Radar, ItemCosts.Accessories);
             }
             if (progression > 8)
             {
-                AddItem(ItemID.Ruler, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Ruler, ItemCosts.Accessories);
             }
             if (progression > 9)
             {
-                AddItem(ItemID.MechanicalLens, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.MechanicalLens, ItemCosts.Accessories);
             }
             if (progression > 10)
             {
-                AddItem(ItemID.LaserRuler, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.LaserRuler, ItemCosts.Accessories);
             }
             return;
         }
 
         if (shop == "Movement")
         {
-            AddItem(ItemID.WaterWalkingBoots, Utils.UniversalAccessoryCost);
+            AddItem(ItemID.WaterWalkingBoots, ItemCosts.Accessories);
 
             if (progression > 0)
             {
-                AddItem(ItemID.HermesBoots, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.HermesBoots, ItemCosts.Accessories);
             }
 
             if (progression > 1)
             {
-                AddItem(ItemID.CloudinaBottle, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.CloudinaBottle, ItemCosts.Accessories);
 
-                AddItem(ItemID.SandstorminaBottle, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.SandstorminaBottle, ItemCosts.Accessories);
 
-                AddItem(ItemID.TsunamiInABottle, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.TsunamiInABottle, ItemCosts.Accessories);
             }
 
             if (progression > 2)
             {
-                AddItem(ItemID.Aglet, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Aglet, ItemCosts.Accessories);
             }
 
             if (progression > 3)
             {
-                AddItem(ItemID.AnkletoftheWind, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.AnkletoftheWind, ItemCosts.Accessories);
             }
 
             if (progression > 4)
             {
-                AddItem(ItemID.RocketBoots, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.RocketBoots, ItemCosts.Accessories);
             }
 
             if (progression > 5)
             {
-                AddItem(ItemID.IceSkates, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.IceSkates, ItemCosts.Accessories);
             }
 
             if (progression > 6)
             {
-                AddItem(ItemID.Flipper, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Flipper, ItemCosts.Accessories);
             }
 
             if (progression > 7)
             {
-                AddItem(ItemID.ClimbingClaws, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.ClimbingClaws, ItemCosts.Accessories);
             }
 
             if (progression > 8)
             {
-                AddItem(ItemID.ShoeSpikes, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.ShoeSpikes, ItemCosts.Accessories);
             }
 
             if (progression > 9)
             {
-                AddItem(ItemID.DivingHelmet, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.DivingHelmet, ItemCosts.Accessories);
             }
 
             if (progression > 10)
             {
-                AddItem(ItemID.ShinyRedBalloon, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.ShinyRedBalloon, ItemCosts.Accessories);
             }
 
             if (progression > 11)
             {
-                AddItem(ItemID.FlyingCarpet, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.FlyingCarpet, ItemCosts.Accessories);
             }
 
             if (progression > 12)
             {
-                AddItem(ItemID.LavaCharm, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.LavaCharm, ItemCosts.Accessories);
             }
 
             if (progression > 13)
             {
-                AddItem(ItemID.LuckyHorseshoe, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.LuckyHorseshoe, ItemCosts.Accessories);
             }
 
             if (progression > 14)
             {
-                AddItem(ItemID.Tabi, Utils.UniversalAccessoryCost);
+                AddItem(ItemID.Tabi, ItemCosts.Accessories);
             }
 
             return;
