@@ -4,9 +4,8 @@ namespace MerchantsPlus.Shops;
 
 public abstract class Shop
 {
-    public int CycleIndex { get; set; }
     public abstract string[] Shops { get; }
-    public List<string> Quests { get; } = [];
+    public int CycleIndex { get; set; }
 
     protected Chest Inv;
     protected int NextSlot;
@@ -18,7 +17,7 @@ public abstract class Shop
     /// <param name="nextSlot">The nextSlot of the item to sell.</param>
     public virtual void OpenShop(string shop)
     {
-        _ = SoundEngine.PlaySound(SoundID.MenuTick);
+        SoundEngine.PlaySound(SoundID.MenuTick);
         Main.playerInventory = true;
         Main.npcChatText = "";
 
@@ -46,8 +45,6 @@ public abstract class Shop
         }
 
         NextSlot = 0;
-
-        Quests.Clear();
     }
 
     protected void AddItem(int itemId, bool condition = true)

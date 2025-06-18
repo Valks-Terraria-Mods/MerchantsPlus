@@ -12,27 +12,14 @@ public class UIEvents : GlobalNPC
         ShopUI.CurrentMerchantId = npc.type;
     }
 
-    //static NPC currentNPC;
-
     public override void GetChat(NPC npc, ref string chat)
     {
-        // Do not change shop if the player is talking to the same NPC
-        //bool sameNPC = npc.type == currentNPC?.type;
-
-        // Do not change shop if not talking to a NPC
-        //bool notTalkingToNPC = !Utils.TalkingToNPC();
-
         // Do not change shop if this is not a shop NPC
-        bool notShopNPC = !IsShopNPC(npc);
+        bool notShopNpc = !IsShopNPC(npc);
 
-        if (notShopNPC)
-        {
-            return;
-        }
-
-        //currentNPC = npc;
+        if (notShopNpc) return;
+        
         SetShopIndex(npc);
-        //Main.NewText("Showing shop ui for " + npc.FullName);
-        ModContent.GetInstance<ModifyUI>().ShowShopUI();
+        ModContent.GetInstance<AddCustomShopUI>().ShowShopUI();
     }
 }

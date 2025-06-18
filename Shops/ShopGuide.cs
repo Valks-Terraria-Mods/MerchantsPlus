@@ -1,8 +1,11 @@
-﻿namespace MerchantsPlus.Shops;
+﻿using MerchantsPlus.ModDefs;
+using Terraria.WorldBuilding;
+
+namespace MerchantsPlus.Shops;
 
 public class ShopGuide : Shop
 {
-    public override string[] Shops => ["Gear", "Pylons"];
+    public override string[] Shops => ["Gear", "Pylons", "Boss Summons"];
 
     public override void OpenShop(string shop)
     {
@@ -55,6 +58,58 @@ public class ShopGuide : Shop
             AddItem(ItemID.TeleportationPylonJungle, Coins.Gold());
             AddItem(ItemID.TeleportationPylonHallow, Coins.Gold());
             AddItem(ItemID.TeleportationPylonDesert, Coins.Gold());
+        }
+
+        if (shop == "Boss Summons")
+        {
+            BossSummons();
+        }
+    }
+    
+    private void BossSummons()
+    {
+        AddItem(ItemID.SlimeCrown, Coins.Gold(3));
+
+        if (Thorium.ModLoaded)
+        {
+            AddItem(Thorium.GrandFlareGun, Coins.Gold(2));
+            AddItem(Thorium.StormFlare, Coins.Gold());
+        }
+        
+        if (Progression.SlimeKing)
+            AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
+        
+        if (Progression.EyeOfCthulhu)
+            AddItem(GenVars.crimsonLeft ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
+
+        if (Progression.Skeletron)
+        {
+            AddItem(ItemID.Abeemination, Coins.Gold(5));
+            AddItem(ItemID.DeerThing, Coins.Gold(5));
+            AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
+        }
+
+        if (Main.hardMode)
+        {
+            AddItem(ItemID.QueenSlimeCrystal, Coins.Gold(5));
+            AddItem(ItemID.MechanicalEye, Coins.Gold(5));
+            AddItem(ItemID.MechanicalSkull, Coins.Gold(5));
+            AddItem(ItemID.MechanicalWorm, Coins.Gold(5));
+
+            if (Progression.DownedMechs(3))
+            {
+                AddItem(ItemID.LihzahrdPowerCell, Coins.Gold(5));
+            }
+
+            if (Progression.Golem)
+            {
+                AddItem(ItemID.TruffleWorm, Coins.Gold(5));
+            }
+
+            if (Progression.Towers)
+            {
+                AddItem(ItemID.CelestialSigil, Coins.Gold(10));
+            }
         }
     }
 }

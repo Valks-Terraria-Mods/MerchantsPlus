@@ -1,6 +1,6 @@
 ﻿namespace MerchantsPlus.UI;
 
-public class ModifyUI : ModSystem
+public class AddCustomShopUI : ModSystem
 {
     private UserInterface _userInterface;
     private GameTime _lastUpdateUiGameTime;
@@ -31,7 +31,7 @@ public class ModifyUI : ModSystem
             _userInterface = new UserInterface();
         }
     }
-
+    
     public override void UpdateUI(GameTime gameTime)
     {
         _lastUpdateUiGameTime = gameTime;

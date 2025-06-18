@@ -1,3 +1,4 @@
+using MerchantsPlus.ModDefs;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Shops;
@@ -10,8 +11,7 @@ public class ShopMerchant : Shop
         Potions,
         Ores,
         Pets,
-        Mounts,
-        BossSummons
+        Mounts
     }
     
     public override string[] Shops => [
@@ -19,8 +19,7 @@ public class ShopMerchant : Shop
         nameof(ShopNames.Potions),
         nameof(ShopNames.Ores),
         nameof(ShopNames.Pets),
-        nameof(ShopNames.Mounts),
-        nameof(ShopNames.BossSummons)
+        nameof(ShopNames.Mounts)
     ];
 
     public override void OpenShop(string shop)
@@ -44,54 +43,10 @@ public class ShopMerchant : Shop
             case nameof(ShopNames.Potions):
                 Potions();
                 return;
-            case nameof(ShopNames.BossSummons):
-                BossSummons();
-                return;
         }
 
         // Default Shop
         Inv.SetupShop(ShopType.Merchant);
-    }
-
-    private void BossSummons()
-    {
-        AddItem(ItemID.SlimeCrown, Coins.Gold(3));
-        
-        if (Progression.SlimeKing)
-            AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
-        
-        if (Progression.EyeOfCthulhu)
-            AddItem(GenVars.crimsonLeft ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
-
-        if (Progression.Skeletron)
-        {
-            AddItem(ItemID.Abeemination, Coins.Gold(5));
-            AddItem(ItemID.DeerThing, Coins.Gold(5));
-            AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
-        }
-
-        if (Main.hardMode)
-        {
-            AddItem(ItemID.QueenSlimeCrystal, Coins.Gold(5));
-            AddItem(ItemID.MechanicalEye, Coins.Gold(5));
-            AddItem(ItemID.MechanicalSkull, Coins.Gold(5));
-            AddItem(ItemID.MechanicalWorm, Coins.Gold(5));
-
-            if (Progression.DownedMechs(3))
-            {
-                AddItem(ItemID.LihzahrdPowerCell, Coins.Gold(5));
-            }
-
-            if (Progression.Golem)
-            {
-                AddItem(ItemID.TruffleWorm, Coins.Gold(5));
-            }
-
-            if (Progression.Towers)
-            {
-                AddItem(ItemID.CelestialSigil, Coins.Gold(10));
-            }
-        }
     }
 
     private void Potions()

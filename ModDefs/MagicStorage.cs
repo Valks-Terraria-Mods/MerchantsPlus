@@ -29,30 +29,30 @@ public class MagicStorage
     public static ModItem UpgradeLuminite { get; private set; }
     public static ModItem UpgradeTerra { get; private set; }
 
-    public static void Load(Mod magicStorage)
+    public static void Load(Mod mod)
     {
-        Golem = ExternalModUtils.TryFindNpc(magicStorage, nameof(Golem));
-        StorageComponent = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageComponent));
-        StorageAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageAccess));
-        StorageHeart = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageHeart));
-        StorageUnit = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnit));
-        CraftingAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(CraftingAccess));
-        StorageUnitCrimtane = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitCrimtane));
-        StorageUnitDemonite = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitDemonite));
-        StorageUnitHallowed = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitHallowed));
-        StorageUnitHellstone = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitHellstone));
-        StorageUnitBlueChlorophyte = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitBlueChlorophyte));
-        StorageUnitLuminite = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitLuminite));
-        StorageUnitTerra = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitTerra));
-        StorageUnitTiny = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitTiny));
-        StorageDeactivator = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageDeactivator));
-        StorageConnector = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageConnector));
-        RemoteAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(RemoteAccess));
-        UpgradeCrimtane = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeCrimtane));
-        UpgradeDemonite = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeDemonite));
-        UpgradeHallowed = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeHallowed));
-        UpgradeHellstone = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeHellstone));
-        UpgradeLuminite = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeLuminite));
-        UpgradeTerra = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeTerra));
+        Golem = OtherMods.TryFindNpc(mod, nameof(Golem));
+        StorageComponent = OtherMods.TryFindItem(mod, nameof(StorageComponent));
+        StorageAccess = OtherMods.TryFindItem(mod, nameof(StorageAccess));
+        StorageHeart = OtherMods.TryFindItem(mod, nameof(StorageHeart));
+        StorageUnit = OtherMods.TryFindItem(mod, nameof(StorageUnit));
+        CraftingAccess = OtherMods.TryFindItem(mod, nameof(CraftingAccess));
+        StorageUnitCrimtane = OtherMods.TryFindItem(mod, nameof(StorageUnitCrimtane));
+        StorageUnitDemonite = OtherMods.TryFindItem(mod, nameof(StorageUnitDemonite));
+        StorageUnitHallowed = OtherMods.TryFindItem(mod, nameof(StorageUnitHallowed));
+        StorageUnitHellstone = OtherMods.TryFindItem(mod, nameof(StorageUnitHellstone));
+        StorageUnitBlueChlorophyte = OtherMods.TryFindItem(mod, nameof(StorageUnitBlueChlorophyte));
+        StorageUnitLuminite = OtherMods.TryFindItem(mod, nameof(StorageUnitLuminite));
+        StorageUnitTerra = OtherMods.TryFindItem(mod, nameof(StorageUnitTerra));
+        StorageUnitTiny = OtherMods.TryFindItem(mod, nameof(StorageUnitTiny));
+        StorageDeactivator = OtherMods.TryFindItem(mod, nameof(StorageDeactivator));
+        StorageConnector = OtherMods.TryFindItem(mod, nameof(StorageConnector));
+        RemoteAccess = OtherMods.TryFindItem(mod, nameof(RemoteAccess));
+        UpgradeCrimtane = OtherMods.TryFindItem(mod, nameof(UpgradeCrimtane));
+        UpgradeDemonite = OtherMods.TryFindItem(mod, nameof(UpgradeDemonite));
+        UpgradeHallowed = OtherMods.TryFindItem(mod, nameof(UpgradeHallowed));
+        UpgradeHellstone = OtherMods.TryFindItem(mod, nameof(UpgradeHellstone));
+        UpgradeLuminite = OtherMods.TryFindItem(mod, nameof(UpgradeLuminite));
+        UpgradeTerra = OtherMods.TryFindItem(mod, nameof(UpgradeTerra));
     }
 }

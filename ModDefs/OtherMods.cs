@@ -1,6 +1,6 @@
 namespace MerchantsPlus.ModDefs;
 
-public class ExternalModUtils
+public class OtherMods
 {
     public static ModItem TryFindItem(Mod mod, string name)
     {
