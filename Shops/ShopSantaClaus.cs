@@ -5,22 +5,12 @@ public class ShopSantaClaus : Shop
     public override string[] Shops => [
         "Decor",
         "Bulbs",
-        "Lights",
-        "Potions" ];
+        "Lights"
+    ];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
-
-        if (shop == "Potions")
-        {
-            AddItem(ItemID.InvisibilityPotion, ItemCosts.Potions);
-            AddItem(ItemID.GenderChangePotion, ItemCosts.Potions);
-            AddItem(ItemID.RecallPotion, ItemCosts.Potions);
-            AddItem(ItemID.TeleportationPotion, ItemCosts.Potions);
-            AddItem(ItemID.WormholePotion, ItemCosts.Potions);
-            return;
-        }
 
         if (shop == "Lights")
         {

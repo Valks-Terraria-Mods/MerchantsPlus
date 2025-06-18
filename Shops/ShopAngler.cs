@@ -2,7 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopAngler : Shop
 {
-    public override string[] Shops => ["Bait", "Buffs", "Crates"];
+    public override string[] Shops => ["Bait", "Food", "Crates"];
 
     public override void OpenShop(string shop)
     {
@@ -12,8 +12,8 @@ public class ShopAngler : Shop
 
         switch (shop)
         {
-            case "Buffs":
-                Buffs(progression);
+            case "Food":
+                Food(progression);
                 return;
             case "Crates":
                 Crates(progression);
@@ -198,36 +198,13 @@ public class ShopAngler : Shop
         }
     }
 
-    private void Buffs(int progression)
+    private void Food(int progression)
     {
-        AddItem(ItemID.FlipperPotion, ItemCosts.Potions);
-
-        if (progression > 0)
-        {
-            AddItem(ItemID.WaterWalkingPotion, ItemCosts.Potions);
-        }
-
         if (progression > 1)
-        {
-            AddItem(ItemID.GillsPotion, ItemCosts.Potions);
-        }
-
-        if (progression > 2)
         {
             AddItem(ItemID.Sashimi, ItemCosts.Potions);
             AddItem(ItemID.CookedFish, ItemCosts.Potions);
             AddItem(ItemID.CookedShrimp, ItemCosts.Potions);
-        }
-
-        if (progression > 3)
-        {
-            AddItem(ItemID.SonarPotion, ItemCosts.Potions);
-        }
-
-        if (progression > 4)
-        {
-            AddItem(ItemID.CratePotion, ItemCosts.Potions);
-            AddItem(ItemID.FishingPotion, ItemCosts.Potions);
         }
     }
 

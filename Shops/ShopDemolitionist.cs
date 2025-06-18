@@ -2,21 +2,11 @@ namespace MerchantsPlus.Shops;
 
 public class ShopDemolitionist : Shop
 {
-    public override string[] Shops => ["Explosives", "Potions"];
+    public override string[] Shops => ["Explosives"];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
-
-        if (shop == "Potions")
-        {
-            AddItem(ItemID.MiningPotion, ItemCosts.Potions);
-            AddItem(ItemID.NightOwlPotion, ItemCosts.Potions);
-            AddItem(ItemID.ShinePotion, ItemCosts.Potions);
-            AddItem(ItemID.SpelunkerPotion, ItemCosts.Potions);
-            AddItem(ItemID.StinkPotion, ItemCosts.Potions);
-            return;
-        }
 
         if (shop == "Explosives")
         {

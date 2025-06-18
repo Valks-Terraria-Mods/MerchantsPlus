@@ -2,18 +2,11 @@ namespace MerchantsPlus.Shops;
 
 public class ShopDryad : Shop
 {
-    public override string[] Shops => ["Seeds", "Potions"];
+    public override string[] Shops => ["Seeds"];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
-
-        if (shop == "Potions")
-        {
-            AddItem(ItemID.CalmingPotion, ItemCosts.Potions);
-            AddItem(ItemID.FeatherfallPotion, ItemCosts.Potions);
-            return;
-        }
 
         if (shop == "Seeds")
         {

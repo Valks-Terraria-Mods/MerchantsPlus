@@ -82,8 +82,6 @@ public class ShopSkeletonMerchant : Shop
                 {
                     AddItem(ItemID.SoulofSight);
                 }
-
-                AddItem(ItemID.RagePotion, ItemCosts.Potions);
             }
 
             return;

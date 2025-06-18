@@ -4,12 +4,24 @@ namespace MerchantsPlus.Shops;
 
 public class ShopMerchant : Shop
 {
+    private enum ShopNames
+    {
+        Gear,
+        Potions,
+        Ores,
+        Pets,
+        Mounts,
+        BossSummons
+    }
+    
     public override string[] Shops => [
-        "Gear",
-        "Potions",
-        "Ores",
-        "Pets",
-        "Mounts" ];
+        nameof(ShopNames.Gear),
+        nameof(ShopNames.Potions),
+        nameof(ShopNames.Ores),
+        nameof(ShopNames.Pets),
+        nameof(ShopNames.Mounts),
+        nameof(ShopNames.BossSummons)
+    ];
 
     public override void OpenShop(string shop)
     {
@@ -17,20 +29,23 @@ public class ShopMerchant : Shop
 
         switch (shop)
         {
-            case "Mounts":
+            case nameof(ShopNames.Mounts):
                 Mounts();
                 return;
-            case "Pets":
+            case nameof(ShopNames.Pets):
                 Pets();
                 return;
-            case "Ores":
+            case nameof(ShopNames.Ores):
                 Ores();
                 return;
-            case "Gear":
+            case nameof(ShopNames.Gear):
                 Gear();
                 return;
-            case "Potions":
+            case nameof(ShopNames.Potions):
                 Potions();
+                return;
+            case nameof(ShopNames.BossSummons):
+                BossSummons();
                 return;
         }
 
@@ -38,11 +53,104 @@ public class ShopMerchant : Shop
         Inv.SetupShop(ShopType.Merchant);
     }
 
+    private void BossSummons()
+    {
+        AddItem(ItemID.SlimeCrown, Coins.Gold(3));
+        
+        if (Progression.SlimeKing)
+            AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
+        
+        if (Progression.EyeOfCthulhu)
+            AddItem(GenVars.crimsonLeft ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
+
+        if (Progression.Skeletron)
+        {
+            AddItem(ItemID.Abeemination, Coins.Gold(5));
+            AddItem(ItemID.DeerThing, Coins.Gold(5));
+            AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
+        }
+
+        if (Main.hardMode)
+        {
+            AddItem(ItemID.QueenSlimeCrystal, Coins.Gold(5));
+            AddItem(ItemID.MechanicalEye, Coins.Gold(5));
+            AddItem(ItemID.MechanicalSkull, Coins.Gold(5));
+            AddItem(ItemID.MechanicalWorm, Coins.Gold(5));
+
+            if (Progression.DownedMechs(3))
+            {
+                AddItem(ItemID.LihzahrdPowerCell, Coins.Gold(5));
+            }
+
+            if (Progression.Golem)
+            {
+                AddItem(ItemID.TruffleWorm, Coins.Gold(5));
+            }
+
+            if (Progression.Towers)
+            {
+                AddItem(ItemID.CelestialSigil, Coins.Gold(10));
+            }
+        }
+    }
+
     private void Potions()
     {
         AddItem(ItemID.RecallPotion, Coins.Silver());
-        AddItem(ItemID.TeleportationPotion, Coins.Silver());
+        
+        AddItem(ItemID.WormholePotion, Coins.Silver());
+        AddItem(ItemID.StinkPotion, ItemCosts.Potions);
+        AddItem(ItemID.GenderChangePotion, Coins.Copper());
+        AddItem(ItemID.LovePotion, ItemCosts.Potions);
+        AddItem(ItemID.CalmingPotion, ItemCosts.Potions);
+        AddItem(ItemID.HeartreachPotion, ItemCosts.Potions);
         AddItem(Progression.EyeOfCthulhu, ItemID.ObsidianSkinPotion, ItemCosts.Potions);
+
+        if (Progression.Hardmode)
+        {
+            AddItem(Progression.Cultist ? ItemID.LuckPotionGreater : ItemID.LuckPotion, ItemCosts.Potions);
+        }
+        else
+        {
+            AddItem(ItemID.LuckPotionLesser, ItemCosts.Potions);
+        }
+
+        if (WorldUtils.HasNpc(NPCID.Angler))
+        {
+            AddItem(ItemID.FlipperPotion, ItemCosts.Potions);
+            AddItem(ItemID.WaterWalkingPotion, ItemCosts.Potions);
+            AddItem(ItemID.GillsPotion, ItemCosts.Potions);
+            AddItem(ItemID.SonarPotion, ItemCosts.Potions);
+            AddItem(ItemID.CratePotion, ItemCosts.Potions);
+            AddItem(ItemID.FishingPotion, ItemCosts.Potions);
+        }
+        
+        AddItem(WorldUtils.HasNpc(NPCID.Painter), ItemID.BuilderPotion, ItemCosts.Potions);
+        AddItem(WorldUtils.HasNpc(NPCID.ArmsDealer), ItemID.AmmoReservationPotion, ItemCosts.Potions);
+        
+        AddItem(Progression.Level() > 0, ItemID.FeatherfallPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 1, ItemID.ShinePotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 2, ItemID.NightOwlPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 3, ItemID.HunterPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 4, ItemID.MiningPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 5, ItemID.SpelunkerPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 6, ItemID.SwiftnessPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 7, ItemID.TitanPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 8, ItemID.ThornsPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 9, ItemID.WarmthPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 10, ItemID.WrathPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 11, ItemID.EndurancePotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 12, ItemID.IronskinPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 13, ItemID.LifeforcePotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 14, ItemID.RegenerationPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 15, ItemID.TrapsightPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 16, ItemID.InfernoPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 17, ItemID.InvisibilityPotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 18, ItemID.RagePotion, ItemCosts.Potions);
+        AddItem(Progression.Level() > 19, ItemID.TeleportationPotion, Coins.Silver());
+        AddItem(Progression.Level() > 20, ItemID.GravitationPotion, ItemCosts.Potions);
+        
+        // Room for 3 more potions...
     }
 
     private void Wings()

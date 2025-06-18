@@ -166,7 +166,6 @@ public class ShopPainter : Shop
             AddItem(ItemID.Paintbrush);
             AddItem(ItemID.PaintRoller);
             AddItem(ItemID.PaintScraper);
-            AddItem(ItemID.BuilderPotion, ItemCosts.Potions);
             AddItem(ItemID.Toolbelt, ItemCosts.Accessories);
             AddItem(ItemID.Toolbox, ItemCosts.Accessories);
             AddItem(ItemID.PaintSprayer, ItemCosts.Accessories);

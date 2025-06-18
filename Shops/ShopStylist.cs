@@ -419,7 +419,6 @@ public class ShopStylist : Shop
             AddItem(ItemID.RainbowHairDye);
             AddItem(ItemID.MartianHairDye);
             AddItem(ItemID.TwilightHairDye);
-            AddItem(ItemID.LovePotion, ItemCosts.Potions);
             return;
         }
 
