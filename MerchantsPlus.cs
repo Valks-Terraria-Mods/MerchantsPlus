@@ -17,6 +17,7 @@ public class MerchantsPlus : Mod
     {
         if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
         {
+            _ = new MagicStorage(magicStorage);
             AddShopForModdedNpc(MagicStorage.Golem.Type, new ShopGolem());
         }
     }
