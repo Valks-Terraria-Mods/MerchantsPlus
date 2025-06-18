@@ -23,10 +23,9 @@ Planned
 
 FAQ
 Q: Is this compatible with other mods?
-A: This mod does not touch vanilla shops but rather adds its own shops so it should be fully compatible with other mods
+A: This mod does not touch vanilla shops but rather adds its own shops so it should be fully compatible with other mods unless the UI overlaps with another mods UI..
 
 Send bug reports and suggestions here for faster response: https://discord.gg/j8HQZZ76r8
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
-
-My Other Mods: https://steamcommunity.com/sharedfiles/filedetails/?id=3025618564
+Discord: https://discord.gg/j8HQZZ76r8

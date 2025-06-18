@@ -42,34 +42,43 @@ public static class Progression
     /// The players progression, the first 7 levels are prehardmode and the 18 other 
     /// levels are hardmode. (Making a total of 21 progression levels)
     /// </summary>
-    /// <returns>The players progression level.</returns>
-    public static int Level()
+    /// <returns>The highest progression level (1–21) of the hardest boss defeated, or 0 if none.</returns>
+    public static int Level() 
     {
+        // Build a list of booleans in order of progression:
         List<bool> conditions =
         [
-            SlimeKing,
-            EyeOfCthulhu,
-            GoblinArmy,
-            BrainOfCthulhu || EaterOfWorlds,
-            QueenBee,
-            Skeletron,
-            WallOfFlesh,
-            Pirates,
-            BloodMoon,
-            DownedMechs(1),
-            DownedMechs(2),
-            DownedMechs(3),
-            Christmas,
-            Halloween,
-            Plantera,
-            Golem,
-            Fishron,
-            Martians,
-            Cultist,
-            Towers,
-            Moonlord
+            SlimeKing,                                 // 1
+            EyeOfCthulhu,                              // 2
+            GoblinArmy,                                // 3
+            BrainOfCthulhu || EaterOfWorlds,           // 4
+            QueenBee,                                  // 5
+            Skeletron,                                 // 6
+            WallOfFlesh,                               // 7
+            Pirates,                                   // 8
+            BloodMoon,                                 // 9
+            DownedMechs(1),                            // 10
+            DownedMechs(2),                            // 11
+            DownedMechs(3),                            // 12
+            Christmas,                                 // 13
+            Halloween,                                 // 14
+            Plantera,                                  // 15
+            Golem,                                     // 16
+            Fishron,                                   // 17
+            Martians,                                  // 18
+            Cultist,                                   // 19
+            Towers,                                    // 20
+            Moonlord                                   // 21
         ];
 
-        return conditions.Count(c => c);
+        // Walk backward to find the highest true index:
+        for (int i = conditions.Count - 1; i >= 0; i--) 
+        {
+            if (conditions[i])
+                return i + 1;    // +1 to convert 0-based index into 1-based level
+        }
+
+        // If none are true, return 0 (no progression yet)
+        return 0;
     }
 }

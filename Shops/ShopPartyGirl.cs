@@ -40,6 +40,7 @@ public class ShopPartyGirl : Shop
             AddItem(ItemID.DiamondRing);
             AddItem(ItemID.AngelHalo);
             AddItem(ItemID.GingerBeard);
+            AddItem(ItemID.GenderChangePotion, Coins.Copper());
             return;
         }
 

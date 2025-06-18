@@ -13,62 +13,58 @@ public class ShopGolem : Shop
         switch (shop)
         {
             case "Storage":
-                if (Progression.Level() >= 0)
-                {
-                    AddItem(Magic.StorageHeart.Type, Coins.Silver());
-                    AddItem(Magic.CraftingAccess.Type, Coins.Silver());
-                    AddItem(Magic.StorageAccess.Type, Coins.Silver());
-                    AddItem(Magic.StorageUnitTiny.Type, Coins.Silver());
-                }
+                AddItem(Magic.StorageHeart, Coins.Silver());
+                AddItem(Magic.CraftingAccess, Coins.Silver());
+                AddItem(Magic.StorageAccess, Coins.Silver());
+                AddItem(Magic.StorageUnitTiny, Coins.Silver());
+                AddItem(Magic.StorageUnit, Coins.Silver());
 
-                AddItem(Magic.StorageUnit.Type, Coins.Silver(), 1);
-
-                if (Progression.Level() >= 2)
+                if (Progression.Level() >= 1)
                 {
                     if (WorldGen.crimson)
                     {
-                        AddItem(Magic.UpgradeCrimtane.Type, Coins.Silver());
-                        AddItem(Magic.StorageUnitCrimtane.Type, Coins.Silver());
+                        AddItem(Magic.UpgradeCrimtane, Coins.Silver(3));
+                        AddItem(Magic.StorageUnitCrimtane, Coins.Silver(3));
                     }
                     else
                     {
-                        AddItem(Magic.UpgradeDemonite.Type, Coins.Silver());
-                        AddItem(Magic.StorageUnitDemonite.Type, Coins.Silver());
+                        AddItem(Magic.UpgradeDemonite, Coins.Silver(3));
+                        AddItem(Magic.StorageUnitDemonite, Coins.Silver(3));
                     }
+                }
+
+                if (Progression.Level() >= 2)
+                {
+                    AddItem(Magic.UpgradeHellstone, Coins.Silver(10));
+                    AddItem(Magic.StorageUnitHellstone, Coins.Silver(10));
                 }
 
                 if (Progression.Level() >= 3)
                 {
-                    AddItem(Magic.UpgradeHellstone.Type, Coins.Silver());
-                    AddItem(Magic.StorageUnitHellstone.Type, Coins.Silver());
+                    AddItem(Magic.StorageUnitBlueChlorophyte, Coins.Silver(15));
                 }
 
                 if (Progression.Level() >= 4)
                 {
-                    AddItem(Magic.StorageUnitBlueChlorophyte.Type, Coins.Silver());
+                    AddItem(Magic.UpgradeHallowed, Coins.Gold());
+                    AddItem(Magic.StorageUnitHallowed, Coins.Gold());
                 }
 
                 if (Progression.Level() >= 5)
                 {
-                    AddItem(Magic.UpgradeHallowed.Type, Coins.Silver());
-                    AddItem(Magic.StorageUnitHallowed.Type, Coins.Silver());
+                    AddItem(Magic.UpgradeLuminite, Coins.Gold(2));
+                    AddItem(Magic.StorageUnitLuminite, Coins.Gold(2));
                 }
 
                 if (Progression.Level() >= 6)
                 {
-                    AddItem(Magic.UpgradeLuminite.Type, Coins.Silver());
-                    AddItem(Magic.StorageUnitLuminite.Type, Coins.Silver());
+                    AddItem(Magic.UpgradeTerra, Coins.Gold(3));
+                    AddItem(Magic.StorageUnitTerra, Coins.Gold(3));
                 }
 
                 if (Progression.Level() >= 7)
                 {
-                    AddItem(Magic.UpgradeTerra.Type, Coins.Silver());
-                    AddItem(Magic.StorageUnitTerra.Type, Coins.Silver());
-                }
-
-                if (Progression.Level() >= 8)
-                {
-                    AddItem(Magic.RemoteAccess.Type, Coins.Silver());
+                    AddItem(Magic.RemoteAccess, Coins.Gold());
                 }
 
                 break;

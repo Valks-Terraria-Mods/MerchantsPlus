@@ -10,21 +10,9 @@ public class ShopGuide : Shop
 
         if (shop == "Gear")
         {
-            if (!Progression.Hardmode)
-            {
-                AddItem(ItemID.RecallPotion, Coins.Silver());
-            }
-            else
+            if (Progression.Hardmode)
             {
                 AddItem(ItemID.MagicMirror, Coins.Gold());
-            }
-
-            AddItem(ItemID.TeleportationPotion, Coins.Silver());
-            AddItem(ItemID.GenderChangePotion, Coins.Copper());
-
-            if (Progression.EyeOfCthulhu)
-            {
-                AddItem(ItemID.ObsidianSkinPotion, ItemCosts.Potions);
             }
 
             AddItem(ItemID.CordageGuide, Coins.Gold());
@@ -37,6 +25,14 @@ public class ShopGuide : Shop
             if (Progression.Skeletron && !Progression.Hardmode)
             {
                 AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
+            }
+
+            if (Progression.EaterOfWorlds || Progression.BrainOfCthulhu)
+            {
+                if (!Progression.Hardmode)
+                {
+                    AddItem(ItemID.Obsidian, Coins.Silver());
+                }
             }
 
             if (!WorldUtils.IsNpcHere(NPCID.Pirate))

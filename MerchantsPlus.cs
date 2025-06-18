@@ -15,15 +15,10 @@ public class MerchantsPlus : Mod
 {
     public override void Load()
     {
-        if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
+        if (ModLoader.TryGetMod("MagicStorage", out Mod mod))
         {
-            _ = new MagicStorage(magicStorage);
-            AddShopForModdedNpc(MagicStorage.Golem.Type, new ShopGolem());
+            MagicStorage.Load(mod);
+            ShopUI.Shops.Add(MagicStorage.Golem.Type, new ShopGolem());
         }
-    }
-
-    private static void AddShopForModdedNpc(int type, Shop shop)
-    {
-        ShopUI.Shops.Add(type, shop);
     }
 }

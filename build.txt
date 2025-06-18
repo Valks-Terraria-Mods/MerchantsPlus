@@ -1,5 +1,5 @@
 author = valkyrienyanko
-version = 0.22.4
+version = 0.22.5
 displayName = MerchantsPlus
 homepage = https://discord.gg/j8HQZZ76r8
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

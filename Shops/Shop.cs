@@ -67,6 +67,11 @@ public abstract class Shop
         }
     }
 
+    protected void AddItem(ModItem item, int price, int progression = 0)
+    {
+        AddItem(item.Type, price, progression);
+    }
+
     protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
         if (condition && Progression.Level() >= progression)

@@ -29,11 +29,30 @@ public class MagicStorage
     public static ModItem UpgradeLuminite { get; private set; }
     public static ModItem UpgradeTerra { get; private set; }
 
-    public MagicStorage(Mod magicStorage)
+    public static void Load(Mod magicStorage)
     {
-        if (magicStorage != null)
-        {
-            ModHelpers.SetModValues(this, magicStorage);
-        }
+        Golem = ExternalModUtils.TryFindNpc(magicStorage, nameof(Golem));
+        StorageComponent = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageComponent));
+        StorageAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageAccess));
+        StorageHeart = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageHeart));
+        StorageUnit = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnit));
+        CraftingAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(CraftingAccess));
+        StorageUnitCrimtane = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitCrimtane));
+        StorageUnitDemonite = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitDemonite));
+        StorageUnitHallowed = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitHallowed));
+        StorageUnitHellstone = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitHellstone));
+        StorageUnitBlueChlorophyte = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitBlueChlorophyte));
+        StorageUnitLuminite = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitLuminite));
+        StorageUnitTerra = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitTerra));
+        StorageUnitTiny = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageUnitTiny));
+        StorageDeactivator = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageDeactivator));
+        StorageConnector = ExternalModUtils.TryFindItem(magicStorage, nameof(StorageConnector));
+        RemoteAccess = ExternalModUtils.TryFindItem(magicStorage, nameof(RemoteAccess));
+        UpgradeCrimtane = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeCrimtane));
+        UpgradeDemonite = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeDemonite));
+        UpgradeHallowed = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeHallowed));
+        UpgradeHellstone = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeHellstone));
+        UpgradeLuminite = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeLuminite));
+        UpgradeTerra = ExternalModUtils.TryFindItem(magicStorage, nameof(UpgradeTerra));
     }
 }
