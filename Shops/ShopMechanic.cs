@@ -2,7 +2,7 @@
 
 public class ShopMechanic : Shop
 {
-    public override string[] Shops => ["Mechanics", "Materials"];
+    public override List<string> Shops { get; } = ["Mechanics", "Materials"];
 
     public override void OpenShop(string shop)
     {

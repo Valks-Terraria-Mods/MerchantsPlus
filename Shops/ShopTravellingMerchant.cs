@@ -2,7 +2,7 @@
 
 public class ShopTravellingMerchant : Shop
 {
-    public override string[] Shops => ["Gear"];
+    public override List<string> Shops { get; } = ["Gear"];
 
     public override void OpenShop(string shop)
     {

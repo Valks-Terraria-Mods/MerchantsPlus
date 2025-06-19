@@ -2,7 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopAngler : Shop
 {
-    public override string[] Shops => ["Bait", "Food", "Crates"];
+    public override List<string> Shops { get; } = ["Bait", "Food", "Crates"];
 
     public override void OpenShop(string shop)
     {

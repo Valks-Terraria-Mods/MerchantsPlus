@@ -1,8 +1,13 @@
-
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\tModLoader.targets" />
-  <PropertyGroup>
-    <AssemblyName>MerchantsPlus</AssemblyName>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+    <Import Project="..\tModLoader.targets" />
+    <PropertyGroup>
+        <AssemblyName>MerchantsPlus</AssemblyName>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="ThoriumMod">
+            <HintPath>ModAssemblies\ThoriumMod.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 </Project>

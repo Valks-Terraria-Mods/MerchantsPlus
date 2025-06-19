@@ -1,4 +1,3 @@
-using MerchantsPlus.ModDefs;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Shops;
@@ -14,7 +13,7 @@ public class ShopMerchant : Shop
         Mounts
     }
     
-    public override string[] Shops => [
+    public override List<string> Shops { get; } = [
         nameof(ShopNames.Gear),
         nameof(ShopNames.Potions),
         nameof(ShopNames.Ores),

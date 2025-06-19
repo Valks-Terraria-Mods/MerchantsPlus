@@ -2,7 +2,7 @@
 
 public class ShopCyborg : Shop
 {
-    public override string[] Shops => ["Robotics"];
+    public override List<string> Shops { get; } = ["Robotics"];
 
     public override void OpenShop(string shop)
     {

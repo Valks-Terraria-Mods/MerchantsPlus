@@ -2,7 +2,7 @@
 
 public class ShopDyeTrader : Shop
 {
-    public override string[] Shops => [
+    public override List<string> Shops { get; } = [
         "Basic",
         "Bright",
         "Gradient",

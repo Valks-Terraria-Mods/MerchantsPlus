@@ -1,4 +1,6 @@
-﻿namespace MerchantsPlus.ModDefs;
+﻿using MerchantsPlus.Utils;
+
+namespace MerchantsPlus.ModDefs;
 
 public class MagicStorage
 {

@@ -2,7 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopNurse : Shop
 {
-    public override string[] Shops =>
+    public override List<string> Shops { get; } = 
     [
         "Life"
     ];

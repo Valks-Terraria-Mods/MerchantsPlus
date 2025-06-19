@@ -2,7 +2,7 @@
 
 public class ShopWitchDoctor : Shop
 {
-    public override string[] Shops => ["Gear", "Flasks", "Wings"];
+    public override List<string> Shops { get; } = ["Gear", "Flasks", "Wings"];
 
     public override void OpenShop(string shop)
     {

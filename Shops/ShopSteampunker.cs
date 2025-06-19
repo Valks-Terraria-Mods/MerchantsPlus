@@ -2,7 +2,7 @@
 
 public class ShopSteampunker : Shop
 {
-    public override string[] Shops => ["Gear", "Solutions", "Logic"];
+    public override List<string> Shops { get; } = ["Gear", "Solutions", "Logic"];
 
     public override void OpenShop(string shop)
     {

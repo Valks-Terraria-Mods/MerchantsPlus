@@ -5,7 +5,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopGuide : Shop
 {
-    public override string[] Shops => ["Gear", "Pylons", "Boss Summons"];
+    public override List<string> Shops { get; } = ["Gear", "Pylons", "Vanilla Bosses"];
 
     public override void OpenShop(string shop)
     {
@@ -60,21 +60,100 @@ public class ShopGuide : Shop
             AddItem(ItemID.TeleportationPylonDesert, Coins.Gold());
         }
 
-        if (shop == "Boss Summons")
+        if (shop == "Vanilla Bosses")
         {
-            BossSummons();
+            VanillaBosses();
+        }
+
+        // Shop will only be added if ThoriumMod is enabled
+        if (shop == "Thorium Bosses")
+        {
+            ThoriumBosses();
+        }
+    }
+
+    private void ThoriumBosses()
+    {
+        // The Grand Thunder Bird
+        // These items are crafted from iron bars, talons and fallen stars. Talons drop from vultures in the desert.
+        AddItem(ModThorium.Items.GrandFlareGun, Coins.Gold(2));
+        AddItem(ModThorium.Items.StormFlare, Coins.Gold());
+
+        if (ModThorium.Bosses.DownedTheGrandThunderBird)
+        {
+            // Queen Jellyfish
+            // The Jellyfish Resonator is a boss-summoning item that is used to summon the Queen Jellyfish. It can only be used in the Ocean during the day.
+            // The item is crafted from coral, seashell and starfish and / or pink jellyfish.
+            AddItem(ModThorium.Items.JellyfishResonator, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedQueenJellyfish)
+        {
+            // Viscount is summoned by using 5 Unholy Shards at a Blood Altar in the Cavern layer.
+            // Unholy Shards are a pre-Hardmode crafting material that drops from all enemies during a Blood Moon.
+            AddItem(ModThorium.Items.UnholyShards, Coins.Silver(50));
+        }
+
+        if (ModThorium.Bosses.DownedViscount)
+        {
+            // Granite Energy Storm
+            // The Unstable Core is a boss-summoning item that is used to summon the Granite Energy Storm. It can only be used in the Granite Caves.
+            AddItem(ModThorium.Items.UnstableCore, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedGraniteEnergyStorm)
+        {
+            // Buried Champion
+            // The Ancient Blade is a boss-summoning item used to summon the Buried Champion in the Marble Caves.
+            AddItem(ModThorium.Items.AncientBlade, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedBuriedChampion)
+        {
+            // Star Scouter
+            // The Star Caller is a boss-summoning item that is used to summon the Star Scouter in Space.
+            AddItem(ModThorium.Items.StarCaller, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedStarScouter)
+        {
+            // Borean Strider
+            // The Strider's Tear is a Hardmode boss-summoning item used to summon the Borean Strider in the Snow biome during Blizzards.
+            AddItem(ModThorium.Items.StriderTear, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedBoreanStrider)
+        {
+            // Fallen Beholder
+            // The Void Lens is a Hardmode boss-summoning item that is used to summon the Fallen Beholder in The Underworld.
+            AddItem(ModThorium.Items.VoidLens, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedFallenBeholder)
+        {
+            // Lich
+            // The Lich is a skeletal boss summoned at the Natural Graveyard’s Ancient Phylactery for 30 pumpkins.
+            AddItem(ItemID.Pumpkin, Coins.Silver(10));
+        }
+
+        if (ModThorium.Bosses.DownedLich)
+        {
+            // Forgotten One
+            // The Forgotten One is a crab-like boss fought in the Aquatic Depths. It spawns automatically after collecting 3 Abyssal Shadows dropped by Aquatic Hallucinations, but after its defeat, Abyssal Shadows can be used to manually summon the boss.
+            AddItem(ModThorium.Items.AbyssalShadow, Coins.Gold(3));
+        }
+
+        if (ModThorium.Bosses.DownedForgottenOne)
+        {
+            // The Primordials
+            // The Primordials is the final boss of the Thorium mod, summoned with the Doom Sayer's Coin.
+            AddItem(ModThorium.Items.DoomSayersCoin, Coins.Gold(10));
         }
     }
     
-    private void BossSummons()
+    private void VanillaBosses()
     {
         AddItem(ItemID.SlimeCrown, Coins.Gold(3));
-
-        if (Thorium.ModLoaded)
-        {
-            AddItem(Thorium.GrandFlareGun, Coins.Gold(2));
-            AddItem(Thorium.StormFlare, Coins.Gold());
-        }
         
         if (Progression.SlimeKing)
             AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
@@ -109,6 +188,31 @@ public class ShopGuide : Shop
             if (Progression.Towers)
             {
                 AddItem(ItemID.CelestialSigil, Coins.Gold(10));
+            }
+        }
+    }
+}
+
+public class ExtraCrossModTooltips : GlobalItem
+{
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+    {
+        if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod")
+        {
+            switch (item.ModItem.Name)
+            {
+                case nameof(ModThorium.Items.UnholyShards):
+                {
+                    TooltipLine line = new(Mod, "SummoningInfo", "Use 5 at a Blood Altar in the Cavern layer to summon the Viscount") { OverrideColor = Color.LightCoral };
+                    tooltips.Insert(tooltips.Count - 2, line);
+                    break;
+                }
+                case nameof(ModThorium.Items.AbyssalShadow):
+                {
+                    TooltipLine line = new(Mod, "SummoningInfo", "Use 3 in the Aquatic Depths to summon the The Forgotten One") { OverrideColor = Color.LightCoral };
+                    tooltips.Insert(tooltips.Count - 2, line);
+                    break;
+                }
             }
         }
     }

@@ -4,7 +4,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopGolem : Shop
 {
-    public override string[] Shops => ["Storage"];
+    public override List<string> Shops { get; } = ["Storage"];
 
     public override void OpenShop(string shop)
     {

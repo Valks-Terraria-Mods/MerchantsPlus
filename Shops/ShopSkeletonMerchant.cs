@@ -2,7 +2,7 @@
 
 public class ShopSkeletonMerchant : Shop
 {
-    public override string[] Shops => ["Gear", "Music Boxes"];
+    public override List<string> Shops { get; } = ["Gear", "Music Boxes"];
 
     public override void OpenShop(string shop)
     {

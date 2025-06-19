@@ -4,7 +4,7 @@ namespace MerchantsPlus.Shops;
 
 public abstract class Shop
 {
-    public abstract string[] Shops { get; }
+    public abstract List<string> Shops { get; }
     public int CycleIndex { get; set; }
 
     protected Chest Inv;

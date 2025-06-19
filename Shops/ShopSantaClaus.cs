@@ -2,7 +2,7 @@
 
 public class ShopSantaClaus : Shop
 {
-    public override string[] Shops => [
+    public override List<string> Shops { get; } = [
         "Decor",
         "Bulbs",
         "Lights"

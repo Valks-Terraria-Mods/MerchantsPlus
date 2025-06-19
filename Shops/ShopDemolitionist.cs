@@ -2,7 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopDemolitionist : Shop
 {
-    public override string[] Shops => ["Explosives"];
+    public override List<string> Shops { get; } = ["Explosives"];
 
     public override void OpenShop(string shop)
     {

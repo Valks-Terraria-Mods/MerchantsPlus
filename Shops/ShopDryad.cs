@@ -2,7 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopDryad : Shop
 {
-    public override string[] Shops => ["Seeds"];
+    public override List<string> Shops { get; } = ["Seeds"];
 
     public override void OpenShop(string shop)
     {

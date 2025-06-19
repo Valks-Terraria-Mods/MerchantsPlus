@@ -70,7 +70,7 @@ public class ShopUI : UIState
 
         shopPanel.Append(_currentShopName);
 
-        _cycleShopBtn = new("Cycle Shop", 0.9f)
+        _cycleShopBtn = new TextButton("Cycle Shop", 0.9f)
         {
             HAlign = 0.97f
         };
@@ -92,7 +92,7 @@ public class ShopUI : UIState
 
     private void UpdateCycleShopName()
     {
-        _cycleShopBtn.SetText(Shops[CurrentMerchantId].Shops.Length == 1 ? "" : "Cycle Shop");
+        _cycleShopBtn.SetText(Shops[CurrentMerchantId].Shops.Count == 1 ? "" : "Cycle Shop");
     }
 
     private void UpdateMerchantName()
@@ -112,7 +112,7 @@ public class ShopUI : UIState
 
     private void UpdateShopName()
     {
-        if (Shops[CurrentMerchantId].Shops.Length == 0)
+        if (Shops[CurrentMerchantId].Shops.Count == 0)
         {
             _currentShopName.SetText("Shop");
             return;
@@ -132,12 +132,12 @@ public class ShopUI : UIState
 
     private static void ShiftShop()
     {
-        if (Shops[CurrentMerchantId].Shops.Length == 0)
+        if (Shops[CurrentMerchantId].Shops.Count == 0)
         {
             return; // SafeGuard
         }
 
-        if (Shops[CurrentMerchantId].CycleIndex >= Shops[CurrentMerchantId].Shops.Length - 1)
+        if (Shops[CurrentMerchantId].CycleIndex >= Shops[CurrentMerchantId].Shops.Count - 1)
         {
             Shops[CurrentMerchantId].CycleIndex = 0;
         }
@@ -147,7 +147,7 @@ public class ShopUI : UIState
         }
     }
 
-    private void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    private static void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
     {
         OpenShop(Shops[CurrentMerchantId].CycleIndex);
     }
@@ -156,7 +156,7 @@ public class ShopUI : UIState
     {
         string shopToOpen = "";
 
-        if (Shops[CurrentMerchantId].Shops.Length != 0)
+        if (Shops[CurrentMerchantId].Shops.Count != 0)
         {
             shopToOpen = Shops[CurrentMerchantId].Shops[shopIndex];
         }

@@ -2,7 +2,7 @@
 
 public class ShopTaxCollector : Shop
 {
-    public override string[] Shops => Array.Empty<string>();
+    public override List<string> Shops { get; } = [];
 
     public override void OpenShop(string shop)
     {

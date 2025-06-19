@@ -4,7 +4,7 @@ namespace MerchantsPlus.Shops;
 
 public class ShopGoblinTinkerer : Shop
 {
-    public override string[] Shops => [
+    public override List<string> Shops { get; } = [
         "Movement",
         "Informational",
         "Combat",
