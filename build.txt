@@ -1,5 +1,5 @@
 author = valkyrienyanko
-version = 0.22.14
+version = 0.22.15
 displayName = MerchantsPlus
 homepage = https://discord.gg/j8HQZZ76r8
 weakReferences = ThoriumMod, Redemption, CalamityMod

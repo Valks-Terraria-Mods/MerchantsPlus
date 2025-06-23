@@ -7,13 +7,13 @@
     
     <ItemGroup>
         <Reference Include="CalamityMod">
-          <HintPath>ModAssemblies\CalamityMod.dll</HintPath>
+          <HintPath>..\ModAssemblies\CalamityMod.dll</HintPath>
         </Reference>
         <Reference Include="ThoriumMod">
-            <HintPath>ModAssemblies\ThoriumMod.dll</HintPath>
+            <HintPath>..\ModAssemblies\ThoriumMod.dll</HintPath>
         </Reference>
         <Reference Include="Redemption">
-            <HintPath>ModAssemblies\Redemption.dll</HintPath>
+            <HintPath>..\ModAssemblies\Redemption.dll</HintPath>
         </Reference>
     </ItemGroup>
 </Project>
