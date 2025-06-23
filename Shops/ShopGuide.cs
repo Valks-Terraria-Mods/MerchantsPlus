@@ -304,49 +304,71 @@ public class ShopGuide : Shop
         }
     }
 
-    private class Encounter
+    private class Reward(Item[] items)
     {
-        public Func<bool> IsUnlocked;
-        public Action AddItems;
+        public Item[] Items { get; } = items;
     }
-    
+
+    private class Item(short id, int price)
+    {
+        public short Id { get; } = id;
+        public int Price { get; } = price;
+    }
+
+    private readonly List<Reward> _vanillaBossRewards =
+    [
+        new Reward(//Reward for defeating SlimeKing,
+        [
+            new Item(ItemID.SuspiciousLookingEye, Coins.Gold(5))
+        ]),
+
+        new Reward(//EyeOfCthulhu,
+        [
+            new Item(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5))
+        ]),
+
+        new Reward(//Skeletron,
+        [
+            new Item(ItemID.Abeemination, Coins.Gold(5)),
+            new Item(ItemID.DeerThing, Coins.Gold(5)),
+            new Item(ItemID.GuideVoodooDoll, Coins.Gold(5))
+        ]),
+
+        new Reward(//hardMode,
+        [
+            new Item(ItemID.QueenSlimeCrystal, Coins.Gold(5)),
+            new Item(ItemID.MechanicalEye, Coins.Gold(5)),
+            new Item(ItemID.MechanicalSkull, Coins.Gold(5)),
+            new Item(ItemID.MechanicalWorm, Coins.Gold(5))
+        ]),
+
+        new Reward(//Plantera,
+        [
+            new Item(ItemID.LihzahrdPowerCell, Coins.Gold(5))
+        ]),
+
+        new Reward(//Golem,
+        [
+            new Item(ItemID.TruffleWorm, Coins.Gold(5))
+        ]),
+
+        new Reward(//Towers,
+        [
+            new Item(ItemID.CelestialSigil, Coins.Gold(10))
+        ])
+    ];
+
     private void VanillaBosses()
     {
         AddItem(ItemID.SlimeCrown, Coins.Gold(3));
-        
-        if (Progression.SlimeKing)
-            AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
-        
-        if (Progression.EyeOfCthulhu)
-            AddItem(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
 
-        if (Progression.Skeletron)
+        for (int i = 0; i < Math.Min(Progression.Level(), _vanillaBossRewards.Count); i++)
         {
-            AddItem(ItemID.Abeemination, Coins.Gold(5));
-            AddItem(ItemID.DeerThing, Coins.Gold(5));
-            AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
-        }
+            Reward reward = _vanillaBossRewards[i];
 
-        if (Main.hardMode)
-        {
-            AddItem(ItemID.QueenSlimeCrystal, Coins.Gold(5));
-            AddItem(ItemID.MechanicalEye, Coins.Gold(5));
-            AddItem(ItemID.MechanicalSkull, Coins.Gold(5));
-            AddItem(ItemID.MechanicalWorm, Coins.Gold(5));
-
-            if (Progression.Plantera)
+            foreach (Item item in reward.Items)
             {
-                AddItem(ItemID.LihzahrdPowerCell, Coins.Gold(5));
-            }
-
-            if (Progression.Golem)
-            {
-                AddItem(ItemID.TruffleWorm, Coins.Gold(5));
-            }
-
-            if (Progression.Towers)
-            {
-                AddItem(ItemID.CelestialSigil, Coins.Gold(10));
+                AddItem(item.Id, item.Price);
             }
         }
     }
