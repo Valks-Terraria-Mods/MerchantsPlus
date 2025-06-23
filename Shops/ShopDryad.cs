@@ -22,6 +22,11 @@ public class ShopDryad : Shop
             AddItem(ItemID.MoonglowSeeds, ItemCosts.Seeds);
             AddItem(ItemID.WaterleafSeeds, ItemCosts.Seeds);
             AddItem(ItemID.ShiverthornSeeds, ItemCosts.Seeds);
+
+            if (!WorldGen.crimson)
+            {
+                AddItem(ItemID.VilePowder, ItemCosts.Seeds);
+            }
             return;
         }
 

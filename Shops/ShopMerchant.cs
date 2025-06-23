@@ -169,7 +169,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.DeathbringerPickaxe);
             }
@@ -236,7 +236,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.BloodLustCluster);
             }
@@ -301,7 +301,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.FleshGrinder);
             }
@@ -377,7 +377,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.CrimsonHelmet);
             }
@@ -559,7 +559,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.CrimsonScalemail);
             }
@@ -717,7 +717,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.CrimsonGreaves);
             }
@@ -888,7 +888,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.BloodButcherer);
             }
@@ -935,7 +935,7 @@ public class ShopMerchant : Shop
 
         if (Progression.BrainOrEater)
         {
-            if (GenVars.crimsonLeft)
+            if (WorldGen.crimson)
             {
                 ReplaceItem(ItemID.TendonBow);
             }
@@ -1057,48 +1057,48 @@ public class ShopMerchant : Shop
 
     private void Ores()
     {
-        AddItem(GenVars.copperBar > 0 ? ItemID.CopperOre : ItemID.TinOre, Coins.Silver(2));
+        AddItem(GenVars.copperBar > 0 ? ItemID.CopperOre : ItemID.TinOre, Coins.Silver(1));
 
         if (Progression.SlimeKing)
         {
-            AddItem(GenVars.ironBar > 0 ? ItemID.IronOre : ItemID.LeadOre, Coins.Silver(5));
-            AddItem(GenVars.silverBar > 0 ? ItemID.SilverOre : ItemID.TungstenOre, Coins.Silver(10));
-            AddItem(GenVars.goldBar > 0 ? ItemID.GoldOre : ItemID.PlatinumOre, Coins.Silver(15));
+            AddItem(GenVars.ironBar > 0 ? ItemID.IronOre : ItemID.LeadOre, Coins.Silver(2));
+            AddItem(GenVars.silverBar > 0 ? ItemID.SilverOre : ItemID.TungstenOre, Coins.Silver(3));
+            AddItem(GenVars.goldBar > 0 ? ItemID.GoldOre : ItemID.PlatinumOre, Coins.Silver(4));
         }
 
         if (Progression.EyeOfCthulhu)
         {
-            AddItem(GenVars.crimsonLeft ? ItemID.CrimtaneOre : ItemID.DemoniteOre, Coins.Silver(20));
+            AddItem(WorldGen.crimson ? ItemID.CrimtaneOre : ItemID.DemoniteOre, Coins.Silver(5));
         }
 
         if (Progression.BrainOrEater)
         {
             AddItem(ItemID.Meteorite, Coins.Silver(20));
-            AddItem(Progression.Hardmode, ItemID.Hellstone, Coins.Silver(30));
+            AddItem(Progression.Hardmode, ItemID.Hellstone, Coins.Silver(6));
         }
 
         if (Progression.DownedMechs(1))
         {
-            AddItem(ItemID.PalladiumOre, Coins.Silver(40));
-            AddItem(ItemID.CobaltOre, Coins.Silver(40));
+            AddItem(ItemID.PalladiumOre, Coins.Silver(7));
+            AddItem(ItemID.CobaltOre, Coins.Silver(7));
         }
 
         if (Progression.DownedMechs(2))
         {
-            AddItem(ItemID.MythrilOre, Coins.Silver(50));
-            AddItem(ItemID.OrichalcumOre, Coins.Silver(50));
+            AddItem(ItemID.MythrilOre, Coins.Silver(8));
+            AddItem(ItemID.OrichalcumOre, Coins.Silver(8));
         }
 
         if (Progression.DownedMechs(3))
         {
-            AddItem(ItemID.AdamantiteOre, Coins.Silver(60));
-            AddItem(ItemID.TitaniumOre, Coins.Silver(60));
+            AddItem(ItemID.AdamantiteOre, Coins.Silver(9));
+            AddItem(ItemID.TitaniumOre, Coins.Silver(9));
 
-            AddItem(ItemID.HallowedBar, Coins.Silver(70));
+            AddItem(ItemID.HallowedBar, Coins.Silver(10));
         }
 
-        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, Coins.Silver(80));
-        AddItem(Progression.Moonlord, ItemID.LunarOre, Coins.Silver(90));
+        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, Coins.Silver(11));
+        AddItem(Progression.Moonlord, ItemID.LunarOre, Coins.Silver(12));
     }
 
     private void Gear()
@@ -1156,6 +1156,7 @@ public class ShopMerchant : Shop
         Rope();
         LightPet();
         Hooks();
+        Boots();
 
         AddItem(ItemID.PiggyBank);
         AddItem(ItemID.Safe);
@@ -1167,6 +1168,25 @@ public class ShopMerchant : Shop
 
         Wings();
     }
+
+    private void Boots()
+    {
+        ReplaceItem(ItemID.HermesBoots);
+
+        ReplaceItem(Progression.EyeOfCthulhu, ItemID.FlurryBoots);
+        ReplaceItem(Progression.BrainOrEater, ItemID.SailfishBoots);
+        ReplaceItem(Progression.QueenBee, ItemID.SandBoots);
+        ReplaceItem(Progression.Plantera, ItemID.AmphibianBoots);
+        ReplaceItem(Progression.WallOfFlesh, ItemID.SpectreBoots);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.FairyBoots);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.HellfireTreads);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.LightningBoots);
+        ReplaceItem(Progression.Golem, ItemID.FrostsparkBoots);
+        ReplaceItem(Progression.Moonlord, ItemID.TerrasparkBoots);
+
+        NextSlot++;
+    }
+
 
     private void HealPotion()
     {

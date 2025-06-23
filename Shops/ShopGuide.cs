@@ -1,11 +1,12 @@
-﻿using MerchantsPlus.ModDefs;
+﻿using CalamityMod.Items.SummonItems;
+using MerchantsPlus.ModDefs;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Shops;
 
 public class ShopGuide : Shop
 {
-    public override List<string> Shops { get; } = ["Gear", "Pylons", "Vanilla Bosses"];
+    public override List<string> Shops { get; } = ["Gear", "Pylons", "Vanilla"];
 
     public override void OpenShop(string shop)
     {
@@ -45,6 +46,8 @@ public class ShopGuide : Shop
             }
 
             AddItem(ItemID.Gel, Coins.Silver());
+
+            AddItem(ItemID.Bed, Coins.Silver(10));
         }
 
         if (shop == "Pylons")
@@ -60,16 +63,166 @@ public class ShopGuide : Shop
             AddItem(ItemID.TeleportationPylonDesert, Coins.Gold());
         }
 
-        if (shop == "Vanilla Bosses")
+        if (shop == "Vanilla")
         {
             VanillaBosses();
         }
 
+        if (shop == "Calamity")
+        {
+            CalamityBosses();
+        }
+
         // Shop will only be added if ThoriumMod is enabled
-        if (shop == "Thorium Bosses")
+        if (shop == "Thorium")
         {
             ThoriumBosses();
         }
+        
+        // Shop will only be added if Redemption mod is enabled
+        if (shop == "Redemption")
+        {
+            RedemptionBosses();
+        }
+    }
+
+    private void CalamityBosses()
+    {
+        AddItem(ModCalamity.Items.DesertMedallion, Coins.Gold(3));
+
+        if (ModCalamity.Bosses.DesertScourgeDowned)
+        {
+            AddItem(ModCalamity.Items.DecapoditaSprout, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.CrabulonDowned)
+        {
+            AddItem(WorldGen.crimson ? ModCalamity.Items.BloodyWormFood : ModCalamity.Items.Teratoma, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.PerforatorDowned || ModCalamity.Bosses.TheHiveMindDowned)
+        {
+            AddItem(ModCalamity.Items.OverloadedSludge, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.SlimeGodDowned)
+        {
+            AddItem(ModCalamity.Items.CryoKey, Coins.Gold(3));
+        }
+
+        // Hardmode
+        if (ModCalamity.Bosses.CryogenDowned)
+        {
+            AddItem(ModCalamity.Items.Seafood, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.AquaticScourgeDowned)
+        {
+            AddItem(ModCalamity.Items.CharredIdol, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.BrimstoneElementalDowned)
+        {
+            AddItem(ModCalamity.Items.EyeofDesolation, Coins.Gold(3)); // Calamitas Clone Key
+        }
+
+        if (ModCalamity.Bosses.CalamitasDowned)
+        {
+            AddItem(ModCalamity.Items.EyeofDesolation, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.AstrumAureusDowned)
+        {
+            AddItem(ModCalamity.Items.AstralChunk, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.PlaguebringeDowned)
+        {
+            AddItem(ModCalamity.Items.Abombination, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.RavagerDowned)
+        {
+            AddItem(ModCalamity.Items.DeathWhistle, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.AstrumDeusDowned)
+        {
+            AddItem(ModCalamity.Items.TitanHeart, Coins.Gold(3));
+        }
+
+        // Post-Moon Lord
+        if (ModCalamity.Bosses.ProfanedGuardiansDowned)
+        {
+            AddItem(ModCalamity.Items.ProfanedShard, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.DragonfollyDowned)
+        {
+            AddItem(ModCalamity.Items.ExoticPheromones, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.ProvidenceDowned)
+        {
+            AddItem(ModCalamity.Items.ProfanedCore, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.StormWeaverDowned || ModCalamity.Bosses.CeaselessVoidDowned || ModCalamity.Bosses.SignusDowned)
+        {
+            AddItem(ModCalamity.Items.RuneofKos, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.OldDukeDowned)
+        {
+            AddItem(ModCalamity.Items.Bloodworm, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.DevourerOfGodsDowned)
+        {
+            AddItem(ModCalamity.Items.CosmicWorm, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.YharonDowned)
+        {
+            AddItem(ModCalamity.Items.BlessedPhoenixEgg, Coins.Gold(3));
+        }
+
+        if (ModCalamity.Bosses.SupremeWitchCalamitasDowned)
+        {
+            AddItem(ModCalamity.Items.AshesOfCalamity, Coins.Gold(3));
+        }
+    }
+
+    private void RedemptionBosses()
+    {
+        // Pre-Hardmode
+        AddItem(ModRedemption.Items.HeartOfThorns, Coins.Gold(3));
+        if (ModRedemption.Bosses.ThornsDowned)
+            AddItem(ModRedemption.Items.ForbiddenRitual, Coins.Gold(3));
+        if (ModRedemption.Bosses.ErhanDowned)
+            AddItem(ModRedemption.Items.WeddingRing, Coins.Gold(3));
+        if (ModRedemption.Bosses.KeeperDowned)
+            AddItem(ModRedemption.Items.AnomalyDetector, Coins.Gold(3));
+
+        // Hardmode
+        if (ModRedemption.Bosses.SeedOfInfectionDowned)
+            AddItem(ModRedemption.Items.CyberRadio, Coins.Gold(3));
+        if (ModRedemption.Bosses.KingSlayerIIIDowned)
+            AddItem(ModRedemption.Items.OmegaTransmitter, Coins.Gold(3));
+
+        // Post-Moon Lord
+        if (ModRedemption.Bosses.OmegaObliteratorDowned)
+            AddItem(ModRedemption.Items.HologramRemote, Coins.Gold(3));
+        if (ModRedemption.Bosses.PatientZeroDowned)
+            AddItem(ModRedemption.Items.AncientSigil, Coins.Gold(3));
+        if (ModRedemption.Bosses.AncientDeityDowned)
+            AddItem(ModRedemption.Items.GalaxyStone, Coins.Gold(3));
+
+        // Mini Bosses (optional)
+        if (!ModRedemption.Bosses.FowlEmperorDowned)
+            AddItem(ModRedemption.Items.EggCrown, Coins.Gold(3));
+        if (ModRedemption.Bosses.EaglecrestGolemDowned)
+            AddItem(ModRedemption.Items.EaglecrestSpelltome, Coins.Gold(3));
     }
 
     private void ThoriumBosses()
@@ -150,6 +303,12 @@ public class ShopGuide : Shop
             AddItem(ModThorium.Items.DoomSayersCoin, Coins.Gold(10));
         }
     }
+
+    private class Encounter
+    {
+        public Func<bool> IsUnlocked;
+        public Action AddItems;
+    }
     
     private void VanillaBosses()
     {
@@ -159,7 +318,7 @@ public class ShopGuide : Shop
             AddItem(ItemID.SuspiciousLookingEye, Coins.Gold(5));
         
         if (Progression.EyeOfCthulhu)
-            AddItem(GenVars.crimsonLeft ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
+            AddItem(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5));
 
         if (Progression.Skeletron)
         {
@@ -175,7 +334,7 @@ public class ShopGuide : Shop
             AddItem(ItemID.MechanicalSkull, Coins.Gold(5));
             AddItem(ItemID.MechanicalWorm, Coins.Gold(5));
 
-            if (Progression.DownedMechs(3))
+            if (Progression.Plantera)
             {
                 AddItem(ItemID.LihzahrdPowerCell, Coins.Gold(5));
             }

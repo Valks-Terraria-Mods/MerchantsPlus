@@ -1,6 +1,6 @@
 author = valkyrienyanko
-version = 0.22.11
+version = 0.22.14
 displayName = MerchantsPlus
 homepage = https://discord.gg/j8HQZZ76r8
-weakReferences = ThoriumMod
+weakReferences = ThoriumMod, Redemption, CalamityMod
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

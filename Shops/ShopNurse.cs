@@ -13,9 +13,9 @@ public class ShopNurse : Shop
 
         if (shop == "Life")
         {
-            AddItem(ItemID.LifeCrystal, Coins.Platinum());
-            AddItem(Progression.Hardmode, ItemID.LifeFruit, Coins.Platinum());
-            AddItem(ItemID.HeartLantern, Coins.Platinum());
+            AddItem(ItemID.LifeCrystal, Coins.Gold(10));
+            AddItem(Progression.DownedMechs(3), ItemID.LifeFruit, Coins.Gold(10));
+            AddItem(ItemID.HeartLantern, Coins.Gold(10));
         }
     }
 }

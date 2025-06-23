@@ -36,131 +36,123 @@ public class ShopUI : UIState
     public static bool Visible { get; set; }
     public static int CurrentMerchantId { get; set; }
 
-    private TextButton _merchantName;
-    private TextButton _currentShopName;
+    private TextButton _merchantNameBtn;
+    private TextButton _shopNameBtn;
     private TextButton _cycleShopBtn;
 
     public override void OnInitialize()
     {
-        UIPanel shopPanel = new();
-        shopPanel.SetPadding(0);
-        shopPanel.Left.Set(75f, 0f);
-        shopPanel.Top.Set(428f, 0f);
-        shopPanel.Width.Set(375f, 0f);
-        shopPanel.Height.Set(35f, 0f);
-        shopPanel.BackgroundColor = new Color(0, 0, 0, 0.6f);
+        // Setup panel
+        UIPanel panel = new();
+        panel.SetPadding(0);
+        panel.Left.Set(75f, 0f);
+        panel.Top.Set(428f, 0f);
+        panel.Width.Set(375f, 0f);
+        panel.Height.Set(35f, 0f);
+        panel.BackgroundColor = new Color(0, 0, 0, 153);
 
-        _merchantName = new TextButton("Merchant Name", 0.9f)
-        {
-            HAlign = 0.03f
-        };
+        // Merchant name button
+        _merchantNameBtn = CreateButton(0.03f, "Merchant", OnShopButtonClicked);
+        panel.Append(_merchantNameBtn);
 
-        _merchantName.Top.Set(4, 0f);
-        _merchantName.OnLeftClick += ShopButtonClicked;
+        // Current shop name button
+        _shopNameBtn = CreateButton(0.5f, "Shop", OnShopButtonClicked);
+        panel.Append(_shopNameBtn);
 
-        shopPanel.Append(_merchantName);
+        // Cycle shop button
+        _cycleShopBtn = CreateButton(0.97f, "Cycle Shop", OnCycleShopForward);
+        _cycleShopBtn.OnRightClick += OnCycleShopBackward;
+        panel.Append(_cycleShopBtn);
 
-        _currentShopName = new TextButton("Shop Name", 0.9f)
-        {
-            HAlign = 0.5f
-        };
+        Append(panel);
+    }
 
-        _currentShopName.Top.Set(4, 0f);
-        _currentShopName.OnLeftClick += ShopButtonClicked;
+    public override void OnActivate()
+    {
+        Visible = true;
+    }
 
-        shopPanel.Append(_currentShopName);
-
-        _cycleShopBtn = new TextButton("Cycle Shop", 0.9f)
-        {
-            HAlign = 0.97f
-        };
-
-        _cycleShopBtn.Top.Set(4, 0f);
-        _cycleShopBtn.OnLeftClick += CycleShopButtonClicked;
-
-        shopPanel.Append(_cycleShopBtn);
-
-        Append(shopPanel);
+    public override void OnDeactivate()
+    {
+        Visible = false;
     }
 
     public void UpdateUI()
     {
-        UpdateShopName();
-        UpdateMerchantName();
-        UpdateCycleShopName();
-    }
-
-    private void UpdateCycleShopName()
-    {
-        _cycleShopBtn.SetText(Shops[CurrentMerchantId].Shops.Count == 1 ? "" : "Cycle Shop");
-    }
-
-    private void UpdateMerchantName()
-    {
-        foreach (NPC npc in Main.npc)
-        {
-            if (npc.type != CurrentMerchantId) 
-                continue;
-            
-            _merchantName.SetText(npc.TypeName);
+        if (!Visible || !Shops.TryGetValue(CurrentMerchantId, out Shop shop))
             return;
-        }
 
-        // If you cannot find the merchant name, default to "Merchant"
-        _merchantName.SetText("Merchant");
-    }
+        NPC npc = Array.Find(Main.npc, n => n.active && n.type == CurrentMerchantId);
 
-    private void UpdateShopName()
-    {
-        if (Shops[CurrentMerchantId].Shops.Count == 0)
+        _merchantNameBtn.SetText(npc != null ? npc.TypeName : "Merchant");
+
+        if (shop.Shops.Count > 0)
         {
-            _currentShopName.SetText("Shop");
-            return;
-        }
-
-        int shopIndex = Shops[CurrentMerchantId].CycleIndex;
-
-        _currentShopName.SetText(Shops[CurrentMerchantId].Shops[shopIndex]);
-    }
-
-    private void CycleShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
-    {
-        ShiftShop();
-        UpdateUI();
-        OpenShop(Shops[CurrentMerchantId].CycleIndex);
-    }
-
-    private static void ShiftShop()
-    {
-        if (Shops[CurrentMerchantId].Shops.Count == 0)
-        {
-            return; // SafeGuard
-        }
-
-        if (Shops[CurrentMerchantId].CycleIndex >= Shops[CurrentMerchantId].Shops.Count - 1)
-        {
-            Shops[CurrentMerchantId].CycleIndex = 0;
+            int index = shop.CycleIndex;
+            _shopNameBtn.SetText(shop.Shops[index]);
+            _cycleShopBtn.SetText(shop.Shops.Count > 1 ? "Cycle Shop" : string.Empty);
         }
         else
         {
-            Shops[CurrentMerchantId].CycleIndex++;
+            _shopNameBtn.SetText("Shop");
+            _cycleShopBtn.SetText(string.Empty);
         }
     }
 
-    private static void ShopButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+    // Create a TextButton and hook its left-click handler
+    private static TextButton CreateButton(float hAlign, string initialText, MouseEvent onClick)
     {
-        OpenShop(Shops[CurrentMerchantId].CycleIndex);
-    }
-
-    private static void OpenShop(int shopIndex)
-    {
-        string shopToOpen = "";
-
-        if (Shops[CurrentMerchantId].Shops.Count != 0)
+        TextButton btn = new(initialText, 0.9f)
         {
-            shopToOpen = Shops[CurrentMerchantId].Shops[shopIndex];
-        }
+            HAlign = hAlign
+        };
 
-        Shops[CurrentMerchantId].OpenShop(shopToOpen);
+        btn.Top.Set(4, 0);
+        btn.OnLeftClick += onClick;
+
+        return btn;
+    }
+
+    private void OnShopButtonClicked(UIMouseEvent evt, UIElement elm)
+    {
+        OpenCurrentShop();
+    }
+
+    private void OnCycleShopForward(UIMouseEvent evt, UIElement elm)
+    {
+        CycleShop(true);
+    }
+
+    private void OnCycleShopBackward(UIMouseEvent evt, UIElement elm)
+    {
+        CycleShop(false);
+    }
+
+    private void CycleShop(bool forward)
+    {
+        Shop shop = Shops[CurrentMerchantId];
+
+        int count = shop.Shops.Count;
+        if (count <= 1)
+            return;
+
+        int newIndex = forward
+            ? (shop.CycleIndex + 1) % count
+            : (shop.CycleIndex - 1 + count) % count;
+
+        shop.CycleIndex = newIndex;
+
+        UpdateUI();
+        OpenCurrentShop();
+    }
+
+    private static void OpenCurrentShop()
+    {
+        Shop shop = Shops[CurrentMerchantId];
+        if (shop.Shops.Count == 0)
+            return;
+
+        string shopName = shop.Shops[shop.CycleIndex];
+        shop.OpenShop(shopName);
     }
 }

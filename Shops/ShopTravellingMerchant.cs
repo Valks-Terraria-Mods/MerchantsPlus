@@ -10,11 +10,9 @@ public class ShopTravellingMerchant : Shop
 
         if (shop == "Gear")
         {
-            AddItem(ItemID.ShadowOrb);
-            AddItem(ItemID.MagicLantern);
-            AddItem(ItemID.DD2PetGhost);
+            AddItem(ItemID.GoldenKey, Coins.Gold(3));
 
-            if (Progression.Hardmode)
+            if (Progression.Moonlord)
             {
                 AddItem(ItemID.SuspiciousLookingTentacle);
             }
