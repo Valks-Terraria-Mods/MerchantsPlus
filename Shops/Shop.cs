@@ -57,7 +57,7 @@ public abstract class Shop
 
     protected void AddItem(int itemId, int price, int progression = 0)
     {
-        if (Progression.Level() >= progression)
+        if (Progression.LevelFull() >= progression)
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
@@ -69,9 +69,17 @@ public abstract class Shop
         AddItem(item.Type, price, progression);
     }
 
+    protected void AddItem(bool condition, int itemId)
+    {
+        if (condition)
+        {
+            Inv.item[NextSlot++].SetDefaults(itemId);
+        }
+    }
+
     protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
-        if (condition && Progression.Level() >= progression)
+        if (condition && Progression.LevelFull() >= progression)
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;

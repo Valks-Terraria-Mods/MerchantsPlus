@@ -1,13 +1,14 @@
 ﻿namespace MerchantsPlus.Items;
 
-public class ItemsArmour : BaseItem
+public class ItemPrices : BaseItem
 {
     public override void SetDefaults(Item item)
     {
         base.SetDefaults(item);
-
+        
         switch (item.type)
         {
+            // Armour
             case ItemID.StardustLeggings:
             case ItemID.StardustBreastplate:
             case ItemID.StardustHelmet:
@@ -51,6 +52,49 @@ public class ItemsArmour : BaseItem
             case ItemID.WoodHelmet:
                 item.shopCustomPrice = Coins.Silver(5);
                 break;
+            // Ores
+            // Isn't this done already for us when we set custom shop price in ShopMerchant.cs?
+            /*case ItemID.CopperBar:
+            case ItemID.TinBar:
+                item.shopCustomPrice = 50;
+                break;
+            case ItemID.IronBar:
+            case ItemID.LeadBar:
+                item.shopCustomPrice = 100;
+                break;
+            case ItemID.SilverBar:
+            case ItemID.TungstenBar:
+                item.shopCustomPrice = 150;
+                break;
+            case ItemID.GoldBar:
+            case ItemID.PlatinumBar:
+                item.shopCustomPrice = 200;
+                break;
+            case ItemID.CrimtaneBar:
+            case ItemID.DemoniteBar:
+                item.shopCustomPrice = 250;
+                break;
+            case ItemID.MeteoriteBar:
+                item.shopCustomPrice = 300;
+                break;
+            case ItemID.HellstoneBar:
+                item.shopCustomPrice = 350;
+                break;
+            case ItemID.PalladiumBar:
+            case ItemID.CobaltBar:
+                item.shopCustomPrice = 400;
+                break;
+            case ItemID.OrichalcumBar:
+            case ItemID.MythrilBar:
+                item.shopCustomPrice = 450;
+                break;
+            case ItemID.AdamantiteBar:
+            case ItemID.TitaniumBar:
+                item.shopCustomPrice = 500;
+                break;
+            case ItemID.HallowedBar:
+                item.shopCustomPrice = 550;
+                break;*/
         }
     }
 }

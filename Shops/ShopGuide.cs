@@ -14,11 +14,7 @@ public class ShopGuide : Shop
 
         if (shop == "Gear")
         {
-            if (Progression.Hardmode)
-            {
-                AddItem(ItemID.MagicMirror, Coins.Gold());
-            }
-
+            AddItem(ItemID.MagicMirror, Coins.Gold());
             AddItem(ItemID.CordageGuide, Coins.Gold());
 
             if (!WorldUtils.IsNpcHere(NPCID.Merchant))
@@ -362,7 +358,7 @@ public class ShopGuide : Shop
     {
         AddItem(ItemID.SlimeCrown, Coins.Gold(3));
 
-        for (int i = 0; i < Math.Min(Progression.Level(), _vanillaBossRewards.Count); i++)
+        for (int i = 0; i < Math.Min(Progression.LevelBoss(), _vanillaBossRewards.Count); i++)
         {
             Reward reward = _vanillaBossRewards[i];
 

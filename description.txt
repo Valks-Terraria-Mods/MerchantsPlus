@@ -14,7 +14,7 @@ Featuring
 - Some merchants sell items based on what you currently have equipped
 - Items that use to have no sell value have unique sell values
 - Magic Storage NPC has a shop
-- NEW! Guide sells boss summon items from the base game and the Thorium Mod
+- Guide sells boss summon items from vanilla, thorium, calamity, and redemption
 
 Planned
 - Remastered Shop UI with support for Quests / Bounties
@@ -31,8 +31,6 @@ A: If you find that an item is missing, or if you think an item should be moved 
 
 Q: Is this compatible with other mods?
 A: This mod does not touch vanilla shops but rather adds its own shops so it should be fully compatible with other mods unless the UI overlaps with another mods UI.
-
-Send bug reports and suggestions here for faster response: https://discord.gg/j8HQZZ76r8
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 Discord: https://discord.gg/j8HQZZ76r8

@@ -8,7 +8,7 @@ public class ShopAngler : Shop
     {
         base.OpenShop(shop);
 
-        int progression = Progression.Level();
+        int progression = Progression.LevelFull();
 
         switch (shop)
         {

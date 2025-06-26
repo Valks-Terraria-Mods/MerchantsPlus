@@ -82,27 +82,27 @@ public class ShopMerchant : Shop
         AddItem(WorldUtils.HasNpc(NPCID.Painter), ItemID.BuilderPotion, ItemCosts.Potions);
         AddItem(WorldUtils.HasNpc(NPCID.ArmsDealer), ItemID.AmmoReservationPotion, ItemCosts.Potions);
         
-        AddItem(Progression.Level() > 0, ItemID.FeatherfallPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 1, ItemID.ShinePotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 2, ItemID.NightOwlPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 3, ItemID.HunterPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 4, ItemID.MiningPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 5, ItemID.SpelunkerPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 6, ItemID.SwiftnessPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 7, ItemID.TitanPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 8, ItemID.ThornsPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 9, ItemID.WarmthPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 10, ItemID.WrathPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 11, ItemID.EndurancePotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 12, ItemID.IronskinPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 13, ItemID.LifeforcePotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 14, ItemID.RegenerationPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 15, ItemID.TrapsightPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 16, ItemID.InfernoPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 17, ItemID.InvisibilityPotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 18, ItemID.RagePotion, ItemCosts.Potions);
-        AddItem(Progression.Level() > 19, ItemID.TeleportationPotion, Coins.Silver());
-        AddItem(Progression.Level() > 20, ItemID.GravitationPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 0, ItemID.FeatherfallPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 1, ItemID.ShinePotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 2, ItemID.NightOwlPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 3, ItemID.HunterPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 4, ItemID.MiningPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 5, ItemID.SpelunkerPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 6, ItemID.SwiftnessPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 7, ItemID.TitanPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 8, ItemID.ThornsPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 9, ItemID.WarmthPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 10, ItemID.WrathPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 11, ItemID.EndurancePotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 12, ItemID.IronskinPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 13, ItemID.LifeforcePotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 14, ItemID.RegenerationPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 15, ItemID.TrapsightPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 16, ItemID.InfernoPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 17, ItemID.InvisibilityPotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 18, ItemID.RagePotion, ItemCosts.Potions);
+        AddItem(Progression.LevelFull() > 19, ItemID.TeleportationPotion, Coins.Silver());
+        AddItem(Progression.LevelFull() > 20, ItemID.GravitationPotion, ItemCosts.Potions);
         
         // Room for 3 more potions...
     }
@@ -111,7 +111,7 @@ public class ShopMerchant : Shop
     {
         if (!Config.Instance.DisablePrehardmodeWings)
         {
-            ReplaceItem(ItemID.CreativeWings, Coins.Gold(25)); // Fledgling wings
+            ReplaceItem(ItemID.CreativeWings, Coins.Gold(20)); // Fledgling wings
         }
 
         ReplaceItem(Progression.Hardmode,           ItemID.AngelWings,    Coins.Platinum());
@@ -179,12 +179,12 @@ public class ShopMerchant : Shop
             }
         }
 
-        ReplaceItem(Progression.Skeletron,          ItemID.MoltenPickaxe);
+        ReplaceItem(Progression.Skeletron,      ItemID.MoltenPickaxe);
         ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltPickaxe);
         ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilPickaxe);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumPickaxe);
-        ReplaceItem(Progression.Plantera,           ItemID.ChlorophytePickaxe);
-        ReplaceItem(Progression.Golem,              ItemID.Picksaw);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophytePickaxe);
+        ReplaceItem(Progression.Plantera,       ItemID.PickaxeAxe);
+        ReplaceItem(Progression.Golem,          ItemID.Picksaw);
 
         if (Progression.Moonlord)
         {
@@ -249,8 +249,7 @@ public class ShopMerchant : Shop
         ReplaceItem(Progression.Hardmode,       ItemID.MoltenHamaxe);
         ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltWaraxe);
         ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilWaraxe);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumWaraxe);
-        ReplaceItem(Progression.Plantera,       ItemID.ChlorophyteGreataxe);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteGreataxe);
 
         if (Progression.Moonlord)
         {
@@ -311,9 +310,9 @@ public class ShopMerchant : Shop
             }
         }
 
-        ReplaceItem(Progression.Skeletron,          ItemID.MoltenHamaxe);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.Hammush);
-        ReplaceItem(Progression.Plantera,           ItemID.ChlorophyteJackhammer);
+        ReplaceItem(Progression.Skeletron,      ItemID.MoltenHamaxe);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.Hammush);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteJackhammer);
 
         if (Progression.Moonlord)
         {
@@ -454,28 +453,6 @@ public class ShopMerchant : Shop
         }
 
         if (Progression.DownedMechs(3))
-        {
-            switch (PlayerUtils.GetPlayerClass())
-            {
-                case PlayerClass.Melee:
-                    ReplaceItem(ItemID.TitaniumMask);
-                    break;
-
-                case PlayerClass.Ranger:
-                    ReplaceItem(ItemID.TitaniumHelmet);
-                    break;
-
-                case PlayerClass.Mage:
-                    ReplaceItem(ItemID.TitaniumHeadgear);
-                    break;
-
-                case PlayerClass.Summoner:
-                    ReplaceItem(ItemID.TikiMask);
-                    break;
-            }
-        }
-
-        if (Progression.Plantera)
         {
             switch (PlayerUtils.GetPlayerClass())
             {
@@ -630,22 +607,6 @@ public class ShopMerchant : Shop
                 case PlayerClass.Melee:
                 case PlayerClass.Ranger:
                 case PlayerClass.Mage:
-                    ReplaceItem(ItemID.TitaniumBreastplate);
-                    break;
-
-                case PlayerClass.Summoner:
-                    ReplaceItem(ItemID.TikiShirt);
-                    break;
-            }
-        }
-
-        if (Progression.Plantera)
-        {
-            switch (PlayerUtils.GetPlayerClass())
-            {
-                case PlayerClass.Melee:
-                case PlayerClass.Ranger:
-                case PlayerClass.Mage:
                     ReplaceItem(ItemID.ChlorophytePlateMail);
                     break;
 
@@ -782,22 +743,6 @@ public class ShopMerchant : Shop
         }
 
         if (Progression.DownedMechs(3))
-        {
-            switch (PlayerUtils.GetPlayerClass())
-            {
-                case PlayerClass.Melee:
-                case PlayerClass.Ranger:
-                case PlayerClass.Mage:
-                    ReplaceItem(ItemID.TitaniumLeggings);
-                    break;
-
-                case PlayerClass.Summoner:
-                    ReplaceItem(ItemID.TikiPants);
-                    break;
-            }
-        }
-
-        if (Progression.Plantera)
         {
             switch (PlayerUtils.GetPlayerClass())
             {
@@ -985,7 +930,7 @@ public class ShopMerchant : Shop
 
     private void SummonerWeapon()
     {
-        ReplaceItem(ItemID.SlimeStaff);
+        ReplaceItem(ItemID.SlimeStaff, Coins.Gold(2));
         ReplaceItem(Progression.BloodMoon,          ItemID.VampireFrogStaff);
         ReplaceItem(Progression.QueenBee,           ItemID.HornetStaff);
         ReplaceItem(Progression.Skeletron,          ItemID.ImpStaff);
@@ -1057,48 +1002,65 @@ public class ShopMerchant : Shop
 
     private void Ores()
     {
-        AddItem(GenVars.copperBar > 0 ? ItemID.CopperOre : ItemID.TinOre, Coins.Silver(1));
+        AddItem(GenVars.copperBar > 0 ? ItemID.CopperBar : ItemID.TinBar, 50);
 
         if (Progression.SlimeKing)
         {
-            AddItem(GenVars.ironBar > 0 ? ItemID.IronOre : ItemID.LeadOre, Coins.Silver(2));
-            AddItem(GenVars.silverBar > 0 ? ItemID.SilverOre : ItemID.TungstenOre, Coins.Silver(3));
-            AddItem(GenVars.goldBar > 0 ? ItemID.GoldOre : ItemID.PlatinumOre, Coins.Silver(4));
+            AddItem(GenVars.ironBar > 0 ? ItemID.IronBar : ItemID.LeadBar, 100);
+            AddItem(GenVars.silverBar > 0 ? ItemID.SilverBar : ItemID.TungstenBar, 150);
+            AddItem(GenVars.goldBar > 0 ? ItemID.GoldBar : ItemID.PlatinumBar, 200);
         }
 
         if (Progression.EyeOfCthulhu)
         {
-            AddItem(WorldGen.crimson ? ItemID.CrimtaneOre : ItemID.DemoniteOre, Coins.Silver(5));
+            AddItem(WorldGen.crimson ? ItemID.CrimtaneBar : ItemID.DemoniteBar, 250);
         }
 
         if (Progression.BrainOrEater)
         {
-            AddItem(ItemID.Meteorite, Coins.Silver(20));
-            AddItem(Progression.Hardmode, ItemID.Hellstone, Coins.Silver(6));
+            AddItem(ItemID.MeteoriteBar, 300);
+            AddItem(Progression.Hardmode, ItemID.HellstoneBar, 350);
         }
 
         if (Progression.DownedMechs(1))
         {
-            AddItem(ItemID.PalladiumOre, Coins.Silver(7));
-            AddItem(ItemID.CobaltOre, Coins.Silver(7));
+            AddItem(ItemID.PalladiumBar, 400);
+            AddItem(ItemID.CobaltBar, 400);
         }
 
         if (Progression.DownedMechs(2))
         {
-            AddItem(ItemID.MythrilOre, Coins.Silver(8));
-            AddItem(ItemID.OrichalcumOre, Coins.Silver(8));
+            AddItem(ItemID.MythrilBar, 450);
+            AddItem(ItemID.OrichalcumBar, 450);
         }
 
         if (Progression.DownedMechs(3))
         {
-            AddItem(ItemID.AdamantiteOre, Coins.Silver(9));
-            AddItem(ItemID.TitaniumOre, Coins.Silver(9));
+            AddItem(ItemID.AdamantiteBar, 500);
+            AddItem(ItemID.TitaniumBar, 500);
 
-            AddItem(ItemID.HallowedBar, Coins.Silver(10));
+            AddItem(ItemID.HallowedBar, 550);
         }
 
-        AddItem(Progression.Plantera, ItemID.ChlorophyteOre, Coins.Silver(11));
-        AddItem(Progression.Moonlord, ItemID.LunarOre, Coins.Silver(12));
+        AddItem(Progression.Plantera, ItemID.ChlorophyteBar, 600);
+        AddItem(Progression.Moonlord, ItemID.LunarBar, 650);
+    }
+
+    private void FishingRod()
+    {
+        ReplaceItem(ItemID.WoodFishingPole, Coins.Silver(10));
+
+        int progression = Progression.LevelFull();
+
+        ReplaceItem(progression > 0, ItemID.ReinforcedFishingPole, Coins.Silver(25));
+        ReplaceItem(progression > 1, ItemID.FisherofSouls, Coins.Gold());
+        ReplaceItem(progression > 2, ItemID.FiberglassFishingPole, Coins.Gold(10));
+        ReplaceItem(progression > 3, ItemID.MechanicsRod, Coins.Gold(25));
+        ReplaceItem(progression > 4, ItemID.SittingDucksFishingRod, Coins.Gold(50));
+        ReplaceItem(progression > 5, ItemID.HotlineFishingHook, Coins.Platinum());
+        ReplaceItem(progression > 6, ItemID.GoldenFishingRod, Coins.Platinum(2));
+
+        NextSlot++;
     }
 
     private void Gear()
@@ -1114,6 +1076,7 @@ public class ShopMerchant : Shop
             AddItem(ItemID.GoldenBugNet);
         }
 
+        FishingRod();
         Pickaxe();
         Axe();
         Hammer();
@@ -1159,7 +1122,7 @@ public class ShopMerchant : Shop
         Boots();
 
         AddItem(ItemID.PiggyBank);
-        AddItem(ItemID.Safe);
+        AddItem(ItemID.Safe, Coins.Gold());
         AddItem(ItemID.Wood, Coins.Silver());
 
         BuffPotion();
@@ -1258,7 +1221,7 @@ public class ShopMerchant : Shop
 
     private void LightPet()
     {
-        ReplaceItem(ItemID.FairyBell);
+        ReplaceItem(ItemID.FairyBell, Coins.Gold(2));
 
         ReplaceItem(Progression.Hardmode, ItemID.WispinaBottle);
 

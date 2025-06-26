@@ -47,10 +47,10 @@ public class ShopArmsDealer : Shop
 
         ReplaceItem(Progression.EyeOfCthulhu, ItemID.SilverBullet);
         ReplaceItem(Progression.BrainOrEater, ItemID.MeteorShot);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.CursedBullet);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.IchorBullet);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.CrystalBullet);
-        ReplaceItem(Progression.Plantera, ItemID.ChlorophyteBullet);
+        ReplaceItem(Progression.WallOfFlesh, ItemID.CursedBullet);
+        ReplaceItem(Progression.DownedMechs(1), ItemID.IchorBullet);
+        ReplaceItem(Progression.DownedMechs(2), ItemID.CrystalBullet);
+        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteBullet);
         ReplaceItem(Progression.Moonlord, ItemID.MoonlordBullet);
 
         NextSlot++;

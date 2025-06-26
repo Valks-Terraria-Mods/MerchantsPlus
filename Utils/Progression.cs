@@ -43,7 +43,7 @@ public static class Progression
     /// levels are hardmode. (Making a total of 21 progression levels)
     /// </summary>
     /// <returns>The highest progression level (1–21) of the hardest boss defeated, or 0 if none.</returns>
-    public static int Level() 
+    public static int LevelFull() 
     {
         // Build a list of booleans in order of progression:
         List<bool> conditions =
@@ -69,6 +69,38 @@ public static class Progression
             Cultist,                                   // 19
             Towers,                                    // 20
             Moonlord                                   // 21
+        ];
+
+        // Walk backward to find the highest true index:
+        for (int i = conditions.Count - 1; i >= 0; i--) 
+        {
+            if (conditions[i])
+                return i + 1;    // +1 to convert 0-based index into 1-based level
+        }
+
+        // If none are true, return 0 (no progression yet)
+        return 0;
+    }
+    
+    public static int LevelBoss() 
+    {
+        // Build a list of booleans in order of progression:
+        List<bool> conditions =
+        [
+            SlimeKing,                                 // 1
+            EyeOfCthulhu,                              // 2
+            BrainOfCthulhu || EaterOfWorlds,           // 3
+            QueenBee,                                  // 4
+            Skeletron,                                 // 5
+            WallOfFlesh,                               // 6
+            DownedMechs(1),                            // 7
+            DownedMechs(2),                            // 8
+            DownedMechs(3),                            // 9
+            Plantera,                                  // 10
+            Golem,                                     // 11
+            Fishron,                                   // 12
+            Cultist,                                   // 13
+            Moonlord                                   // 24
         ];
 
         // Walk backward to find the highest true index:

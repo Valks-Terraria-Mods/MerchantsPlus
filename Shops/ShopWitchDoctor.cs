@@ -34,7 +34,7 @@ public class ShopWitchDoctor : Shop
 
     private void Flasks()
     {
-        int progression = Progression.Level();
+        int progression = Progression.LevelFull();
 
         AddItem(ItemID.FlaskofNanites);
         AddItem(ItemID.FlaskofFire, progression > 8);
