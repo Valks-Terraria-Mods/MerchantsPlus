@@ -165,7 +165,7 @@ public class ShopGuide : Shop
 
         if (ModCalamity.Bosses.StormWeaverDowned || ModCalamity.Bosses.CeaselessVoidDowned || ModCalamity.Bosses.SignusDowned)
         {
-            AddItem(ModCalamity.Items.RuneofKos, Coins.Gold(3));
+            AddItem(ModCalamity.Items.MarkofProvidence, Coins.Gold(3));
         }
 
         if (ModCalamity.Bosses.OldDukeDowned)
