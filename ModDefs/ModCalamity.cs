@@ -29,7 +29,7 @@ public class ModCalamity
         public static int ProfanedShard => ModContent.ItemType<ProfanedShard>(); // Profaned Guardians
         public static int ExoticPheromones => ModContent.ItemType<ExoticPheromones>(); // Dragonfolly
         public static int ProfanedCore => ModContent.ItemType<ProfanedCore>(); // Providence, the Profaned Goddess
-        public static int RuneofKos => ModContent.ItemType<RuneofKos>(); // Storm Weaver, CeaselessVoid and Signus
+        public static int MarkofProvidence => ModContent.ItemType<MarkofProvidence>(); // Storm Weaver, CeaselessVoid and Signus
         public static int Bloodworm => ModContent.ItemType<BloodwormItem>(); // The Old Duke
         public static int CosmicWorm => ModContent.ItemType<CosmicWorm>(); // The Devourer of Gods
         public static int BlessedPhoenixEgg => ModContent.ItemType<YharonEgg>(); // Yharon, Dragon of Rebirth
