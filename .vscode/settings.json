@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^dotnet build /p:BuildMod=false$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

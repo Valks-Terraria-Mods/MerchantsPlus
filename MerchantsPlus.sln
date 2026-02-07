@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchantsPlus", "MerchantsPlus.csproj", "{4EF2868A-396B-4C7F-874D-97AED6F05B41}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerchantsPlus.Generator", "..\MerchantsPlus.Generator\MerchantsPlus.Generator.csproj", "{B1C3D5E7-F9A2-4C6B-8D0E-2F4A6C8E0B2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{4EF2868A-396B-4C7F-874D-97AED6F05B41}.Debug|x86.Build.0 = Debug|Any CPU
 		{4EF2868A-396B-4C7F-874D-97AED6F05B41}.Release|x86.ActiveCfg = Release|Any CPU
 		{4EF2868A-396B-4C7F-874D-97AED6F05B41}.Release|x86.Build.0 = Release|Any CPU
+		{B1C3D5E7-F9A2-4C6B-8D0E-2F4A6C8E0B2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1C3D5E7-F9A2-4C6B-8D0E-2F4A6C8E0B2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{B1C3D5E7-F9A2-4C6B-8D0E-2F4A6C8E0B2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1C3D5E7-F9A2-4C6B-8D0E-2F4A6C8E0B2D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

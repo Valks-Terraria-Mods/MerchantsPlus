@@ -9,18 +9,19 @@ For example, the merchant sells a copper (or tin) pickaxe at first. If you defea
 Progression is not entirely tied to bosses but also world events and kill count milestones.
 
 Featuring
-- Nearly every merchant sells more items based on your current world progression
+- Every merchant sells more items based on your current world progression
 - Some of the merchants items that are sold get upgraded as you progress
 - Some merchants sell items based on what you currently have equipped
 - Items that use to have no sell value have unique sell values
 - Magic Storage NPC has a shop
 - Guide sells boss summon items from vanilla, thorium, calamity, and redemption
-
-Planned
-- Remastered Shop UI with support for Quests / Bounties
-- More Modded Merchant Shops (e.g. Calamity)
-- Adding missing vanilla items / giving items that have no sell value, unique sell values
-- Rebalancing the mod (this is ongoing)
+- (NEW) Added 4000+ missing vanilla Terraria items all with sensible progression locks
+- (NEW) Added Golpher, Zoologist, Princess, Cat, Dog and Slimes as merchants
+- (NEW) Overhauled all interfaces. Cycle Shop button replaced with scrollable view of all shops.
+- (NEW) Added new button "Shops" to show a new interface to see all merchant shops in one place. Only merchants currently in your world are shown in this interface.
+- (NEW) You can now purchase items directly from the "World Merchants Shop" interface.
+- (NEW) Added hints to show what is needed to unlock the next item in a particular shop.
+- (NEW) Shop names get asterick suffixes when new shop progression has been unlocked.
 
 FAQ
 Q: Is this mod balanced?
