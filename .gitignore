@@ -4,3 +4,4 @@ qodana.yaml
 obj/
 bin/
 _references/
+*.user
