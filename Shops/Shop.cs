@@ -41,7 +41,7 @@ public abstract class Shop
         // Let's remove these guns as we will add our own items later
         foreach (Item item in Inv.item)
         {
-            item.SetDefaults(0);
+            item.SetDefaults(ItemID.None);
         }
 
         NextSlot = 0;
@@ -49,7 +49,7 @@ public abstract class Shop
 
     protected void AddItem(int itemId, bool condition = true)
     {
-        if (condition)
+        if (condition && itemId > ItemID.None)
         {
             Inv.item[NextSlot++].SetDefaults(itemId);
         }
@@ -57,7 +57,7 @@ public abstract class Shop
 
     protected void AddItem(int itemId, int price, int progression = 0)
     {
-        if (Progression.LevelFull() >= progression)
+        if (itemId > ItemID.None && Progression.LevelFull() >= progression)
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
@@ -71,7 +71,7 @@ public abstract class Shop
 
     protected void AddItem(bool condition, int itemId)
     {
-        if (condition)
+        if (condition && itemId > ItemID.None)
         {
             Inv.item[NextSlot++].SetDefaults(itemId);
         }
@@ -79,7 +79,7 @@ public abstract class Shop
 
     protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
-        if (condition && Progression.LevelFull() >= progression)
+        if (condition && itemId > ItemID.None && Progression.LevelFull() >= progression)
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;

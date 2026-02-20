@@ -1,51 +1,39 @@
-using Redemption.Items.Usable.Summons;
+using MerchantsPlus.Utils;
 
 namespace MerchantsPlus.ModDefs;
 
-[JITWhenModsEnabled("Redemption")]
-public class ModRedemption
+public static class ModRedemption
 {
-    public class Items
+    private const string ModName = "Redemption";
+    private const string ConditionsType = "Redemption.Globals.RedeConditions";
+
+    public static class Items
     {
-        // Pre-Hardmode Summons
-        public static int HeartOfThorns => ModContent.ItemType<HeartOfThorns>();         // Thorn, Bane of the Forest
-        public static int ForbiddenRitual => ModContent.ItemType<DemonScroll>();         // Erhan, Anglonic High Priest
-        public static int WeddingRing => ModContent.ItemType<WeddingRing>();             // The Keeper
-        public static int AnomalyDetector => ModContent.ItemType<AnomalyDetector>();     // Seed of Infection
-
-        // Hardmode Summons
-        public static int CyberRadio => ModContent.ItemType<CyberTech>();                // King Slayer III
-        public static int OmegaTransmitter => ModContent.ItemType<OmegaTransmitter>();   // Omega Cleaver / Omega Gigapora / Omega Obliterator
-
-        // Post-Moon Lord Summons
-        public static int HologramRemote => ModContent.ItemType<LabHologramDevice>();    // Patient Zero
-        public static int AncientSigil => ModContent.ItemType<AncientSigil>();           // Ancient Deity Duo
-        public static int GalaxyStone => ModContent.ItemType<NebSummon>();               // Nebuleus, Angel of the Cosmos
-
-        // Mini Boss Summons
-        public static int EggCrown => ModContent.ItemType<EggCrown>();                   // Fowl Emperor
-        public static int EaglecrestSpelltome => ModContent.ItemType<EaglecrestSpelltome>(); // Eaglecrest Golem
+        public static int HeartOfThorns => OtherMods.TryFindItemType(ModName, "HeartOfThorns");
+        public static int ForbiddenRitual => OtherMods.TryFindItemType(ModName, "DemonScroll");
+        public static int WeddingRing => OtherMods.TryFindItemType(ModName, "WeddingRing");
+        public static int AnomalyDetector => OtherMods.TryFindItemType(ModName, "AnomalyDetector");
+        public static int CyberRadio => OtherMods.TryFindItemType(ModName, "CyberTech");
+        public static int OmegaTransmitter => OtherMods.TryFindItemType(ModName, "OmegaTransmitter");
+        public static int HologramRemote => OtherMods.TryFindItemType(ModName, "LabHologramDevice");
+        public static int AncientSigil => OtherMods.TryFindItemType(ModName, "AncientSigil");
+        public static int GalaxyStone => OtherMods.TryFindItemType(ModName, "NebSummon");
+        public static int EggCrown => OtherMods.TryFindItemType(ModName, "EggCrown");
+        public static int EaglecrestSpelltome => OtherMods.TryFindItemType(ModName, "EaglecrestSpelltome");
     }
 
-    public class Bosses
+    public static class Bosses
     {
-        // Pre-Hardmode
-        public static bool ThornsDowned => Redemption.Globals.RedeConditions.DownedThorn.IsMet();
-        public static bool ErhanDowned => Redemption.Globals.RedeConditions.DownedErhan.IsMet();
-        public static bool KeeperDowned => Redemption.Globals.RedeConditions.DownedKeeper.IsMet();
-        public static bool SeedOfInfectionDowned => Redemption.Globals.RedeConditions.DownedSeed.IsMet();
-
-        // Hardmode
-        public static bool KingSlayerIIIDowned => Redemption.Globals.RedeConditions.DownedSlayer.IsMet();
-        public static bool OmegaObliteratorDowned => Redemption.Globals.RedeConditions.DownedOmega1.IsMet();
-
-        // Post-Moon Lord
-        public static bool PatientZeroDowned => Redemption.Globals.RedeConditions.DownedOmega2.IsMet();
-        public static bool AncientDeityDowned => Redemption.Globals.RedeConditions.DownedOmega3.IsMet();
-        public static bool NebuleusDowned => Redemption.Globals.RedeConditions.DownedNebuleus.IsMet();
-
-        // Mini Bosses
-        public static bool FowlEmperorDowned => Redemption.Globals.RedeConditions.DownedFowlEmperor.IsMet();
-        public static bool EaglecrestGolemDowned => Redemption.Globals.RedeConditions.DownedEaglecrestGolem.IsMet();
+        public static bool ThornsDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedThorn", "IsMet");
+        public static bool ErhanDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedErhan", "IsMet");
+        public static bool KeeperDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedKeeper", "IsMet");
+        public static bool SeedOfInfectionDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedSeed", "IsMet");
+        public static bool KingSlayerIIIDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedSlayer", "IsMet");
+        public static bool OmegaObliteratorDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega1", "IsMet");
+        public static bool PatientZeroDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega2", "IsMet");
+        public static bool AncientDeityDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega3", "IsMet");
+        public static bool NebuleusDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedNebuleus", "IsMet");
+        public static bool FowlEmperorDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedFowlEmperor", "IsMet");
+        public static bool EaglecrestGolemDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedEaglecrestGolem", "IsMet");
     }
 }

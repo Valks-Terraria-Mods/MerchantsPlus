@@ -1,19 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\tModLoader.targets" />
+    <Import Project="..\tModLoader.targets" Condition="Exists('..\tModLoader.targets')" />
     <PropertyGroup>
         <AssemblyName>MerchantsPlus</AssemblyName>
+        <TargetFramework>net8.0</TargetFramework>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <Reference Include="CalamityMod">
-          <HintPath>..\ModAssemblies\CalamityMod.dll</HintPath>
-        </Reference>
-        <Reference Include="ThoriumMod">
-            <HintPath>..\ModAssemblies\ThoriumMod.dll</HintPath>
-        </Reference>
-        <Reference Include="Redemption">
-            <HintPath>..\ModAssemblies\Redemption.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+
+    <Target Name="RequireTModLoaderTargets" BeforeTargets="PrepareForBuild" Condition="!Exists('..\tModLoader.targets')">
+        <Error Text="Missing ..\tModLoader.targets. Open tModLoader and build any mod once to generate it in ModSources." />
+    </Target>
 </Project>

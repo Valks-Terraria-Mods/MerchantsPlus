@@ -1,69 +1,61 @@
-﻿using CalamityMod;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.SummonItems;
+using MerchantsPlus.Utils;
 
 namespace MerchantsPlus.ModDefs;
 
-[JITWhenModsEnabled("CalamityMod")]
-public class ModCalamity
+public static class ModCalamity
 {
-    public class Items
+    private const string ModName = "CalamityMod";
+    private const string DownedBossSystemType = "CalamityMod.DownedBossSystem";
+
+    public static class Items
     {
-        public static int DesertMedallion => ModContent.ItemType<DesertMedallion>(); // Desert Scrouge
-        public static int DecapoditaSprout => ModContent.ItemType<DecapoditaSprout>(); // Crabulon
-        public static int Teratoma => ModContent.ItemType<Teratoma>(); // The Hive Mind
-        public static int BloodyWormFood => ModContent.ItemType<BloodyWormFood>(); // The Perforators
-        public static int OverloadedSludge => ModContent.ItemType<OverloadedSludge>(); // The Slime God
-
-        // Hardmode
-        public static int CryoKey => ModContent.ItemType<CryoKey>(); // Cryogen
-        public static int Seafood => ModContent.ItemType<Seafood>(); // Aquatic Scourge
-        public static int CharredIdol => ModContent.ItemType<CharredIdol>(); // Brimstone Elemental
-        public static int EyeofDesolation => ModContent.ItemType<EyeofDesolation>(); // Calamitas Clone
-        public static int AstralChunk => ModContent.ItemType<AstralChunk>(); // Astrum Aureus
-        public static int Abombination => ModContent.ItemType<Abombination>(); // The Plaguebringer Goliath
-        public static int DeathWhistle => ModContent.ItemType<DeathWhistle>(); // Ravager
-        public static int TitanHeart => ModContent.ItemType<TitanHeart>(); // Astrum Deus
-
-        // Post-Moon Lord
-        public static int ProfanedShard => ModContent.ItemType<ProfanedShard>(); // Profaned Guardians
-        public static int ExoticPheromones => ModContent.ItemType<ExoticPheromones>(); // Dragonfolly
-        public static int ProfanedCore => ModContent.ItemType<ProfanedCore>(); // Providence, the Profaned Goddess
-        public static int MarkofProvidence => ModContent.ItemType<MarkofProvidence>(); // Storm Weaver, CeaselessVoid and Signus
-        public static int Bloodworm => ModContent.ItemType<BloodwormItem>(); // The Old Duke
-        public static int CosmicWorm => ModContent.ItemType<CosmicWorm>(); // The Devourer of Gods
-        public static int BlessedPhoenixEgg => ModContent.ItemType<YharonEgg>(); // Yharon, Dragon of Rebirth
-        public static int AshesOfCalamity => ModContent.ItemType<AshesofCalamity>(); // Supreme Witch, Calamitas
+        public static int DesertMedallion => OtherMods.TryFindItemType(ModName, "DesertMedallion");
+        public static int DecapoditaSprout => OtherMods.TryFindItemType(ModName, "DecapoditaSprout");
+        public static int Teratoma => OtherMods.TryFindItemType(ModName, "Teratoma");
+        public static int BloodyWormFood => OtherMods.TryFindItemType(ModName, "BloodyWormFood");
+        public static int OverloadedSludge => OtherMods.TryFindItemType(ModName, "OverloadedSludge");
+        public static int CryoKey => OtherMods.TryFindItemType(ModName, "CryoKey");
+        public static int Seafood => OtherMods.TryFindItemType(ModName, "Seafood");
+        public static int CharredIdol => OtherMods.TryFindItemType(ModName, "CharredIdol");
+        public static int EyeofDesolation => OtherMods.TryFindItemType(ModName, "EyeofDesolation");
+        public static int AstralChunk => OtherMods.TryFindItemType(ModName, "AstralChunk");
+        public static int Abombination => OtherMods.TryFindItemType(ModName, "Abombination");
+        public static int DeathWhistle => OtherMods.TryFindItemType(ModName, "DeathWhistle");
+        public static int TitanHeart => OtherMods.TryFindItemType(ModName, "TitanHeart");
+        public static int ProfanedShard => OtherMods.TryFindItemType(ModName, "ProfanedShard");
+        public static int ExoticPheromones => OtherMods.TryFindItemType(ModName, "ExoticPheromones");
+        public static int ProfanedCore => OtherMods.TryFindItemType(ModName, "ProfanedCore");
+        public static int MarkofProvidence => OtherMods.TryFindItemType(ModName, "MarkofProvidence");
+        public static int Bloodworm => OtherMods.TryFindItemType(ModName, "BloodwormItem");
+        public static int CosmicWorm => OtherMods.TryFindItemType(ModName, "CosmicWorm");
+        public static int BlessedPhoenixEgg => OtherMods.TryFindItemType(ModName, "YharonEgg");
+        public static int AshesOfCalamity => OtherMods.TryFindItemType(ModName, "AshesofCalamity");
     }
 
-    public class Bosses
+    public static class Bosses
     {
-        public static bool DesertScourgeDowned => DownedBossSystem.downedDesertScourge;
-        public static bool CrabulonDowned => DownedBossSystem.downedCrabulon;
-        public static bool TheHiveMindDowned => DownedBossSystem.downedHiveMind;
-        public static bool PerforatorDowned => DownedBossSystem.downedPerforator;
-        public static bool SlimeGodDowned => DownedBossSystem.downedSlimeGod;
-
-        // Hardmode
-        public static bool CryogenDowned => DownedBossSystem.downedCryogen;
-        public static bool AquaticScourgeDowned => DownedBossSystem.downedAquaticScourge;
-        public static bool BrimstoneElementalDowned => DownedBossSystem.downedBrimstoneElemental;
-        public static bool CalamitasDowned => DownedBossSystem.downedCalamitas;
-        public static bool AstrumAureusDowned => DownedBossSystem.downedAstrumAureus;
-        public static bool PlaguebringeDowned => DownedBossSystem.downedPlaguebringer;
-        public static bool RavagerDowned => DownedBossSystem.downedRavager;
-        public static bool AstrumDeusDowned => DownedBossSystem.downedAstrumDeus;
-
-        // Post-Moon Lord
-        public static bool ProfanedGuardiansDowned => DownedBossSystem.downedGuardians;
-        public static bool DragonfollyDowned => DownedBossSystem.downedDragonfolly;
-        public static bool ProvidenceDowned => DownedBossSystem.downedProvidence;
-        public static bool StormWeaverDowned => DownedBossSystem.downedStormWeaver;
-        public static bool CeaselessVoidDowned => DownedBossSystem.downedCeaselessVoid;
-        public static bool SignusDowned => DownedBossSystem.downedSignus;
-        public static bool OldDukeDowned => DownedBossSystem.downedBoomerDuke;
-        public static bool DevourerOfGodsDowned => DownedBossSystem.downedDoG;
-        public static bool YharonDowned => DownedBossSystem.downedYharon;
-        public static bool SupremeWitchCalamitasDowned => DownedBossSystem.downedCalamitasClone;
+        public static bool DesertScourgeDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedDesertScourge");
+        public static bool CrabulonDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedCrabulon");
+        public static bool TheHiveMindDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedHiveMind");
+        public static bool PerforatorDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedPerforator");
+        public static bool SlimeGodDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedSlimeGod");
+        public static bool CryogenDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedCryogen");
+        public static bool AquaticScourgeDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedAquaticScourge");
+        public static bool BrimstoneElementalDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedBrimstoneElemental");
+        public static bool CalamitasDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedCalamitas");
+        public static bool AstrumAureusDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedAstrumAureus");
+        public static bool PlaguebringeDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedPlaguebringer");
+        public static bool RavagerDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedRavager");
+        public static bool AstrumDeusDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedAstrumDeus");
+        public static bool ProfanedGuardiansDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedGuardians");
+        public static bool DragonfollyDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedDragonfolly");
+        public static bool ProvidenceDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedProvidence");
+        public static bool StormWeaverDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedStormWeaver");
+        public static bool CeaselessVoidDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedCeaselessVoid");
+        public static bool SignusDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedSignus");
+        public static bool OldDukeDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedBoomerDuke");
+        public static bool DevourerOfGodsDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedDoG");
+        public static bool YharonDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedYharon");
+        public static bool SupremeWitchCalamitasDowned => OtherMods.TryGetStaticBoolField(ModName, DownedBossSystemType, "downedCalamitasClone");
     }
 }

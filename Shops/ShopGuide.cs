@@ -1,5 +1,4 @@
-﻿using CalamityMod.Items.SummonItems;
-using MerchantsPlus.ModDefs;
+﻿using MerchantsPlus.ModDefs;
 using Terraria.WorldBuilding;
 
 namespace MerchantsPlus.Shops;
@@ -68,7 +67,6 @@ public class ShopGuide : Shop
         {
             CalamityBosses();
         }
-
         // Shop will only be added if ThoriumMod is enabled
         if (shop == "Thorium")
         {
@@ -220,7 +218,6 @@ public class ShopGuide : Shop
         if (ModRedemption.Bosses.EaglecrestGolemDowned)
             AddItem(ModRedemption.Items.EaglecrestSpelltome, Coins.Gold(3));
     }
-
     private void ThoriumBosses()
     {
         // The Grand Thunder Bird
@@ -300,12 +297,12 @@ public class ShopGuide : Shop
         }
     }
 
-    private class Reward(Item[] items)
+    private class Reward(ShopItem[] items)
     {
-        public Item[] Items { get; } = items;
+        public ShopItem[] Items { get; } = items;
     }
 
-    private class Item(short id, int price)
+    private class ShopItem(short id, int price)
     {
         public short Id { get; } = id;
         public int Price { get; } = price;
@@ -315,42 +312,42 @@ public class ShopGuide : Shop
     [
         new Reward(//Reward for defeating SlimeKing,
         [
-            new Item(ItemID.SuspiciousLookingEye, Coins.Gold(5))
+            new ShopItem(ItemID.SuspiciousLookingEye, Coins.Gold(5))
         ]),
 
         new Reward(//EyeOfCthulhu,
         [
-            new Item(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5))
+            new ShopItem(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5))
         ]),
 
         new Reward(//Skeletron,
         [
-            new Item(ItemID.Abeemination, Coins.Gold(5)),
-            new Item(ItemID.DeerThing, Coins.Gold(5)),
-            new Item(ItemID.GuideVoodooDoll, Coins.Gold(5))
+            new ShopItem(ItemID.Abeemination, Coins.Gold(5)),
+            new ShopItem(ItemID.DeerThing, Coins.Gold(5)),
+            new ShopItem(ItemID.GuideVoodooDoll, Coins.Gold(5))
         ]),
 
         new Reward(//hardMode,
         [
-            new Item(ItemID.QueenSlimeCrystal, Coins.Gold(5)),
-            new Item(ItemID.MechanicalEye, Coins.Gold(5)),
-            new Item(ItemID.MechanicalSkull, Coins.Gold(5)),
-            new Item(ItemID.MechanicalWorm, Coins.Gold(5))
+            new ShopItem(ItemID.QueenSlimeCrystal, Coins.Gold(5)),
+            new ShopItem(ItemID.MechanicalEye, Coins.Gold(5)),
+            new ShopItem(ItemID.MechanicalSkull, Coins.Gold(5)),
+            new ShopItem(ItemID.MechanicalWorm, Coins.Gold(5))
         ]),
 
         new Reward(//Plantera,
         [
-            new Item(ItemID.LihzahrdPowerCell, Coins.Gold(5))
+            new ShopItem(ItemID.LihzahrdPowerCell, Coins.Gold(5))
         ]),
 
         new Reward(//Golem,
         [
-            new Item(ItemID.TruffleWorm, Coins.Gold(5))
+            new ShopItem(ItemID.TruffleWorm, Coins.Gold(5))
         ]),
 
         new Reward(//Towers,
         [
-            new Item(ItemID.CelestialSigil, Coins.Gold(10))
+            new ShopItem(ItemID.CelestialSigil, Coins.Gold(10))
         ])
     ];
 
@@ -362,7 +359,7 @@ public class ShopGuide : Shop
         {
             Reward reward = _vanillaBossRewards[i];
 
-            foreach (Item item in reward.Items)
+            foreach (ShopItem item in reward.Items)
             {
                 AddItem(item.Id, item.Price);
             }
@@ -394,3 +391,4 @@ public class ExtraCrossModTooltips : GlobalItem
         }
     }
 }
+

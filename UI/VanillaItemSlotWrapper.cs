@@ -22,7 +22,7 @@ public class VanillaItemSlotWrapper : UIElement
         this.context = context;
         this.scale = scale;
         this.item = new Item();
-        item.SetDefaults(0);
+        item.SetDefaults(ItemID.None);
 
         this.Width.Set(TextureAssets.InventoryBack9.Value.Width * scale, 0f);
         this.Height.Set(TextureAssets.InventoryBack9.Value.Height * scale, 0f);

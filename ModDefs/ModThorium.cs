@@ -1,48 +1,39 @@
-using ThoriumMod;
-using ThoriumMod.Items.BossBoreanStrider;
-using ThoriumMod.Items.BossBuriedChampion;
-using ThoriumMod.Items.BossFallenBeholder;
-using ThoriumMod.Items.BossForgottenOne;
-using ThoriumMod.Items.BossGraniteEnergyStorm;
-using ThoriumMod.Items.BossQueenJellyfish;
-using ThoriumMod.Items.BossStarScouter;
-using ThoriumMod.Items.BossTheGrandThunderBird;
-using ThoriumMod.Items.BossThePrimordials;
-using ThoriumMod.Items.HealerItems;
+using MerchantsPlus.Utils;
 
 namespace MerchantsPlus.ModDefs;
 
-[JITWhenModsEnabled("ThoriumMod")]
-public class ModThorium
+public static class ModThorium
 {
-    public class Items
-    {
-        public static int GrandFlareGun => ModContent.ItemType<GrandFlareGun>();
-        public static int StormFlare => ModContent.ItemType<StormFlare>();
-        public static int JellyfishResonator => ModContent.ItemType<JellyfishResonator>();
-        public static int UnholyShards => ModContent.ItemType<UnholyShards>();
-        public static int UnstableCore => ModContent.ItemType<UnstableCore>();
-        public static int AncientBlade => ModContent.ItemType<AncientBlade>();
-        public static int StarCaller => ModContent.ItemType<StarCaller>();
-        public static int StriderTear => ModContent.ItemType<StriderTear>();
-        public static int VoidLens => ModContent.ItemType<VoidLens>();
-        public static int AbyssalShadow => ModContent.ItemType<AbyssalShadow>();
-        public static int DoomSayersCoin => ModContent.ItemType<DoomSayersCoin>();
+    private const string ModName = "ThoriumMod";
+    private const string WorldType = "ThoriumMod.ThoriumWorld";
 
-    }
-    
-    public class Bosses
+    public static class Items
     {
-        public static bool DownedTheGrandThunderBird => ThoriumWorld.downedTheGrandThunderBird;
-        public static bool DownedQueenJellyfish => ThoriumWorld.downedQueenJellyfish;
-        public static bool DownedViscount => ThoriumWorld.downedViscount;
-        public static bool DownedGraniteEnergyStorm => ThoriumWorld.downedGraniteEnergyStorm;
-        public static bool DownedBuriedChampion => ThoriumWorld.downedBuriedChampion;
-        public static bool DownedStarScouter =>  ThoriumWorld.downedStarScouter;
-        public static bool DownedBoreanStrider => ThoriumWorld.downedBoreanStrider;
-        public static bool DownedFallenBeholder => ThoriumWorld.downedFallenBeholder;
-        public static bool DownedLich =>  ThoriumWorld.downedLich;
-        public static bool DownedForgottenOne => ThoriumWorld.downedForgottenOne;
-        public static bool DownedThePrimordials => ThoriumWorld.downedThePrimordials;
+        public static int GrandFlareGun => OtherMods.TryFindItemType(ModName, "GrandFlareGun");
+        public static int StormFlare => OtherMods.TryFindItemType(ModName, "StormFlare");
+        public static int JellyfishResonator => OtherMods.TryFindItemType(ModName, "JellyfishResonator");
+        public static int UnholyShards => OtherMods.TryFindItemType(ModName, "UnholyShards");
+        public static int UnstableCore => OtherMods.TryFindItemType(ModName, "UnstableCore");
+        public static int AncientBlade => OtherMods.TryFindItemType(ModName, "AncientBlade");
+        public static int StarCaller => OtherMods.TryFindItemType(ModName, "StarCaller");
+        public static int StriderTear => OtherMods.TryFindItemType(ModName, "StriderTear");
+        public static int VoidLens => OtherMods.TryFindItemType(ModName, "VoidLens");
+        public static int AbyssalShadow => OtherMods.TryFindItemType(ModName, "AbyssalShadow");
+        public static int DoomSayersCoin => OtherMods.TryFindItemType(ModName, "DoomSayersCoin");
+    }
+
+    public static class Bosses
+    {
+        public static bool DownedTheGrandThunderBird => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedTheGrandThunderBird");
+        public static bool DownedQueenJellyfish => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedQueenJellyfish");
+        public static bool DownedViscount => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedViscount");
+        public static bool DownedGraniteEnergyStorm => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedGraniteEnergyStorm");
+        public static bool DownedBuriedChampion => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedBuriedChampion");
+        public static bool DownedStarScouter => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedStarScouter");
+        public static bool DownedBoreanStrider => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedBoreanStrider");
+        public static bool DownedFallenBeholder => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedFallenBeholder");
+        public static bool DownedLich => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedLich");
+        public static bool DownedForgottenOne => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedForgottenOne");
+        public static bool DownedThePrimordials => OtherMods.TryGetStaticBoolField(ModName, WorldType, "downedThePrimordials");
     }
 }
