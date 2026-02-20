@@ -37,7 +37,7 @@ public class GoblinTinkerer : BaseMerchant
 
         if (dialog.Count > 0)
         {
-            chat = QuestUtils.Dialog(dialog.ToArray());
+            chat = QuestUtils.Dialog([.. dialog]);
         }
     }
 

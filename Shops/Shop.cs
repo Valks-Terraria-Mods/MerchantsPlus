@@ -11,10 +11,9 @@ public abstract class Shop
     protected int NextSlot;
 
     /// <summary>
-    /// Opens the merchants shop.
+    /// Initializes the custom shop inventory for the current NPC interaction.
     /// </summary>
-    /// <param name="shop">The current shop we are in.</param>
-    /// <param name="nextSlot">The nextSlot of the item to sell.</param>
+    /// <param name="shop">The selected shop tab name.</param>
     public virtual void OpenShop(string shop)
     {
         SoundEngine.PlaySound(SoundID.MenuTick);
@@ -47,6 +46,11 @@ public abstract class Shop
         NextSlot = 0;
     }
 
+    /// <summary>
+    /// Adds an item to the next available shop slot when the condition is met.
+    /// </summary>
+    /// <param name="itemId">The Terraria item ID to add.</param>
+    /// <param name="condition">Whether the item should be added.</param>
     protected void AddItem(int itemId, bool condition = true)
     {
         if (condition && itemId > ItemID.None)
@@ -55,6 +59,12 @@ public abstract class Shop
         }
     }
 
+    /// <summary>
+    /// Adds an item with a custom price when progression requirements are met.
+    /// </summary>
+    /// <param name="itemId">The Terraria item ID to add.</param>
+    /// <param name="price">The custom shop price in copper.</param>
+    /// <param name="progression">The minimum progression level required.</param>
     protected void AddItem(int itemId, int price, int progression = 0)
     {
         if (itemId > ItemID.None && Progression.LevelFull() >= progression)
@@ -64,11 +74,139 @@ public abstract class Shop
         }
     }
 
+    /// <summary>
+    /// Adds a mod item with a custom price when progression requirements are met.
+    /// </summary>
+    /// <param name="item">The mod item instance to add.</param>
+    /// <param name="price">The custom shop price in copper.</param>
+    /// <param name="progression">The minimum progression level required.</param>
     protected void AddItem(ModItem item, int price, int progression = 0)
     {
         AddItem(item.Type, price, progression);
     }
 
+    /// <summary>
+    /// Adds multiple items to consecutive shop slots.
+    /// </summary>
+    /// <param name="itemIds">The Terraria item IDs to add.</param>
+    protected void AddItems(params int[] itemIds)
+    {
+        foreach (int itemId in itemIds)
+        {
+            AddItem(itemId);
+        }
+    }
+
+    /// <summary>
+    /// Adds multiple vanilla items at the same custom price.
+    /// </summary>
+    /// <param name="price">The custom shop price in copper.</param>
+    /// <param name="itemIds">The Terraria item IDs to add.</param>
+    protected void AddItemsAtPrice(int price, params int[] itemIds)
+    {
+        foreach (int itemId in itemIds)
+        {
+            AddItem(itemId, price);
+        }
+    }
+
+    /// <summary>
+    /// Adds multiple mod items at the same custom price.
+    /// </summary>
+    /// <param name="price">The custom shop price in copper.</param>
+    /// <param name="items">The mod items to add.</param>
+    protected void AddItemsAtPrice(int price, params ModItem[] items)
+    {
+        foreach (ModItem item in items)
+        {
+            AddItem(item, price);
+        }
+    }
+
+    /// <summary>
+    /// Adds all progression-gated items that are unlocked at the given progression level.
+    /// </summary>
+    /// <param name="progression">The current progression level.</param>
+    /// <param name="items">The progression item definitions to evaluate.</param>
+    protected void AddProgressionItems(int progression, IReadOnlyList<ProgressionShopItem> items)
+    {
+        foreach (ProgressionShopItem item in items)
+        {
+            if (item.IsUnlocked(progression))
+            {
+                AddItem(item.ItemId, item.Price);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds all progression tiers that are unlocked at the given progression level.
+    /// </summary>
+    /// <param name="progression">The current progression level.</param>
+    /// <param name="tiers">The progression tier definitions to evaluate.</param>
+    protected void AddProgressionTiers(int progression, IReadOnlyList<ProgressionShopTier> tiers)
+    {
+        foreach (ProgressionShopTier tier in tiers)
+        {
+            if (!tier.IsUnlocked(progression))
+            {
+                continue;
+            }
+
+            foreach (int itemId in tier.ItemIds)
+            {
+                AddItem(itemId, tier.Price);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds all mod-item progression tiers that are unlocked at the given progression level.
+    /// </summary>
+    /// <param name="progression">The current progression level.</param>
+    /// <param name="tiers">The mod-item progression tiers to evaluate.</param>
+    protected void AddProgressionModItemTiers(int progression, IReadOnlyList<ProgressionModShopTier> tiers)
+    {
+        foreach (ProgressionModShopTier tier in tiers)
+        {
+            if (!tier.IsUnlocked(progression))
+            {
+                continue;
+            }
+
+            AddItemsAtPrice(tier.Price, tier.GetItems());
+        }
+    }
+
+    /// <summary>
+    /// Adds all condition-based offers that are currently unlocked.
+    /// </summary>
+    /// <param name="offers">The conditional offer definitions to evaluate.</param>
+    protected void AddConditionalOffers(IReadOnlyList<ConditionalShopOffer> offers)
+    {
+        foreach (ConditionalShopOffer offer in offers)
+        {
+            if (!offer.IsUnlocked())
+            {
+                continue;
+            }
+
+            if (offer.Price.HasValue)
+            {
+                AddItemsAtPrice(offer.Price.Value, offer.ItemIds);
+            }
+            else
+            {
+                AddItems(offer.ItemIds);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds an item to the next available shop slot when the condition is met.
+    /// </summary>
+    /// <param name="condition">Whether the item should be added.</param>
+    /// <param name="itemId">The Terraria item ID to add.</param>
     protected void AddItem(bool condition, int itemId)
     {
         if (condition && itemId > ItemID.None)
@@ -77,6 +215,13 @@ public abstract class Shop
         }
     }
 
+    /// <summary>
+    /// Adds an item with a custom price when both condition and progression requirements are met.
+    /// </summary>
+    /// <param name="condition">Whether the item should be added.</param>
+    /// <param name="itemId">The Terraria item ID to add.</param>
+    /// <param name="price">The custom shop price in copper.</param>
+    /// <param name="progression">The minimum progression level required.</param>
     protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
         if (condition && itemId > ItemID.None && Progression.LevelFull() >= progression)
@@ -86,23 +231,43 @@ public abstract class Shop
         }
     }
 
+    /// <summary>
+    /// Replaces the current shop slot item.
+    /// </summary>
+    /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
     protected void ReplaceItem(int itemId)
     {
         Inv.item[NextSlot].SetDefaults(itemId);
     }
 
+    /// <summary>
+    /// Replaces the current shop slot item when the condition is met.
+    /// </summary>
+    /// <param name="condition">Whether the item should be replaced.</param>
+    /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
     protected void ReplaceItem(bool condition, int itemId)
     {
         if (condition)
             Inv.item[NextSlot].SetDefaults(itemId);
     }
 
+    /// <summary>
+    /// Replaces the current shop slot item and sets a custom price.
+    /// </summary>
+    /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
+    /// <param name="price">The custom shop price in copper.</param>
     protected void ReplaceItem(int itemId, int price)
     {
         Inv.item[NextSlot].SetDefaults(itemId);
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
+    /// <summary>
+    /// Replaces the current shop slot item and price when the condition is met.
+    /// </summary>
+    /// <param name="condition">Whether the item should be replaced.</param>
+    /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
+    /// <param name="price">The custom shop price in copper.</param>
     protected void ReplaceItem(bool condition, int itemId, int price)
     {
         if (condition)
@@ -112,17 +277,30 @@ public abstract class Shop
         }
     }
 
+    /// <summary>
+    /// Replaces the custom price of the current shop slot.
+    /// </summary>
+    /// <param name="price">The custom shop price in copper.</param>
     protected void ReplacePrice(int price)
     {
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
+    /// <summary>
+    /// Replaces the custom price of the current shop slot when the condition is met.
+    /// </summary>
+    /// <param name="condition">Whether the price should be replaced.</param>
+    /// <param name="price">The custom shop price in copper.</param>
     protected void ReplacePrice(bool condition, int price)
     {
         if (condition)
             Inv.item[NextSlot].shopCustomPrice = price;
     }
 
+    /// <summary>
+    /// Returns a display-friendly shop name derived from the class name.
+    /// </summary>
+    /// <returns>The shop name without the <c>Shop</c> prefix and with spaced capitals.</returns>
     public override string ToString()
     {
         return GetType().Name.Replace("Shop", "").AddSpaceBeforeEachCapital();

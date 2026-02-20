@@ -15,9 +15,9 @@ public static class Progression
     public static bool DownedMechs(int amount)
     {
         int downedMechCount = new[] { NPC.downedMechBoss1, NPC.downedMechBoss2, NPC.downedMechBoss3 }.Count(b => b);
-
         return downedMechCount >= amount;
     }
+
     public static bool Plantera => NPC.downedPlantBoss;
     public static bool Golem => NPC.downedGolemBoss;
     public static bool Fishron => NPC.downedFishron;
@@ -38,79 +38,75 @@ public static class Progression
 
     public static bool Hardmode => Main.hardMode;
 
-    /// <summary>
-    /// The players progression, the first 7 levels are prehardmode and the 18 other 
-    /// levels are hardmode. (Making a total of 21 progression levels)
-    /// </summary>
-    /// <returns>The highest progression level (1–21) of the hardest boss defeated, or 0 if none.</returns>
-    public static int LevelFull() 
+    private static int GetHighestProgressionLevel(bool[] conditions)
     {
-        // Build a list of booleans in order of progression:
-        List<bool> conditions =
-        [
-            SlimeKing,                                 // 1
-            EyeOfCthulhu,                              // 2
-            GoblinArmy,                                // 3
-            BrainOfCthulhu || EaterOfWorlds,           // 4
-            QueenBee,                                  // 5
-            Skeletron,                                 // 6
-            WallOfFlesh,                               // 7
-            Pirates,                                   // 8
-            BloodMoon,                                 // 9
-            DownedMechs(1),                            // 10
-            DownedMechs(2),                            // 11
-            DownedMechs(3),                            // 12
-            Christmas,                                 // 13
-            Halloween,                                 // 14
-            Plantera,                                  // 15
-            Golem,                                     // 16
-            Fishron,                                   // 17
-            Martians,                                  // 18
-            Cultist,                                   // 19
-            Towers,                                    // 20
-            Moonlord                                   // 21
-        ];
-
-        // Walk backward to find the highest true index:
-        for (int i = conditions.Count - 1; i >= 0; i--) 
+        for (int i = conditions.Length - 1; i >= 0; i--)
         {
             if (conditions[i])
-                return i + 1;    // +1 to convert 0-based index into 1-based level
+            {
+                return i + 1; // +1 converts a 0-based index into a 1-based level.
+            }
         }
 
-        // If none are true, return 0 (no progression yet)
+        // If none are true, return 0 (no progression yet).
         return 0;
     }
-    
-    public static int LevelBoss() 
+
+    /// <summary>
+    /// The players progression, the first 7 levels are prehardmode and the 18 other
+    /// levels are hardmode. (Making a total of 21 progression levels)
+    /// </summary>
+    /// <returns>The highest progression level (1-21) of the hardest boss defeated, or 0 if none.</returns>
+    public static int LevelFull()
     {
-        // Build a list of booleans in order of progression:
-        List<bool> conditions =
+        bool[] conditions =
         [
-            SlimeKing,                                 // 1
-            EyeOfCthulhu,                              // 2
-            BrainOfCthulhu || EaterOfWorlds,           // 3
-            QueenBee,                                  // 4
-            Skeletron,                                 // 5
-            WallOfFlesh,                               // 6
-            DownedMechs(1),                            // 7
-            DownedMechs(2),                            // 8
-            DownedMechs(3),                            // 9
-            Plantera,                                  // 10
-            Golem,                                     // 11
-            Fishron,                                   // 12
-            Cultist,                                   // 13
-            Moonlord                                   // 24
+            SlimeKing,                       // 1
+            EyeOfCthulhu,                    // 2
+            GoblinArmy,                      // 3
+            BrainOfCthulhu || EaterOfWorlds, // 4
+            QueenBee,                        // 5
+            Skeletron,                       // 6
+            WallOfFlesh,                     // 7
+            Pirates,                         // 8
+            BloodMoon,                       // 9
+            DownedMechs(1),                  // 10
+            DownedMechs(2),                  // 11
+            DownedMechs(3),                  // 12
+            Christmas,                       // 13
+            Halloween,                       // 14
+            Plantera,                        // 15
+            Golem,                           // 16
+            Fishron,                         // 17
+            Martians,                        // 18
+            Cultist,                         // 19
+            Towers,                          // 20
+            Moonlord                         // 21
         ];
 
-        // Walk backward to find the highest true index:
-        for (int i = conditions.Count - 1; i >= 0; i--) 
-        {
-            if (conditions[i])
-                return i + 1;    // +1 to convert 0-based index into 1-based level
-        }
+        return GetHighestProgressionLevel(conditions);
+    }
 
-        // If none are true, return 0 (no progression yet)
-        return 0;
+    public static int LevelBoss()
+    {
+        bool[] conditions =
+        [
+            SlimeKing,                       // 1
+            EyeOfCthulhu,                    // 2
+            BrainOfCthulhu || EaterOfWorlds, // 3
+            QueenBee,                        // 4
+            Skeletron,                       // 5
+            WallOfFlesh,                     // 6
+            DownedMechs(1),                  // 7
+            DownedMechs(2),                  // 8
+            DownedMechs(3),                  // 9
+            Plantera,                        // 10
+            Golem,                           // 11
+            Fishron,                         // 12
+            Cultist,                         // 13
+            Moonlord                         // 14
+        ];
+
+        return GetHighestProgressionLevel(conditions);
     }
 }

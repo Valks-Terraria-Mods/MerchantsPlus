@@ -1,4 +1,4 @@
-using MerchantsPlus.Utils;
+﻿using MerchantsPlus.Utils;
 
 namespace MerchantsPlus.ModDefs;
 
@@ -7,33 +7,37 @@ public static class ModRedemption
     private const string ModName = "Redemption";
     private const string ConditionsType = "Redemption.Globals.RedeConditions";
 
+    private static int Item(string itemName) => OtherMods.TryFindItemType(ModName, itemName);
+    private static bool Condition(string conditionName) => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, conditionName, "IsMet");
+
     public static class Items
     {
-        public static int HeartOfThorns => OtherMods.TryFindItemType(ModName, "HeartOfThorns");
-        public static int ForbiddenRitual => OtherMods.TryFindItemType(ModName, "DemonScroll");
-        public static int WeddingRing => OtherMods.TryFindItemType(ModName, "WeddingRing");
-        public static int AnomalyDetector => OtherMods.TryFindItemType(ModName, "AnomalyDetector");
-        public static int CyberRadio => OtherMods.TryFindItemType(ModName, "CyberTech");
-        public static int OmegaTransmitter => OtherMods.TryFindItemType(ModName, "OmegaTransmitter");
-        public static int HologramRemote => OtherMods.TryFindItemType(ModName, "LabHologramDevice");
-        public static int AncientSigil => OtherMods.TryFindItemType(ModName, "AncientSigil");
-        public static int GalaxyStone => OtherMods.TryFindItemType(ModName, "NebSummon");
-        public static int EggCrown => OtherMods.TryFindItemType(ModName, "EggCrown");
-        public static int EaglecrestSpelltome => OtherMods.TryFindItemType(ModName, "EaglecrestSpelltome");
+        public static int HeartOfThorns => Item("HeartOfThorns");
+        public static int ForbiddenRitual => Item("DemonScroll");
+        public static int WeddingRing => Item("WeddingRing");
+        public static int AnomalyDetector => Item("AnomalyDetector");
+        public static int CyberRadio => Item("CyberTech");
+        public static int OmegaTransmitter => Item("OmegaTransmitter");
+        public static int HologramRemote => Item("LabHologramDevice");
+        public static int AncientSigil => Item("AncientSigil");
+        public static int GalaxyStone => Item("NebSummon");
+        public static int EggCrown => Item("EggCrown");
+        public static int EaglecrestSpelltome => Item("EaglecrestSpelltome");
     }
 
     public static class Bosses
     {
-        public static bool ThornsDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedThorn", "IsMet");
-        public static bool ErhanDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedErhan", "IsMet");
-        public static bool KeeperDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedKeeper", "IsMet");
-        public static bool SeedOfInfectionDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedSeed", "IsMet");
-        public static bool KingSlayerIIIDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedSlayer", "IsMet");
-        public static bool OmegaObliteratorDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega1", "IsMet");
-        public static bool PatientZeroDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega2", "IsMet");
-        public static bool AncientDeityDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedOmega3", "IsMet");
-        public static bool NebuleusDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedNebuleus", "IsMet");
-        public static bool FowlEmperorDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedFowlEmperor", "IsMet");
-        public static bool EaglecrestGolemDowned => OtherMods.TryInvokeBoolMember(ModName, ConditionsType, "DownedEaglecrestGolem", "IsMet");
+        public static bool ThornsDowned => Condition("DownedThorn");
+        public static bool ErhanDowned => Condition("DownedErhan");
+        public static bool KeeperDowned => Condition("DownedKeeper");
+        public static bool SeedOfInfectionDowned => Condition("DownedSeed");
+        public static bool KingSlayerIIIDowned => Condition("DownedSlayer");
+        public static bool OmegaObliteratorDowned => Condition("DownedOmega1");
+        public static bool PatientZeroDowned => Condition("DownedOmega2");
+        public static bool AncientDeityDowned => Condition("DownedOmega3");
+        public static bool NebuleusDowned => Condition("DownedNebuleus");
+        public static bool FowlEmperorDowned => Condition("DownedFowlEmperor");
+        public static bool EaglecrestGolemDowned => Condition("DownedEaglecrestGolem");
     }
 }
+

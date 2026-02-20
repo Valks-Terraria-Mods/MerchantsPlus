@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.UI.Elements;
-using Terraria.GameInput;
 using ReLogic.Content;
 
 namespace MerchantsPlus.UI;
@@ -22,9 +21,6 @@ public class UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : UI
             Main.hoverItemName = HoverText;
         }
 
-        if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface)
-        {
-            Main.player[Main.myPlayer].mouseInterface = true;
-        }
+        _ = UIUtils.IsInteractiveHover(this);
     }
 }

@@ -2,31 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopDryad : Shop
 {
-    public override List<string> Shops { get; } = ["Seeds"];
+    public override List<string> Shops { get; } = [.. ShopDryadCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Seeds")
+        if (shop == ShopDryadCatalog.SeedsShopName)
         {
-            AddItem(ItemID.GrassSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.CorruptSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.HallowedSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.MushroomGrassSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.CrimsonSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.BlinkrootSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.DaybloomSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.DeathweedSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.FireblossomSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.MoonglowSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.WaterleafSeeds, ItemCosts.Seeds);
-            AddItem(ItemID.ShiverthornSeeds, ItemCosts.Seeds);
-
-            if (!WorldGen.crimson)
-            {
-                AddItem(ItemID.VilePowder, ItemCosts.Seeds);
-            }
+            AddItemsAtPrice(ItemCosts.Seeds, ShopDryadCatalog.SeedStock);
+            AddConditionalOffers(ShopDryadCatalog.SeedUnlocks);
             return;
         }
 
@@ -34,3 +19,6 @@ public class ShopDryad : Shop
         Inv.SetupShop(ShopType.Dryad);
     }
 }
+
+
+

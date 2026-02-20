@@ -2,25 +2,25 @@
 
 public class ShopTravellingMerchant : Shop
 {
-    public override List<string> Shops { get; } = ["Gear"];
+    public override List<string> Shops { get; } = [.. ShopTravellingMerchantCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Gear")
+        if (shop == ShopTravellingMerchantCatalog.GearShopName)
         {
-            AddItem(ItemID.GoldenKey, Coins.Gold(3));
-
-            if (Progression.Moonlord)
-            {
-                AddItem(ItemID.SuspiciousLookingTentacle);
-            }
-
+            Gear();
             return;
         }
 
         // Default Shop
         Inv.SetupShop(ShopType.TravellingMerchant);
+    }
+
+    private void Gear()
+    {
+        AddProgressionItems(Progression.LevelFull(), ShopTravellingMerchantCatalog.GearItems);
+        AddConditionalOffers(ShopTravellingMerchantCatalog.GearUnlocks);
     }
 }

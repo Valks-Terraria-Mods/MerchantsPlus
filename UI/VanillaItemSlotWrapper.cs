@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
-using Terraria.GameInput;
 
 namespace MerchantsPlus.UI;
 
@@ -13,14 +12,14 @@ namespace MerchantsPlus.UI;
 public class VanillaItemSlotWrapper : UIElement
 {
     public Item item;
-    private readonly int context;
-    private readonly float scale;
+    private readonly int _context;
+    private readonly float _scale;
     public Func<Item, bool> validItem;
 
     public VanillaItemSlotWrapper(int context = ItemSlot.Context.BankItem, float scale = 1f)
     {
-        this.context = context;
-        this.scale = scale;
+        this._context = context;
+        this._scale = scale;
         this.item = new Item();
         item.SetDefaults(ItemID.None);
 
@@ -31,20 +30,19 @@ public class VanillaItemSlotWrapper : UIElement
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         float oldScale = Main.inventoryScale;
-        Main.inventoryScale = scale;
+        Main.inventoryScale = _scale;
         Rectangle rectangle = GetDimensions().ToRectangle();
 
-        if (ContainsPoint(Main.MouseScreen) && !PlayerInput.IgnoreMouseInterface)
+        if (UIUtils.IsInteractiveHover(this))
         {
-            Main.LocalPlayer.mouseInterface = true;
             if (validItem == null || validItem(Main.mouseItem))
             {
                 // Handle handles all the click and hover actions based on the context.
-                ItemSlot.Handle(ref item, context);
+                ItemSlot.Handle(ref item, _context);
             }
         }
         // Draw draws the slot itself and Item. Depending on context, the color will change, as will drawing other things like stack counts.
-        ItemSlot.Draw(spriteBatch, ref item, context, rectangle.TopLeft());
+        ItemSlot.Draw(spriteBatch, ref item, _context, rectangle.TopLeft());
         Main.inventoryScale = oldScale;
     }
 }

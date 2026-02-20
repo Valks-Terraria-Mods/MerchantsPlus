@@ -1,27 +1,16 @@
-﻿namespace MerchantsPlus.Shops;
+namespace MerchantsPlus.Shops;
 
 public class ShopTavernkeep : Shop
 {
-    public override List<string> Shops { get; } = ["Gear"];
+    public override List<string> Shops { get; } = [.. ShopTavernkeepCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Gear")
+        if (shop == ShopTavernkeepCatalog.GearShopName)
         {
-            AddItem(ItemID.Ale);
-            AddItem(ItemID.DD2ElderCrystal);
-            AddItem(ItemID.DD2ElderCrystalStand);
-            AddItem(ItemID.DefendersForge);
-            Ballista();
-            Explosive();
-            Lightning();
-            Flameburst();
-            AddItem(ItemID.ApprenticeScarf);
-            AddItem(ItemID.SquireShield);
-            AddItem(ItemID.HuntressBuckler);
-            AddItem(ItemID.MonkBelt);
+            Gear();
             return;
         }
 
@@ -29,39 +18,23 @@ public class ShopTavernkeep : Shop
         Inv.SetupShop(ShopType.TavernKeep);
     }
 
-    private void Flameburst()
+    private void Gear()
     {
-        ReplaceItem(ItemID.DD2FlameburstTowerT1Popper);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2FlameburstTowerT2Popper);
-        ReplaceItem(Progression.Golem, ItemID.DD2FlameburstTowerT3Popper);
-
-        NextSlot++;
+        AddItems(ShopTavernkeepCatalog.TavernkeepEssentials);
+        AddTowerPoppers(ShopTavernkeepCatalog.TowerPopperTracks);
+        AddItems(ShopTavernkeepCatalog.OldOnesArmyAccessories);
     }
 
-    private void Ballista()
+    private void AddTowerPoppers(IReadOnlyList<TowerPopperTrack> towerTracks)
     {
-        ReplaceItem(ItemID.DD2BallistraTowerT1Popper);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2BallistraTowerT2Popper);
-        ReplaceItem(Progression.Golem, ItemID.DD2BallistraTowerT3Popper);
+        foreach (TowerPopperTrack towerTrack in towerTracks)
+        {
+            ReplaceItem(towerTrack.TierOneItemId);
+            ReplaceItem(Progression.DownedMechs(1), towerTrack.TierTwoItemId);
+            ReplaceItem(Progression.Golem, towerTrack.TierThreeItemId);
 
-        NextSlot++;
-    }
-
-    private void Lightning()
-    {
-        ReplaceItem(ItemID.DD2LightningAuraT1Popper);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2LightningAuraT2Popper);
-        ReplaceItem(Progression.Golem, ItemID.DD2LightningAuraT3Popper);
-
-        NextSlot++;
-    }
-
-    private void Explosive()
-    {
-        ReplaceItem(ItemID.DD2ExplosiveTrapT1Popper);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DD2ExplosiveTrapT2Popper);
-        ReplaceItem(Progression.Golem, ItemID.DD2ExplosiveTrapT3Popper);
-
-        NextSlot++;
+            NextSlot++;
+        }
     }
 }
+

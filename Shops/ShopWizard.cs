@@ -1,23 +1,16 @@
-﻿namespace MerchantsPlus.Shops;
+namespace MerchantsPlus.Shops;
 
 public class ShopWizard : Shop
 {
-    public override List<string> Shops { get; } = ["Gear"];
+    public override List<string> Shops { get; } = [.. ShopWizardCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Gear")
+        if (shop == ShopWizardCatalog.GearShopName)
         {
-            AddItem(ItemID.IceRod);
-            AddItem(ItemID.SpellTome);
-            AddItem(ItemID.GreaterManaPotion);
-            AddItem(ItemID.MusicBox);
-            AddItem(ItemID.Bell);
-            AddItem(ItemID.Harp);
-            AddItem(ItemID.CrystalBall);
-            AddItem(ItemID.EmptyDropper);
+            AddItems(ShopWizardCatalog.ArcaneGear);
             return;
         }
 
@@ -25,3 +18,7 @@ public class ShopWizard : Shop
         Inv.SetupShop(ShopType.Wizard);
     }
 }
+
+
+
+

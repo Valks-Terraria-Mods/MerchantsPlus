@@ -1,39 +1,17 @@
-﻿namespace MerchantsPlus.Shops;
+namespace MerchantsPlus.Shops;
 
 public class ShopCyborg : Shop
 {
-    public override List<string> Shops { get; } = ["Robotics"];
+    public override List<string> Shops { get; } = [.. ShopCyborgCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Robotics")
+        if (shop == ShopCyborgCatalog.RoboticsShopName)
         {
-            AddItem(ItemID.ProximityMineLauncher);
-            AddItem(ItemID.Nanites);
-            AddItem(ItemID.PortalGun);
-            AddItem(ItemID.PortalGunStation);
-
-            if (Progression.Golem)
-            {
-                AddItem(ItemID.ElectrosphereLauncher);
-            }
-
-            if (NPC.downedFishron)
-            {
-                AddItem(ItemID.RocketLauncher);
-            }
-
-            if (NPC.downedAncientCultist)
-            {
-                AddItem(ItemID.SnowmanCannon);
-            }
-
-            if (NPC.downedTowerVortex)
-            {
-                AddItem(ItemID.NailGun);
-            }
+            AddItems(ShopCyborgCatalog.RoboticsGear);
+            AddConditionalOffers(ShopCyborgCatalog.RoboticsUnlocks);
             return;
         }
 
@@ -41,3 +19,4 @@ public class ShopCyborg : Shop
         Inv.SetupShop(ShopType.Cyborg);
     }
 }
+

@@ -4,6 +4,24 @@ namespace MerchantsPlus.Utils;
 
 public static class OtherMods
 {
+    private static bool TryGetMod(string modName, out Mod mod)
+    {
+        return ModLoader.TryGetMod(modName, out mod);
+    }
+
+    private static bool TryGetModType(string modName, string typeName, out Type type)
+    {
+        type = null;
+
+        if (!TryGetMod(modName, out Mod mod) || mod.Code is null)
+        {
+            return false;
+        }
+
+        type = mod.Code.GetType(typeName);
+        return type is not null;
+    }
+
     public static ModItem TryFindItem(Mod mod, string name)
     {
         return mod.TryFind(name, out ModItem item) ? item : null;
@@ -16,7 +34,7 @@ public static class OtherMods
 
     public static int TryFindItemType(string modName, string itemName)
     {
-        if (!ModLoader.TryGetMod(modName, out Mod mod))
+        if (!TryGetMod(modName, out Mod mod))
         {
             return ItemID.None;
         }
@@ -26,13 +44,7 @@ public static class OtherMods
 
     public static bool TryGetStaticBoolField(string modName, string typeName, string fieldName)
     {
-        if (!ModLoader.TryGetMod(modName, out Mod mod) || mod.Code is null)
-        {
-            return false;
-        }
-
-        Type type = mod.Code.GetType(typeName);
-        if (type is null)
+        if (!TryGetModType(modName, typeName, out Type type))
         {
             return false;
         }
@@ -43,13 +55,7 @@ public static class OtherMods
 
     public static bool TryInvokeBoolMember(string modName, string typeName, string memberName, string methodName)
     {
-        if (!ModLoader.TryGetMod(modName, out Mod mod) || mod.Code is null)
-        {
-            return false;
-        }
-
-        Type type = mod.Code.GetType(typeName);
-        if (type is null)
+        if (!TryGetModType(modName, typeName, out Type type))
         {
             return false;
         }

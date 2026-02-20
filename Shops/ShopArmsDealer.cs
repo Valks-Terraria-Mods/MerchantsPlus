@@ -2,43 +2,31 @@ namespace MerchantsPlus.Shops;
 
 public class ShopArmsDealer : Shop
 {
-    public override List<string> Shops { get; } = ["Guns"];
+    public override List<string> Shops { get; } = [.. ShopArmsDealerCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Guns")
+        if (shop == ShopArmsDealerCatalog.GunsShopName)
         {
-            ShopBulletMain();
-            ShopBulletOther();
-            ShopPistol();
-            ShopRifle();
-            ShopShotgun();
-
-            // Msc
-            if (Progression.Plantera)
-            {
-                AddItem(ItemID.SniperRifle);
-                AddItem(ItemID.RifleScope);
-            }
-
-            if (!Main.dayTime)
-            {
-                AddItem(ItemID.IllegalGunParts);
-            }
-
-            if (Progression.Hardmode)
-            {
-                AddItem(ItemID.EmptyBullet);
-            }
-
-            AddItem(ItemID.AmmoBox);
+            Guns();
             return;
         }
 
         // Default Shop
         Inv.SetupShop(ShopType.ArmsDealer);
+    }
+
+    private void Guns()
+    {
+        ShopBulletMain();
+        ShopBulletOther();
+        ShopPistol();
+        ShopRifle();
+        ShopShotgun();
+        AddConditionalOffers(ShopArmsDealerCatalog.GunUnlocks);
+        AddItem(ItemID.AmmoBox);
     }
 
     private void ShopBulletMain()
@@ -114,3 +102,4 @@ public class ShopArmsDealer : Shop
         NextSlot++;
     }
 }
+

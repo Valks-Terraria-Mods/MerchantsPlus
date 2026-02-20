@@ -2,25 +2,34 @@ namespace MerchantsPlus.Shops;
 
 public class ShopPirate : Shop
 {
-    public override List<string> Shops { get; } = ["Arrr"];
+    public override List<string> Shops { get; } = [.. ShopPirateCatalog.ShopNames];
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
 
-        if (shop == "Arrr")
+        if (ShopPirateCatalog.SectionsByShop.TryGetValue(shop, out (int? Price, int[] ItemIds)[] sections))
         {
-            AddItem(ItemID.Sail);
-            AddItem(ItemID.ParrotCracker);
-            AddItem(ItemID.BunnyCannon);
-            AddItem(ItemID.RangerEmblem, Coins.Platinum());
-            AddItem(ItemID.SorcererEmblem, Coins.Platinum());
-            AddItem(ItemID.SummonerEmblem, Coins.Platinum());
-            AddItem(ItemID.WarriorEmblem, Coins.Platinum());
+            AddSections(sections);
             return;
         }
 
         // Default Shop
         Inv.SetupShop(ShopType.Pirate);
+    }
+
+    private void AddSections((int? Price, int[] ItemIds)[] sections)
+    {
+        foreach ((int? Price, int[] ItemIds) in sections)
+        {
+            if (Price.HasValue)
+            {
+                AddItemsAtPrice(Price.Value, ItemIds);
+            }
+            else
+            {
+                AddItems(ItemIds);
+            }
+        }
     }
 }

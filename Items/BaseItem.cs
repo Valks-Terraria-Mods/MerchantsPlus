@@ -2,6 +2,14 @@
 
 public class BaseItem : GlobalItem
 {
+    protected static void ApplyCustomPrice(Item item, IReadOnlyDictionary<int, int> customPrices)
+    {
+        if (customPrices.TryGetValue(item.type, out int customPrice))
+        {
+            item.shopCustomPrice = customPrice;
+        }
+    }
+
     public override void SetDefaults(Item item)
     {
         base.SetDefaults(item);

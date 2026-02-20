@@ -2,7 +2,7 @@
 
 public class ItemsVanity : BaseItem
 {
-    private static readonly Dictionary<int, int> customPrices = new()
+    private static readonly Dictionary<int, int> _customPrices = new()
     {
         { ItemID.BeePants, Coins.Silver(5) },
         { ItemID.BeeShirt, Coins.Silver(5) },
@@ -83,10 +83,6 @@ public class ItemsVanity : BaseItem
     public override void SetDefaults(Item item)
     {
         base.SetDefaults(item);
-
-        if (customPrices.TryGetValue(item.type, out int customPrice))
-        {
-            item.shopCustomPrice = customPrice;
-        }
+        ApplyCustomPrice(item, _customPrices);
     }
 }

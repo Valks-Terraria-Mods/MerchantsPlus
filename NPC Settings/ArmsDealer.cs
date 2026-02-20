@@ -2,9 +2,54 @@
 
 public class ArmsDealer : BaseMerchant
 {
+    private static bool IsArmsDealer(NPC npc)
+    {
+        return npc.type == NPCID.ArmsDealer;
+    }
+
+    private static int GetProjectileType()
+    {
+        if (NPC.downedMoonlord)
+        {
+            return ProjectileID.MoonlordBullet;
+        }
+
+        if (NPC.downedPlantBoss)
+        {
+            return ProjectileID.ChlorophyteBullet;
+        }
+
+        if (Progression.DownedMechs(3))
+        {
+            return ProjectileID.CrystalBullet;
+        }
+
+        if (Progression.DownedMechs(2))
+        {
+            return ProjectileID.IchorBullet;
+        }
+
+        if (Progression.DownedMechs(1))
+        {
+            return ProjectileID.CursedBullet;
+        }
+
+        if (NPC.downedBoss2)
+        {
+            return ProjectileID.MeteorShot;
+        }
+
+        if (NPC.downedSlimeKing)
+        {
+            return ProjectileID.GoldenBullet;
+        }
+
+        return ProjectileID.Bullet;
+    }
+
     public override void GetChat(NPC npc, ref string chat)
     {
-        if (npc.type != NPCID.ArmsDealer)
+        if (!IsArmsDealer(npc))
         {
             return;
         }
@@ -14,23 +59,12 @@ public class ArmsDealer : BaseMerchant
 
     public override void TownNPCAttackProj(NPC npc, ref int projType, ref int attackDelay)
     {
-        if (npc.type != NPCID.ArmsDealer)
+        if (!IsArmsDealer(npc))
         {
             return;
         }
 
         base.TownNPCAttackProj(npc, ref projType, ref attackDelay);
-
-        projType = true switch
-        {
-            _ when NPC.downedMoonlord => ProjectileID.MoonlordBullet,
-            _ when NPC.downedPlantBoss => ProjectileID.ChlorophyteBullet,
-            _ when Progression.DownedMechs(3) => ProjectileID.CrystalBullet,
-            _ when Progression.DownedMechs(2) => ProjectileID.IchorBullet,
-            _ when Progression.DownedMechs(1) => ProjectileID.CursedBullet,
-            _ when NPC.downedBoss2 => ProjectileID.MeteorShot,
-            _ when NPC.downedSlimeKing => ProjectileID.GoldenBullet,
-            _ => ProjectileID.Bullet
-        };
+        projType = GetProjectileType();
     }
 }
