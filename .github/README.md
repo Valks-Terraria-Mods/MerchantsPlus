@@ -29,4 +29,4 @@ Q: I looked at the source code and the sell prices do not match up with that fro
 A: This is because of the "happiness currency multiplier" that currently cannot be disabled via modding.
 
 Q: My issue is not listed here?
-A: Ask for help in https://discord.gg/866cg8yfxZ
+A: Ask for help in https://discord.gg/j8HQZZ76r8
