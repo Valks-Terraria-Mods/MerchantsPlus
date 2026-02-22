@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 
@@ -215,7 +216,7 @@ public partial class ShowAllShopsUI
         return container;
     }
 
-    private static UITextPanel<string> CreateListButton(string text, bool selected)
+    private static UITextPanel<string> CreateListButton(string text, bool selected, bool hasNewUnlock = false)
     {
         UITextPanel<string> button = new(text, 0.78f, false)
         {
@@ -230,7 +231,28 @@ public partial class ShowAllShopsUI
             : new Color(12, 12, 12, 190);
         button.BorderColor = new Color(40, 40, 40, 210);
 
+        if (hasNewUnlock)
+        {
+            AppendNewUnlockAsterisk(button, text);
+        }
+
         return button;
+    }
+
+    private static void AppendNewUnlockAsterisk(UITextPanel<string> button, string baseText)
+    {
+        UIText marker = new("*", 0.86f)
+        {
+            TextColor = Color.Lime,
+        };
+        const float buttonTextScale = 0.78f;
+        const float nominalButtonWidth = 183f;
+        baseText ??= string.Empty;
+        float textWidth = FontAssets.MouseText.Value.MeasureString(baseText).X * buttonTextScale;
+        float suffixLeft = Math.Min(nominalButtonWidth - 12f, (nominalButtonWidth * 0.5f) + (textWidth * 0.5f) + 2f);
+        marker.Left.Set(suffixLeft, 0f);
+        marker.Top.Set(5f, 0f);
+        button.Append(marker);
     }
 
     private void CloseThisUI()

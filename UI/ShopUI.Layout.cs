@@ -1,5 +1,6 @@
 using MerchantsPlus.Shops;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 
@@ -136,6 +137,7 @@ public partial class ShopUI
 
         NPC npc = Array.Find(Main.npc, n => n.active && n.type == CurrentMerchantId);
         List<string> visibleShops = Shop.GetVisibleShops(CurrentMerchantId, shop, shop.Shops);
+        Dictionary<string, bool> hasUnseenUnlockByShop = BuildUnseenUnlockState(CurrentMerchantId, visibleShops);
 
         _merchantNameText.SetText($"Merchant: {(npc != null ? npc.TypeName : "Merchant")}");
 
@@ -156,7 +158,7 @@ public partial class ShopUI
             _hintText.SetText(WrapHintText($"{HintPrefix}No unlocked shops are visible yet."));
         }
 
-        string shopsSignature = string.Join('\u001F', visibleShops);
+        string shopsSignature = BuildShopListSignature(visibleShops, hasUnseenUnlockByShop);
         if (_lastMerchantId == CurrentMerchantId
             && _lastShopsSignature == shopsSignature
             && _lastSelectedIndex == shop.CycleIndex)
@@ -164,13 +166,16 @@ public partial class ShopUI
             return;
         }
 
-        PopulateShopList(visibleShops, shop.CycleIndex);
+        PopulateShopList(visibleShops, shop.CycleIndex, hasUnseenUnlockByShop);
         _lastMerchantId = CurrentMerchantId;
         _lastSelectedIndex = shop.CycleIndex;
         _lastShopsSignature = shopsSignature;
     }
 
-    private void PopulateShopList(IReadOnlyList<string> visibleShops, int selectedIndex)
+    private void PopulateShopList(
+        IReadOnlyList<string> visibleShops,
+        int selectedIndex,
+        IReadOnlyDictionary<string, bool> hasUnseenUnlockByShop)
     {
         _shopList.Clear();
 
@@ -186,13 +191,18 @@ public partial class ShopUI
         {
             int capturedIndex = i;
             string capturedShop = visibleShops[i];
-            UITextPanel<string> entry = CreateShopEntry(capturedShop, capturedIndex == selectedIndex);
-            entry.OnLeftClick += (_, _) => OpenShopByIndex(capturedIndex, capturedShop);
+            bool hasUnseenUnlock = hasUnseenUnlockByShop.TryGetValue(capturedShop, out bool hasUnseen) && hasUnseen;
+            UITextPanel<string> entry = CreateShopEntry(capturedShop, capturedIndex == selectedIndex, hasUnseenUnlock);
+            entry.OnLeftClick += (_, _) =>
+            {
+                ShopUnlockAsteriskTracker.AcknowledgeShop(CurrentMerchantId, capturedShop);
+                OpenShopByIndex(capturedIndex, capturedShop);
+            };
             _shopList.Add(entry);
         }
     }
 
-    private static UITextPanel<string> CreateShopEntry(string text, bool selected)
+    private static UITextPanel<string> CreateShopEntry(string text, bool selected, bool hasNewUnlock = false)
     {
         UITextPanel<string> panel = new(text, 0.76f, false)
         {
@@ -205,7 +215,73 @@ public partial class ShopUI
             ? new Color(26, 26, 26, 220)
             : new Color(12, 12, 12, 190);
         panel.BorderColor = new Color(40, 40, 40, 210);
+
+        if (hasNewUnlock)
+        {
+            AppendNewUnlockAsterisk(panel, text);
+        }
+
         return panel;
+    }
+
+    private static Dictionary<string, bool> BuildUnseenUnlockState(int merchantId, IReadOnlyList<string> visibleShops)
+    {
+        Dictionary<string, bool> map = new(StringComparer.Ordinal);
+        HashSet<string> seen = new(StringComparer.Ordinal);
+        foreach (string shopName in visibleShops)
+        {
+            if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
+            {
+                continue;
+            }
+
+            map[shopName] = ShopUnlockAsteriskTracker.HasUnseenUnlocks(merchantId, shopName);
+        }
+
+        return map;
+    }
+
+    private static string BuildShopListSignature(
+        IReadOnlyList<string> visibleShops,
+        IReadOnlyDictionary<string, bool> hasUnseenUnlockByShop)
+    {
+        if (visibleShops.Count == 0)
+        {
+            return string.Empty;
+        }
+
+        System.Text.StringBuilder signature = new(visibleShops.Count * 16);
+        foreach (string shopName in visibleShops)
+        {
+            if (string.IsNullOrWhiteSpace(shopName))
+            {
+                continue;
+            }
+
+            bool hasUnseenUnlock = hasUnseenUnlockByShop.TryGetValue(shopName, out bool hasUnseen) && hasUnseen;
+            _ = signature
+                .Append(shopName)
+                .Append(hasUnseenUnlock ? '*' : '-')
+                .Append('\u001F');
+        }
+
+        return signature.ToString();
+    }
+
+    private static void AppendNewUnlockAsterisk(UITextPanel<string> panel, string baseText)
+    {
+        UIText marker = new("*", 0.84f)
+        {
+            TextColor = Color.Lime,
+        };
+        const float buttonTextScale = 0.76f;
+        const float nominalButtonWidth = 163f;
+        baseText ??= string.Empty;
+        float textWidth = FontAssets.MouseText.Value.MeasureString(baseText).X * buttonTextScale;
+        float suffixLeft = Math.Min(nominalButtonWidth - 12f, (nominalButtonWidth * 0.5f) + (textWidth * 0.5f) + 2f);
+        marker.Left.Set(suffixLeft, 0f);
+        marker.Top.Set(4f, 0f);
+        panel.Append(marker);
     }
 
     private void OpenShopByIndex(int selectedIndex, string shopName)

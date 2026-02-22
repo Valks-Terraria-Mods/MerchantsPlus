@@ -78,6 +78,8 @@ public partial class ShowAllShopsUI
 
         HashSet<string> seen = new(StringComparer.Ordinal);
         IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop, merchantShop.Shops);
+        Dictionary<string, bool> hasUnseenUnlockByShop = BuildUnseenUnlockState(_selectedMerchantId, visibleShops);
+        int capturedMerchantId = _selectedMerchantId;
         foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
@@ -88,8 +90,13 @@ public partial class ShowAllShopsUI
             string capturedShopName = shopName;
             UITextPanel<string> btn = CreateListButton(
                 capturedShopName,
-                string.Equals(_selectedShopName, capturedShopName, StringComparison.Ordinal));
-            btn.OnLeftClick += (_, _) => SelectShop(capturedShopName);
+                string.Equals(_selectedShopName, capturedShopName, StringComparison.Ordinal),
+                hasUnseenUnlockByShop.TryGetValue(capturedShopName, out bool hasUnseenUnlock) && hasUnseenUnlock);
+            btn.OnLeftClick += (_, _) =>
+            {
+                ShopUnlockAsteriskTracker.AcknowledgeShop(capturedMerchantId, capturedShopName);
+                SelectShop(capturedShopName);
+            };
             _shopList.Add(btn);
         }
     }
@@ -128,6 +135,7 @@ public partial class ShowAllShopsUI
         InvalidateHintCache();
         InvalidatePreviewCache();
         EnsureValidSelectedShop();
+        AcknowledgeVisibleShopsForMerchant(merchantId);
         // In world-browser mode, selecting a merchant immediately selects/opens the first visible shop.
         // Mark selection as active so hint text refreshes for that newly selected shop.
         if (_onlyPresentTownMerchants && !string.IsNullOrWhiteSpace(_selectedShopName))
@@ -144,6 +152,7 @@ public partial class ShowAllShopsUI
     {
         _selectedShopName = shopName;
         _shopWasExplicitlyClicked = true;
+        ShopUnlockAsteriskTracker.AcknowledgeShop(_selectedMerchantId, _selectedShopName);
         InvalidateHintCache();
         InvalidatePreviewCache();
         PopulateShopList();
@@ -173,6 +182,34 @@ public partial class ShowAllShopsUI
             _selectedShopName = shopName;
             break;
         }
+    }
+
+    private static Dictionary<string, bool> BuildUnseenUnlockState(int merchantId, IReadOnlyList<string> shops)
+    {
+        Dictionary<string, bool> map = new(StringComparer.Ordinal);
+        HashSet<string> seen = new(StringComparer.Ordinal);
+        foreach (string shopName in shops)
+        {
+            if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
+            {
+                continue;
+            }
+
+            map[shopName] = ShopUnlockAsteriskTracker.HasUnseenUnlocks(merchantId, shopName);
+        }
+
+        return map;
+    }
+
+    private static void AcknowledgeVisibleShopsForMerchant(int merchantId)
+    {
+        if (merchantId <= NPCID.None || !ShopUI.Shops.TryGetValue(merchantId, out Shop merchantShop))
+        {
+            return;
+        }
+
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(merchantId, merchantShop, merchantShop.Shops);
+        ShopUnlockAsteriskTracker.AcknowledgeShops(merchantId, visibleShops);
     }
 
     private void UpdateSelectionLabels()
