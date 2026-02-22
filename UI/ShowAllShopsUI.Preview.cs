@@ -17,6 +17,10 @@ public partial class ShowAllShopsUI
     private const float PreviewSlotSpacing = 4f;
     private const float PreviewSlotsTop = 34f;
     private const float PreviewTooltipScale = 0.72f;
+    private const float CoinTextScale = 0.72f;
+    private const float CoinIconScale = 0.72f;
+    private const float CoinFooterBottomPadding = 10f;
+    private const float CoinFooterGap = 12f;
 
     private void InitializePreviewPanel(UIElement parent)
     {
@@ -274,11 +278,13 @@ public partial class ShowAllShopsUI
         return Math.Max(1, value);
     }
 
-    private static string FormatPriceText(long value, int specialCurrency)
+    private static List<(string Text, Color Color)> BuildPriceSegments(long value, int specialCurrency)
     {
+        List<(string Text, Color Color)> segments = [("Buy price: ", Color.White)];
         if (specialCurrency >= 0)
         {
-            return $"Buy price: {value} (special currency)";
+            segments.Add(($"{value} special currency", new Color(230, 210, 120)));
+            return segments;
         }
 
         long platinum = value / 1_000_000;
@@ -288,28 +294,46 @@ public partial class ShowAllShopsUI
         long silver = value / 100;
         long copper = value % 100;
 
-        List<string> parts = [];
+        bool any = false;
         if (platinum > 0)
         {
-            parts.Add($"{platinum}p");
+            segments.Add(($"{platinum}p", new Color(220, 220, 220)));
+            any = true;
         }
 
         if (gold > 0)
         {
-            parts.Add($"{gold}g");
+            if (any)
+            {
+                segments.Add((" ", Color.White));
+            }
+
+            segments.Add(($"{gold}g", new Color(255, 220, 120)));
+            any = true;
         }
 
         if (silver > 0)
         {
-            parts.Add($"{silver}s");
+            if (any)
+            {
+                segments.Add((" ", Color.White));
+            }
+
+            segments.Add(($"{silver}s", new Color(210, 210, 210)));
+            any = true;
         }
 
-        if (copper > 0 || parts.Count == 0)
+        if (copper > 0 || !any)
         {
-            parts.Add($"{copper}c");
+            if (any)
+            {
+                segments.Add((" ", Color.White));
+            }
+
+            segments.Add(($"{copper}c", new Color(220, 145, 105)));
         }
 
-        return $"Buy price: {string.Join(" ", parts)}";
+        return segments;
     }
 
     private void DrawPreviewTooltip(SpriteBatch spriteBatch)
@@ -325,20 +349,22 @@ public partial class ShowAllShopsUI
         string nameLine = string.IsNullOrWhiteSpace(_hoveredPreviewItem.Name)
             ? Lang.GetItemNameValue(_hoveredPreviewItem.type)
             : _hoveredPreviewItem.Name;
-        string priceLine = FormatPriceText(_hoveredPreviewPrice, _hoveredPreviewItem.shopSpecialCurrency);
+        List<(string Text, Color Color)> priceSegments = BuildPriceSegments(_hoveredPreviewPrice, _hoveredPreviewItem.shopSpecialCurrency);
         string helperLine = "Left click to buy";
 
-        string[] lines = [nameLine, priceLine, helperLine];
         var font = FontAssets.MouseText.Value;
-        float maxWidth = 0f;
-        foreach (string line in lines)
+        float nameWidth = font.MeasureString(nameLine).X * PreviewTooltipScale;
+        float helperWidth = font.MeasureString(helperLine).X * PreviewTooltipScale;
+        float priceWidth = 0f;
+        foreach ((string text, _) in priceSegments)
         {
-            maxWidth = Math.Max(maxWidth, font.MeasureString(line).X * PreviewTooltipScale);
+            priceWidth += font.MeasureString(text).X * PreviewTooltipScale;
         }
 
+        float maxWidth = Math.Max(nameWidth, Math.Max(priceWidth, helperWidth));
         float lineHeight = font.LineSpacing * PreviewTooltipScale;
         float boxWidth = maxWidth + 14f;
-        float boxHeight = (lines.Length * lineHeight) + 12f;
+        float boxHeight = (3 * lineHeight) + 12f;
 
         Vector2 cursor = Main.MouseScreen + new Vector2(22f, 16f);
         float maxX = Main.screenWidth - boxWidth - 8f;
@@ -354,16 +380,117 @@ public partial class ShowAllShopsUI
         spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(box.Right - 1, box.Y, 1, box.Height), new Color(36, 36, 36, 255));
 
         Vector2 textPos = new(box.X + 7f, box.Y + 6f);
-        Color[] colors = [Color.White, new Color(230, 210, 120), new Color(160, 160, 160)];
-        for (int i = 0; i < lines.Length; i++)
+        Terraria.Utils.DrawBorderString(
+            spriteBatch,
+            nameLine,
+            textPos,
+            Color.White,
+            PreviewTooltipScale);
+
+        float priceY = textPos.Y + lineHeight;
+        float priceX = textPos.X;
+        foreach ((string text, Color color) in priceSegments)
         {
             Terraria.Utils.DrawBorderString(
                 spriteBatch,
-                lines[i],
-                textPos + new Vector2(0f, i * lineHeight),
-                colors[i],
+                text,
+                new Vector2(priceX, priceY),
+                color,
                 PreviewTooltipScale);
+            priceX += font.MeasureString(text).X * PreviewTooltipScale;
         }
+
+        Terraria.Utils.DrawBorderString(
+            spriteBatch,
+            helperLine,
+            textPos + new Vector2(0f, lineHeight * 2f),
+            new Color(160, 160, 160),
+            PreviewTooltipScale);
+    }
+
+    private void DrawPreviewCoinBalance(SpriteBatch spriteBatch)
+    {
+        if (!_onlyPresentTownMerchants || _previewPanel is null || Main.LocalPlayer is null)
+        {
+            return;
+        }
+
+        long totalCopper = GetPlayerCoinTotal(Main.LocalPlayer);
+        long platinum = totalCopper / 1_000_000;
+        totalCopper %= 1_000_000;
+        long gold = totalCopper / 10_000;
+        totalCopper %= 10_000;
+        long silver = totalCopper / 100;
+        long copper = totalCopper % 100;
+
+        (int ItemId, long Amount, Color TextColor)[] entries =
+        [
+            (ItemID.PlatinumCoin, platinum, new Color(220, 220, 220)),
+            (ItemID.GoldCoin, gold, new Color(255, 220, 120)),
+            (ItemID.SilverCoin, silver, new Color(210, 210, 210)),
+            (ItemID.CopperCoin, copper, new Color(220, 145, 105)),
+        ];
+
+        var font = FontAssets.MouseText.Value;
+        float rowWidth = 0f;
+        float rowHeight = 0f;
+        for (int i = 0; i < entries.Length; i++)
+        {
+            Texture2D icon = TextureAssets.Item[entries[i].ItemId].Value;
+            float iconWidth = icon.Width * CoinIconScale;
+            float iconHeight = icon.Height * CoinIconScale;
+            float textWidth = font.MeasureString(entries[i].Amount.ToString()).X * CoinTextScale;
+            float textHeight = font.LineSpacing * CoinTextScale;
+
+            rowWidth += iconWidth + 4f + textWidth;
+            rowHeight = Math.Max(rowHeight, Math.Max(iconHeight, textHeight));
+            if (i < entries.Length - 1)
+            {
+                rowWidth += CoinFooterGap;
+            }
+        }
+
+        CalculatedStyle panel = _previewPanel.GetDimensions();
+        float x = panel.X + ((panel.Width - rowWidth) / 2f);
+        float y = panel.Y + panel.Height - rowHeight - CoinFooterBottomPadding;
+
+        for (int i = 0; i < entries.Length; i++)
+        {
+            Texture2D icon = TextureAssets.Item[entries[i].ItemId].Value;
+            Vector2 iconSize = new(icon.Width * CoinIconScale, icon.Height * CoinIconScale);
+            float textHeight = font.LineSpacing * CoinTextScale;
+            float textY = y + ((Math.Max(iconSize.Y, textHeight) - textHeight) / 2f);
+            float iconY = y + ((Math.Max(iconSize.Y, textHeight) - iconSize.Y) / 2f);
+
+            spriteBatch.Draw(icon, new Vector2(x, iconY), null, Color.White, 0f, Vector2.Zero, CoinIconScale, SpriteEffects.None, 0f);
+
+            string amountText = entries[i].Amount.ToString();
+            Vector2 textPos = new(x + iconSize.X + 4f, textY);
+            Terraria.Utils.DrawBorderString(spriteBatch, amountText, textPos, entries[i].TextColor, CoinTextScale);
+
+            float textWidth = font.MeasureString(amountText).X * CoinTextScale;
+            x += iconSize.X + 4f + textWidth + CoinFooterGap;
+        }
+    }
+
+    private static long GetPlayerCoinTotal(Player player)
+    {
+        if (player is null)
+        {
+            return 0L;
+        }
+
+        long copper = player.CountItem(ItemID.CopperCoin);
+        long silver = player.CountItem(ItemID.SilverCoin);
+        long gold = player.CountItem(ItemID.GoldCoin);
+        long platinum = player.CountItem(ItemID.PlatinumCoin);
+
+        long total = copper
+            + (silver * 100L)
+            + (gold * 10_000L)
+            + (platinum * 1_000_000L);
+
+        return Math.Max(0L, total);
     }
 
     private void ClearPreviewItems()

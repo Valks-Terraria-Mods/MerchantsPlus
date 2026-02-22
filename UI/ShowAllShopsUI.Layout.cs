@@ -139,6 +139,7 @@ public partial class ShowAllShopsUI
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
+        DrawPreviewCoinBalance(spriteBatch);
         DrawPreviewTooltip(spriteBatch);
 
         if (Main.LocalPlayer is not null && _rootPanel is not null)
