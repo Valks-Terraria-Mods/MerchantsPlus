@@ -33,7 +33,7 @@ public class ShopWitchDoctor : Shop
 
     private void Wings()
     {
-        AddItem(ItemID.CreativeWings, Coins.Platinum()); // Fledgling wings
+        AddItem(ShopWitchDoctorCatalog.PrehardmodeWingItemId, Coins.Platinum());
         AddConditionalOffers(ShopWitchDoctorCatalog.WingUnlocks);
     }
 }

@@ -26,78 +26,59 @@ public class ShopArmsDealer : Shop
         ShopRifle();
         ShopShotgun();
         AddConditionalOffers(ShopArmsDealerCatalog.GunUnlocks);
-        AddItem(ItemID.AmmoBox);
+        AddItem(ShopArmsDealerCatalog.AmmoBoxItemId);
     }
 
     private void ShopBulletMain()
     {
-        ReplaceItem(ItemID.MusketBall);
-
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.SilverBullet);
-        ReplaceItem(Progression.BrainOrEater, ItemID.MeteorShot);
-        ReplaceItem(Progression.WallOfFlesh, ItemID.CursedBullet);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.IchorBullet);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.CrystalBullet);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteBullet);
-        ReplaceItem(Progression.Moonlord, ItemID.MoonlordBullet);
-
-        NextSlot++;
+        ReplaceFromOffers(ShopArmsDealerCatalog.BulletMainReplacements);
     }
 
     private void ShopBulletOther()
     {
-        ReplaceItem(ItemID.PartyBullet);
-        ReplacePrice(Coins.Silver());
+        ReplaceFromOffers(ShopArmsDealerCatalog.BulletOtherReplacements);
 
+        ReplacePrice(Coins.Silver());
         ReplacePrice(Progression.SlimeKing, Coins.Copper(50));
         ReplacePrice(Progression.EyeOfCthulhu, Coins.Copper(25));
         ReplacePrice(Progression.BrainOrEater, Coins.Copper(5));
         ReplacePrice(Progression.QueenBee, Coins.Copper());
-        ReplaceItem(Progression.Skeletron, ItemID.ExplodingBullet);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.GoldenBullet);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.NanoBullet);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.HighVelocityBullet);
-        ReplaceItem(Progression.Plantera, ItemID.VenomBullet);
-
-        NextSlot++;
     }
 
     private void ShopPistol()
     {
-        ReplaceItem(ItemID.FlintlockPistol);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.TheUndertaker);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Revolver);
-        ReplaceItem(Progression.BrainOrEater, ItemID.Handgun);
-        ReplaceItem(Progression.QueenBee, ItemID.PhoenixBlaster);
-        ReplaceItem(Progression.Hardmode, ItemID.Uzi);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.VenusMagnum);
-
-        NextSlot++;
+        ReplaceFromOffers(ShopArmsDealerCatalog.PistolReplacements);
     }
 
     private void ShopRifle()
     {
-        ReplaceItem(ItemID.RedRyder);
-
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Musket);
-        ReplaceItem(Progression.BrainOrEater, ItemID.Minishark);
-        ReplaceItem(Progression.Hardmode, ItemID.ClockworkAssaultRifle);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.Gatligator);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.Megashark);
-        ReplaceItem(NPC.downedAncientCultist, ItemID.VortexBeater);
-        ReplaceItem(Progression.Moonlord, ItemID.SDMG);
-
-        NextSlot++;
+        ReplaceFromOffers(ShopArmsDealerCatalog.RifleReplacements);
     }
 
     private void ShopShotgun()
     {
-        ReplaceItem(ItemID.Boomstick);
+        ReplaceFromOffers(ShopArmsDealerCatalog.ShotgunReplacements);
+    }
 
-        ReplaceItem(Progression.Hardmode, ItemID.Shotgun);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.OnyxBlaster);
-        ReplaceItem(Progression.Plantera, ItemID.TacticalShotgun);
+    private void ReplaceFromOffers(IReadOnlyList<ConditionalShopOffer> offers)
+    {
+        foreach (ConditionalShopOffer offer in offers)
+        {
+            if (!offer.IsUnlocked())
+            {
+                continue;
+            }
+
+            if (offer.ItemIds.Length > 0)
+            {
+                ReplaceItem(offer.ItemIds[0]);
+            }
+
+            if (offer.Price.HasValue)
+            {
+                ReplacePrice(offer.Price.Value);
+            }
+        }
 
         NextSlot++;
     }

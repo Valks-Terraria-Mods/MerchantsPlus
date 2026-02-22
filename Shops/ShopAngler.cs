@@ -43,7 +43,7 @@ public class ShopAngler : Shop
 
     private void ShopFishingPole(int progression)
     {
-        ReplaceItem(ItemID.WoodFishingPole, Coins.Silver(10));
+        ReplaceItem(ShopAnglerCatalog.WoodFishingPoleItemId, Coins.Silver(10));
         ReplaceProgressionItems(progression, ShopAnglerCatalog.FishingPoleProgression);
 
         NextSlot++;

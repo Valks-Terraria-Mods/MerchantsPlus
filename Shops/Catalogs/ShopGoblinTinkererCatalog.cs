@@ -1,3 +1,5 @@
+using Terraria.WorldBuilding;
+
 namespace MerchantsPlus.Shops;
 
 public static class ShopGoblinTinkererCatalog
@@ -197,5 +199,14 @@ public static class ShopGoblinTinkererCatalog
         new(() => NPC.downedMechBoss1, ItemCosts.Accessories, ItemID.NeptunesShell),
     ];
 
+    public static int GetWatchByWorldOre()
+    {
+        return GenVars.goldBar > 0 ? ItemID.GoldWatch : ItemID.PlatinumWatch;
+    }
+
+    public static int GetEvilBossAccessory()
+    {
+        return WorldGen.crimson ? ItemID.BrainOfConfusion : ItemID.WormScarf;
+    }
 }
 

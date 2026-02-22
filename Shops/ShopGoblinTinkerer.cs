@@ -1,5 +1,3 @@
-using Terraria.WorldBuilding;
-
 namespace MerchantsPlus.Shops;
 
 public class ShopGoblinTinkerer : Shop
@@ -35,13 +33,8 @@ public class ShopGoblinTinkerer : Shop
 
     private void Informational(int progression)
     {
-        AddItem(GetWatchByWorldOre());
+        AddItem(ShopGoblinTinkererCatalog.GetWatchByWorldOre());
         AddProgressionItems(progression, ShopGoblinTinkererCatalog.InformationalProgressionItems);
-    }
-
-    private static int GetWatchByWorldOre()
-    {
-        return GenVars.goldBar > 0 ? ItemID.GoldWatch : ItemID.PlatinumWatch;
     }
 
     private void HealthAndMana(int progression)
@@ -76,13 +69,8 @@ public class ShopGoblinTinkerer : Shop
     private void Special()
     {
         AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPreBrainOffers);
-        AddItem(Progression.BrainOrEater, GetEvilBossAccessory(), ItemCosts.Accessories);
+        AddItem(Progression.BrainOrEater, ShopGoblinTinkererCatalog.GetEvilBossAccessory(), ItemCosts.Accessories);
         AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPostBrainOffers);
-    }
-
-    private static int GetEvilBossAccessory()
-    {
-        return WorldGen.crimson ? ItemID.BrainOfConfusion : ItemID.WormScarf;
     }
 
     private void Miscellaneous()

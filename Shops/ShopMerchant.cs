@@ -40,22 +40,18 @@ public class ShopMerchant : Shop
     private void Potions()
     {
         int progression = Progression.LevelFull();
-
-        AddItem(ItemID.RecallPotion, Coins.Silver());
-
-        AddItem(ItemID.WormholePotion, Coins.Silver());
-        AddItem(ItemID.StinkPotion, ItemCosts.Potions);
-        AddItem(ItemID.GenderChangePotion, Coins.Copper());
-        AddItemsAtPrice(ItemCosts.Potions, ShopMerchantCatalog.SupportPotions);
-        AddItem(Progression.EyeOfCthulhu, ItemID.ObsidianSkinPotion, ItemCosts.Potions);
+        AddItemsAtPrice(Coins.Silver(), ShopMerchantCatalog.SilverPotions);
+        AddItemsAtPrice(ItemCosts.Potions, ShopMerchantCatalog.BasicPotions);
+        AddItem(ShopMerchantCatalog.GenderChangePotionItemId, Coins.Copper());
+        AddItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.ObsidianSkinPotionItemId, ItemCosts.Potions);
 
         if (Progression.Hardmode)
         {
-            AddItem(Progression.Cultist ? ItemID.LuckPotionGreater : ItemID.LuckPotion, ItemCosts.Potions);
+            AddItem(Progression.Cultist ? ShopMerchantCatalog.LuckPotionGreaterItemId : ShopMerchantCatalog.LuckPotionItemId, ItemCosts.Potions);
         }
         else
         {
-            AddItem(ItemID.LuckPotionLesser, ItemCosts.Potions);
+            AddItem(ShopMerchantCatalog.LuckPotionLesserItemId, ItemCosts.Potions);
         }
 
         if (WorldUtils.HasNpc(NPCID.Angler))
@@ -63,8 +59,8 @@ public class ShopMerchant : Shop
             AddItemsAtPrice(ItemCosts.Potions, ShopMerchantCatalog.FishingPotions);
         }
 
-        AddItem(WorldUtils.HasNpc(NPCID.Painter), ItemID.BuilderPotion, ItemCosts.Potions);
-        AddItem(WorldUtils.HasNpc(NPCID.ArmsDealer), ItemID.AmmoReservationPotion, ItemCosts.Potions);
+        AddItem(WorldUtils.HasNpc(NPCID.Painter), ShopMerchantCatalog.BuilderPotionItemId, ItemCosts.Potions);
+        AddItem(WorldUtils.HasNpc(NPCID.ArmsDealer), ShopMerchantCatalog.AmmoReservationPotionItemId, ItemCosts.Potions);
         AddProgressionItems(progression, ShopMerchantCatalog.ProgressionPotions);
 
         // Room for 3 more potions...
@@ -72,18 +68,7 @@ public class ShopMerchant : Shop
 
     private void Wings()
     {
-        if (!Config.Instance.DisablePrehardmodeWings)
-        {
-            ReplaceItem(ItemID.CreativeWings, Coins.Gold(20)); // Fledgling wings
-        }
-
-        ReplaceItem(Progression.Hardmode, ItemID.AngelWings, Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DTownsWings, Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(2), ItemID.CrownosWings, Coins.Platinum());
-        ReplaceItem(Progression.DownedMechs(3), ItemID.CenxsWings, Coins.Platinum());
-        ReplaceItem(Progression.Plantera, ItemID.JimsWings, Coins.Platinum());
-        ReplaceItem(Progression.Golem, ItemID.LeinforsWings, Coins.Platinum());
-        ReplaceItem(Progression.Fishron, ItemID.FishronWings, Coins.Platinum());
+        ReplaceFromOffers(ShopMerchantCatalog.WingReplacements);
         ReplaceItem(Progression.Moonlord, GetClassItem(ShopMerchantCatalog.MoonlordWings), Coins.Platinum());
 
         NextSlot++;
@@ -91,16 +76,10 @@ public class ShopMerchant : Shop
 
     private void Pickaxe()
     {
-        ReplaceItem(IronOrLead(ItemID.IronPickaxe, ItemID.LeadPickaxe));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldPickaxe, ItemID.PlatinumPickaxe));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.NightmarePickaxe, ItemID.DeathbringerPickaxe));
-
-        ReplaceItem(Progression.Skeletron, ItemID.MoltenPickaxe);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltPickaxe);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilPickaxe);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophytePickaxe);
-        ReplaceItem(Progression.Plantera, ItemID.PickaxeAxe);
-        ReplaceItem(Progression.Golem, ItemID.Picksaw);
+        ReplaceItem(ShopMerchantCatalog.GetBasePickaxe());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyePickaxe());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilPickaxe());
+        ReplaceFromOffers(ShopMerchantCatalog.PickaxeReplacements);
         ReplaceClassItem(Progression.Moonlord, ShopMerchantCatalog.MoonlordPickaxes);
 
         NextSlot++;
@@ -108,27 +87,20 @@ public class ShopMerchant : Shop
 
     private void Axe()
     {
-        ReplaceItem(IronOrLead(ItemID.IronAxe, ItemID.LeadAxe));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldAxe, ItemID.PlatinumAxe));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.WarAxeoftheNight, ItemID.BloodLustCluster));
-
-        ReplaceItem(Progression.Hardmode, ItemID.MoltenHamaxe);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltWaraxe);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilWaraxe);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteGreataxe);
+        ReplaceItem(ShopMerchantCatalog.GetBaseAxe());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeAxe());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilAxe());
+        ReplaceFromOffers(ShopMerchantCatalog.AxeReplacements);
         ReplaceClassItem(Progression.Moonlord, ShopMerchantCatalog.MoonlordHamaxes);
         NextSlot++;
     }
 
     private void Hammer()
     {
-        ReplaceItem(IronOrLead(ItemID.IronHammer, ItemID.LeadHammer));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldHammer, ItemID.PlatinumHammer));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.TheBreaker, ItemID.FleshGrinder));
-
-        ReplaceItem(Progression.Skeletron, ItemID.MoltenHamaxe);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.Hammush);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ChlorophyteJackhammer);
+        ReplaceItem(ShopMerchantCatalog.GetBaseHammer());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeHammer());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilHammer());
+        ReplaceFromOffers(ShopMerchantCatalog.HammerReplacements);
         ReplaceClassItem(Progression.Moonlord, ShopMerchantCatalog.MoonlordHamaxes);
 
         NextSlot++;
@@ -136,10 +108,10 @@ public class ShopMerchant : Shop
 
     private void Helmet()
     {
-        ReplaceItem(CopperOrTin(ItemID.CopperHelmet, ItemID.TinHelmet));
-        ReplaceItem(Progression.SlimeKing, IronOrLead(ItemID.IronHelmet, ItemID.LeadHelmet));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldHelmet, ItemID.PlatinumHelmet));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.ShadowHelmet, ItemID.CrimsonHelmet));
+        ReplaceItem(ShopMerchantCatalog.GetBaseHelmet());
+        ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeHelmet());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeHelmet());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilHelmet());
 
         ReplaceClassItem(Progression.Skeletron, ShopMerchantCatalog.SkeletronHelmets);
         ReplaceClassItem(Progression.DownedMechs(1), ShopMerchantCatalog.MechTierOneHelmets);
@@ -152,10 +124,10 @@ public class ShopMerchant : Shop
 
     private void Breastplate()
     {
-        ReplaceItem(CopperOrTin(ItemID.CopperChainmail, ItemID.TinChainmail));
-        ReplaceItem(Progression.SlimeKing, IronOrLead(ItemID.IronChainmail, ItemID.LeadChainmail));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldChainmail, ItemID.PlatinumChainmail));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.ShadowScalemail, ItemID.CrimsonScalemail));
+        ReplaceItem(ShopMerchantCatalog.GetBaseBreastplate());
+        ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeBreastplate());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBreastplate());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilBreastplate());
 
         ReplaceClassItem(Progression.Skeletron, ShopMerchantCatalog.SkeletronBreastplates);
         ReplaceClassItem(Progression.DownedMechs(1), ShopMerchantCatalog.MechTierOneBreastplates);
@@ -168,10 +140,10 @@ public class ShopMerchant : Shop
 
     private void ShopGreaves()
     {
-        ReplaceItem(CopperOrTin(ItemID.CopperGreaves, ItemID.TinGreaves));
-        ReplaceItem(Progression.SlimeKing, IronOrLead(ItemID.IronGreaves, ItemID.LeadGreaves));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldGreaves, ItemID.PlatinumGreaves));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.ShadowGreaves, ItemID.CrimsonGreaves));
+        ReplaceItem(ShopMerchantCatalog.GetBaseGreaves());
+        ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeGreaves());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeGreaves());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilGreaves());
 
         ReplaceClassItem(Progression.Skeletron, ShopMerchantCatalog.SkeletronGreaves);
         ReplaceClassItem(Progression.DownedMechs(1), ShopMerchantCatalog.MechTierOneGreaves);
@@ -184,161 +156,79 @@ public class ShopMerchant : Shop
 
     private void Shortswords()
     {
-        ReplaceItem(IronOrLead(ItemID.IronShortsword, ItemID.LeadShortsword));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldShortsword, ItemID.PlatinumShortsword));
+        ReplaceItem(ShopMerchantCatalog.GetBaseShortsword());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeShortsword());
 
         NextSlot++;
     }
 
     private void Broadswords()
     {
-        ReplaceItem(IronOrLead(ItemID.IronBroadsword, ItemID.LeadBroadsword));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldBroadsword, ItemID.PlatinumBroadsword));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.LightsBane, ItemID.BloodButcherer));
-
-        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.Arkhalis);
-        ReplaceItem(Progression.QueenBee, ItemID.BeeKeeper);
-        ReplaceItem(Progression.Hardmode, ItemID.BreakerBlade);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.CobaltSword);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.MythrilSword);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.TitaniumSword);
-        ReplaceItem(Progression.Plantera, ItemID.Seedler);
-        ReplaceItem(Progression.Moonlord, ItemID.TerraBlade);
+        ReplaceItem(ShopMerchantCatalog.GetBaseBroadsword());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBroadsword());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilBroadsword());
+        ReplaceFromOffers(ShopMerchantCatalog.BroadswordReplacements);
 
         NextSlot++;
     }
 
     private void Bows()
     {
-        ReplaceItem(IronOrLead(ItemID.IronBow, ItemID.LeadBow));
-        ReplaceItem(Progression.EyeOfCthulhu, GoldOrPlatinum(ItemID.GoldBow, ItemID.PlatinumBow));
-        ReplaceItem(Progression.BrainOrEater, CorruptionOrCrimson(ItemID.DemonBow, ItemID.TendonBow));
-
-        ReplaceItem(Progression.QueenBee, ItemID.BeesKnees);
-        ReplaceItem(Progression.Skeletron, ItemID.MoltenFury);
-        ReplaceItem(Progression.Hardmode, ItemID.Marrow);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.IceBow);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.DaedalusStormbow);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ShadowFlameBow);
-        ReplaceItem(Progression.Plantera, ItemID.DD2PhoenixBow);
-        ReplaceItem(Progression.Moonlord, ItemID.Phantasm);
+        ReplaceItem(ShopMerchantCatalog.GetBaseBow());
+        ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBow());
+        ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilBow());
+        ReplaceFromOffers(ShopMerchantCatalog.BowReplacements);
 
         NextSlot++;
     }
 
     private void MageWeapon()
     {
-        ReplaceItem(ItemID.WandofSparking);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.EmeraldStaff);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.AmberStaff);
-        ReplaceItem(Progression.GoblinArmy, ItemID.DiamondStaff);
-        ReplaceItem(Progression.BrainOrEater, ItemID.SpaceGun);
-        ReplaceItem(Progression.QueenBee, ItemID.BookofSkulls);
-        ReplaceItem(Progression.Skeletron, ItemID.DemonScythe);
-        ReplaceItem(Progression.Hardmode, ItemID.LaserRifle);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.SkyFracture);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.MagicDagger);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.FrostStaff);
-        ReplaceItem(Progression.Plantera, ItemID.UnholyTrident);
-        ReplaceItem(Progression.Golem, ItemID.HeatRay);
-        ReplaceItem(NPC.downedFrost, ItemID.Razorpine);
-        ReplaceItem(WorldUtils.Kills(NPCID.DD2Betsy) > 0, ItemID.ApprenticeStaffT3);
-        ReplaceItem(NPC.downedMartians, ItemID.LaserMachinegun);
-        ReplaceItem(NPC.downedFishron, ItemID.ChargedBlasterCannon);
-        ReplaceItem(NPC.downedAncientCultist, ItemID.SpectreStaff);
-        ReplaceItem(Progression.Moonlord, ItemID.Phantasm);
+        ReplaceFromOffers(ShopMerchantCatalog.MageWeaponReplacements);
 
         NextSlot++;
     }
 
     private void SummonerWeapon()
     {
-        ReplaceItem(ItemID.SlimeStaff, Coins.Gold(2));
-        ReplaceItem(Progression.BloodMoon, ItemID.VampireFrogStaff);
-        ReplaceItem(Progression.QueenBee, ItemID.HornetStaff);
-        ReplaceItem(Progression.Skeletron, ItemID.ImpStaff);
-        ReplaceItem(Progression.Hardmode, ItemID.SpiderStaff);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.OpticStaff);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.PygmyStaff);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.XenoStaff);
-        ReplaceItem(Progression.Plantera, ItemID.RavenStaff);
-        ReplaceItem(Progression.Golem, ItemID.PirateStaff);
-        ReplaceItem(NPC.downedFrost, ItemID.TempestStaff);
-        ReplaceItem(NPC.downedAncientCultist, ItemID.DeadlySphereStaff);
-        ReplaceItem(Progression.Moonlord, ItemID.StardustDragonStaff);
+        ReplaceFromOffers(ShopMerchantCatalog.SummonerWeaponReplacements);
+        ReplacePrice(Coins.Gold(2));
 
         NextSlot++;
     }
 
     private void Mounts()
     {
-        AddItem(ItemID.FuzzyCarrot, ItemCosts.Mounts);
-
-        AddItem(WorldUtils.Kills(NPCID.KingSlime) >= 1, ItemID.SlimySaddle, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.EyeofCthulhu) >= 1, ItemID.HardySaddle, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.QueenBee) >= 1, ItemID.HoneyedGoggles, ItemCosts.Mounts);
-        AddItem(Progression.Hardmode, ItemID.AncientHorn, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.Retinazer) >= 1, ItemID.ReindeerBells, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.TheDestroyer) >= 1, ItemID.ScalyTruffle, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.SkeletronPrime) >= 1, ItemID.BrainScrambler, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.Plantera) >= 1, ItemID.BlessedApple, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.MartianSaucer) >= 1, ItemID.CosmicCarKey, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.DukeFishron) >= 1, ItemID.ShrimpyTruffle, ItemCosts.Mounts);
-        AddItem(WorldUtils.Kills(NPCID.MoonLordCore) >= 1, ItemID.DrillContainmentUnit, ItemCosts.Mounts);
+        AddItemsAtPrice(ItemCosts.Mounts, ShopMerchantCatalog.BaseMounts);
+        AddConditionalOffers(ShopMerchantCatalog.MountUnlocks);
     }
 
     private void Pets()
     {
         AddItemsAtPrice(ItemCosts.Pets, ShopMerchantCatalog.PetLicenses);
-
-        AddItem(Progression.SlimeKing, ItemID.Fish, ItemCosts.Pets);
-        AddItem(Progression.SlimeKing, ItemID.ZephyrFish, ItemCosts.Pets);
-        AddItem(Progression.EyeOfCthulhu, ItemID.EyeSpring, ItemCosts.Pets);
-        AddItem(Progression.GoblinArmy, ItemID.BabyGrinchMischiefWhistle, ItemCosts.Pets);
-        AddItem(Progression.EyeOfCthulhu, ItemID.EatersBone, ItemCosts.Pets);
-        AddItem(Progression.EyeOfCthulhu, ItemID.BoneRattle, ItemCosts.Pets);
-        AddItem(Progression.Skeletron, ItemID.BoneKey, ItemCosts.Pets);
-        AddItem(Progression.Skeletron, ItemID.TartarSauce, ItemCosts.Pets);
-        AddItem(Progression.QueenBee, ItemID.Nectar, ItemCosts.Pets);
-        AddItem(Progression.Hardmode, ItemID.CompanionCube, ItemCosts.Pets);
-        AddItem(Progression.Hardmode, ItemID.AmberMosquito, ItemCosts.Pets);
-        AddItem(Progression.Plantera, ItemID.TikiTotem, ItemCosts.Pets);
-        AddItem(Progression.Pirates, ItemID.ParrotCracker, ItemCosts.Pets);
-        AddItem(Progression.Christmas, ItemID.ToySled, ItemCosts.Pets);
-
-        if (Progression.Halloween)
-        {
-            AddItemsAtPrice(ItemCosts.Pets, ShopMerchantCatalog.HalloweenPets);
-        }
-
-        AddItem(Progression.Fishron, ItemID.Seaweed, ItemCosts.Pets);
-        AddItem(Progression.Fishron, ItemID.LizardEgg, ItemCosts.Pets);
-        AddItem(Progression.Cultist, ItemID.DD2PetDragon, ItemCosts.Pets);
-        AddItem(Progression.Cultist, ItemID.DD2PetGato, ItemCosts.Pets);
-        AddItem(Progression.Moonlord, ItemID.StrangeGlowingMushroom, ItemCosts.Pets);
+        AddConditionalOffers(ShopMerchantCatalog.PetUnlocks);
     }
 
     private void Ores()
     {
-        AddItem(CopperOrTin(ItemID.CopperBar, ItemID.TinBar), 50);
+        AddItem(ShopMerchantCatalog.GetBaseOre(), 50);
 
         if (Progression.SlimeKing)
         {
-            AddItem(IronOrLead(ItemID.IronBar, ItemID.LeadBar), 100);
-            AddItem(SilverOrTungsten(ItemID.SilverBar, ItemID.TungstenBar), 150);
-            AddItem(GoldOrPlatinum(ItemID.GoldBar, ItemID.PlatinumBar), 200);
+            AddItem(ShopMerchantCatalog.GetTierOneOre(), 100);
+            AddItem(ShopMerchantCatalog.GetTierTwoOre(), 150);
+            AddItem(ShopMerchantCatalog.GetTierThreeOre(), 200);
         }
 
         if (Progression.EyeOfCthulhu)
         {
-            AddItem(CorruptionOrCrimson(ItemID.DemoniteBar, ItemID.CrimtaneBar), 250);
+            AddItem(ShopMerchantCatalog.GetEvilOre(), 250);
         }
 
         if (Progression.BrainOrEater)
         {
-            AddItem(ItemID.MeteoriteBar, 300);
-            AddItem(Progression.Hardmode, ItemID.HellstoneBar, 350);
+            AddItem(ShopMerchantCatalog.MeteoriteOreItemId, 300);
+            AddItem(Progression.Hardmode, ShopMerchantCatalog.HellstoneOreItemId, 350);
         }
 
         if (Progression.DownedMechs(1))
@@ -354,17 +244,16 @@ public class ShopMerchant : Shop
         if (Progression.DownedMechs(3))
         {
             AddItemsAtPrice(500, ShopMerchantCatalog.HardmodeBarsTier3);
-
-            AddItem(ItemID.HallowedBar, 550);
+            AddItem(ShopMerchantCatalog.HallowedOreItemId, 550);
         }
 
-        AddItem(Progression.Plantera, ItemID.ChlorophyteBar, 600);
-        AddItem(Progression.Moonlord, ItemID.LunarBar, 650);
+        AddItem(Progression.Plantera, ShopMerchantCatalog.ChlorophyteOreItemId, 600);
+        AddItem(Progression.Moonlord, ShopMerchantCatalog.LunarOreItemId, 650);
     }
 
     private void FishingRod()
     {
-        ReplaceItem(ItemID.WoodFishingPole, Coins.Silver(10));
+        ReplaceItem(ShopMerchantCatalog.WoodFishingPoleItemId, Coins.Silver(10));
         ReplaceProgressionItems(Progression.LevelFull(), ShopMerchantCatalog.FishingRodProgression);
 
         NextSlot++;
@@ -372,15 +261,15 @@ public class ShopMerchant : Shop
 
     private void Gear()
     {
-        AddItem(ItemID.Sickle);
+        AddItems(ShopMerchantCatalog.GearBasics);
 
         if (!Main.hardMode)
         {
-            AddItem(ItemID.BugNet);
+            AddItem(ShopMerchantCatalog.PreHardmodeBugNetItemId);
         }
         else
         {
-            AddItem(ItemID.GoldenBugNet);
+            AddItem(ShopMerchantCatalog.HardmodeBugNetItemId);
         }
 
         FishingRod();
@@ -401,13 +290,13 @@ public class ShopMerchant : Shop
         Hooks();
         Boots();
 
-        AddItem(ItemID.PiggyBank);
-        AddItem(ItemID.Safe, Coins.Gold());
-        AddItem(ItemID.Wood, Coins.Silver());
+        AddItem(ShopMerchantCatalog.PiggyBankItemId);
+        AddItem(ShopMerchantCatalog.SafeItemId, Coins.Gold());
+        AddItem(ShopMerchantCatalog.WoodItemId, Coins.Silver());
 
         BuffPotion();
 
-        AddItem(ItemID.EmptyBucket, Coins.Gold());
+        AddItem(ShopMerchantCatalog.EmptyBucketItemId, Coins.Gold());
 
         Wings();
     }
@@ -450,7 +339,7 @@ public class ShopMerchant : Shop
     private void ReplaceClassItem(bool condition, ClassItemSet classItemSet)
     {
         int classItemId = GetClassItem(classItemSet);
-        ReplaceItem(condition && classItemId > ItemID.None, classItemId);
+        ReplaceItem(condition && classItemId > 0, classItemId);
     }
 
     private static int GetClassItem(ClassItemSet classItemSet)
@@ -458,45 +347,9 @@ public class ShopMerchant : Shop
         return classItemSet.GetItemId(PlayerUtils.GetPlayerClass());
     }
 
-    private static int CopperOrTin(int copperItemId, int tinItemId)
-    {
-        return GenVars.copperBar > 0 ? copperItemId : tinItemId;
-    }
-
-    private static int IronOrLead(int ironItemId, int leadItemId)
-    {
-        return GenVars.ironBar > 0 ? ironItemId : leadItemId;
-    }
-
-    private static int SilverOrTungsten(int silverItemId, int tungstenItemId)
-    {
-        return GenVars.silverBar > 0 ? silverItemId : tungstenItemId;
-    }
-
-    private static int GoldOrPlatinum(int goldItemId, int platinumItemId)
-    {
-        return GenVars.goldBar > 0 ? goldItemId : platinumItemId;
-    }
-
-    private static int CorruptionOrCrimson(int corruptionItemId, int crimsonItemId)
-    {
-        return WorldGen.crimson ? crimsonItemId : corruptionItemId;
-    }
-
     private void Boots()
     {
-        ReplaceItem(ItemID.HermesBoots);
-
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.FlurryBoots);
-        ReplaceItem(Progression.BrainOrEater, ItemID.SailfishBoots);
-        ReplaceItem(Progression.QueenBee, ItemID.SandBoots);
-        ReplaceItem(Progression.Plantera, ItemID.AmphibianBoots);
-        ReplaceItem(Progression.WallOfFlesh, ItemID.SpectreBoots);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.FairyBoots);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.HellfireTreads);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.LightningBoots);
-        ReplaceItem(Progression.Golem, ItemID.FrostsparkBoots);
-        ReplaceItem(Progression.Moonlord, ItemID.TerrasparkBoots);
+        ReplaceFromOffers(ShopMerchantCatalog.BootReplacements);
 
         NextSlot++;
     }
@@ -504,114 +357,59 @@ public class ShopMerchant : Shop
 
     private void HealPotion()
     {
-        ReplaceItem(ItemID.LesserHealingPotion);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.Eggnog);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.LesserRestorationPotion);
-        ReplaceItem(Progression.BrainOrEater, ItemID.Honeyfin);
-        ReplaceItem(Progression.Skeletron, ItemID.HealingPotion);
-        ReplaceItem(Progression.Hardmode, ItemID.RestorationPotion);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.StrangeBrew);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.GreaterHealingPotion);
-        ReplaceItem(Progression.Moonlord, ItemID.SuperHealingPotion);
+        ReplaceFromOffers(ShopMerchantCatalog.HealingPotionReplacements);
 
         NextSlot++;
     }
 
     private void ManaPotion()
     {
-        ReplaceItem(ItemID.LesserManaPotion);
-
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.ManaPotion);
-        ReplaceItem(Progression.Skeletron, ItemID.GreaterManaPotion);
-        ReplaceItem(Progression.Moonlord, ItemID.SuperManaPotion);
+        ReplaceFromOffers(ShopMerchantCatalog.ManaPotionReplacements);
 
         NextSlot++;
     }
 
     private void Torches()
     {
-        ReplaceItem(ItemID.CactusCandle, Coins.Silver());
-
-        ReplaceItem(Progression.SlimeKing, ItemID.RichMahoganyCandle);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.Torch);
-        ReplaceItem(Progression.Skeletron, ItemID.BoneTorch);
-        ReplaceItem(Progression.Hardmode, ItemID.CursedTorch);
-        ReplaceItem(Progression.Moonlord, ItemID.UltrabrightTorch);
+        ReplaceFromOffers(ShopMerchantCatalog.TorchReplacements);
+        ReplacePrice(Coins.Silver());
 
         NextSlot++;
     }
 
     private void Arrows()
     {
-        ReplaceItem(ItemID.WoodenArrow);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.BoneArrow);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.FlamingArrow);
-        ReplaceItem(Progression.BrainOrEater, ItemID.FrostburnArrow);
-        ReplaceItem(Progression.Skeletron, ItemID.JestersArrow);
-        ReplaceItem(Progression.Hardmode, ItemID.UnholyArrow);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.HolyArrow);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.CursedArrow);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.IchorArrow);
-        ReplaceItem(Progression.Plantera, ItemID.ChlorophyteArrow);
-        ReplaceItem(Progression.Moonlord, ItemID.MoonlordArrow);
+        ReplaceFromOffers(ShopMerchantCatalog.ArrowReplacements);
 
         NextSlot++;
     }
 
     private void Rope()
     {
-        ReplaceItem(ItemID.VineRope, Coins.Copper());
-
-        ReplaceItem(Progression.SlimeKing, ItemID.Rope);
-        ReplaceItem(Progression.Skeletron, ItemID.Chain);
+        ReplaceFromOffers(ShopMerchantCatalog.RopeReplacements);
+        ReplacePrice(Coins.Copper());
 
         NextSlot++;
     }
 
     private void LightPet()
     {
-        ReplaceItem(ItemID.FairyBell, Coins.Gold(2));
-
-        ReplaceItem(Progression.Hardmode, ItemID.WispinaBottle);
+        ReplaceFromOffers(ShopMerchantCatalog.LightPetReplacements);
+        ReplacePrice(Coins.Gold(2));
 
         NextSlot++;
     }
 
     private void ThrowerWep()
     {
-        ReplaceItem(ItemID.Snowball);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.Shuriken);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.ThrowingKnife);
-        ReplaceItem(Progression.GoblinArmy, ItemID.PoisonedKnife);
-        ReplaceItem(Progression.BrainOrEater, ItemID.BoneDagger);
-        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.SpikyBall);
-        ReplaceItem(Progression.QueenBee, ItemID.Javelin);
-        ReplaceItem(Progression.Skeletron, ItemID.Bone);
-        ReplaceItem(Progression.Hardmode, ItemID.MolotovCocktail);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.BoneJavelin);
+        ReplaceFromOffers(ShopMerchantCatalog.ThrowerReplacements);
 
         NextSlot++;
     }
 
     private void Hooks()
     {
-        ReplaceItem(ItemID.GrapplingHook);
-
-        ReplaceItem(Progression.SlimeKing, ItemID.AmethystHook);
-        ReplaceItem(Progression.EyeOfCthulhu, ItemID.TopazHook);
-        ReplaceItem(Progression.GoblinArmy, ItemID.SapphireHook);
-        ReplaceItem(Progression.BrainOrEater, ItemID.EmeraldHook);
-        ReplaceItem(WorldUtils.Kills(NPCID.DD2DarkMageT1) > 0, ItemID.RubyHook);
-        ReplaceItem(Progression.QueenBee, ItemID.DiamondHook);
-        ReplaceItem(Progression.Skeletron, ItemID.SkeletronHand);
-        ReplaceItem(Progression.Hardmode, ItemID.IvyWhip);
-        ReplaceItem(Progression.DownedMechs(1), ItemID.DualHook);
-        ReplaceItem(Progression.DownedMechs(2), ItemID.SpookyHook);
-        ReplaceItem(Progression.DownedMechs(3), ItemID.ChristmasHook);
-        ReplaceItem(Progression.Moonlord, ItemID.LunarHook);
+        ReplaceFromOffers(ShopMerchantCatalog.HookReplacements);
 
         NextSlot++;
     }
@@ -628,7 +426,28 @@ public class ShopMerchant : Shop
 
         if (playerClass is PlayerClass.Melee or PlayerClass.Ranger)
         {
-            AddItem(ItemID.ArcheryPotion, ItemCosts.Potions);
+            AddItem(ShopMerchantCatalog.ArcheryPotionItemId, ItemCosts.Potions);
+        }
+    }
+
+    private void ReplaceFromOffers(IReadOnlyList<ConditionalShopOffer> offers)
+    {
+        foreach (ConditionalShopOffer offer in offers)
+        {
+            if (!offer.IsUnlocked())
+            {
+                continue;
+            }
+
+            if (offer.ItemIds.Length > 0)
+            {
+                ReplaceItem(offer.ItemIds[0]);
+            }
+
+            if (offer.Price.HasValue)
+            {
+                ReplacePrice(offer.Price.Value);
+            }
         }
     }
 }

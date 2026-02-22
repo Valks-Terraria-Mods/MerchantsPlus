@@ -5,6 +5,7 @@ public static class ShopWitchDoctorCatalog
     public const string GearShopName = "Gear";
     public const string FlasksShopName = "Flasks";
     public const string WingsShopName = "Wings";
+    public const int PrehardmodeWingItemId = ItemID.CreativeWings;
 
     public static readonly string[] ShopNames =
     [

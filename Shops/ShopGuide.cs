@@ -45,27 +45,27 @@ public class ShopGuide : Shop
 
         if (!WorldUtils.IsNpcHere(NPCID.Merchant))
         {
-            AddItem(ItemID.Torch);
+            AddItem(ShopGuideCatalog.TorchItemId);
         }
 
         if (Progression.Skeletron && !Progression.Hardmode)
         {
-            AddItem(ItemID.GuideVoodooDoll, Coins.Gold(5));
+            AddItem(ShopGuideCatalog.GuideVoodooDollItemId, Coins.Gold(5));
         }
 
         if (!Progression.Hardmode && (Progression.EaterOfWorlds || Progression.BrainOfCthulhu))
         {
-            AddItem(ItemID.Obsidian, Coins.Silver());
+            AddItem(ShopGuideCatalog.ObsidianItemId, Coins.Silver());
         }
 
         if (!WorldUtils.IsNpcHere(NPCID.Pirate))
         {
-            AddItem(ItemID.Cannon, Coins.Gold(2));
-            AddItem(ItemID.Cannonball);
+            AddItem(ShopGuideCatalog.CannonItemId, Coins.Gold(2));
+            AddItem(ShopGuideCatalog.CannonballItemId);
         }
 
-        AddItem(ItemID.Gel, Coins.Silver());
-        AddItem(ItemID.Bed, Coins.Silver(10));
+        AddItem(ShopGuideCatalog.GelItemId, Coins.Silver());
+        AddItem(ShopGuideCatalog.BedItemId, Coins.Silver(10));
     }
 
     private void Pylons()
@@ -80,286 +80,232 @@ public class ShopGuide : Shop
 
     private void CalamityBosses()
     {
-        AddCrossModBossSummon(ModCalamity.Items.DesertMedallion);
+        AddCrossModBossSummon(ShopGuideCatalog.CalamityDesertMedallion);
 
         if (ModCalamity.Bosses.DesertScourgeDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.DecapoditaSprout);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityDecapoditaSprout);
         }
 
         if (ModCalamity.Bosses.CrabulonDowned)
         {
-            AddCrossModBossSummon(WorldGen.crimson ? ModCalamity.Items.BloodyWormFood : ModCalamity.Items.Teratoma);
+            AddCrossModBossSummon(WorldGen.crimson ? ShopGuideCatalog.CalamityBloodyWormFood : ShopGuideCatalog.CalamityTeratoma);
         }
 
         if (ModCalamity.Bosses.PerforatorDowned || ModCalamity.Bosses.TheHiveMindDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.OverloadedSludge);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityOverloadedSludge);
         }
 
         if (ModCalamity.Bosses.SlimeGodDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.CryoKey);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCryoKey);
         }
 
         // Hardmode
         if (ModCalamity.Bosses.CryogenDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.Seafood);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamitySeafood);
         }
 
         if (ModCalamity.Bosses.AquaticScourgeDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.CharredIdol);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCharredIdol);
         }
 
         if (ModCalamity.Bosses.BrimstoneElementalDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.EyeofDesolation); // Calamitas Clone Key
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityEyeofDesolation); // Calamitas Clone Key
         }
 
         if (ModCalamity.Bosses.CalamitasDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.EyeofDesolation);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityEyeofDesolation);
         }
 
         if (ModCalamity.Bosses.AstrumAureusDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.AstralChunk);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAstralChunk);
         }
 
         if (ModCalamity.Bosses.PlaguebringeDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.Abombination);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAbombination);
         }
 
         if (ModCalamity.Bosses.RavagerDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.DeathWhistle);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityDeathWhistle);
         }
 
         if (ModCalamity.Bosses.AstrumDeusDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.TitanHeart);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityTitanHeart);
         }
 
         // Post-Moon Lord
         if (ModCalamity.Bosses.ProfanedGuardiansDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.ProfanedShard);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityProfanedShard);
         }
 
         if (ModCalamity.Bosses.DragonfollyDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.ExoticPheromones);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityExoticPheromones);
         }
 
         if (ModCalamity.Bosses.ProvidenceDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.ProfanedCore);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityProfanedCore);
         }
 
         if (ModCalamity.Bosses.StormWeaverDowned || ModCalamity.Bosses.CeaselessVoidDowned || ModCalamity.Bosses.SignusDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.MarkofProvidence);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityMarkofProvidence);
         }
 
         if (ModCalamity.Bosses.OldDukeDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.Bloodworm);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityBloodworm);
         }
 
         if (ModCalamity.Bosses.DevourerOfGodsDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.CosmicWorm);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCosmicWorm);
         }
 
         if (ModCalamity.Bosses.YharonDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.BlessedPhoenixEgg);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityBlessedPhoenixEgg);
         }
 
         if (ModCalamity.Bosses.SupremeWitchCalamitasDowned)
         {
-            AddCrossModBossSummon(ModCalamity.Items.AshesOfCalamity);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAshesOfCalamity);
         }
     }
 
     private void RedemptionBosses()
     {
         // Pre-Hardmode
-        AddCrossModBossSummon(ModRedemption.Items.HeartOfThorns);
+        AddCrossModBossSummon(ShopGuideCatalog.RedemptionHeartOfThorns);
         if (ModRedemption.Bosses.ThornsDowned)
-            AddCrossModBossSummon(ModRedemption.Items.ForbiddenRitual);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionForbiddenRitual);
         if (ModRedemption.Bosses.ErhanDowned)
-            AddCrossModBossSummon(ModRedemption.Items.WeddingRing);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionWeddingRing);
         if (ModRedemption.Bosses.KeeperDowned)
-            AddCrossModBossSummon(ModRedemption.Items.AnomalyDetector);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionAnomalyDetector);
 
         // Hardmode
         if (ModRedemption.Bosses.SeedOfInfectionDowned)
-            AddCrossModBossSummon(ModRedemption.Items.CyberRadio);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionCyberRadio);
         if (ModRedemption.Bosses.KingSlayerIIIDowned)
-            AddCrossModBossSummon(ModRedemption.Items.OmegaTransmitter);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionOmegaTransmitter);
 
         // Post-Moon Lord
         if (ModRedemption.Bosses.OmegaObliteratorDowned)
-            AddCrossModBossSummon(ModRedemption.Items.HologramRemote);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionHologramRemote);
         if (ModRedemption.Bosses.PatientZeroDowned)
-            AddCrossModBossSummon(ModRedemption.Items.AncientSigil);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionAncientSigil);
         if (ModRedemption.Bosses.AncientDeityDowned)
-            AddCrossModBossSummon(ModRedemption.Items.GalaxyStone);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionGalaxyStone);
 
         // Mini Bosses (optional)
         if (!ModRedemption.Bosses.FowlEmperorDowned)
-            AddCrossModBossSummon(ModRedemption.Items.EggCrown);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionEggCrown);
         if (ModRedemption.Bosses.EaglecrestGolemDowned)
-            AddCrossModBossSummon(ModRedemption.Items.EaglecrestSpelltome);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionEaglecrestSpelltome);
     }
     private void ThoriumBosses()
     {
         // The Grand Thunder Bird
         // These items are crafted from iron bars, talons and fallen stars. Talons drop from vultures in the desert.
-        AddItem(ModThorium.Items.GrandFlareGun, Coins.Gold(2));
-        AddItem(ModThorium.Items.StormFlare, Coins.Gold());
+        AddItem(ShopGuideCatalog.ThoriumGrandFlareGun, Coins.Gold(2));
+        AddItem(ShopGuideCatalog.ThoriumStormFlare, Coins.Gold());
 
         if (ModThorium.Bosses.DownedTheGrandThunderBird)
         {
             // Queen Jellyfish
             // The Jellyfish Resonator is a boss-summoning item that is used to summon the Queen Jellyfish. It can only be used in the Ocean during the day.
             // The item is crafted from coral, seashell and starfish and / or pink jellyfish.
-            AddCrossModBossSummon(ModThorium.Items.JellyfishResonator);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumJellyfishResonator);
         }
 
         if (ModThorium.Bosses.DownedQueenJellyfish)
         {
             // Viscount is summoned by using 5 Unholy Shards at a Blood Altar in the Cavern layer.
             // Unholy Shards are a pre-Hardmode crafting material that drops from all enemies during a Blood Moon.
-            AddItem(ModThorium.Items.UnholyShards, Coins.Silver(50));
+            AddItem(ShopGuideCatalog.ThoriumUnholyShards, Coins.Silver(50));
         }
 
         if (ModThorium.Bosses.DownedViscount)
         {
             // Granite Energy Storm
             // The Unstable Core is a boss-summoning item that is used to summon the Granite Energy Storm. It can only be used in the Granite Caves.
-            AddCrossModBossSummon(ModThorium.Items.UnstableCore);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumUnstableCore);
         }
 
         if (ModThorium.Bosses.DownedGraniteEnergyStorm)
         {
             // Buried Champion
             // The Ancient Blade is a boss-summoning item used to summon the Buried Champion in the Marble Caves.
-            AddCrossModBossSummon(ModThorium.Items.AncientBlade);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumAncientBlade);
         }
 
         if (ModThorium.Bosses.DownedBuriedChampion)
         {
             // Star Scouter
             // The Star Caller is a boss-summoning item that is used to summon the Star Scouter in Space.
-            AddCrossModBossSummon(ModThorium.Items.StarCaller);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumStarCaller);
         }
 
         if (ModThorium.Bosses.DownedStarScouter)
         {
             // Borean Strider
             // The Strider's Tear is a Hardmode boss-summoning item used to summon the Borean Strider in the Snow biome during Blizzards.
-            AddCrossModBossSummon(ModThorium.Items.StriderTear);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumStriderTear);
         }
 
         if (ModThorium.Bosses.DownedBoreanStrider)
         {
             // Fallen Beholder
             // The Void Lens is a Hardmode boss-summoning item that is used to summon the Fallen Beholder in The Underworld.
-            AddCrossModBossSummon(ModThorium.Items.VoidLens);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumVoidLens);
         }
 
         if (ModThorium.Bosses.DownedFallenBeholder)
         {
             // Lich
             // The Lich is a skeletal boss summoned at the Natural Graveyard’s Ancient Phylactery for 30 pumpkins.
-            AddItem(ItemID.Pumpkin, Coins.Silver(10));
+            AddItem(ShopGuideCatalog.PumpkinItemId, Coins.Silver(10));
         }
 
         if (ModThorium.Bosses.DownedLich)
         {
             // Forgotten One
             // The Forgotten One is a crab-like boss fought in the Aquatic Depths. It spawns automatically after collecting 3 Abyssal Shadows dropped by Aquatic Hallucinations, but after its defeat, Abyssal Shadows can be used to manually summon the boss.
-            AddCrossModBossSummon(ModThorium.Items.AbyssalShadow);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumAbyssalShadow);
         }
 
         if (ModThorium.Bosses.DownedForgottenOne)
         {
             // The Primordials
             // The Primordials is the final boss of the Thorium mod, summoned with the Doom Sayer's Coin.
-            AddItem(ModThorium.Items.DoomSayersCoin, Coins.Gold(10));
+            AddItem(ShopGuideCatalog.ThoriumDoomSayersCoin, Coins.Gold(10));
         }
     }
 
-    private sealed class RewardTier(RewardItem[] items)
-    {
-        public RewardItem[] Items { get; } = items;
-    }
-
-    private sealed class RewardItem(int id, int price)
-    {
-        public int Id { get; } = id;
-        public int Price { get; } = price;
-    }
-
-    private readonly List<RewardTier> _vanillaBossRewards =
-    [
-        new RewardTier(//Reward for defeating SlimeKing,
-        [
-            new RewardItem(ItemID.SuspiciousLookingEye, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//EyeOfCthulhu,
-        [
-            new RewardItem(WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//Skeletron,
-        [
-            new RewardItem(ItemID.Abeemination, Coins.Gold(5)),
-            new RewardItem(ItemID.DeerThing, Coins.Gold(5)),
-            new RewardItem(ItemID.GuideVoodooDoll, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//hardMode,
-        [
-            new RewardItem(ItemID.QueenSlimeCrystal, Coins.Gold(5)),
-            new RewardItem(ItemID.MechanicalEye, Coins.Gold(5)),
-            new RewardItem(ItemID.MechanicalSkull, Coins.Gold(5)),
-            new RewardItem(ItemID.MechanicalWorm, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//Plantera,
-        [
-            new RewardItem(ItemID.LihzahrdPowerCell, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//Golem,
-        [
-            new RewardItem(ItemID.TruffleWorm, Coins.Gold(5))
-        ]),
-
-        new RewardTier(//Towers,
-        [
-            new RewardItem(ItemID.CelestialSigil, Coins.Gold(10))
-        ])
-    ];
-
     private void VanillaBosses()
     {
-        AddItem(ItemID.SlimeCrown, Coins.Gold(3));
+        AddItem(ShopGuideCatalog.SlimeCrownItemId, Coins.Gold(3));
 
-        for (int i = 0; i < Math.Min(Progression.LevelBoss(), _vanillaBossRewards.Count); i++)
+        List<int[]> rewardTiers = ShopGuideCatalog.GetVanillaBossRewardItemTiers();
+        for (int i = 0; i < Math.Min(Progression.LevelBoss(), rewardTiers.Count); i++)
         {
-            RewardTier reward = _vanillaBossRewards[i];
-
-            foreach (RewardItem item in reward.Items)
+            int price = i == rewardTiers.Count - 1 ? Coins.Gold(10) : Coins.Gold(5);
+            foreach (int itemId in rewardTiers[i])
             {
-                AddItem(item.Id, item.Price);
+                AddItem(itemId, price);
             }
         }
     }
@@ -373,13 +319,13 @@ public class ExtraCrossModTooltips : GlobalItem
         {
             switch (item.ModItem.Name)
             {
-                case nameof(ModThorium.Items.UnholyShards):
+                case ShopGuideCatalog.ThoriumUnholyShardsName:
                 {
                     TooltipLine line = new(Mod, "SummoningInfo", "Use 5 at a Blood Altar in the Cavern layer to summon the Viscount") { OverrideColor = Color.LightCoral };
                     tooltips.Insert(tooltips.Count - 2, line);
                     break;
                 }
-                case nameof(ModThorium.Items.AbyssalShadow):
+                case ShopGuideCatalog.ThoriumAbyssalShadowName:
                 {
                     TooltipLine line = new(Mod, "SummoningInfo", "Use 3 in the Aquatic Depths to summon the The Forgotten One") { OverrideColor = Color.LightCoral };
                     tooltips.Insert(tooltips.Count - 2, line);

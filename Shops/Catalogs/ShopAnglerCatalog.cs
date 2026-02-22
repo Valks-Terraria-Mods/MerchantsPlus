@@ -2,6 +2,7 @@ namespace MerchantsPlus.Shops;
 
 public static class ShopAnglerCatalog
 {
+    public const int WoodFishingPoleItemId = ItemID.WoodFishingPole;
     public const string BaitShopName = "Bait";
     public const string FoodShopName = "Food";
     public const string CratesShopName = "Crates";
