@@ -43,6 +43,10 @@ public partial class ShowAllShopsUI
 
         PopulateMerchantList();
         EnsureValidSelectedShop();
+        if (_onlyPresentTownMerchants && !string.IsNullOrWhiteSpace(_selectedShopName))
+        {
+            _shopWasExplicitlyClicked = true;
+        }
         PopulateShopList();
         UpdateSelectionLabels();
         RefreshPreviewItems(force: true);
@@ -124,6 +128,12 @@ public partial class ShowAllShopsUI
         InvalidateHintCache();
         InvalidatePreviewCache();
         EnsureValidSelectedShop();
+        // In world-browser mode, selecting a merchant immediately selects/opens the first visible shop.
+        // Mark selection as active so hint text refreshes for that newly selected shop.
+        if (_onlyPresentTownMerchants && !string.IsNullOrWhiteSpace(_selectedShopName))
+        {
+            _shopWasExplicitlyClicked = true;
+        }
         PopulateMerchantList();
         PopulateShopList();
         UpdateSelectionLabels();
