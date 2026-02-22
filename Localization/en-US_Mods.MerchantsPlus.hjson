@@ -48,3 +48,10 @@ Configs: {
 		}
 	}
 }
+
+Items: {
+	WorldShopCatalogItem: {
+		DisplayName: World Shop Catalog Item
+		Tooltip: ""
+	}
+}

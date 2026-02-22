@@ -28,3 +28,5 @@ A: This mod does not touch vanilla shops but rather adds its own shops so it sho
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 Discord: https://discord.gg/j8HQZZ76r8
+
+AI was used to help make sure almost every item from vanilla Terraria is included.

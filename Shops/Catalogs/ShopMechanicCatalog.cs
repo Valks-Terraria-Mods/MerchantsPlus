@@ -41,6 +41,18 @@ public static class ShopMechanicCatalog
         ItemID.LihzahrdBrick,
         ItemID.MartianConduitPlating,
         ItemID.GoldBrick,
+        ItemID.StoneBlock,
+        ItemID.GrayBrick,
+        ItemID.RedBrick,
+        ItemID.DirtBlock,
+        ItemID.MudBlock,
+        ItemID.Cloud,
+        ItemID.RainCloud,
+        ItemID.SnowBlock,
+        ItemID.AshBlock,
+        ItemID.SandBlock,
+        ItemID.HardenedSand,
+        ItemID.Sandstone,
     ];
 
     public static readonly int[] WiringTools =

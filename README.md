@@ -30,3 +30,5 @@ A: This is because of the "happiness currency multiplier" that currently cannot 
 
 Q: My issue is not listed here?
 A: Ask for help in https://discord.gg/j8HQZZ76r8
+
+AI was used to help make sure almost every item from vanilla Terraria is included.

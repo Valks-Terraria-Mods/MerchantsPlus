@@ -76,6 +76,10 @@ foreach ($row in $rows)
 
 $excludedItemNames = @(
     'DeadMansChest',
+    'CopperCoin',
+    'SilverCoin',
+    'GoldCoin',
+    'PlatinumCoin',
     'VortexAxe',
     'VortexChainsaw',
     'VortexHammer',
@@ -144,6 +148,55 @@ $script:FallbackTargets = @(
     [pscustomobject]@{ Merchant = 'TravellingMerchant'; Shop = 'Oddities' }
 )
 
+$maxShopNameLength = 24
+$furnitureTargetSlimes = @(
+    'NerdySlime',
+    'CoolSlime',
+    'ElderSlime',
+    'ClumsySlime',
+    'DivaSlime',
+    'SurlySlime',
+    'MysticSlime'
+)
+$bannerOnlySlime = 'SquireSlime'
+
+function Get-StableIndex([string]$value, [int]$mod)
+{
+    if ($mod -le 0)
+    {
+        return 0
+    }
+
+    $sum = 0
+    foreach ($ch in $value.ToCharArray())
+    {
+        $sum += [int][char]$ch
+    }
+
+    return [math]::Abs($sum) % $mod
+}
+
+function Get-PetMerchant([string]$name)
+{
+    if ($name -match 'Cat|Gato')
+    {
+        return 'Cat'
+    }
+
+    if ($name -match 'Dog|Wolf|Puppy')
+    {
+        return 'Dog'
+    }
+
+    if ($name -match 'Bunny|Bird|Squirrel|Duck|Frog|Mouse|Rat|Owl|Seagull|Cockatiel|Macaw|Toucan|LadyBug|WaterStrider|Seahorse|Dragonfly')
+    {
+        return 'Bunny'
+    }
+
+    $petMerchants = @('Cat', 'Dog', 'Bunny')
+    return $petMerchants[(Get-StableIndex $name $petMerchants.Count)]
+}
+
 function Get-FurnitureTier([string]$name)
 {
     if ($name -match 'Solar|Vortex|Nebula|Stardust') { return 'Lunar' }
@@ -158,7 +211,7 @@ function Get-FurnitureShop([string]$name, [string]$typeName)
 
 function Get-StatueShop([string]$name)
 {
-    if ($name -match 'AlphabetStatue') { return 'Alpha Statues' }
+    if ($name -match 'AlphabetStatue') { return 'Alphanumeric Status' }
     if ($name -match 'BunnyStatue|SquirrelStatue|ButterflyStatue|WormStatue|FireflyStatue|ScorpionStatue|SnailStatue|GrasshopperStatue|MouseStatue|DuckStatue|PenguinStatue|FrogStatue|BuggyStatue|DragonflyStatue|SeagullStatue|OwlStatue|TurtleStatue|MacawStatue|ToucanStatue|CockatielStatue') { return 'Critter Statues' }
     if ($name -match 'Zombie|Skeleton|Undead|Wraith|Harpy|Hoplite|Pigron|Granite|Lihzahrd|Piranha|Shark|Hornet|Imp|Goblin|Reaper|Drippler|Unicorn|WallCreeper|BloodZombie') { return 'Enemy Statues' }
     return 'Utility Statues'
@@ -174,6 +227,7 @@ function Get-ChestShop([string]$name)
 function Get-ShopInfo([string]$name)
 {
     if ($name -match 'CrossGraveMarker|GraveMarker|Headstone|Tombstone|Gravestone|RichGravestone|Graveyard|Gravedigger') { return [pscustomobject]@{ Merchant = 'Clothier'; Shop = 'Tombstones' } }
+    if ($name -match 'BossBagOgre|BossBagDarkMage') { return [pscustomobject]@{ Merchant = 'Tavernkeep'; Shop = 'Eternia Gear' } }
     if ($name -match 'BossBag|TreasureBag') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Treasure Bags' } }
     if ($name -match 'SlimeCrown|WormFood|BloodySpine|Abeemination|MechanicalEye|MechanicalSkull|MechanicalWorm|LihzahrdPowerCell|CelestialSigil|Suspicious|QueenSlimeCrystal|DeerThing') { return [pscustomobject]@{ Merchant = 'Guide'; Shop = 'Boss Summons' } }
     if ($name -match 'StarPrincessCrown|StarPrincessDress') { return [pscustomobject]@{ Merchant = 'Stylist'; Shop = 'Princess Vanity' } }
@@ -186,9 +240,9 @@ function Get-ShopInfo([string]$name)
 
     if ($name -match 'Statue') { return [pscustomobject]@{ Merchant = 'Mechanic'; Shop = (Get-StatueShop $name) } }
 
-    if ($name -match 'Clock') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Clocks' } }
+    if ($name -match 'Clock') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = (Get-FurnitureShop $name 'Clocks') } }
     if ($name -match 'ArrowSign|PaintedArrowSign|Sign$') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Signs' } }
-    if ($name -match 'Banner') { return [pscustomobject]@{ Merchant = 'Stylist'; Shop = 'Banners' } }
+    if ($name -match 'Banner') { return [pscustomobject]@{ Merchant = $bannerOnlySlime; Shop = 'Banners' } }
     if ($name -match 'Relic') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Relics' } }
     if ($name -match 'Trophy') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Trophies' } }
     if ($name -match 'Dungeon') { return [pscustomobject]@{ Merchant = 'SkeletonMerchant'; Shop = 'Dungeon Set' } }
@@ -210,8 +264,8 @@ function Get-ShopInfo([string]$name)
     if ($name -match 'Sofa') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = (Get-FurnitureShop $name 'Sofas') } }
     if ($name -match 'Dresser') { return [pscustomobject]@{ Merchant = 'Clothier'; Shop = (Get-FurnitureShop $name 'Dressers') } }
     if ($name -match 'Bookcase|Bookshelf') { return [pscustomobject]@{ Merchant = 'Wizard'; Shop = (Get-FurnitureShop $name 'Bookcases') } }
-    if ($name -match 'Piano') { return [pscustomobject]@{ Merchant = 'PartyGirl'; Shop = 'Pianos' } }
-    if ($name -match 'Toilet') { return [pscustomobject]@{ Merchant = 'Nurse'; Shop = (Get-FurnitureShop $name 'Toilets') } }
+    if ($name -match 'Piano') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Pianos' } }
+    if ($name -match 'Toilet') { return [pscustomobject]@{ Merchant = 'Nurse'; Shop = 'Toilets' } }
     if ($name -match 'Bathtub') { return [pscustomobject]@{ Merchant = 'Nurse'; Shop = (Get-FurnitureShop $name 'Bathtubs') } }
     if ($name -match 'Chandelier') { return [pscustomobject]@{ Merchant = 'PartyGirl'; Shop = (Get-FurnitureShop $name 'Chandeliers') } }
     if ($name -match 'Lantern') { return [pscustomobject]@{ Merchant = 'WitchDoctor'; Shop = (Get-FurnitureShop $name 'Lanterns') } }
@@ -230,14 +284,18 @@ function Get-ShopInfo([string]$name)
     if ($name -match 'Dye|Dyed|HairDye|Reflective|Gradient|Negative|HallowBoss|ColorOnly|DyeVat') { return [pscustomobject]@{ Merchant = 'DyeTrader'; Shop = 'Dyes' } }
 
     if ($name -match '^BladeofGrass$|JungleYoyo') { return [pscustomobject]@{ Merchant = 'Pirate'; Shop = 'Melee Weapons' } }
+    if ($name -match '^FishHook$') { return [pscustomobject]@{ Merchant = 'GoblinTinkerer'; Shop = 'Hooks' } }
+    if ($name -match '^SharkFin$') { return [pscustomobject]@{ Merchant = 'Merchant'; Shop = 'Materials' } }
+    if ($name -match '^Goldfish$|^FishBowl$') { return [pscustomobject]@{ Merchant = 'Bunny'; Shop = 'Critter Care' } }
     if ($name -match 'TinCan|OldShoe|FishingSeaweed') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Fishing Trash' } }
     if ($name -match 'AmanitaFungifin|Angelfish|Batfish|BloodyManowar|Bonefish|BumblebeeTuna|Bunnyfish|CapnTunabeard|Catfish|Cloudfish|Clownfish|Cursedfish|DemonicHellfish|Derpfish|Dirtfish|DynamiteFish|EaterofPlankton|FallenStarfish|Fishotron|Fishron|GuideVoodooFish|Harpyfish|Hemopiranha|Hungerfish|Ichorfish|InfectedScabbardfish|Jewelfish|MirageFish|Mudfish|MutantFlinxfin|Pengfish|Pixiefish|Slimefish|Spiderfish|TheFishofCthulu|TropicalBarracuda|TundraTrout|UnicornFish|Wyverntail|ZombieFish') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Quest Fish' } }
-    if ($name -match 'WormTooth|ButterflyDust|WormHook|CanOfWorms|SharkBait') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Fishing Misc' } }
+    if ($name -match 'WormTooth|ButterflyDust|WormHook|CanOfWorms|SharkBait') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Fish Gear' } }
     if ($name -match 'Cage|Jar|inaBottle' -and $name -match 'Worm|Butterfly|Buggy|Grubby|Sluggy|Firefly|LightningBug|Snail|TruffleWorm|MagmaSnail|HellButterfly|EmpressButterfly') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Critter Decor' } }
-    if ($name -match 'Bait|Worm|Butterfly|Buggy|Grubby|Sluggy|Firefly|LightningBug|Snail') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Bait' } }
+    if ($name -match 'Bait|Worm|Butterfly|Buggy|Grubby|Sluggy|Firefly|LightningBug|Snail') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Fish Gear' } }
     if ($name -match 'Fish|Fishing|Trout|Tuna|Bass|Salmon|Shrimp|Shark|Swordfish|Angelfish|Koi|Eel|Puffer|NeonTetra') { return [pscustomobject]@{ Merchant = 'Angler'; Shop = 'Fish' } }
     if ($name -match 'Seed|Acorn|Sapling|Blinkroot|Daybloom|Moonglow|Shiverthorn|Waterleaf|Fireblossom|Deathweed|Sunflower|Grass|Jungle') { return [pscustomobject]@{ Merchant = 'Dryad'; Shop = 'Seeds' } }
 
+    if ($name -match 'Sake|CreamSoda|Milkshake|GrapeJuice|Lemonade|BananaDaiquiri|PeachSangria|PinaColada|TropicalSmoothie|BloodyMoscato|SmoothieofDarkness|FruitJuice|CoffeeCup|AppleJuice|Pomegranate|HoplitePizza') { return [pscustomobject]@{ Merchant = 'Tavernkeep'; Shop = 'Bar Drinks' } }
     if ($name -match 'Potion|Elixir|Brew') { return [pscustomobject]@{ Merchant = 'Merchant'; Shop = 'Potions' } }
     if ($name -match 'Heart|LifeCrystal|LifeFruit|Healing') { return [pscustomobject]@{ Merchant = 'Nurse'; Shop = 'Healing' } }
     if ($name -match 'Mana|StarInABottle|CrystalBall') { return [pscustomobject]@{ Merchant = 'Wizard'; Shop = 'Mana' } }
@@ -247,7 +305,10 @@ function Get-ShopInfo([string]$name)
     if ($name -match '^(Copper|Tin|Iron|Lead|Silver|Tungsten|Gold|Platinum|Demonite|Crimtane|Meteorite|Hellstone|Cobalt|Palladium|Mythril|Orichalcum|Adamantite|Titanium|Chlorophyte|Hallowed|Lunar|Shroomite|Spectre|Fossil)Ore$') { return [pscustomobject]@{ Merchant = 'Demolitionist'; Shop = 'Ores' } }
     if ($name -match '^(Copper|Tin|Iron|Lead|Silver|Tungsten|Gold|Platinum|Demonite|Crimtane|Meteorite|Hellstone|Cobalt|Palladium|Mythril|Orichalcum|Adamantite|Titanium|Chlorophyte|Hallowed|Lunar|Shroomite|Spectre|Fossil)Bar$') { return [pscustomobject]@{ Merchant = 'Demolitionist'; Shop = 'Ores' } }
     if ($name -match '^(Amber|Amethyst|Topaz|Sapphire|Emerald|Ruby|Diamond)$') { return [pscustomobject]@{ Merchant = 'Demolitionist'; Shop = 'Ores' } }
-    if ($name -match 'Pickaxe|Drill|Axe|Chainsaw|Hammer|Hamaxe|Jackhammer|Picksaw|PickaxeAxe|Drax|Waraxe|Greataxe') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Tools' } }
+    if ($name -match 'Picksaw|PickaxeAxe|Drax|Pickaxe') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Pickaxes' } }
+    if ($name -match 'Drill|Chainsaw') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Drills and Saws' } }
+    if ($name -match 'Hamaxe|Jackhammer|Hammer') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Hammers' } }
+    if ($name -match 'Waraxe|Greataxe|Axe') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Axes' } }
     if ($name -match 'Workbench|Workshop|Anvil|Furnace|Hellforge|Loom|Keg|CookingPot|Alchemy|ImbuingStation') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Tools' } }
     if ($name -match 'Watch|Compass|Radar|Ruler|Meter|Analyzer|GPS|PDA|CellPhone') { return [pscustomobject]@{ Merchant = 'GoblinTinkerer'; Shop = 'Info Gear' } }
     if ($name -match '^Barrel$|^BarStool$|^Bar$') { return [pscustomobject]@{ Merchant = 'Tavernkeep'; Shop = 'Bar Decor' } }
@@ -279,14 +340,16 @@ function Get-ShopInfo([string]$name)
     if ($name -match 'Pirate|Cannon|Parrot|Corsair|Anchor|Cutlass|Broadside') { return [pscustomobject]@{ Merchant = 'Pirate'; Shop = 'Pirate Gear' } }
     if ($name -match 'Santa|Christmas|Xmas|CandyCane|Present|Reindeer|Festive|Frost|ToySled') { return [pscustomobject]@{ Merchant = 'SantaClaus'; Shop = 'Holiday' } }
     if ($name -match 'Mushroom|Shroom|Spore|Fungal') { return [pscustomobject]@{ Merchant = 'Truffle'; Shop = 'Mushroom' } }
-    if ($name -match 'Dragonfly') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Critters' } }
-    if ($name -match 'Pet|Companion|Egg|Whistle|Cracker|Totem|Seaweed|LizardEgg|Dragon|Gato') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Pets' } }
-    if ($name -match 'Saddle|CarKey|Truffle|Horn|Bells|Apple|Mount') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Mounts' } }
+    if ($name -match 'Dragonfly') { return [pscustomobject]@{ Merchant = 'Bunny'; Shop = 'Critter Care' } }
+    if ($name -match 'Pet|Companion|Egg|Whistle|Cracker|Totem|Seaweed|LizardEgg|Dragon|Gato') { return [pscustomobject]@{ Merchant = (Get-PetMerchant $name); Shop = 'Pets' } }
+    if ($name -match 'MountItem$|Saddle$|CarKey$|ScalyTruffle$|HoneyedGoggles$|FuzzyCarrot$|ReindeerBells$|WitchsBroom$|GoatSkull$|AncientHorn$|BlessedApple$|BrainScrambler$|DarkMageBookMount$|SuperCart$|GolfCartKey$|PewMaticHorn$') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Mounts' } }
     if ($name -match 'Golf') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Golf' } }
-    if ($name -match 'Cage|Jar|Kite|Terrarium|Bird|Bunny|Squirrel|Duck|Frog|Mouse|Rat|Owl|Seagull|Cockatiel|Macaw|Toucan|LadyBug|WaterStrider|Seahorse|Dragonfly') { return [pscustomobject]@{ Merchant = 'Princess'; Shop = 'Critters' } }
+    if ($name -match 'Cage|Jar|Kite|Terrarium|Bird|Bunny|Squirrel|Duck|Frog|Mouse|Rat|Owl|Seagull|Cockatiel|Macaw|Toucan|LadyBug|WaterStrider|Seahorse|Dragonfly') { return [pscustomobject]@{ Merchant = 'Bunny'; Shop = 'Critter Care' } }
     if ($name -match 'Soup|Stew|Cookie|Cake|Pizza|Burger|Juice|Coffee|Soda|Milkshake|IceCream|Fries|Steak|Sake|PadThai|Nugget|Ribs|Pomegranate|Mango|Banana|Lemon|Apricot|Plum|Grapes|Peach|Cherry|Coconut|Starfruit|PinaColada|Smoothie|Daiquiri|Sangria|Moscato|Lemonade|CreamSoda|Sushi') { return [pscustomobject]@{ Merchant = 'PartyGirl'; Shop = 'Food and Drink' } }
     if ($name -match '(Lens$|Chunk$|Scale$|Stinger$|Mandible$|Feather$|Dust$|Shard$|Fragment$|Husk$|Mold$|Shell$|Fur$|Ink$|Tissue$|TissueSample$|Vertebrae$|Mucos$|Claw$|^Soulof)') { return [pscustomobject]@{ Merchant = 'Merchant'; Shop = 'Materials' } }
-    if ($name -match 'Vase|Shelf|Fence|Campfire|Fountain|Monolith|Globe|Rack|Dishes|Cup|Goblet|Plate|Brazier|PotSuspended|LawnMower|GardenGnome|WeatherVane') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Decor Utility' } }
+    if ($name -match 'Fence') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Fences' } }
+    if ($name -match 'Campfire') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Campfires' } }
+    if ($name -match 'Vase|Shelf|Fountain|Monolith|Globe|Rack|Dishes|Cup|Goblet|Plate|Brazier|PotSuspended|LawnMower|GardenGnome|WeatherVane') { return [pscustomobject]@{ Merchant = 'Golfer'; Shop = 'Decor Utility' } }
     if ($name -match 'Vanity|Robe|Shirt|Pants|Dress|Hat|Hood|Coat|Cloak|Costume|Suit|Skirt|Tuxedo|Crown|Tiara|Gown') { return [pscustomobject]@{ Merchant = 'Stylist'; Shop = 'Vanity' } }
 
     $fallback = $script:FallbackTargets[$script:FallbackCounter % $script:FallbackTargets.Count]
@@ -369,7 +432,7 @@ function Get-ShopPageName([string]$baseShopName, [int]$pageIndex, [int]$pageCoun
     }
 
     $suffix = Get-OverflowSuffix $pageIndex
-    $maxLength = 17
+    $maxLength = $maxShopNameLength
 
     $candidate = "$baseShopName $suffix"
     if ($candidate.Length -le $maxLength)
@@ -437,15 +500,83 @@ function Add-ManualPage([hashtable]$pagesByMerchant, [string]$merchant, [string]
         return
     }
 
-    if ($shopName.Length -gt 17)
+    if ($shopName.Length -gt $maxShopNameLength)
     {
-        throw "Shop name exceeds 17 chars: '$shopName'"
+        throw "Shop name exceeds $maxShopNameLength chars: '$shopName'"
     }
 
     $pagesByMerchant[$merchant].Add([pscustomobject]@{
         ShopName = $shopName
         Items = $items
     })
+}
+
+function Is-FurnitureShopName([string]$shopName)
+{
+    return $shopName -match 'Chairs|Tables|Lamps|Sinks|Doors|Beds|Sofas|Dressers|Bookcases|Pianos|Toilets|Bathtubs|Chandeliers|Lanterns|Candelabras|Candles|Platforms|Walls|Blocks|Clocks|Chests'
+}
+
+function Redistribute-FurnitureShopsToSlimes([hashtable]$byShop)
+{
+    $loadByMerchant = @{}
+    foreach ($merchant in $furnitureTargetSlimes)
+    {
+        $loadByMerchant[$merchant] = 0
+    }
+
+    $furnitureEntries = @()
+    foreach ($pair in @($byShop.GetEnumerator()))
+    {
+        $key = [string]$pair.Key
+        $parts = $key.Split('|', 2)
+        if ($parts.Length -ne 2)
+        {
+            continue
+        }
+
+        $shopName = $parts[1]
+        if (-not (Is-FurnitureShopName $shopName))
+        {
+            continue
+        }
+
+        $items = @($pair.Value.ToArray())
+        $furnitureEntries += [pscustomobject]@{
+            Key = $key
+            ShopName = $shopName
+            Items = $items
+        }
+    }
+
+    $furnitureEntries = @(
+        $furnitureEntries |
+            Sort-Object @{ Expression = { $_.Items.Count }; Descending = $true }, ShopName, Key
+    )
+
+    foreach ($entry in $furnitureEntries)
+    {
+        $targetMerchant = $furnitureTargetSlimes |
+            Sort-Object @{ Expression = { $loadByMerchant[$_] } }, @{ Expression = { $_ } } |
+            Select-Object -First 1
+        $targetKey = "$targetMerchant|$($entry.ShopName)"
+
+        if (-not $byShop.ContainsKey($targetKey))
+        {
+            $byShop[$targetKey] = New-Object System.Collections.Generic.List[object]
+        }
+
+        foreach ($item in $entry.Items)
+        {
+            $byShop[$targetKey].Add($item)
+        }
+
+        $loadByMerchant[$targetMerchant] += $entry.Items.Count
+
+        if ($entry.Key -ne $targetKey)
+        {
+            $byShop.Remove($entry.Key)
+        }
+    }
 }
 
 $byShop = @{}
@@ -473,36 +604,22 @@ foreach ($row in $rows)
     })
 }
 
+Redistribute-FurnitureShopsToSlimes -byShop $byShop
+
 $pageSize = 40
 
 $manualMerchants =
 @(
     'Cat',
     'Dog',
-    'Bunny',
-    'NerdySlime',
-    'CoolSlime',
-    'ElderSlime',
-    'ClumsySlime',
-    'DivaSlime',
-    'SurlySlime',
-    'MysticSlime',
-    'SquireSlime'
+    'Bunny'
 )
 
 $manualItemNames = New-Object 'System.Collections.Generic.HashSet[string]'
 foreach ($itemName in @(
     'LicenseCat', 'CatMask', 'CatShirt', 'CatPants', 'CatEars', 'CatBast',
     'LicenseDog', 'DogWhistle', 'DogEars', 'DogTail',
-    'LicenseBunny', 'Bunny', 'BunnyCage', 'BunnyHood', 'BunnyEars',
-    'Gel', 'SlimeStaff', 'SlimeHook', 'SlimeCrown',
-    'PinkGel', 'SlimeGun', 'RoyalGel', 'SlimySaddle',
-    'KingSlimeMask', 'KingSlimePetItem', 'KingSlimeBossBag', 'KingSlimeTrophy',
-    'QueenSlimeMask', 'QueenSlimePetItem', 'QueenSlimeHook', 'QueenSlimeBossBag',
-    'GelBalloon', 'QueenSlimeMountSaddle', 'VolatileGelatin', 'MusicBoxQueenSlime',
-    'SlimeWorkBench', 'SlimeClock', 'MusicBoxSlimeRain', 'SlimeLantern', 'SlimeCandelabra',
-    'SlimeDoor', 'SlimeSofa', 'SlimeCandle',
-    'SlimeChair', 'SlimeTable', 'SlimeLamp', 'SlimeBookcase'
+    'LicenseBunny', 'Bunny', 'BunnyCage', 'BunnyHood', 'BunnyEars'
 ))
 {
     $null = $manualItemNames.Add($itemName)
@@ -521,49 +638,6 @@ foreach ($key in @($byShop.Keys))
     foreach ($item in $filtered)
     {
         $byShop[$key].Add($item)
-    }
-}
-
-$pianoKey = 'PartyGirl|Pianos'
-if ($byShop.ContainsKey($pianoKey))
-{
-    $pianoItems = @($byShop[$pianoKey] | Sort-Object Stage, Index)
-    if ($pianoItems.Count -gt $pageSize)
-    {
-        $primary = @($pianoItems | Select-Object -First $pageSize)
-        $overflow = @($pianoItems | Select-Object -Skip $pageSize)
-
-        $byShop[$pianoKey] = New-Object System.Collections.Generic.List[object]
-        foreach ($item in $primary)
-        {
-            $byShop[$pianoKey].Add($item)
-        }
-
-        $slimePianoTargets =
-        @(
-            'NerdySlime|Pianos',
-            'CoolSlime|Pianos',
-            'ElderSlime|Pianos',
-            'ClumsySlime|Pianos',
-            'DivaSlime|Pianos',
-            'SurlySlime|Pianos',
-            'MysticSlime|Pianos',
-            'SquireSlime|Pianos'
-        )
-
-        foreach ($targetKey in $slimePianoTargets)
-        {
-            if (-not $byShop.ContainsKey($targetKey))
-            {
-                $byShop[$targetKey] = New-Object System.Collections.Generic.List[object]
-            }
-        }
-
-        for ($i = 0; $i -lt $overflow.Count; $i++)
-        {
-            $targetKey = $slimePianoTargets[$i % $slimePianoTargets.Count]
-            $byShop[$targetKey].Add($overflow[$i])
-        }
     }
 }
 
@@ -606,9 +680,9 @@ foreach ($entry in $byShop.GetEnumerator())
 
         $shopName = Get-ShopPageName -baseShopName $baseShopName -pageIndex $pageIndex -pageCount $pageCount
 
-        if ($shopName.Length -gt 17)
+        if ($shopName.Length -gt $maxShopNameLength)
         {
-            throw "Shop name exceeds 17 chars: '$shopName'"
+            throw "Shop name exceeds $maxShopNameLength chars: '$shopName'"
         }
 
         $pagesByMerchant[$merchant].Add([pscustomobject]@{
@@ -642,62 +716,6 @@ Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'Bunny' -shopName 'Bu
     (New-ManualItem 'BunnyEars' 20)
 )
 
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'NerdySlime' -shopName 'Nerdy Slime' -items @(
-    (New-ManualItem 'Gel' 1),
-    (New-ManualItem 'SlimeStaff' 8),
-    (New-ManualItem 'SlimeHook' 15),
-    (New-ManualItem 'SlimeCrown' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'CoolSlime' -shopName 'Cool Slime' -items @(
-    (New-ManualItem 'PinkGel' 1),
-    (New-ManualItem 'SlimeGun' 10),
-    (New-ManualItem 'RoyalGel' 16),
-    (New-ManualItem 'SlimySaddle' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'ElderSlime' -shopName 'Elder Slime' -items @(
-    (New-ManualItem 'KingSlimeMask' 1),
-    (New-ManualItem 'KingSlimePetItem' 15),
-    (New-ManualItem 'KingSlimeBossBag' 18),
-    (New-ManualItem 'KingSlimeTrophy' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'ClumsySlime' -shopName 'Clumsy Slime' -items @(
-    (New-ManualItem 'QueenSlimeMask' 1),
-    (New-ManualItem 'QueenSlimePetItem' 15),
-    (New-ManualItem 'QueenSlimeHook' 18),
-    (New-ManualItem 'QueenSlimeBossBag' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'DivaSlime' -shopName 'Diva Slime' -items @(
-    (New-ManualItem 'GelBalloon' 1),
-    (New-ManualItem 'QueenSlimeMountSaddle' 15),
-    (New-ManualItem 'VolatileGelatin' 18),
-    (New-ManualItem 'MusicBoxQueenSlime' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'SurlySlime' -shopName 'Surly Slime' -items @(
-    (New-ManualItem 'SlimeDoor' 1),
-    (New-ManualItem 'SlimeWorkBench' 12),
-    (New-ManualItem 'SlimeClock' 16),
-    (New-ManualItem 'SlimeSofa' 20)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'MysticSlime' -shopName 'Mystic Slime' -items @(
-    (New-ManualItem 'MusicBoxSlimeRain' 1),
-    (New-ManualItem 'SlimeLantern' 14),
-    (New-ManualItem 'SlimeCandelabra' 18),
-    (New-ManualItem 'SlimeCandle' 21)
-)
-
-Add-ManualPage -pagesByMerchant $pagesByMerchant -merchant 'SquireSlime' -shopName 'Squire Slime' -items @(
-    (New-ManualItem 'SlimeChair' 1),
-    (New-ManualItem 'SlimeTable' 12),
-    (New-ManualItem 'SlimeLamp' 16),
-    (New-ManualItem 'SlimeBookcase' 21)
-)
-
 $slimeMerchants =
 @(
     'NerdySlime',
@@ -706,9 +724,9 @@ $slimeMerchants =
     'ClumsySlime',
     'DivaSlime',
     'SurlySlime',
-    'MysticSlime',
-    'SquireSlime'
+    'MysticSlime'
 )
+$allSlimeMerchants = @($slimeMerchants + @($bannerOnlySlime))
 
 $smallShopExemptMerchants =
 @(
@@ -729,7 +747,7 @@ function Get-NextSlimeFindShopName([System.Collections.Generic.List[object]]$pag
     while ($true)
     {
         $candidate = "Slime Finds $(Get-OverflowSuffix $index)"
-        if ($candidate.Length -gt 17)
+        if ($candidate.Length -gt $maxShopNameLength)
         {
             $candidate = "Slime Find $(Get-OverflowSuffix $index)"
         }
@@ -765,7 +783,7 @@ function Add-RandomSlimeItem([hashtable]$pagesByMerchant, [object]$item)
 
 foreach ($merchant in $merchantNpc.Keys)
 {
-    if ($slimeMerchants -contains $merchant)
+    if ($allSlimeMerchants -contains $merchant)
     {
         continue
     }
@@ -853,6 +871,43 @@ function Assert-NoGroupingRegressions([hashtable]$pagesByMerchant)
                 if ($bad.Count -gt 0)
                 {
                     throw "Ranged shop contains misgrouped items: $([string]::Join(', ', $bad))"
+                }
+            }
+
+            if ($pageName -match '^Bait($| )|^Fishing Misc($| )|^Food Plus($| )')
+            {
+                throw "Underfilled overflow shop should be merged: $merchant/$pageName"
+            }
+
+            if ($merchant -eq $bannerOnlySlime -and $pageName -notlike 'Banners*')
+            {
+                throw "Banner-only slime has non-banner shop: $merchant/$pageName"
+            }
+
+            if ($pageName -like 'Coins*')
+            {
+                $bad = @($itemNames | Where-Object { $_ -match '^(CopperCoin|SilverCoin|GoldCoin|PlatinumCoin)$' })
+                if ($bad.Count -gt 0)
+                {
+                    throw "Coins shop contains raw coin items: $([string]::Join(', ', $bad))"
+                }
+            }
+
+            if ($pageName -like 'Treasure Bags*')
+            {
+                $bad = @($itemNames | Where-Object { $_ -match '^(BossBagOgre|BossBagDarkMage)$' })
+                if ($bad.Count -gt 0)
+                {
+                    throw "Treasure Bags contains invalid bags: $([string]::Join(', ', $bad))"
+                }
+            }
+
+            if ($pageName -like 'Mounts*')
+            {
+                $bad = @($itemNames | Where-Object { $_ -match '^(ApplePieSlice|ApplePie|AppleJuice|Apple|Vilethorn|UnicornHorn)$' })
+                if ($bad.Count -gt 0)
+                {
+                    throw "Mounts contains non-mount items: $([string]::Join(', ', $bad))"
                 }
             }
         }

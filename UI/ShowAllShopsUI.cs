@@ -1,6 +1,8 @@
 using MerchantsPlus.Shops;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Terraria.GameContent.UI.Elements;
+using Terraria.GameInput;
 
 namespace MerchantsPlus.UI;
 
@@ -19,6 +21,18 @@ public class ShowAllShopsUI : UIState
     private int _selectedMerchantId = NPCID.None;
     private string _selectedShopName = string.Empty;
     private UIPanel _rootPanel;
+    private readonly bool _onlyPresentTownMerchants;
+    private readonly string _titleText;
+
+    public ShowAllShopsUI() : this(false, "All Merchant Shops")
+    {
+    }
+
+    public ShowAllShopsUI(bool onlyPresentTownMerchants, string titleText)
+    {
+        _onlyPresentTownMerchants = onlyPresentTownMerchants;
+        _titleText = string.IsNullOrWhiteSpace(titleText) ? "Merchant Shops" : titleText;
+    }
 
     public override void OnInitialize()
     {
@@ -29,10 +43,10 @@ public class ShowAllShopsUI : UIState
         panel.Height.Set(PanelHeight, 0f);
         panel.Left.Set(-PanelWidth - 20f, 1f);
         panel.Top.Set(-PanelHeight - 20f, 1f);
-        panel.BackgroundColor = new Color(0, 0, 0, 180);
-        panel.BorderColor = new Color(89, 116, 213, 255);
+        panel.BackgroundColor = new Color(8, 8, 8, 165);
+        panel.BorderColor = new Color(28, 28, 28, 220);
 
-        UIText title = new("All Merchant Shops", 0.95f)
+        UIText title = new(_titleText, 0.95f)
         {
             HAlign = 0.5f,
         };
@@ -45,7 +59,18 @@ public class ShowAllShopsUI : UIState
         };
         closeBtn.Left.Set(-8f, 0f);
         closeBtn.Top.Set(8f, 0f);
-        closeBtn.OnLeftClick += (_, _) => ModContent.GetInstance<AddCustomShopUI>().HideShowAllShopsUI();
+        closeBtn.OnLeftClick += (_, _) =>
+        {
+            AddCustomShopUI ui = ModContent.GetInstance<AddCustomShopUI>();
+            if (_onlyPresentTownMerchants)
+            {
+                ui.HideWorldShopsUI();
+            }
+            else
+            {
+                ui.HideShowAllShopsUI();
+            }
+        };
         panel.Append(closeBtn);
 
         UIText merchantsHeader = new("Merchants", 0.85f)
@@ -87,9 +112,16 @@ public class ShowAllShopsUI : UIState
     {
         base.Update(gameTime);
 
+        if (Main.keyState.IsKeyDown(Keys.Escape))
+        {
+            CloseThisUI();
+            return;
+        }
+
         if (Main.LocalPlayer is not null && _rootPanel?.ContainsPoint(Main.MouseScreen) == true)
         {
             Main.LocalPlayer.mouseInterface = true;
+            PlayerInput.LockVanillaMouseScroll("MerchantsPlus.ShowAllShopsUI");
         }
     }
 
@@ -117,7 +149,16 @@ public class ShowAllShopsUI : UIState
     public void Refresh()
     {
         _merchantIds.Clear();
-        _merchantIds.AddRange(ShopUI.Shops.Keys);
+        foreach (int merchantId in ShopUI.Shops.Keys)
+        {
+            if (!ShouldIncludeMerchant(merchantId))
+            {
+                continue;
+            }
+
+            _merchantIds.Add(merchantId);
+        }
+
         _merchantIds.Sort((a, b) => string.Compare(GetNpcName(a), GetNpcName(b), StringComparison.Ordinal));
 
         if (_merchantIds.Count == 0)
@@ -149,7 +190,8 @@ public class ShowAllShopsUI : UIState
         container.Top.Set(top, 0f);
         container.Width.Set((PanelWidth / 2f) - 24f, 0f);
         container.Height.Set(220f, 0f);
-        container.BackgroundColor = new Color(20, 20, 20, 200);
+        container.BackgroundColor = new Color(4, 4, 4, 140);
+        container.BorderColor = new Color(26, 26, 26, 180);
 
         UIList list = new();
         list.Left.Set(0f, 0f);
@@ -158,7 +200,7 @@ public class ShowAllShopsUI : UIState
         list.Height.Set(0f, 1f);
         list.ListPadding = 4f;
 
-        UIScrollbar scrollbar = new();
+        UIScrollbar scrollbar = new DarkScrollbar();
         scrollbar.Left.Set(-20f, 1f);
         scrollbar.Top.Set(0f, 0f);
         scrollbar.Height.Set(0f, 1f);
@@ -205,7 +247,8 @@ public class ShowAllShopsUI : UIState
         }
 
         HashSet<string> seen = new(StringComparer.Ordinal);
-        foreach (string shopName in merchantShop.Shops)
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop.Shops);
+        foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
             {
@@ -232,11 +275,45 @@ public class ShowAllShopsUI : UIState
         button.Height.Set(28f, 0f);
 
         button.BackgroundColor = selected
-            ? new Color(80, 110, 190, 255)
-            : new Color(44, 58, 108, 220);
-        button.BorderColor = new Color(30, 30, 30, 200);
+            ? new Color(26, 26, 26, 220)
+            : new Color(12, 12, 12, 190);
+        button.BorderColor = new Color(40, 40, 40, 210);
 
         return button;
+    }
+
+    private void CloseThisUI()
+    {
+        AddCustomShopUI ui = ModContent.GetInstance<AddCustomShopUI>();
+        if (_onlyPresentTownMerchants)
+        {
+            ui.HideWorldShopsUI();
+        }
+        else
+        {
+            ui.HideShowAllShopsUI();
+        }
+    }
+
+    private bool ShouldIncludeMerchant(int merchantId)
+    {
+        if (!_onlyPresentTownMerchants)
+        {
+            return true;
+        }
+
+        if (merchantId <= NPCID.None || !ShopUI.Shops.TryGetValue(merchantId, out Shop merchantShop))
+        {
+            return false;
+        }
+
+        if (!NPC.AnyNPCs(merchantId))
+        {
+            return false;
+        }
+
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(merchantId, merchantShop.Shops);
+        return visibleShops.Count > 0;
     }
 
     private static string GetNpcName(int npcId)
@@ -272,7 +349,8 @@ public class ShowAllShopsUI : UIState
         }
 
         HashSet<string> seen = new(StringComparer.Ordinal);
-        foreach (string shopName in merchantShop.Shops)
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop.Shops);
+        foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
             {
