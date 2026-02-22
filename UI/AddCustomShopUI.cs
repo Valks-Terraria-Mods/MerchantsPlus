@@ -5,11 +5,13 @@ public class AddCustomShopUI : ModSystem
     private UserInterface _shopUserInterface;
     private UserInterface _showAllShopsUserInterface;
     private UserInterface _worldShopsUserInterface;
+    private UserInterface _worldShopsButtonUserInterface;
     private UserInterface _debugUserInterface;
     private GameTime _lastUpdateUiGameTime;
     private ShopUI _shopUI;
     private ShowAllShopsUI _showAllShopsUI;
     private ShowAllShopsUI _worldShopsUI;
+    private WorldShopsFloatingButtonUI _worldShopsFloatingButtonUI;
     private DebugPanelUI _debugPanelUI;
 
     public void ShowShopUI()
@@ -105,6 +107,11 @@ public class AddCustomShopUI : ModSystem
             return true;
         }
 
+        if (_worldShopsButtonUserInterface?.CurrentState is not null && _worldShopsFloatingButtonUI?.IsPointerOverPanel() == true)
+        {
+            return true;
+        }
+
         if (_debugUserInterface?.CurrentState is not null && _debugPanelUI?.IsPointerOverPanel() == true)
         {
             return true;
@@ -135,12 +142,15 @@ public class AddCustomShopUI : ModSystem
             _showAllShopsUI.Activate();
             _worldShopsUI = new ShowAllShopsUI(true, "World Merchant Shops");
             _worldShopsUI.Activate();
+            _worldShopsFloatingButtonUI = new WorldShopsFloatingButtonUI();
+            _worldShopsFloatingButtonUI.Activate();
             _debugPanelUI = new DebugPanelUI(BuildDebugLinesForPanel, BuildDebugTextForClipboard);
             _debugPanelUI.Activate();
 
             _shopUserInterface = new UserInterface();
             _showAllShopsUserInterface = new UserInterface();
             _worldShopsUserInterface = new UserInterface();
+            _worldShopsButtonUserInterface = new UserInterface();
             _debugUserInterface = new UserInterface();
         }
     }
@@ -175,6 +185,7 @@ public class AddCustomShopUI : ModSystem
             _worldShopsUserInterface.Update(gameTime);
         }
 
+        UpdateWorldShopsFloatingButtonState(gameTime);
         UpdateDebugPanelState(gameTime);
     }
 
@@ -206,6 +217,11 @@ public class AddCustomShopUI : ModSystem
                     if (_worldShopsUserInterface?.CurrentState != null)
                     {
                         _worldShopsUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                    }
+
+                    if (_worldShopsButtonUserInterface?.CurrentState != null)
+                    {
+                        _worldShopsButtonUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                     }
 
                     if (_debugUserInterface?.CurrentState != null)
@@ -242,6 +258,32 @@ public class AddCustomShopUI : ModSystem
         {
             _debugUserInterface.SetState(null);
         }
+    }
+
+    private void UpdateWorldShopsFloatingButtonState(GameTime gameTime)
+    {
+        if (_worldShopsButtonUserInterface is null || _worldShopsFloatingButtonUI is null)
+        {
+            return;
+        }
+
+        bool shouldShow = !Main.gameMenu;
+        if (!shouldShow)
+        {
+            if (_worldShopsButtonUserInterface.CurrentState is not null)
+            {
+                _worldShopsButtonUserInterface.SetState(null);
+            }
+
+            return;
+        }
+
+        if (_worldShopsButtonUserInterface.CurrentState is null)
+        {
+            _worldShopsButtonUserInterface.SetState(_worldShopsFloatingButtonUI);
+        }
+
+        _worldShopsButtonUserInterface.Update(gameTime);
     }
 
     private string BuildDebugTextForClipboard()

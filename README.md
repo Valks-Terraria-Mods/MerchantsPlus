@@ -28,11 +28,9 @@ The mod is designed to make item access broad but still gradual: shops unlock as
 
 ## World Merchant Browser
 
-Use the `World Shop Catalog Item` to browse shops independent of NPC proximity.
+Use the floating `Shops` button near the top-right HUD (left of hearts) to open `World Merchant Shops`.
 
-- Item file: `Items/WorldShopCatalogItem.cs`
-- Recipe: `5x Wood`
-- Use behavior: left-click use opens `World Merchant Shops` UI.
+- The world browser is available directly from the HUD button.
 - The world browser shows only merchants currently present in the world.
 
 ## Progression And Catalog Design

@@ -85,8 +85,8 @@ Player/config/progression:
 - `Config.cs`
 - `Utils/Progression.cs`
 
-World UI trigger item:
-- `Items/WorldShopCatalogItem.cs`
+World UI trigger:
+- `UI/WorldShopsFloatingButtonUI.cs`
 
 Generator and data:
 - `generate_expanded_catalog.ps1`
@@ -138,12 +138,12 @@ World mode filters merchants by:
 
 In world mode, a `Show All Items` button appears only when `DevMode` is enabled.
 
-### 5.3 World browser trigger item
+### 5.3 World browser trigger button
 
-- `Items/WorldShopCatalogItem.cs`
-- Recipe: `5x Wood`
-- Opens world browser on item use (`UseItem`).
-- Prevents use if mouse is over custom UI or `Main.blockInput` is true.
+- `UI/WorldShopsFloatingButtonUI.cs`
+- Displays a floating `Shops` button near the top-right HUD (left of hearts).
+- Clicking `Shops` opens `World Merchant Shops`.
+- Hovering the button marks UI interaction (`mouseInterface`) and locks vanilla scroll.
 
 ### 5.4 Input and close behavior
 
