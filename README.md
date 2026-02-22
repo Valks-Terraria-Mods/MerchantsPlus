@@ -4,6 +4,10 @@ MerchantsPlus expands Terraria merchant inventories with progression-gated shops
 
 The mod is designed to make item access broad but still gradual: shops unlock as you progress through bosses, events, and other unlock conditions instead of dumping everything at game start.
 
+<img width="695" height="534" alt="image" src="https://github.com/user-attachments/assets/f0cc46e0-cc5d-4218-8bab-b3f21de8d27e" />
+
+<img width="631" height="419" alt="image" src="https://github.com/user-attachments/assets/ac46eea9-ca75-4b2f-a597-ac5b270774c2" />
+
 ## What Is Included
 
 - Expanded shops for vanilla town NPC merchants.
