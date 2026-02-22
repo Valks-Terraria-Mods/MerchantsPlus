@@ -78,6 +78,11 @@ public class AddCustomShopUI : ModSystem
         return _worldShopsUserInterface?.CurrentState is not null;
     }
 
+    public bool ShouldPreventWorldShopsEscClose()
+    {
+        return IsWorldShopsUIOpen() && _worldShopsUI?.IsEscCloseLocked() == true;
+    }
+
     public bool IsAnyBrowserUIOpen()
     {
         return IsShowAllShopsUIOpen() || IsWorldShopsUIOpen();
@@ -148,8 +153,11 @@ public class AddCustomShopUI : ModSystem
         {
             HideShopUI();
             HideShowAllShopsUI();
-            HideWorldShopsUI();
-            return;
+            if (!ShouldPreventWorldShopsEscClose())
+            {
+                HideWorldShopsUI();
+                return;
+            }
         }
 
         if (_shopUserInterface?.CurrentState != null)

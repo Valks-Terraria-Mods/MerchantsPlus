@@ -354,7 +354,7 @@ public partial class ShowAllShopsUI
             return;
         }
 
-        _showAllItemsBtn.Left.Set(8f, 0f);
+        _showAllItemsBtn.Left.Set(90f, 0f);
         _showAllItemsBtn.SetText(showAllItems ? "Show All Items: ON" : "Show All Items");
     }
 

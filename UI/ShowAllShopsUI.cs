@@ -22,6 +22,7 @@ public partial class ShowAllShopsUI : UIState
     private UIText _previewHeaderLabel;
     private UIPanel _previewPanel;
     private TextButton _showAllItemsBtn;
+    private TextButton _escLockBtn;
     private readonly Item[] _previewItems = CreatePreviewItemBuffer();
 
     private int _selectedMerchantId = NPCID.None;
@@ -50,6 +51,7 @@ public partial class ShowAllShopsUI : UIState
     private Item _hoveredPreviewItem;
     private long _hoveredPreviewPrice;
     private bool _hoveredPreviewHasPrice;
+    private bool _preventEscClose;
 
     public ShowAllShopsUI() : this(false, "All Merchant Shops")
     {
@@ -72,5 +74,10 @@ public partial class ShowAllShopsUI : UIState
         }
 
         return items;
+    }
+
+    public bool IsEscCloseLocked()
+    {
+        return _onlyPresentTownMerchants && _preventEscClose;
     }
 }

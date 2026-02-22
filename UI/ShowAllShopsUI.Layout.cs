@@ -65,10 +65,19 @@ public partial class ShowAllShopsUI
             {
                 HAlign = 0f,
             };
-            _showAllItemsBtn.Left.Set(8f, 0f);
+            _showAllItemsBtn.Left.Set(90f, 0f);
             _showAllItemsBtn.Top.Set(8f, 0f);
             _showAllItemsBtn.OnLeftClick += OnShowAllItemsClicked;
             panel.Append(_showAllItemsBtn);
+
+            _escLockBtn = new TextButton("Esc Lock", 0.72f)
+            {
+                HAlign = 0f,
+            };
+            _escLockBtn.Left.Set(8f, 0f);
+            _escLockBtn.Top.Set(8f, 0f);
+            _escLockBtn.OnLeftClick += OnEscLockClicked;
+            panel.Append(_escLockBtn);
         }
 
         UIText merchantsHeader = new("Merchants", 0.85f)
@@ -111,6 +120,7 @@ public partial class ShowAllShopsUI
         InitializePreviewPanel(panel);
         Append(panel);
         UpdateShowAllItemsButton();
+        UpdateEscLockButton();
     }
 
     public override void Update(GameTime gameTime)
@@ -118,13 +128,14 @@ public partial class ShowAllShopsUI
         base.Update(gameTime);
         BeginPreviewHoverTracking();
 
-        if (Main.keyState.IsKeyDown(Keys.Escape))
+        if (Main.keyState.IsKeyDown(Keys.Escape) && !IsEscCloseLocked())
         {
             CloseThisUI();
             return;
         }
 
         UpdateShowAllItemsButton();
+        UpdateEscLockButton();
         RefreshPreviewItems(force: false);
         ClampWorldPreviewToScreen();
 
@@ -233,5 +244,26 @@ public partial class ShowAllShopsUI
         {
             ui.HideShowAllShopsUI();
         }
+    }
+
+    private void OnEscLockClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
+        if (!_onlyPresentTownMerchants)
+        {
+            return;
+        }
+
+        _preventEscClose = !_preventEscClose;
+        UpdateEscLockButton();
+    }
+
+    private void UpdateEscLockButton()
+    {
+        if (_escLockBtn is null)
+        {
+            return;
+        }
+
+        _escLockBtn.SetText(_preventEscClose ? "Esc Lock: ON" : "Esc Lock");
     }
 }
