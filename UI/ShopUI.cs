@@ -5,33 +5,7 @@ namespace MerchantsPlus.UI;
 
 public class ShopUI : UIState
 {
-    public static Dictionary<int, Shop> Shops { get; } = new() {
-        { NPCID.Angler, new ShopAngler() },
-        { NPCID.ArmsDealer, new ShopArmsDealer() },
-        { NPCID.Clothier, new ShopClothier() },
-        { NPCID.Cyborg, new ShopCyborg() },
-        { NPCID.Demolitionist, new ShopDemolitionist() },
-        { NPCID.Dryad, new ShopDryad() },
-        { NPCID.DyeTrader, new ShopDyeTrader() },
-        { NPCID.GoblinTinkerer, new ShopGoblinTinkerer() },
-        { NPCID.Mechanic, new ShopMechanic() },
-        { NPCID.Merchant, new ShopMerchant() },
-        { NPCID.Nurse, new ShopNurse() },
-        { NPCID.Painter, new ShopPainter() },
-        { NPCID.PartyGirl, new ShopPartyGirl() },
-        { NPCID.Pirate, new ShopPirate() },
-        { NPCID.SantaClaus, new ShopSantaClaus() },
-        { NPCID.SkeletonMerchant, new ShopSkeletonMerchant() },
-        { NPCID.Steampunker, new ShopSteampunker() },
-        { NPCID.Stylist, new ShopStylist() },
-        { NPCID.DD2Bartender, new ShopTavernkeep() },
-        { NPCID.TaxCollector, new ShopTaxCollector() },
-        { NPCID.TravellingMerchant, new ShopTravellingMerchant() },
-        { NPCID.Truffle, new ShopTruffle() },
-        { NPCID.WitchDoctor, new ShopWitchDoctor() },
-        { NPCID.Wizard, new ShopWizard() },
-        { NPCID.Guide, new ShopGuide() }
-    };
+    public static Dictionary<int, Shop> Shops { get; } = CreateShops();
 
     public static bool Visible { get; set; }
     public static int CurrentMerchantId { get; set; }
@@ -39,6 +13,72 @@ public class ShopUI : UIState
     private TextButton _merchantNameBtn;
     private TextButton _shopNameBtn;
     private TextButton _cycleShopBtn;
+
+    private static Dictionary<int, Shop> CreateShops()
+    {
+        Dictionary<int, Shop> shops = new()
+        {
+            { NPCID.Angler, new ShopAngler() },
+            { NPCID.ArmsDealer, new ShopArmsDealer() },
+            { NPCID.Clothier, new ShopClothier() },
+            { NPCID.Cyborg, new ShopCyborg() },
+            { NPCID.Demolitionist, new ShopDemolitionist() },
+            { NPCID.Dryad, new ShopDryad() },
+            { NPCID.DyeTrader, new ShopDyeTrader() },
+            { NPCID.GoblinTinkerer, new ShopGoblinTinkerer() },
+            { NPCID.Mechanic, new ShopMechanic() },
+            { NPCID.Merchant, new ShopMerchant() },
+            { NPCID.Nurse, new ShopNurse() },
+            { NPCID.Painter, new ShopPainter() },
+            { NPCID.PartyGirl, new ShopPartyGirl() },
+            { NPCID.Pirate, new ShopPirate() },
+            { NPCID.SantaClaus, new ShopSantaClaus() },
+            { NPCID.SkeletonMerchant, new ShopSkeletonMerchant() },
+            { NPCID.Steampunker, new ShopSteampunker() },
+            { NPCID.Stylist, new ShopStylist() },
+            { NPCID.DD2Bartender, new ShopTavernkeep() },
+            { NPCID.TaxCollector, new ShopTaxCollector() },
+            { NPCID.TravellingMerchant, new ShopTravellingMerchant() },
+            { NPCID.Truffle, new ShopTruffle() },
+            { NPCID.WitchDoctor, new ShopWitchDoctor() },
+            { NPCID.Wizard, new ShopWizard() },
+            { NPCID.Guide, new ShopGuide() },
+        };
+
+        AddExpandedOnlyShop(shops, NPCID.Golfer);
+        AddExpandedOnlyShop(shops, NPCID.Princess);
+
+        AddExpandedOnlyShop(shops, "TownCat");
+        AddExpandedOnlyShop(shops, "TownDog");
+        AddExpandedOnlyShop(shops, "TownBunny");
+
+        AddExpandedOnlyShop(shops, "TownSlimeBlue");    // Nerdy Slime
+        AddExpandedOnlyShop(shops, "TownSlimeGreen");   // Cool Slime
+        AddExpandedOnlyShop(shops, "TownSlimeOld");     // Elder Slime
+        AddExpandedOnlyShop(shops, "TownSlimePurple");  // Clumsy Slime
+        AddExpandedOnlyShop(shops, "TownSlimeRainbow"); // Diva Slime
+        AddExpandedOnlyShop(shops, "TownSlimeRed");     // Surly Slime
+        AddExpandedOnlyShop(shops, "TownSlimeYellow");  // Mystic Slime
+        AddExpandedOnlyShop(shops, "TownSlimeCopper");  // Squire Slime
+
+        return shops;
+    }
+
+    private static void AddExpandedOnlyShop(Dictionary<int, Shop> shops, int npcId)
+    {
+        if (npcId < 0 || shops.ContainsKey(npcId))
+        {
+            return;
+        }
+
+        shops[npcId] = new ShopExpandedOnly(npcId);
+    }
+
+    private static void AddExpandedOnlyShop(Dictionary<int, Shop> shops, string npcName)
+    {
+        int npcId = NPCID.Search.GetId(npcName);
+        AddExpandedOnlyShop(shops, npcId);
+    }
 
     public override void OnInitialize()
     {
@@ -83,14 +123,19 @@ public class ShopUI : UIState
             return;
 
         NPC npc = Array.Find(Main.npc, n => n.active && n.type == CurrentMerchantId);
+        List<string> visibleShops = Shop.GetVisibleShops(CurrentMerchantId, shop.Shops);
 
         _merchantNameBtn.SetText(npc != null ? npc.TypeName : "Merchant");
 
-        if (shop.Shops.Count > 0)
+        if (visibleShops.Count > 0)
         {
-            int index = shop.CycleIndex;
-            _shopNameBtn.SetText(shop.Shops[index]);
-            _cycleShopBtn.SetText(shop.Shops.Count > 1 ? "Cycle Shop" : string.Empty);
+            if (shop.CycleIndex >= visibleShops.Count)
+            {
+                shop.CycleIndex = 0;
+            }
+
+            _shopNameBtn.SetText(visibleShops[shop.CycleIndex]);
+            _cycleShopBtn.SetText(visibleShops.Count > 1 ? "Cycle Shop" : string.Empty);
         }
         else
         {
@@ -131,10 +176,16 @@ public class ShopUI : UIState
     private void CycleShop(bool forward)
     {
         Shop shop = Shops[CurrentMerchantId];
+        List<string> visibleShops = Shop.GetVisibleShops(CurrentMerchantId, shop.Shops);
 
-        int count = shop.Shops.Count;
+        int count = visibleShops.Count;
         if (count <= 1)
             return;
+
+        if (shop.CycleIndex >= count)
+        {
+            shop.CycleIndex = 0;
+        }
 
         int newIndex = forward
             ? (shop.CycleIndex + 1) % count
@@ -149,10 +200,16 @@ public class ShopUI : UIState
     private static void OpenCurrentShop()
     {
         Shop shop = Shops[CurrentMerchantId];
-        if (shop.Shops.Count == 0)
+        List<string> visibleShops = Shop.GetVisibleShops(CurrentMerchantId, shop.Shops);
+        if (visibleShops.Count == 0)
             return;
 
-        string shopName = shop.Shops[shop.CycleIndex];
+        if (shop.CycleIndex >= visibleShops.Count)
+        {
+            shop.CycleIndex = 0;
+        }
+
+        string shopName = visibleShops[shop.CycleIndex];
         shop.OpenShop(shopName);
     }
 }

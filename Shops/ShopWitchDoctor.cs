@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopWitchDoctor : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopWitchDoctorCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.WitchDoctor, ShopWitchDoctorCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.WitchDoctor, shop))
+        {
+            return;
+        }
 
         Action openShop = shop switch
         {
@@ -37,6 +42,9 @@ public class ShopWitchDoctor : Shop
         AddConditionalOffers(ShopWitchDoctorCatalog.WingUnlocks);
     }
 }
+
+
+
 
 
 

@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopCyborg : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopCyborgCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Cyborg, ShopCyborgCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Cyborg, shop))
+        {
+            return;
+        }
 
         if (shop == ShopCyborgCatalog.RoboticsShopName)
         {
@@ -19,4 +24,7 @@ public class ShopCyborg : Shop
         Inv.SetupShop(ShopType.Cyborg);
     }
 }
+
+
+
 

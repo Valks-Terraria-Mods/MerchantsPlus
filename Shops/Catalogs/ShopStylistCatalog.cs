@@ -26,16 +26,16 @@ public static class ShopStylistCatalog
         "Bloodmoon",
         "Eclipse",
         "Goblin Army",
-        "Old Ones Army",
+        "Old Ones",
         "Frost Legion",
         "Pumpkin Moon",
         "Frost Moon",
-        "Pirate Invasion",
-        "Martian Madness",
+        "Pirates",
+        "Martians",
         "Solar Zone",
         "Vortex Zone",
         "Nebula Zone",
-        "Stardust Zone",
+        "Stardust",
     ];
 
     public static readonly int[] HairDyes =
@@ -136,7 +136,7 @@ public static class ShopStylistCatalog
             new(ItemID.SandElementalBanner, _bannerCostHard, NPCID.SandElemental),
         ],
 
-        ["Old Ones Army"] =
+        ["Old Ones"] =
         [
             new(ItemID.DD2WyvernBanner, _bannerCostHard, NPCID.DD2WyvernT1),
             new(ItemID.DD2JavelinThrowerBanner, _bannerCostHard, NPCID.DD2JavelinstT1),
@@ -156,7 +156,7 @@ public static class ShopStylistCatalog
             new(ItemID.SnowBallaBanner, _bannerCostHard, NPCID.SnowBalla),
         ],
 
-        ["Pirate Invasion"] =
+        ["Pirates"] =
         [
             new(ItemID.PirateBanner, _bannerCostHard, NPCID.Pirate),
             new(ItemID.PirateDeadeyeBanner, _bannerCostHard, NPCID.PirateDeadeye),
@@ -187,7 +187,7 @@ public static class ShopStylistCatalog
             new(ItemID.FlockoBanner, _bannerCostHard, NPCID.Flocko),
         ],
 
-        ["Martian Madness"] =
+        ["Martians"] =
         [
             new(ItemID.ScutlixBanner, _bannerCostHard, NPCID.Scutlix),
             new(ItemID.MartianWalkerBanner, _bannerCostHard, NPCID.MartianWalker),
@@ -228,7 +228,7 @@ public static class ShopStylistCatalog
             new(ItemID.NebulaSoldierBanner, _bannerCostInsane, NPCID.NebulaSoldier),
         ],
 
-        ["Stardust Zone"] =
+        ["Stardust"] =
         [
             new(ItemID.StardustJellyfishBanner, _bannerCostInsane, NPCID.StardustJellyfishSmall),
             new(ItemID.StardustLargeCellBanner, _bannerCostInsane, NPCID.StardustJellyfishBig),

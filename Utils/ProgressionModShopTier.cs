@@ -9,7 +9,7 @@ public sealed class ProgressionModShopTier(int requiredProgression, int price, F
 
     public bool IsUnlocked(int progression)
     {
-        return progression >= RequiredProgression;
+        return Config.Instance?.UnlockAllItems == true || progression >= RequiredProgression;
     }
 
     public ModItem[] GetItems()

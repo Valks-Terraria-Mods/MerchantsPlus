@@ -32,6 +32,11 @@ public static class ShopGolemCatalog
 
     private static ModItem[] EvilStorageItems()
     {
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return [Magic.UpgradeCrimtane, Magic.StorageUnitCrimtane, Magic.UpgradeDemonite, Magic.StorageUnitDemonite];
+        }
+
         return WorldGen.crimson
             ? [Magic.UpgradeCrimtane, Magic.StorageUnitCrimtane]
             : [Magic.UpgradeDemonite, Magic.StorageUnitDemonite];

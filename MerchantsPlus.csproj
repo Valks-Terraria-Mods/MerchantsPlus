@@ -7,6 +7,6 @@
     </PropertyGroup>
 
     <Target Name="RequireTModLoaderTargets" BeforeTargets="PrepareForBuild" Condition="!Exists('..\tModLoader.targets')">
-        <Error Text="Missing ..\tModLoader.targets. Open tModLoader and build any mod once to generate it in ModSources." />
+        <Error Text="Missing ..\tModLoader.targets. Open tModLoader and build any mod once to generate it in ModSources. For compile-only builds, use: dotnet build /p:BuildMod=false" />
     </Target>
 </Project>

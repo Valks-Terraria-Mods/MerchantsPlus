@@ -16,12 +16,6 @@ Featuring
 - Magic Storage NPC has a shop
 - Guide sells boss summon items from vanilla, thorium, calamity, and redemption
 
-Planned
-- Remastered Shop UI with support for Quests / Bounties
-- More Modded Merchant Shops (e.g. Calamity)
-- Adding missing vanilla items / giving items that have no sell value, unique sell values
-- Rebalancing the mod (this is ongoing)
-
 FAQ
 Q: Is this mod balanced?
 A: No this will make your playthroughs much easier. For example in pre-hardmode the merchant sells the journey mode starter wings to you for 25 gold.

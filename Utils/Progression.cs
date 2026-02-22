@@ -4,39 +4,46 @@ namespace MerchantsPlus;
 
 public static class Progression
 {
-    public static bool SlimeKing => NPC.downedSlimeKing;
-    public static bool EyeOfCthulhu => NPC.downedBoss1;
-    public static bool BrainOfCthulhu => NPC.downedBoss2;
-    public static bool EaterOfWorlds => NPC.downedBoss2;
-    public static bool BrainOrEater => NPC.downedBoss2;
-    public static bool QueenBee => NPC.downedQueenBee;
-    public static bool Skeletron => NPC.downedBoss3;
-    public static bool WallOfFlesh => Main.hardMode;
+    private static bool UnlockAllItems => Config.Instance?.UnlockAllItems == true;
+
+    public static bool SlimeKing => UnlockAllItems || NPC.downedSlimeKing;
+    public static bool EyeOfCthulhu => UnlockAllItems || NPC.downedBoss1;
+    public static bool BrainOfCthulhu => UnlockAllItems || NPC.downedBoss2;
+    public static bool EaterOfWorlds => UnlockAllItems || NPC.downedBoss2;
+    public static bool BrainOrEater => UnlockAllItems || NPC.downedBoss2;
+    public static bool QueenBee => UnlockAllItems || NPC.downedQueenBee;
+    public static bool Skeletron => UnlockAllItems || NPC.downedBoss3;
+    public static bool WallOfFlesh => UnlockAllItems || Main.hardMode;
     public static bool DownedMechs(int amount)
     {
+        if (UnlockAllItems)
+        {
+            return true;
+        }
+
         int downedMechCount = new[] { NPC.downedMechBoss1, NPC.downedMechBoss2, NPC.downedMechBoss3 }.Count(b => b);
         return downedMechCount >= amount;
     }
 
-    public static bool Plantera => NPC.downedPlantBoss;
-    public static bool Golem => NPC.downedGolemBoss;
-    public static bool Fishron => NPC.downedFishron;
-    public static bool Cultist => NPC.downedAncientCultist;
-    public static bool TowerSolar => NPC.downedTowerSolar;
-    public static bool TowerVortex => NPC.downedTowerVortex;
-    public static bool TowerNebula => NPC.downedTowerNebula;
-    public static bool TowerStardust => NPC.downedTowerStardust;
-    public static bool Towers => NPC.downedTowers;
-    public static bool Moonlord => NPC.downedMoonlord;
+    public static bool Plantera => UnlockAllItems || NPC.downedPlantBoss;
+    public static bool Golem => UnlockAllItems || NPC.downedGolemBoss;
+    public static bool Fishron => UnlockAllItems || NPC.downedFishron;
+    public static bool Cultist => UnlockAllItems || NPC.downedAncientCultist;
+    public static bool TowerSolar => UnlockAllItems || NPC.downedTowerSolar;
+    public static bool TowerVortex => UnlockAllItems || NPC.downedTowerVortex;
+    public static bool TowerNebula => UnlockAllItems || NPC.downedTowerNebula;
+    public static bool TowerStardust => UnlockAllItems || NPC.downedTowerStardust;
+    public static bool Towers => UnlockAllItems || NPC.downedTowers;
+    public static bool Moonlord => UnlockAllItems || NPC.downedMoonlord;
 
-    public static bool GoblinArmy => NPC.downedGoblins;
-    public static bool BloodMoon => NPC.downedClown;
-    public static bool Pirates => NPC.downedPirates;
-    public static bool Halloween => NPC.downedHalloweenTree || NPC.downedHalloweenKing;
-    public static bool Christmas => NPC.downedFrost || NPC.downedChristmasIceQueen || NPC.downedChristmasSantank || NPC.downedChristmasTree;
-    public static bool Martians => NPC.downedMartians;
+    public static bool GoblinArmy => UnlockAllItems || NPC.downedGoblins;
+    public static bool BloodMoon => UnlockAllItems || NPC.downedClown;
+    public static bool Pirates => UnlockAllItems || NPC.downedPirates;
+    public static bool Halloween => UnlockAllItems || NPC.downedHalloweenTree || NPC.downedHalloweenKing;
+    public static bool Christmas => UnlockAllItems || NPC.downedFrost || NPC.downedChristmasIceQueen || NPC.downedChristmasSantank || NPC.downedChristmasTree;
+    public static bool Martians => UnlockAllItems || NPC.downedMartians;
 
-    public static bool Hardmode => Main.hardMode;
+    public static bool Hardmode => UnlockAllItems || Main.hardMode;
 
     private static int GetHighestProgressionLevel(bool[] conditions)
     {
@@ -59,6 +66,11 @@ public static class Progression
     /// <returns>The highest progression level (1-21) of the hardest boss defeated, or 0 if none.</returns>
     public static int LevelFull()
     {
+        if (UnlockAllItems)
+        {
+            return 21;
+        }
+
         bool[] conditions =
         [
             SlimeKing,                       // 1
@@ -89,6 +101,11 @@ public static class Progression
 
     public static int LevelBoss()
     {
+        if (UnlockAllItems)
+        {
+            return 14;
+        }
+
         bool[] conditions =
         [
             SlimeKing,                       // 1

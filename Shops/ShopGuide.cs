@@ -5,12 +5,17 @@ namespace MerchantsPlus.Shops;
 
 public class ShopGuide : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopGuideCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Guide, ShopGuideCatalog.ShopNames);
     private static readonly int _crossModBossSummonPrice = Coins.Gold(3);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Guide, shop))
+        {
+            return;
+        }
 
         switch (shop)
         {
@@ -41,6 +46,7 @@ public class ShopGuide : Shop
 
     private void Gear()
     {
+        bool unlockAllItems = Config.Instance?.UnlockAllItems == true;
         AddItemsAtPrice(Coins.Gold(), ShopGuideCatalog.UtilityGear);
 
         if (!WorldUtils.IsNpcHere(NPCID.Merchant))
@@ -48,12 +54,12 @@ public class ShopGuide : Shop
             AddItem(ShopGuideCatalog.TorchItemId);
         }
 
-        if (Progression.Skeletron && !Progression.Hardmode)
+        if ((Progression.Skeletron && !Progression.Hardmode) || unlockAllItems)
         {
             AddItem(ShopGuideCatalog.GuideVoodooDollItemId, Coins.Gold(5));
         }
 
-        if (!Progression.Hardmode && (Progression.EaterOfWorlds || Progression.BrainOfCthulhu))
+        if ((!Progression.Hardmode && (Progression.EaterOfWorlds || Progression.BrainOfCthulhu)) || unlockAllItems)
         {
             AddItem(ShopGuideCatalog.ObsidianItemId, Coins.Silver());
         }
@@ -80,6 +86,34 @@ public class ShopGuide : Shop
 
     private void CalamityBosses()
     {
+        bool unlockAllItems = Config.Instance?.UnlockAllItems == true;
+
+        if (unlockAllItems)
+        {
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityDesertMedallion);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityDecapoditaSprout);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityBloodyWormFood);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityTeratoma);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityOverloadedSludge);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCryoKey);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamitySeafood);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCharredIdol);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityEyeofDesolation);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAstralChunk);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAbombination);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityDeathWhistle);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityTitanHeart);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityProfanedShard);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityExoticPheromones);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityProfanedCore);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityMarkofProvidence);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityBloodworm);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityCosmicWorm);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityBlessedPhoenixEgg);
+            AddCrossModBossSummon(ShopGuideCatalog.CalamityAshesOfCalamity);
+            return;
+        }
+
         AddCrossModBossSummon(ShopGuideCatalog.CalamityDesertMedallion);
 
         if (ModCalamity.Bosses.DesertScourgeDowned)
@@ -187,6 +221,24 @@ public class ShopGuide : Shop
 
     private void RedemptionBosses()
     {
+        bool unlockAllItems = Config.Instance?.UnlockAllItems == true;
+
+        if (unlockAllItems)
+        {
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionHeartOfThorns);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionForbiddenRitual);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionWeddingRing);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionAnomalyDetector);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionCyberRadio);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionOmegaTransmitter);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionHologramRemote);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionAncientSigil);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionGalaxyStone);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionEggCrown);
+            AddCrossModBossSummon(ShopGuideCatalog.RedemptionEaglecrestSpelltome);
+            return;
+        }
+
         // Pre-Hardmode
         AddCrossModBossSummon(ShopGuideCatalog.RedemptionHeartOfThorns);
         if (ModRedemption.Bosses.ThornsDowned)
@@ -218,6 +270,25 @@ public class ShopGuide : Shop
     }
     private void ThoriumBosses()
     {
+        bool unlockAllItems = Config.Instance?.UnlockAllItems == true;
+
+        if (unlockAllItems)
+        {
+            AddItem(ShopGuideCatalog.ThoriumGrandFlareGun, Coins.Gold(2));
+            AddItem(ShopGuideCatalog.ThoriumStormFlare, Coins.Gold());
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumJellyfishResonator);
+            AddItem(ShopGuideCatalog.ThoriumUnholyShards, Coins.Silver(50));
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumUnstableCore);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumAncientBlade);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumStarCaller);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumStriderTear);
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumVoidLens);
+            AddItem(ShopGuideCatalog.PumpkinItemId, Coins.Silver(10));
+            AddCrossModBossSummon(ShopGuideCatalog.ThoriumAbyssalShadow);
+            AddItem(ShopGuideCatalog.ThoriumDoomSayersCoin, Coins.Gold(10));
+            return;
+        }
+
         // The Grand Thunder Bird
         // These items are crafted from iron bars, talons and fallen stars. Talons drop from vultures in the desert.
         AddItem(ShopGuideCatalog.ThoriumGrandFlareGun, Coins.Gold(2));
@@ -335,6 +406,9 @@ public class ExtraCrossModTooltips : GlobalItem
         }
     }
 }
+
+
+
 
 
 

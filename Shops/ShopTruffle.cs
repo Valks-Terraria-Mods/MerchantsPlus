@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopTruffle : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopTruffleCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Truffle, ShopTruffleCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Truffle, shop))
+        {
+            return;
+        }
 
         if (shop == ShopTruffleCatalog.GearShopName)
         {
@@ -18,4 +23,7 @@ public class ShopTruffle : Shop
         Inv.SetupShop(ShopType.Truffle);
     }
 }
+
+
+
 

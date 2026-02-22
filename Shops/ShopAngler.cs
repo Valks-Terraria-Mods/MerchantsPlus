@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopAngler : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopAnglerCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Angler, ShopAnglerCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Angler, shop))
+        {
+            return;
+        }
 
         int progression = Progression.LevelFull();
         Action openShop = shop switch
@@ -43,6 +48,17 @@ public class ShopAngler : Shop
 
     private void ShopFishingPole(int progression)
     {
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            AddItem(ShopAnglerCatalog.WoodFishingPoleItemId, Coins.Silver(10));
+            foreach (ProgressionShopItem item in ShopAnglerCatalog.FishingPoleProgression)
+            {
+                AddItem(item.ItemId, item.Price);
+            }
+
+            return;
+        }
+
         ReplaceItem(ShopAnglerCatalog.WoodFishingPoleItemId, Coins.Silver(10));
         ReplaceProgressionItems(progression, ShopAnglerCatalog.FishingPoleProgression);
 
@@ -57,3 +73,6 @@ public class ShopAngler : Shop
         }
     }
 }
+
+
+

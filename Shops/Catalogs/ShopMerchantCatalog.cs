@@ -408,6 +408,210 @@ public static class ShopMerchantCatalog
         ItemID.ManaRegenerationPotion,
     ];
 
+    public static readonly int[] BasePickaxes =
+    [
+        ItemID.IronPickaxe,
+        ItemID.LeadPickaxe,
+    ];
+
+    public static readonly int[] EyePickaxes =
+    [
+        ItemID.GoldPickaxe,
+        ItemID.PlatinumPickaxe,
+    ];
+
+    public static readonly int[] EvilPickaxes =
+    [
+        ItemID.DeathbringerPickaxe,
+        ItemID.NightmarePickaxe,
+    ];
+
+    public static readonly int[] BaseAxes =
+    [
+        ItemID.IronAxe,
+        ItemID.LeadAxe,
+    ];
+
+    public static readonly int[] EyeAxes =
+    [
+        ItemID.GoldAxe,
+        ItemID.PlatinumAxe,
+    ];
+
+    public static readonly int[] EvilAxes =
+    [
+        ItemID.BloodLustCluster,
+        ItemID.WarAxeoftheNight,
+    ];
+
+    public static readonly int[] BaseHammers =
+    [
+        ItemID.IronHammer,
+        ItemID.LeadHammer,
+    ];
+
+    public static readonly int[] EyeHammers =
+    [
+        ItemID.GoldHammer,
+        ItemID.PlatinumHammer,
+    ];
+
+    public static readonly int[] EvilHammers =
+    [
+        ItemID.FleshGrinder,
+        ItemID.TheBreaker,
+    ];
+
+    public static readonly int[] BaseHelmets =
+    [
+        ItemID.CopperHelmet,
+        ItemID.TinHelmet,
+    ];
+
+    public static readonly int[] SlimeHelmets =
+    [
+        ItemID.IronHelmet,
+        ItemID.LeadHelmet,
+    ];
+
+    public static readonly int[] EyeHelmets =
+    [
+        ItemID.GoldHelmet,
+        ItemID.PlatinumHelmet,
+    ];
+
+    public static readonly int[] EvilHelmets =
+    [
+        ItemID.CrimsonHelmet,
+        ItemID.ShadowHelmet,
+    ];
+
+    public static readonly int[] BaseBreastplates =
+    [
+        ItemID.CopperChainmail,
+        ItemID.TinChainmail,
+    ];
+
+    public static readonly int[] SlimeBreastplates =
+    [
+        ItemID.IronChainmail,
+        ItemID.LeadChainmail,
+    ];
+
+    public static readonly int[] EyeBreastplates =
+    [
+        ItemID.GoldChainmail,
+        ItemID.PlatinumChainmail,
+    ];
+
+    public static readonly int[] EvilBreastplates =
+    [
+        ItemID.CrimsonScalemail,
+        ItemID.ShadowScalemail,
+    ];
+
+    public static readonly int[] BaseGreaves =
+    [
+        ItemID.CopperGreaves,
+        ItemID.TinGreaves,
+    ];
+
+    public static readonly int[] SlimeGreaves =
+    [
+        ItemID.IronGreaves,
+        ItemID.LeadGreaves,
+    ];
+
+    public static readonly int[] EyeGreaves =
+    [
+        ItemID.GoldGreaves,
+        ItemID.PlatinumGreaves,
+    ];
+
+    public static readonly int[] EvilGreaves =
+    [
+        ItemID.CrimsonGreaves,
+        ItemID.ShadowGreaves,
+    ];
+
+    public static readonly int[] BaseShortswords =
+    [
+        ItemID.IronShortsword,
+        ItemID.LeadShortsword,
+    ];
+
+    public static readonly int[] EyeShortswords =
+    [
+        ItemID.GoldShortsword,
+        ItemID.PlatinumShortsword,
+    ];
+
+    public static readonly int[] BaseBroadswords =
+    [
+        ItemID.IronBroadsword,
+        ItemID.LeadBroadsword,
+    ];
+
+    public static readonly int[] EyeBroadswords =
+    [
+        ItemID.GoldBroadsword,
+        ItemID.PlatinumBroadsword,
+    ];
+
+    public static readonly int[] EvilBroadswords =
+    [
+        ItemID.BloodButcherer,
+        ItemID.LightsBane,
+    ];
+
+    public static readonly int[] BaseBows =
+    [
+        ItemID.IronBow,
+        ItemID.LeadBow,
+    ];
+
+    public static readonly int[] EyeBows =
+    [
+        ItemID.GoldBow,
+        ItemID.PlatinumBow,
+    ];
+
+    public static readonly int[] EvilBows =
+    [
+        ItemID.TendonBow,
+        ItemID.DemonBow,
+    ];
+
+    public static readonly int[] BaseOreBars =
+    [
+        ItemID.CopperBar,
+        ItemID.TinBar,
+    ];
+
+    public static readonly int[] TierOneOreBars =
+    [
+        ItemID.IronBar,
+        ItemID.LeadBar,
+    ];
+
+    public static readonly int[] TierTwoOreBars =
+    [
+        ItemID.SilverBar,
+        ItemID.TungstenBar,
+    ];
+
+    public static readonly int[] TierThreeOreBars =
+    [
+        ItemID.GoldBar,
+        ItemID.PlatinumBar,
+    ];
+
+    public static readonly int[] EvilOreBars =
+    [
+        ItemID.CrimtaneBar,
+        ItemID.DemoniteBar,
+    ];
+
     public static int GetBasePickaxe() => GenVars.ironBar > 0 ? ItemID.IronPickaxe : ItemID.LeadPickaxe;
     public static int GetEyePickaxe() => GenVars.goldBar > 0 ? ItemID.GoldPickaxe : ItemID.PlatinumPickaxe;
     public static int GetEvilPickaxe() => WorldGen.crimson ? ItemID.DeathbringerPickaxe : ItemID.NightmarePickaxe;

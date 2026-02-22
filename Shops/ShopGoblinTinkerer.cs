@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopGoblinTinkerer : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopGoblinTinkererCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.GoblinTinkerer, ShopGoblinTinkererCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.GoblinTinkerer, shop))
+        {
+            return;
+        }
 
         int progression = Progression.LevelFull();
         Action openShop = shop switch
@@ -33,7 +38,15 @@ public class ShopGoblinTinkerer : Shop
 
     private void Informational(int progression)
     {
-        AddItem(ShopGoblinTinkererCatalog.GetWatchByWorldOre());
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            AddItems(ShopGoblinTinkererCatalog.WatchVariants);
+        }
+        else
+        {
+            AddItem(ShopGoblinTinkererCatalog.GetWatchByWorldOre());
+        }
+
         AddProgressionItems(progression, ShopGoblinTinkererCatalog.InformationalProgressionItems);
     }
 
@@ -68,6 +81,14 @@ public class ShopGoblinTinkerer : Shop
 
     private void Special()
     {
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPreBrainOffers);
+            AddItemsAtPrice(ItemCosts.Accessories, ShopGoblinTinkererCatalog.EvilBossAccessories);
+            AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPostBrainOffers);
+            return;
+        }
+
         AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPreBrainOffers);
         AddItem(Progression.BrainOrEater, ShopGoblinTinkererCatalog.GetEvilBossAccessory(), ItemCosts.Accessories);
         AddConditionalOffers(ShopGoblinTinkererCatalog.SpecialPostBrainOffers);
@@ -79,3 +100,6 @@ public class ShopGoblinTinkerer : Shop
         AddConditionalOffers(ShopGoblinTinkererCatalog.MiscellaneousOffers);
     }
 }
+
+
+

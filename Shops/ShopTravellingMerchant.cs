@@ -2,11 +2,16 @@
 
 public class ShopTravellingMerchant : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopTravellingMerchantCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.TravellingMerchant, ShopTravellingMerchantCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.TravellingMerchant, shop))
+        {
+            return;
+        }
 
         if (shop == ShopTravellingMerchantCatalog.GearShopName)
         {
@@ -20,7 +25,7 @@ public class ShopTravellingMerchant : Shop
 
     private void Gear()
     {
-        AddProgressionItems(Progression.LevelFull(), ShopTravellingMerchantCatalog.GearItems);
-        AddConditionalOffers(ShopTravellingMerchantCatalog.GearUnlocks);
+        AddItem(ShopTravellingMerchantCatalog.GoldenKeyItemId, Coins.Gold(3));
+        AddItem(Progression.Moonlord, ShopTravellingMerchantCatalog.SuspiciousLookingTentacleItemId);
     }
 }

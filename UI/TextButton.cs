@@ -6,34 +6,28 @@ namespace MerchantsPlus.UI;
 
 public class TextButton : UIPanel
 {
+    private const float UiPadding = 5f;
     public bool visible = true;
     private static readonly Color _colorBorder = Color.Transparent;
+    private readonly float _textScale;
     private readonly UIText _uitext;
 
     public TextButton(string text, float text_size)
     {
+        _textScale = text_size;
         SetPadding(0f);
 
         BackgroundColor = Color.Transparent;
         BorderColor = _colorBorder;
 
-        _uitext = new UIText(text, text_size);
-        Vector2 text_measure = FontAssets.MouseText.Value.MeasureString(_uitext.Text);
-
-        float width = (text_measure.X * text_size);
-        float height = (text_measure.Y * text_size) / 2f;
-
-        const float UI_PADDING = 5f;
-
-        float width_panel = width + (UI_PADDING * 2);
-        float height_panel = height + (UI_PADDING * 2);
-
-        Width.Set(width_panel, 0f);
-        Height.Set(height_panel, 0f);
-
-        _uitext.Left.Set((width_panel - width) / 2f, 0f);
-        _uitext.Top.Set((height_panel - height) / 2f, 0f);
+        _uitext = new UIText(text, text_size)
+        {
+            HAlign = 0.5f,
+            VAlign = 0.5f,
+        };
         Append(_uitext);
+
+        SetText(text);
     }
 
     public override void MouseOut(UIMouseEvent evt)
@@ -63,5 +57,13 @@ public class TextButton : UIPanel
     public void SetText(string text)
     {
         _uitext.SetText(text);
+        Vector2 textMeasure = FontAssets.MouseText.Value.MeasureString(_uitext.Text);
+
+        float width = textMeasure.X * _textScale;
+        float height = (textMeasure.Y * _textScale) / 2f;
+
+        Width.Set(width + (UiPadding * 2f), 0f);
+        Height.Set(height + (UiPadding * 2f), 0f);
+        Recalculate();
     }
 }

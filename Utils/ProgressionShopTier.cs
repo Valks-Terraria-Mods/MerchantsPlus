@@ -8,6 +8,6 @@ public sealed class ProgressionShopTier(int requiredProgression, int price, para
 
     public bool IsUnlocked(int progression)
     {
-        return progression >= RequiredProgression;
+        return Config.Instance?.UnlockAllItems == true || progression >= RequiredProgression;
     }
 }

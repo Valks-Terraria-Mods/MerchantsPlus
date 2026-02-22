@@ -2,23 +2,49 @@
 
 public class AddCustomShopUI : ModSystem
 {
-    private UserInterface _userInterface;
+    private UserInterface _shopUserInterface;
+    private UserInterface _showAllShopsUserInterface;
     private GameTime _lastUpdateUiGameTime;
     private ShopUI _shopUI;
+    private ShowAllShopsUI _showAllShopsUI;
 
     public void ShowShopUI()
     {
+        _showAllShopsUI?.ClearPinnedShop(clearTalkNpc: false);
         ShopUI.Visible = true;
 
         _shopUI.UpdateUI();
-        _userInterface?.SetState(_shopUI);
+        _shopUserInterface?.SetState(_shopUI);
     }
 
     public void HideShopUI()
     {
         ShopUI.Visible = false;
 
-        _userInterface?.SetState(null);
+        _shopUserInterface?.SetState(null);
+    }
+
+    public void ShowShowAllShopsUI()
+    {
+        _showAllShopsUI?.Refresh();
+        _showAllShopsUserInterface?.SetState(_showAllShopsUI);
+    }
+
+    public void HideShowAllShopsUI()
+    {
+        _showAllShopsUserInterface?.SetState(null);
+    }
+
+    public void ToggleShowAllShopsUI()
+    {
+        if (_showAllShopsUserInterface?.CurrentState is null)
+        {
+            ShowShowAllShopsUI();
+        }
+        else
+        {
+            HideShowAllShopsUI();
+        }
     }
 
     public override void Load()
@@ -27,8 +53,11 @@ public class AddCustomShopUI : ModSystem
         {
             _shopUI = new ShopUI();
             _shopUI.Activate();
+            _showAllShopsUI = new ShowAllShopsUI();
+            _showAllShopsUI.Activate();
 
-            _userInterface = new UserInterface();
+            _shopUserInterface = new UserInterface();
+            _showAllShopsUserInterface = new UserInterface();
         }
     }
     
@@ -36,9 +65,14 @@ public class AddCustomShopUI : ModSystem
     {
         _lastUpdateUiGameTime = gameTime;
 
-        if (_userInterface?.CurrentState != null)
+        if (_shopUserInterface?.CurrentState != null)
         {
-            _userInterface.Update(gameTime);
+            _shopUserInterface.Update(gameTime);
+        }
+
+        if (_showAllShopsUserInterface?.CurrentState != null)
+        {
+            _showAllShopsUserInterface.Update(gameTime);
         }
     }
 
@@ -52,9 +86,19 @@ public class AddCustomShopUI : ModSystem
                 "MerchantsPlus: Custom Shops",
                 delegate
                 {
-                    if (_lastUpdateUiGameTime != null && _userInterface?.CurrentState != null)
+                    if (_lastUpdateUiGameTime is null)
                     {
-                        _userInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                        return true;
+                    }
+
+                    if (_shopUserInterface?.CurrentState != null)
+                    {
+                        _shopUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                    }
+
+                    if (_showAllShopsUserInterface?.CurrentState != null)
+                    {
+                        _showAllShopsUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                     }
 
                     return true;

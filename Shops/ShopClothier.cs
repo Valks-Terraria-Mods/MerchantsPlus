@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopClothier : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopClothierCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Clothier, ShopClothierCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Clothier, shop))
+        {
+            return;
+        }
 
         if (shop == ShopClothierCatalog.ClothingShopName)
         {
@@ -30,3 +35,6 @@ public class ShopClothier : Shop
         AddConditionalOffers(ShopClothierCatalog.ClothingOffers);
     }
 }
+
+
+

@@ -6,9 +6,17 @@ public abstract class Shop
 {
     public abstract List<string> Shops { get; }
     public int CycleIndex { get; set; }
+    private static int _forcedContextNpcType = NPCID.None;
+    private static int _forcedContextNpcIndex = -1;
+    private static bool _suppressOpenSound;
 
     protected Chest Inv;
     protected int NextSlot;
+
+    private bool HasAvailableSlot()
+    {
+        return Inv?.item is not null && (uint)NextSlot < (uint)Inv.item.Length;
+    }
 
     /// <summary>
     /// Initializes the custom shop inventory for the current NPC interaction.
@@ -16,9 +24,14 @@ public abstract class Shop
     /// <param name="shop">The selected shop tab name.</param>
     public virtual void OpenShop(string shop)
     {
-        SoundEngine.PlaySound(SoundID.MenuTick);
+        if (!_suppressOpenSound)
+        {
+            SoundEngine.PlaySound(SoundID.MenuTick);
+        }
+
         Main.playerInventory = true;
         Main.npcChatText = "";
+        EnsureForcedTalkNpcAssigned();
 
         // Not sure what this line of code does
         // Note that any number greater than 1 will cause index out of bounds error
@@ -27,7 +40,7 @@ public abstract class Shop
         // "Object reference not set to an instance of an object"
         Main.SetNPCShopIndex(1);
 
-        NPC npc = Main.LocalPlayer.TalkNPC;
+        NPC npc = GetShopContextNpc();
 
         // For future reference this code was updated from
         // https://github.com/tModLoader/tModLoader/blob/e6caaaf678efd2a69deece4d72fdaecc4391bd26/patches/tModLoader/Terraria/ModLoader/NPCLoader.cs#L1192
@@ -47,15 +60,153 @@ public abstract class Shop
     }
 
     /// <summary>
+    /// Opens a shop tab using the provided NPC type as context when no NPC is being talked to.
+    /// </summary>
+    /// <param name="shop">The selected shop tab name.</param>
+    /// <param name="npcType">The NPC type to use as the shop context.</param>
+    public void OpenShopForNpcType(string shop, int npcType, bool suppressSound = false)
+    {
+        int previousNpcType = _forcedContextNpcType;
+        int previousNpcIndex = _forcedContextNpcIndex;
+        bool previousSuppressOpenSound = _suppressOpenSound;
+        _forcedContextNpcType = npcType;
+        _forcedContextNpcIndex = FindFallbackTalkNpcIndex(npcType);
+        _suppressOpenSound = suppressSound;
+
+        try
+        {
+            if (_forcedContextNpcIndex >= 0 && Main.LocalPlayer is not null)
+            {
+                Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex);
+            }
+
+            OpenShop(shop);
+        }
+        finally
+        {
+            _forcedContextNpcType = previousNpcType;
+            _forcedContextNpcIndex = previousNpcIndex;
+            _suppressOpenSound = previousSuppressOpenSound;
+        }
+    }
+
+    private static NPC GetShopContextNpc()
+    {
+        NPC talkNpc = Main.LocalPlayer?.TalkNPC;
+        if (talkNpc is not null && talkNpc.active && talkNpc.type > NPCID.None)
+        {
+            return talkNpc;
+        }
+
+        if (_forcedContextNpcIndex >= 0
+            && (uint)_forcedContextNpcIndex < (uint)Main.npc.Length
+            && Main.npc[_forcedContextNpcIndex].active
+            && Main.npc[_forcedContextNpcIndex].type > NPCID.None)
+        {
+            return Main.npc[_forcedContextNpcIndex];
+        }
+
+        int npcType = _forcedContextNpcType;
+        if (npcType <= NPCID.None)
+        {
+            npcType = NPCID.Merchant;
+        }
+
+        NPC activeNpc = Array.Find(Main.npc, npc => npc.active && npc.type == npcType);
+        if (activeNpc is not null)
+        {
+            return activeNpc;
+        }
+
+        NPC npcContext = new();
+        npcContext.SetDefaults(npcType);
+        return npcContext;
+    }
+
+    private static void EnsureForcedTalkNpcAssigned()
+    {
+        if (_forcedContextNpcIndex < 0 && _forcedContextNpcType <= NPCID.None)
+        {
+            return;
+        }
+
+        if (_forcedContextNpcIndex < 0 || _forcedContextNpcIndex >= Main.maxNPCs || !Main.npc[_forcedContextNpcIndex].active)
+        {
+            _forcedContextNpcIndex = FindFallbackTalkNpcIndex(_forcedContextNpcType);
+        }
+
+        if (_forcedContextNpcIndex >= 0 && Main.LocalPlayer is not null)
+        {
+            Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex);
+        }
+    }
+
+    private static int FindFallbackTalkNpcIndex(int preferredNpcType)
+    {
+        if (Main.LocalPlayer is not null)
+        {
+            int nearbyTownNpc = FindNearestTalkableTownNpc(Main.LocalPlayer.Center, 480f);
+            if (nearbyTownNpc >= 0)
+            {
+                return nearbyTownNpc;
+            }
+        }
+
+        if (preferredNpcType > NPCID.None)
+        {
+            int preferred = Array.FindIndex(Main.npc, npc => npc.active && npc.type == preferredNpcType);
+            if (preferred >= 0)
+            {
+                return preferred;
+            }
+        }
+
+        int townNpc = Array.FindIndex(Main.npc, npc => npc.active && npc.townNPC);
+        if (townNpc >= 0)
+        {
+            return townNpc;
+        }
+
+        return Array.FindIndex(Main.npc, npc => npc.active);
+    }
+
+    private static int FindNearestTalkableTownNpc(Vector2 center, float maxDistance)
+    {
+        float maxDistanceSquared = maxDistance * maxDistance;
+        int bestIndex = -1;
+        float bestDistanceSquared = maxDistanceSquared;
+
+        for (int i = 0; i < Main.npc.Length; i++)
+        {
+            NPC npc = Main.npc[i];
+            if (!npc.active || !npc.townNPC)
+            {
+                continue;
+            }
+
+            float distSq = Vector2.DistanceSquared(center, npc.Center);
+            if (distSq <= bestDistanceSquared)
+            {
+                bestDistanceSquared = distSq;
+                bestIndex = i;
+            }
+        }
+
+        return bestIndex;
+    }
+
+    /// <summary>
     /// Adds an item to the next available shop slot when the condition is met.
     /// </summary>
     /// <param name="itemId">The Terraria item ID to add.</param>
     /// <param name="condition">Whether the item should be added.</param>
     protected void AddItem(int itemId, bool condition = true)
     {
-        if (condition && itemId > ItemID.None)
+        if (condition && itemId > ItemID.None && HasAvailableSlot())
         {
-            Inv.item[NextSlot++].SetDefaults(itemId);
+            Inv.item[NextSlot].SetDefaults(itemId);
+            EnsureMinimumSellPrice(NextSlot);
+            NextSlot++;
         }
     }
 
@@ -67,7 +218,7 @@ public abstract class Shop
     /// <param name="progression">The minimum progression level required.</param>
     protected void AddItem(int itemId, int price, int progression = 0)
     {
-        if (itemId > ItemID.None && Progression.LevelFull() >= progression)
+        if (itemId > ItemID.None && Progression.LevelFull() >= progression && HasAvailableSlot())
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
@@ -95,6 +246,124 @@ public abstract class Shop
         {
             AddItem(itemId);
         }
+    }
+
+    /// <summary>
+    /// Builds the shop tab list by combining base tabs with expansion catalog tabs for a merchant.
+    /// </summary>
+    /// <param name="merchantNpcId">The NPC ID of the merchant owning these shop tabs.</param>
+    /// <param name="baseShops">The base shop tab names.</param>
+    /// <returns>The combined list of shop tab names.</returns>
+    protected static List<string> BuildShopList(int merchantNpcId, IEnumerable<string> baseShops)
+    {
+        List<string> shops = [];
+        HashSet<string> seen = new(StringComparer.Ordinal);
+
+        foreach (string shop in baseShops)
+        {
+            if (!string.IsNullOrWhiteSpace(shop) && seen.Add(shop))
+            {
+                shops.Add(shop);
+            }
+        }
+
+        foreach (string shop in ShopExpandedCatalog.GetShopNames(merchantNpcId))
+        {
+            if (!string.IsNullOrWhiteSpace(shop) && seen.Add(shop))
+            {
+                shops.Add(shop);
+            }
+        }
+
+        return shops;
+    }
+
+    /// <summary>
+    /// Returns only shop tabs that should currently be visible to the player.
+    /// </summary>
+    /// <param name="merchantNpcId">The NPC ID of the merchant owning these tabs.</param>
+    /// <param name="shops">All tabs (base and expansion) for the merchant.</param>
+    /// <returns>A filtered list containing currently visible tabs.</returns>
+    public static List<string> GetVisibleShops(int merchantNpcId, IReadOnlyList<string> shops)
+    {
+        List<string> visible = new(shops.Count);
+        HashSet<string> seen = new(StringComparer.Ordinal);
+
+        foreach (string shop in shops)
+        {
+            if (string.IsNullOrWhiteSpace(shop) || !seen.Add(shop))
+            {
+                continue;
+            }
+
+            if (!ShopExpandedCatalog.TryGetPage(merchantNpcId, shop, out ShopExpandedCatalog.ShopPage page))
+            {
+                visible.Add(shop);
+                continue;
+            }
+
+            if (HasVisibleExpandedItems(page))
+            {
+                visible.Add(shop);
+            }
+        }
+
+        return visible;
+    }
+
+    /// <summary>
+    /// Opens an expansion shop tab for the given merchant when available and unlocked.
+    /// </summary>
+    /// <param name="merchantNpcId">The NPC ID of the merchant owning the expansion tabs.</param>
+    /// <param name="shop">The selected shop tab name.</param>
+    /// <returns><c>true</c> if the selected tab belongs to expansion content; otherwise, <c>false</c>.</returns>
+    protected bool OpenExpandedShop(int merchantNpcId, string shop)
+    {
+        if (!ShopExpandedCatalog.TryGetPage(merchantNpcId, shop, out ShopExpandedCatalog.ShopPage page))
+        {
+            return false;
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            foreach (ShopExpandedCatalog.ShopItem item in page.Items)
+            {
+                AddItem(item.ItemId);
+            }
+            return true;
+        }
+
+        int progression = Progression.LevelFull();
+        foreach (ShopExpandedCatalog.ShopItem item in page.Items)
+        {
+            AddItem(item.ItemId, progression >= item.RequiredProgression);
+        }
+
+        return true;
+    }
+
+    private static bool HasVisibleExpandedItems(ShopExpandedCatalog.ShopPage page)
+    {
+        if (page.Items.Length == 0)
+        {
+            return false;
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return true;
+        }
+
+        int progression = Progression.LevelFull();
+        foreach (ShopExpandedCatalog.ShopItem item in page.Items)
+        {
+            if (progression >= item.RequiredProgression)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -209,9 +478,11 @@ public abstract class Shop
     /// <param name="itemId">The Terraria item ID to add.</param>
     protected void AddItem(bool condition, int itemId)
     {
-        if (condition && itemId > ItemID.None)
+        if (condition && itemId > ItemID.None && HasAvailableSlot())
         {
-            Inv.item[NextSlot++].SetDefaults(itemId);
+            Inv.item[NextSlot].SetDefaults(itemId);
+            EnsureMinimumSellPrice(NextSlot);
+            NextSlot++;
         }
     }
 
@@ -224,7 +495,7 @@ public abstract class Shop
     /// <param name="progression">The minimum progression level required.</param>
     protected void AddItem(bool condition, int itemId, int price, int progression = 0)
     {
-        if (condition && itemId > ItemID.None && Progression.LevelFull() >= progression)
+        if (condition && itemId > ItemID.None && Progression.LevelFull() >= progression && HasAvailableSlot())
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot++].shopCustomPrice = price;
@@ -237,7 +508,13 @@ public abstract class Shop
     /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
     protected void ReplaceItem(int itemId)
     {
+        if (!HasAvailableSlot())
+        {
+            return;
+        }
+
         Inv.item[NextSlot].SetDefaults(itemId);
+        EnsureMinimumSellPrice(NextSlot);
     }
 
     /// <summary>
@@ -247,8 +524,11 @@ public abstract class Shop
     /// <param name="itemId">The Terraria item ID to set in the current slot.</param>
     protected void ReplaceItem(bool condition, int itemId)
     {
-        if (condition)
+        if (condition && HasAvailableSlot())
+        {
             Inv.item[NextSlot].SetDefaults(itemId);
+            EnsureMinimumSellPrice(NextSlot);
+        }
     }
 
     /// <summary>
@@ -258,6 +538,11 @@ public abstract class Shop
     /// <param name="price">The custom shop price in copper.</param>
     protected void ReplaceItem(int itemId, int price)
     {
+        if (!HasAvailableSlot())
+        {
+            return;
+        }
+
         Inv.item[NextSlot].SetDefaults(itemId);
         Inv.item[NextSlot].shopCustomPrice = price;
     }
@@ -270,10 +555,34 @@ public abstract class Shop
     /// <param name="price">The custom shop price in copper.</param>
     protected void ReplaceItem(bool condition, int itemId, int price)
     {
-        if (condition)
+        if (condition && HasAvailableSlot())
         {
             Inv.item[NextSlot].SetDefaults(itemId);
             Inv.item[NextSlot].shopCustomPrice = price;
+        }
+    }
+
+    private void EnsureMinimumSellPrice(int slot)
+    {
+        if (Inv?.item is null || (uint)slot >= (uint)Inv.item.Length)
+        {
+            return;
+        }
+
+        Item item = Inv.item[slot];
+        if (item is null || item.IsAir)
+        {
+            return;
+        }
+
+        if (item.shopCustomPrice.HasValue)
+        {
+            return;
+        }
+
+        if (item.value <= 0)
+        {
+            item.shopCustomPrice = Coins.Copper();
         }
     }
 
@@ -283,6 +592,11 @@ public abstract class Shop
     /// <param name="price">The custom shop price in copper.</param>
     protected void ReplacePrice(int price)
     {
+        if (!HasAvailableSlot())
+        {
+            return;
+        }
+
         Inv.item[NextSlot].shopCustomPrice = price;
     }
 
@@ -293,7 +607,7 @@ public abstract class Shop
     /// <param name="price">The custom shop price in copper.</param>
     protected void ReplacePrice(bool condition, int price)
     {
-        if (condition)
+        if (condition && HasAvailableSlot())
             Inv.item[NextSlot].shopCustomPrice = price;
     }
 

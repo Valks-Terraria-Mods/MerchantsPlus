@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopPirate : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopPirateCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Pirate, ShopPirateCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Pirate, shop))
+        {
+            return;
+        }
 
         if (ShopPirateCatalog.SectionsByShop.TryGetValue(shop, out (int? Price, int[] ItemIds)[] sections))
         {
@@ -33,3 +38,6 @@ public class ShopPirate : Shop
         }
     }
 }
+
+
+

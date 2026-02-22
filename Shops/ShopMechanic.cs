@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopMechanic : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopMechanicCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Mechanic, ShopMechanicCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Mechanic, shop))
+        {
+            return;
+        }
 
         if (ShopMechanicCatalog.SectionsByShop.TryGetValue(shop, out (int? Price, int[] ItemIds) section))
         {
@@ -29,6 +34,9 @@ public class ShopMechanic : Shop
         AddItems(section.ItemIds);
     }
 }
+
+
+
 
 
 

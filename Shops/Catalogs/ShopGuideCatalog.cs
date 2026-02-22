@@ -98,10 +98,15 @@ public static class ShopGuideCatalog
 
     public static List<int[]> GetVanillaBossRewardItemTiers()
     {
+        int[] evilTier =
+            Config.Instance?.UnlockAllItems == true
+                ? [ItemID.BloodySpine, ItemID.WormFood]
+                : [WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood];
+
         return
         [
             [ItemID.SuspiciousLookingEye],
-            [WorldGen.crimson ? ItemID.BloodySpine : ItemID.WormFood],
+            evilTier,
             [ItemID.Abeemination, ItemID.DeerThing, ItemID.GuideVoodooDoll],
             [ItemID.QueenSlimeCrystal, ItemID.MechanicalEye, ItemID.MechanicalSkull, ItemID.MechanicalWorm],
             [ItemID.LihzahrdPowerCell],

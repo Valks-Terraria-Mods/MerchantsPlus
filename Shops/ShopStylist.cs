@@ -4,11 +4,16 @@ public class ShopStylist : Shop
 {
     private const int BannerKillsRequirement = 50;
 
-    public override List<string> Shops { get; } = [.. ShopStylistCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.Stylist, ShopStylistCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Stylist, shop))
+        {
+            return;
+        }
 
         if (shop == ShopStylistCatalog.HairDyesShopName)
         {
@@ -34,3 +39,6 @@ public class ShopStylist : Shop
         }
     }
 }
+
+
+

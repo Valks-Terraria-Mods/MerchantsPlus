@@ -19,4 +19,23 @@ public sealed class ClassItemSet(int meleeItemId, int rangerItemId, int mageItem
             _ => DefaultItemId
         };
     }
+
+    public int[] GetAllItemIds()
+    {
+        HashSet<int> ids =
+        [
+            MeleeItemId,
+            RangerItemId,
+            MageItemId,
+            SummonerItemId,
+        ];
+
+        if (DefaultItemId > ItemID.None)
+        {
+            ids.Add(DefaultItemId);
+        }
+
+        ids.Remove(ItemID.None);
+        return [.. ids];
+    }
 }

@@ -45,4 +45,8 @@ public class Config : ModConfig
     [DefaultValue(true)]
     [BackgroundColor(0, 0, 0, 100)]
     public bool ToggleScaling;
+
+    [DefaultValue(false)]
+    [BackgroundColor(0, 0, 0, 100)]
+    public bool UnlockAllItems;
 }

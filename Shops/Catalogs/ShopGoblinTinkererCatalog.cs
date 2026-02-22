@@ -5,13 +5,13 @@ namespace MerchantsPlus.Shops;
 public static class ShopGoblinTinkererCatalog
 {
     public const string MovementShopName = "Movement";
-    public const string InformationalShopName = "Informational";
+    public const string InformationalShopName = "Information";
     public const string CombatShopName = "Combat";
-    public const string HealthAndManaShopName = "Health and Mana";
+    public const string HealthAndManaShopName = "Life and Mana";
     public const string ImmunityShopName = "Immunity";
     public const string DefensiveShopName = "Defensive";
     public const string SpecialShopName = "Special";
-    public const string MiscellaneousShopName = "Miscellaneous";
+    public const string MiscellaneousShopName = "Misc Items";
 
     public static readonly string[] ShopNames =
     [
@@ -197,6 +197,18 @@ public static class ShopGoblinTinkererCatalog
         new(() => NPC.downedPirates, ItemCosts.Accessories, PirateInvasionAccessories),
         new(() => WorldUtils.MultiKills([NPCID.BlueJellyfish, NPCID.PinkJellyfish, NPCID.GreenJellyfish]) > 100, ItemCosts.Accessories, ItemID.JellyfishNecklace),
         new(() => NPC.downedMechBoss1, ItemCosts.Accessories, ItemID.NeptunesShell),
+    ];
+
+    public static readonly int[] WatchVariants =
+    [
+        ItemID.GoldWatch,
+        ItemID.PlatinumWatch,
+    ];
+
+    public static readonly int[] EvilBossAccessories =
+    [
+        ItemID.BrainOfConfusion,
+        ItemID.WormScarf,
     ];
 
     public static int GetWatchByWorldOre()

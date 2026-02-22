@@ -3,15 +3,8 @@ namespace MerchantsPlus.Shops;
 public static class ShopTravellingMerchantCatalog
 {
     public const string GearShopName = "Gear";
+    public const int GoldenKeyItemId = ItemID.GoldenKey;
+    public const int SuspiciousLookingTentacleItemId = ItemID.SuspiciousLookingTentacle;
+
     public static readonly string[] ShopNames = [GearShopName];
-
-    public static readonly ProgressionShopItem[] GearItems =
-    [
-        new(0, ItemID.GoldenKey, Coins.Gold(3)),
-    ];
-
-    public static readonly ConditionalShopOffer[] GearUnlocks =
-    [
-        new(() => Progression.Moonlord, ItemID.SuspiciousLookingTentacle),
-    ];
 }

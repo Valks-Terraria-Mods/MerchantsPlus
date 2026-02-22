@@ -19,6 +19,19 @@ public static class ShopDryadCatalog
         ItemID.MoonglowSeeds,
         ItemID.WaterleafSeeds,
         ItemID.ShiverthornSeeds,
+        ItemID.Acorn,
+        ItemID.JungleGrassSeeds,
+        ItemID.PumpkinSeed,
+        ItemID.AshGrassSeeds,
+        ItemID.GemTreeTopazSeed,
+        ItemID.GemTreeAmethystSeed,
+        ItemID.GemTreeSapphireSeed,
+        ItemID.GemTreeEmeraldSeed,
+        ItemID.GemTreeRubySeed,
+        ItemID.GemTreeDiamondSeed,
+        ItemID.GemTreeAmberSeed,
+        ItemID.VanityTreeSakuraSeed,
+        ItemID.VanityTreeYellowWillowSeed,
     ];
 
     public static readonly ConditionalShopOffer[] SeedUnlocks =

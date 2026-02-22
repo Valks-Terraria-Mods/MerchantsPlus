@@ -1,9 +1,9 @@
-using Terraria.WorldBuilding;
-
 namespace MerchantsPlus.Shops;
 
 public class ShopMerchant : Shop
 {
+    private static bool UnlockAllItems => Config.Instance?.UnlockAllItems == true;
+
     private enum ShopNames
     {
         Gear,
@@ -13,17 +13,24 @@ public class ShopMerchant : Shop
         Mounts
     }
 
-    public override List<string> Shops { get; } = [
-        nameof(ShopNames.Gear),
-        nameof(ShopNames.Potions),
-        nameof(ShopNames.Ores),
-        nameof(ShopNames.Pets),
-        nameof(ShopNames.Mounts)
-    ];
+    public override List<string> Shops { get; } = BuildShopList(
+        NPCID.Merchant,
+        [
+            nameof(ShopNames.Gear),
+            nameof(ShopNames.Potions),
+            nameof(ShopNames.Ores),
+            nameof(ShopNames.Pets),
+            nameof(ShopNames.Mounts),
+        ]);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.Merchant, shop))
+        {
+            return;
+        }
 
         Action openShop = shop switch
         {
@@ -39,13 +46,20 @@ public class ShopMerchant : Shop
 
     private void Potions()
     {
+        bool unlockAllItems = Config.Instance?.UnlockAllItems == true;
         int progression = Progression.LevelFull();
         AddItemsAtPrice(Coins.Silver(), ShopMerchantCatalog.SilverPotions);
         AddItemsAtPrice(ItemCosts.Potions, ShopMerchantCatalog.BasicPotions);
         AddItem(ShopMerchantCatalog.GenderChangePotionItemId, Coins.Copper());
         AddItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.ObsidianSkinPotionItemId, ItemCosts.Potions);
 
-        if (Progression.Hardmode)
+        if (unlockAllItems)
+        {
+            AddItem(ShopMerchantCatalog.LuckPotionLesserItemId, ItemCosts.Potions);
+            AddItem(ShopMerchantCatalog.LuckPotionItemId, ItemCosts.Potions);
+            AddItem(ShopMerchantCatalog.LuckPotionGreaterItemId, ItemCosts.Potions);
+        }
+        else if (Progression.Hardmode)
         {
             AddItem(Progression.Cultist ? ShopMerchantCatalog.LuckPotionGreaterItemId : ShopMerchantCatalog.LuckPotionItemId, ItemCosts.Potions);
         }
@@ -68,6 +82,13 @@ public class ShopMerchant : Shop
 
     private void Wings()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordWing = GetClassItem(ShopMerchantCatalog.MoonlordWings);
+            AddItem(moonlordWing > ItemID.None ? moonlordWing : ItemID.FishronWings, Coins.Platinum());
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.WingReplacements);
         ReplaceItem(Progression.Moonlord, GetClassItem(ShopMerchantCatalog.MoonlordWings), Coins.Platinum());
 
@@ -76,6 +97,13 @@ public class ShopMerchant : Shop
 
     private void Pickaxe()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordPickaxe = GetClassItem(ShopMerchantCatalog.MoonlordPickaxes);
+            AddItem(moonlordPickaxe > ItemID.None ? moonlordPickaxe : ItemID.Picksaw);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBasePickaxe());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyePickaxe());
         ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilPickaxe());
@@ -87,6 +115,13 @@ public class ShopMerchant : Shop
 
     private void Axe()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordHamaxe = GetClassItem(ShopMerchantCatalog.MoonlordHamaxes);
+            AddItem(moonlordHamaxe > ItemID.None ? moonlordHamaxe : ItemID.ChlorophyteGreataxe);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseAxe());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeAxe());
         ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilAxe());
@@ -97,6 +132,13 @@ public class ShopMerchant : Shop
 
     private void Hammer()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordHamaxe = GetClassItem(ShopMerchantCatalog.MoonlordHamaxes);
+            AddItem(moonlordHamaxe > ItemID.None ? moonlordHamaxe : ItemID.ChlorophyteJackhammer);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseHammer());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeHammer());
         ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilHammer());
@@ -108,6 +150,13 @@ public class ShopMerchant : Shop
 
     private void Helmet()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordHelmet = GetClassItem(ShopMerchantCatalog.MoonlordHelmets);
+            AddItem(moonlordHelmet > ItemID.None ? moonlordHelmet : ItemID.ChlorophyteHelmet);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseHelmet());
         ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeHelmet());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeHelmet());
@@ -124,6 +173,13 @@ public class ShopMerchant : Shop
 
     private void Breastplate()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordBreastplate = GetClassItem(ShopMerchantCatalog.MoonlordBreastplates);
+            AddItem(moonlordBreastplate > ItemID.None ? moonlordBreastplate : ItemID.ChlorophytePlateMail);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseBreastplate());
         ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeBreastplate());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBreastplate());
@@ -140,6 +196,13 @@ public class ShopMerchant : Shop
 
     private void ShopGreaves()
     {
+        if (UnlockAllItems)
+        {
+            int moonlordGreaves = GetClassItem(ShopMerchantCatalog.MoonlordGreaves);
+            AddItem(moonlordGreaves > ItemID.None ? moonlordGreaves : ItemID.ChlorophyteGreaves);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseGreaves());
         ReplaceItem(Progression.SlimeKing, ShopMerchantCatalog.GetSlimeGreaves());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeGreaves());
@@ -156,6 +219,12 @@ public class ShopMerchant : Shop
 
     private void Shortswords()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ShopMerchantCatalog.GetEyeShortsword());
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseShortsword());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeShortsword());
 
@@ -164,6 +233,12 @@ public class ShopMerchant : Shop
 
     private void Broadswords()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.TerraBlade);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseBroadsword());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBroadsword());
         ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilBroadsword());
@@ -174,6 +249,12 @@ public class ShopMerchant : Shop
 
     private void Bows()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.Phantasm);
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.GetBaseBow());
         ReplaceItem(Progression.EyeOfCthulhu, ShopMerchantCatalog.GetEyeBow());
         ReplaceItem(Progression.BrainOrEater, ShopMerchantCatalog.GetEvilBow());
@@ -184,6 +265,12 @@ public class ShopMerchant : Shop
 
     private void MageWeapon()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.SpectreStaff);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.MageWeaponReplacements);
 
         NextSlot++;
@@ -191,6 +278,12 @@ public class ShopMerchant : Shop
 
     private void SummonerWeapon()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.StardustDragonStaff, Coins.Gold(2));
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.SummonerWeaponReplacements);
         ReplacePrice(Coins.Gold(2));
 
@@ -211,6 +304,24 @@ public class ShopMerchant : Shop
 
     private void Ores()
     {
+        if (UnlockAllItems)
+        {
+            AddItemsAtPrice(50, ShopMerchantCatalog.BaseOreBars);
+            AddItemsAtPrice(100, ShopMerchantCatalog.TierOneOreBars);
+            AddItemsAtPrice(150, ShopMerchantCatalog.TierTwoOreBars);
+            AddItemsAtPrice(200, ShopMerchantCatalog.TierThreeOreBars);
+            AddItemsAtPrice(250, ShopMerchantCatalog.EvilOreBars);
+            AddItem(ShopMerchantCatalog.MeteoriteOreItemId, 300);
+            AddItem(ShopMerchantCatalog.HellstoneOreItemId, 350);
+            AddItemsAtPrice(400, ShopMerchantCatalog.HardmodeBarsTier1);
+            AddItemsAtPrice(450, ShopMerchantCatalog.HardmodeBarsTier2);
+            AddItemsAtPrice(500, ShopMerchantCatalog.HardmodeBarsTier3);
+            AddItem(ShopMerchantCatalog.HallowedOreItemId, 550);
+            AddItem(ShopMerchantCatalog.ChlorophyteOreItemId, 600);
+            AddItem(ShopMerchantCatalog.LunarOreItemId, 650);
+            return;
+        }
+
         AddItem(ShopMerchantCatalog.GetBaseOre(), 50);
 
         if (Progression.SlimeKing)
@@ -253,6 +364,12 @@ public class ShopMerchant : Shop
 
     private void FishingRod()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.GoldenFishingRod, Coins.Platinum(2));
+            return;
+        }
+
         ReplaceItem(ShopMerchantCatalog.WoodFishingPoleItemId, Coins.Silver(10));
         ReplaceProgressionItems(Progression.LevelFull(), ShopMerchantCatalog.FishingRodProgression);
 
@@ -263,7 +380,7 @@ public class ShopMerchant : Shop
     {
         AddItems(ShopMerchantCatalog.GearBasics);
 
-        if (!Main.hardMode)
+        if (!Main.hardMode && !UnlockAllItems)
         {
             AddItem(ShopMerchantCatalog.PreHardmodeBugNetItemId);
         }
@@ -349,6 +466,12 @@ public class ShopMerchant : Shop
 
     private void Boots()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.TerrasparkBoots);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.BootReplacements);
 
         NextSlot++;
@@ -357,6 +480,12 @@ public class ShopMerchant : Shop
 
     private void HealPotion()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.SuperHealingPotion);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.HealingPotionReplacements);
 
         NextSlot++;
@@ -364,6 +493,12 @@ public class ShopMerchant : Shop
 
     private void ManaPotion()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.SuperManaPotion);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.ManaPotionReplacements);
 
         NextSlot++;
@@ -371,6 +506,12 @@ public class ShopMerchant : Shop
 
     private void Torches()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.UltrabrightTorch, Coins.Silver());
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.TorchReplacements);
         ReplacePrice(Coins.Silver());
 
@@ -379,6 +520,12 @@ public class ShopMerchant : Shop
 
     private void Arrows()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.MoonlordArrow);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.ArrowReplacements);
 
         NextSlot++;
@@ -386,6 +533,12 @@ public class ShopMerchant : Shop
 
     private void Rope()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.Chain, Coins.Copper());
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.RopeReplacements);
         ReplacePrice(Coins.Copper());
 
@@ -394,6 +547,12 @@ public class ShopMerchant : Shop
 
     private void LightPet()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.WispinaBottle, Coins.Gold(2));
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.LightPetReplacements);
         ReplacePrice(Coins.Gold(2));
 
@@ -402,6 +561,12 @@ public class ShopMerchant : Shop
 
     private void ThrowerWep()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.BoneJavelin);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.ThrowerReplacements);
 
         NextSlot++;
@@ -409,6 +574,12 @@ public class ShopMerchant : Shop
 
     private void Hooks()
     {
+        if (UnlockAllItems)
+        {
+            AddItem(ItemID.LunarHook);
+            return;
+        }
+
         ReplaceFromOffers(ShopMerchantCatalog.HookReplacements);
 
         NextSlot++;
@@ -416,6 +587,13 @@ public class ShopMerchant : Shop
 
     private void BuffPotion()
     {
+        if (UnlockAllItems)
+        {
+            AddItemsAtPrice(ItemCosts.Potions, ShopMerchantCatalog.MagePotions);
+            AddItem(ShopMerchantCatalog.ArcheryPotionItemId, ItemCosts.Potions);
+            return;
+        }
+
         PlayerClass playerClass = PlayerUtils.GetPlayerClass();
 
         if (playerClass == PlayerClass.Mage)
@@ -450,6 +628,7 @@ public class ShopMerchant : Shop
             }
         }
     }
+
 }
 
 

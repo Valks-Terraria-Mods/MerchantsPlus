@@ -2,11 +2,16 @@ namespace MerchantsPlus.Shops;
 
 public class ShopSkeletonMerchant : Shop
 {
-    public override List<string> Shops { get; } = [.. ShopSkeletonMerchantCatalog.ShopNames];
+    public override List<string> Shops { get; } = BuildShopList(NPCID.SkeletonMerchant, ShopSkeletonMerchantCatalog.ShopNames);
 
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
+
+        if (OpenExpandedShop(NPCID.SkeletonMerchant, shop))
+        {
+            return;
+        }
 
         if (shop == ShopSkeletonMerchantCatalog.MusicBoxesShopName)
         {
@@ -26,6 +31,9 @@ public class ShopSkeletonMerchant : Shop
         Inv.SetupShop(ShopType.SkeletonMerchant);
     }
 }
+
+
+
 
 
 

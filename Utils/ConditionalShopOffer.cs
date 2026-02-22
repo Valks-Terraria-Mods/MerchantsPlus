@@ -21,6 +21,6 @@ public sealed class ConditionalShopOffer
 
     public bool IsUnlocked()
     {
-        return Condition();
+        return Config.Instance?.UnlockAllItems == true || Condition();
     }
 }
