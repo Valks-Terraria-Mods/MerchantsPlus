@@ -32,9 +32,10 @@ internal static class WorldShopPurchaseDiagnostics
         _hoverTick = Main.GameUpdateCount;
     }
 
-    public static void RecordMouseDown(int slotIndex, Item item, bool ignoreMouseInterface)
+    public static void RecordMouseDown(int slotIndex, Item item, bool ignoreMouseInterface, string source)
     {
-        _mouseDown = $"{BuildSlotItemText(slotIndex, item)} ignoreMouse={ignoreMouseInterface} ml={Main.mouseLeft} mlr={Main.mouseLeftRelease}";
+        string src = string.IsNullOrWhiteSpace(source) ? "unknown" : source;
+        _mouseDown = $"{BuildSlotItemText(slotIndex, item)} src={src} ignoreMouse={ignoreMouseInterface} ml={Main.mouseLeft} mr={Main.mouseRight} mlr={Main.mouseLeftRelease} mrr={Main.mouseRightRelease}";
         _mouseDownTick = Main.GameUpdateCount;
     }
 

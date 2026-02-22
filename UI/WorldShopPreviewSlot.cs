@@ -12,7 +12,8 @@ public sealed class WorldShopPreviewSlot : UIElement
     private readonly Action<int> _onClick;
     private readonly int _drawContext;
     private readonly float _scale;
-    private bool _wasMouseDown;
+    private bool _wasLeftMouseDown;
+    private int _rightHoldTicks;
 
     public WorldShopPreviewSlot(
         int slotIndex,
@@ -60,19 +61,50 @@ public sealed class WorldShopPreviewSlot : UIElement
 
             // Fallback click detection path:
             // UIElement left-mouse events are not firing reliably for these custom slot elements in-world.
-            bool isMouseDown = Main.mouseLeft;
-            bool justPressed = isMouseDown && !_wasMouseDown;
-            if (justPressed)
+            bool leftDown = Main.mouseLeft;
+            bool leftJustPressed = leftDown && !_wasLeftMouseDown;
+            if (leftJustPressed)
             {
-                WorldShopPurchaseDiagnostics.RecordMouseDown(_slotIndex, sourceItem, ignoreMouseInterface);
+                WorldShopPurchaseDiagnostics.RecordMouseDown(_slotIndex, sourceItem, ignoreMouseInterface, "left_press");
                 Main.mouseLeftRelease = false;
                 _onClick?.Invoke(_slotIndex);
             }
+
+            bool rightDown = Main.mouseRight;
+            if (rightDown)
+            {
+                _rightHoldTicks++;
+                bool shouldBuy = _rightHoldTicks == 1;
+                if (!shouldBuy && _rightHoldTicks > 1)
+                {
+                    int interval = _rightHoldTicks < 24
+                        ? 12
+                        : _rightHoldTicks < 72
+                            ? 6
+                            : 3;
+                    shouldBuy = (_rightHoldTicks % interval) == 0;
+                }
+
+                if (shouldBuy)
+                {
+                    WorldShopPurchaseDiagnostics.RecordMouseDown(_slotIndex, sourceItem, ignoreMouseInterface, "right_hold");
+                    Main.mouseRightRelease = false;
+                    _onClick?.Invoke(_slotIndex);
+                }
+            }
+            else
+            {
+                _rightHoldTicks = 0;
+            }
+        }
+        else
+        {
+            _rightHoldTicks = 0;
         }
 
         ItemSlot.Draw(spriteBatch, ref slotItem, _drawContext, slotBounds.TopLeft());
         Main.inventoryScale = previousScale;
-        _wasMouseDown = Main.mouseLeft;
+        _wasLeftMouseDown = Main.mouseLeft;
     }
 
 }
