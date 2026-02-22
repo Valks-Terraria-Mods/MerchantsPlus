@@ -22,7 +22,13 @@ public class UIEvents : GlobalNPC
             return;
         }
 
+        AddCustomShopUI customUi = ModContent.GetInstance<AddCustomShopUI>();
+        if (customUi.IsAnyBrowserUIOpen())
+        {
+            return;
+        }
+
         ShopUI.CurrentMerchantId = npc.type;
-        ModContent.GetInstance<AddCustomShopUI>().ShowShopUI();
+        customUi.ShowShopUI();
     }
 }

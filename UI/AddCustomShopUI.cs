@@ -5,10 +5,12 @@ public class AddCustomShopUI : ModSystem
     private UserInterface _shopUserInterface;
     private UserInterface _showAllShopsUserInterface;
     private UserInterface _worldShopsUserInterface;
+    private UserInterface _debugUserInterface;
     private GameTime _lastUpdateUiGameTime;
     private ShopUI _shopUI;
     private ShowAllShopsUI _showAllShopsUI;
     private ShowAllShopsUI _worldShopsUI;
+    private DebugPanelUI _debugPanelUI;
 
     public void ShowShopUI()
     {
@@ -55,13 +57,30 @@ public class AddCustomShopUI : ModSystem
     public void ShowWorldShopsUI()
     {
         HideShowAllShopsUI();
+        ShowAllShopsUI.ClearWorldSession(clearTalkNpc: false);
         _worldShopsUI?.Refresh();
         _worldShopsUserInterface?.SetState(_worldShopsUI);
     }
 
     public void HideWorldShopsUI()
     {
+        ShowAllShopsUI.ClearWorldSession(clearTalkNpc: false);
         _worldShopsUserInterface?.SetState(null);
+    }
+
+    public bool IsShowAllShopsUIOpen()
+    {
+        return _showAllShopsUserInterface?.CurrentState is not null;
+    }
+
+    public bool IsWorldShopsUIOpen()
+    {
+        return _worldShopsUserInterface?.CurrentState is not null;
+    }
+
+    public bool IsAnyBrowserUIOpen()
+    {
+        return IsShowAllShopsUIOpen() || IsWorldShopsUIOpen();
     }
 
     public bool IsPointerOverAnyCustomUI()
@@ -77,6 +96,11 @@ public class AddCustomShopUI : ModSystem
         }
 
         if (_worldShopsUserInterface?.CurrentState is not null && _worldShopsUI?.IsPointerOverPanel() == true)
+        {
+            return true;
+        }
+
+        if (_debugUserInterface?.CurrentState is not null && _debugPanelUI?.IsPointerOverPanel() == true)
         {
             return true;
         }
@@ -106,10 +130,13 @@ public class AddCustomShopUI : ModSystem
             _showAllShopsUI.Activate();
             _worldShopsUI = new ShowAllShopsUI(true, "World Merchant Shops");
             _worldShopsUI.Activate();
+            _debugPanelUI = new DebugPanelUI(BuildDebugLinesForPanel, BuildDebugTextForClipboard);
+            _debugPanelUI.Activate();
 
             _shopUserInterface = new UserInterface();
             _showAllShopsUserInterface = new UserInterface();
             _worldShopsUserInterface = new UserInterface();
+            _debugUserInterface = new UserInterface();
         }
     }
     
@@ -139,6 +166,8 @@ public class AddCustomShopUI : ModSystem
         {
             _worldShopsUserInterface.Update(gameTime);
         }
+
+        UpdateDebugPanelState(gameTime);
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -171,9 +200,51 @@ public class AddCustomShopUI : ModSystem
                         _worldShopsUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                     }
 
+                    if (_debugUserInterface?.CurrentState != null)
+                    {
+                        _debugUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                    }
+
                     return true;
                 },
                 InterfaceScaleType.UI));
         }
+    }
+
+    private void UpdateDebugPanelState(GameTime gameTime)
+    {
+        if (_debugUserInterface is null || _debugPanelUI is null)
+        {
+            return;
+        }
+
+        if (Config.Instance?.DevMode == true && !Main.gameMenu)
+        {
+            _debugPanelUI.Refresh();
+            if (_debugUserInterface.CurrentState is null)
+            {
+                _debugUserInterface.SetState(_debugPanelUI);
+            }
+
+            _debugUserInterface.Update(gameTime);
+            return;
+        }
+
+        if (_debugUserInterface.CurrentState is not null)
+        {
+            _debugUserInterface.SetState(null);
+        }
+    }
+
+    private string BuildDebugTextForClipboard()
+    {
+        List<string> lines = BuildDebugLinesForPanel();
+        lines.Insert(0, $"[MerchantsPlus Debug] {DateTime.UtcNow:O}");
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private List<string> BuildDebugLinesForPanel()
+    {
+        return WorldShopPurchaseDiagnostics.GetPanelLines(IsWorldShopsUIOpen());
     }
 }

@@ -14,7 +14,10 @@ public partial class ShowAllShopsUI
         panel.SetPadding(8f);
         panel.Width.Set(PanelWidth, 0f);
         panel.Height.Set(PanelHeight, 0f);
-        panel.Left.Set(-PanelWidth - 20f, 1f);
+        float rightOffset = _onlyPresentTownMerchants
+            ? PanelWidth + PreviewPanelWidth + 30f
+            : PanelWidth + 20f;
+        panel.Left.Set(-rightOffset, 1f);
         panel.Top.Set(-PanelHeight - 20f, 1f);
         panel.BackgroundColor = new Color(8, 8, 8, 165);
         panel.BorderColor = new Color(28, 28, 28, 220);
@@ -105,6 +108,7 @@ public partial class ShowAllShopsUI
         _selectedShopHintLabel.Top.Set(310f, 0f);
         panel.Append(_selectedShopHintLabel);
 
+        InitializePreviewPanel(panel);
         Append(panel);
         UpdateShowAllItemsButton();
     }
@@ -112,6 +116,7 @@ public partial class ShowAllShopsUI
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        BeginPreviewHoverTracking();
 
         if (Main.keyState.IsKeyDown(Keys.Escape))
         {
@@ -120,8 +125,11 @@ public partial class ShowAllShopsUI
         }
 
         UpdateShowAllItemsButton();
+        RefreshPreviewItems(force: false);
+        ClampWorldPreviewToScreen();
 
-        if (Main.LocalPlayer is not null && _rootPanel?.ContainsPoint(Main.MouseScreen) == true)
+        if (Main.LocalPlayer is not null
+            && ((_rootPanel?.ContainsPoint(Main.MouseScreen) == true) || IsPointerOverPreviewPanel()))
         {
             Main.LocalPlayer.mouseInterface = true;
             PlayerInput.LockVanillaMouseScroll("MerchantsPlus.ShowAllShopsUI");
@@ -131,22 +139,28 @@ public partial class ShowAllShopsUI
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
+        DrawPreviewTooltip(spriteBatch);
 
         if (Main.LocalPlayer is not null && _rootPanel is not null)
         {
             _ = UIUtils.IsInteractiveHover(_rootPanel);
+        }
+
+        if (Main.LocalPlayer is not null && _previewPanel is not null)
+        {
+            _ = UIUtils.IsInteractiveHover(_previewPanel);
         }
     }
 
     public override void OnDeactivate()
     {
         base.OnDeactivate();
-        ClearPinnedShop(clearTalkNpc: true);
+        ClearWorldSession(clearTalkNpc: !_onlyPresentTownMerchants);
     }
 
     public bool IsPointerOverPanel()
     {
-        return _rootPanel?.ContainsPoint(Main.MouseScreen) == true;
+        return (_rootPanel?.ContainsPoint(Main.MouseScreen) == true) || IsPointerOverPreviewPanel();
     }
 
     private UIPanel CreateListContainer(float left, float top, bool merchantList)

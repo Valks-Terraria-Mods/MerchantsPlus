@@ -10,10 +10,20 @@ public abstract partial class Shop
     /// <param name="shop">The selected shop tab name.</param>
     public virtual void OpenShop(string shop)
     {
-        if (!_suppressOpenSound)
+        bool suppressSound = IsOpenSoundSuppressed();
+        bool soundPlayed = !suppressSound;
+
+        if (soundPlayed)
         {
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
+
+        ShopOpenDiagnostics.RecordAttempt(
+            _openSourceTag,
+            GetDiagnosticsMerchantType(),
+            shop,
+            suppressSound,
+            soundPlayed);
 
         Main.playerInventory = true;
         Main.npcChatText = "";
@@ -24,7 +34,10 @@ public abstract partial class Shop
         // freezing the game
         // If this line of code is commented out then an error will appear saying
         // "Object reference not set to an instance of an object"
-        Main.SetNPCShopIndex(1);
+        if (Main.npcShop != 1)
+        {
+            Main.SetNPCShopIndex(1);
+        }
 
         NPC npc = GetShopContextNpc();
 
@@ -50,20 +63,26 @@ public abstract partial class Shop
     /// </summary>
     /// <param name="shop">The selected shop tab name.</param>
     /// <param name="npcType">The NPC type to use as the shop context.</param>
-    public void OpenShopForNpcType(string shop, int npcType, bool suppressSound = false)
+    public void OpenShopForNpcType(string shop, int npcType, bool suppressSound = false, string sourceTag = "default")
     {
         int previousNpcType = _forcedContextNpcType;
         int previousNpcIndex = _forcedContextNpcIndex;
-        bool previousSuppressOpenSound = _suppressOpenSound;
+        string previousSourceTag = _openSourceTag;
         _forcedContextNpcType = npcType;
         _forcedContextNpcIndex = FindFallbackTalkNpcIndex(npcType);
-        _suppressOpenSound = suppressSound;
+        _openSourceTag = string.IsNullOrWhiteSpace(sourceTag) ? "default" : sourceTag;
+        if (suppressSound)
+        {
+            _suppressOpenSoundDepth++;
+        }
 
         try
         {
             if (_forcedContextNpcIndex >= 0 && Main.LocalPlayer is not null)
             {
-                Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex);
+                // One-time context assignment for explicit/snapshot open calls.
+                // Per-frame keepalive logic should avoid SetTalkNPC to prevent repeated side effects.
+                Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex, fromNet: true);
             }
 
             OpenShop(shop);
@@ -72,8 +91,34 @@ public abstract partial class Shop
         {
             _forcedContextNpcType = previousNpcType;
             _forcedContextNpcIndex = previousNpcIndex;
-            _suppressOpenSound = previousSuppressOpenSound;
+            if (suppressSound && _suppressOpenSoundDepth > 0)
+            {
+                _suppressOpenSoundDepth--;
+            }
+
+            _openSourceTag = previousSourceTag;
         }
+    }
+
+    private static bool IsOpenSoundSuppressed()
+    {
+        return _suppressOpenSoundDepth > 0;
+    }
+
+    private static int GetDiagnosticsMerchantType()
+    {
+        if (_forcedContextNpcType > NPCID.None)
+        {
+            return _forcedContextNpcType;
+        }
+
+        NPC talkNpc = Main.LocalPlayer?.TalkNPC;
+        if (talkNpc is not null && talkNpc.active && talkNpc.type > NPCID.None)
+        {
+            return talkNpc.type;
+        }
+
+        return ShopUI.CurrentMerchantId > NPCID.None ? ShopUI.CurrentMerchantId : NPCID.None;
     }
 
     private static NPC GetShopContextNpc()
@@ -130,12 +175,29 @@ public abstract partial class Shop
 
         if (_forcedContextNpcIndex >= 0 && Main.LocalPlayer is not null)
         {
-            Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex);
+            Main.LocalPlayer.SetTalkNPC(_forcedContextNpcIndex, fromNet: true);
         }
     }
 
     private static int FindFallbackTalkNpcIndex(int preferredNpcType)
     {
+        // IMPORTANT:
+        // Talk anchors must be chat-capable town NPCs.
+        // Using arbitrary active NPCs (enemies/critters/etc.) causes vanilla to drop talkNPC immediately,
+        // which in turn closes shop context and creates recovery loops.
+
+        if (preferredNpcType > NPCID.None)
+        {
+            int preferredTownNpc = Array.FindIndex(Main.npc, npc =>
+                npc.active
+                && npc.townNPC
+                && npc.type == preferredNpcType);
+            if (preferredTownNpc >= 0)
+            {
+                return preferredTownNpc;
+            }
+        }
+
         if (Main.LocalPlayer is not null)
         {
             Vector2 playerCenter = Main.LocalPlayer.Center;
@@ -145,13 +207,6 @@ public abstract partial class Shop
             {
                 return nearbyTownNpc;
             }
-
-            // Keep remote/world-shop interactions anchored to any nearby loaded NPC.
-            int nearbyActiveNpc = FindNearestActiveNpc(playerCenter, 480f);
-            if (nearbyActiveNpc >= 0)
-            {
-                return nearbyActiveNpc;
-            }
         }
 
         int townNpc = Array.FindIndex(Main.npc, npc => npc.active && npc.townNPC);
@@ -160,16 +215,7 @@ public abstract partial class Shop
             return townNpc;
         }
 
-        if (preferredNpcType > NPCID.None)
-        {
-            int preferred = Array.FindIndex(Main.npc, npc => npc.active && npc.type == preferredNpcType);
-            if (preferred >= 0)
-            {
-                return preferred;
-            }
-        }
-
-        return Array.FindIndex(Main.npc, npc => npc.active);
+        return -1;
     }
 
     private static int FindNearestTalkableTownNpc(Vector2 center, float maxDistance)
@@ -197,28 +243,4 @@ public abstract partial class Shop
         return bestIndex;
     }
 
-    private static int FindNearestActiveNpc(Vector2 center, float maxDistance)
-    {
-        float maxDistanceSquared = maxDistance * maxDistance;
-        int bestIndex = -1;
-        float bestDistanceSquared = maxDistanceSquared;
-
-        for (int i = 0; i < Main.npc.Length; i++)
-        {
-            NPC npc = Main.npc[i];
-            if (!npc.active)
-            {
-                continue;
-            }
-
-            float distSq = Vector2.DistanceSquared(center, npc.Center);
-            if (distSq <= bestDistanceSquared)
-            {
-                bestDistanceSquared = distSq;
-                bestIndex = i;
-            }
-        }
-
-        return bestIndex;
-    }
 }

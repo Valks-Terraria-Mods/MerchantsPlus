@@ -2,18 +2,31 @@ namespace MerchantsPlus.UI;
 
 public partial class ShowAllShopsUI
 {
+    internal static bool TryGetWorldSession(out WorldShopSession session)
+    {
+        if (_worldShopSession.IsActive)
+        {
+            session = _worldShopSession;
+            return true;
+        }
+
+        session = null;
+        return false;
+    }
+
     public void ClearPinnedShop(bool clearTalkNpc)
     {
-        ClearPinnedTalkNpc(clearTalkNpc);
+        ClearWorldSession(clearTalkNpc);
     }
 
     public static bool TryGetPinnedTalkNpc(out int pinnedTalkNpcIndex)
     {
-        if (_pinnedTalkNpcIndex >= 0
-            && _pinnedTalkNpcIndex < Main.maxNPCs
-            && Main.npc[_pinnedTalkNpcIndex].active)
+        if (_worldShopSession.IsActive
+            && _worldShopSession.PinnedTalkNpcIndex >= 0
+            && _worldShopSession.PinnedTalkNpcIndex < Main.maxNPCs
+            && Main.npc[_worldShopSession.PinnedTalkNpcIndex].active)
         {
-            pinnedTalkNpcIndex = _pinnedTalkNpcIndex;
+            pinnedTalkNpcIndex = _worldShopSession.PinnedTalkNpcIndex;
             return true;
         }
 
@@ -23,29 +36,57 @@ public partial class ShowAllShopsUI
 
     public static void ClearPinnedTalkNpc(bool clearTalkNpc)
     {
-        if (clearTalkNpc && Main.LocalPlayer is not null)
+        ClearWorldSession(clearTalkNpc);
+    }
+
+    internal static void ClearWorldSession(bool clearTalkNpc)
+    {
+        bool shouldClearTalkNpc = clearTalkNpc && _worldShopSession.IsActive && Main.LocalPlayer is not null;
+        _worldShopSession.Clear();
+
+        if (shouldClearTalkNpc)
         {
             Main.LocalPlayer.SetTalkNPC(-1);
         }
-
-        _pinnedTalkNpcIndex = -1;
     }
 
-    private static void PinCurrentTalkNpc()
+    internal static void SetWorldSession(
+        int merchantId,
+        string shopName,
+        int pinnedTalkNpcIndex,
+        ulong explicitOpenTick,
+        ulong keepAliveTick,
+        ulong openSucceededTick,
+        int openNonce)
     {
-        if (Main.LocalPlayer is null)
+        if (merchantId <= NPCID.None
+            || string.IsNullOrWhiteSpace(shopName)
+            || pinnedTalkNpcIndex < 0
+            || pinnedTalkNpcIndex >= Main.maxNPCs
+            || !Main.npc[pinnedTalkNpcIndex].active)
         {
-            _pinnedTalkNpcIndex = -1;
+            ClearWorldSession(clearTalkNpc: false);
             return;
         }
 
-        int talkNpc = Main.LocalPlayer.talkNPC;
-        if (talkNpc >= 0 && talkNpc < Main.maxNPCs && Main.npc[talkNpc].active)
+        _worldShopSession.IsActive = true;
+        _worldShopSession.MerchantId = merchantId;
+        _worldShopSession.ShopName = shopName;
+        _worldShopSession.PinnedTalkNpcIndex = pinnedTalkNpcIndex;
+        _worldShopSession.LastExplicitOpenTick = explicitOpenTick;
+        _worldShopSession.LastKeepAliveTick = keepAliveTick;
+        _worldShopSession.LastOpenSucceededTick = openSucceededTick;
+        _worldShopSession.LastRecoveryAttemptTick = explicitOpenTick;
+        _worldShopSession.OpenNonce = Math.Max(1, openNonce);
+    }
+
+    internal static void UpdateWorldSessionKeepAlive(ulong keepAliveTick)
+    {
+        if (!_worldShopSession.IsActive)
         {
-            _pinnedTalkNpcIndex = talkNpc;
             return;
         }
 
-        _pinnedTalkNpcIndex = -1;
+        _worldShopSession.LastKeepAliveTick = keepAliveTick;
     }
 }

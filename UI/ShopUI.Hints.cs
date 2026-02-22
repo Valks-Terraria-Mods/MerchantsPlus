@@ -167,7 +167,7 @@ public partial class ShopUI
 
             using (Progression.PushPreviewLevelOverride(progressionLevel))
             {
-                shop.OpenShopForNpcType(shopName, merchantId, suppressSound: true);
+                shop.OpenShopForNpcType(shopName, merchantId, suppressSound: true, sourceTag: "hint_snapshot");
                 Chest currentShop = Main.instance?.shop?[Main.npcShop];
                 if (currentShop?.item is null)
                 {

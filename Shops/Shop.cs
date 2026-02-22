@@ -8,7 +8,8 @@ public abstract partial class Shop
     public int CycleIndex { get; set; }
     private static int _forcedContextNpcType = NPCID.None;
     private static int _forcedContextNpcIndex = -1;
-    private static bool _suppressOpenSound;
+    private static int _suppressOpenSoundDepth;
+    private static string _openSourceTag = "default";
 
     protected Chest Inv;
     protected int NextSlot;

@@ -9,6 +9,8 @@ public partial class ShowAllShopsUI
     {
         UpdateShowAllItemsButton();
         _shopWasExplicitlyClicked = false;
+        InvalidateHintCache();
+        InvalidatePreviewCache();
 
         _merchantIds.Clear();
         foreach (int merchantId in ShopUI.Shops.Keys)
@@ -30,6 +32,7 @@ public partial class ShowAllShopsUI
             PopulateMerchantList();
             PopulateShopList();
             UpdateSelectionLabels();
+            RefreshPreviewItems(force: true);
             return;
         }
 
@@ -42,6 +45,7 @@ public partial class ShowAllShopsUI
         EnsureValidSelectedShop();
         PopulateShopList();
         UpdateSelectionLabels();
+        RefreshPreviewItems(force: true);
     }
 
     private void PopulateMerchantList()
@@ -117,19 +121,25 @@ public partial class ShowAllShopsUI
     {
         _selectedMerchantId = merchantId;
         _shopWasExplicitlyClicked = false;
+        InvalidateHintCache();
+        InvalidatePreviewCache();
         EnsureValidSelectedShop();
         PopulateMerchantList();
         PopulateShopList();
         UpdateSelectionLabels();
+        RefreshPreviewItems(force: true);
     }
 
     private void SelectShop(string shopName)
     {
         _selectedShopName = shopName;
         _shopWasExplicitlyClicked = true;
+        InvalidateHintCache();
+        InvalidatePreviewCache();
         PopulateShopList();
         UpdateSelectionLabels();
         OpenShopSelection(_selectedMerchantId, _selectedShopName, suppressSound: false);
+        RefreshPreviewItems(force: true);
     }
 
     private void EnsureValidSelectedShop()
@@ -182,13 +192,55 @@ public partial class ShowAllShopsUI
 
     private void OpenShopSelection(int merchantId, string shopName, bool suppressSound)
     {
+        const ulong explicitClickDebounceTicks = 20;
+
         if (merchantId <= NPCID.None || string.IsNullOrWhiteSpace(shopName))
         {
             return;
         }
 
+        if (merchantId == _lastOpenedMerchantId
+            && string.Equals(shopName, _lastOpenedShopName, StringComparison.Ordinal)
+            && Main.GameUpdateCount < _lastOpenedShopTick + 15)
+        {
+            return;
+        }
+
+        int currentSessionNonce = 0;
+        if (_onlyPresentTownMerchants
+            && TryGetWorldSession(out WorldShopSession currentSession)
+            && currentSession is not null
+            && currentSession.IsActive
+            && currentSession.MerchantId == merchantId
+            && string.Equals(currentSession.ShopName, shopName, StringComparison.Ordinal))
+        {
+            currentSessionNonce = currentSession.OpenNonce;
+            bool sameSessionAlreadyOpen = Main.playerInventory
+                && Main.LocalPlayer is not null
+                && Main.LocalPlayer.talkNPC == currentSession.PinnedTalkNpcIndex;
+
+            if (sameSessionAlreadyOpen
+                || Main.GameUpdateCount < currentSession.LastExplicitOpenTick + explicitClickDebounceTicks)
+            {
+                ShopOpenDiagnostics.RecordAttempt("explicit_click_skip", merchantId, shopName, suppressSound, soundPlayed: false);
+                return;
+            }
+        }
+
         if (!ShopUI.Shops.TryGetValue(merchantId, out Shop shop))
         {
+            return;
+        }
+
+        if (_onlyPresentTownMerchants)
+        {
+            // In world browser mode we render a custom shop panel instead of opening vanilla shop UI.
+            // This avoids far-distance open/reopen side effects and associated sound spam.
+            ClearWorldSession(clearTalkNpc: false);
+            ShopOpenDiagnostics.RecordAttempt("world_preview_select", merchantId, shopName, suppressSound: true, soundPlayed: false);
+            _lastOpenedMerchantId = merchantId;
+            _lastOpenedShopName = shopName;
+            _lastOpenedShopTick = Main.GameUpdateCount;
             return;
         }
 
@@ -200,11 +252,37 @@ public partial class ShowAllShopsUI
             shop.CycleIndex = shopIndex;
         }
 
-        shop.OpenShopForNpcType(shopName, merchantId, suppressSound);
+        // World browser shops are opened only from explicit shop-button clicks.
+        // Keepalive code must never call OpenShopForNpcType, otherwise repeated opens/sounds can occur.
+        shop.OpenShopForNpcType(
+            shopName,
+            merchantId,
+            suppressSound,
+            sourceTag: _onlyPresentTownMerchants ? "explicit_click" : "allshops_click");
+        _lastOpenedMerchantId = merchantId;
+        _lastOpenedShopName = shopName;
+        _lastOpenedShopTick = Main.GameUpdateCount;
 
         if (_onlyPresentTownMerchants)
         {
-            PinCurrentTalkNpc();
+            int pinnedTalkNpcIndex = Main.LocalPlayer?.talkNPC ?? -1;
+            if (pinnedTalkNpcIndex < 0
+                || pinnedTalkNpcIndex >= Main.maxNPCs
+                || !Main.npc[pinnedTalkNpcIndex].active)
+            {
+                ClearWorldSession(clearTalkNpc: false);
+                return;
+            }
+
+            int nextNonce = Math.Max(1, currentSessionNonce + 1);
+            SetWorldSession(
+                merchantId,
+                shopName,
+                pinnedTalkNpcIndex,
+                explicitOpenTick: Main.GameUpdateCount,
+                keepAliveTick: Main.GameUpdateCount,
+                openSucceededTick: Main.GameUpdateCount,
+                openNonce: nextNonce);
         }
     }
 }
