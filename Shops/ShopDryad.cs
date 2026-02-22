@@ -15,7 +15,7 @@ public class ShopDryad : Shop
 
         if (shop == ShopDryadCatalog.SeedsShopName)
         {
-            AddItemsAtPrice(ItemCosts.Seeds, ShopDryadCatalog.SeedStock);
+            AddStagedItemsAtPrice(ItemCosts.Seeds, ShopDryadCatalog.SeedStock, 0, 12);
             AddConditionalOffers(ShopDryadCatalog.SeedUnlocks);
             return;
         }

@@ -4,6 +4,16 @@ public class ShopTruffle : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Truffle, ShopTruffleCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (shopName == ShopTruffleCatalog.GearShopName)
+        {
+            return HasAnyStagedItemVisible(ShopTruffleCatalog.MushroomGear, 8, 21);
+        }
+
+        return true;
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -15,7 +25,7 @@ public class ShopTruffle : Shop
 
         if (shop == ShopTruffleCatalog.GearShopName)
         {
-            AddItems(ShopTruffleCatalog.MushroomGear);
+            AddStagedItems(ShopTruffleCatalog.MushroomGear, 8, 21);
             return;
         }
 

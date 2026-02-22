@@ -4,6 +4,16 @@ public class ShopMechanic : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Mechanic, ShopMechanicCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (!ShopMechanicCatalog.SectionsByShop.TryGetValue(shopName, out (int? Price, int[] ItemIds) section))
+        {
+            return true;
+        }
+
+        return HasAnyStagedItemVisible(section.ItemIds, 2, 18);
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -27,11 +37,11 @@ public class ShopMechanic : Shop
     {
         if (section.Price.HasValue)
         {
-            AddItemsAtPrice(section.Price.Value, section.ItemIds);
+            AddStagedItemsAtPrice(section.Price.Value, section.ItemIds, 2, 18);
             return;
         }
 
-        AddItems(section.ItemIds);
+        AddStagedItems(section.ItemIds, 2, 18);
     }
 }
 

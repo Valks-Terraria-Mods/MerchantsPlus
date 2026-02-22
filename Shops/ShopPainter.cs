@@ -29,11 +29,11 @@ public class ShopPainter : Shop
         {
             if (Price.HasValue)
             {
-                AddItemsAtPrice(Price.Value, ItemIds);
+                AddStagedItemsAtPrice(Price.Value, ItemIds, 0, 18);
             }
             else
             {
-                AddItems(ItemIds);
+                AddStagedItems(ItemIds, 0, 18);
             }
         }
     }

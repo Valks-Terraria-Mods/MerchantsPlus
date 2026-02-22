@@ -4,6 +4,24 @@ public class ShopSteampunker : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Steampunker, ShopSteampunkerCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (!ShopSteampunkerCatalog.SectionsByShop.TryGetValue(shopName, out (int? Price, int[] ItemIds)[] sections))
+        {
+            return true;
+        }
+
+        foreach ((int? Price, int[] ItemIds) section in sections)
+        {
+            if (HasAnyStagedItemVisible(section.ItemIds, 8, 21))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -29,11 +47,11 @@ public class ShopSteampunker : Shop
         {
             if (Price.HasValue)
             {
-                AddItemsAtPrice(Price.Value, ItemIds);
+                AddStagedItemsAtPrice(Price.Value, ItemIds, 8, 21);
             }
             else
             {
-                AddItems(ItemIds);
+                AddStagedItems(ItemIds, 8, 21);
             }
         }
     }

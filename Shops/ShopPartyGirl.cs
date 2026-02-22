@@ -15,7 +15,7 @@ public class ShopPartyGirl : Shop
 
         if (shop == ShopPartyGirlCatalog.PartyStuffShopName)
         {
-            AddItems(ShopPartyGirlCatalog.PartySupplies);
+            AddStagedItems(ShopPartyGirlCatalog.PartySupplies, 0, 16);
             return;
         }
 

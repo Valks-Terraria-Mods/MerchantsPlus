@@ -4,6 +4,16 @@ public class ShopSantaClaus : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.SantaClaus, ShopSantaClausCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (!ShopSantaClausCatalog.ItemsByShop.TryGetValue(shopName, out int[] items))
+        {
+            return true;
+        }
+
+        return HasAnyStagedItemVisible(items, 10, 21);
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -15,7 +25,7 @@ public class ShopSantaClaus : Shop
 
         if (ShopSantaClausCatalog.ItemsByShop.TryGetValue(shop, out int[] items))
         {
-            AddItems(items);
+            AddStagedItems(items, 10, 21);
             return;
         }
 

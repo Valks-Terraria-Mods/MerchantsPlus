@@ -6,6 +6,29 @@ public class ShopStylist : Shop
 
     public override List<string> Shops { get; } = BuildShopList(NPCID.Stylist, ShopStylistCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (shopName == ShopStylistCatalog.HairDyesShopName)
+        {
+            return HasAnyStagedItemVisible(ShopStylistCatalog.HairDyes, 2, 18);
+        }
+
+        if (ShopStylistCatalog.BannerOffersByShop.TryGetValue(shopName, out NpcBannerOffer[] offers))
+        {
+            foreach (NpcBannerOffer offer in offers)
+            {
+                if (offer.IsUnlocked(BannerKillsRequirement))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -17,7 +40,7 @@ public class ShopStylist : Shop
 
         if (shop == ShopStylistCatalog.HairDyesShopName)
         {
-            AddItems(ShopStylistCatalog.HairDyes);
+            AddStagedItems(ShopStylistCatalog.HairDyes, 2, 18);
             return;
         }
 

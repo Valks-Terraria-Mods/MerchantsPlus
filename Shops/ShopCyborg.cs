@@ -4,6 +4,21 @@ public class ShopCyborg : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Cyborg, ShopCyborgCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (shopName != ShopCyborgCatalog.RoboticsShopName)
+        {
+            return true;
+        }
+
+        if (HasAnyStagedItemVisible(ShopCyborgCatalog.RoboticsGear, 10, 21))
+        {
+            return true;
+        }
+
+        return HasAnyConditionalOfferVisible(ShopCyborgCatalog.RoboticsUnlocks);
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -15,7 +30,7 @@ public class ShopCyborg : Shop
 
         if (shop == ShopCyborgCatalog.RoboticsShopName)
         {
-            AddItems(ShopCyborgCatalog.RoboticsGear);
+            AddStagedItems(ShopCyborgCatalog.RoboticsGear, 10, 21);
             AddConditionalOffers(ShopCyborgCatalog.RoboticsUnlocks);
             return;
         }

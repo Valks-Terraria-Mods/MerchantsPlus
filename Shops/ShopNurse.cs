@@ -15,7 +15,7 @@ public class ShopNurse : Shop
 
         if (shop == ShopNurseCatalog.LifeShopName)
         {
-            AddItemsAtPrice(ShopNurseCatalog.LifeItemPrice, ShopNurseCatalog.LifeItems);
+            AddStagedItemsAtPrice(ShopNurseCatalog.LifeItemPrice, ShopNurseCatalog.LifeItems, 0, 12);
             AddConditionalOffers(ShopNurseCatalog.LifeUnlocks);
         }
     }

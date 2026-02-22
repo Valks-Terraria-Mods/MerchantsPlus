@@ -4,6 +4,16 @@ public class ShopWizard : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Wizard, ShopWizardCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (shopName == ShopWizardCatalog.GearShopName)
+        {
+            return HasAnyStagedItemVisible(ShopWizardCatalog.ArcaneGear, 8, 21);
+        }
+
+        return true;
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);
@@ -15,7 +25,7 @@ public class ShopWizard : Shop
 
         if (shop == ShopWizardCatalog.GearShopName)
         {
-            AddItems(ShopWizardCatalog.ArcaneGear);
+            AddStagedItems(ShopWizardCatalog.ArcaneGear, 8, 21);
             return;
         }
 

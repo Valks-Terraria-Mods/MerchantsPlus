@@ -4,6 +4,55 @@ namespace MerchantsPlus;
 
 public static class Progression
 {
+    public enum FullLevel
+    {
+        None = 0,
+        SlimeKing = 1,
+        EyeOfCthulhu = 2,
+        GoblinArmy = 3,
+        BrainOrEater = 4,
+        QueenBee = 5,
+        Skeletron = 6,
+        WallOfFlesh = 7,
+        Pirates = 8,
+        BloodMoonClown = 9,
+        FirstMechanicalBoss = 10,
+        SecondMechanicalBoss = 11,
+        AllMechanicalBosses = 12,
+        Christmas = 13,
+        Halloween = 14,
+        Plantera = 15,
+        Golem = 16,
+        Fishron = 17,
+        Martians = 18,
+        Cultist = 19,
+        Towers = 20,
+        Moonlord = 21
+    }
+
+    public enum BossLevel
+    {
+        None = 0,
+        SlimeKing = 1,
+        EyeOfCthulhu = 2,
+        BrainOrEater = 3,
+        QueenBee = 4,
+        Skeletron = 5,
+        WallOfFlesh = 6,
+        FirstMechanicalBoss = 7,
+        SecondMechanicalBoss = 8,
+        AllMechanicalBosses = 9,
+        Plantera = 10,
+        Golem = 11,
+        Fishron = 12,
+        Cultist = 13,
+        Moonlord = 14
+    }
+
+    private const int MinFullLevel = (int)FullLevel.None;
+    private const int MaxFullLevel = (int)FullLevel.Moonlord;
+    private const int MechanicalBossPreviewBaseLevel = (int)FullLevel.BloodMoonClown;
+
     private sealed class PreviewScope(int previousLevel) : IDisposable
     {
         private bool _disposed;
@@ -23,12 +72,16 @@ public static class Progression
     private static bool UnlockAllItems => Config.Instance?.UnlockAllItems == true;
     private static int? _previewLevelOverride;
 
+    private static FullLevel ClampFullLevel(int level) => (FullLevel)Math.Clamp(level, MinFullLevel, MaxFullLevel);
+
     public static IDisposable PushPreviewLevelOverride(int level)
     {
         int previousLevel = _previewLevelOverride ?? -1;
-        _previewLevelOverride = Math.Clamp(level, 0, 21);
+        _previewLevelOverride = (int)ClampFullLevel(level);
         return new PreviewScope(previousLevel);
     }
+
+    private static bool IsUnlockedAt(FullLevel requiredLevel, bool worldState) => IsUnlockedAt((int)requiredLevel, worldState);
 
     private static bool IsUnlockedAt(int requiredLevel, bool worldState)
     {
@@ -45,14 +98,14 @@ public static class Progression
         return worldState;
     }
 
-    public static bool SlimeKing => IsUnlockedAt(1, NPC.downedSlimeKing);
-    public static bool EyeOfCthulhu => IsUnlockedAt(2, NPC.downedBoss1);
-    public static bool BrainOfCthulhu => IsUnlockedAt(4, NPC.downedBoss2);
-    public static bool EaterOfWorlds => IsUnlockedAt(4, NPC.downedBoss2);
-    public static bool BrainOrEater => IsUnlockedAt(4, NPC.downedBoss2);
-    public static bool QueenBee => IsUnlockedAt(5, NPC.downedQueenBee);
-    public static bool Skeletron => IsUnlockedAt(6, NPC.downedBoss3);
-    public static bool WallOfFlesh => IsUnlockedAt(7, Main.hardMode);
+    public static bool SlimeKing => IsUnlockedAt(FullLevel.SlimeKing, NPC.downedSlimeKing);
+    public static bool EyeOfCthulhu => IsUnlockedAt(FullLevel.EyeOfCthulhu, NPC.downedBoss1);
+    public static bool BrainOfCthulhu => IsUnlockedAt(FullLevel.BrainOrEater, NPC.downedBoss2);
+    public static bool EaterOfWorlds => IsUnlockedAt(FullLevel.BrainOrEater, NPC.downedBoss2);
+    public static bool BrainOrEater => IsUnlockedAt(FullLevel.BrainOrEater, NPC.downedBoss2);
+    public static bool QueenBee => IsUnlockedAt(FullLevel.QueenBee, NPC.downedQueenBee);
+    public static bool Skeletron => IsUnlockedAt(FullLevel.Skeletron, NPC.downedBoss3);
+    public static bool WallOfFlesh => IsUnlockedAt(FullLevel.WallOfFlesh, Main.hardMode);
     public static bool DownedMechs(int amount)
     {
         if (UnlockAllItems)
@@ -62,32 +115,32 @@ public static class Progression
 
         if (_previewLevelOverride.HasValue)
         {
-            return _previewLevelOverride.Value >= 9 + amount;
+            return _previewLevelOverride.Value >= MechanicalBossPreviewBaseLevel + amount;
         }
 
         int downedMechCount = new[] { NPC.downedMechBoss1, NPC.downedMechBoss2, NPC.downedMechBoss3 }.Count(b => b);
         return downedMechCount >= amount;
     }
 
-    public static bool Plantera => IsUnlockedAt(15, NPC.downedPlantBoss);
-    public static bool Golem => IsUnlockedAt(16, NPC.downedGolemBoss);
-    public static bool Fishron => IsUnlockedAt(17, NPC.downedFishron);
-    public static bool Cultist => IsUnlockedAt(19, NPC.downedAncientCultist);
-    public static bool TowerSolar => IsUnlockedAt(20, NPC.downedTowerSolar);
-    public static bool TowerVortex => IsUnlockedAt(20, NPC.downedTowerVortex);
-    public static bool TowerNebula => IsUnlockedAt(20, NPC.downedTowerNebula);
-    public static bool TowerStardust => IsUnlockedAt(20, NPC.downedTowerStardust);
-    public static bool Towers => IsUnlockedAt(20, NPC.downedTowers);
-    public static bool Moonlord => IsUnlockedAt(21, NPC.downedMoonlord);
+    public static bool Plantera => IsUnlockedAt(FullLevel.Plantera, NPC.downedPlantBoss);
+    public static bool Golem => IsUnlockedAt(FullLevel.Golem, NPC.downedGolemBoss);
+    public static bool Fishron => IsUnlockedAt(FullLevel.Fishron, NPC.downedFishron);
+    public static bool Cultist => IsUnlockedAt(FullLevel.Cultist, NPC.downedAncientCultist);
+    public static bool TowerSolar => IsUnlockedAt(FullLevel.Towers, NPC.downedTowerSolar);
+    public static bool TowerVortex => IsUnlockedAt(FullLevel.Towers, NPC.downedTowerVortex);
+    public static bool TowerNebula => IsUnlockedAt(FullLevel.Towers, NPC.downedTowerNebula);
+    public static bool TowerStardust => IsUnlockedAt(FullLevel.Towers, NPC.downedTowerStardust);
+    public static bool Towers => IsUnlockedAt(FullLevel.Towers, NPC.downedTowers);
+    public static bool Moonlord => IsUnlockedAt(FullLevel.Moonlord, NPC.downedMoonlord);
 
-    public static bool GoblinArmy => IsUnlockedAt(3, NPC.downedGoblins);
-    public static bool BloodMoon => IsUnlockedAt(9, NPC.downedClown);
-    public static bool Pirates => IsUnlockedAt(8, NPC.downedPirates);
-    public static bool Halloween => IsUnlockedAt(14, NPC.downedHalloweenTree || NPC.downedHalloweenKing);
-    public static bool Christmas => IsUnlockedAt(13, NPC.downedFrost || NPC.downedChristmasIceQueen || NPC.downedChristmasSantank || NPC.downedChristmasTree);
-    public static bool Martians => IsUnlockedAt(18, NPC.downedMartians);
+    public static bool GoblinArmy => IsUnlockedAt(FullLevel.GoblinArmy, NPC.downedGoblins);
+    public static bool BloodMoon => IsUnlockedAt(FullLevel.BloodMoonClown, NPC.downedClown);
+    public static bool Pirates => IsUnlockedAt(FullLevel.Pirates, NPC.downedPirates);
+    public static bool Halloween => IsUnlockedAt(FullLevel.Halloween, NPC.downedHalloweenTree || NPC.downedHalloweenKing);
+    public static bool Christmas => IsUnlockedAt(FullLevel.Christmas, NPC.downedFrost || NPC.downedChristmasIceQueen || NPC.downedChristmasSantank || NPC.downedChristmasTree);
+    public static bool Martians => IsUnlockedAt(FullLevel.Martians, NPC.downedMartians);
 
-    public static bool Hardmode => IsUnlockedAt(7, Main.hardMode);
+    public static bool Hardmode => IsUnlockedAt(FullLevel.WallOfFlesh, Main.hardMode);
 
     private static int GetHighestProgressionLevel(bool[] conditions)
     {
@@ -112,12 +165,12 @@ public static class Progression
     {
         if (UnlockAllItems)
         {
-            return 21;
+            return MaxFullLevel;
         }
 
         if (_previewLevelOverride.HasValue)
         {
-            return Math.Clamp(_previewLevelOverride.Value, 0, 21);
+            return (int)ClampFullLevel(_previewLevelOverride.Value);
         }
 
         bool[] conditions =
@@ -152,29 +205,29 @@ public static class Progression
     {
         if (UnlockAllItems)
         {
-            return 14;
+            return (int)BossLevel.Moonlord;
         }
 
         if (_previewLevelOverride.HasValue)
         {
-            int level = Math.Clamp(_previewLevelOverride.Value, 0, 21);
+            int level = (int)ClampFullLevel(_previewLevelOverride.Value);
             return level switch
             {
-                >= 21 => 14,
-                >= 19 => 13,
-                >= 17 => 12,
-                >= 16 => 11,
-                >= 15 => 10,
-                >= 12 => 9,
-                >= 11 => 8,
-                >= 10 => 7,
-                >= 7 => 6,
-                >= 6 => 5,
-                >= 5 => 4,
-                >= 4 => 3,
-                >= 2 => 2,
-                >= 1 => 1,
-                _ => 0
+                >= (int)FullLevel.Moonlord => (int)BossLevel.Moonlord,
+                >= (int)FullLevel.Cultist => (int)BossLevel.Cultist,
+                >= (int)FullLevel.Fishron => (int)BossLevel.Fishron,
+                >= (int)FullLevel.Golem => (int)BossLevel.Golem,
+                >= (int)FullLevel.Plantera => (int)BossLevel.Plantera,
+                >= (int)FullLevel.AllMechanicalBosses => (int)BossLevel.AllMechanicalBosses,
+                >= (int)FullLevel.SecondMechanicalBoss => (int)BossLevel.SecondMechanicalBoss,
+                >= (int)FullLevel.FirstMechanicalBoss => (int)BossLevel.FirstMechanicalBoss,
+                >= (int)FullLevel.WallOfFlesh => (int)BossLevel.WallOfFlesh,
+                >= (int)FullLevel.Skeletron => (int)BossLevel.Skeletron,
+                >= (int)FullLevel.QueenBee => (int)BossLevel.QueenBee,
+                >= (int)FullLevel.BrainOrEater => (int)BossLevel.BrainOrEater,
+                >= (int)FullLevel.EyeOfCthulhu => (int)BossLevel.EyeOfCthulhu,
+                >= (int)FullLevel.SlimeKing => (int)BossLevel.SlimeKing,
+                _ => (int)BossLevel.None
             };
         }
 
@@ -201,6 +254,21 @@ public static class Progression
 
     public static string GetLevelFullUnlockHint(int requiredProgression)
     {
+        if (requiredProgression <= MinFullLevel)
+        {
+            return GetLevelFullUnlockHint(FullLevel.None);
+        }
+
+        if (requiredProgression > MaxFullLevel)
+        {
+            return "Reach later world progression.";
+        }
+
+        return GetLevelFullUnlockHint((FullLevel)requiredProgression);
+    }
+
+    public static string GetLevelFullUnlockHint(FullLevel requiredProgression)
+    {
         if (UnlockAllItems)
         {
             return "UnlockAllItems is enabled.";
@@ -208,28 +276,28 @@ public static class Progression
 
         return requiredProgression switch
         {
-            <= 0 => "No progression requirement.",
-            1 => "Defeat King Slime.",
-            2 => "Defeat Eye of Cthulhu.",
-            3 => "Defeat a Goblin Army invasion.",
-            4 => "Defeat Eater of Worlds or Brain of Cthulhu.",
-            5 => "Defeat Queen Bee.",
-            6 => "Defeat Skeletron.",
-            7 => "Defeat Wall of Flesh to enter Hardmode.",
-            8 => "Defeat a Pirate Invasion.",
-            9 => "Defeat a Clown during a Blood Moon.",
-            10 => "Defeat one Mechanical Boss.",
-            11 => "Defeat a second Mechanical Boss.",
-            12 => "Defeat all three Mechanical Bosses.",
-            13 => "Defeat a Frost Moon boss.",
-            14 => "Defeat a Pumpkin Moon boss.",
-            15 => "Defeat Plantera.",
-            16 => "Defeat Golem.",
-            17 => "Defeat Duke Fishron.",
-            18 => "Defeat the Martian Madness event.",
-            19 => "Defeat Lunatic Cultist.",
-            20 => "Defeat the Celestial Pillars.",
-            21 => "Defeat Moon Lord.",
+            FullLevel.None => "No progression requirement.",
+            FullLevel.SlimeKing => "Defeat King Slime.",
+            FullLevel.EyeOfCthulhu => "Defeat Eye of Cthulhu.",
+            FullLevel.GoblinArmy => "Defeat a Goblin Army invasion.",
+            FullLevel.BrainOrEater => "Defeat Eater of Worlds or Brain of Cthulhu.",
+            FullLevel.QueenBee => "Defeat Queen Bee.",
+            FullLevel.Skeletron => "Defeat Skeletron.",
+            FullLevel.WallOfFlesh => "Defeat Wall of Flesh to enter Hardmode.",
+            FullLevel.Pirates => "Defeat a Pirate Invasion.",
+            FullLevel.BloodMoonClown => "Defeat a Clown during a Blood Moon.",
+            FullLevel.FirstMechanicalBoss => "Defeat one Mechanical Boss.",
+            FullLevel.SecondMechanicalBoss => "Defeat a second Mechanical Boss.",
+            FullLevel.AllMechanicalBosses => "Defeat all three Mechanical Bosses.",
+            FullLevel.Christmas => "Defeat a Frost Moon boss.",
+            FullLevel.Halloween => "Defeat a Pumpkin Moon boss.",
+            FullLevel.Plantera => "Defeat Plantera.",
+            FullLevel.Golem => "Defeat Golem.",
+            FullLevel.Fishron => "Defeat Duke Fishron.",
+            FullLevel.Martians => "Defeat the Martian Madness event.",
+            FullLevel.Cultist => "Defeat Lunatic Cultist.",
+            FullLevel.Towers => "Defeat the Celestial Pillars.",
+            FullLevel.Moonlord => "Defeat Moon Lord.",
             _ => "Reach later world progression.",
         };
     }

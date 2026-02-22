@@ -6,303 +6,296 @@ project: MerchantsPlus
 repo_type: tModLoader_mod
 primary_language: C#
 generator_language: PowerShell
-last_known_state_date: 2026-02-22
+last_updated: 2026-02-22
 ```
 
-## 0) Why This File Exists
+## 0) Purpose
 
-This file is an AI-first handoff.
-Assume you know nothing before reading this.
-Use this as the canonical orientation and execution guide for this repo.
+This file is an AI-first handoff for this repository.
+Assume no prior context.
+Use this as the default operational reference before editing code.
 
 ## 1) Project Intent
 
-MerchantsPlus expands Terraria merchant inventories with progression-gated shops.
-The goal is broad item coverage without dumping everything at game start.
-Expanded item references are centralized in catalog classes, especially:
-- `Shops/Catalogs/ShopExpandedCatalog.cs` (generated)
-- Other `Shops/Catalogs/Shop*Catalog.cs` files (manual/base catalogs)
+MerchantsPlus expands merchant inventories with progression-gated shops.
+The design goal is broad item coverage without front-loading everything at world start.
+
+Key design principles currently in code:
+- Expanded item references are catalog-centric.
+- Shop visibility is progression-aware (locked-empty pages are hidden).
+- Unlock pacing is gradual across progression stages.
+- Page size is hard-capped at 40 items.
 
 ## 2) Hard Constraints And Owner Preferences
 
-1. Use `ItemID.*` names, never raw numeric IDs.
-2. Max 40 items per page.
-3. Keep item references in catalogs.
-4. Keep progression gating gradual.
-5. Avoid mixed-category dump shops.
-6. Use concise, readable shop names with spaces.
-7. Prices are not generally migrated to catalogs from base shop logic.
-8. Do not sell raw coin items (`CopperCoin`, `SilverCoin`, `GoldCoin`, `PlatinumCoin`) in expanded coin grouping.
-9. Avoid trapped chest variants (`Trapped` items filtered in generator).
-10. Do not run unnecessary git validation commands for normal content tasks.
+1. Use `ItemID.*` names, never numeric IDs.
+2. Max 40 items per shop page.
+3. Keep expanded references in catalogs (not spread through runtime shop classes).
+4. Keep progression gradual.
+5. Prefer coherent grouping, avoid catalog-dump mixes.
+6. Use readable shop names with spaces.
+7. Do not include raw coin items (`CopperCoin`, `SilverCoin`, `GoldCoin`, `PlatinumCoin`) in expanded coin groupings.
+8. Avoid trapped chest variants in expanded generation.
+9. Prices are generally handled in shop/runtime logic; do not blindly migrate all pricing into catalogs.
+10. Do not hand-edit generated expanded catalog unless emergency hotfix is required.
 
-## 3) Repo Layout (Important Files)
+## 3) Current Repo Layout (Important)
 
-- `generate_expanded_catalog.ps1`
-  - Main source of truth for expanded shop grouping and generation.
-- `.tmp/generate_expanded_catalog.ps1`
-  - Wrapper that invokes root generator.
-- `Shops/Catalogs/ShopExpandedCatalog.cs`
-  - Generated output. Do not hand-edit unless emergency hotfix.
-- `Shops/Shop*.cs`
-  - Shop open/wiring behavior. Base/non-expanded logic.
+Core runtime:
 - `Shops/Shop.cs`
-  - Shared shop framework and expansion handling.
-- `UI/ShopUI.cs`
-  - In-game merchant shop strip and cycle behavior.
-- `UI/ShowAllShopsUI.cs`
-  - All-shops browser UI (also reused for world-merchant browser mode).
-- `UI/AddCustomShopUI.cs`
-  - UI system host and visibility toggles.
-- `UI/DarkScrollbar.cs`
-  - Custom dark-styled scrollbar for browser UI.
-- `Commands/ShowAllShopsCommand.cs`
-  - `/showallshops` command.
-- `Items/WorldShopCatalogItem.cs`
-  - Craftable item that opens world-merchant shop browser.
-- `Config.cs`
-  - Server-side config, includes `UnlockAllItems`.
-- `Player.cs`
-  - UI hide behavior when not talking to NPCs.
-- `TerrariaItemListComplete1.4.5.txt`
-  - Master item list reference.
-- `.tmp/missing_items_integrated_with_stage.csv`
-  - Generator input dataset (stage-indexed).
-- `CONTRIBUTING.md`
-  - Human-focused contribution quick guide.
+- `Shops/Shop.Opening.cs`
+- `Shops/Shop.Visibility.cs`
+- `Shops/Shop.Items.cs`
+- `Shops/Shop.Progression.cs`
 
-## 4) Build And Run Commands
+Merchant shop implementations:
+- `Shops/Shop*.cs`
+- Large classes now split into partials, e.g.:
+  - `Shops/ShopMerchant.cs`
+  - `Shops/ShopMerchant.CoreShops.cs`
+  - `Shops/ShopMerchant.GearSlots.cs`
+  - `Shops/ShopMerchant.Weapons.cs`
+  - `Shops/ShopGuide.cs`
+  - `Shops/ShopGuide.Calamity.cs`
+  - `Shops/ShopGuide.Redemption.cs`
+  - `Shops/ShopGuide.Thorium.cs`
+
+Catalogs:
+- Generated: `Shops/Catalogs/ShopExpandedCatalog.cs`
+- Manual/base: `Shops/Catalogs/Shop*Catalog.cs`
+- `ShopMerchantCatalog` is partial:
+  - `Shops/Catalogs/ShopMerchantCatalog.cs`
+  - `Shops/Catalogs/ShopMerchantCatalog.GearProgression.cs`
+
+UI:
+- `UI/AddCustomShopUI.cs`
+- `UI/ShopUI.cs`
+- `UI/ShopUI.Layout.cs`
+- `UI/ShopUI.Hints.cs`
+- `UI/ShowAllShopsUI.cs`
+- `UI/ShowAllShopsUI.Layout.cs`
+- `UI/ShowAllShopsUI.Selection.cs`
+- `UI/ShowAllShopsUI.Hints.cs`
+- `UI/ShowAllShopsUI.Pin.cs`
+- `UI/DarkScrollbar.cs`
+- `UI/UIEvents.cs`
+
+Player/config/progression:
+- `Player.cs`
+- `Config.cs`
+- `Utils/Progression.cs`
+
+World UI trigger item:
+- `Items/WorldShopCatalogItem.cs`
+
+Generator and data:
+- `generate_expanded_catalog.ps1`
+- `.tmp/generate_expanded_catalog.ps1` (wrapper)
+- `classify_missing.ps1`
+- `.tmp/missing_items_integrated_with_stage.csv`
+- `TerrariaItemListComplete1.4.5.txt`
+
+Docs:
+- `README.md`
+- `CONTRIBUTING.md`
+- `AGENTS.md`
+
+## 4) Build And Run
 
 Primary compile command:
 - `dotnet build /p:BuildMod=false`
 
 Why:
-- Repo has a `RequireTModLoaderTargets` guard in `MerchantsPlus.csproj`.
 - Full packaging can fail when tModLoader locks files.
-- Compile-only is the safe default during active development.
+- `MerchantsPlus.csproj` includes a guard message that explicitly recommends this compile-only mode.
 
 Regenerate expanded catalog:
 - `powershell -NoProfile -ExecutionPolicy Bypass -File .\generate_expanded_catalog.ps1`
 
-## 5) Expanded Catalog Pipeline
+Classify missing list:
+- `powershell -NoProfile -ExecutionPolicy Bypass -File .\classify_missing.ps1`
 
-### 5.1 Input
+## 5) Current UI/UX Behavior
 
+### 5.1 Merchant Shop UI (`ShopUI`)
+
+- Opened from `UI/UIEvents.cs` on `GlobalNPC.GetChat` for supported merchants.
+- Uses a draggable dark panel.
+- Shows merchant label, selected shop label, hint text, and a scrollable list of visible shops.
+- Shop list click opens selected shop directly.
+- Uses `Shop.GetVisibleShops(...)` so locked-empty pages are not shown.
+
+### 5.2 Browser UIs (`ShowAllShopsUI`)
+
+Two modes exist in same UI class:
+- `All Merchant Shops` mode (`_onlyPresentTownMerchants = false`)
+- `World Merchant Shops` mode (`_onlyPresentTownMerchants = true`)
+
+World mode filters merchants by:
+1. Merchant exists in `ShopUI.Shops`
+2. NPC exists in world (`NPC.AnyNPCs(type)`)
+3. Has at least one currently visible shop
+
+In world mode, a `Show All Items` button appears only when `DevMode` is enabled.
+
+### 5.3 World browser trigger item
+
+- `Items/WorldShopCatalogItem.cs`
+- Recipe: `5x Wood`
+- Opens world browser on item use (`UseItem`).
+- Prevents use if mouse is over custom UI or `Main.blockInput` is true.
+
+### 5.4 Input and close behavior
+
+- ESC closes all custom UIs in `AddCustomShopUI.UpdateUI`.
+- Pointer-over uses `mouseInterface` and scroll-lock via `PlayerInput.LockVanillaMouseScroll(...)`.
+- `PlayerHooks.ProcessTriggers` hides merchant `ShopUI` when player is no longer talking to an NPC.
+- Pinned talk-NPC logic is used to support remote shop open behavior for world-browser interactions.
+
+## 6) Commands Status
+
+- `Commands/` directory is currently empty.
+- No active `ModCommand` implementation is present in source right now.
+- `ShowAllShopsUI` functionality exists in UI systems, but there is currently no command-bound entry point in code.
+
+## 7) Config Semantics (Current)
+
+`Config.cs` (server-side):
+- `DevMode` (bool)
+- `ShowAllItems` (hidden bool)
+- `UnlockAllItems` (computed, hidden):
+  - `ForceUnlockAllItems || (DevMode && ShowAllItems)`
+
+Important:
+- If `DevMode` is disabled, `ShowAllItems` is automatically reset to `false`.
+
+## 8) Progression System (Current)
+
+`Utils/Progression.cs` now uses enums instead of magic numbers:
+- `Progression.FullLevel` (`0..21`)
+- `Progression.BossLevel` (`0..14`)
+
+Still exposes int-compatible APIs for existing callsites:
+- `LevelFull()`
+- `LevelBoss()`
+- `GetLevelFullUnlockHint(int)`
+
+Preview helper used by UI snapshotting:
+- `PushPreviewLevelOverride(int level)`
+
+## 9) Shop Framework Details
+
+`Shop` base behavior:
+- `BuildShopList` merges base tabs with generated expanded tabs.
+- `OpenExpandedShop` opens expanded pages with progression gating unless `UnlockAllItems` is true.
+- `GetVisibleShops` hides expanded pages with zero visible items.
+- `EnsureMinimumSellPrice` applies 1 copper only when item has no value and no custom price is set.
+- `OpenShopForNpcType` supports opening shop contexts for NPC type even when player is not physically near that NPC.
+
+`ShopExpandedOnly` exists for merchants that only have expanded content.
+
+## 10) Expanded Catalog Generator Pipeline
+
+Source script:
+- `generate_expanded_catalog.ps1`
+
+### 10.1 Input
 - Reads `.tmp/missing_items_integrated_with_stage.csv`, sorted by `Index`.
-- Injects extra fallback rows:
+- Injects fallback rows if missing:
   - `FireworkFountain`
   - `BoosterTrack`
 
-### 5.2 Filtering/Normalization
-
-- Renames selected conflicts:
+### 10.2 Normalization and filtering
+- Replacement map currently includes:
   - `OgreMask -> RobotMask`
   - `GoblinMask -> UnicornMask`
   - `SkeletonBow -> Marrow`
 - Excludes:
-  - `Trapped` pattern
-  - `Fake_` pattern
-  - Some disallowed luminite tool variants
-  - Merge-to-native items list
-  - Raw coins (`CopperCoin`, `SilverCoin`, `GoldCoin`, `PlatinumCoin`)
+  - `Trapped` matches
+  - `Fake_` matches
+  - disallowed luminite tool variants
+  - merge-to-native seed/plant items list
+  - raw coin items
 
-### 5.3 Grouping
+### 10.3 Grouping
+- `Get-ShopInfo` maps item name patterns to `Merchant + Shop`.
+- Includes dedicated groupings for keys, clocks, tombstones, quest fish, treasure bags, tools, furniture families, paints/vanity, etc.
+- `Alpha*Statue` style mapping currently uses the string `Alphanumeric Status` (intentional current spelling).
 
-`Get-ShopInfo` routes each item to `Merchant + Shop`.
-Grouping now includes dedicated categories for:
-- Keys
-- Clocks
-- Fences
-- Campfires
-- Pickaxes
-- Hammers
-- Drills and Saws
-- Axes
-- Quest Fish
-- Tombstones
-- Treasure Bags
-- Furniture families (chairs/tables/etc.)
+### 10.4 Furniture redistribution
+- Furniture shops are reassigned to slime merchants (whole-shop reassignment, not random per item).
+- Target slimes:
+  - `NerdySlime`, `CoolSlime`, `ElderSlime`, `ClumsySlime`, `DivaSlime`, `SurlySlime`, `MysticSlime`
+- Reserved banner slime:
+  - `SquireSlime` (banner-only)
 
-### 5.4 Furniture Redistribution
-
-Furniture groups are redistributed to slime merchants deterministically.
-Algorithm:
-- Detect furniture shop names by pattern.
-- Assign each furniture shop (whole shop, not random item split) to the least-loaded target slime.
-- Keep furniture shop names and items intact.
-
-Current targets for furniture balancing:
-- `NerdySlime`
-- `CoolSlime`
-- `ElderSlime`
-- `ClumsySlime`
-- `DivaSlime`
-- `SurlySlime`
-- `MysticSlime`
-
-Reserved slime:
-- `SquireSlime` is banner-only.
-
-### 5.5 Pagination And Naming
-
-- Page size: 40
+### 10.5 Pagination and names
+- `pageSize = 40`
+- Max shop name length: `24` (`$maxShopNameLength`)
 - Overflow suffixes: `Core`, `Plus`, `Prime`, etc.
-- Max shop name length in generator: 24 (`$maxShopNameLength`)
 
-### 5.6 Small Shop Handling
+### 10.6 Manual pages and small-shop redistribution
+- Manual pages are injected for:
+  - `Cat Kit`
+  - `Dog Kit`
+  - `Bunny Kit`
+- Small shops (`<= 5` items) are removed for non-slime merchants (except `Cat`, `Dog`, `Bunny`) and items are redistributed to random slime shops (`Slime Finds*`).
 
-For non-slime merchants (except Cat/Dog/Bunny exemptions):
-- Shops with item count `<= 5` are removed.
-- Items are redistributed to slime shops (`Slime Finds*`) via random slime target.
+Important caveat:
+- Small-shop redistribution currently uses `Get-Random`, so composition can vary run-to-run.
 
-### 5.7 Assertions
+### 10.7 Assertions (generation fails if violated)
+- Duplicate shop names per merchant
+- Any page > 40 items
+- `Explosives*` contains `Minecart` or `Powder`
+- `Ores*` contains `ShroomiteBar` or `SpectreBar`
+- `Ranged*` contains forbidden misgrouped patterns
+- `Bait`, `Fishing Misc`, `Food Plus` pages still exist
+- Banner-only slime has non-banner pages
+- `Coins*` contains raw coin items
+- `Treasure Bags*` contains `BossBagOgre` or `BossBagDarkMage`
+- `Mounts*` contains known non-mount junk patterns
 
-Generation fails if:
-1. Duplicate shop names for same merchant.
-2. Any shop has more than 40 items.
-3. Explosives contains `Minecart` or `Powder`.
-4. Ores contains `ShroomiteBar` or `SpectreBar`.
-5. Ranged contains forbidden misgrouped patterns.
-6. Any `Bait`, `Fishing Misc`, `Food Plus` pages still exist.
-7. Banner-only slime has non-banner shop.
-8. `Coins*` contains raw coin items.
-9. `Treasure Bags*` contains `BossBagOgre` or `BossBagDarkMage`.
-10. `Mounts*` contains known non-mount junk patterns.
+## 11) Known Current Snapshot
 
-## 6) Current Curated Decisions (Critical)
+- Expanded generated entries: `3801` (`new(ItemID.*)` rows in `ShopExpandedCatalog.cs`).
+- `ShopMerchantCatalog` split into partials.
+- `Shop`, `ShopUI`, `ShowAllShopsUI`, `ShopMerchant`, and `ShopGuide` are split into partial files.
 
-1. `Alpha Statues` renamed to `Alphanumeric Status` (intentional string).
-2. `Biome Toilets` merged into `Toilets`.
-3. `FishHook` moved out of fish pages to Goblin `Hooks`.
-4. `SharkFin` moved to Merchant `Materials`.
-5. `Goldfish` and `FishBowl` moved to Bunny `Critter Care`.
-6. `BossBagOgre` and `BossBagDarkMage` are not in `Treasure Bags`; they route to Tavernkeep (`Eternia Gear`).
-7. `Mounts` no longer includes obvious non-mount food/junk apples.
-8. Banners moved from Stylist to `SquireSlime` only.
+## 12) Practical Edit Strategy
 
-## 7) UI/UX Architecture
-
-### 7.1 Shop Strip UI
-
-- File: `UI/ShopUI.cs`
-- Shows merchant name, current shop, and `Cycle Shop`.
-- Uses visible-shop filtering (`Shop.GetVisibleShops`) so locked empty expanded pages are hidden.
-
-### 7.2 All Shops Browser
-
-- File: `UI/ShowAllShopsUI.cs`
-- Command opens this: `/showallshops`
-- Dark/semi-transparent styling.
-- Uses `DarkScrollbar`.
-- Clicking a shop opens it directly.
-- Input is blocked while hovering panel:
-  - `Main.LocalPlayer.mouseInterface = true`
-  - `Main.blockInput = true`
-  - `PlayerInput.LockVanillaMouseScroll(...)`
-
-### 7.3 World Merchant Browser (Craft Trigger)
-
-- Same UI class with mode flag:
-  - `new ShowAllShopsUI(true, "World Merchant Shops")`
-- Only includes merchants that:
-  1. Are in `ShopUI.Shops`
-  2. Are town NPC types
-  3. Exist in the world (`NPC.AnyNPCs(type)`)
-
-- Trigger item:
-  - `Items/WorldShopCatalogItem.cs`
-  - Recipe: 5 wood
-  - Opens world browser when crafted and when used.
-
-### 7.4 UI Host
-
-- File: `UI/AddCustomShopUI.cs`
-- Manages three UIs:
-  - regular shop strip
-  - all-shops browser
-  - world-merchants browser
-
-## 8) Command And Permission Logic
-
-`/showallshops` command:
-- File: `Commands/ShowAllShopsCommand.cs`
-- Singleplayer: allowed.
-- Multiplayer: host/admin-like allowed using reflection-based checks.
-- Command toggles all-shops browser.
-
-## 9) Shop Framework Notes
-
-File: `Shops/Shop.cs`
-
-Important behavior:
-- `BuildShopList` merges base shop tabs with expanded catalog tabs.
-- `OpenExpandedShop` respects progression unless `Config.UnlockAllItems == true`.
-- `GetVisibleShops` hides expanded pages with zero currently unlocked items.
-- `EnsureMinimumSellPrice` sets 1 copper if item has no value and no explicit custom price.
-- `OpenShopForNpcType` supports opening context shops when player is not near selected NPC (used by browser UI).
-
-## 10) Config Flags
-
-File: `Config.cs` (server-side)
-
-Includes:
-- `UnlockAllItems` (bool): ignores gated progression for expanded pages.
-- Other toggles for happiness multiplier, drops, scaling, projectiles, etc.
-
-## 11) Practical Edit Strategy (Do This)
-
-When changing expanded grouping:
+For expanded grouping/content changes:
 1. Edit `generate_expanded_catalog.ps1`.
-2. Regenerate catalog.
-3. Build compile-only.
-4. Spot-check target shops with script queries.
+2. Regenerate `ShopExpandedCatalog.cs`.
+3. Compile with `dotnet build /p:BuildMod=false`.
+4. Spot-check target shops in-game.
 
-Do not start by hand-editing `ShopExpandedCatalog.cs`.
+For runtime/UI behavior changes:
+1. Edit relevant partial files.
+2. Keep behavior-compatible refactors unless explicitly changing behavior.
+3. Compile with `dotnet build /p:BuildMod=false`.
 
-## 12) Useful Local Queries
+## 13) Useful Local Queries
 
-Regenerate:
-- `powershell -NoProfile -ExecutionPolicy Bypass -File .\generate_expanded_catalog.ps1`
+Count expanded entries:
+- `Select-String -Path Shops/Catalogs/ShopExpandedCatalog.cs -Pattern 'new\(ItemID\.' | Measure-Object`
 
-Build:
-- `dotnet build /p:BuildMod=false`
+Find progression hint and preview callsites:
+- `rg -n "PushPreviewLevelOverride|GetLevelFullUnlockHint|LevelFull\(" -S`
 
-Count expanded `new(ItemID.*)` entries:
-- `Select-String -Path Shops/Catalogs/ShopExpandedCatalog.cs -Pattern 'new\\(ItemID\\.' | Measure-Object`
+Find UI entry points:
+- `rg -n "ShowWorldShopsUI|ShowShowAllShopsUI|GetChat\(" -S`
 
-## 13) Current Snapshot (Last Known)
+## 14) Watch Items / Risks
 
-- Expanded entries (generated): 3801 item rows.
-- Banner pages:
-  - `TownSlimeCopper`: `Banners Core`, `Banners Plus`
-- Angler pages:
-  - `Fish Core`, `Fish Plus`, `Fish Gear`, `Quest Fish`, `Crates`, `Critter Decor`
-- Food pages:
-  - `PartyGirl`: `Food and Drink`
-  - `Tavernkeep`: `Bar Drinks`
-- Toilets:
-  - consolidated `Toilets` page
-- Tool subshops:
-  - `Golfer`: `Pickaxes`, `Hammers`, `Drills and Saws`, `Axes`, `Fences`, `Campfires`
+1. Grouping regex order in generator is precedence-sensitive.
+2. Overflow name generation can collide if changed carelessly.
+3. Random slime redistribution can cause non-deterministic diffs.
+4. `Shop.Opening` relies on `Main.SetNPCShopIndex(1)`; changing this has historically caused crashes/null refs.
+5. Keep generated and manual catalog responsibilities separated.
 
-## 14) Known Risks / Watch Items
+## 15) AI Provenance
 
-1. Regex grouping order matters. Earlier matches override later matches.
-2. New mappings can accidentally create duplicate shop names when overflow suffixes collide.
-3. Changing max name length can affect UI fit and suffix generation.
-4. Random slime redistribution for tiny shops can change composition run-to-run.
-5. If category changes are requested, update assertions too, not only mappings.
-
-## 15) AI Operation Rules For This Repo
-
-1. Keep context in catalogs.
-2. Keep progression intact unless explicitly asked to flatten.
-3. Prefer generator-level fixes for expanded content.
-4. Prefer deterministic regrouping over manual scatter.
-5. Keep all changes compile-safe with `dotnet build /p:BuildMod=false`.
-
-## 16) Provenance
-
-AI tooling (including OpenAI Codex) has been used in this repository.
-Treat this as assistive automation, not authoritative design truth.
-Always re-validate against owner intent and latest prompt.
+AI-assisted tooling (including OpenAI Codex) has been used in this repository.
+Treat AI output as implementation assistance, not source-of-truth design authority.
+Always verify against current owner intent and current code.

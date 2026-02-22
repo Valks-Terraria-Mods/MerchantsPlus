@@ -25,7 +25,7 @@ public class ShopDemolitionist : Shop
 
     private void Explosives()
     {
-        AddItems(ShopDemolitionistCatalog.BaseExplosives);
+        AddStagedItems(ShopDemolitionistCatalog.BaseExplosives, 0, 13);
         AddConditionalOffers(ShopDemolitionistCatalog.ExplosiveUnlocks);
     }
 }
