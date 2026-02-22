@@ -64,6 +64,26 @@ public class AddCustomShopUI : ModSystem
         _worldShopsUserInterface?.SetState(null);
     }
 
+    public bool IsPointerOverAnyCustomUI()
+    {
+        if (_shopUserInterface?.CurrentState is not null && _shopUI?.IsPointerOverPanel() == true)
+        {
+            return true;
+        }
+
+        if (_showAllShopsUserInterface?.CurrentState is not null && _showAllShopsUI?.IsPointerOverPanel() == true)
+        {
+            return true;
+        }
+
+        if (_worldShopsUserInterface?.CurrentState is not null && _worldShopsUI?.IsPointerOverPanel() == true)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void ToggleWorldShopsUI()
     {
         if (_worldShopsUserInterface?.CurrentState is null)
@@ -96,6 +116,14 @@ public class AddCustomShopUI : ModSystem
     public override void UpdateUI(GameTime gameTime)
     {
         _lastUpdateUiGameTime = gameTime;
+
+        if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+        {
+            HideShopUI();
+            HideShowAllShopsUI();
+            HideWorldShopsUI();
+            return;
+        }
 
         if (_shopUserInterface?.CurrentState != null)
         {

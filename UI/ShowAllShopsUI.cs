@@ -1,4 +1,5 @@
 using MerchantsPlus.Shops;
+using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Terraria.GameContent.UI.Elements;
@@ -10,6 +11,9 @@ public class ShowAllShopsUI : UIState
 {
     private const float PanelWidth = 470f;
     private const float PanelHeight = 360f;
+    private const float HintTextScale = 0.66f;
+    private const string HintPrefix = "Hint: ";
+    private readonly record struct ShopUnlockInfo(int LockedCount, int NextRequiredProgression, int NextItemId, bool HasCatalogData);
 
     private readonly List<int> _merchantIds = [];
 
@@ -17,10 +21,13 @@ public class ShowAllShopsUI : UIState
     private UIList _shopList;
     private UIText _selectedMerchantLabel;
     private UIText _selectedShopLabel;
+    private UIText _selectedShopHintLabel;
+    private TextButton _showAllItemsBtn;
 
     private int _selectedMerchantId = NPCID.None;
     private string _selectedShopName = string.Empty;
-    private UIPanel _rootPanel;
+    private bool _shopWasExplicitlyClicked;
+    private DraggableUIPanel _rootPanel;
     private readonly bool _onlyPresentTownMerchants;
     private readonly string _titleText;
 
@@ -36,7 +43,7 @@ public class ShowAllShopsUI : UIState
 
     public override void OnInitialize()
     {
-        UIPanel panel = new();
+        DraggableUIPanel panel = new();
         _rootPanel = panel;
         panel.SetPadding(8f);
         panel.Width.Set(PanelWidth, 0f);
@@ -45,6 +52,16 @@ public class ShowAllShopsUI : UIState
         panel.Top.Set(-PanelHeight - 20f, 1f);
         panel.BackgroundColor = new Color(8, 8, 8, 165);
         panel.BorderColor = new Color(28, 28, 28, 220);
+        panel.ClampToScreen = true;
+
+        UIElement dragHandle = new();
+        dragHandle.Left.Set(0f, 0f);
+        dragHandle.Top.Set(0f, 0f);
+        dragHandle.Width.Set(0f, 1f);
+        dragHandle.Height.Set(28f, 0f);
+        dragHandle.OnLeftMouseDown += panel.StartDrag;
+        dragHandle.OnLeftMouseUp += panel.StopDrag;
+        panel.Append(dragHandle);
 
         UIText title = new(_titleText, 0.95f)
         {
@@ -72,6 +89,18 @@ public class ShowAllShopsUI : UIState
             }
         };
         panel.Append(closeBtn);
+
+        if (_onlyPresentTownMerchants)
+        {
+            _showAllItemsBtn = new TextButton("Show All Items", 0.72f)
+            {
+                HAlign = 0f,
+            };
+            _showAllItemsBtn.Left.Set(8f, 0f);
+            _showAllItemsBtn.Top.Set(8f, 0f);
+            _showAllItemsBtn.OnLeftClick += OnShowAllItemsClicked;
+            panel.Append(_showAllItemsBtn);
+        }
 
         UIText merchantsHeader = new("Merchants", 0.85f)
         {
@@ -105,7 +134,13 @@ public class ShowAllShopsUI : UIState
         _selectedShopLabel.Top.Set(289f, 0f);
         panel.Append(_selectedShopLabel);
 
+        _selectedShopHintLabel = new UIText("Hint: -", HintTextScale);
+        _selectedShopHintLabel.Left.Set(8f, 0f);
+        _selectedShopHintLabel.Top.Set(310f, 0f);
+        panel.Append(_selectedShopHintLabel);
+
         Append(panel);
+        UpdateShowAllItemsButton();
     }
 
     public override void Update(GameTime gameTime)
@@ -117,6 +152,8 @@ public class ShowAllShopsUI : UIState
             CloseThisUI();
             return;
         }
+
+        UpdateShowAllItemsButton();
 
         if (Main.LocalPlayer is not null && _rootPanel?.ContainsPoint(Main.MouseScreen) == true)
         {
@@ -141,6 +178,11 @@ public class ShowAllShopsUI : UIState
         ClearPinnedShop(clearTalkNpc: true);
     }
 
+    public bool IsPointerOverPanel()
+    {
+        return _rootPanel?.ContainsPoint(Main.MouseScreen) == true;
+    }
+
     public void ClearPinnedShop(bool clearTalkNpc)
     {
         // No-op: retained for compatibility with existing calls.
@@ -148,6 +190,9 @@ public class ShowAllShopsUI : UIState
 
     public void Refresh()
     {
+        UpdateShowAllItemsButton();
+        _shopWasExplicitlyClicked = false;
+
         _merchantIds.Clear();
         foreach (int merchantId in ShopUI.Shops.Keys)
         {
@@ -247,7 +292,7 @@ public class ShowAllShopsUI : UIState
         }
 
         HashSet<string> seen = new(StringComparer.Ordinal);
-        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop.Shops);
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop, merchantShop.Shops);
         foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
@@ -312,7 +357,7 @@ public class ShowAllShopsUI : UIState
             return false;
         }
 
-        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(merchantId, merchantShop.Shops);
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(merchantId, merchantShop, merchantShop.Shops);
         return visibleShops.Count > 0;
     }
 
@@ -325,6 +370,7 @@ public class ShowAllShopsUI : UIState
     private void SelectMerchant(int merchantId)
     {
         _selectedMerchantId = merchantId;
+        _shopWasExplicitlyClicked = false;
         EnsureValidSelectedShop();
         PopulateMerchantList();
         PopulateShopList();
@@ -334,6 +380,7 @@ public class ShowAllShopsUI : UIState
     private void SelectShop(string shopName)
     {
         _selectedShopName = shopName;
+        _shopWasExplicitlyClicked = true;
         PopulateShopList();
         UpdateSelectionLabels();
         OpenShopSelection(_selectedMerchantId, _selectedShopName, suppressSound: false);
@@ -349,7 +396,7 @@ public class ShowAllShopsUI : UIState
         }
 
         HashSet<string> seen = new(StringComparer.Ordinal);
-        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop.Shops);
+        IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop, merchantShop.Shops);
         foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
@@ -370,9 +417,343 @@ public class ShowAllShopsUI : UIState
         string shopText = string.IsNullOrWhiteSpace(_selectedShopName)
             ? "-"
             : _selectedShopName;
+        string hintText;
+        if (_shopWasExplicitlyClicked)
+        {
+            hintText = GetSelectedShopHint();
+            int lockedCount = GetSelectedShopLockedCount();
+            hintText = AppendLockedStatus(hintText, lockedCount);
+        }
+        else
+        {
+            hintText = "Select a shop to open it and view unlock hints.";
+        }
 
         _selectedMerchantLabel.SetText($"Merchant: {merchantText}");
         _selectedShopLabel.SetText($"Shop: {shopText}");
+        _selectedShopHintLabel.SetText($"{HintPrefix}{FitHintText(hintText)}");
+    }
+
+    private string GetSelectedShopHint()
+    {
+        if (!_shopWasExplicitlyClicked)
+        {
+            return "Select a shop to open it and view unlock hints.";
+        }
+
+        if (_selectedMerchantId <= NPCID.None || string.IsNullOrWhiteSpace(_selectedShopName))
+        {
+            return "-";
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return "Show All Items is enabled.";
+        }
+
+        ShopUnlockInfo info = GetShopUnlockInfo(_selectedMerchantId, _selectedShopName);
+        if (!info.HasCatalogData)
+        {
+            return GetDynamicShopHint(_selectedMerchantId, _selectedShopName);
+        }
+
+        if (info.LockedCount <= 0)
+        {
+            return "All items currently unlocked for this shop.";
+        }
+
+        string itemName = GetItemDisplayName(info.NextItemId);
+        string unlockHint = Progression.GetLevelFullUnlockHint(info.NextRequiredProgression);
+        if (string.IsNullOrWhiteSpace(itemName))
+        {
+            return unlockHint;
+        }
+
+        return $"Next: {itemName}. {unlockHint}";
+    }
+
+    private string GetDynamicShopHint(int merchantId, string shopName)
+    {
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return "Show All Items is enabled.";
+        }
+
+        List<int> currentItems = SnapshotShopItemsAtState(merchantId, shopName, Progression.LevelFull(), forceUnlockAllItems: false);
+        if (currentItems.Count == 0)
+        {
+            return "No items currently visible in this shop.";
+        }
+
+        HashSet<int> currentSet = [.. currentItems];
+        int currentLevel = Progression.LevelFull();
+
+        for (int nextLevel = currentLevel + 1; nextLevel <= 21; nextLevel++)
+        {
+            List<int> futureItems = SnapshotShopItemsAtState(merchantId, shopName, nextLevel, forceUnlockAllItems: false);
+            int nextProgressionItem = GetFirstNewItem(futureItems, currentSet);
+            if (nextProgressionItem > ItemID.None)
+            {
+                return $"Next: {GetItemDisplayName(nextProgressionItem)}. {Progression.GetLevelFullUnlockHint(nextLevel)}";
+            }
+        }
+
+        List<int> allItems = SnapshotShopItemsAtState(merchantId, shopName, 21, forceUnlockAllItems: true);
+        int eventLockedItem = GetFirstNewItem(allItems, currentSet);
+        if (eventLockedItem > ItemID.None)
+        {
+            return $"Next: {GetItemDisplayName(eventLockedItem)}. Defeat related enemies/events in addition to boss progression.";
+        }
+
+        return "All items currently unlocked for this shop.";
+    }
+
+    private static string GetItemDisplayName(int itemId)
+    {
+        if (itemId <= ItemID.None)
+        {
+            return string.Empty;
+        }
+
+        string itemName = Lang.GetItemNameValue(itemId);
+        return string.IsNullOrWhiteSpace(itemName) ? $"Item {itemId}" : itemName;
+    }
+
+    private static ShopUnlockInfo GetShopUnlockInfo(int merchantId, string shopName)
+    {
+        if (merchantId <= NPCID.None || string.IsNullOrWhiteSpace(shopName))
+        {
+            return default;
+        }
+
+        if (!ShopExpandedCatalog.TryGetPage(merchantId, shopName, out ShopExpandedCatalog.ShopPage page))
+        {
+            return new ShopUnlockInfo(0, 0, ItemID.None, false);
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return new ShopUnlockInfo(0, 0, ItemID.None, true);
+        }
+
+        int progression = Progression.LevelFull();
+        int lockedCount = 0;
+        int nextRequired = int.MaxValue;
+        int nextItemId = ItemID.None;
+
+        foreach (ShopExpandedCatalog.ShopItem item in page.Items)
+        {
+            if (item.RequiredProgression <= progression)
+            {
+                continue;
+            }
+
+            lockedCount++;
+            if (item.RequiredProgression < nextRequired)
+            {
+                nextRequired = item.RequiredProgression;
+                nextItemId = item.ItemId;
+            }
+        }
+
+        if (nextRequired == int.MaxValue)
+        {
+            nextRequired = 0;
+        }
+
+        return new ShopUnlockInfo(lockedCount, nextRequired, nextItemId, true);
+    }
+
+    private static int GetFirstNewItem(IEnumerable<int> candidateItems, HashSet<int> currentItems)
+    {
+        foreach (int itemId in candidateItems)
+        {
+            if (!currentItems.Contains(itemId))
+            {
+                return itemId;
+            }
+        }
+
+        return ItemID.None;
+    }
+
+    private int GetSelectedShopLockedCount()
+    {
+        if (!_shopWasExplicitlyClicked)
+        {
+            return 0;
+        }
+
+        if (_selectedMerchantId <= NPCID.None || string.IsNullOrWhiteSpace(_selectedShopName))
+        {
+            return 0;
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return 0;
+        }
+
+        ShopUnlockInfo info = GetShopUnlockInfo(_selectedMerchantId, _selectedShopName);
+        if (info.HasCatalogData)
+        {
+            return Math.Max(0, info.LockedCount);
+        }
+
+        List<int> currentItems = SnapshotShopItemsAtState(_selectedMerchantId, _selectedShopName, Progression.LevelFull(), forceUnlockAllItems: false);
+        List<int> allItems = SnapshotShopItemsAtState(_selectedMerchantId, _selectedShopName, 21, forceUnlockAllItems: true);
+        return Math.Max(0, allItems.Count - currentItems.Count);
+    }
+
+    private static List<int> SnapshotShopItemsAtState(int merchantId, string shopName, int progressionLevel, bool forceUnlockAllItems)
+    {
+        List<int> items = [];
+
+        if (merchantId <= NPCID.None || string.IsNullOrWhiteSpace(shopName))
+        {
+            return items;
+        }
+
+        if (!ShopUI.Shops.TryGetValue(merchantId, out Shop shop))
+        {
+            return items;
+        }
+
+        int previousMerchantId = ShopUI.CurrentMerchantId;
+        int previousTalkNpc = Main.LocalPlayer?.talkNPC ?? -1;
+        bool previousForceUnlockAll = Config.ForceUnlockAllItems;
+
+        try
+        {
+            ShopUI.CurrentMerchantId = merchantId;
+            Config.ForceUnlockAllItems = forceUnlockAllItems;
+
+            using (Progression.PushPreviewLevelOverride(progressionLevel))
+            {
+                shop.OpenShopForNpcType(shopName, merchantId, suppressSound: true);
+                Chest currentShop = Main.instance?.shop?[Main.npcShop];
+                if (currentShop?.item is null)
+                {
+                    return items;
+                }
+
+                foreach (Item item in currentShop.item)
+                {
+                    if (item is null || item.IsAir || item.type <= ItemID.None)
+                    {
+                        continue;
+                    }
+
+                    items.Add(item.type);
+                }
+            }
+        }
+        finally
+        {
+            Config.ForceUnlockAllItems = previousForceUnlockAll;
+            ShopUI.CurrentMerchantId = previousMerchantId;
+
+            if (Main.LocalPlayer is not null)
+            {
+                Main.LocalPlayer.SetTalkNPC(previousTalkNpc);
+            }
+        }
+
+        return items;
+    }
+
+    private void OnShowAllItemsClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
+        Config config = Config.Instance;
+        if (config is null || !config.DevMode)
+        {
+            return;
+        }
+
+        config.ShowAllItems = !config.ShowAllItems;
+        UpdateShowAllItemsButton();
+        Refresh();
+    }
+
+    private void UpdateShowAllItemsButton()
+    {
+        if (_showAllItemsBtn is null)
+        {
+            return;
+        }
+
+        bool devMode = Config.Instance?.DevMode == true;
+        bool showAllItems = Config.Instance?.ShowAllItems == true;
+        _showAllItemsBtn.IgnoresMouseInteraction = !devMode;
+
+        if (!devMode)
+        {
+            _showAllItemsBtn.SetText(string.Empty);
+            _showAllItemsBtn.Left.Set(-10000f, 0f);
+            return;
+        }
+
+        _showAllItemsBtn.Left.Set(8f, 0f);
+        _showAllItemsBtn.SetText(showAllItems ? "Show All Items: ON" : "Show All Items");
+    }
+
+    private static string FitHintText(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return "-";
+        }
+
+        string trimmed = text.Trim();
+        // Leave extra right-side breathing room to avoid glyph clipping.
+        float maxWidth = PanelWidth - 36f;
+        if (MeasureHintLineWidth(trimmed) <= maxWidth)
+        {
+            return trimmed;
+        }
+
+        const string ellipsis = "...";
+        int low = 0;
+        int high = trimmed.Length;
+        while (low < high)
+        {
+            int mid = (low + high + 1) / 2;
+            string candidate = trimmed[..mid].TrimEnd() + ellipsis;
+            if (MeasureHintLineWidth(candidate) <= maxWidth)
+            {
+                low = mid;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+
+        if (low <= 0)
+        {
+            return ellipsis;
+        }
+
+        return trimmed[..low].TrimEnd() + ellipsis;
+    }
+
+    private static string AppendLockedStatus(string hintText, int lockedCount)
+    {
+        string baseText = string.IsNullOrWhiteSpace(hintText) ? "-" : hintText.Trim();
+        if (lockedCount <= 0)
+        {
+            return baseText;
+        }
+
+        string suffix = lockedCount == 1
+            ? "1 item remains locked in this shop."
+            : $"{lockedCount} items remain locked in this shop.";
+        return $"{baseText} {suffix}";
+    }
+
+    private static float MeasureHintLineWidth(string text)
+    {
+        return FontAssets.MouseText.Value.MeasureString(HintPrefix + text).X * HintTextScale;
     }
 
     private void OpenShopSelection(int merchantId, string shopName, bool suppressSound)

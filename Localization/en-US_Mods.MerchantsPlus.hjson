@@ -42,6 +42,16 @@ Configs: {
 			Tooltip: ""
 		}
 
+		DevMode: {
+			Label: Dev Mode
+			Tooltip: Enables developer tools in UI (such as Show All Items toggle).
+		}
+
+		ShowAllItems: {
+			Label: Show All Items
+			Tooltip: ""
+		}
+
 		UnlockAllItems: {
 			Label: Unlock All Items
 			Tooltip: ""

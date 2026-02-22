@@ -4,6 +4,30 @@ public class ShopAngler : Shop
 {
     public override List<string> Shops { get; } = BuildShopList(NPCID.Angler, ShopAnglerCatalog.ShopNames);
 
+    public override bool IsBaseShopVisible(string shopName)
+    {
+        if (shopName != ShopAnglerCatalog.FoodShopName)
+        {
+            return true;
+        }
+
+        if (Config.Instance?.UnlockAllItems == true)
+        {
+            return true;
+        }
+
+        int progression = Progression.LevelFull();
+        foreach (ProgressionShopItem item in ShopAnglerCatalog.FoodProgressionItems)
+        {
+            if (item.IsUnlocked(progression))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public override void OpenShop(string shop)
     {
         base.OpenShop(shop);

@@ -1,4 +1,4 @@
-﻿using Terraria.GameInput;
+using Terraria.GameInput;
 
 namespace MerchantsPlus;
 
@@ -6,13 +6,10 @@ public class PlayerHooks : ModPlayer
 {
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (PlayerUtils.TalkingToNpc()) 
-            return;
-        
-        if (ShopUI.Visible)
+        if (ShopUI.Visible && !PlayerUtils.TalkingToNpc())
         {
             ModContent.GetInstance<AddCustomShopUI>().HideShopUI();
-            //Main.NewText("Hiding shop ui");
+            return;
         }
     }
 }

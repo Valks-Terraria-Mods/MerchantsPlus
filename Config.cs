@@ -7,11 +7,19 @@ namespace MerchantsPlus;
 public class Config : ModConfig
 {
     public static Config Instance { get; private set; }
+    public static bool ForceUnlockAllItems { get; set; }
 
     public override ConfigScope Mode => ConfigScope.ServerSide;
     public override void OnLoaded()
     {
         Instance = this;
+        ApplyDevModeRules();
+    }
+
+    public override void OnChanged()
+    {
+        base.OnChanged();
+        ApplyDevModeRules();
     }
 
     [DefaultValue(true)]
@@ -48,5 +56,20 @@ public class Config : ModConfig
 
     [DefaultValue(false)]
     [BackgroundColor(0, 0, 0, 100)]
-    public bool UnlockAllItems;
+    public bool DevMode;
+
+    [Browsable(false)]
+    [DefaultValue(false)]
+    public bool ShowAllItems;
+
+    [Browsable(false)]
+    public bool UnlockAllItems => ForceUnlockAllItems || (DevMode && ShowAllItems);
+
+    private void ApplyDevModeRules()
+    {
+        if (!DevMode)
+        {
+            ShowAllItems = false;
+        }
+    }
 }

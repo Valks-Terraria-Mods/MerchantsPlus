@@ -271,7 +271,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.MageWeaponReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.MageWeaponReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -284,7 +284,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.SummonerWeaponReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.SummonerWeaponReplacements, fallbackToFirstItem: true);
         ReplacePrice(Coins.Gold(2));
 
         NextSlot++;
@@ -472,7 +472,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.BootReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.BootReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -486,7 +486,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.HealingPotionReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.HealingPotionReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -499,7 +499,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.ManaPotionReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.ManaPotionReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -512,7 +512,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.TorchReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.TorchReplacements, fallbackToFirstItem: true);
         ReplacePrice(Coins.Silver());
 
         NextSlot++;
@@ -526,7 +526,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.ArrowReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.ArrowReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -539,7 +539,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.RopeReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.RopeReplacements, fallbackToFirstItem: true);
         ReplacePrice(Coins.Copper());
 
         NextSlot++;
@@ -553,7 +553,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.LightPetReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.LightPetReplacements, fallbackToFirstItem: true);
         ReplacePrice(Coins.Gold(2));
 
         NextSlot++;
@@ -567,7 +567,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.ThrowerReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.ThrowerReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -580,7 +580,7 @@ public class ShopMerchant : Shop
             return;
         }
 
-        ReplaceFromOffers(ShopMerchantCatalog.HookReplacements);
+        ReplaceFromOffers(ShopMerchantCatalog.HookReplacements, fallbackToFirstItem: true);
 
         NextSlot++;
     }
@@ -608,18 +608,33 @@ public class ShopMerchant : Shop
         }
     }
 
-    private void ReplaceFromOffers(IReadOnlyList<ConditionalShopOffer> offers)
+    private bool ReplaceFromOffers(IReadOnlyList<ConditionalShopOffer> offers, bool fallbackToFirstItem = false)
     {
+        int fallbackItemId = ItemID.None;
+        int? fallbackPrice = null;
+        bool replaced = false;
+
         foreach (ConditionalShopOffer offer in offers)
         {
+            if (fallbackItemId <= ItemID.None && offer.ItemIds.Length > 0 && offer.ItemIds[0] > ItemID.None)
+            {
+                fallbackItemId = offer.ItemIds[0];
+            }
+
+            if (!fallbackPrice.HasValue && offer.Price.HasValue)
+            {
+                fallbackPrice = offer.Price.Value;
+            }
+
             if (!offer.IsUnlocked())
             {
                 continue;
             }
 
-            if (offer.ItemIds.Length > 0)
+            if (offer.ItemIds.Length > 0 && offer.ItemIds[0] > ItemID.None)
             {
                 ReplaceItem(offer.ItemIds[0]);
+                replaced = true;
             }
 
             if (offer.Price.HasValue)
@@ -627,6 +642,19 @@ public class ShopMerchant : Shop
                 ReplacePrice(offer.Price.Value);
             }
         }
+
+        if (!replaced && fallbackToFirstItem && fallbackItemId > ItemID.None)
+        {
+            ReplaceItem(fallbackItemId);
+            if (fallbackPrice.HasValue)
+            {
+                ReplacePrice(fallbackPrice.Value);
+            }
+
+            replaced = true;
+        }
+
+        return replaced;
     }
 
 }

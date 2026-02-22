@@ -26,9 +26,20 @@ public class WorldShopCatalogItem : ModItem
 
     public override bool? UseItem(Player player)
     {
+        if (player?.mouseInterface == true || Main.blockInput)
+        {
+            return false;
+        }
+
+        AddCustomShopUI ui = ModContent.GetInstance<AddCustomShopUI>();
+        if (ui?.IsPointerOverAnyCustomUI() == true)
+        {
+            return false;
+        }
+
         if (!Main.dedServ && player.whoAmI == Main.myPlayer)
         {
-            ModContent.GetInstance<AddCustomShopUI>().ShowWorldShopsUI();
+            ui.ShowWorldShopsUI();
         }
 
         return true;
