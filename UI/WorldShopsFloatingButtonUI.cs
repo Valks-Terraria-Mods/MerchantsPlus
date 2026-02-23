@@ -28,7 +28,17 @@ public class WorldShopsFloatingButtonUI : UIState
         _shopsButton.OnLeftClick += (_, _) =>
         {
             AddCustomShopUI ui = ModContent.GetInstance<AddCustomShopUI>();
-            ui?.ShowWorldShopsUI();
+            if (ui != null)
+            {
+                if (ui.IsWorldShopsUIOpen())
+                {
+                    ui.HideWorldShopsUI();
+                }
+                else
+                {
+                    ui.ShowWorldShopsUI();
+                }
+            }
         };
         panel.Append(_shopsButton);
 
