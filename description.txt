@@ -23,9 +23,6 @@ Featuring
 - (NEW) Added hints to show what is needed to unlock the next item in a particular shop.
 - (NEW) Shop names get asterick suffixes when new shop progression has been unlocked.
 
-Known Issues
-- Asterick suffixes are not showing up reliably when new progress has been made in the world.
-
 FAQ
 Q: Is this mod balanced?
 A: No this will make your playthroughs much easier. For example in pre-hardmode the merchant sells the journey mode starter wings to you for 25 gold.
@@ -38,5 +35,3 @@ A: This mod does not touch vanilla shops but rather adds its own shops so it sho
 
 Source: https://github.com/Valks-Terraria-Mods/MerchantsPlus
 Discord: https://discord.gg/j8HQZZ76r8
-
-This mod was first created in Nov 14, 2018 and as of Feb 21, 2026, AI was used to further develop it.
