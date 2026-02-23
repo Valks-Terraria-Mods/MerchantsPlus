@@ -4,26 +4,31 @@ namespace MerchantsPlus.UI;
 
 internal static class ShopUnlockAsteriskTracker
 {
+    /// <summary>
+    /// Call this when world progression changes (e.g. boss defeated) to force asterisks to update.
+    /// </summary>
+    public static void NotifyProgressionChanged()
+    {
+        _dynamicUnlockedCountCache.Clear();
+    }
     private readonly record struct ShopKey(int MerchantId, string ShopName);
     private readonly record struct DynamicCountCache(int Count, ulong Tick);
 
-    private static readonly Dictionary<ShopKey, int> _acknowledgedUnlockedCounts = [];
+    // Use world-persistent dictionary
+    private static Dictionary<(int MerchantId, string ShopName), int> AcknowledgedCounts => ShopUnlockAsteriskWorldData.AcknowledgedCounts;
     private static readonly Dictionary<ShopKey, DynamicCountCache> _dynamicUnlockedCountCache = [];
-    private static int _trackedWorldId = int.MinValue;
     private const ulong DynamicProbeIntervalTicks = 45;
 
     public static bool HasUnseenUnlocks(int merchantId, string shopName)
     {
-        EnsureWorldState();
-
         int unlockedCount = GetUnlockedItemCount(merchantId, shopName);
         if (unlockedCount < 0)
         {
             return false;
         }
 
-        ShopKey key = new(merchantId, shopName);
-        if (!_acknowledgedUnlockedCounts.TryGetValue(key, out int acknowledgedCount))
+        var key = (merchantId, shopName);
+        if (!AcknowledgedCounts.TryGetValue(key, out int acknowledgedCount))
         {
             // Unseen until the player acknowledges by clicking merchant/shop.
             return unlockedCount > 0;
@@ -31,7 +36,7 @@ internal static class ShopUnlockAsteriskTracker
 
         if (unlockedCount < acknowledgedCount)
         {
-            _acknowledgedUnlockedCounts[key] = unlockedCount;
+            AcknowledgedCounts[key] = unlockedCount;
             return false;
         }
 
@@ -40,21 +45,16 @@ internal static class ShopUnlockAsteriskTracker
 
     public static void AcknowledgeShop(int merchantId, string shopName)
     {
-        EnsureWorldState();
-
         int unlockedCount = GetUnlockedItemCount(merchantId, shopName);
         if (unlockedCount < 0)
         {
             return;
         }
-
-        _acknowledgedUnlockedCounts[new ShopKey(merchantId, shopName)] = unlockedCount;
+        AcknowledgedCounts[(merchantId, shopName)] = unlockedCount;
     }
 
     public static void AcknowledgeShops(int merchantId, IEnumerable<string> shopNames)
     {
-        EnsureWorldState();
-
         HashSet<string> seen = new(StringComparer.Ordinal);
         foreach (string shopName in shopNames ?? [])
         {
@@ -62,21 +62,11 @@ internal static class ShopUnlockAsteriskTracker
             {
                 continue;
             }
-
             AcknowledgeShop(merchantId, shopName);
         }
     }
 
-    private static void EnsureWorldState()
-    {
-        int currentWorldId = Main.gameMenu ? int.MinValue : Main.worldID;
-        if (_trackedWorldId != currentWorldId)
-        {
-            _trackedWorldId = currentWorldId;
-            _acknowledgedUnlockedCounts.Clear();
-            _dynamicUnlockedCountCache.Clear();
-        }
-    }
+    // No longer needed: persistence is handled by ShopUnlockAsteriskWorldData
 
     private static int GetUnlockedItemCount(int merchantId, string shopName)
     {
