@@ -89,11 +89,12 @@ Key design principles currently in code:
 - `Utils/Coins.cs`, `Utils/ItemCosts.cs`
 
 ### Generator and data
-- `generate_expanded_catalog.ps1`
-- `.tmp/generate_expanded_catalog.ps1` (wrapper)
-- `classify_missing.ps1`
 - `.tmp/missing_items_integrated_with_stage.csv` — **committed, do not regenerate unless needed**
-- `TerrariaItemListComplete1.4.5.txt`
+
+### Generator (`MerchantsPlus.Generator/`)
+- `MerchantsPlus.Generator.csproj`, `Program.cs`, `CatalogGenerator.cs`, `ItemClassifier.cs`, `Models.cs`
+- `Legacy/classify_missing.ps1` — generates the input CSV (only needed for Terraria updates)
+- `Legacy/TerrariaItemListComplete1.4.5.txt`
 
 ### Docs
 - `README.md`, `CONTRIBUTING.md`, `AGENTS.md`
@@ -108,14 +109,15 @@ dotnet build MerchantsPlus.csproj /p:BuildMod=false
 
 Why `/p:BuildMod=false`: Full packaging can fail when tModLoader locks files.
 
-**Regenerate expanded catalog:**
+**Regenerate expanded catalog** (run from `MerchantsPlus/` mod root):
 ```
-powershell -NoProfile -ExecutionPolicy Bypass -File .\generate_expanded_catalog.ps1
+dotnet run --project ../MerchantsPlus.Generator
 ```
+See `MerchantsPlus.Generator/README.md` for full details.
 
-**Classify missing list:**
+**Classify missing items** (legacy, only needed when Terraria updates):
 ```
-powershell -NoProfile -ExecutionPolicy Bypass -File .\classify_missing.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File ../MerchantsPlus.Generator/Legacy/classify_missing.ps1
 ```
 
 **Client log location (Linux):**
@@ -297,8 +299,8 @@ Preview helpers:
 ## 14) Practical Edit Strategy
 
 **For expanded catalog changes:**
-1. Edit `generate_expanded_catalog.ps1`.
-2. Regenerate with PowerShell.
+1. Edit `MerchantsPlus.Generator/ItemClassifier.cs` (groupings / shop assignments) or `CatalogGenerator.cs` (pipeline rules).
+2. Regenerate (from `MerchantsPlus/` mod root): `dotnet run --project ../MerchantsPlus.Generator`
 3. Compile. Spot-check in-game.
 
 **For runtime/UI behavior changes:**
