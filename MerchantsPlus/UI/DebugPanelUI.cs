@@ -6,7 +6,7 @@ namespace MerchantsPlus.UI;
 
 public class DebugPanelUI : UIState
 {
-    private const float PanelWidth = 360f;
+    private const float PanelWidth = 300f;
     private const float PanelHeight = 132f;
     private const int MaxLineCount = 5;
     private const float LineScale = 0.54f;
@@ -32,7 +32,7 @@ public class DebugPanelUI : UIState
         panel.SetPadding(8f);
         panel.Width.Set(PanelWidth, 0f);
         panel.Height.Set(PanelHeight, 0f);
-        panel.Left.Set(-PanelWidth - 12f, 1f);
+        panel.Left.Set(-PanelWidth - 4f, 1f);
         panel.Top.Set(12f, 0f);
         panel.BackgroundColor = new Color(8, 8, 8, 110);
         panel.BorderColor = new Color(24, 24, 24, 150);

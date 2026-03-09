@@ -9,7 +9,7 @@ public class ShopUnlockAsteriskWorldData : ModSystem
     // Persisted per world: merchantId, shopName -> acknowledged unlocked count
     public static Dictionary<(int MerchantId, string ShopName), int> AcknowledgedCounts = new();
 
-    public override void OnWorldLoad()
+    public override void OnWorldUnload()
     {
         AcknowledgedCounts.Clear();
     }

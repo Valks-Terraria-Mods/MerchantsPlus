@@ -7,7 +7,7 @@ public partial class ShowAllShopsUI
 {
     public void Refresh()
     {
-        UpdateShowAllItemsButton();
+        UpdateDevProgPanel();
         _shopWasExplicitlyClicked = false;
         InvalidateHintCache();
         InvalidatePreviewCache();
@@ -23,7 +23,7 @@ public partial class ShowAllShopsUI
             _merchantIds.Add(merchantId);
         }
 
-        _merchantIds.Sort((a, b) => string.Compare(GetNpcName(a), GetNpcName(b), StringComparison.Ordinal));
+        _merchantIds.Sort((a, b) => string.Compare(GetNpcName(a), GetNpcName(b), StringComparison.InvariantCultureIgnoreCase));
 
         if (_merchantIds.Count == 0)
         {
@@ -118,6 +118,13 @@ public partial class ShowAllShopsUI
             return false;
         }
 
+        // In DevMode with the progression slider active, always include present merchants
+        // so the list stays stable while the slider is moved.
+        if (_devProgPanelActive)
+        {
+            return true;
+        }
+
         IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(merchantId, merchantShop, merchantShop.Shops);
         return visibleShops.Count > 0;
     }
@@ -163,25 +170,32 @@ public partial class ShowAllShopsUI
 
     private void EnsureValidSelectedShop()
     {
-        _selectedShopName = string.Empty;
-
         if (_selectedMerchantId <= NPCID.None || !ShopUI.Shops.TryGetValue(_selectedMerchantId, out Shop merchantShop))
         {
+            _selectedShopName = string.Empty;
             return;
         }
 
         HashSet<string> seen = new(StringComparer.Ordinal);
         IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop, merchantShop.Shops);
+
+        // Build a de-duplicated visible set so we can check containment.
+        List<string> deduped = [];
         foreach (string shopName in visibleShops)
         {
-            if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
+            if (!string.IsNullOrWhiteSpace(shopName) && seen.Add(shopName))
             {
-                continue;
+                deduped.Add(shopName);
             }
-
-            _selectedShopName = shopName;
-            break;
         }
+
+        // Preserve current selection if it is still visible.
+        if (!string.IsNullOrWhiteSpace(_selectedShopName) && deduped.Contains(_selectedShopName))
+        {
+            return;
+        }
+
+        _selectedShopName = deduped.Count > 0 ? deduped[0] : string.Empty;
     }
 
     private static Dictionary<string, bool> BuildUnseenUnlockState(int merchantId, IReadOnlyList<string> shops)

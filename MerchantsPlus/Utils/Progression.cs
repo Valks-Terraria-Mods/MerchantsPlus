@@ -81,6 +81,15 @@ public static class Progression
         return new PreviewScope(previousLevel);
     }
 
+    /// <summary>
+    /// Directly sets or clears the preview level override.
+    /// Pass <c>null</c> to clear the override and revert to real world progression.
+    /// </summary>
+    public static void SetPreviewLevelOverride(int? level)
+    {
+        _previewLevelOverride = level.HasValue ? (int?)ClampFullLevel(level.Value) : null;
+    }
+
     private static bool IsUnlockedAt(FullLevel requiredLevel, bool worldState) => IsUnlockedAt((int)requiredLevel, worldState);
 
     private static bool IsUnlockedAt(int requiredLevel, bool worldState)

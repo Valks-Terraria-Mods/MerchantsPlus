@@ -21,8 +21,14 @@ public partial class ShowAllShopsUI : UIState
     private UIText _selectedShopHintLabel;
     private UIText _previewHeaderLabel;
     private UIPanel _previewPanel;
-    private TextButton _showAllItemsBtn;
     private TextButton _escLockBtn;
+    private TextButton _spawnAllBtn;
+    private UIElement _devProgPanel;
+    private DevProgressionSlider _devProgSlider;
+    private UIText _devProgLabel;
+    private bool _devProgPanelActive;
+    private bool _wasProgSliderDragging;
+    private static int _lastDevProgLevel = -1;
     private readonly Item[] _previewItems = CreatePreviewItemBuffer();
 
     private int _selectedMerchantId = NPCID.None;

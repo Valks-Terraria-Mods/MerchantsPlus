@@ -62,15 +62,6 @@ public partial class ShowAllShopsUI
 
         if (_onlyPresentTownMerchants)
         {
-            _showAllItemsBtn = new TextButton("Show All Items", 0.72f)
-            {
-                HAlign = 0f,
-            };
-            _showAllItemsBtn.Left.Set(90f, 0f);
-            _showAllItemsBtn.Top.Set(8f, 0f);
-            _showAllItemsBtn.OnLeftClick += OnShowAllItemsClicked;
-            panel.Append(_showAllItemsBtn);
-
             _escLockBtn = new TextButton("Esc Lock", 0.72f)
             {
                 HAlign = 0f,
@@ -79,6 +70,15 @@ public partial class ShowAllShopsUI
             _escLockBtn.Top.Set(8f, 0f);
             _escLockBtn.OnLeftClick += OnEscLockClicked;
             panel.Append(_escLockBtn);
+
+            _spawnAllBtn = new TextButton("Spawn All", 0.72f)
+            {
+                HAlign = 1f,
+            };
+            _spawnAllBtn.Left.Set(-8f, 0f);
+            _spawnAllBtn.Top.Set(PanelHeight - 28f, 0f);
+            _spawnAllBtn.OnLeftClick += OnSpawnAllClicked;
+            panel.Append(_spawnAllBtn);
         }
 
         UIText merchantsHeader = new("Merchants", 0.85f)
@@ -120,7 +120,64 @@ public partial class ShowAllShopsUI
 
         InitializePreviewPanel(panel);
         Append(panel);
-        UpdateShowAllItemsButton();
+
+        if (_onlyPresentTownMerchants)
+        {
+            const float devPanelH = 92f;
+            const float devPanelGap = 6f;
+            float devRightOffset = PanelWidth + PreviewPanelWidth + 30f;
+
+            UIPanel devPanel = new();
+            _devProgPanel = devPanel;
+            devPanel.SetPadding(8f);
+            devPanel.Width.Set(PanelWidth, 0f);
+            devPanel.Height.Set(devPanelH, 0f);
+            devPanel.Left.Set(-devRightOffset, 1f);
+            devPanel.Top.Set(-(PanelHeight + 20f + devPanelH + devPanelGap), 1f);
+            devPanel.BackgroundColor = new Color(8, 8, 8, 165);
+            devPanel.BorderColor = new Color(28, 28, 28, 220);
+
+            UIText devTitle = new("Progression Override", 0.82f) { HAlign = 0.5f };
+            devTitle.Top.Set(2f, 0f);
+            devPanel.Append(devTitle);
+
+            _devProgSlider = new DevProgressionSlider(0, 21, 0);
+            _devProgSlider.Left.Set(0f, 0f);
+            _devProgSlider.Top.Set(28f, 0f);
+            _devProgSlider.Width.Set(-142f, 1f);
+            _devProgSlider.Height.Set(20f, 0f);
+            _devProgSlider.OnValueChanged += OnProgSliderChanged;
+            devPanel.Append(_devProgSlider);
+
+            _devProgLabel = new UIText("None (0)", 0.78f) { HAlign = 1f };
+            _devProgLabel.Left.Set(-8f, 0f);
+            _devProgLabel.Top.Set(27f, 0f);
+            devPanel.Append(_devProgLabel);
+
+            // Money buttons (dev testing only)
+            string[] moneyLabels  = { "+10G", "+1P", "+10P", "+100P" };
+            int[]    moneyCoinIds = { ItemID.GoldCoin, ItemID.PlatinumCoin, ItemID.PlatinumCoin, ItemID.PlatinumCoin };
+            int[]    moneyAmounts = { 10, 1, 10, 100 };
+            const float btnH = 20f;
+            float innerW = PanelWidth - 16f;
+            float btnW   = (innerW - 3 * 6f) / 4f; // 4 buttons, 3 gaps of 6px
+            for (int i = 0; i < moneyLabels.Length; i++)
+            {
+                int ci = i;
+                TextButton moneyBtn = new(moneyLabels[i], 0.78f);
+                moneyBtn.Left.Set(i * (btnW + 6f), 0f);
+                moneyBtn.Top.Set(56f, 0f);
+                moneyBtn.Width.Set(btnW, 0f);
+                moneyBtn.Height.Set(btnH, 0f);
+                moneyBtn.OnLeftClick += (_, _) => GiveCoins(moneyCoinIds[ci], moneyAmounts[ci]);
+                devPanel.Append(moneyBtn);
+            }
+
+            Append(devPanel);
+        }
+
+        UpdateDevProgPanel();
+        UpdateSpawnAllButton();
         UpdateEscLockButton();
     }
 
@@ -135,13 +192,16 @@ public partial class ShowAllShopsUI
             return;
         }
 
-        UpdateShowAllItemsButton();
+        UpdateDevProgPanel();
+        UpdateSpawnAllButton();
         UpdateEscLockButton();
         RefreshPreviewItems(force: false);
         ClampWorldPreviewToScreen();
 
         if (Main.LocalPlayer is not null
-            && ((_rootPanel?.ContainsPoint(Main.MouseScreen) == true) || IsPointerOverPreviewPanel()))
+            && ((_rootPanel?.ContainsPoint(Main.MouseScreen) == true)
+                || IsPointerOverPreviewPanel()
+                || (_devProgPanelActive && _devProgPanel?.ContainsPoint(Main.MouseScreen) == true)))
         {
             Main.LocalPlayer.mouseInterface = true;
             PlayerInput.LockVanillaMouseScroll("MerchantsPlus.ShowAllShopsUI");
@@ -168,6 +228,12 @@ public partial class ShowAllShopsUI
     public override void OnDeactivate()
     {
         base.OnDeactivate();
+        if (_devProgPanel is not null)
+        {
+            _devProgPanelActive = false;
+            Progression.SetPreviewLevelOverride(null);
+        }
+
         ClearWorldSession(clearTalkNpc: !_onlyPresentTownMerchants);
     }
 

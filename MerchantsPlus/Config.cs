@@ -67,9 +67,7 @@ public class Config : ModConfig
 
     private void ApplyDevModeRules()
     {
-        if (!DevMode)
-        {
-            ShowAllItems = false;
-        }
+        // The "Show All Items" toggle button was removed; always reset to false.
+        ShowAllItems = false;
     }
 }

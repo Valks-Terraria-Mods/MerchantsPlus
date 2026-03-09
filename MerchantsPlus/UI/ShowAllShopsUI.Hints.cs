@@ -1,4 +1,5 @@
 using MerchantsPlus.Shops;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 
@@ -323,39 +324,133 @@ public partial class ShowAllShopsUI
         return items;
     }
 
-    private void OnShowAllItemsClicked(UIMouseEvent evt, UIElement listeningElement)
+    private void OnProgSliderChanged(int value)
     {
-        Config config = Config.Instance;
-        if (config is null || !config.DevMode)
+        _lastDevProgLevel = value;
+        Progression.SetPreviewLevelOverride(value);
+        UpdateDevProgLabel(value);
+        InvalidatePreviewCache();
+        InvalidateHintCache();
+        // Only do a full list refresh when not actively dragging to keep the
+        // merchant list stable while the slider is moved.
+        if (_devProgSlider?.IsDragging != true)
         {
+            Refresh();
+        }
+    }
+
+    private void UpdateDevProgLabel(int level)
+    {
+        if (_devProgLabel is null)
+            return;
+
+        string name = Enum.IsDefined(typeof(Progression.FullLevel), level)
+            ? ((Progression.FullLevel)level).ToString()
+            : $"Level{level}";
+        _devProgLabel.SetText($"{name} ({level})");
+    }
+
+    private void UpdateDevProgPanel()
+    {
+        if (_devProgPanel is null)
+            return;
+
+        bool devMode = Config.Instance?.DevMode == true;
+
+        if (!devMode)
+        {
+            if (_devProgPanelActive)
+            {
+                _devProgPanelActive = false;
+                Progression.SetPreviewLevelOverride(null);
+                InvalidatePreviewCache();
+                InvalidateHintCache();
+            }
+
+            _devProgPanel.Left.Set(-10000f, 0f);
+            _devProgPanel.IgnoresMouseInteraction = true;
             return;
         }
 
-        config.ShowAllItems = !config.ShowAllItems;
-        UpdateShowAllItemsButton();
-        Refresh();
+        if (!_devProgPanelActive)
+        {
+            _devProgPanelActive = true;
+            int initialLevel = _lastDevProgLevel >= 0 ? _lastDevProgLevel : Progression.LevelFull();
+            _devProgSlider.SetValueSilent(initialLevel);
+            Progression.SetPreviewLevelOverride(initialLevel);
+            UpdateDevProgLabel(initialLevel);
+            InvalidatePreviewCache();
+            InvalidateHintCache();
+        }
+
+        float devRightOffset = PanelWidth + PreviewPanelWidth + 30f;
+        _devProgPanel.Left.Set(-devRightOffset, 1f);
+        _devProgPanel.IgnoresMouseInteraction = false;
+
+        // Detect drag-end: trigger a full Refresh once the user releases the slider.
+        // IMPORTANT: update _wasProgSliderDragging BEFORE calling Refresh() to prevent
+        // infinite recursion (Refresh -> UpdateDevProgPanel -> Refresh -> ...).
+        bool isDragging = _devProgSlider?.IsDragging == true;
+        bool dragJustEnded = _wasProgSliderDragging && !isDragging;
+        _wasProgSliderDragging = isDragging;
+        if (dragJustEnded)
+        {
+            Refresh();
+        }
     }
 
-    private void UpdateShowAllItemsButton()
+    private void UpdateSpawnAllButton()
     {
-        if (_showAllItemsBtn is null)
+        if (_spawnAllBtn is null)
         {
             return;
         }
 
         bool devMode = Config.Instance?.DevMode == true;
-        bool showAllItems = Config.Instance?.ShowAllItems == true;
-        _showAllItemsBtn.IgnoresMouseInteraction = !devMode;
+        _spawnAllBtn.IgnoresMouseInteraction = !devMode;
 
         if (!devMode)
         {
-            _showAllItemsBtn.SetText(string.Empty);
-            _showAllItemsBtn.Left.Set(-10000f, 0f);
+            _spawnAllBtn.SetText(string.Empty);
+            _spawnAllBtn.Left.Set(-10000f, 0f);
             return;
         }
 
-        _showAllItemsBtn.Left.Set(90f, 0f);
-        _showAllItemsBtn.SetText(showAllItems ? "Show All Items: ON" : "Show All Items");
+        _spawnAllBtn.Left.Set(-8f, 0f);
+        _spawnAllBtn.SetText("Spawn All");
+    }
+
+    private static void OnSpawnAllClicked(UIMouseEvent evt, UIElement listeningElement)
+    {
+        if (Config.Instance?.DevMode != true)
+        {
+            return;
+        }
+
+        Player player = Main.LocalPlayer;
+        int spawnX = (int)player.Center.X;
+        int spawnY = (int)player.Center.Y;
+
+        foreach (int npcType in ShopUI.Shops.Keys)
+        {
+            if (NPC.AnyNPCs(npcType))
+            {
+                continue;
+            }
+
+            int npcIndex = NPC.NewNPC(
+                new EntitySource_DebugCommand("MerchantsPlus.SpawnAll"),
+                spawnX,
+                spawnY,
+                npcType);
+
+            if (npcIndex >= 0 && npcIndex < Main.maxNPCs)
+            {
+                Main.npc[npcIndex].homeTileX = (int)(player.Center.X / 16f);
+                Main.npc[npcIndex].homeTileY = (int)(player.Center.Y / 16f);
+                Main.npc[npcIndex].homeless = true;
+            }
+        }
     }
 
     private static string FitHintText(string text)
@@ -415,5 +510,11 @@ public partial class ShowAllShopsUI
     private static float MeasureHintLineWidth(string text)
     {
         return FontAssets.MouseText.Value.MeasureString(HintPrefix + text).X * HintTextScale;
+    }
+
+    private static void GiveCoins(int coinItemId, int amount)
+    {
+        if (Main.LocalPlayer is not { } p) return;
+        p.QuickSpawnItem(new EntitySource_DebugCommand("MerchantsPlus.DevTools"), coinItemId, amount);
     }
 }
