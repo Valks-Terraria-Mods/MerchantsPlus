@@ -423,28 +423,29 @@ public partial class ShowAllShopsUI
         long silver = totalCopper / 100;
         long copper = totalCopper % 100;
 
-        (int ItemId, long Amount, Color TextColor)[] entries =
-        [
-            (ItemID.PlatinumCoin, platinum, new Color(220, 220, 220)),
-            (ItemID.GoldCoin, gold, new Color(255, 220, 120)),
-            (ItemID.SilverCoin, silver, new Color(210, 210, 210)),
-            (ItemID.CopperCoin, copper, new Color(220, 145, 105)),
-        ];
+        // Only show non-zero denominations; copper is always a fallback (matches BuildPriceSegments logic)
+        List<(int ItemId, long Amount, Color TextColor)> entryList = [];
+        if (platinum > 0) entryList.Add((ItemID.PlatinumCoin, platinum, new Color(220, 220, 220)));
+        if (gold > 0)     entryList.Add((ItemID.GoldCoin,     gold,     new Color(255, 220, 120)));
+        if (silver > 0)   entryList.Add((ItemID.SilverCoin,   silver,   new Color(210, 210, 210)));
+        if (copper > 0 || entryList.Count == 0)
+                          entryList.Add((ItemID.CopperCoin,   copper,   new Color(220, 145, 105)));
 
+        int count = entryList.Count;
         var font = FontAssets.MouseText.Value;
         float rowWidth = 0f;
         float rowHeight = 0f;
-        for (int i = 0; i < entries.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            Texture2D icon = TextureAssets.Item[entries[i].ItemId].Value;
+            Texture2D icon = TextureAssets.Item[entryList[i].ItemId].Value;
             float iconWidth = icon.Width * CoinIconScale;
             float iconHeight = icon.Height * CoinIconScale;
-            float textWidth = font.MeasureString(entries[i].Amount.ToString()).X * CoinTextScale;
+            float textWidth = font.MeasureString(entryList[i].Amount.ToString()).X * CoinTextScale;
             float textHeight = font.LineSpacing * CoinTextScale;
 
             rowWidth += iconWidth + 4f + textWidth;
             rowHeight = Math.Max(rowHeight, Math.Max(iconHeight, textHeight));
-            if (i < entries.Length - 1)
+            if (i < count - 1)
             {
                 rowWidth += CoinFooterGap;
             }
@@ -454,9 +455,9 @@ public partial class ShowAllShopsUI
         float x = panel.X + ((panel.Width - rowWidth) / 2f);
         float y = panel.Y + panel.Height - rowHeight - CoinFooterBottomPadding;
 
-        for (int i = 0; i < entries.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            Texture2D icon = TextureAssets.Item[entries[i].ItemId].Value;
+            Texture2D icon = TextureAssets.Item[entryList[i].ItemId].Value;
             Vector2 iconSize = new(icon.Width * CoinIconScale, icon.Height * CoinIconScale);
             float textHeight = font.LineSpacing * CoinTextScale;
             float textY = y + ((Math.Max(iconSize.Y, textHeight) - textHeight) / 2f);
@@ -464,9 +465,9 @@ public partial class ShowAllShopsUI
 
             spriteBatch.Draw(icon, new Vector2(x, iconY), null, Color.White, 0f, Vector2.Zero, CoinIconScale, SpriteEffects.None, 0f);
 
-            string amountText = entries[i].Amount.ToString();
+            string amountText = entryList[i].Amount.ToString();
             Vector2 textPos = new(x + iconSize.X + 4f, textY);
-            Terraria.Utils.DrawBorderString(spriteBatch, amountText, textPos, entries[i].TextColor, CoinTextScale);
+            Terraria.Utils.DrawBorderString(spriteBatch, amountText, textPos, entryList[i].TextColor, CoinTextScale);
 
             float textWidth = font.MeasureString(amountText).X * CoinTextScale;
             x += iconSize.X + 4f + textWidth + CoinFooterGap;

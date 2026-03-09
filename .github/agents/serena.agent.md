@@ -5,7 +5,7 @@ argument-hint: Describe the coding task or change you want implemented
 model: ['Raptor mini (Preview) (copilot)']
 target: vscode
 user-invocable: true
-tools: [vscode, execute, read, agent, edit, search, web, browser, 'oraios/serena/*', 'godot/*', 'github/*', 'io.github.upstash/context7/*', vscode.mermaid-chat-features/renderMermaidDiagram, todo]
+tools: [vscode, execute, read, agent, edit, search, web, browser, 'oraios/serena/*', 'github/*', 'io.github.upstash/context7/*', vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 agents: ['*']
 ---
 
