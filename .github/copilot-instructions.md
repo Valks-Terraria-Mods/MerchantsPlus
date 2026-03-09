@@ -1,4 +1,4 @@
-# AGENTS.md
+All coding tasks use the **Serena** agent. Full workflow rules (tooling, build, commits, polling) live in `.github/agents/serena.agent.md`.
 
 ```yaml
 audience: ai_agent
@@ -293,9 +293,3 @@ Find UI entry points:
 3. Random slime redistribution can cause non-deterministic diffs.
 4. `Shop.Opening` relies on `Main.SetNPCShopIndex(1)`; changing this has historically caused crashes/null refs.
 5. Keep generated and manual catalog responsibilities separated.
-
-## 15) AI Provenance
-
-AI-assisted tooling (including OpenAI Codex) has been used in this repository.
-Treat AI output as implementation assistance, not source-of-truth design authority.
-Always verify against current owner intent and current code.

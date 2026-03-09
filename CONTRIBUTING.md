@@ -85,7 +85,3 @@ Use it for local/generated data inputs and reports such as:
 - `.tmp/missing_items_integrated_with_stage.csv`
 - `.tmp/missing_classified.csv`
 - `.tmp/expanded_report.csv`
-
-## AI Disclosure
-
-AI-assisted tooling (including OpenAI Codex) is used in this project. Human review is required for all contributions.
