@@ -5,8 +5,8 @@ audience: ai_agent
 project: MerchantsPlus
 repo_type: tModLoader_mod
 primary_language: C#
-generator_language: PowerShell
-last_updated: 2026-02-22
+generator_language: C#
+last_updated: 2026-05-31
 ```
 
 ## 0) Purpose
@@ -39,81 +39,90 @@ Key design principles currently in code:
 9. Prices are generally handled in shop/runtime logic; do not blindly migrate all pricing into catalogs.
 10. Do not hand-edit generated expanded catalog unless emergency hotfix is required.
 
-## 3) Current Repo Layout (Important)
+## 3) Current Repo Layout
 
-Core runtime:
+### Core runtime
 - `Shops/Shop.cs`
 - `Shops/Shop.Opening.cs`
 - `Shops/Shop.Visibility.cs`
 - `Shops/Shop.Items.cs`
 - `Shops/Shop.Progression.cs`
 
-Merchant shop implementations:
-- `Shops/Shop*.cs`
-- Large classes now split into partials, e.g.:
-  - `Shops/ShopMerchant.cs`
-  - `Shops/ShopMerchant.CoreShops.cs`
-  - `Shops/ShopMerchant.GearSlots.cs`
-  - `Shops/ShopMerchant.Weapons.cs`
-  - `Shops/ShopGuide.cs`
-  - `Shops/ShopGuide.Calamity.cs`
-  - `Shops/ShopGuide.Redemption.cs`
-  - `Shops/ShopGuide.Thorium.cs`
+### Merchant shop implementations (partial classes)
+- `Shops/ShopMerchant.cs` + `ShopMerchant.CoreShops.cs` / `.GearSlots.cs` / `.Weapons.cs`
+- `Shops/ShopGuide.cs` + `ShopGuide.Calamity.cs` / `.Redemption.cs` / `.Thorium.cs`
+- Other merchants: `ShopAngler`, `ShopArmsDealer`, `ShopClothier`, `ShopCyborg`, ...
 
-Catalogs:
-- Generated: `Shops/Catalogs/ShopExpandedCatalog.cs`
+### Catalogs
+- Generated: `Shops/Catalogs/ShopExpandedCatalog.cs` — **do not hand-edit**
 - Manual/base: `Shops/Catalogs/Shop*Catalog.cs`
 - `ShopMerchantCatalog` is partial:
   - `Shops/Catalogs/ShopMerchantCatalog.cs`
   - `Shops/Catalogs/ShopMerchantCatalog.GearProgression.cs`
 
-UI:
-- `UI/AddCustomShopUI.cs`
-- `UI/ShopUI.cs`
-- `UI/ShopUI.Layout.cs`
-- `UI/ShopUI.Hints.cs`
-- `UI/ShowAllShopsUI.cs`
-- `UI/ShowAllShopsUI.Layout.cs`
-- `UI/ShowAllShopsUI.Selection.cs`
-- `UI/ShowAllShopsUI.Hints.cs`
-- `UI/ShowAllShopsUI.Pin.cs`
-- `UI/DarkScrollbar.cs`
-- `UI/UIEvents.cs`
+### UI (partial classes where noted)
+- `UI/AddCustomShopUI.cs` — top-level UI controller for all custom UIs
+- `UI/ShopUI.cs` + `.Layout.cs` + `.Hints.cs` — merchant-talk shop picker panel
+- `UI/ShowAllShopsUI.cs` + `.Layout.cs` + `.Hints.cs` + `.Selection.cs` + `.Pin.cs` + `.Preview.cs`
+- `UI/WorldShopsFloatingButtonUI.cs` — HUD "Shops" button
+- `UI/DevProgressionSlider.cs` — draggable slider widget (DevMode only)
+- `UI/DarkScrollbar.cs`, `UI/DraggableUIPanel.cs`, `UI/TextButton.cs`, `UI/UIHoverImageButton.cs`
+- `UI/UIUtils.cs`, `UI/UIEvents.cs`
+- `UI/VanillaItemSlotWrapper.cs`, `UI/WorldShopPreviewSlot.cs`
+- `UI/WorldShopSession.cs` — tracks pinned NPC / world shop open state
+- `UI/WorldShopTalkGuard.cs` — guards against stale talk-NPC state
+- `UI/WorldShopPurchaseDiagnostics.cs` — dev diagnostics for shop purchases
+- `UI/ShopUnlockAsteriskTracker.cs` — new-unlock asterisk logic
+- `UI/ShopUnlockAsteriskWorldData.cs` — world-persistent acknowledged counts
+- `UI/DebugPanelUI.cs` — debug overlay (if enabled)
 
-Player/config/progression:
+### Player / Config / Progression
 - `Player.cs`
 - `Config.cs`
 - `Utils/Progression.cs`
 
-World UI trigger:
-- `UI/WorldShopsFloatingButtonUI.cs`
+### Utils
+- `Utils/ShopUnlockAsteriskProgressionWatcher.cs` — clears asterisk dynamic cache on progression change
+- `Utils/ShopOpenDiagnostics.cs` — ShopDiag log entries in client.log
+- `Utils/PlayerUtils.cs`, `Utils/WorldUtils.cs`, `Utils/OtherMods.cs`
+- `Utils/ClassItemSet.cs`, `Utils/PlayerClass.cs`
+- `Utils/Coins.cs`, `Utils/ItemCosts.cs`
 
-Generator and data:
+### Generator and data
 - `generate_expanded_catalog.ps1`
 - `.tmp/generate_expanded_catalog.ps1` (wrapper)
 - `classify_missing.ps1`
-- `.tmp/missing_items_integrated_with_stage.csv`
+- `.tmp/missing_items_integrated_with_stage.csv` — **committed, do not regenerate unless needed**
 - `TerrariaItemListComplete1.4.5.txt`
 
-Docs:
-- `README.md`
-- `CONTRIBUTING.md`
-- `AGENTS.md`
+### Docs
+- `README.md`, `CONTRIBUTING.md`, `AGENTS.md`
 
 ## 4) Build And Run
 
-Primary compile command:
-- `dotnet build /p:BuildMod=false`
+**Primary compile command:**
+```
+dotnet build MerchantsPlus.csproj /p:BuildMod=false
+```
+(Run from `MerchantsPlus/` mod sources root — or specify project path explicitly.)
 
-Why:
-- Full packaging can fail when tModLoader locks files.
-- `MerchantsPlus.csproj` includes a guard message that explicitly recommends this compile-only mode.
+Why `/p:BuildMod=false`: Full packaging can fail when tModLoader locks files.
 
-Regenerate expanded catalog:
-- `powershell -NoProfile -ExecutionPolicy Bypass -File .\generate_expanded_catalog.ps1`
+**Regenerate expanded catalog:**
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File .\generate_expanded_catalog.ps1
+```
 
-Classify missing list:
-- `powershell -NoProfile -ExecutionPolicy Bypass -File .\classify_missing.ps1`
+**Classify missing list:**
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File .\classify_missing.ps1
+```
+
+**Client log location (Linux):**
+```
+/home/valk/.local/share/Steam/steamapps/common/tModLoader/tModLoader-Logs/client.log
+```
+Note: If the game crashes without a visible exception in the log, suspect a stack overflow (no catch clause captures it). Check for recursive call chains through `Update`/`Draw` paths.
 
 ## 5) Current UI/UX Behavior
 
@@ -136,115 +145,137 @@ World mode filters merchants by:
 2. NPC exists in world (`NPC.AnyNPCs(type)`)
 3. Has at least one currently visible shop
 
-In world mode, a `Show All Items` button appears only when `DevMode` is enabled.
+World mode additionally shows:
+- **DevMode Progression Slider panel** (above main panel): slider 0–21 drives `Progression.SetPreviewLevelOverride`. Overrides are cleared on UI close (`OnDeactivate`). Panel is hidden when DevMode is off.
+- **Preview panel** (right side): shows items for the selected shop with purchase support and coin balance footer.
 
-### 5.3 World browser trigger button
+The old `Show All Items` toggle button was removed. `Config.ShowAllItems` is now always reset to `false` in `ApplyDevModeRules()`.
+
+### 5.3 DevMode Progression Slider
+
+- Implemented via `DevProgressionSlider.cs` + fields in `ShowAllShopsUI.cs`.
+- Slider range 0..21 (matches `Progression.FullLevel` enum).
+- `_lastDevProgLevel` (static) persists position across UI reopens within same mod session.
+- **Drag throttle**: while dragging → only `InvalidateCaches`; on drag-end → full `Refresh()`.
+- **Critical**: `_wasProgSliderDragging` is updated BEFORE calling `Refresh()` to prevent infinite recursion. Never move that assignment after the `if (dragJustEnded)` call.
+- Money buttons (`+10G`, `+1P`, `+10P`, `+100P`) use `QuickSpawnItem` to drop coins at player feet.
+
+### 5.4 World browser trigger button
 
 - `UI/WorldShopsFloatingButtonUI.cs`
-- Displays a floating `Shops` button near the top-right HUD (left of hearts).
-- Clicking `Shops` opens `World Merchant Shops`.
-- Hovering the button marks UI interaction (`mouseInterface`) and locks vanilla scroll.
+- Displays a floating `Shops` button near the top-right HUD.
+- Clicking opens `World Merchant Shops`.
 
-### 5.4 Input and close behavior
+### 5.5 Input and close behavior
 
 - ESC closes all custom UIs in `AddCustomShopUI.UpdateUI`.
-- Pointer-over uses `mouseInterface` and scroll-lock via `PlayerInput.LockVanillaMouseScroll(...)`.
-- `PlayerHooks.ProcessTriggers` hides merchant `ShopUI` when player is no longer talking to an NPC.
-- Pinned talk-NPC logic is used to support remote shop open behavior for world-browser interactions.
+- Pointer-over uses `mouseInterface` and `PlayerInput.LockVanillaMouseScroll(...)`.
+- `PlayerHooks.ProcessTriggers` hides merchant `ShopUI` when not talking to NPC.
+- Pinned talk-NPC logic (`WorldShopSession`, `WorldShopTalkGuard`) supports remote shop opens.
 
 ## 6) Commands Status
 
 - `Commands/` directory is currently empty.
-- No active `ModCommand` implementation is present in source right now.
-- `ShowAllShopsUI` functionality exists in UI systems, but there is currently no command-bound entry point in code.
+- No active `ModCommand` implementation.
 
 ## 7) Config Semantics (Current)
 
 `Config.cs` (server-side):
 - `DevMode` (bool)
-- `ShowAllItems` (hidden bool)
+- `ShowAllItems` (hidden bool) — **always reset to false** in `ApplyDevModeRules()`. There is no longer a toggle button. Do not add logic that reads `ShowAllItems` as a user-controllable flag.
 - `UnlockAllItems` (computed, hidden):
   - `ForceUnlockAllItems || (DevMode && ShowAllItems)`
 
 Important:
-- If `DevMode` is disabled, `ShowAllItems` is automatically reset to `false`.
+- `UnlockAllItems = true` bypasses ALL progression checks everywhere. This is a known pitfall — if `ShowAllItems` somehow remains `true` from an old save, every shop shows all items regardless of slider/world state.
 
 ## 8) Progression System (Current)
 
-`Utils/Progression.cs` now uses enums instead of magic numbers:
-- `Progression.FullLevel` (`0..21`)
-- `Progression.BossLevel` (`0..14`)
+`Utils/Progression.cs` uses enums:
+- `Progression.FullLevel` (0..21)
+- `Progression.BossLevel` (0..14)
 
-Still exposes int-compatible APIs for existing callsites:
-- `LevelFull()`
+Exposes int-compatible APIs:
+- `LevelFull()` — returns current or preview-overridden level
 - `LevelBoss()`
 - `GetLevelFullUnlockHint(int)`
 
-Preview helper used by UI snapshotting:
-- `PushPreviewLevelOverride(int level)`
+Preview helpers:
+- `PushPreviewLevelOverride(int level)` — scoped push, restores on Dispose (used by hint snapshots)
+- `SetPreviewLevelOverride(int? level)` — direct persistent set/clear (used by DevMode slider)
+
+**Pitfall**: If `Config.UnlockAllItems == true`, all progression checks are bypassed and asterisk trackers return `-1` (suppress badges). Always verify this is false before debugging progression-related display issues.
 
 ## 9) Shop Framework Details
 
 `Shop` base behavior:
 - `BuildShopList` merges base tabs with generated expanded tabs.
-- `OpenExpandedShop` opens expanded pages with progression gating unless `UnlockAllItems` is true.
+- `OpenExpandedShop` gates progression unless `UnlockAllItems` is true.
 - `GetVisibleShops` hides expanded pages with zero visible items.
-- `EnsureMinimumSellPrice` applies 1 copper only when item has no value and no custom price is set.
-- `OpenShopForNpcType` supports opening shop contexts for NPC type even when player is not physically near that NPC.
+- `EnsureMinimumSellPrice` applies 1 copper when item has no value and no custom price.
+- `OpenShopForNpcType` opens shop contexts without player proximity.
 
-`ShopExpandedOnly` exists for merchants that only have expanded content.
+`ShopExpandedOnly` exists for merchants with only expanded content.
 
-## 10) Expanded Catalog Generator Pipeline
+## 10) Asterisk (New-Unlock Badge) System
 
-Source script:
-- `generate_expanded_catalog.ps1`
+`ShopUnlockAsteriskTracker` — static class:
+- `HasUnseenUnlocks(merchantId, shopName)` → true if new items visible since last acknowledgment.
+- `AcknowledgeShop(merchantId, shopName)` — call when player views a shop.
+- `AcknowledgeShops(merchantId, IEnumerable<string>)` — bulk acknowledge.
+- `NotifyProgressionChanged()` — call when world progression changes; clears dynamic count cache.
 
-### 10.1 Input
-- Reads `.tmp/missing_items_integrated_with_stage.csv`, sorted by `Index`.
-- Injects fallback rows if missing:
-  - `FireworkFountain`
-  - `BoosterTrack`
+`ShopUnlockAsteriskWorldData` (ModSystem):
+- Stores `AcknowledgedCounts` as a `static Dictionary<(int MerchantId, string ShopName), int>`.
+- **OnWorldUnload** clears the dict (was previously OnWorldLoad — that was a bug that wiped data after LoadWorldData was called).
+- `LoadWorldData` always clears then repopulates.
 
-### 10.2 Normalization and filtering
-- Replacement map currently includes:
-  - `OgreMask -> RobotMask`
-  - `GoblinMask -> UnicornMask`
-  - `SkeletonBow -> Marrow`
-- Excludes:
-  - `Trapped` matches
-  - `Fake_` matches
-  - disallowed luminite tool variants
-  - merge-to-native seed/plant items list
-  - raw coin items
+`ShopUnlockAsteriskProgressionWatcher` (ModSystem):
+- `PostUpdateWorld()` fires `NotifyProgressionChanged()` when `Progression.LevelFull()` changes.
 
-### 10.3 Grouping
+**Known pitfall**: `_dynamicUnlockedCountCache` is static and not cleared between worlds if progression level doesn't change. TTL is 45 ticks, so stale reads are short-lived.
+
+## 11) Coin Balance Display (Preview Panel Footer)
+
+`DrawPreviewCoinBalance` in `ShowAllShopsUI.Preview.cs`:
+- Only renders **non-zero** denominations. Copper is always shown as fallback when all are zero.
+- Matches `BuildPriceSegments` filtering logic.
+- Do not revert to always-showing all 4 denominations — that makes zero amounts render as nearly invisible sprites.
+
+`GetPlayerCoinTotal` sums all coin items by denomination and returns total in copper. The method does NOT divide into display amounts — that's done at the callsite.
+
+## 12) Expanded Catalog Generator Pipeline
+
+### 12.1 Input
+- Source: `.tmp/missing_items_integrated_with_stage.csv`, sorted by `Index`.
+- The CSV is committed to the repo. You do NOT need to regenerate it for normal changes.
+- Only regenerate if: new Terraria version, bulk stage reclassification, or adding new item categories.
+- Fallback rows injected if missing: `FireworkFountain`, `BoosterTrack`.
+
+### 12.2 Normalization and filtering
+- Replacement map: `OgreMask→RobotMask`, `GoblinMask→UnicornMask`, `SkeletonBow→Marrow`
+- Excludes: `Trapped` matches, `Fake_` matches, disallowed luminite tool variants, merge-to-native seeds/plants, raw coin items.
+
+### 12.3 Grouping
 - `Get-ShopInfo` maps item name patterns to `Merchant + Shop`.
-- Includes dedicated groupings for keys, clocks, tombstones, quest fish, treasure bags, tools, furniture families, paints/vanity, etc.
-- `Alpha*Statue` style mapping currently uses the string `Alphanumeric Status` (intentional current spelling).
+- Groupings include keys, clocks, tombstones, quest fish, treasure bags, tools, furniture families, paints/vanity, etc.
+- `Alpha*Statue` style mapping uses `Alphanumeric Status` (intentional current spelling).
 
-### 10.4 Furniture redistribution
-- Furniture shops are reassigned to slime merchants (whole-shop reassignment, not random per item).
-- Target slimes:
-  - `NerdySlime`, `CoolSlime`, `ElderSlime`, `ClumsySlime`, `DivaSlime`, `SurlySlime`, `MysticSlime`
-- Reserved banner slime:
-  - `SquireSlime` (banner-only)
+### 12.4 Furniture redistribution
+- Furniture shops reassigned to slime merchants (whole-shop, not per-item).
+- Target slimes: `NerdySlime`, `CoolSlime`, `ElderSlime`, `ClumsySlime`, `DivaSlime`, `SurlySlime`, `MysticSlime`
+- Banner-only slime: `SquireSlime`
 
-### 10.5 Pagination and names
+### 12.5 Pagination and names
 - `pageSize = 40`
-- Max shop name length: `24` (`$maxShopNameLength`)
+- Max shop name length: 24 chars
 - Overflow suffixes: `Core`, `Plus`, `Prime`, etc.
 
-### 10.6 Manual pages and small-shop redistribution
-- Manual pages are injected for:
-  - `Cat Kit`
-  - `Dog Kit`
-  - `Bunny Kit`
-- Small shops (`<= 5` items) are removed for non-slime merchants (except `Cat`, `Dog`, `Bunny`) and items are redistributed to random slime shops (`Slime Finds*`).
+### 12.6 Manual pages and small-shop redistribution
+- Manual pages: `Cat Kit`, `Dog Kit`, `Bunny Kit`
+- Small shops (`≤ 5` items) for non-slime, non-Cat/Dog/Bunny merchants → redistributed to `Slime Finds*` (random, non-deterministic run-to-run).
 
-Important caveat:
-- Small-shop redistribution currently uses `Get-Random`, so composition can vary run-to-run.
-
-### 10.7 Assertions (generation fails if violated)
+### 12.7 Generator assertions (fail-fast)
 - Duplicate shop names per merchant
 - Any page > 40 items
 - `Explosives*` contains `Minecart` or `Powder`
@@ -256,40 +287,51 @@ Important caveat:
 - `Treasure Bags*` contains `BossBagOgre` or `BossBagDarkMage`
 - `Mounts*` contains known non-mount junk patterns
 
-## 11) Known Current Snapshot
+## 13) Known Current Snapshot
 
-- Expanded generated entries: `3801` (`new(ItemID.*)` rows in `ShopExpandedCatalog.cs`).
-- `ShopMerchantCatalog` split into partials.
-- `Shop`, `ShopUI`, `ShowAllShopsUI`, `ShopMerchant`, and `ShopGuide` are split into partial files.
+- Expanded generated entries: ~3801 (`new(ItemID.*)` rows in `ShopExpandedCatalog.cs`).
+- `ShopMerchantCatalog` is partial.
+- `Shop`, `ShopUI`, `ShowAllShopsUI`, `ShopMerchant`, `ShopGuide` are split into partial files.
+- No active `ModCommand` entry points.
 
-## 12) Practical Edit Strategy
+## 14) Practical Edit Strategy
 
-For expanded grouping/content changes:
+**For expanded catalog changes:**
 1. Edit `generate_expanded_catalog.ps1`.
-2. Regenerate `ShopExpandedCatalog.cs`.
-3. Compile with `dotnet build /p:BuildMod=false`.
-4. Spot-check target shops in-game.
+2. Regenerate with PowerShell.
+3. Compile. Spot-check in-game.
 
-For runtime/UI behavior changes:
+**For runtime/UI behavior changes:**
 1. Edit relevant partial files.
-2. Keep behavior-compatible refactors unless explicitly changing behavior.
-3. Compile with `dotnet build /p:BuildMod=false`.
+2. Compile with `dotnet build MerchantsPlus.csproj /p:BuildMod=false`.
+3. Verify 0 errors and 0 warnings.
 
-## 13) Useful Local Queries
+## 15) Useful Local Queries
 
-Count expanded entries:
-- `Select-String -Path Shops/Catalogs/ShopExpandedCatalog.cs -Pattern 'new\(ItemID\.' | Measure-Object`
+```
+# Count expanded entries
+Select-String -Path Shops/Catalogs/ShopExpandedCatalog.cs -Pattern 'new\(ItemID\.' | Measure-Object
 
-Find progression hint and preview callsites:
-- `rg -n "PushPreviewLevelOverride|GetLevelFullUnlockHint|LevelFull\(" -S`
+# Find progression callsites
+rg -n "PushPreviewLevelOverride|SetPreviewLevelOverride|GetLevelFullUnlockHint|LevelFull\(" -S
 
-Find UI entry points:
-- `rg -n "ShowWorldShopsUI|ShowShowAllShopsUI|GetChat\(" -S`
+# Find UI entry points
+rg -n "ShowWorldShopsUI|ShowShowAllShopsUI|GetChat\(" -S
 
-## 14) Watch Items / Risks
+# Find asterisk tracker callsites
+rg -n "ShopUnlockAsteriskTracker" -S
+```
 
-1. Grouping regex order in generator is precedence-sensitive.
-2. Overflow name generation can collide if changed carelessly.
-3. Random slime redistribution can cause non-deterministic diffs.
-4. `Shop.Opening` relies on `Main.SetNPCShopIndex(1)`; changing this has historically caused crashes/null refs.
-5. Keep generated and manual catalog responsibilities separated.
+## 16) Watch Items / Risks
+
+1. **Slider drag infinite recursion**: `UpdateDevProgPanel()` calls `Refresh()` on drag-end. If `_wasProgSliderDragging` is set AFTER `Refresh()`, re-entry fires `Refresh()` again → stack overflow crash. Always update `_wasProgSliderDragging` before calling `Refresh()`.
+2. **UnlockAllItems ghost state**: If `Config.ShowAllItems` is ever left `true` in a saved config, ALL progression gates are bypassed. `ApplyDevModeRules()` must always reset it to `false`.
+3. **Asterisk wipe bug pattern**: If you add a `OnWorldLoad` that clears persistent state, but `LoadWorldData` fills it first, the clear wipes the loaded data. Use `OnWorldUnload` to clear instead.
+4. **Grouping regex order**: Generator `Get-ShopInfo` is precedence-sensitive. Earlier patterns win.
+5. **Overflow name collisions**: Overflow suffix generation can collide if naming logic is changed carelessly.
+6. **Random slime redistribution**: Non-deterministic diffs across generator runs.
+7. **`Shop.Opening` relies on `Main.SetNPCShopIndex(1)`**: Changing this has historically caused crashes/null refs.
+8. **`ShopDiag` log spam**: If you see thousands of `[ShopDiag]` entries in client.log at high rates (60+/s), a cache is being invalidated too aggressively (likely from UI update loops).
+9. **`ShouldIncludeMerchant` stability**: When the DevMode progression panel is active (`_devProgPanelActive`), always return `true` early for world-present NPCs — do not let a changing progression level filter merchants in/out during the same UI session, or the merchant list will shuffle on every slider tick.
+10. **`EntitySource_DebugCommand` requires a string arg**: `new EntitySource_DebugCommand("context")` — does not have a parameterless constructor.
+
