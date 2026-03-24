@@ -65,12 +65,12 @@ public partial class ShopUI : UIState
             { NPCID.TravellingMerchant, new ShopTravellingMerchant() },
             { NPCID.Truffle, new ShopTruffle() },
             { NPCID.WitchDoctor, new ShopWitchDoctor() },
-            { NPCID.Wizard, new ShopWizard() },
             { NPCID.Guide, new ShopGuide() },
         };
 
         AddExpandedOnlyShop(shops, NPCID.Golfer);
         AddExpandedOnlyShop(shops, NPCID.Princess);
+        AddExpandedOnlyShop(shops, NPCID.Wizard);
 
         AddExpandedOnlyShop(shops, "TownCat");
         AddExpandedOnlyShop(shops, "TownDog");
