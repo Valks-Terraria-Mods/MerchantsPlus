@@ -64,7 +64,7 @@ public partial class ShopUI : UIState
             { NPCID.TaxCollector, new ShopTaxCollector() },
             { NPCID.TravellingMerchant, new ShopTravellingMerchant() },
             { NPCID.Truffle, new ShopTruffle() },
-            { NPCID.WitchDoctor, new ShopWitchDoctor() },
+            { NPCID.WitchDoctor, new ShopExpandedOnly(NPCID.WitchDoctor) },
             { NPCID.Guide, new ShopGuide() },
         };
 
