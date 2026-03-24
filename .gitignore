@@ -7,3 +7,4 @@ bin/
 _references/
 *.user
 missing_items_top_to_bottom.txt
+.serena/
