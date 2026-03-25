@@ -58,6 +58,8 @@ public partial class ShowAllShopsUI : UIState
     private long _hoveredPreviewPrice;
     private bool _hoveredPreviewHasPrice;
     private bool _preventEscClose;
+    private readonly Dictionary<Terraria.UI.UIElement, int> _merchantListOrder = [];
+    private readonly Dictionary<Terraria.UI.UIElement, int> _shopListOrder = [];
 
     public ShowAllShopsUI() : this(false, "All Merchant Shops")
     {

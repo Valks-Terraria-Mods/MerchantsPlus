@@ -259,6 +259,60 @@ public partial class ShowAllShopsUI
         list.Width.Set(-24f, 1f);
         list.Height.Set(0f, 1f);
         list.ListPadding = 4f;
+        if (merchantList)
+        {
+            list.ManualSortMethod = elements =>
+            {
+                elements.Sort((left, right) =>
+                {
+                    bool hasLeft = _merchantListOrder.TryGetValue(left, out int leftOrder);
+                    bool hasRight = _merchantListOrder.TryGetValue(right, out int rightOrder);
+                    if (hasLeft && hasRight)
+                    {
+                        return leftOrder.CompareTo(rightOrder);
+                    }
+
+                    if (hasLeft)
+                    {
+                        return -1;
+                    }
+
+                    if (hasRight)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            };
+        }
+        else
+        {
+            list.ManualSortMethod = elements =>
+            {
+                elements.Sort((left, right) =>
+                {
+                    bool hasLeft = _shopListOrder.TryGetValue(left, out int leftOrder);
+                    bool hasRight = _shopListOrder.TryGetValue(right, out int rightOrder);
+                    if (hasLeft && hasRight)
+                    {
+                        return leftOrder.CompareTo(rightOrder);
+                    }
+
+                    if (hasLeft)
+                    {
+                        return -1;
+                    }
+
+                    if (hasRight)
+                    {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            };
+        }
 
         UIScrollbar scrollbar = new DarkScrollbar();
         scrollbar.Left.Set(-20f, 1f);

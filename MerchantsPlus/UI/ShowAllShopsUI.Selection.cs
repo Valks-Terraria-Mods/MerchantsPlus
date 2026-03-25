@@ -55,21 +55,28 @@ public partial class ShowAllShopsUI
     private void PopulateMerchantList()
     {
         _merchantList.Clear();
+        _merchantListOrder.Clear();
 
+        int merchantIndex = 0;
         foreach (int merchantId in _merchantIds)
         {
             int capturedMerchantId = merchantId;
             UITextPanel<string> btn = CreateListButton(
                 GetNpcName(capturedMerchantId),
                 _selectedMerchantId == capturedMerchantId);
+            // UIList applies an internal sort; assign a stable pre-sort position to preserve intended order.
+            btn.Top.Set(merchantIndex * 100f, 0f);
+            _merchantListOrder[btn] = merchantIndex;
             btn.OnLeftClick += (_, _) => SelectMerchant(capturedMerchantId);
             _merchantList.Add(btn);
+            merchantIndex++;
         }
     }
 
     private void PopulateShopList()
     {
         _shopList.Clear();
+        _shopListOrder.Clear();
 
         if (_selectedMerchantId <= NPCID.None || !ShopUI.Shops.TryGetValue(_selectedMerchantId, out Shop merchantShop))
         {
@@ -80,6 +87,7 @@ public partial class ShowAllShopsUI
         IReadOnlyList<string> visibleShops = Shop.GetVisibleShops(_selectedMerchantId, merchantShop, merchantShop.Shops);
         Dictionary<string, bool> hasUnseenUnlockByShop = BuildUnseenUnlockState(_selectedMerchantId, visibleShops);
         int capturedMerchantId = _selectedMerchantId;
+        int shopIndex = 0;
         foreach (string shopName in visibleShops)
         {
             if (string.IsNullOrWhiteSpace(shopName) || !seen.Add(shopName))
@@ -92,12 +100,16 @@ public partial class ShowAllShopsUI
                 capturedShopName,
                 string.Equals(_selectedShopName, capturedShopName, StringComparison.Ordinal),
                 hasUnseenUnlockByShop.TryGetValue(capturedShopName, out bool hasUnseenUnlock) && hasUnseenUnlock);
+            // Keep deterministic display order for shops as well.
+            btn.Top.Set(shopIndex * 100f, 0f);
+            _shopListOrder[btn] = shopIndex;
             btn.OnLeftClick += (_, _) =>
             {
                 ShopUnlockAsteriskTracker.AcknowledgeShop(capturedMerchantId, capturedShopName);
                 SelectShop(capturedShopName);
             };
             _shopList.Add(btn);
+            shopIndex++;
         }
     }
 
