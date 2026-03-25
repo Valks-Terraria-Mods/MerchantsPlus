@@ -151,6 +151,10 @@ public partial class ShopUI
             string selectedShopName = visibleShops[shop.CycleIndex];
             _shopNameText.SetText($"Shop: {selectedShopName}");
             _hintText.SetText(WrapHintText($"{HintPrefix}{GetCachedShopHint(CurrentMerchantId, selectedShopName)}"));
+
+            // Keep selected custom inventory in sync while chat UI is open.
+            // Vanilla shop state can overwrite custom entries on subsequent frames.
+            shop.OpenShopForNpcType(selectedShopName, CurrentMerchantId, suppressSound: true, sourceTag: "local_ui_sync");
         }
         else
         {
@@ -294,6 +298,6 @@ public partial class ShopUI
         shop.CycleIndex = selectedIndex;
         _lastSelectedIndex = -1;
         UpdateUI();
-        shop.OpenShop(shopName);
+        shop.OpenShopForNpcType(shopName, CurrentMerchantId, suppressSound: false, sourceTag: "local_ui_click");
     }
 }
